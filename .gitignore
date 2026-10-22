@@ -1,0 +1,36 @@
+# macOS / editors
+.DS_Store
+._*
+*.swp
+*.swo
+
+# Xcode / Swift build output and user state
+DerivedData/
+build/
+.build/
+xcuserdata/
+*.xcuserstate
+*.xcresult/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# Optional server runtime artifacts
+node_modules/
+dist/
+coverage/
+*.log
+server/supabase/.temp/
+server/supabase/.branches/
+
+# Local secrets; commit sanitized templates instead
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.sample
+*.local.xcconfig
+.secrets/
+*.p8
+*.p12
+*.mobileprovision
+
+# Keep Package.resolved and server lockfiles tracked when introduced.

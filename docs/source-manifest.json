@@ -1,0 +1,47 @@
+{
+  "summary_date": "2026-10-22",
+  "timezone": "Asia/Jakarta",
+  "source_workspace_local_path": "/Users/giovan/Documents/ChatGPT/C6 - Pisang Besar Balaraja",
+  "source_workspace_head": "fd61221455071cb2a63296ab89eb0328e053fa28",
+  "note": "Sources include local working-tree files, including untracked files. SHA-256 identifies the bytes used; workspace HEAD alone does not identify these documents. Complete source files are not copied into this repository.",
+  "latest_user_direction": {
+    "date": "2026-10-22",
+    "monorepo": "Agreed: iOS UI, iOS Backend, Server.",
+    "ios_architecture": "VIPER discussed as the initial direction.",
+    "server_stack": "Undecided."
+  },
+  "sources": [
+    {
+      "path_in_source_workspace": "CBL.md",
+      "sha256": "a72cec066cfd991aabb12a42081bfdc271e506483fc03df5b7902ef15c7d7799"
+    },
+    {
+      "path_in_source_workspace": "docs/technology/README.md",
+      "sha256": "e3db7e54f19cd2f381402ab9c047b4728108dbd7d418b070c765b2305851a94d"
+    },
+    {
+      "path_in_source_workspace": "docs/technology/01-architecture-domain.md",
+      "sha256": "931bf1029fa40297c96d71549488a167b89d6951285cd711580de8acdbc24422"
+    },
+    {
+      "path_in_source_workspace": "docs/technology/02-ios-data.md",
+      "sha256": "973d119321976f4253e87fd97510c116870a354ac207ab33270e1e7463b67ed6"
+    },
+    {
+      "path_in_source_workspace": "docs/technology/09-delivery-testing.md",
+      "sha256": "e8cc37b96239aa891083cf6afb0c329f9a45dcaa8be3ae507e5f72d2169489dd"
+    },
+    {
+      "path_in_source_workspace": "docs/technology/10-decisions-sources.md",
+      "sha256": "56ed36233fbaca0ecc006f7b60584518507a6193a4a30009ad9cbe789bbdda8b"
+    },
+    {
+      "path_in_source_workspace": "docs/research/audit-kelayakan-teknologi-2026-10-22.md",
+      "sha256": "981e567e90a7fdd11d80abdf0d5b391f4b930c13d5d38c283d414b9f94277870"
+    }
+  ],
+  "external_architecture_references": [
+    "https://www.objc.io/issues/13-architecture/viper/",
+    "https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html"
+  ]
+}
