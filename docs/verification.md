@@ -1,6 +1,6 @@
 # Starter verification
 
-**23 October 2026.** These checks concern the starter, not the deployed homelab or product validation.
+**23 October 2026.** Evidence below distinguishes starter/mock, disposable CI and shared homelab checks; it does not establish product validation.
 
 | Check | Result / boundary |
 |---|---|
@@ -17,7 +17,7 @@
 | Auth / homelab | Local tests and shared homelab integration verified; shared suite passes 28 checks and preserves the existing account. Native iOS login and real-person app sessions remain untested. See homelab evidence below. |
 | Physical device / offline / field use | Not tested; mock trips are memory-only |
 
-Before shared backend deployment, rerun local database/API checks for the proposed revision, review the homelab database version and existing schema, implement/verify the native traveller session path, and prepare a separate operational deployment plan. The local development stack is not an export of homelab credentials or data.
+Before future shared backend changes, rerun database/API checks for the proposed revision, review the homelab database version and existing schema, and prepare a separate operational deployment plan. Verify the native traveller session path before connecting the app to shared data. The local development stack is not an export of homelab credentials or data.
 
 ## Team-conventions setup
 
@@ -54,10 +54,10 @@ Unverified: native iOS login/session storage, Simulator/live wiring, physical de
 
 The approved deployment is complete. See [Homelab verification](homelab-verification.md) for exact evidence and recovery limits: private backups verified, both databases restored in isolation on PostgreSQL 17.6, 14/14 isolated pgTAP checks and 28/28 shared HTTP checks passed, official migration history recorded, all 11 services healthy, existing Auth account preserved and temporary records/container removed. These results supersede the earlier local-only homelab boundary for the starter foundation. Native iOS integration and step 2 APIs remain separate work.
 
-## Private trip reads — CI verified, shared deployment pending
+## Private trip reads — CI and shared homelab verified
 
 Implementation commit `fa274b1` passed the database and contract jobs in [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257). The disposable GitHub Linux stack applied both migrations and the synthetic seed after a clean rebuild. Both pgTAP files passed: 40/40 assertions (14 foundation plus 26 private-read assertions). Public-schema lint reported no errors. The HTTP suite passed 39/39 checks through real local Auth sessions, then removed its temporary data and stopped the stack.
 
 New evidence covers empty/default owner lists, start-time/UUID ordering across page boundaries, account-bound/invalid cursors, persisted detail, uniform missing/foreign 404s and non-finite-date rejection. Existing copy/retry/isolation checks also pass. OpenAPI 0.2 and all three fixtures validate, generated catalog copies remain consistent, and local Python syntax/whitespace checks pass.
 
-This CI stack uses PostgreSQL 17.11; shared homelab remains PostgreSQL 17.6. The [prepared homelab plan](homelab-trip-reads-plan.md) requires a restored isolated test on the exact shared image before applying the new migration. Read-only preflight found the shared foundation unchanged: 11 healthy services, one original Auth account, one catalog version, zero trips and only the starter migration. Neither new RPC is deployed there yet. Native Swift repository/UI integration is separate work. See the [task](tasks/private-trip-reads.md).
+This CI stack uses PostgreSQL 17.11; shared homelab remains PostgreSQL 17.6. All four CI jobs passed at documentation checkpoint `4a425bb`. The [approved homelab plan](homelab-trip-reads-plan.md) has also been executed: both databases restored on the exact shared image, 40/40 isolated pgTAP assertions and 40/40 shared HTTP checks passed, the new migration is recorded by the official runner, all 11 services are healthy and the original account/catalog remain with zero trips. Temporary users/data/container were removed. See [actual shared results](homelab-trip-reads-verification.md). Both private RPCs are deployed; native Swift repository/UI integration is separate work. See the [task](tasks/private-trip-reads.md).

@@ -1,6 +1,6 @@
 # Homelab plan: private trip reads
 
-Status: Prepared; awaiting separate approval. No step 2 homelab mutation has run.
+Status: Explicitly approved by Giovan and executed through verification/cleanup. See [actual results](homelab-trip-reads-verification.md). The reviewed scope and hashes below are retained.
 Date: 23 October 2026 (Asia/Jakarta).
 
 ## Read-only preflight
@@ -48,4 +48,4 @@ Approval covers the private backup, isolated container lifecycle, one official m
 6c771a1c038a73065ebd7b8307a4e15d8b6dbe8df3466f0e3a7172b4f6a6dcb9  server/scripts/test_homelab_api.py
 ```
 
-Operational approval is required by [homelab-ops](</Users/giovan/.codex/skills/homelab-ops/SKILL.md>): “Treat the user's initial write request as intent, not approval of the resulting exact plan. Wait for a separate explicit approval after presenting the preflight.” The earlier foundation approval covered the starter migration only.
+Operational approval is required by [homelab-ops](</Users/giovan/.codex/skills/homelab-ops/SKILL.md>): “Treat the user's initial write request as intent, not approval of the resulting exact plan. Wait for a separate explicit approval after presenting the preflight.” The earlier foundation approval covered the starter migration only; Giovan subsequently approved this exact plan before execution.

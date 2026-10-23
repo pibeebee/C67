@@ -1,6 +1,6 @@
 # Task: Read private persisted trips
 
-Status: Implementation and CI verification complete; shared homelab approval/deployment pending
+Status: Complete for server scope, including shared homelab deployment and verification
 Owner: Giovan
 Reviewers: Server and iOS data owners before merge
 Branch: gi/server-local-foundation (foundation checkpoint followed by an additive read commit in the same draft PR)
@@ -20,7 +20,7 @@ SQL RPCs, additive OpenAPI 0.2/fixtures, database and HTTP acceptance checks, se
 - [x] Anon/missing subjects and cross-account reads are rejected.
 - [x] Invalid limits/cursors/IDs and non-finite starts fail without writes.
 - [x] Contract/fixtures and full database/HTTP suites pass on a disposable environment.
-- [ ] Shared homelab application and temporary account tests have a concrete approved preflight before execution.
+- [x] Shared homelab application and temporary account tests followed the concrete approved plan; restore/SQL/HTTP verification and cleanup passed.
 
 ## References
 
@@ -35,4 +35,4 @@ The server adds list_my_trips and get_trip_snapshot without changing Trip JSON. 
 
 ## Verification
 
-Implementation `fa274b1`: [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257), 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks on disposable PostgreSQL 17.11. Contract/fixture, Python syntax and whitespace checks pass. Shared deployment requires the prepared plan and an isolated PostgreSQL 17.6 restore gate. No new RPC has been deployed to the shared backend.
+Implementation `fa274b1`: [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257), 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks on disposable PostgreSQL 17.11. Contract/fixture, Python syntax and whitespace checks pass. All four CI jobs passed at documentation checkpoint `4a425bb`. The approved homelab execution restored both databases on the exact PostgreSQL 17.6 image, passed 40/40 isolated pgTAP checks, applied the one new official migration without seed reload, and passed 40/40 shared HTTP checks. The original account/catalog were preserved and temporary data/container removed. See [deployed verification](../homelab-trip-reads-verification.md).

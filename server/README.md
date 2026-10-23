@@ -1,6 +1,6 @@
 # Server
 
-Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed have also been applied to the shared homelab through the explicitly approved procedure; see [homelab verification](../docs/homelab-verification.md). Local scripts do not deploy there automatically.
+Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed and additive private trip reads have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/homelab-verification.md) and [private read verification](../docs/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
 
 ```text
 server/
@@ -62,4 +62,4 @@ Actual execution additionally requires `--approved-shared-test` and prior author
 
 ## Private trip reads (step 2)
 
-The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations and passed CI: 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks. See [verification evidence](../docs/verification.md). Shared deployment awaits the [reviewed operational plan](../docs/homelab-trip-reads-plan.md) and separate approval. The native Swift adapter and UI do not call these RPCs yet.
+The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations and passed CI: 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks. See [verification evidence](../docs/verification.md). Shared deployment and cleanup are complete under the [approved operational plan](../docs/homelab-trip-reads-plan.md): 40/40 isolated homelab SQL assertions and 40/40 shared HTTP checks passed. The native Swift adapter and UI do not call these RPCs yet.
