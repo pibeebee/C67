@@ -12,6 +12,8 @@ for filename, schema in [
     ("rundowns.json", {"type": "array", "items": {"$ref": "#/components/schemas/Rundown"}}),
     ("trip.json", {"$ref": "#/components/schemas/Trip"}),
     ("trip-page.json", {"$ref": "#/components/schemas/TripPage"}),
+    ("trip-snapshot-v2.json", {"$ref": "#/components/schemas/TripSnapshotV2"}),
+    ("trip-snapshot-v2-legacy.json", {"$ref": "#/components/schemas/TripSnapshotV2"}),
 ]:
     schema = {**schema, "components": spec["components"]}
     data = json.loads((root / "contracts/fixtures" / filename).read_text())

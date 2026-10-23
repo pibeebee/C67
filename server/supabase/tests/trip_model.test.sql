@@ -1,0 +1,64 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+set local search_path = public, extensions;
+select plan(39);
+insert into auth.users(id,email) values
+ ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa','model-a@example.invalid'),
+ ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb','model-b@example.invalid');
+select is((select count(*)::integer from public.rundowns),1,'Seed has a separate root identity');
+select isnt((select rundown_id::text from public.rundown_versions limit 1),'11111111-1111-4111-8111-111111111111','Root and version are distinct identifiers');
+insert into public.rundown_versions(id,rundown_id,version_no,title,area,summary,stops,published)
+select '11111111-1111-4111-8111-111111111112',rundown_id,2,'Synthetic second version',area,summary,'[]',true
+from public.rundown_versions where id='11111111-1111-4111-8111-111111111111';
+select is((select count(distinct rundown_id)::integer from public.rundown_versions),1,'Two versions share one root');
+select throws_ok($$insert into public.rundown_versions(id,rundown_id,version_no,title,area,summary,stops) select gen_random_uuid(),rundown_id,2,'Duplicate','Test','Test','[]' from public.rundown_versions limit 1$$,'23505',null,'Root/version number is unique');
+select throws_ok($$update public.rundown_versions set version_no=3 where version_no=2$$,'23514','Version identity is immutable','Version number cannot be rewritten');
+insert into public.rundown_versions(id,title,area,summary,stops,published)
+values('99999999-9999-4999-8999-999999999999','Hidden root','Test','Synthetic','[]',false);
+set local role anon;
+select is((select count(*)::integer from public.rundowns),1,'Anonymous root read hides draft-only identities');
+select throws_ok($$insert into public.rundowns default values$$,'42501','permission denied for table rundowns','Clients cannot create roots');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','Asia/Tokyo',gen_random_uuid())$$,'42501','permission denied for function create_trip_v2','Anonymous V2 creation denied');
+select throws_ok($$select public.get_trip_snapshot_v2(gen_random_uuid())$$,'42501','permission denied for function get_trip_snapshot_v2','Anonymous V2 detail denied');
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub','',true);
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','Asia/Tokyo',gen_random_uuid())$$,'PT401','Traveller session required','Definer requires subject');
+select throws_ok($$select public.get_trip_snapshot_v2(gen_random_uuid())$$,'PT401','Traveller session required','V2 detail requires subject');
+select set_config('request.jwt.claim.sub','aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',true);
+select set_config('c67.model_trip',public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','Asia/Tokyo','50000000-0000-4000-8000-000000000001')->>'id',true);
+select is(public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)->>'local_start_date','2026-11-01','Date uses destination zone, not UTC');
+select is(public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)->>'time_zone','Asia/Tokyo','IANA zone is retained explicitly');
+select is(public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)->>'revision','1','Initial revision is one');
+select is(public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)->>'status','planned','Saved trip is planned');
+select is(public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)->'source'->>'version_no','1','Copied version number is explicit');
+select is(public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-11-01T01:00+09','Asia/Tokyo','50000000-0000-4000-8000-000000000001')->>'id',current_setting('c67.model_trip'),'Equivalent instant retry retains identity');
+select is((select count(*)::integer from public.trips),1,'Retry does not duplicate snapshot');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','UTC','50000000-0000-4000-8000-000000000001')$$,'PT409','Request ID reused with different input','Changed zone retry conflicts');
+select throws_ok($$select public.create_trip('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','50000000-0000-4000-8000-000000000001')$$,'PT409','Request ID reused with different input','V1 command cannot adopt V2 receipt');
+select set_config('c67.legacy_trip',public.create_trip('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','50000000-0000-4000-8000-000000000002')->>'id',true);
+select ok(public.get_trip_snapshot_v2(current_setting('c67.legacy_trip')::uuid)->>'time_zone' is null and public.get_trip_snapshot_v2(current_setting('c67.legacy_trip')::uuid)->>'local_start_date' is null,'Legacy instant does not invent destination zone/date');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','Asia/Tokyo','50000000-0000-4000-8000-000000000002')$$,'PT409','Request ID reused with different input','V2 command cannot adopt V1 receipt');
+select is((select count(*)::integer from jsonb_object_keys(public.get_trip_snapshot(current_setting('c67.model_trip')::uuid))),5,'Legacy detail shape remains five fields');
+select is(public.create_trip_v2('11111111-1111-4111-8111-111111111112','2026-03-08T06:30Z','America/New_York','50000000-0000-4000-8000-000000000003')->>'local_start_date','2026-03-08','Pre-DST instant derives correct destination date');
+select is(public.create_trip_v2('11111111-1111-4111-8111-111111111112','2026-03-08T07:30Z','America/New_York','50000000-0000-4000-8000-000000000004')->>'local_start_date','2026-03-08','Post-DST instant derives correct destination date');
+select is(public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-11-01T02:00Z','America/Los_Angeles','50000000-0000-4000-8000-000000000005')->>'local_start_date','2026-10-31','Negative zone can use previous calendar day');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','Asia/Invalid',gen_random_uuid())$$,'PT400','A recognized IANA time zone is required','Unknown zone rejected');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z','+07:00',gen_random_uuid())$$,'PT400','A recognized IANA time zone is required','Offset is not an IANA zone');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-10-31T16:00Z',null,gen_random_uuid())$$,'PT400','Version, start time, time zone and request ID are required','Missing zone rejected');
+select throws_ok($$select public.create_trip_v2('11111111-1111-4111-8111-111111111111','infinity','UTC',gen_random_uuid())$$,'PT400','Trip start must be finite','V2 rejects non-finite instants');
+select throws_ok($$select public.create_trip_v2('99999999-9999-4999-8999-999999999999','2026-10-31T16:00Z','UTC',gen_random_uuid())$$,'PT404','Published version not found','V2 rejects unpublished source');
+select throws_ok($$update public.trips set revision=99$$,'42501','permission denied for table trips','Client cannot forge revision');
+select set_config('request.jwt.claim.sub','bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',true);
+select throws_ok($$select public.get_trip_snapshot_v2(current_setting('c67.model_trip')::uuid)$$,'PT404','Trip not found','Foreign V2 detail is hidden');
+select throws_ok($$select public.get_trip_snapshot_v2('40000000-0000-4000-8000-000000000099')$$,'PT404','Trip not found','Missing V2 detail uses same 404');
+select throws_ok($$select public.get_trip_snapshot_v2(null)$$,'PT400','Trip ID is required','Null V2 detail rejected');
+reset role;
+update public.trips set title='Privileged maintenance',revision=999 where id=current_setting('c67.model_trip')::uuid;
+select is((select revision::integer from public.trips where id=current_setting('c67.model_trip')::uuid),2,'Server increments revision instead of accepting a supplied value');
+select throws_ok($$update public.trips set source_version_no=2 where id=current_setting('c67.model_trip')::uuid$$,'23514','Trip source identity is immutable','Trip provenance cannot be reassigned');
+update public.rundown_versions set title='Changed version one' where id='11111111-1111-4111-8111-111111111111';
+select is((select title from public.trips where request_id='50000000-0000-4000-8000-000000000002'),'Kota Tua Photo Walk','Source content change does not rebuild stored legacy snapshot');
+select is((select source_version_no from public.trips where request_id='50000000-0000-4000-8000-000000000003'),2,'Copy of second version retains its own provenance');
+select * from finish();
+rollback;
