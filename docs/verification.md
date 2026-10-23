@@ -54,6 +54,10 @@ Unverified: native iOS login/session storage, Simulator/live wiring, physical de
 
 The approved deployment is complete. See [Homelab verification](homelab-verification.md) for exact evidence and recovery limits: private backups verified, both databases restored in isolation on PostgreSQL 17.6, 14/14 isolated pgTAP checks and 28/28 shared HTTP checks passed, official migration history recorded, all 11 services healthy, existing Auth account preserved and temporary records/container removed. These results supersede the earlier local-only homelab boundary for the starter foundation. Native iOS integration and step 2 APIs remain separate work.
 
-## Private trip reads — in progress
+## Private trip reads — CI verified, shared deployment pending
 
-The additive contract, SQL migration, 26 new pgTAP checks and private-read HTTP checks are prepared. Contract/fixture validation, Python syntax and whitespace checks pass locally. CI execution and shared homelab deployment results are pending; foundation results above apply only to the original three RPCs. See the [task](tasks/private-trip-reads.md).
+Implementation commit `fa274b1` passed the database and contract jobs in [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257). The disposable GitHub Linux stack applied both migrations and the synthetic seed after a clean rebuild. Both pgTAP files passed: 40/40 assertions (14 foundation plus 26 private-read assertions). Public-schema lint reported no errors. The HTTP suite passed 39/39 checks through real local Auth sessions, then removed its temporary data and stopped the stack.
+
+New evidence covers empty/default owner lists, start-time/UUID ordering across page boundaries, account-bound/invalid cursors, persisted detail, uniform missing/foreign 404s and non-finite-date rejection. Existing copy/retry/isolation checks also pass. OpenAPI 0.2 and all three fixtures validate, generated catalog copies remain consistent, and local Python syntax/whitespace checks pass.
+
+This CI stack uses PostgreSQL 17.11; shared homelab remains PostgreSQL 17.6. The [prepared homelab plan](homelab-trip-reads-plan.md) requires a restored isolated test on the exact shared image before applying the new migration. Read-only preflight found the shared foundation unchanged: 11 healthy services, one original Auth account, one catalog version, zero trips and only the starter migration. Neither new RPC is deployed there yet. Native Swift repository/UI integration is separate work. See the [task](tasks/private-trip-reads.md).

@@ -62,4 +62,4 @@ Actual execution additionally requires `--approved-shared-test` and prior author
 
 ## Private trip reads (step 2)
 
-The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations; previous foundation results do not verify these new RPCs. Shared deployment remains pending a separate reviewed operational plan. The native Swift adapter and UI do not call these RPCs yet.
+The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations and passed CI: 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks. See [verification evidence](../docs/verification.md). Shared deployment awaits the [reviewed operational plan](../docs/homelab-trip-reads-plan.md) and separate approval. The native Swift adapter and UI do not call these RPCs yet.
