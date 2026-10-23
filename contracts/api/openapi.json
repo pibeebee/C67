@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "C67 starter RPC contract",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "servers": [
     {
@@ -455,6 +455,201 @@
           }
         }
       }
+    },
+    "/rest/v1/rpc/create_trip_v2": {
+      "post": {
+        "operationId": "create_trip_v2",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_version_id",
+                  "p_starts_at",
+                  "p_request_id",
+                  "p_time_zone"
+                ],
+                "properties": {
+                  "p_version_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_time_zone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255,
+                    "description": "Recognized IANA region/name or UTC; an offset alone is insufficient."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSnapshotV2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired traveller session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Published version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Request ID reused with different input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create an owner snapshot with explicit destination zone. Identical owner/request/version/instant/zone retries preserve identity and revision. Reusing an ID across V1/V2 or with changed input returns 409. No editing or lifecycle transition is exposed."
+      }
+    },
+    "/rest/v1/rpc/get_trip_snapshot_v2": {
+      "post": {
+        "operationId": "get_trip_snapshot_v2",
+        "description": "Owner-only stored snapshot including version provenance, destination date, planned status and server revision. Legacy trips retain null zone/date. Foreign/missing IDs return the same 404.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "p_trip_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSnapshotV2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Trip does not exist or belongs to another account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -611,6 +806,97 @@
             ],
             "maxLength": 512,
             "description": "Opaque continuation bound to the authenticated account. Pass unchanged; null means the final page."
+          }
+        }
+      },
+      "TripSnapshotV2": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_version_id",
+          "title",
+          "starts_at",
+          "stops",
+          "schema_version",
+          "source",
+          "time_zone",
+          "local_start_date",
+          "revision",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source_version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          },
+          "schema_version": {
+            "type": "integer",
+            "const": 2
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "rundown_id",
+              "version_id",
+              "version_no"
+            ],
+            "properties": {
+              "rundown_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version_no": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 255,
+            "description": "Explicit PostgreSQL-recognized IANA zone (UTC or region/name); null for legacy creation. Not inferred from a timestamp offset."
+          },
+          "local_start_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "Server-derived destination calendar date; null when legacy zone is unknown."
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "const": "planned"
           }
         }
       }

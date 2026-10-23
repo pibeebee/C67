@@ -247,6 +247,7 @@ class LocalAPI:
                 "Refreshed session cannot read the persisted owner trip")
         self.passed_check("A real refreshed session retains owner-scoped access")
         self.verify_trip_reads(refreshed["access_token"], token_b, trip_a, trip_b, source)
+        self.verify_trip_model(refreshed["access_token"], token_b, trip_a, source)
 
     def verify_trip_reads(self, token_a, token_b, trip_a, trip_b, source):
         list_path = "/rest/v1/rpc/list_my_trips"
@@ -323,6 +324,90 @@ class LocalAPI:
         self.passed_check("Non-finite dates cannot create snapshots that break pagination")
 
 
+    def verify_trip_model(self, token_a, token_b, trip_a, source):
+        create_path, detail_path = "/rest/v1/rpc/create_trip_v2", "/rest/v1/rpc/get_trip_snapshot_v2"
+        command = {"p_version_id": source["id"], "p_starts_at": "2026-10-31T16:00:00Z",
+                   "p_time_zone": "Asia/Tokyo", "p_request_id": str(uuid4())}
+        self.error(self.request("POST", create_path, command), 401, "42501")
+        self.error(self.request("POST", detail_path, {"p_trip_id": trip_a["id"]}), 401, "42501")
+        self.passed_check("V2 creation/detail require a traveller session")
+        legacy = self.expect(self.request("POST", detail_path, {"p_trip_id": trip_a["id"]}, token=token_a), 200)
+        require({key: legacy[key] for key in trip_a} == trip_a and legacy["time_zone"] is None
+                and legacy["local_start_date"] is None and legacy["revision"] == 1,
+                "Legacy snapshot was changed or assigned an invented destination zone")
+        self.passed_check("V2 reads legacy snapshots with explicit unknown zone/date")
+        version = self.expect(self.request("GET", f"/rest/v1/rundown_versions?id=eq.{source['id']}&select=rundown_id,version_no"), 200)[0]
+        UUID(version["rundown_id"])
+        created = self.expect(self.request("POST", create_path, command, token=token_a), 200)
+        fields = {"id", "source_version_id", "title", "starts_at", "stops", "schema_version",
+                  "source", "time_zone", "local_start_date", "revision", "status"}
+        require(set(created) == fields, "V2 snapshot fields differ from contract")
+        self.check_trip({key: created[key] for key in trip_a}, source, command["p_starts_at"])
+        require(created["source"] == {"rundown_id": version["rundown_id"], "version_id": source["id"],
+                                      "version_no": version["version_no"]}, "V2 source attribution differs")
+        require(created["schema_version"] == 2 and created["revision"] == 1 and created["status"] == "planned"
+                and created["time_zone"] == "Asia/Tokyo" and created["local_start_date"] == "2026-11-01",
+                "V2 destination date/revision/state differs")
+        self.passed_check("V2 creation stores source identity and destination date across UTC midnight")
+        require(self.expect(self.request("POST", detail_path, {"p_trip_id": created["id"]}, token=token_a), 200)
+                == created, "V2 reload differs from committed snapshot")
+        self.passed_check("V2 snapshot reload preserves the complete committed model")
+        equivalent = {**command, "p_starts_at": "2026-11-01T01:00:00+09:00"}
+        require(self.expect(self.request("POST", create_path, equivalent, token=token_a), 200) == created,
+                "V2 equivalent-instant retry changed snapshot/revision")
+        self.error(self.request("POST", create_path, {**command, "p_time_zone": "UTC"}, token=token_a), 409, "PT409")
+        self.passed_check("V2 retries preserve revision and changed zone returns conflict")
+        old_command = {key: value for key, value in command.items() if key != "p_time_zone"}
+        self.error(self.request("POST", "/rest/v1/rpc/create_trip", old_command, token=token_a), 409, "PT409")
+        v1_collision = {**command, "p_starts_at": trip_a["starts_at"]}
+        # Read this test trip's request ID administratively; never expose it in output.
+        original = self.expect(self.request("GET", f"/rest/v1/trips?id=eq.{trip_a['id']}&select=request_id", admin=True), 200)[0]
+        v1_collision["p_request_id"] = original["request_id"]
+        self.error(self.request("POST", create_path, v1_collision, token=token_a), 409, "PT409")
+        self.passed_check("V1/V2 commands cannot adopt each other's request IDs")
+        foreign = self.request("POST", detail_path, {"p_trip_id": created["id"]}, token=token_b)
+        missing = self.request("POST", detail_path, {"p_trip_id": str(uuid4())}, token=token_b)
+        self.error(foreign, 404, "PT404")
+        self.error(missing, 404, "PT404")
+        require(foreign == missing, "V2 detail exposes foreign identity")
+        self.passed_check("V2 foreign/missing details are indistinguishable")
+        for zone in ["Asia/Invalid", "+07:00", "posix/Asia/Jakarta", "", None]:
+            self.error(self.request("POST", create_path, {**command, "p_time_zone": zone,
+                       "p_request_id": str(uuid4())}, token=token_a), 400, "PT400")
+        self.passed_check("Unknown, offset-only, internal and missing zones are rejected")
+        for instant in ["infinity", None, "10000-01-01T00:00:00Z"]:
+            self.error(self.request("POST", create_path, {**command, "p_starts_at": instant,
+                       "p_request_id": str(uuid4())}, token=token_a), 400, "PT400")
+        self.passed_check("V2 rejects non-finite, missing and unsupported-range trip dates")
+        west = self.expect(self.request("POST", create_path, {**command, "p_time_zone": "America/Los_Angeles",
+                           "p_starts_at": "2026-11-01T02:00:00Z", "p_request_id": str(uuid4())}, token=token_a), 200)
+        require(west["local_start_date"] == "2026-10-31", "Negative-offset destination date is wrong")
+        self.passed_check("Destination date can precede the UTC calendar date")
+        for instant in ["2026-03-08T06:30:00Z", "2026-03-08T07:30:00Z"]:
+            dst = self.expect(self.request("POST", create_path, {**command, "p_time_zone": "America/New_York",
+                              "p_starts_at": instant, "p_request_id": str(uuid4())}, token=token_a), 200)
+            require(dst["local_start_date"] == "2026-03-08", "DST boundary shifted the destination date")
+        self.passed_check("Explicit instants remain valid on both sides of a DST transition")
+        concurrent = {**command, "p_request_id": str(uuid4())}
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            responses = list(pool.map(lambda _: self.request("POST", create_path, concurrent, token=token_a), range(4)))
+        snapshots = [self.expect(reply, 200) for reply in responses]
+        require(all(item == snapshots[0] and item["revision"] == 1 for item in snapshots),
+                "Concurrent V2 retries changed identity/model/revision")
+        self.passed_check("Four concurrent V2 retries return one identical revision")
+        self.error(self.request("POST", "/rest/v1/rundowns", {"id": str(uuid4())}, token=token_a), 403, "42501")
+        self.error(self.request("PATCH", f"/rest/v1/trips?id=eq.{created['id']}", {"revision": 99}, token=token_a), 403, "42501")
+        self.passed_check("Travellers cannot write root identities or forge revisions directly")
+        self.error(self.request("POST", create_path, {**command, "p_version_id": self.draft_id,
+                   "p_request_id": str(uuid4())}, token=token_a), 404, "PT404")
+        draft = self.expect(self.request("GET", f"/rest/v1/rundown_versions?id=eq.{self.draft_id}&select=rundown_id", admin=True), 200)[0]
+        require(self.expect(self.request("GET", f"/rest/v1/rundowns?id=eq.{draft['rundown_id']}"), 200) == [],
+                "Draft-only root leaked to anonymous reads")
+        self.passed_check("V2 creation and root reads preserve unpublished catalog privacy")
+        other = self.expect(self.request("POST", create_path, command, token=token_b), 200)
+        require(other["id"] != created["id"], "V2 request identity is not owner-scoped")
+        self.passed_check("V2 request identity remains scoped to each account")
+
     def cleanup(self):
         errors = 0
         for user_id in reversed(self.user_ids):
@@ -338,9 +423,19 @@ class LocalAPI:
         if self.draft_id:
             try:
                 path = f"/rest/v1/rundown_versions?id=eq.{self.draft_id}"
+                draft_rows = self.expect(self.request("GET", path + "&select=rundown_id", admin=True), 200)
+                require(len(draft_rows) == 1, "Temporary draft identity unavailable for cleanup")
+                root_id = draft_rows[0]["rundown_id"]
+                UUID(root_id)
                 self.expect(self.request("DELETE", path, admin=True), 204)
                 require(self.expect(self.request("GET", path, admin=True), 200) == [],
                         "Temporary draft was not cleaned up")
+                require(self.expect(self.request("GET", f"/rest/v1/rundown_versions?rundown_id=eq.{root_id}&select=id", admin=True), 200) == [],
+                        "Temporary root has unexpected additional versions; preserve it")
+                root_path = f"/rest/v1/rundowns?id=eq.{root_id}"
+                self.expect(self.request("DELETE", root_path, admin=True), 204)
+                require(self.expect(self.request("GET", root_path, admin=True), 200) == [],
+                        "Temporary root was not cleaned up")
             except Exception:
                 errors += 1
         require(errors == 0, "Cleanup failed; inspect only this local stack's synthetic test records")
