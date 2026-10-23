@@ -8,7 +8,9 @@
     "start": "supabase start",
     "stop": "supabase stop",
     "db:reset": "supabase db reset --local",
-    "db:test": "supabase test db"
+    "db:test": "supabase test db",
+    "db:lint": "supabase db lint --local --schema public --fail-on error",
+    "api:test": "python3 scripts/test_local_api.py"
   },
   "devDependencies": {
     "supabase": "2.121.0"

@@ -11,6 +11,7 @@ validate(spec)
 for filename, schema in [
     ("rundowns.json", {"type": "array", "items": {"$ref": "#/components/schemas/Rundown"}}),
     ("trip.json", {"$ref": "#/components/schemas/Trip"}),
+    ("trip-page.json", {"$ref": "#/components/schemas/TripPage"}),
 ]:
     schema = {**schema, "components": spec["components"]}
     data = json.loads((root / "contracts/fixtures" / filename).read_text())
