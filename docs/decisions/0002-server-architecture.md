@@ -1,24 +1,11 @@
-# ADR-0002 — Usulan arsitektur Server
+# ADR-0002 — Supabase backend foundation
 
-**Tanggal:** 22 Oktober 2026. **Status:** usulan untuk ditinjau; framework, provider dan runtime belum diputuskan.
+**Status:** accepted for starter development, 23 October 2026. Replaces the earlier provider-undecided proposal after the user's approval of the Supabase starter.
 
-## Usulan
+Use the existing self-hosted Supabase as the backend foundation. Develop schema and SQL RPCs locally through the pinned Supabase CLI. The first slice uses PostgreSQL transactions, RLS and Data API RPCs; no custom Node HTTP server is introduced. Node/npm here manages the CLI only.
 
-Gunakan modular monolith: satu codebase server dengan modul berdasarkan kemampuan produk. Di dalam tiap modul, pisahkan handler, logika application/domain dan adapter data secukupnya. Awali dari accounts, discovery, rundowns, trips, journals dan media. Database mempunyai satu riwayat migrasi; kerja media berat memiliki batas worker tersendiri.
+Use `server/supabase/migrations/` as the single migration history. The initial starter stores ordered stops as JSON snapshots; the complete proposed relational/PostGIS design is not implemented. Edge Functions and media workers are reserved for later orchestration and processing needs.
 
-Alasannya: data trip, copy versi, jurnal dan atribusi berkaitan erat dan membutuhkan konsistensi. Tim dapat membangun serta meninjau satu slice tanpa langsung mengelola banyak layanan. Ini rekomendasi engineering untuk C67, belum hasil pengukuran kapasitas.
+Local development permits reads of published synthetic catalog entries. Trips are owner-scoped and creation is a verified-session command. This development access policy does not finalize production catalog access, creator publishing or media distribution.
 
-## Pilihan implementasi yang masih terbuka
-
-| Kandidat | Pekerjaan yang perlu dibuktikan |
-|---|---|
-| Supabase managed + PostgreSQL/PostGIS + functions/RPC | Auth native, akses/data isolation, transaksi, migrasi, protokol media dan host worker; kandidat dari spesifikasi workspace. |
-| API custom + database/object storage yang dipilih | Framework/bahasa, Auth, hosting, operasi, transaksi dan integrasi media perlu dipilih serta dirawat tim. |
-
-Struktur folder mendukung pengelompokan fitur pada kedua arah. Jika memilih functions/RPC, sesuaikan entrypoint dan lokasi migrasi dengan tooling provider; jangan memaksakan satu executable atau menggandakan migrasi. Worker tambahan tidak berarti semua modul harus menjadi microservice.
-
-## Sebelum memilih dan bootstrap
-
-Pertimbangkan pengalaman anggota Server, waktu delivery, lifecycle Auth, biaya/operasi dan satu uji copy trip beserta akses dua akun. Untuk slice jurnal, putuskan presence dan buktikan jalur foto termasuk worker tertunda/retry. Hasil keputusan berikutnya harus memperbarui ADR ini dan konfigurasi nyata bersama-sama.
-
-Folder kosong yang dibuat sekarang menyediakan tempat kerja. Tidak ada dependency, provisioning layanan, schema produksi atau endpoint yang aktif.
+The homelab installation and its SMTP/Studio configuration remain external operational state. No automatic deployment, remote reset or migration application is included. Before deployment, verify PostgreSQL/runtime compatibility and review migrations against existing data. See [Server guide](../../server/README.md).

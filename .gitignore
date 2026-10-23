@@ -34,3 +34,6 @@ server/supabase/.branches/
 *.mobileprovision
 
 # Keep Package.resolved and server lockfiles tracked when introduced.
+.venv/
+__pycache__/
+*.pyc

@@ -1,0 +1,46 @@
+name: Starter checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  ios:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shared package tests
+        run: swift test --package-path ios-backend
+      - name: Mock Simulator smoke test
+        shell: bash
+        run: |
+          destination=$(python3 scripts/simulator_destination.py)
+          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67             -destination "$destination" -derivedDataPath /tmp/c67-ci             CODE_SIGNING_ALLOWED=NO test
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/check_contracts.py
+  database:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+      - run: npm run start
+      - run: npm run db:reset
+      - run: npm run db:test
+      - if: always()
+        run: npm run stop

@@ -1,43 +1,16 @@
-# iOS Backend
+# iOS Backend (on-device code)
 
-Kode non-UI yang **berjalan di iPhone**, terpisah dari server remote. Struktur ini disiapkan sebagai calon local Swift package; `Package.swift`, target dan dependency belum dibuat.
+This is a local Swift package, not a remote server. It exports two products:
 
-```text
-ios-backend/
-├── Sources/
-│   ├── Domain/
-│   │   ├── Entities/
-│   │   ├── Rules/
-│   │   └── Repositories/   # protocol kebutuhan data domain
-│   ├── Application/
-│   │   ├── UseCases/       # alur/logika yang dipakai lintas fitur
-│   │   └── Sync/           # recovery, snapshot dan koordinasi cache
-│   ├── Data/
-│   │   ├── Repositories/   # implementasi protocol domain
-│   │   ├── Remote/         # client API, DTO dan mapping error
-│   │   ├── Local/          # persistensi lokal dan mapping model
-│   │   └── Files/          # draft foto dan cache media
-│   ├── Platform/
-│   │   ├── Location/
-│   │   ├── Media/
-│   │   ├── Places/
-│   │   ├── Weather/
-│   │   └── Authentication/
-│   └── Configuration/
-└── Tests/{Domain,Application,Data,Platform}/
-```
+| Target | Responsibility |
+|---|---|
+| `C67Domain` | Rundown/stop/trip entities, repository protocol, domain-facing errors |
+| `C67Data` | Mock actor with bundled fixtures; URLSession Supabase RPC adapter |
 
-## Batas dependency
+Run `swift test --package-path ios-backend` from the repository root. Tests cover snapshot copying, retry identity, configuration validation, authentication boundaries and the RPC wire adapter.
 
-- Domain tidak mengenal UI, storage, DTO atau provider. Simpan Entity dan aturan bisnis yang berlaku bersama di sini.
-- Application memakai Domain serta protocol yang diperlukan; tidak mengimpor implementasi Data/Platform. Protocol kemampuan perangkat dapat diletakkan di Application dekat use case pemakainya.
-- Data dan Platform mengimplementasikan protocol dari lapisan dalam; UI composition root menghubungkannya.
-- Interactor VIPER memakai batas tersebut; tidak mengulang aturan waktu, merge atau presence di Presenter/View.
+The package has no external Swift dependencies. Domain cannot import Data. Reserved Application/Platform directories are not compiler targets yet. Introduce them when shared use cases or native services need a stable boundary.
 
-Direktori belum menjadi modul compiler yang menegakkan arah import. Saat membuat local package, wujudkan batas yang diperlukan sebagai target, dengan dependency mengarah ke Domain/Application. Jangan membuat satu package atau repository generik untuk setiap tabel. [Manifest Swift Package](https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html) akan menentukan target yang benar-benar ada.
+`MockRundownRepository` is memory-only. Its bundled fixture is a checked copy of `contracts/fixtures/rundowns.json`; update it with `scripts/sync_fixtures.py`. `SupabaseRundownRepository` accepts a URL, client key, injectable URLSession and async access-token provider. It adds a bearer header only for an actual traveller JWT; client API keys stay in the `apikey` header.
 
-## Batas data
-
-Cache server, draft lokal, command yang belum pasti hasilnya dan data yang telah diterima server memiliki status berbeda. SwiftData masih kandidat penyimpanan; sinkronisasi memerlukan implementasi tersendiri. Tidak ada upload otomatis dari lokasi lain hanya karena pengguna pernah tiba di pin.
-
-Jaga scope akun, draft/file yang belum terkirim, identitas request dan pembatalan. Simpan sesi dengan secure credential storage; rahasia server tidak pernah masuk bundle aplikasi. Angka GPS, TTL dan policy final belum ditetapkan oleh scaffold.
+Implement secure session persistence and refresh before wiring authenticated live writes. No SMTP, Studio password or service-role key belongs in the client. Offline persistence, synchronization and Apple platform adapters remain follow-up tasks.

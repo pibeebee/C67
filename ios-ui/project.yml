@@ -1,0 +1,63 @@
+name: C67
+options:
+  minimumXcodeGenVersion: 2.44.0
+  deploymentTarget:
+    iOS: "18.0"
+packages:
+  C67Backend:
+    path: ../ios-backend
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    PRODUCT_BUNDLE_IDENTIFIER: io.pibeebee.c67.starter
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  C67:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Features
+      - Shared
+      - Resources
+    info:
+      path: Configuration/Info.plist
+      properties:
+        C67_DATA_MODE: $(C67_DATA_MODE)
+        SUPABASE_URL: $(SUPABASE_SCHEME)://$(SUPABASE_HOST)
+        SUPABASE_CLIENT_KEY: $(SUPABASE_CLIENT_KEY)
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    configFiles:
+      Debug: Configuration/Base.xcconfig
+      Release: Configuration/Base.xcconfig
+    dependencies:
+      - package: C67Backend
+        product: C67Domain
+      - package: C67Backend
+        product: C67Data
+  C67UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - Tests/UI
+    dependencies:
+      - target: C67
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.pibeebee.c67.starter.uitests
+schemes:
+  C67:
+    build:
+      targets:
+        C67: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - C67UITests

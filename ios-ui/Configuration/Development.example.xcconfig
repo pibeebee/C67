@@ -1,0 +1,7 @@
+// Copy to Development.local.xcconfig. Mock needs no credentials.
+C67_DATA_MODE = mock
+SUPABASE_SCHEME = http
+SUPABASE_HOST = 127.0.0.1:54321
+// For live catalog, set mode=live and copy the local publishable/anon CLIENT key.
+// Never use a service-role key, Studio password or SMTP password here.
+SUPABASE_CLIENT_KEY =

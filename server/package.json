@@ -1,0 +1,16 @@
+{
+  "name": "c67-server-tooling",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Pinned local Supabase development tooling; not a Node API server.",
+  "scripts": {
+    "supabase": "supabase",
+    "start": "supabase start",
+    "stop": "supabase stop",
+    "db:reset": "supabase db reset --local",
+    "db:test": "supabase test db"
+  },
+  "devDependencies": {
+    "supabase": "2.121.0"
+  }
+}

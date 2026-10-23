@@ -1,49 +1,34 @@
-# Batas arsitektur monorepo
+# Architecture boundaries
 
-**22 Oktober 2026.** Dokumen ini menjelaskan struktur awal. Kesepakatan pengguna: iOS UI, iOS Backend dan Server berada di satu repository. VIPER adalah arah awal aplikasi iOS. Pemilihan framework/backend tetap terbuka.
-
-## Tanggung jawab dan arah dependency
+## Dependency direction
 
 ```text
-ios-ui: View → Presenter → Interactor
-                     └──→ Router
-                               (wiring melalui Assembly/CompositionRoot)
-
-Interactor → ios-backend: Application / Domain protocols
-Data + Platform ────────→ Application / Domain protocols
-CompositionRoot ───────→ implementasi Data + Platform
-
-Data/Remote ⇄ API server     [kontrak di contracts/]
-Server → database / object storage / worker
+SwiftUI View → Presenter → Interactor → RundownRepository protocol (C67Domain)
+       navigation uses DiscoveryRoute             ↑
+App composition root wires Mock / Supabase adapter (C67Data)
+                                                  ↓
+                        Supabase Data API → SQL RPC → PostgreSQL + RLS
 ```
 
-Diagram menunjukkan hubungan kode dan pertukaran data yang dituju; folder belum menjadi target compiler atau layanan yang berjalan. Domain tidak mengimpor UI atau SDK vendor. Composition root adalah tempat menghubungkan implementasi konkret.
+- `C67Domain` owns entities and the repository interface. It imports Foundation, not UI or vendor SDKs.
+- `C67Data` implements the interface with a memory-only actor and a URLSession RPC adapter.
+- VIPER View, Interactor, Presenter, Router and Assembly live under `ios-ui/Features/Discovery/`. The starter keeps list/detail in one small feature; split the detail module when its behavior needs separate ownership.
+- Entity comes from the shared Domain target. Presenter owns display state on the main actor. Router defines destinations; Assembly creates the feature.
+- The app composition root selects mock/live. Only this wiring knows concrete adapters.
+- Application/Platform are reserved folders. Add targets or shared use cases when needed; do not add a second wrapper around a single repository call solely to fill folders.
 
-| Bagian VIPER | Lokasi |
-|---|---|
-| View, Presenter, Router | `ios-ui/Features/<Feature>/` |
-| Interactor | Fitur yang sama; menjalankan use case melalui protocol domain/aplikasi. |
-| Entity | `ios-backend/Sources/Domain/Entities/`, dibagi lintas fitur bila identitasnya sama. |
-| Factory/wiring tambahan | Assembly fitur dan App/CompositionRoot. |
+## First server slice
 
-Interactor yang sederhana tidak wajib mendelegasikan ke wrapper UseCase identik. Pisahkan layanan application bila alur dipakai bersama atau perlu koordinasi di luar satu fitur. Aturan domain hanya memiliki satu implementasi client yang dipakai bersama; server tetap menegakkan otorisasinya sendiri terhadap request yang tidak dipercaya.
+The accepted backend foundation is self-hosted Supabase. The repo provides local Supabase development configuration, SQL RPCs and a single migration history under `server/supabase/migrations/`. It adds no custom Node API server. `server/package.json` pins development tooling only.
 
-## Bentuk server yang disarankan
+The starter stores a published rundown version with ordered stops as a JSON snapshot. `create_trip` copies it into an owner-scoped trip in one database transaction. This intentionally small model does not implement the full proposed relational/PostGIS schema. Future normalized tables require migrations and contract compatibility checks.
 
-Mulai dengan modul accounts, discovery, rundowns, trips, journals dan media di satu codebase. Pilih runtime/API entrypoint setelah stack disepakati. Batas worker media disediakan karena beban pemrosesan berbeda; belum menjadi keputusan host atau jumlah deployment. Detail dan konsekuensinya ada pada [usulan server](decisions/0002-server-architecture.md).
+RPCs use `contracts/api/openapi.json`. Published synthetic catalog reads are allowed to anonymous and authenticated clients for development. Production catalog/guest access and creator publishing remain product decisions. Trip writes are restricted to `create_trip`; its definer function uses a fixed empty search path and verified `auth.uid()`. Clients cannot submit `owner_id` or directly update tables.
 
-Satu monorepo tidak mengharuskan satu bahasa atau satu proses deploy. Pemilihan runtime, dependency manager, provider dan CI menunggu bootstrap implementasi. Kontrak API dan migrasi masing-masing memiliki satu sumber yang dipelihara.
+Each create command includes a request UUID. A retry with the same owner, UUID, version and timestamp returns the original trip. Reusing that UUID for different input fails with HTTP 409. The UI retains a failed command's UUID in memory; durable offline recovery is not implemented yet.
 
-## Aturan produk yang memengaruhi semua bagian
+## Runtime boundaries
 
-- Rundown/versi kreator berbeda dari salinan trip traveller; terbitnya versi baru tidak menimpa trip lama.
-- Jam saran kreator, jadwal pengguna, forecast dan kejadian aktual dipisahkan.
-- Draft foto, bytes terkirim, jurnal diterima, stop selesai dan trip selesai adalah keadaan berbeda.
-- GPS saat tindakan unggah tetap diperlukan; policy transfer/finalisasi belum final. Jangan membuat izin unggah permanen berdasarkan arrival lama.
-- Merge, otomatisasi cuaca, audience foto, skip/partial completion dan hak salinan tidak diaktifkan dari asumsi scaffold.
+Mock saving is memory-only. Live catalog loading is implemented. Live trip saving has an authenticated adapter and SQL contract, but no app sign-in flow. Auth/session refresh, local persistence, journaling/media, map routing, WeatherKit and background jobs are later slices. Studio collaborator access does not create traveller sessions.
 
-## Slice berikutnya yang disarankan
-
-Setelah bootstrap dan pemilihan stack, mulai dengan katalog rundown terkurasi → detail → copy ke trip pribadi melalui satu kontrak. Berikutnya buktikan satu stop + satu foto sampai penerimaan server, termasuk draft recovery dan keputusan presence. Baru perluas fitur. Ini urutan usulan, belum otorisasi implementasi atau hasil tes.
-
-Dasar pemisahan VIPER: [artikel penulis VIPER](https://www.objc.io/issues/13-architecture/viper/). Pemisahan folder, adaptasi Interactor/use case, dan bentuk server di atas adalah pilihan proyek, bukan aturan framework tersebut.
+Keep creator versions separate from personal trips. Keep suggested times, selected start times, forecasts and actual events separate. Server authorization remains authoritative even if the client validates input first.

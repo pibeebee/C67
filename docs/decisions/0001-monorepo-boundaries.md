@@ -1,19 +1,9 @@
-# ADR-0001 — Tiga area kerja dalam satu monorepo
+# ADR-0001 — Monorepo boundaries
 
-**Tanggal:** 22 Oktober 2026. **Status:** kesepakatan monorepo pengguna; pembagian folder awal diterapkan.
+**Status:** accepted. **Original decision:** 22 October 2026. **Starter update:** 23 October 2026.
 
-## Konteks
+Use one repository with `ios-ui/`, `ios-backend/`, `server/`, `contracts/` and `docs/`. iOS Backend means non-UI code running on the iPhone, not the remote server.
 
-Tim membagi pekerjaan menjadi iOS UI, iOS Backend dan Server, dan sepakat memakai repository `pibeebee/C67`. Aplikasi iOS diarahkan memakai VIPER. Stack backend belum diputuskan.
+VIPER modules live in iOS UI and share entities/repository interfaces from Domain. CompositionRoot wires Data implementations. The starter enforces Domain → no Data/UI imports through separate Swift package targets; Data depends on Domain. Application/Platform remain reserved until required.
 
-## Keputusan struktur
-
-`ios-ui/` menampung app dan modul VIPER. `ios-backend/` menampung domain/data/use case dan adapter yang berjalan di perangkat. `server/` menampung backend remote. `contracts/` menjadi sumber kontrak bersama; `docs/` mencatat konteks dan keputusan.
-
-Interactor berada pada fitur VIPER; Entity dibagikan melalui Domain iOS Backend. Logika bersama dipisahkan dari presentasi. Ini penataan awal yang dapat direvisi tim, bukan persetujuan semua rincian pola implementasi.
-
-## Konsekuensi
-
-Tim dapat meninjau perubahan lintas UI/client/server dalam satu PR. Akses repository dan proses review perlu mencakup perubahan kontrak bersama. Tiap runtime mempunyai manifest, dependency dan proses build sendiri ketika diinisialisasi; monorepo belum membutuhkan orchestrator tambahan.
-
-Tahap ini hanya membuat folder dan panduan. Project Xcode, local Swift package, server, database, CI serta migrasi PoC belum diinisialisasi. Detail batas ada di [arsitektur](../architecture.md).
+A contract change can span all areas in one PR. Each runtime has its own tooling. No monorepo task orchestrator is needed for the starter. See [Architecture](../architecture.md).

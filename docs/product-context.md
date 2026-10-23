@@ -1,34 +1,27 @@
-# Konteks produk untuk pengembang C67
+# Product context
 
-**Ringkasan 22 Oktober 2026**, dari CBL dan dokumen teknologi workspace. Ini ringkasan mandiri untuk memulai repository; sumber lengkap, path lokal dan checksum dicatat pada [source-manifest.json](source-manifest.json). Klarifikasi pengguna terbaru mengungguli proposal lama.
+Updated 23 October 2026 from the workspace CBL record and explicit team decisions. The original source manifest remains a historical provenance record; it is not a claim that later starter code appeared in those source files.
 
-## Pengalaman utama
+## Core journey
 
-Traveller mencari area atau menjelajah map → memilih rundown pengalaman kreator → memahami urutan spot, landing point, durasi, moda, tips dan konteks waktu → memilih waktu pelaksanaan yang fleksibel → mengikuti spot → mendokumentasikan foto → memperoleh album satu perjalanan. Ekspor ke media sosial opsional.
+A traveller discovers an area or browses a map, selects a creator's travel rundown, understands its stops and context, chooses a suitable start time, follows the trip, documents visits and obtains an album. Social export is optional.
 
-Contoh Athar: dari Agora Mall Thamrin mencari Kota Tua, memilih rundown, menuju titik awal, mengunjungi spot, menambahkan foto tiap spot, lalu membuka album. Landing point boleh berbeda dari spot pertama; bila sama, jangan membuat dua konfirmasi kedatangan identik.
+Athar's design scenario goes from Agora Mall Thamrin to Kota Tua: discover, select, reach the landing point, visit stops, add photos and view an album. The landing point can differ from the first stop. The Tokyo A/B scenario adds another creator's rundown to an existing plan; overlap resolution and rescheduling remain open decisions.
 
-Contoh Tokyo A/B tetap aktif: A berisi Chiyoda → Asakusa → Shibuya; B berisi Asakusa → Shibuya → Shinjuku. Traveller dapat melengkapi trip A dengan sumber B. Cara memilih sebagian, menyelesaikan overlap dan menjadwalkan ulang belum final.
+## Constraints to preserve
 
-## Batas yang perlu dipertahankan
+- Creator rundowns are the primary product; photos/GPS support execution and journaling.
+- Creator times are recommendations, not mandatory traveller start times.
+- Published creator versions and independently editable personal trips are different objects.
+- Best-case journaling includes photos per stop. Skip/partial completion and early ending remain unresolved.
+- Camera/gallery/selfie/edited photos are possible inputs. Device location is not proof of image authenticity; arrival is not a permanent upload permission.
+- Weather supports preparation and decisions; missing ETA, opening hours or forecasts must not be invented.
+- Chat, booking, payments, gamification and tracking other people are not requirements of this starter.
 
-- Rundown kreator adalah fitur utama. Foto/GPS mendukung pelaksanaan dan journaling, dengan album sebagai hasil perjalanan.
-- Jam dalam template adalah rekomendasi; tidak mengunci waktu traveller.
-- Foto setiap spot wajib dalam best-case Athar; pengecualian gagal/skip/berhenti dini masih terbuka.
-- Foto boleh dari kamera, galeri, selfie, pemandangan atau editan. GPS perangkat diperiksa saat tindakan unggah; pernah tiba tidak cukup. Itu bukan bukti keaslian foto atau lokasi absolut.
-- Cuaca membantu persiapan, moda dan penyesuaian. Availability, ETA, jam buka dan data tempat harus dibuktikan; tidak mengisi data kosong dengan angka simulasi tanpa label.
-- Tidak ada keputusan baru tentang gamifikasi, chat, social graph, booking, pembayaran atau pelacakan orang lain.
+## Technical decisions and evidence
 
-## Keputusan yang masih terbuka
+The team agreed on one repo with iOS UI, on-device iOS Backend and Server areas, using VIPER as the iOS direction. Self-hosted Supabase is the backend foundation; the current repo supplies local development assets and does not deploy to that host.
 
-Provider/framework server; akses guest/library; makna default jam mulai; aturan merge/otomatisasi cuaca; skip/partial completion; presence saat transfer/finalisasi dan parameter GPS; audience/moderasi kontribusi; hak salinan dan penghapusan; retensi; provider transit serta dukungan offline terperinci.
+The starter implements synthetic discovery/detail and memory-only mock trip creation, plus an authenticated RPC adapter and SQL development baseline. The full product specification, native journaling PoC and HTML wireframe remain separate artifacts. None establishes product adoption or field validation.
 
-Supabase/PostgreSQL/PostGIS/Storage/Edge Functions, worker media dan SwiftData adalah kandidat dari spesifikasi 0.1, bukan keputusan final tim. Kesepakatan monorepo dan arah VIPER dari percakapan 22 Oktober memperbarui pembagian kode; tidak mengesahkan seluruh proposal tersebut.
-
-## Temuan audit yang memengaruhi implementasi
-
-Model landing → stop pertama perlu dilengkapi; moderasi mencakup konten kreator; foto tambahan tidak boleh tanpa sengaja meregresi stop completed; kontrak media kreator perlu diperinci. Ketergantungan finalisasi presence pada antrean worker perlu diputuskan sebelum pilot foto. Detail keputusan tetap terbuka, bukan perilaku yang sudah diimplementasikan.
-
-## Bukti yang sudah ada dan batasnya
-
-Wireframe revisi 2 di workspace adalah simulasi HTML. PoC native terdahulu terpisah dan mencakup journaling satu pin dengan JSON lokal. Keduanya bukan implementasi monorepo ini. Foldering sekarang belum membangun aplikasi, menjalankan API, menguji GPS fisik, memvalidasi kebutuhan pengguna atau menyiapkan produksi.
+Guest/catalog access, creator distribution, merge, presence policy, photo audiences, moderation, retention, transit and detailed offline behavior still need decisions. Public synthetic catalog access in local development does not settle production access policy. App sign-in is a follow-up; Studio access is a developer concern.
