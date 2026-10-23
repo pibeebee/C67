@@ -36,9 +36,9 @@ Create new migrations through `npm run supabase -- migration new <name>`. Do not
 
 ## Local acceptance checks
 
-- `db:test`: 14 pgTAP checks of grants, RLS, snapshot copying and retry behavior. Synthetic role/claim tests run in a rolled-back transaction.
+- `db:test`: 40 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
 - `db:lint`: checks the local public schema and exits nonzero for schema errors.
-- `api:test`: 27 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, and sends four concurrent retries of one command.
+- `api:test`: 39 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
 
 The HTTP suite reads keys from the pinned local CLI into memory. It accepts only project `c67-starter` at `http://127.0.0.1:54321`, ignores HTTP proxy settings, rejects redirects, and offers no remote URL option. Local email confirmation must be disabled as in the checked-in development config. No SMTP account, Studio password or hand-copied token is needed.
 
@@ -59,3 +59,7 @@ References: [Supabase migrations](https://supabase.com/docs/guides/local-develop
 ```
 
 Actual execution additionally requires `--approved-shared-test` and prior authorization for two temporary confirmed Auth users, test trips/draft and cleanup. It is never run automatically in CI. It reuses the local behavioral suite without weakening that suite's loopback guard. Shared Auth confirmation stays enabled; temporary accounts are provisioned through the admin API without sending emails. See the [approved procedure](../docs/homelab-execution-plan.md) and [results](../docs/homelab-verification.md).
+
+## Private trip reads (step 2)
+
+The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations; previous foundation results do not verify these new RPCs. Shared deployment remains pending a separate reviewed operational plan. The native Swift adapter and UI do not call these RPCs yet.

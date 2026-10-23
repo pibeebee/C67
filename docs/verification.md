@@ -8,7 +8,7 @@
 | iOS Simulator build | Pass with Xcode 27.1 / Swift 6.4; deployment target iOS 18 |
 | Mock UI smoke test | 1 test passes on iPhone 18 Pro Simulator, iOS 27.0: discovery → detail → save |
 | Configuration | Dummy live mode/client key and local URL confirmed in the built Info.plist; no live server request implied |
-| API contract | OpenAPI 3.1 validates; both JSON fixtures validate; bundled catalog and SQL seed match the authoritative fixture |
+| API contract | OpenAPI 3.1 validates; all three JSON fixtures validate; bundled catalog and SQL seed match the authoritative fixture |
 | Configuration formats | XcodeGen/workflow YAML and local Supabase TOML parse |
 | Project generator | XcodeGen 2.45.4 |
 | Supabase CLI | 2.121.0 pinned with npm lockfile; config and migration name generated through CLI |
@@ -53,3 +53,7 @@ Unverified: native iOS login/session storage, Simulator/live wiring, physical de
 ## Shared homelab foundation — 23 October 2026
 
 The approved deployment is complete. See [Homelab verification](homelab-verification.md) for exact evidence and recovery limits: private backups verified, both databases restored in isolation on PostgreSQL 17.6, 14/14 isolated pgTAP checks and 28/28 shared HTTP checks passed, official migration history recorded, all 11 services healthy, existing Auth account preserved and temporary records/container removed. These results supersede the earlier local-only homelab boundary for the starter foundation. Native iOS integration and step 2 APIs remain separate work.
+
+## Private trip reads — in progress
+
+The additive contract, SQL migration, 26 new pgTAP checks and private-read HTTP checks are prepared. Contract/fixture validation, Python syntax and whitespace checks pass locally. CI execution and shared homelab deployment results are pending; foundation results above apply only to the original three RPCs. See the [task](tasks/private-trip-reads.md).

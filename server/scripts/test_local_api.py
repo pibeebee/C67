@@ -161,6 +161,9 @@ class LocalAPI:
         session_a, session_b = self.login("a"), self.login("b")
         token_a, token_b = session_a["access_token"], session_b["access_token"]
         require(self.user_ids[0] != self.user_ids[1], "Test accounts must be distinct")
+        empty_page = self.expect(self.request("POST", "/rest/v1/rpc/list_my_trips", {}, token=token_b), 200)
+        require(empty_page == {"items": [], "next_cursor": None}, "Empty owner list differs from contract")
+        self.passed_check("An account without trips receives an empty final page")
         trip_a = self.expect(self.request("POST", create_path, command, token=token_a), 200)
         self.check_trip(trip_a, source, starts_at)
         self.passed_check("Account A creates a contract-compatible snapshot with its selected instant")
@@ -243,6 +246,82 @@ class LocalAPI:
         require(len(self.expect(self.trip_rows(trip_a["id"], refreshed["access_token"]), 200)) == 1,
                 "Refreshed session cannot read the persisted owner trip")
         self.passed_check("A real refreshed session retains owner-scoped access")
+        self.verify_trip_reads(refreshed["access_token"], token_b, trip_a, trip_b, source)
+
+    def verify_trip_reads(self, token_a, token_b, trip_a, trip_b, source):
+        list_path = "/rest/v1/rpc/list_my_trips"
+        detail_path = "/rest/v1/rpc/get_trip_snapshot"
+        for path, body in [(list_path, {}), (detail_path, {"p_trip_id": trip_a["id"]})]:
+            self.error(self.request("POST", path, body), 401, "42501")
+        self.passed_check("Private list/detail require a real traveller session")
+
+        saved = self.expect(self.request("POST", detail_path, {"p_trip_id": trip_a["id"]},
+                                         token=token_a), 200)
+        require(saved == trip_a, "Reloaded snapshot differs from the confirmed create response")
+        self.passed_check("A separate detail request reloads the persisted snapshot")
+        foreign = self.request("POST", detail_path, {"p_trip_id": trip_a["id"]}, token=token_b)
+        missing = self.request("POST", detail_path, {"p_trip_id": str(uuid4())}, token=token_b)
+        self.error(foreign, 404, "PT404")
+        self.error(missing, 404, "PT404")
+        require(foreign == missing, "Foreign and missing trip errors reveal different information")
+        self.passed_check("Foreign and missing trip details return the same 404")
+
+        for start in [trip_a["starts_at"], "2026-11-03T02:00:00Z"]:
+            self.expect(self.request("POST", "/rest/v1/rpc/create_trip", {
+                "p_version_id": source["id"], "p_starts_at": start, "p_request_id": str(uuid4()),
+            }, token=token_a), 200)
+        full = self.expect(self.request("POST", list_path, {}, token=token_a), 200)
+        require(set(full) == {"items", "next_cursor"} and full["next_cursor"] is None,
+                "Default page shape/final cursor does not match contract")
+        require(len(full["items"]) == 4 and trip_b["id"] not in {t["id"] for t in full["items"]},
+                "Owner list leaks another account or loses a confirmed trip")
+        for item in full["items"]:
+            self.check_trip(item, source, item["starts_at"])
+        self.passed_check("Owner list returns complete contract snapshots without other accounts")
+
+        cursor, all_items, first_cursor = None, [], None
+        for page_index in range(10):
+            body = {"p_limit": 1, "p_cursor": cursor}
+            page = self.expect(self.request("POST", list_path, body, token=token_a), 200)
+            require(set(page) == {"items", "next_cursor"} and len(page["items"]) <= 1,
+                    "Page size/shape differs from contract")
+            all_items.extend(page["items"])
+            if page_index == 0:
+                first_cursor = page["next_cursor"]
+                require(bool(first_cursor), "A non-final page lacks a cursor")
+                require(self.expect(self.request("POST", list_path, body, token=token_a), 200) == page,
+                        "Repeating an unchanged page is unstable")
+            cursor = page["next_cursor"]
+            if cursor is None:
+                break
+        require(cursor is None, "Pagination failed to terminate")
+        require(all_items == full["items"] and len({t["id"] for t in all_items}) == 4,
+                "Keyset traversal duplicates, skips or reorders a trip")
+        def order_key(item):
+            return (datetime.fromisoformat(item["starts_at"].replace("Z", "+00:00")), item["id"])
+        require(all_items == sorted(all_items, key=order_key, reverse=True),
+                "List does not use the documented start/UUID descending order")
+        self.passed_check("Keyset pages are stable across equal start times without gaps/duplicates")
+
+        self.error(self.request("POST", list_path, {"p_cursor": first_cursor}, token=token_b),
+                   400, "PT400")
+        self.passed_check("Continuation cannot be reused after switching accounts")
+        for value in [0, 101, None]:
+            self.error(self.request("POST", list_path, {"p_limit": value}, token=token_a), 400, "PT400")
+        self.passed_check("Invalid/null limits return 400")
+        for value in ["!!!", "e30=", "/w==", "x" * 513]:
+            self.error(self.request("POST", list_path, {"p_cursor": value}, token=token_a), 400, "PT400")
+        self.passed_check("Malformed, incomplete, invalid-UTF8 and oversized cursors return 400")
+        self.error(self.request("POST", detail_path, {"p_trip_id": None}, token=token_a), 400, "PT400")
+        self.passed_check("Null trip IDs return 400")
+        own_b = self.expect(self.request("POST", list_path, {}, token=token_b), 200)
+        require(own_b == {"items": [trip_b], "next_cursor": None}, "Account B list is not isolated")
+        self.passed_check("Account B list contains only its own snapshot")
+        self.error(self.request("POST", "/rest/v1/rpc/create_trip", {
+            "p_version_id": source["id"], "p_starts_at": "infinity", "p_request_id": str(uuid4()),
+        }, token=token_a), 400, "23514")
+        self.passed_check("Non-finite dates cannot create snapshots that break pagination")
+
 
     def cleanup(self):
         errors = 0

@@ -44,7 +44,7 @@ class HomelabAPI(LocalAPI):
         require(len(self.baseline_ids) == 1, "Auth baseline changed; re-review the shared preflight")
         spec = self.expect(self.request("GET", "/rest/v1/", admin=True), 200)
         require(all("/rpc/" + name in spec.get("paths", {})
-                    for name in ["list_rundowns", "get_rundown", "create_trip"]),
+                    for name in ["list_rundowns", "get_rundown", "create_trip", "list_my_trips", "get_trip_snapshot"]),
                 "Required shared RPCs are not available")
 
     def request(self, method, path, body=None, token=None, admin=False, key=True):

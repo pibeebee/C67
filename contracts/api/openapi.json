@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "C67 starter RPC contract",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "servers": [
     {
@@ -290,6 +290,171 @@
           }
         }
       }
+    },
+    "/rest/v1/rpc/list_my_trips": {
+      "post": {
+        "operationId": "list_my_trips",
+        "description": "Read-only owner list ordered by starts_at DESC, id DESC. Cursor is opaque and account-bound. Separate pages are live reads, not a frozen multi-request snapshot; a new listing is needed for rows inserted ahead of the current cursor.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 20
+                  },
+                  "p_cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 512,
+                    "default": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/get_trip_snapshot": {
+      "post": {
+        "operationId": "get_trip_snapshot",
+        "description": "Read-only; ownership comes from the verified traveller session.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "p_trip_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Trip does not exist or belongs to another account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -421,6 +586,31 @@
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "TripPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trip"
+            },
+            "maxItems": 100
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 512,
+            "description": "Opaque continuation bound to the authenticated account. Pass unchanged; null means the final page."
           }
         }
       }
