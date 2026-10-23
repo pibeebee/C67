@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 import C67Domain
 
@@ -38,7 +38,7 @@ public struct SupabaseRundownRepository: RundownRepository {
             throw RepositoryError.authenticationRequired
         }
         return try await rpc("create_trip", body: Create(p_version_id: versionID,
-                             p_starts_at: startsAt, p_request_id: requestID), token: token)
+                                                         p_starts_at: startsAt, p_request_id: requestID), token: token)
     }
 
     private func rpc<Body: Encodable, Output: Decodable>(
@@ -55,7 +55,7 @@ public struct SupabaseRundownRepository: RundownRepository {
         request.httpBody = try encoder.encode(body)
         let (data, response) = try await session.data(for: request)
         guard let response = response as? HTTPURLResponse else { throw RepositoryError.server(status: 0) }
-        guard (200..<300).contains(response.statusCode) else {
+        guard (200 ..< 300).contains(response.statusCode) else {
             if response.statusCode == 401 { throw RepositoryError.authenticationRequired }
             if response.statusCode == 404 { throw RepositoryError.notFound }
             if response.statusCode == 409 { throw RepositoryError.idempotencyConflict }
@@ -70,7 +70,7 @@ public struct SupabaseRundownRepository: RundownRepository {
             formatter.formatOptions = [.withInternetDateTime]
             guard let date = formatter.date(from: value) else {
                 throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath,
-                                                       debugDescription: "Expected an ISO 8601 timestamp"))
+                                                        debugDescription: "Expected an ISO 8601 timestamp"))
             }
             return date
         }

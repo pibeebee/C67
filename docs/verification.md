@@ -13,8 +13,15 @@
 | Project generator | XcodeGen 2.45.4 |
 | Supabase CLI | 2.121.0 pinned with npm lockfile; config and migration name generated through CLI |
 | Database runtime | Not run locally: Docker engine socket is unavailable; a 14-check pgTAP suite and CI job are provided |
-| GitHub Actions | Workflow added; no hosted run is claimed before commit/push |
+| GitHub Actions | Baseline commit `640f035` passed `ios`, `contracts` and `database`; new conventions/formatter PR is checked separately |
 | Homelab / real traveller Auth | Not modified or tested in this change |
 | Physical device / offline / field use | Not tested; mock trips are memory-only |
 
 Before shared backend deployment, run the local Supabase database suite with Docker, review the homelab database version and existing schema, implement/verify the traveller session path, and prepare a separate operational deployment plan. The local development stack is not an export of homelab credentials or data.
+
+## Team-conventions setup
+
+- The checksum-verified SwiftFormat 0.64.1 runner successfully downloaded its pinned macOS release, formatted two Swift files for layout only, and passed `--check` for all 15 Swift files.
+- The shared package still passes all 4 tests after formatting. Contract/fixture checks, Markdown links/fences, Python syntax and workflow YAML checks pass.
+- GitHub protection/merge settings are documented in [Repository settings](repository-settings.md) and verified by reading back the GitHub API.
+- Main requires an eligible human approval. Ownership, CODEOWNERS and collaborator roles were explicitly skipped; the setup PR is not automatically merged.

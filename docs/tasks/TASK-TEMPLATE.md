@@ -3,7 +3,7 @@
 Status: Proposed / In progress / Ready for review / Done / Blocked
 Owner: <name>
 Reviewers: <names and affected areas>
-Branch: <initials/short-topic>
+Branch: <initials/short-topic> (see coding-conventions.md)
 
 ## Outcome
 

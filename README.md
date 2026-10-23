@@ -14,7 +14,7 @@ For AI-assisted team work, start with [AGENTS.md](AGENTS.md) and the [shared wor
 
 Mock trips exist in memory and disappear when the app closes. All displayed starter content is synthetic. This demonstrates software integration, not validated travel information or a completed CBL solution.
 
-Read [Getting started](docs/getting-started.md) for detailed setup, [Architecture](docs/architecture.md) for boundaries, and [Contributing](docs/contributing.md) before opening a PR.
+Read [Getting started](docs/getting-started.md) for detailed setup, [Architecture](docs/architecture.md) for boundaries, and [Contributing](docs/contributing.md) before opening a PR. Complete the relevant [onboarding checklist](docs/onboarding-checklist.md) and follow [coding conventions](docs/coding-conventions.md).
 
 | Area | Responsibility | Entry point |
 |---|---|---|

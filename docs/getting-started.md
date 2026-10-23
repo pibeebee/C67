@@ -84,3 +84,7 @@ For a later homelab integration use HTTPS and the homelab client key, after revi
 Run the **C67** scheme's Test action in Xcode. The UI test opens the rundown and saves a mock trip. Keep data mode set to `mock` for this test.
 
 CI also runs package tests, contract validation, the Simulator smoke test, and local Supabase database tests. See [Verification](verification.md) for what has actually run locally.
+
+## 7. Team conventions and formatting
+
+Read [Coding conventions](coding-conventions.md), then run `python3 scripts/swift_format.py --check`. The runner downloads the pinned macOS formatter on first use and verifies its archive checksum. Use `--write` when formatting your Swift changes. Complete [the onboarding checklist](onboarding-checklist.md) before your first merge.
