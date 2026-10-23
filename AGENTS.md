@@ -2,7 +2,7 @@
 
 ## Start with the task and current code
 
-C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase is the remote backend foundation; app sign-in and homelab schema deployment are separate work.
+C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The starter schema is deployed and verified; native app sign-in remains separate work.
 
 Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
@@ -26,7 +26,7 @@ Link to these sources instead of duplicating their contents in instruction files
 4. Keep mock/live behavior explicit. Do not use fabricated data without a synthetic label or treat mock success as a working live integration.
 5. Keep client keys separate from traveller JWTs. Never place Studio, SMTP, service-role credentials or real sessions in source, fixtures, logs or app configuration.
 6. Use the task's agreed branch and scope. Commit, push, deploy, remote schema changes and destructive operations require the user's authorization for that action; existing authorization remains valid. Routine local edits and checks do not need repeated permission.
-7. Keep shared environments unchanged during normal feature work. Local database reset is destructive even when disposable: use only the documented local script when local reset is authorized.
+7. Use the homelab for shared development and an isolated homelab database/container for SQL tests that mutate/reset data. Mac-local Supabase is optional and CI still uses a disposable local stack. Shared changes require their reviewed operational scope; never substitute a shared reset for isolated tests.
 8. Complete relevant checks, then report results, limitations and follow-up work. Do not claim tests ran when only test files or CI configuration were added.
 
 ## Verification commands

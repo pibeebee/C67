@@ -44,17 +44,19 @@ Edit fixtures in `contracts/fixtures/`, then run `python3 scripts/sync_fixtures.
 
 ## 4. Start local Supabase (server developers)
 
-Requirements: Node.js 22+ / npm and a running Docker-compatible engine. Run from `server/`:
+Requirements: Node.js 22+ / npm, Python 3.11+ for HTTP checks, and a running Docker-compatible engine. Run from `server/`:
 
 ```sh
 npm ci
 npm run start
 npm run db:reset
 npm run db:test
+npm run db:lint
+npm run api:test
 npm run supabase -- status
 ```
 
-**`db:reset` deletes and rebuilds the local development database.** Use it only for disposable local data. The npm script explicitly passes `--local`; do not add remote connection flags. Initial image downloads may take several minutes.
+**`db:reset` deletes and rebuilds the local development database.** Use it only for disposable local data. The npm script explicitly passes `--local`; do not add remote connection flags. Initial image downloads may take several minutes. The HTTP suite creates two temporary local accounts, tests real login/refresh and private trip access, and verifies cleanup. It does not accept a remote URL or reset data. See [the server guide](../server/README.md) for scope and recovery limits. CLI status output contains local credentials; keep it private.
 
 Default ports: API `54321`, database `54322`, Studio `54323`, local mail inbox `54324`. Close an older stack using these ports first. Local Auth emails stay in the local inbox; no Brevo credentials are needed. PostgreSQL 17 is the generated local baseline; verify the actual homelab version and migration compatibility before any future deployment.
 

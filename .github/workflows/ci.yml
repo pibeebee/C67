@@ -41,6 +41,9 @@ jobs:
         working-directory: server
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -50,5 +53,7 @@ jobs:
       - run: npm run start
       - run: npm run db:reset
       - run: npm run db:test
+      - run: npm run db:lint
+      - run: npm run api:test
       - if: always()
         run: npm run stop

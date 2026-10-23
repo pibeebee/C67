@@ -19,7 +19,7 @@ App composition root wires Mock / Supabase adapter (C67Data)
 
 ## First server slice
 
-The accepted backend foundation is self-hosted Supabase. The repo provides local Supabase development configuration, SQL RPCs and a single migration history under `server/supabase/migrations/`. It adds no custom Node API server. `server/package.json` pins development tooling only.
+The accepted backend foundation is self-hosted Supabase. The repo provides optional local Supabase configuration, SQL RPCs and a single migration history under `server/supabase/migrations/`. It adds no custom Node API server. `server/package.json` pins development tooling only.
 
 The starter stores a published rundown version with ordered stops as a JSON snapshot. `create_trip` copies it into an owner-scoped trip in one database transaction. This intentionally small model does not implement the full proposed relational/PostGIS schema. Future normalized tables require migrations and contract compatibility checks.
 
@@ -28,6 +28,8 @@ RPCs use `contracts/api/openapi.json`. Published synthetic catalog reads are all
 Each create command includes a request UUID. A retry with the same owner, UUID, version and timestamp returns the original trip. Reusing that UUID for different input fails with HTTP 409. The UI retains a failed command's UUID in memory; durable offline recovery is not implemented yet.
 
 ## Runtime boundaries
+
+Shared development uses the homelab; SQL reset/mutation tests use an isolated homelab target. Mac Docker is optional. The starter is deployed and verified; see [homelab evidence](homelab-verification.md).
 
 Mock saving is memory-only. Live catalog loading is implemented. Live trip saving has an authenticated adapter and SQL contract, but no app sign-in flow. Auth/session refresh, local persistence, journaling/media, map routing, WeatherKit and background jobs are later slices. Studio collaborator access does not create traveller sessions.
 
