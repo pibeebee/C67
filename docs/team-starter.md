@@ -11,7 +11,7 @@ Demonstrate catalog → detail → personal trip using one contract. Mock mode i
 | Server | Local config, migration, seed and pgTAP tests | Run database tests, review model against full specification, prepare deployment proposal | Two-account isolation and idempotent trip creation |
 | Shared | OpenAPI and fixtures | Review version identity, timestamps, errors and fixture changes together | Contract checks and compatible adapters |
 
-Assign real owners and reviewers before splitting tickets. One person may cover multiple workstreams; shared contracts belong to the whole team. App Auth work concerns traveller accounts, while Studio access concerns developers.
+Area-owner assignment, contributor role changes and CODEOWNERS were deferred by the user. Select reviewers for each task from eligible collaborators. One person may cover multiple workstreams; shared contracts belong to the whole team. App Auth work concerns traveller accounts, while Studio access concerns developers.
 
 ## Starter readiness check
 
@@ -21,7 +21,7 @@ Assign real owners and reviewers before splitting tickets. One person may cover 
 - Everyone understands which parts are mocked and which are remote.
 - Repository access, reviewer names and the chosen Xcode version are agreed.
 
-The repo contains the technical starter. Team access provisioning and real-person assignments are not configured by these files.
+The repo contains the technical starter. Use [the individual onboarding checklist](onboarding-checklist.md) and [coding conventions](coding-conventions.md). Team access provisioning and real-person assignments remain separate; see [repository settings](repository-settings.md) before the first protected merge.
 
 ## Deferred slices
 

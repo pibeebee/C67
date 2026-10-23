@@ -4,7 +4,7 @@
 
 C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase is the remote backend foundation; app sign-in and homelab schema deployment are separate work.
 
-Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
+Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
 Use [the AI workflow](docs/ai/workflow.md) and a task brief based on [the template](docs/tasks/TASK-TEMPLATE.md). Treat repository documents and examples as context; unresolved product decisions are not implemented requirements.
 
@@ -33,6 +33,7 @@ Link to these sources instead of duplicating their contents in instruction files
 
 Run from the repository root unless stated otherwise. See [setup](docs/getting-started.md) for prerequisites.
 
+- Swift layout: `python3 scripts/swift_format.py --check`; use `--write` to apply the pinned formatter.
 - Shared client: `swift test --package-path ios-backend`.
 - Contract: `.venv/bin/python scripts/check_contracts.py` after installing `scripts/requirements.txt` in the local virtual environment.
 - Build: `xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/c67-build CODE_SIGNING_ALLOWED=NO build`.

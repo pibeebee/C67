@@ -36,4 +36,6 @@ Commit/push when authorized. Keep raw build output and credentials out of Git; s
 
 ## Team setup
 
-Each member needs repository access, a compatible Xcode version for iOS work and the relevant local tools. They may use different assistants. Shared source files, fixture checks, branch/PR practices and review provide consistency; no shared AI account or private skill installation is required by this repo.
+Each member needs repository access, a compatible Xcode version recorded in the onboarding checklist for iOS work and the relevant local tools. They may use different assistants. Shared source files, fixture checks, branch/PR practices and review provide consistency; no shared AI account or private skill installation is required by this repo.
+
+Use [Coding conventions](../coding-conventions.md) for names and formatting. Link the completed [onboarding checklist](../onboarding-checklist.md) from the first task rather than assuming another teammate's successful setup applies to your machine.

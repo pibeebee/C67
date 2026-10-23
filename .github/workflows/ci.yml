@@ -6,6 +6,12 @@ on:
 permissions:
   contents: read
 jobs:
+  style:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pinned Swift layout check
+        run: python3 scripts/swift_format.py --check
   ios:
     runs-on: macos-15
     steps:
@@ -16,7 +22,9 @@ jobs:
         shell: bash
         run: |
           destination=$(python3 scripts/simulator_destination.py)
-          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67             -destination "$destination" -derivedDataPath /tmp/c67-ci             CODE_SIGNING_ALLOWED=NO test
+          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
+            -destination "$destination" -derivedDataPath /tmp/c67-ci \
+            CODE_SIGNING_ALLOWED=NO test
   contracts:
     runs-on: ubuntu-latest
     steps:
