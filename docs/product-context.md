@@ -20,7 +20,7 @@ Athar's design scenario goes from Agora Mall Thamrin to Kota Tua: discover, sele
 
 ## Technical decisions and evidence
 
-The team agreed on one repo with iOS UI, on-device iOS Backend and Server areas, using VIPER as the iOS direction. Self-hosted Supabase is the backend foundation; the current repo supplies local development assets and does not deploy to that host.
+The team agreed on one repo with iOS UI, on-device iOS Backend and Server areas, using VIPER as the iOS direction. Self-hosted Supabase is the backend foundation; the repository supplies migrations/contracts and optional local development assets. The server foundation and V2 model have been applied to that host through separately approved procedures; see [verification](homelab-trip-model-verification.md).
 
 The starter implements synthetic discovery/detail and memory-only mock trip creation, plus an authenticated RPC adapter and SQL development baseline. The full product specification, native journaling PoC and HTML wireframe remain separate artifacts. None establishes product adoption or field validation.
 

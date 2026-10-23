@@ -1,6 +1,6 @@
 # Homelab plan: trip model foundation (stage 3A)
 
-Status: Prepared; awaiting separate approval after implementation/CI verification. No stage 3 homelab mutation has run.
+Status: Explicitly approved by Giovan and executed through verification/cleanup. See [actual results](homelab-trip-model-verification.md). The reviewed scope/hashes below are retained.
 Date: 23 October 2026 (Asia/Jakarta).
 
 ## Fresh read-only preflight
@@ -46,4 +46,4 @@ a89c6630ae70e250fa0b2cc33bb47a0869b77fefc08c655924181920e9da9b66  server/scripts
 
 This requests separate approval for the private backup, isolated restore/backfill/test container and exact cleanup, one official shared migration/cache refresh, and the two-account HTTP verification/cleanup. It does not authorize merging the PR or subsequent model slices.
 
-Approval requirement: [homelab-ops/SKILL.md](</Users/giovan/.codex/skills/homelab-ops/SKILL.md>) states “Wait for a separate explicit approval after presenting the preflight.” The previous approval applied to private trip reads only.
+Approval requirement: [homelab-ops/SKILL.md](</Users/giovan/.codex/skills/homelab-ops/SKILL.md>) states “Wait for a separate explicit approval after presenting the preflight.” The previous approval applied to private trip reads only; Giovan subsequently approved this exact stage 3A plan before execution.

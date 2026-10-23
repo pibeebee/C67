@@ -1,6 +1,6 @@
 # ADR-0003 — Additive trip model foundation
 
-Status: Implemented for stage 3A; shared deployment awaits its reviewed operational plan.
+Status: Implemented and verified on the shared homelab for stage 3A. See [execution evidence](../homelab-trip-model-verification.md).
 Date: 23 October 2026.
 
 ## Decision

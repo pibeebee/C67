@@ -1,6 +1,6 @@
 # Server
 
-Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed and additive private trip reads have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/homelab-verification.md) and [private read verification](../docs/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
+Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed, private trip reads and V2 model foundation have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/homelab-verification.md) and [private read verification](../docs/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
 
 ```text
 server/
@@ -66,4 +66,4 @@ The additive migration adds `list_my_trips` and `get_trip_snapshot` with the exi
 
 ## Trip model foundation (stage 3A)
 
-The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. Shared deployment is pending the [prepared plan](../docs/homelab-trip-model-plan.md); earlier deployed results cover v1 only.
+The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. The [approved shared execution](../docs/homelab-trip-model-verification.md) is complete: both databases restored, persisted legacy backfill verified, 79/79 isolated SQL assertions and 55/55 shared HTTP checks passed; original data/services preserved and temporary records/container removed.

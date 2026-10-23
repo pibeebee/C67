@@ -1,6 +1,6 @@
 # Task: Trip model foundation (stage 3A)
 
-Status: Implementation and backend CI verified; shared approval/deployment pending
+Status: Complete for stage 3A server scope, including homelab deployment/verification
 Owner: Giovan
 Reviewers: Server and iOS data owners before merge
 Branch: gi/trip-model-foundation (from merged main b9c5e91)
@@ -15,7 +15,7 @@ Separate curated rundown identity from version identity and persist an explicit 
 - Legacy APIs retain their exact shapes. Legacy trips have unknown (null) time zone/date; an instant does not reveal a destination IANA zone.
 - Stage 3A keeps ordered stop JSON, planned status and initial revision. Stop/leg normalization (including origin/landing/first-stop distinction), editing with expected_revision/receipts, merge and lifecycle transitions are subsequent slices.
 - No native Swift/UI/Auth edits, publishing policy or external provider is introduced.
-- Local source edits, commit/push/draft PR and CI continue the authorized backend workflow. A new concrete approval is required before homelab writes; previous approval covered only the preceding migration.
+- Local source edits, commit/push/draft PR and CI continue the authorized backend workflow. Giovan separately approved the concrete stage 3A homelab plan; execution completed within that scope.
 
 ## References
 
@@ -32,8 +32,8 @@ Separate curated rundown identity from version identity and persist an explicit 
 - [x] Destination dates derive from explicit valid time zones across UTC/day/DST boundaries.
 - [x] Legacy zone/date remain null; server owns revision and derived fields.
 - [x] Both new RPCs enforce real traveller sessions, owner isolation, retry identity and changed-input conflicts.
-- [x] Contract, SQL lint and full pgTAP/HTTP suites pass in CI (Simulator job remains separate).
-- [x] A concrete homelab preflight/plan is ready for separate approval.
+- [x] All four CI jobs pass, including contract, SQL lint, pgTAP/HTTP and Simulator checks.
+- [x] The separately approved homelab plan completed backup, restore/backfill, 79 SQL assertions, 55 HTTP checks and cleanup.
 
 ## Verification plan
 
@@ -45,6 +45,6 @@ Revision starts at 1 and privileged database updates increment it; no client edi
 
 ## Result and handoff
 
-Implementation `d9d90f3` passed the database/contracts/style jobs in [CI run 39988491177](https://github.com/pibeebee/C67/actions/runs/39988491177). Actual backend output: 79/79 pgTAP assertions, no schema lint errors, 54/54 HTTP checks and successful temporary-data cleanup. Contract/fixture validation, Python syntax and documentation/whitespace checks pass locally. The iOS Simulator job is still running; no native source changed.
+Implementation `d9d90f3` passed the database/contracts/style jobs in [CI run 39988491177](https://github.com/pibeebee/C67/actions/runs/39988491177). Actual backend output: 79/79 pgTAP assertions, no schema lint errors, 54/54 HTTP checks and successful temporary-data cleanup. Contract/fixture validation, Python syntax and documentation/whitespace checks pass locally. All four CI jobs also passed at documentation checkpoint c9164b4; no native source changed.
 
-[Draft PR #3](https://github.com/pibeebee/C67/pull/3) contains the additive model and handoff. Shared homelab remains at the two previously verified migrations; no new root table or V2 RPC is deployed. The proposed matching-image restore gate will additionally exercise backfill of an existing legacy trip. Next server model work is stage 3B: normalized stop/day/source and explicit route-leg data, under a separate contract. Native V2 adoption belongs to the iOS data owner.
+[Draft PR #3](https://github.com/pibeebee/C67/pull/3) contains the additive model and handoff. Shared deployment is complete: the matching-image restore gate proved backfill of a persisted legacy fixture, 79/79 isolated SQL assertions passed, and the deployed API passed 55/55 checks. Original account/catalog and shared containers were preserved; temporary data/container were removed. See [actual evidence](../homelab-trip-model-verification.md). Next server model work is stage 3B: normalized stop/day/source and explicit route-leg data, under a separate contract. Native V2 adoption belongs to the iOS data owner.
