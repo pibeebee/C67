@@ -36,9 +36,9 @@ Create new migrations through `npm run supabase -- migration new <name>`. Do not
 
 ## Local acceptance checks
 
-- `db:test`: 40 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
+- `db:test`: 79 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
 - `db:lint`: checks the local public schema and exits nonzero for schema errors.
-- `api:test`: 39 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
+- `api:test`: 54 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
 
 The HTTP suite reads keys from the pinned local CLI into memory. It accepts only project `c67-starter` at `http://127.0.0.1:54321`, ignores HTTP proxy settings, rejects redirects, and offers no remote URL option. Local email confirmation must be disabled as in the checked-in development config. No SMTP account, Studio password or hand-copied token is needed.
 
@@ -66,4 +66,4 @@ The additive migration adds `list_my_trips` and `get_trip_snapshot` with the exi
 
 ## Trip model foundation (stage 3A)
 
-The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). CI/remote results for this revision are pending; earlier deployed results cover v1 only.
+The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. Shared deployment is pending the [prepared plan](../docs/homelab-trip-model-plan.md); earlier deployed results cover v1 only.
