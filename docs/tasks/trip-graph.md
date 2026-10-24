@@ -25,7 +25,8 @@ Persist owner-scoped source/day/stop/leg rows and return them in one consistent 
 - [x] Separate copies have distinct occurrence IDs; retries reuse the complete graph.
 - [x] Composite FKs and owner RLS prevent cross-trip/day/source references and reads.
 - [x] New graph creation/read is atomic and source changes do not rewrite saved graphs.
-- [x] Old contracts/tests remain compatible; legacy backfill preserves saved values and unknowns.
+- [x] Old contracts/tests remain compatible on the migrated disposable stack.
+- [ ] Historical persisted V1/V2 backfill preserves saved values and unknowns in the matching-image restore gate.
 - [x] SQL/API/contract/lint CI passes and a reviewed homelab plan is ready.
 
 ## References
