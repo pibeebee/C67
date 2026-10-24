@@ -22,7 +22,7 @@ alter table public.trips add constraint trips_creation_api_version_check check (
 
 create function public.validate_route_template(stops jsonb, route jsonb) returns void
 language plpgsql security invoker set search_path = '' as $$
-declare s jsonb; d jsonb; l jsonb; pos integer; ids uuid[] := '{}'; seen uuid[] := '{}'; sid uuid; f uuid; t uuid; edge_keys text[] := '{}'; leg_ids uuid[] := '{}'; leg_id uuid; ek text;
+declare s jsonb; d jsonb; l jsonb; pos integer; ids uuid[] := '{}'::uuid[]; seen uuid[] := '{}'::uuid[]; sid uuid; f uuid; t uuid; edge_keys text[] := '{}'::text[]; leg_ids uuid[] := '{}'::uuid[]; leg_id uuid; ek text;
 begin
  if jsonb_typeof(stops) is distinct from 'array' then raise check_violation using message='Invalid stop snapshot'; end if;
  pos := 0;
@@ -206,7 +206,7 @@ create trigger check_trip_leg_semantics before insert on public.trip_legs for ea
 create function public.populate_trip_graph(target uuid, use_source_route boolean) returns void
 language plpgsql security definer set search_path='' as $$
 declare t public.trips%rowtype; route jsonb; source_id uuid:=gen_random_uuid(); day_id uuid:=gen_random_uuid();
- s jsonb; detail jsonb; leg jsonb; ids uuid[]:='{}'; mapped uuid[]:='{}'; sid uuid; n integer; i integer; position integer:=0;
+ s jsonb; detail jsonb; leg jsonb; ids uuid[]:='{}'::uuid[]; mapped uuid[]:='{}'::uuid[]; n integer; i integer; position integer:=0;
  landing_kind text; landing_location jsonb; previous_setting text:=current_setting('c67.graph_build_trip',true);
 begin
  select * into strict t from public.trips where id=target for update;
@@ -234,7 +234,7 @@ begin
   i:=i+1; detail:=null;
   select d into detail from jsonb_array_elements(coalesce(route->'stop_details','[]')) d where d->>'source_stop_id'=ids[i]::text;
   insert into public.trip_stops(id,trip_id,day_id,source_id,source_stop_id,position,title,location,time_zone,visit_duration_seconds)
-  values(mapped[i],target,day_id,source_id,ids[i],i-1,s->>'title',nullif(detail->'location','null'::jsonb),detail->>'time_zone',(detail->>'visit_duration_seconds')::integer);
+  values(mapped[i],target,day_id,source_id,ids[i],i-1,s->>'title',nullif(detail->'location','null'::jsonb),detail->>'time_zone',(detail->>'visit_duration_seconds')::numeric::integer);
  end loop;
  if t.creation_origin is not null then
   insert into public.trip_legs(trip_id,day_id,position,kind,estimate_origin) values(target,day_id,position,'access','unknown'); position:=position+1;
@@ -242,12 +242,12 @@ begin
  if landing_kind='separate' and n>0 then
   leg:=null; select l into leg from jsonb_array_elements(coalesce(route->'legs','[]')) l where l->>'kind'='landing_to_first';
   insert into public.trip_legs(trip_id,day_id,position,kind,to_trip_stop_id,transport_mode,duration_seconds,source_leg_id,estimate_origin)
-  values(target,day_id,position,'landing_to_first',mapped[1],coalesce(leg->>'transport_mode','unknown'),(leg->>'duration_seconds')::integer,(leg->>'id')::uuid,case when leg is null then 'unknown' else 'creator' end); position:=position+1;
+  values(target,day_id,position,'landing_to_first',mapped[1],coalesce(leg->>'transport_mode','unknown'),(leg->>'duration_seconds')::numeric::integer,(leg->>'id')::uuid,case when leg is null then 'unknown' else 'creator' end); position:=position+1;
  end if;
- if n>1 then for i in 1..n-1 loop
-  leg:=null; select l into leg from jsonb_array_elements(coalesce(route->'legs','[]')) l where l->>'kind'='between_stops' and l->>'from_stop_id'=ids[i]::text and l->>'to_stop_id'=ids[i+1]::text;
+ if n>1 then for edge_index in 1..n-1 loop
+  leg:=null; select l into leg from jsonb_array_elements(coalesce(route->'legs','[]')) l where l->>'kind'='between_stops' and l->>'from_stop_id'=ids[edge_index]::text and l->>'to_stop_id'=ids[edge_index+1]::text;
   insert into public.trip_legs(trip_id,day_id,position,kind,from_trip_stop_id,to_trip_stop_id,transport_mode,duration_seconds,source_leg_id,estimate_origin)
-  values(target,day_id,position,'between_stops',mapped[i],mapped[i+1],coalesce(leg->>'transport_mode','unknown'),(leg->>'duration_seconds')::integer,(leg->>'id')::uuid,case when leg is null then 'unknown' else 'creator' end); position:=position+1;
+  values(target,day_id,position,'between_stops',mapped[edge_index],mapped[edge_index+1],coalesce(leg->>'transport_mode','unknown'),(leg->>'duration_seconds')::numeric::integer,(leg->>'id')::uuid,case when leg is null then 'unknown' else 'creator' end); position:=position+1;
  end loop; end if;
  perform set_config('c67.graph_build_trip',coalesce(previous_setting,''),true);
 exception when others then

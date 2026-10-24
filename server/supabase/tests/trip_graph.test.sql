@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path=public,extensions;
-select plan(57);
+select plan(60);
 insert into auth.users(id,email) values
  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa','graph-a@example.invalid'),
  ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb','graph-b@example.invalid');
@@ -73,6 +73,11 @@ select throws_ok($$insert into public.trip_stops(id,trip_id,day_id,source_id,sou
 select throws_ok($$insert into public.trip_legs(trip_id,day_id,position,kind,to_trip_stop_id,estimate_origin) values(current_setting('c67.graph_a_id')::uuid,(current_setting('c67.graph_a')::jsonb->'days'->0->>'id')::uuid,9,'landing_to_first',(current_setting('c67.graph_b')::jsonb->'stops'->0->>'id')::uuid,'unknown')$$,'23503',null,'Leg endpoints cannot cross aggregate');
 select throws_ok($$insert into public.trip_legs(trip_id,day_id,position,kind,from_trip_stop_id,to_trip_stop_id,estimate_origin) values(current_setting('c67.graph_a_id')::uuid,(current_setting('c67.graph_a')::jsonb->'days'->0->>'id')::uuid,9,'between_stops',(current_setting('c67.graph_a')::jsonb->'stops'->1->>'id')::uuid,(current_setting('c67.graph_a')::jsonb->'stops'->0->>'id')::uuid,'unknown')$$,'23514','Leg must connect adjacent stops','Reverse adjacency is not silently accepted');
 select set_config('c67.graph_build_trip','',true);
+update public.rundown_versions set route_template=jsonb_set(jsonb_set(route_template,'{legs,0,duration_seconds}','90.0'),'{stop_details,0,visit_duration_seconds}','300.0') where id='91111111-1111-4111-8111-111111111111';
+select set_config('request.jwt.claim.sub','aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',true);
+select is(public.create_trip_v3('91111111-1111-4111-8111-111111111111','2026-11-01T02:00Z','UTC','departure_origin','51111111-1111-4111-8111-111111111119','{"latitude":0,"longitude":0}')->'legs'->1->>'duration_seconds','90','Integral JSON decimal leg duration is supported');
+select is(public.create_trip_v3('91111111-1111-4111-8111-111111111111','2026-11-01T02:00Z','UTC','departure_origin','51111111-1111-4111-8111-111111111119','{"latitude":0,"longitude":0}')->'stops'->0->>'visit_duration_seconds','300','Integral JSON decimal visit duration is supported');
+select throws_ok($$update public.rundown_versions set route_template=jsonb_set(route_template,'{legs,0,duration_seconds}','90.5') where id='91111111-1111-4111-8111-111111111111'$$,'23514','Invalid leg duration','Fractional leg duration is rejected');
 select throws_ok($$update public.rundown_versions set route_template='{"landing":{"kind":"separate","location":{"latitude":999,"longitude":0}}}' where id='91111111-1111-4111-8111-111111111111'$$,'23514','Invalid separate landing','Malformed source point rejected');
 select throws_ok($$update public.rundown_versions set route_template='{"stop_details":[{"source_stop_id":"eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee"}]}' where id='91111111-1111-4111-8111-111111111111'$$,'23514','Invalid stop detail identity','Unknown source detail cannot enter copy');
 select throws_ok($$update public.rundown_versions set route_template='{"legs":[{"id":"81111111-1111-4111-8111-111111111111","kind":"between_stops","from_stop_id":"21111111-1111-4111-8111-111111111112","to_stop_id":"21111111-1111-4111-8111-111111111111"}]}' where id='91111111-1111-4111-8111-111111111111'$$,'23514','Invalid adjacent-stop endpoints','Source edge must match adjacency');
