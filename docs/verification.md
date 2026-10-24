@@ -72,7 +72,7 @@ Stage 3A is deployed: official history has all three migrations, and 55/55 share
 
 ## Normalized trip graph (stage 3B) — backend CI verified
 
-Implementation dd94b14, [CI run 40046041636](https://github.com/pibeebee/C67/actions/runs/40046041636): four SQL files pass **141/141** assertions (79 existing + 62 new), public-schema lint reports no errors, and the expanded real-session HTTP suite passes **66/66** checks. OpenAPI 0.4 and nine fixtures validate, including known/unknown graph and both landing templates; generated catalog/seed copies are unchanged. Python syntax, documentation links and whitespace checks pass. Simulator CI remains separate; no native source changed.
+Implementation dd94b14, [CI run 40046041636](https://github.com/pibeebee/C67/actions/runs/40046041636): four SQL files pass **141/141** assertions (79 existing + 62 new), public-schema lint reports no errors, and the expanded real-session HTTP suite passes **66/66** checks. OpenAPI 0.4 and nine fixtures validate, including known/unknown graph and both landing templates; generated catalog/seed copies are unchanged. Python syntax, documentation links and whitespace checks pass. All four implementation CI jobs passed, including Simulator; no native source changed.
 
 Evidence includes distinct origin/landing/first-stop segments, first-stop landing with/without an origin, null unknowns, integral/fractional JSON duration boundaries, stable whole-graph retries, four concurrent retries, separate occurrence identities, source-change independence, owner RLS on every child table, composite cross-trip/day/source rejection and guarded parent cleanup. The seven earlier API payloads remain compatible through the retained suite.
 
