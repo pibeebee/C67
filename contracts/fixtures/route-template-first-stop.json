@@ -1,0 +1,35 @@
+{
+  "landing": {
+    "kind": "first_stop"
+  },
+  "stop_details": [
+    {
+      "source_stop_id": "21111111-1111-4111-8111-111111111111",
+      "location": {
+        "latitude": 0,
+        "longitude": 2
+      },
+      "visit_duration_seconds": 300,
+      "time_zone": "UTC"
+    },
+    {
+      "source_stop_id": "21111111-1111-4111-8111-111111111112",
+      "location": {
+        "latitude": 0,
+        "longitude": 3
+      },
+      "visit_duration_seconds": 600,
+      "time_zone": "UTC"
+    }
+  ],
+  "legs": [
+    {
+      "id": "81111111-1111-4111-8111-111111111112",
+      "kind": "between_stops",
+      "from_stop_id": "21111111-1111-4111-8111-111111111111",
+      "to_stop_id": "21111111-1111-4111-8111-111111111112",
+      "transport_mode": "walk",
+      "duration_seconds": 180
+    }
+  ]
+}

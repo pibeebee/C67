@@ -67,3 +67,7 @@ The additive migration adds `list_my_trips` and `get_trip_snapshot` with the exi
 ## Trip model foundation (stage 3A)
 
 The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. The [approved shared execution](../docs/homelab-trip-model-verification.md) is complete: both databases restored, persisted legacy backfill verified, 79/79 isolated SQL assertions and 55/55 shared HTTP checks passed; original data/services preserved and temporary records/container removed.
+
+## Normalized graph (stage 3B)
+
+The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). SQL/API CI and matching-image/shared verification are pending for this revision; previous homelab evidence does not cover the graph yet.
