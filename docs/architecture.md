@@ -38,3 +38,7 @@ Keep creator versions separate from personal trips. Keep suggested times, select
 ## Trip model stage 3A
 
 [ADR-0003](decisions/0003-trip-model-foundation.md) adds curated root/version identity, explicit destination zone/date and a server revision behind two new RPCs. The original payloads remain unchanged. The migration is additive; shared deployment is tracked separately. Ordered stop JSON remains until the next stop/leg slice can represent origin, landing and first stop explicitly. No client edit/concurrency/lifecycle policy is enabled by this metadata foundation.
+
+## Trip graph stage 3B
+
+[ADR-0004](decisions/0004-trip-graph.md) normalizes owner source/day/stop/leg rows behind three opt-in endpoints. Seven existing RPC shapes remain compatible. Explicit access/landing_to_first/between_stops edges preserve separate origin/landing/first-stop semantics. Unknown route facts remain null with warnings, and immutable graph guards prevent independent child/root drift. Initial graph creation is one source/day 0; full scheduling, edits/receipts and multi-day/multi-source commands are subsequent work. CI evidence and the unexecuted shared deployment plan are tracked in the [task](tasks/trip-graph.md).

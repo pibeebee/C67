@@ -55,6 +55,7 @@ class LocalAPI:
         self.server_key = settings["SERVICE_ROLE_KEY"]
         self.user_ids = []
         self.draft_id = None
+        self.extra_version_ids = []
         self.passed = 0
 
     def request(self, method, path, body=None, token=None, admin=False, key=True):
@@ -248,6 +249,7 @@ class LocalAPI:
         self.passed_check("A real refreshed session retains owner-scoped access")
         self.verify_trip_reads(refreshed["access_token"], token_b, trip_a, trip_b, source)
         self.verify_trip_model(refreshed["access_token"], token_b, trip_a, source)
+        self.verify_trip_graph(refreshed["access_token"], token_b, trip_a, source)
 
     def verify_trip_reads(self, token_a, token_b, trip_a, trip_b, source):
         list_path = "/rest/v1/rpc/list_my_trips"
@@ -408,6 +410,116 @@ class LocalAPI:
         require(other["id"] != created["id"], "V2 request identity is not owner-scoped")
         self.passed_check("V2 request identity remains scoped to each account")
 
+    def verify_trip_graph(self, token_a, token_b, trip_a, source):
+        graph_path, create_path = "/rest/v1/rpc/get_trip_graph", "/rest/v1/rpc/create_trip_v3"
+        def read(trip_id, token=token_a):
+            return self.expect(self.request("POST", graph_path, {"p_trip_id": trip_id}, token=token), 200)
+        def check_graph(g):
+            expected = json.loads((ROOT / "contracts/fixtures/trip-graph.json").read_text())
+            require(set(g) == set(expected) and g["schema_version"] == 3 and g["revision"] == 1,
+                    "Graph header differs from contract")
+            require(len(g["sources"]) == 1 and len(g["days"]) == 1, "Initial source/day cardinality changed")
+            stops = {s["id"]: s for s in g["stops"]}
+            for stop in stops.values():
+                require(stop["day_id"] == g["days"][0]["id"] and stop["source_id"] == g["sources"][0]["id"],
+                        "Normalized stop crosses aggregate references")
+            for leg in g["legs"]:
+                require(leg["day_id"] == g["days"][0]["id"], "Leg crosses day")
+                for key in ["from_trip_stop_id", "to_trip_stop_id"]:
+                    require(leg[key] is None or leg[key] in stops, "Leg endpoint is outside the graph")
+        legacy = read(trip_a["id"])
+        check_graph(legacy)
+        require([s["source_stop_id"] for s in legacy["stops"]] == [s["id"] for s in source["stops"]]
+                and [s["title"] for s in legacy["stops"]] == [s["title"] for s in trip_a["stops"]],
+                "Legacy saved stop values were not normalized")
+        require(legacy["days"][0]["landing"]["kind"] == "unknown" and len(legacy["legs"]) == 1
+                and legacy["legs"][0]["duration_seconds"] is None and "landing_unknown" in legacy["warnings"],
+                "Unknown legacy route was fabricated")
+        self.passed_check("Legacy creation also persists normalized stops with explicit unknown route data")
+        versions = []
+        for filename in ["route-template-separate.json", "route-template-first-stop.json"]:
+            version_id = str(uuid4())
+            route = json.loads((ROOT / "contracts/fixtures" / filename).read_text())
+            self.expect(self.request("POST", "/rest/v1/rundown_versions", {
+                "id": version_id, "title": "Synthetic graph route", "area": "Synthetic",
+                "summary": "Temporary C67 graph test; not real travel information", "stops": source["stops"],
+                "published": True, "route_template": route,
+            }, admin=True), 201)
+            self.extra_version_ids.append(version_id)
+            visible = self.expect(self.request("POST", "/rest/v1/rpc/get_rundown_route", {"p_version_id": version_id}), 200)
+            require(visible["version_id"] == version_id and visible["route_template"] == route,
+                    "Published route differs from curated fixture")
+            versions.append(version_id)
+        self.error(self.request("POST", "/rest/v1/rpc/get_rundown_route", {"p_version_id": self.draft_id}), 404, "PT404")
+        self.passed_check("Published route metadata is explicit and unpublished routes remain hidden")
+        command = {"p_version_id": versions[0], "p_starts_at": "2026-11-01T02:00:00Z", "p_time_zone": "UTC",
+                   "p_start_time_basis": "departure_origin", "p_request_id": str(uuid4()),
+                   "p_origin": {"latitude": 0, "longitude": 0, "label": "Synthetic origin"}}
+        created = self.expect(self.request("POST", create_path, command, token=token_a), 200)
+        check_graph(created)
+        require(len(created["stops"]) == 2 and [l["kind"] for l in created["legs"]] == ["access", "landing_to_first", "between_stops"],
+                "Origin/landing/first-stop segments were lost or duplicated")
+        require([l["duration_seconds"] for l in created["legs"]] == [None, 90, 180]
+                and created["warnings"] == ["leg_duration_unknown"], "Duration provenance or unknown access changed")
+        self.passed_check("Distinct origin, landing and first stop preserve three separate route segments")
+        require(read(created["id"]) == created, "Graph reload differs from committed creation")
+        self.passed_check("A single graph request reloads all normalized rows consistently")
+        equivalent = {**command, "p_starts_at": "2026-11-01T09:00:00+07:00"}
+        require(self.expect(self.request("POST", create_path, equivalent, token=token_a), 200) == created,
+                "V3 retry duplicated or changed occurrence identities")
+        self.error(self.request("POST", create_path, {**command, "p_origin": {"latitude": 0, "longitude": 0.5}}, token=token_a), 409, "PT409")
+        self.passed_check("V3 retry retains the entire graph and changed origin conflicts")
+        concurrent = {**command, "p_request_id": str(uuid4())}
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            replies = list(pool.map(lambda _: self.request("POST", create_path, concurrent, token=token_a), range(4)))
+        graphs = [self.expect(reply, 200) for reply in replies]
+        require(all(g == graphs[0] for g in graphs), "Concurrent V3 retries changed graph identities")
+        self.passed_check("Four concurrent V3 retries commit one identical graph")
+        first = self.expect(self.request("POST", create_path, {**command, "p_version_id": versions[1],
+            "p_request_id": str(uuid4()), "p_start_time_basis": "start_at_landing", "p_origin": None}, token=token_a), 200)
+        require(len(first["stops"]) == 2 and len(first["legs"]) == 1 and first["warnings"] == []
+                and first["days"][0]["landing"]["trip_stop_id"] == first["stops"][0]["id"],
+                "First-stop landing creates a duplicate visit or transfer")
+        self.passed_check("Explicit first-stop landing avoids a duplicate leg or visit")
+        foreign = self.request("POST", graph_path, {"p_trip_id": created["id"]}, token=token_b)
+        missing = self.request("POST", graph_path, {"p_trip_id": str(uuid4())}, token=token_b)
+        self.error(foreign, 404, "PT404"); self.error(missing, 404, "PT404")
+        require(foreign == missing, "Graph lookup reveals a foreign identity")
+        for table in ["trip_sources", "trip_days", "trip_stops", "trip_legs"]:
+            require(self.expect(self.request("GET", f"/rest/v1/{table}?trip_id=eq.{created['id']}", token=token_b), 200) == [],
+                    "Normalized RLS exposes another account")
+        other = self.expect(self.request("POST", create_path, command, token=token_b), 200)
+        require(other["id"] != created["id"] and other["stops"][0]["id"] != created["stops"][0]["id"],
+                "Separate owner copies share occurrence identities")
+        self.passed_check("Graph and every normalized table isolate owners; copies get distinct IDs")
+        self.error(self.request("POST", graph_path, {"p_trip_id": created["id"]}), 401, "42501")
+        self.error(self.request("POST", create_path, command), 401, "42501")
+        for table in ["trip_sources", "trip_days", "trip_stops", "trip_legs"]:
+            self.error(self.request("GET", f"/rest/v1/{table}?select=id"), 401, "42501")
+        self.error(self.request("PATCH", f"/rest/v1/trip_stops?id=eq.{created['stops'][0]['id']}", {"title": "Forbidden"}, token=token_a), 403, "42501")
+        self.error(self.request("DELETE", f"/rest/v1/trip_days?id=eq.{created['days'][0]['id']}", token=token_a), 403, "42501")
+        self.passed_check("Graph authorization and direct child write restrictions hold over HTTP")
+        invalid = [
+            {"p_origin": {"latitude": 91, "longitude": 0}},
+            {"p_origin": {"latitude": "0", "longitude": 0}},
+            {"p_origin": {"latitude": 0, "longitude": 0, "unexpected": True}},
+            {"p_origin": None}, {"p_start_time_basis": "guess"},
+            {"p_start_time_basis": "start_at_landing"},
+            {"p_version_id": source["id"]},
+        ]
+        for change in invalid:
+            self.error(self.request("POST", create_path, {**command, "p_request_id": str(uuid4()), **change}, token=token_a), 400, "PT400")
+        self.passed_check("Invalid/unused origins, ambiguous basis and unknown landing fail without a saved graph")
+        old = {key: command[key] for key in ["p_version_id", "p_starts_at", "p_request_id"]}
+        self.error(self.request("POST", "/rest/v1/rpc/create_trip", old, token=token_a), 409, "PT409")
+        self.error(self.request("POST", "/rest/v1/rpc/create_trip_v2", {**old, "p_time_zone": "UTC"}, token=token_a), 409, "PT409")
+        self.passed_check("Earlier API generations cannot adopt V3 request identities")
+        self.expect(self.request("PATCH", f"/rest/v1/rundown_versions?id=eq.{versions[0]}",
+                    {"route_template": None, "title": "Synthetic changed source"}, admin=True), 204)
+        require(read(created["id"]) == created and self.expect(self.request("POST", create_path, command, token=token_a), 200) == created,
+                "A source change rebuilt a saved graph or retried it against the new template")
+        self.passed_check("Source edits cannot overwrite committed graph or retry results")
+
     def cleanup(self):
         errors = 0
         for user_id in reversed(self.user_ids):
@@ -420,9 +532,9 @@ class LocalAPI:
                 require(rows == [], "Temporary account trips were not cleaned up")
             except Exception:
                 errors += 1
-        if self.draft_id:
+        for version_id in [*reversed(self.extra_version_ids), *([self.draft_id] if self.draft_id else [])]:
             try:
-                path = f"/rest/v1/rundown_versions?id=eq.{self.draft_id}"
+                path = f"/rest/v1/rundown_versions?id=eq.{version_id}"
                 draft_rows = self.expect(self.request("GET", path + "&select=rundown_id", admin=True), 200)
                 require(len(draft_rows) == 1, "Temporary draft identity unavailable for cleanup")
                 root_id = draft_rows[0]["rundown_id"]
@@ -438,8 +550,8 @@ class LocalAPI:
                         "Temporary root was not cleaned up")
             except Exception:
                 errors += 1
-        require(errors == 0, "Cleanup failed; inspect only this local stack's synthetic test records")
-        self.passed_check("Temporary accounts, their trips and the draft are removed")
+        require(errors == 0, "Cleanup failed; inspect only this run's synthetic test records")
+        self.passed_check("Temporary accounts, trips, test versions and their roots are removed")
 
 
 def main():
