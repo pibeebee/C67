@@ -127,8 +127,8 @@ create table public.trip_stops (
  foreign key(trip_id,source_id) references public.trip_sources(trip_id,id),
  unique(trip_id,id), unique(trip_id,day_id,id), unique(day_id,position)
 );
-alter table public.trip_days add constraint trip_day_landing_stop_fk foreign key(trip_id,landing_trip_stop_id)
- references public.trip_stops(trip_id,id) deferrable initially deferred;
+alter table public.trip_days add constraint trip_day_landing_stop_fk foreign key(trip_id,id,landing_trip_stop_id)
+ references public.trip_stops(trip_id,day_id,id) deferrable initially deferred;
 create table public.trip_legs (
  id uuid primary key default gen_random_uuid(), trip_id uuid not null references public.trips(id) on delete cascade,
  day_id uuid not null, position integer not null check(position>=0), kind text not null check(kind in ('access','landing_to_first','between_stops')),

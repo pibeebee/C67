@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path=public,extensions;
-select plan(60);
+select plan(62);
 insert into auth.users(id,email) values
  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa','graph-a@example.invalid'),
  ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb','graph-b@example.invalid');
@@ -42,6 +42,9 @@ select set_config('c67.graph_first',public.create_trip_v3('91111111-1111-4111-81
 select is(jsonb_array_length(current_setting('c67.graph_first')::jsonb->'legs'),1,'Landing equal to first stop adds no duplicate transfer');
 select is(current_setting('c67.graph_first')::jsonb->'days'->0->'landing'->>'trip_stop_id',current_setting('c67.graph_first')::jsonb->'stops'->0->>'id','Landing points at the first occurrence explicitly');
 select is(current_setting('c67.graph_first')::jsonb->'warnings','[]'::jsonb,'Known synthetic route has no invented uncertainty');
+select set_config('c67.first_access',public.create_trip_v3('91111111-1111-4111-8111-111111111112','2026-11-01T02:00Z','UTC','departure_origin','51111111-1111-4111-8111-111111111118','{"latitude":0,"longitude":0}')::text,true);
+select is(jsonb_array_length(current_setting('c67.first_access')::jsonb->'legs'),2,'Origin to first-stop landing keeps access without a redundant transfer');
+select is(current_setting('c67.first_access')::jsonb->'legs'->0->>'kind','access','First-stop landing still preserves a known-origin access edge');
 select set_config('c67.legacy',public.create_trip_v2('11111111-1111-4111-8111-111111111111','2026-11-01T02:00Z','UTC','51111111-1111-4111-8111-111111111113')->>'id',true);
 select is(public.get_trip_graph(current_setting('c67.legacy')::uuid)->'days'->0->'landing'->>'kind','unknown','Legacy source does not fabricate landing geometry');
 select is(jsonb_array_length(public.get_trip_graph(current_setting('c67.legacy')::uuid)->'legs'),1,'Legacy adjacency is normalized without invented access');

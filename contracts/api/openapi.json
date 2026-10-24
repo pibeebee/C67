@@ -1578,9 +1578,82 @@
                   }
                 ]
               }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "unknown"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "trip_stop_id": {
+                      "type": "null"
+                    },
+                    "location": {
+                      "type": "null"
+                    }
+                  }
+                },
+                "else": {
+                  "if": {
+                    "properties": {
+                      "kind": {
+                        "const": "first_stop"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "trip_stop_id": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "trip_stop_id": {
+                        "type": "null"
+                      },
+                      "location": {
+                        "$ref": "#/components/schemas/GraphPoint"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "start_time_basis": {
+                  "const": "departure_origin"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "origin": {
+                  "$ref": "#/components/schemas/GraphPoint"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "origin": {
+                  "type": "null"
+                }
+              }
             }
           }
-        }
+        ]
       },
       "GraphStop": {
         "type": "object",
@@ -1746,7 +1819,60 @@
               "unknown"
             ]
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "access"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "from_trip_stop_id": {
+                  "type": "null"
+                },
+                "to_trip_stop_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "landing_to_first"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "from_trip_stop_id": {
+                    "type": "null"
+                  },
+                  "to_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "from_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "to_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "TripGraph": {
         "type": "object",
