@@ -204,7 +204,7 @@ begin
   end loop;end if;
  end if;
  update public.trips set title=coalesce(p.patch->>'title',title),starts_at=coalesce((p.patch->>'starts_at')::timestamptz,starts_at),time_zone=coalesce(p.patch->>'time_zone',time_zone),stops=case when p.patch ? 'stop_order' or p.source_snapshot is not null then (select coalesce(jsonb_agg(jsonb_build_object('id',id,'title',title,'order',position) order by position),'[]'::jsonb) from public.trip_stops where trip_id=t.id) else stops end where id=t.id;
- update public.trip_days d set starts_at=t2.starts_at,time_zone=t2.time_zone,local_date=t2.local_start_date from public.trips t2 where t2.id=t.id and d.trip_id=t2.id;
+ update public.trip_days day_row set starts_at=t2.starts_at,time_zone=t2.time_zone,local_date=t2.local_start_date from public.trips t2 where t2.id=t.id and day_row.trip_id=t2.id;
  perform set_config('c67.graph_edit_trip','',true);
  response:=public.get_trip_graph(t.id);
  insert into c67_private.command_receipts(owner_id,request_id,command,input,response) values(actor,p_request_id,'apply_plan',input,response);
