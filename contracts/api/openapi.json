@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "C67 starter RPC contract",
-    "version": "0.4.0"
+    "version": "0.5.0"
   },
   "servers": [
     {
@@ -957,6 +957,663 @@
           }
         },
         "description": "Published curated source route metadata. Missing or unpublished versions return the same 404; no schedule/ETA is inferred."
+      }
+    },
+    "/rest/v1/rpc/search_rundowns": {
+      "post": {
+        "operationId": "search_rundowns",
+        "description": "Published curated text/area search; simple lexeme AND matching, case-folded exact area, ID-descending keyset. Cursor bound to normalized query/area; live pages.",
+        "security": [
+          {
+            "clientKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                  "p_query": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 120,
+                    "default": ""
+                  },
+                  "p_area": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 80,
+                    "default": null
+                  },
+                  "p_limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 20
+                  },
+                  "p_cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 1024,
+                    "default": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoveryPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/preview_trip_change": {
+      "post": {
+        "operationId": "preview_trip_change",
+        "description": "Preview explicit planned-trip title/reorder/keep-all append. Pins source bytes, expires after 15 minutes; no graph mutation. Apply rechecks revision/source and journal protection.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id",
+                  "p_expected_revision",
+                  "p_patch"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_expected_revision": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "p_patch": {
+                    "$ref": "#/components/schemas/TripPatch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripChangePreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/apply_trip_change": {
+      "post": {
+        "operationId": "apply_trip_change",
+        "description": "Atomically apply approved preview at expected revision. Stable immutable owner/request receipt survives later edits. Appends keep both source occurrences; old adjacency estimates are invalidated. Journal/pending-upload topology is protected.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_preview_id",
+                  "p_request_id"
+                ],
+                "properties": {
+                  "p_preview_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/begin_journal_upload": {
+      "post": {
+        "operationId": "begin_journal_upload",
+        "description": "Private session. Recent device-reported sample within distance+accuracy <=100m; max age30s/future10s, max20 sessions/hour. Expires after15m. Repeat original request exactly for idempotency. Raw coordinates are not persisted. This does not certify physical presence or image authenticity.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id",
+                  "p_stop_id",
+                  "p_request_id",
+                  "p_content_type",
+                  "p_location"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_content_type": {
+                    "type": "string",
+                    "enum": [
+                      "image/jpeg",
+                      "image/png"
+                    ]
+                  },
+                  "p_location": {
+                    "$ref": "#/components/schemas/ReportedLocation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalUploadSession"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/submit_journal_upload": {
+      "post": {
+        "operationId": "submit_journal_upload",
+        "description": "After create-only raw Storage upload, enqueue byte validation. Poll same operation for status; finalization is worker-only. Accepted pending session is not re-evaluated for location when processing is delayed.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_upload_id"
+                ],
+                "properties": {
+                  "p_upload_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalUploadStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/list_trip_album": {
+      "post": {
+        "operationId": "list_trip_album",
+        "description": "Owner-only accepted private journal projection. Download via authenticated private Storage URL; no public URLs. Journal acceptance does not complete trip/stop.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlbumEntry"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/storage/v1/object/c67-journal-raw/{objectPath}": {
+      "post": {
+        "operationId": "upload_journal_bytes",
+        "description": "Create-only; exact path from upload session. No client upsert/update/delete/read of raw objects. PNG/JPEG <=5MiB; worker validates actual bytes before private publication.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "objectPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bytes stored, not yet an accepted journal"
+          },
+          "400": {
+            "description": "Invalid/oversize/existing object"
+          },
+          "403": {
+            "description": "Session/path not authorized"
+          }
+        }
+      }
+    },
+    "/storage/v1/object/authenticated/c67-journal-ready/{objectPath}": {
+      "get": {
+        "operationId": "download_journal_photo",
+        "description": "Owner-only normalized JPEG, EXIF removed. Private bucket; foreign/missing paths reveal no readable bytes.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "objectPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Processed JPEG",
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Object absent or inaccessible"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
       }
     }
   },
@@ -1919,8 +2576,7 @@
             "items": {
               "$ref": "#/components/schemas/GraphSource"
             },
-            "minItems": 1,
-            "maxItems": 1
+            "minItems": 1
           },
           "days": {
             "type": "array",
@@ -1955,6 +2611,257 @@
                 "leg_duration_unknown"
               ]
             }
+          }
+        }
+      },
+      "DiscoveryPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/Rundown"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1024
+          }
+        }
+      },
+      "TripPatch": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "stop_order": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "uniqueItems": true,
+            "description": "Explicit complete ordering of every current occurrence. Reordering protected pending/journaled topology is rejected."
+          },
+          "append_version_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "minProperties": 1
+      },
+      "TripChangePreview": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "preview_id",
+          "trip_id",
+          "expected_revision",
+          "patch",
+          "append_source",
+          "expires_in_seconds",
+          "warnings"
+        ],
+        "properties": {
+          "preview_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "patch": {
+            "$ref": "#/components/schemas/TripPatch"
+          },
+          "append_source": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Pinned source bytes for review; authoritative identity and copied stops are immutable until apply."
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "const": 900
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ReportedLocation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "latitude",
+          "longitude",
+          "accuracy_m",
+          "sampled_at"
+        ],
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "accuracy_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "sampled_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      },
+      "JournalUploadSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "upload_id",
+          "bucket",
+          "path",
+          "expires_at",
+          "state"
+        ],
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bucket": {
+            "type": "string",
+            "const": "c67-journal-raw"
+          },
+          "path": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "uploading",
+              "queued",
+              "processing",
+              "ready",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "JournalUploadStatus": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "upload_id",
+          "state",
+          "failure_code"
+        ],
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "uploading",
+              "queued",
+              "processing",
+              "ready",
+              "rejected"
+            ]
+          },
+          "failure_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "AlbumEntry": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "stop_id",
+          "accepted_at",
+          "bucket",
+          "object_path",
+          "width",
+          "height",
+          "verification_origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "stop_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accepted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bucket": {
+            "type": "string",
+            "const": "c67-journal-ready"
+          },
+          "object_path": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2048
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2048
+          },
+          "verification_origin": {
+            "type": "string",
+            "const": "device_reported_session_v1"
           }
         }
       }
