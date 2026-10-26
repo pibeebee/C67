@@ -2,7 +2,7 @@ name: Starter checks
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, gi/trip-graph]
 permissions:
   contents: read
 jobs:
@@ -55,5 +55,8 @@ jobs:
       - run: npm run db:test
       - run: npm run db:lint
       - run: npm run api:test
+      - run: npm ci --prefix workers/media --ignore-scripts
+      - run: npm test --prefix workers/media
+      - run: python3 scripts/test_backend_completion.py
       - if: always()
         run: npm run stop

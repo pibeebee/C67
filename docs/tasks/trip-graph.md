@@ -37,8 +37,6 @@ Persist owner-scoped source/day/stop/leg rows and return them in one consistent 
 - [Contract](../../contracts/README.md)
 - [ADR-0004](../decisions/0004-trip-graph.md)
 - [Prepared homelab plan](../homelab-trip-graph-plan.md)
-- [ADR-0004](../decisions/0004-trip-graph.md)
-- [Prepared homelab plan](../homelab-trip-graph-plan.md)
 
 ## Verification
 
@@ -48,6 +46,6 @@ Full disposable CI SQL/HTTP suites, contract fixtures and syntax/whitespace chec
 
 Implementation dd94b14 passes backend checks in [CI run 40046041636](https://github.com/pibeebee/C67/actions/runs/40046041636): 141/141 pgTAP assertions (79 retained + 62 graph), clean public-schema lint and 66/66 real-session HTTP checks with fixture/account cleanup. OpenAPI 0.4 and nine fixtures validate. Python syntax, documentation links, approved-input hashes and whitespace checks pass locally. All four implementation CI jobs passed, including the Simulator check; no Swift source changed.
 
-[Draft PR #4](https://github.com/pibeebee/C67/pull/4) is ready for server/iOS-data review. Shared homelab remains at the three previous migrations; the graph is not deployed there. The prepared plan separately gates restore/backfill of persisted V1/V2 records, 141 matching-image SQL checks, official migration and 67 shared HTTP checks. No shared mutation has been run in this stage.
+PR #4 was closed at Giovan's request. Continue stages 3B–7 on this branch and open one new PR only after the complete agreed backend scope is verified. Shared homelab remains at the three previous migrations; the graph is not deployed there. The prepared plan separately gates restore/backfill of persisted V1/V2 records, 141 matching-image SQL checks, official migration and 67 shared HTTP checks. No shared mutation has been run in this stage.
 
 The iOS data owner can adopt the new published source-route and authenticated graph endpoints without changing existing consumers. Full multi-day/multi-source creation, scheduler/provider work, edits/concurrency receipts and lifecycle/journaling remain later contracts. Stage 3B supplies the initial one-day normalized model and explicit landing semantics.
