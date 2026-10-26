@@ -42,3 +42,9 @@ Keep creator versions separate from personal trips. Keep suggested times, select
 ## Trip graph stage 3B
 
 [ADR-0004](decisions/0004-trip-graph.md) normalizes owner source/day/stop/leg rows behind three opt-in endpoints. Seven existing RPC shapes remain compatible. Explicit access/landing_to_first/between_stops edges preserve separate origin/landing/first-stop semantics. Unknown route facts remain null with warnings, and immutable graph guards prevent independent child/root drift. Initial graph creation is one source/day 0; full scheduling, edits/receipts and multi-day/multi-source commands are subsequent work. CI evidence and the unexecuted shared deployment plan are tracked in the [task](tasks/trip-graph.md).
+
+## Consolidated backend completion
+
+[ADR-0005](decisions/0005-backend-mvp.md) adds bounded discovery, immutable private command receipts, revision-checked preview/apply planned edits and explicit source-overlap choices, plus a private session/Storage/worker/journal/album path. The worker performs byte IO outside database locks; only its leased service command accepts journals. Pending/accepted journal plans protect topology and time. Creation receipts remain stable after edits/journals; old RPC wire shapes stay compatible.
+
+Source code and disposable CI evidence are separate from shared deployment. PR #4 is closed by user request. The [completion task](tasks/backend-completion.md) requires one review PR only after the full agreed backend batch is verified; the [new combined homelab plan](homelab-backend-completion-plan.md) needs its own exact operational approval before four migrations/two buckets/new worker are applied.

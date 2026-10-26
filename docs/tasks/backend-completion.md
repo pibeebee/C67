@@ -29,3 +29,7 @@ PR #4 is verified closed; no replacement PR has been opened. The main baseline r
 Database/API/Storage/worker integration has passed at intermediate commits. Final revision additionally covers explicit overlap retention/removal, reschedule with destination-date projection, lease recovery/stale finalization, protected pending/accepted plans, processed-byte privacy and production container smoke checks. Final counts/results are recorded only after those jobs complete.
 
 The shared preflight on 26 October found 11 healthy services, PostgreSQL 17.6, Storage v1.81.0, one user/catalog/root, zero trips/buckets/objects and exactly three applied migrations. Four reviewed migrations are pending. The c67-media directory/project, isolated test name and new backup destination are unused. No shared mutation in this completion batch has run.
+
+## Operational approval gate
+
+The original graph-only deployment plan is superseded by [the consolidated plan](../homelab-backend-completion-plan.md). It now includes four migrations, two private buckets, a new ongoing media worker and broader synthetic acceptance fixtures. This new exact scope has not been approved. Keep main unchanged, retain all commits and do not open a new PR until shared deployment/verification is complete or Giovan explicitly changes the completion boundary.

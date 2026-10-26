@@ -13,7 +13,7 @@ server/
 │   ├── tests/                       # pgTAP authorization and retry checks
 │   └── functions/                   # future orchestration
 ├── src/modules/                     # reserved domain grouping, no API executable
-├── workers/media/                   # reserved, no running worker
+├── workers/media/                   # private image worker (deployment approval required)
 └── deploy/                          # reserved, no automatic deployment
 ```
 

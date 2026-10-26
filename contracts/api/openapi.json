@@ -1521,6 +1521,16 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Malformed trip ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -2702,11 +2712,14 @@
             "$ref": "#/components/schemas/TripPatch"
           },
           "append_source": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "description": "Pinned source bytes for review; authoritative identity and copied stops are immutable until apply."
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MergeSourceSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "expires_in_seconds": {
             "type": "integer",
@@ -2871,6 +2884,51 @@
           "verification_origin": {
             "type": "string",
             "const": "device_reported_session_v1"
+          }
+        }
+      },
+      "MergeSourceSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rundown_id",
+          "version_id",
+          "version_no",
+          "title",
+          "stops",
+          "route_template"
+        ],
+        "properties": {
+          "rundown_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          },
+          "route_template": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RouteTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
       }
