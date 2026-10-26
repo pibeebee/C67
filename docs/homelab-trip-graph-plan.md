@@ -1,6 +1,6 @@
 # Homelab plan: normalized trip graph (stage 3B)
 
-Status: Prepared; awaiting separate approval after CI verification. No stage 3B homelab mutation has run.
+Status: Superseded by the consolidated stages 3B–7 plan after Giovan closed PR #4 and expanded the task. No execution of this standalone plan occurred. See [completion plan](homelab-backend-completion-plan.md).
 Date: 24 October 2026 (Asia/Jakarta).
 
 ## Fresh read-only preflight

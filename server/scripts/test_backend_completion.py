@@ -25,9 +25,10 @@ def run(api, shared=False):
         try:
             with build_opener(*handlers).open(Request(origin+path,data=data,headers=headers,method=method),timeout=30) as r:return r.status,r.read()
         except HTTPError as e:return e.code,e.read()
-    def worker(cleanup=False):
+    api.completion_upload_ids=[]
+    def worker(upload_id):
         env=os.environ.copy();env.update(SUPABASE_URL=origin,SUPABASE_SERVICE_ROLE_KEY=api.server_key)
-        code="import {Worker} from './worker.mjs';const w=new Worker(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY);await w."+('cleanup' if cleanup else 'once')+'();'
+        code="import {Worker} from './worker.mjs';const w=new Worker(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY);await w.once("+json.dumps(upload_id)+");"
         p=subprocess.run(['node','--input-type=module','-e',code],cwd=SERVER/'workers/media',env=env,capture_output=True,text=True,timeout=90)
         require(p.returncode==0,'Media worker failed; sensitive diagnostics suppressed')
     a,b=api.login('a'),api.login('b');ta,tb=a['access_token'],b['access_token']
@@ -87,6 +88,7 @@ def run(api, shared=False):
     rpc('begin_journal_upload',far,ta,status=403)
     rpc('begin_journal_upload',begin,tb,status=404)
     session=rpc('begin_journal_upload',begin,ta)
+    api.completion_upload_ids.append(session['upload_id'])
     require(rpc('begin_journal_upload',begin,ta)==session,'Upload session retry changed identity')
     rpc('claim_journal_job',{},ta,status=403)
     rpc('finish_journal_job',{'p_upload_id':session['upload_id'],'p_lease_id':str(uuid4()),'p_result':{}},ta,status=403)
@@ -103,13 +105,13 @@ def run(api, shared=False):
     require(binary(path,'POST',png,ta)[0] in (200,201),'Valid image upload failed')
     require(binary('/storage/v1/object/authenticated/c67-journal-raw/'+session['path'],token=ta)[0] in (400,401,403,404),'Raw metadata-bearing input is readable by client')
     rpc('submit_journal_upload',{'p_upload_id':session['upload_id']},ta)
-    stalled=rpc('claim_journal_job',{},admin=True)
+    stalled=rpc('claim_journal_job',{'p_upload_id':session['upload_id']},admin=True)
     require(stalled and stalled['upload_id']==session['upload_id'],'Worker did not claim queued upload')
     api.expect(api.request('PATCH','/rest/v1/journal_uploads?id=eq.'+session['upload_id'],
                           {'lease_until':'2000-01-01T00:00:00Z','expires_at':'2000-01-01T00:00:00Z'},admin=True),204)
-    worker()
+    worker(session['upload_id'])
     rpc('finish_journal_job',{'p_upload_id':session['upload_id'],'p_lease_id':stalled['lease_id'],'p_result':{}},admin=True,status=409)
-    worker()
+    worker(session['upload_id'])
     api.passed_check('Expired worker lease recovers; delayed validation needs no second presence check or duplicate journal')
     album=rpc('list_trip_album',{'p_trip_id':trip},ta)
     require(len(album)==1 and album[0]['width']==16 and album[0]['height']==12,'Accepted journal/album projection missing')
@@ -132,12 +134,13 @@ def run(api, shared=False):
     location['sampled_at']=datetime.now(timezone.utc).isoformat()
     invalid=rpc('begin_journal_upload',{**begin,'p_request_id':str(uuid4()),'p_location':location},ta)
     require(binary('/storage/v1/object/c67-journal-raw/'+invalid['path'],'POST',b'fake png',ta)[0] in (200,201),'Could not provision invalid media bytes')
-    rpc('submit_journal_upload',{'p_upload_id':invalid['upload_id']},ta);worker()
+    api.completion_upload_ids.append(invalid['upload_id'])
+    rpc('submit_journal_upload',{'p_upload_id':invalid['upload_id']},ta);worker(invalid['upload_id'])
     status=rpc('submit_journal_upload',{'p_upload_id':invalid['upload_id']},ta)
     require(status['state']=='rejected' and status['failure_code']=='invalid_image','Fake media was not rejected by decode')
     require(rpc('list_trip_album',{'p_trip_id':trip},ta)==album,'Invalid bytes entered album')
     api.passed_check('Undecodable upload is rejected without a journal or album change')
-    return worker
+    return None
 
 
 def main():
@@ -158,7 +161,7 @@ def main():
                 # Cleanup bytes through Storage API after accounts/journals are gone, never SQL-delete objects.
                 origin='https://supabase.mrt.qzz.io' if args.approved_shared_test else BASE_URL
                 env=os.environ.copy();env.update(SUPABASE_URL=origin,SUPABASE_SERVICE_ROLE_KEY=api.server_key)
-                code="import {Worker} from './worker.mjs';await new Worker(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY).cleanup();"
+                code="import {Worker} from './worker.mjs';await new Worker(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY).cleanup("+json.dumps(getattr(api,'completion_upload_ids',[]))+");"
                 p=subprocess.run(['node','--input-type=module','-e',code],cwd=SERVER/'workers/media',env=env,capture_output=True,timeout=90)
                 require(p.returncode==0,'Media cleanup failed')
                 for table in ['journal_entries','journal_uploads']:

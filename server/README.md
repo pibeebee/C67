@@ -71,3 +71,13 @@ The next additive migration separates curated rundown root/version identity and 
 ## Normalized graph (stage 3B)
 
 The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification awaits the [prepared homelab plan](../docs/homelab-trip-graph-plan.md); earlier deployed evidence does not cover the graph yet.
+
+## Backend completion batch (stages 3B–7)
+
+PR #4 was closed at Giovan's request. Work stays on `gi/trip-graph`; branch CI runs on pushes without a PR. One new review PR is opened only after the agreed batch is complete and verified. See [completion task](../docs/tasks/backend-completion.md).
+
+The batch adds discovery, immutable creation/apply receipts, planned preview/apply edits and explicit merge choices, private session/Storage/journal/album APIs, and the image worker with operational tooling. No native UI/Auth, public creator publishing, completed/skip/ended_early policy or automatic route/weather provider is introduced. [ADR-0005](../docs/decisions/0005-backend-mvp.md) records the human-approved product boundaries.
+
+The database CI additionally installs/tests the locked media worker, runs `scripts/test_backend_completion.py`, the read-only `scripts/ops_status.py`, and `scripts/test_worker_container.py`. The container check is Linux/disposable-CI-only and does not start Mac Docker. Shared equivalents require the refreshed concrete plan and explicit approval; do not infer shared verification from CI.
+
+Worker configuration: [media README](workers/media/README.md), [Compose](deploy/media-worker.compose.yml), [operations runbook](../docs/backend-operations.md). Copy real env into private server configuration with mode 600; the `.env.example` has no credential values. Source/API handlers never print secrets, response bodies or personal records.

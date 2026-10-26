@@ -21,3 +21,11 @@ Approved product scope: curated operator catalog; private owner album; reported-
 ## Verification
 
 Retain v1/v2/v3 suites. Test complete Auth/API/Storage/worker path, cross-account and direct-access denial, malformed media/limits, duplicate receipts/concurrency, worker crash/retry, source-independent copies and safe cleanup. Disposable CI is permitted; no Mac Docker or shared reset prerequisite. Record remaining on-device, field, production capacity and off-host disaster-recovery boundaries honestly.
+
+## Implementation checkpoints
+
+PR #4 is verified closed; no replacement PR has been opened. The main baseline remains 451b100 and the branch retains the graph commits. CI now triggers for branch pushes.
+
+Database/API/Storage/worker integration has passed at intermediate commits. Final revision additionally covers explicit overlap retention/removal, reschedule with destination-date projection, lease recovery/stale finalization, protected pending/accepted plans, processed-byte privacy and production container smoke checks. Final counts/results are recorded only after those jobs complete.
+
+The shared preflight on 26 October found 11 healthy services, PostgreSQL 17.6, Storage v1.81.0, one user/catalog/root, zero trips/buckets/objects and exactly three applied migrations. Four reviewed migrations are pending. The c67-media directory/project, isolated test name and new backup destination are unused. No shared mutation in this completion batch has run.

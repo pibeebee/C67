@@ -15,8 +15,8 @@ export class Worker {
   }
   async rpc(name, body = {}) { const r = await this.request(`/rest/v1/rpc/${name}`, 'POST', body); const t = await r.text(); return t ? JSON.parse(t) : null; }
   async remove(bucket, path) { await this.request(`/storage/v1/object/${bucket}`, 'DELETE', { prefixes: [path] }); }
-  async once() {
-    const job = await this.rpc('claim_journal_job');
+  async once(uploadId = null) {
+    const job = await this.rpc('claim_journal_job', { p_upload_id: uploadId });
     if (!job) return false;
     const raw = await this.request(`/storage/v1/object/authenticated/c67-journal-raw/${job.raw_path}`);
     // Bounded streaming prevents an unexpectedly large object from exhausting worker memory.
@@ -37,9 +37,10 @@ export class Worker {
     await this.remove('c67-journal-raw', job.raw_path);
     return true;
   }
-  async cleanup() {
-    for (const job of await this.rpc('journal_raw_cleanup_candidates')) await this.remove('c67-journal-raw', job.raw_path);
-    for (const job of await this.rpc('journal_cleanup_candidates')) {
+  async cleanup(allowedIds = null) {
+    const allowed = job => allowedIds === null || allowedIds.includes(job.upload_id);
+    for (const job of (await this.rpc('journal_raw_cleanup_candidates')).filter(allowed)) await this.remove('c67-journal-raw', job.raw_path);
+    for (const job of (await this.rpc('journal_cleanup_candidates')).filter(allowed)) {
       await this.remove('c67-journal-raw', job.raw_path);
       await this.remove('c67-journal-ready', job.ready_path);
       await this.rpc('purge_journal_job', { p_upload_id: job.upload_id });

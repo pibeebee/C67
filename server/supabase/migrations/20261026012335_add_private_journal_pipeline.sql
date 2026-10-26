@@ -88,11 +88,11 @@ begin
  return jsonb_build_object('upload_id',u.id,'state',u.state,'failure_code',u.failure_code);
 end;
 $$;
-create function public.claim_journal_job() returns jsonb language plpgsql volatile security definer set search_path='' as $$
+create function public.claim_journal_job(p_upload_id uuid default null) returns jsonb language plpgsql volatile security definer set search_path='' as $$
 declare u public.journal_uploads%rowtype;
 begin
  if auth.role() is distinct from 'service_role' then raise insufficient_privilege;end if;
- select * into u from public.journal_uploads where owner_id is not null and trip_id is not null and stop_id is not null and attempts<5 and (state='queued' or (state='processing' and lease_until<now())) order by created_at for update skip locked limit 1;
+ select * into u from public.journal_uploads where (p_upload_id is null or id=p_upload_id) and owner_id is not null and trip_id is not null and stop_id is not null and attempts<5 and (state='queued' or (state='processing' and lease_until<now())) order by created_at for update skip locked limit 1;
  if not found then return null;end if;
  update public.journal_uploads set state='processing',attempts=attempts+1,lease_id=gen_random_uuid(),lease_until=now()+interval '2 minutes' where id=u.id returning * into u;
  return jsonb_build_object('upload_id',u.id,'lease_id',u.lease_id,'raw_path',u.raw_path,'ready_path',u.ready_path,'content_type',u.declared_type);
@@ -159,13 +159,13 @@ revoke all on function public.protect_journal_plan() from public,anon,authentica
 create trigger protect_journal_plan before update on public.trips for each row execute function public.protect_journal_plan();
 revoke all on function public.begin_journal_upload(uuid,uuid,uuid,text,jsonb),public.submit_journal_upload(uuid),public.list_trip_album(uuid) from public,anon,authenticated;
 grant execute on function public.begin_journal_upload(uuid,uuid,uuid,text,jsonb),public.submit_journal_upload(uuid),public.list_trip_album(uuid) to authenticated;
-revoke all on function public.claim_journal_job(),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) from public,anon,authenticated,service_role;
-grant execute on function public.claim_journal_job(),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) to service_role;
+revoke all on function public.claim_journal_job(uuid),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) from public,anon,authenticated,service_role;
+grant execute on function public.claim_journal_job(uuid),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) to service_role;
 
 create function public.journal_raw_cleanup_candidates() returns jsonb language plpgsql stable security definer set search_path='' as $$
 begin
  if auth.role() is distinct from 'service_role' then raise insufficient_privilege;end if;
- return coalesce((select jsonb_agg(jsonb_build_object('raw_path',u.raw_path)) from (select raw_path from public.journal_uploads where state='ready' and exists(select 1 from storage.objects o where o.bucket_id='c67-journal-raw' and o.name=raw_path) order by created_at limit 100) u),'[]'::jsonb);
+ return coalesce((select jsonb_agg(jsonb_build_object('upload_id',u.id,'raw_path',u.raw_path)) from (select id,raw_path from public.journal_uploads where state='ready' and exists(select 1 from storage.objects o where o.bucket_id='c67-journal-raw' and o.name=raw_path) order by created_at limit 100) u),'[]'::jsonb);
 end;
 $$;
 revoke all on function public.journal_raw_cleanup_candidates() from public,anon,authenticated,service_role;
