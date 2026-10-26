@@ -1,6 +1,6 @@
 # Homelab backend completion plan (stages 3B–7)
 
-Status: Prepared; awaiting separate explicit approval. No shared mutation in this batch has run.
+Status: Explicitly approved by Giovan and executed through final verification/cleanup. See [actual results](homelab-backend-completion-verification.md). Reviewed scope and source hashes below are retained.
 Date: 26 October 2026 (Asia/Jakarta).
 
 This replaces the earlier unexecuted graph-only plan. Giovan requested completing the entire agreed backend batch before opening a PR. Product decisions are recorded in ADR-0005; they do not by themselves approve the exact additional shared tables/buckets/worker operations below.

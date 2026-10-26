@@ -1,6 +1,6 @@
 # Task: Normalized trip graph (stage 3B)
 
-Status: Implementation/backend CI verified; homelab approval/deployment pending
+Status: Complete and shared-verified within the consolidated backend batch
 Owner: Giovan
 Reviewers: Server and iOS data owners before merge
 Branch: gi/trip-graph (from merged main 451b100)
@@ -26,7 +26,7 @@ Persist owner-scoped source/day/stop/leg rows and return them in one consistent 
 - [x] Composite FKs and owner RLS prevent cross-trip/day/source references and reads.
 - [x] New graph creation/read is atomic and source changes do not rewrite saved graphs.
 - [x] Old contracts/tests remain compatible on the migrated disposable stack.
-- [ ] Historical persisted V1/V2 backfill preserves saved values and unknowns in the matching-image restore gate.
+- [x] Historical persisted V1/V2 backfill and receipt-after-edit behavior passed the matching-image restore gate.
 - [x] SQL/API/contract/lint CI passes and a reviewed homelab plan is ready.
 
 ## References
@@ -49,3 +49,5 @@ Implementation dd94b14 passes backend checks in [CI run 40046041636](https://git
 PR #4 was closed at Giovan's request. Continue stages 3B–7 on this branch and open one new PR only after the complete agreed backend scope is verified. Shared homelab remains at the three previous migrations; the graph is not deployed there. The prepared plan separately gates restore/backfill of persisted V1/V2 records, 141 matching-image SQL checks, official migration and 67 shared HTTP checks. No shared mutation has been run in this stage.
 
 The iOS data owner can adopt the new published source-route and authenticated graph endpoints without changing existing consumers. Full multi-day/multi-source creation, scheduler/provider work, edits/concurrency receipts and lifecycle/journaling remain later contracts. Stage 3B supplies the initial one-day normalized model and explicit landing semantics.
+
+Final graph/shared verification is complete in the [consolidated execution](../homelab-backend-completion-verification.md); the earlier pending boundaries above describe the graph-only checkpoint, superseded by that result.

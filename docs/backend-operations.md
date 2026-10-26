@@ -37,3 +37,7 @@ Check exact hashes, main/branch history, shared schema and data before applying.
 After application run real Auth/API/Storage/worker acceptance with only approved synthetic accounts/fixtures and exact cleanup. Verify original records and migration history, private bucket policies, object absence after cleanup and service IDs/health. No merge occurs as an incidental deployment step.
 
 A failed isolated restore/test gate stops shared application. A failed migration must not receive a fake history receipt. If post-commit validation fails, stop new C67 writes and retain diagnostics/backup. Never automatically DROP graph/journal data, remove history, prune resources or restore over the shared instance; review a concrete rollback against current data first.
+
+## Deployed baseline — 26 October 2026
+
+[Execution evidence](homelab-backend-completion-verification.md) records seven migration versions, two private buckets, one healthy c67-media worker and the unchanged 11-service Supabase project. The worker release/env is under `/home/giovan/apps/c67-media/release/server/`, image tag c67-media:e32e283. The latest private recovery point is `/home/giovan/backups/c67/2026-10-26-before-backend-completion`. Future lifecycle changes still need a current scoped preflight/approval.

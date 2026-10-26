@@ -2,7 +2,7 @@
 
 ## Start with the task and current code
 
-C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The starter schema, private trip reads and V2 model foundation are deployed and verified; native app sign-in remains separate work.
+C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native app sign-in/integration remains separate work.
 
 Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 

@@ -1,6 +1,6 @@
 # Task: Complete backend stages 3B–7 before opening a PR
 
-Status: Source/CI complete; consolidated homelab approval/deployment/verification pending
+Status: Complete for the agreed server scope; shared deployment verified, final review PR being prepared
 Owner: Giovan
 Branch: gi/trip-graph
 
@@ -49,3 +49,9 @@ Source checkpoint c55aef6 passed all four [CI jobs in run 40255936842](https://g
 The four migrations and runtime/test inputs are pinned in the consolidated plan. New operational preflight additionally proved that existing supabase_admin is required/available for Storage policy ownership, without changing any role/grant/password. No homelab changes occurred in this batch and no new PR is open.
 
 Remaining acceptance is explicitly operational: private backup/restore/backfill on PostgreSQL 17.6, four official migrations/two private buckets, real shared API/Storage verification and the single restricted continuous worker. Open one PR only after those gates complete. Native login/photo conversion, physical location/field validation, off-host/scheduled recovery and production load/RPO/RTO remain outside this agreed server slice.
+
+## Completed shared execution
+
+Giovan approved the consolidated plan after its exact preflight. Both databases restored on the exact PostgreSQL17.6 image; V1/V2 persisted backfill and receipt-after-edit compatibility passed; 167/167 isolated SQL assertions passed. Four official migrations applied, seven versions recorded, two private buckets validated. Final shared acceptance passed **67 retained + 17 completion = 84 checks**, with exact record/byte cleanup and original account/catalog/root fingerprints preserved. The C67 binary test client's User-Agent was corrected after a diagnosed Cloudflare1010 edge denial; gateway/policy settings stayed unchanged.
+
+One c67-media worker is now healthy with the reviewed resource/filesystem/security limits and private env; all 11 existing Supabase containers remain healthy with unchanged IDs/start times. The isolated test container and owned SSH tunnel are gone, and backups remain private. See [full evidence](../homelab-backend-completion-verification.md). One final PR may now be opened, as requested. No merge or additional feature is implied.

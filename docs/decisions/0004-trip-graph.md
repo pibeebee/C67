@@ -1,6 +1,6 @@
 # ADR-0004 — Normalized immutable trip graph
 
-Status: Implemented and backend-CI verified; matching-image/shared deployment awaits its concrete approved plan. See [task](../tasks/trip-graph.md).
+Status: Implemented and matching-image/shared-verified in the consolidated backend batch. See [task](../tasks/trip-graph.md).
 Date: 24 October 2026.
 
 ## Decision

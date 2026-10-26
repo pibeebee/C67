@@ -1,6 +1,6 @@
 # ADR-0005 — Complete private backend slice before review PR
 
-Status: Implemented; final CI and separately approved shared verification tracked in the completion task.
+Status: Implemented and shared-verified through the separately approved consolidated plan. See [evidence](../homelab-backend-completion-verification.md).
 Date: 26 October 2026.
 
 ## Human decisions
