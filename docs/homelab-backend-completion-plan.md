@@ -77,7 +77,7 @@ a8794cc43b42c79eee0c116cc6321d89e573db4cddc7a27624aefd3976b5a6f4  contracts/fixt
 24450082a7a3ad14cefcca554905b446ee27a3fd55cc805545e68317c93456ed  contracts/fixtures/route-template-first-stop.json
 5ad85d5ca4e22a4134532f9115b836750ab3d1e9390522880fdabc88550a55e3  server/scripts/test_local_api.py
 efba48da4209698dab5fa966b6ca0cf601a58cd96831a6e9d2846d215e835bf3  server/scripts/test_homelab_api.py
-ec59d83534684180f30936f72213fa14f20b278b5311f31844d5247679c57c14  server/scripts/test_backend_completion.py
+b08db36117d4d45d699b4227db2adcf589c32563d17fd74f4237cfc95685610e  server/scripts/test_backend_completion.py
 ccd1a93ff49ba907491660e37876bf160c10de4d3ba761a4081bd122e2c893d4  server/scripts/ops_status.py
 24a0e6aa54c84c189e941ae636af7f0209de2a914be6e1dbc4b0712730113aa8  server/scripts/backup_homelab.py
 a115c683219a09b4a4aed933fec5cce69e79275345d01bee0d2730309cdd4204  server/scripts/test_worker_container.py
@@ -88,3 +88,5 @@ a115c683219a09b4a4aed933fec5cce69e79275345d01bee0d2730309cdd4204  server/scripts
 67c54e2a0ac16cf1f16d0cef2b009934d1dee1738ca0a54de138853de6c6214c  server/workers/media/package-lock.json
 57cdf084abb13d4187efef4574da0adecb86aa66f41ee7be41f35982a01540a6  server/deploy/media-worker.compose.yml
 ```
+
+Execution adjustment: shared Storage requests from Python-urllib were rejected by the existing Cloudflare Browser Integrity Check (1010); read-only comparison proved C67-Approved-Verification/1.0 and the worker client succeed. The binary acceptance client now uses the same truthful C67 User-Agent as its already-reviewed JSON client. Only the test input hash above changes; migrations, worker image, gateway and Storage policy are unchanged.

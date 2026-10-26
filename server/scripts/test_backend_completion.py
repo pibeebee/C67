@@ -18,7 +18,8 @@ def run(api, shared=False):
     def rpc(name, body, token=None, status=200, admin=False):
         return api.expect(api.request('POST', '/rest/v1/rpc/'+name, body, token=token, admin=admin), status)
     def binary(path, method='GET', data=None, token=None, admin=False, content_type='image/png'):
-        headers={'apikey':api.server_key if admin else api.client_key,'Content-Type':content_type}
+        headers={'apikey':api.server_key if admin else api.client_key,'Content-Type':content_type,
+                 'User-Agent':'C67-Approved-Verification/1.0'}
         if admin or token:headers['Authorization']='Bearer '+(api.server_key if admin else token)
         handlers=[ProxyHandler({}),NoRedirects()]
         if shared:handlers.append(HTTPSHandler(context=api.context))
