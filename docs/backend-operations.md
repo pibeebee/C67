@@ -32,7 +32,7 @@ Backups are presently same-host recovery points. Scheduled/off-host destination,
 
 ## Migration and rollback gates
 
-Check exact hashes, main/branch history, shared schema and data before applying. Use the pinned official CLI through an owned loopback SSH tunnel; secrets stay in process environment/memory. Require the exact pending migration list, no seed reload, and schema-cache NOTIFY without restart.
+Check exact hashes, main/branch history, shared schema and data before applying. For this Storage-policy batch, use the existing verified supabase_admin migration account: postgres is not the storage.objects owner/member. Do not grant new ownership/role permissions just to bypass this boundary. Use the pinned official CLI through an owned loopback SSH tunnel; secrets stay in process environment/memory. Require the exact pending migration list, no seed reload, and schema-cache NOTIFY without restart.
 
 After application run real Auth/API/Storage/worker acceptance with only approved synthetic accounts/fixtures and exact cleanup. Verify original records and migration history, private bucket policies, object absence after cleanup and service IDs/health. No merge occurs as an incidental deployment step.
 
