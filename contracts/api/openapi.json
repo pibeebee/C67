@@ -2660,6 +2660,15 @@
           "append_version_id": {
             "type": "string",
             "format": "uuid"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time_zone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
           }
         },
         "minProperties": 1

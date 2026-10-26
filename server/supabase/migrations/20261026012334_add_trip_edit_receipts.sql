@@ -116,8 +116,10 @@ begin
  if not found then raise sqlstate 'PT404' using message='Trip not found'; end if;
  if p_expected_revision is null or t.revision<>p_expected_revision then raise sqlstate 'PT409' using message='Trip revision changed'; end if;
  if t.status<>'planned' then raise sqlstate 'PT409' using message='Only planned trips may be edited'; end if;
- if jsonb_typeof(p_patch) is distinct from 'object' or p_patch='{}'::jsonb or exists(select 1 from jsonb_object_keys(p_patch) k where k not in ('title','stop_order','append_version_id')) then raise sqlstate 'PT400' using message='Invalid trip patch'; end if;
+ if jsonb_typeof(p_patch) is distinct from 'object' or p_patch='{}'::jsonb or exists(select 1 from jsonb_object_keys(p_patch) k where k not in ('title','starts_at','time_zone','stop_order','append_version_id')) then raise sqlstate 'PT400' using message='Invalid trip patch'; end if;
  if p_patch ? 'title' and (jsonb_typeof(p_patch->'title') is distinct from 'string' or length(btrim(p_patch->>'title')) not between 1 and 200) then raise sqlstate 'PT400' using message='Invalid trip title'; end if;
+ if p_patch ? 'starts_at' and (jsonb_typeof(p_patch->'starts_at') is distinct from 'string' or not isfinite((p_patch->>'starts_at')::timestamptz)) then raise sqlstate 'PT400' using message='Invalid trip start';end if;
+ if p_patch ? 'time_zone' and not exists(select 1 from pg_catalog.pg_timezone_names z where z.name=p_patch->>'time_zone' and (z.name='UTC' or position('/' in z.name)>0) and z.name not like 'posix/%' and z.name not like 'right/%') then raise sqlstate 'PT400' using message='Invalid trip time zone';end if;
  if p_patch ? 'stop_order' then
   if jsonb_typeof(p_patch->'stop_order') is distinct from 'array' then raise sqlstate 'PT400' using message='Invalid stop order'; end if;
   select array_agg(id order by id) into ids from public.trip_stops where trip_id=t.id;
@@ -201,7 +203,8 @@ begin
    insert into public.trip_legs(trip_id,day_id,position,kind,from_trip_stop_id,to_trip_stop_id,estimate_origin) values(t.id,d.id,pos,'between_stops',ids[edge_index],ids[edge_index+1],'unknown');pos:=pos+1;
   end loop;end if;
  end if;
- update public.trips set title=coalesce(p.patch->>'title',title),stops=case when p.patch ? 'stop_order' or p.source_snapshot is not null then (select coalesce(jsonb_agg(jsonb_build_object('id',id,'title',title,'order',position) order by position),'[]'::jsonb) from public.trip_stops where trip_id=t.id) else stops end where id=t.id;
+ update public.trips set title=coalesce(p.patch->>'title',title),starts_at=coalesce((p.patch->>'starts_at')::timestamptz,starts_at),time_zone=coalesce(p.patch->>'time_zone',time_zone),stops=case when p.patch ? 'stop_order' or p.source_snapshot is not null then (select coalesce(jsonb_agg(jsonb_build_object('id',id,'title',title,'order',position) order by position),'[]'::jsonb) from public.trip_stops where trip_id=t.id) else stops end where id=t.id;
+ update public.trip_days d set starts_at=t2.starts_at,time_zone=t2.time_zone,local_date=t2.local_start_date from public.trips t2 where t2.id=t.id and d.trip_id=t2.id;
  perform set_config('c67.graph_edit_trip','',true);
  response:=public.get_trip_graph(t.id);
  insert into c67_private.command_receipts(owner_id,request_id,command,input,response) values(actor,p_request_id,'apply_plan',input,response);

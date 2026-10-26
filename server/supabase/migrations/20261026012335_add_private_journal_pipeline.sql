@@ -149,7 +149,7 @@ $$;
 -- Freeze topology after any accepted journal, and while an upload is in progress, under the same trip lock.
 create function public.protect_journal_plan() returns trigger language plpgsql security definer set search_path='' as $$
 begin
- if new.stops is distinct from old.stops then
+ if new.stops is distinct from old.stops or new.starts_at is distinct from old.starts_at or new.time_zone is distinct from old.time_zone then
   if exists(select 1 from public.journal_entries where trip_id=old.id) or exists(select 1 from public.journal_uploads where trip_id=old.id and state in ('uploading','queued','processing') and (state<>'uploading' or expires_at>now())) then raise sqlstate 'PT409' using message='Journaled or pending-upload plan is protected';end if;
  end if;
  return new;

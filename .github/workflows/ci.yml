@@ -58,5 +58,7 @@ jobs:
       - run: npm ci --prefix workers/media --ignore-scripts
       - run: npm test --prefix workers/media
       - run: python3 scripts/test_backend_completion.py
+      - run: python3 scripts/ops_status.py
+      - run: python3 scripts/test_worker_container.py
       - if: always()
         run: npm run stop
