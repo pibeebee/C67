@@ -122,7 +122,7 @@ begin
   if jsonb_typeof(p_patch->'stop_order') is distinct from 'array' then raise sqlstate 'PT400' using message='Invalid stop order'; end if;
   select array_agg(id order by id) into ids from public.trip_stops where trip_id=t.id;
   select array_agg(value::uuid order by value::uuid) into supplied from jsonb_array_elements_text(p_patch->'stop_order');
-  if ids is distinct from supplied then raise sqlstate 'PT400' using message='Order must contain every trip occurrence exactly once'; end if;
+  if supplied is null or cardinality(supplied)<>(select count(distinct x) from unnest(supplied) x) or not supplied<@ids then raise sqlstate 'PT400' using message='Order must contain distinct existing trip occurrences'; end if;
  end if;
  if p_patch ? 'append_version_id' then
   version:=(p_patch->>'append_version_id')::uuid;
@@ -161,6 +161,13 @@ begin
  perform set_config('c67.graph_edit_trip',t.id::text,true);
  select * into d from public.trip_days where trip_id=t.id;
  if p.patch ? 'stop_order' then
+  -- Every removed occurrence is explicitly absent from the reviewed retained-ID list.
+  -- FKs and the journal guard reject protected plans before any delete.
+  if exists(select 1 from public.journal_entries where trip_id=t.id) or exists(select 1 from public.journal_uploads where trip_id=t.id and state in ('uploading','queued','processing') and (state<>'uploading' or expires_at>now())) then raise sqlstate 'PT409' using message='Journaled or pending-upload plan is protected';end if;
+  delete from public.trip_legs where trip_id=t.id;
+  select array_agg(value::uuid) into ids from jsonb_array_elements_text(p.patch->'stop_order');
+  if d.landing_kind='first_stop' then update public.trip_days set landing_trip_stop_id=ids[1],landing_location=(select location from public.trip_stops where id=ids[1]) where id=d.id;end if;
+  delete from public.trip_stops where trip_id=t.id and not id=any(ids);
   -- Park positions to preserve the immediate unique index while moving rows.
   update public.trip_stops set position=position+1000000 where trip_id=t.id;
   idx:=0;
@@ -194,7 +201,7 @@ begin
    insert into public.trip_legs(trip_id,day_id,position,kind,from_trip_stop_id,to_trip_stop_id,estimate_origin) values(t.id,d.id,pos,'between_stops',ids[edge_index],ids[edge_index+1],'unknown');pos:=pos+1;
   end loop;end if;
  end if;
- update public.trips set title=coalesce(p.patch->>'title',title),stops=(select coalesce(jsonb_agg(jsonb_build_object('id',id,'title',title,'order',position) order by position),'[]'::jsonb) from public.trip_stops where trip_id=t.id) where id=t.id;
+ update public.trips set title=coalesce(p.patch->>'title',title),stops=case when p.patch ? 'stop_order' or p.source_snapshot is not null then (select coalesce(jsonb_agg(jsonb_build_object('id',id,'title',title,'order',position) order by position),'[]'::jsonb) from public.trip_stops where trip_id=t.id) else stops end where id=t.id;
  perform set_config('c67.graph_edit_trip','',true);
  response:=public.get_trip_graph(t.id);
  insert into c67_private.command_receipts(owner_id,request_id,command,input,response) values(actor,p_request_id,'apply_plan',input,response);

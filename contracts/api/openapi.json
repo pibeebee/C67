@@ -2655,7 +2655,7 @@
               "format": "uuid"
             },
             "uniqueItems": true,
-            "description": "Explicit complete ordering of every current occurrence. Reordering protected pending/journaled topology is rejected."
+            "description": "Explicit ordered retained occurrence IDs. Nonempty, unique subset of current IDs; omitted occurrences are removed only if the plan has no pending/accepted journals. Lets the user resolve overlap after a keep-all append."
           },
           "append_version_id": {
             "type": "string",

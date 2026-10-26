@@ -68,6 +68,12 @@ def run(api, shared=False):
     require(all(l['duration_seconds'] is None for l in merged['legs']),'Merged adjacency kept stale route durations')
     require(merged['stops'][0]['id']==original['stops'][0]['id'],'Existing occurrence identity changed')
     api.passed_check('Explicit source append keeps both occurrences/credits and invalidates old estimates')
+    # Choose which repeated occurrences to retain explicitly; never name-deduplicate automatically.
+    selected=[merged['stops'][0]['id'],merged['stops'][3]['id']]
+    choose=rpc('preview_trip_change',{'p_trip_id':trip,'p_expected_revision':merged['revision'],'p_patch':{'stop_order':selected}},ta)
+    merged=rpc('apply_trip_change',{'p_preview_id':choose['preview_id'],'p_request_id':str(uuid4())},ta)
+    require([s['id'] for s in merged['stops']]==selected and len(merged['sources'])==2,'Explicit overlap resolution lost retained IDs or attribution')
+    api.passed_check('User-selected retained occurrence order resolves overlaps without automatic name deduplication')
     # Use the original located stop. Source appends keep unknown geometry until a resolver supplies it.
     stop=merged['stops'][0]
     location={**stop['location'],'accuracy_m':5,'sampled_at':datetime.now(timezone.utc).isoformat()}
@@ -114,6 +120,9 @@ def run(api, shared=False):
     rpc('apply_trip_change',{'p_preview_id':p['preview_id'],'p_request_id':str(uuid4())},ta,status=409)
     require(rpc('list_trip_album',{'p_trip_id':trip},ta)==album,'Rejected replan damaged accepted journal')
     require(rpc('create_trip_v3',command,ta)==original,'Create receipt changed after journal revision')
+    title_preview=rpc('preview_trip_change',{'p_trip_id':trip,'p_expected_revision':graph['revision'],'p_patch':{'title':'Private album title'}},ta)
+    renamed=rpc('apply_trip_change',{'p_preview_id':title_preview['preview_id'],'p_request_id':str(uuid4())},ta)
+    require(renamed['title']=='Private album title' and rpc('list_trip_album',{'p_trip_id':trip},ta)==album,'Title-only edit changed documented topology')
     api.passed_check('Accepted journals remain protected; receipt retries survive later plan/journal revisions')
     location['sampled_at']=datetime.now(timezone.utc).isoformat()
     invalid=rpc('begin_journal_upload',{**begin,'p_request_id':str(uuid4()),'p_location':location},ta)

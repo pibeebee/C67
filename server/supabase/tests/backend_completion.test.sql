@@ -26,7 +26,7 @@ select is(public.apply_trip_change(current_setting('c67.preview')::uuid,'5111111
 select is(public.create_trip_v3('91111111-1111-4111-8111-111111111111','2026-11-01T02:00Z','UTC','unspecified','51111111-1111-4111-8111-111111111111'),current_setting('c67.original')::jsonb,'Create receipt survives later edits');
 select throws_ok($$select public.preview_trip_change(current_setting('c67.trip')::uuid,1,'{"title":"Stale"}')$$,'PT409','Trip revision changed','Stale revision rejected');
 select throws_ok($$select public.preview_trip_change(current_setting('c67.trip')::uuid,2,'{"owner_id":"forged"}')$$,'PT400','Invalid trip patch','Unsupported owner field rejected');
-select throws_ok($$select public.preview_trip_change(current_setting('c67.trip')::uuid,2,'{"stop_order":["aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"]}')$$,'PT400','Order must contain every trip occurrence exactly once','Foreign occurrence cannot enter reorder');
+select throws_ok($$select public.preview_trip_change(current_setting('c67.trip')::uuid,2,'{"stop_order":["aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"]}')$$,'PT400','Order must contain distinct existing trip occurrences','Foreign occurrence cannot enter reorder');
 select set_config('c67.merge',public.preview_trip_change(current_setting('c67.trip')::uuid,2,'{"append_version_id":"91111111-1111-4111-8111-111111111112"}')->>'preview_id',true);
 select set_config('c67.merged',public.apply_trip_change(current_setting('c67.merge')::uuid,'51111111-1111-4111-8111-111111111113')::text,true);
 select is(jsonb_array_length(current_setting('c67.merged')::jsonb->'stops'),4,'Explicit append keeps both repeated-place occurrences');
