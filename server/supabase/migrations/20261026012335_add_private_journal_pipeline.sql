@@ -132,7 +132,7 @@ $$;
 create function public.journal_cleanup_candidates() returns jsonb language plpgsql stable security definer set search_path='' as $$
 begin
  if auth.role() is distinct from 'service_role' then raise insufficient_privilege;end if;
- return coalesce((select jsonb_agg(jsonb_build_object('upload_id',id,'raw_path',raw_path,'ready_path',ready_path)) from (select * from public.journal_uploads where owner_id is null or trip_id is null or stop_id is null or state='rejected' or (state='uploading' and expires_at<now()) or (state='processing' and attempts>=5 and lease_until<now()) order by created_at limit 100) x),'[]'::jsonb);
+ return coalesce((select jsonb_agg(jsonb_build_object('upload_id',id,'raw_path',raw_path,'ready_path',ready_path)) from (select * from public.journal_uploads where owner_id is null or trip_id is null or stop_id is null or (state='rejected' and created_at<now()-interval '24 hours') or (state='uploading' and expires_at<now()-interval '24 hours') or (state='processing' and attempts>=5 and lease_until<now()) order by created_at limit 100) x),'[]'::jsonb);
 end;
 $$;
 create function public.purge_journal_job(p_upload_id uuid) returns void language plpgsql volatile security definer set search_path='' as $$
@@ -161,3 +161,12 @@ revoke all on function public.begin_journal_upload(uuid,uuid,uuid,text,jsonb),pu
 grant execute on function public.begin_journal_upload(uuid,uuid,uuid,text,jsonb),public.submit_journal_upload(uuid),public.list_trip_album(uuid) to authenticated;
 revoke all on function public.claim_journal_job(),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) from public,anon,authenticated,service_role;
 grant execute on function public.claim_journal_job(),public.finish_journal_job(uuid,uuid,jsonb),public.journal_cleanup_candidates(),public.purge_journal_job(uuid) to service_role;
+
+create function public.journal_raw_cleanup_candidates() returns jsonb language plpgsql stable security definer set search_path='' as $$
+begin
+ if auth.role() is distinct from 'service_role' then raise insufficient_privilege;end if;
+ return coalesce((select jsonb_agg(jsonb_build_object('raw_path',u.raw_path)) from (select raw_path from public.journal_uploads where state='ready' and exists(select 1 from storage.objects o where o.bucket_id='c67-journal-raw' and o.name=raw_path) order by created_at limit 100) u),'[]'::jsonb);
+end;
+$$;
+revoke all on function public.journal_raw_cleanup_candidates() from public,anon,authenticated,service_role;
+grant execute on function public.journal_raw_cleanup_candidates() to service_role;

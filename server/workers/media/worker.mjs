@@ -1,4 +1,5 @@
 import { validateImage } from './image.mjs';
+import { writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 export class Worker {
   constructor(url, key) {
@@ -37,6 +38,7 @@ export class Worker {
     return true;
   }
   async cleanup() {
+    for (const job of await this.rpc('journal_raw_cleanup_candidates')) await this.remove('c67-journal-raw', job.raw_path);
     for (const job of await this.rpc('journal_cleanup_candidates')) {
       await this.remove('c67-journal-raw', job.raw_path);
       await this.remove('c67-journal-ready', job.ready_path);
@@ -48,7 +50,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const w = new Worker(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
   if (process.argv.includes('--once')) { await w.once(); await w.cleanup(); }
   else for (;;) {
-    try { await w.once(); await w.cleanup(); } catch { console.error('Media worker cycle failed; lease retained for retry'); }
+    try { await w.once(); await w.cleanup(); await writeFile('/tmp/c67-media-heartbeat', String(Date.now())); } catch { console.error('Media worker cycle failed; lease retained for retry'); }
     await new Promise(resolve => setTimeout(resolve, 5000));
   }
 }

@@ -109,7 +109,7 @@ create table c67_private.plan_previews(
 revoke all on c67_private.plan_previews from public,anon,authenticated,service_role;
 create function public.preview_trip_change(p_trip_id uuid,p_expected_revision bigint,p_patch jsonb) returns jsonb
 language plpgsql volatile security definer set search_path='' as $$
-declare actor uuid:=auth.uid(); t public.trips%rowtype; token uuid; source jsonb; route jsonb; ids uuid[]; supplied uuid[]; version uuid;
+declare actor uuid:=auth.uid(); t public.trips%rowtype; token uuid; source jsonb; ids uuid[]; supplied uuid[]; version uuid;
 begin
  if actor is null then raise sqlstate 'PT401' using message='Traveller session required'; end if;
  select * into t from public.trips where id=p_trip_id and owner_id=actor;
@@ -139,7 +139,7 @@ create function public.apply_trip_change(p_preview_id uuid,p_request_id uuid) re
 language plpgsql volatile security definer set search_path='' as $$
 declare actor uuid:=auth.uid(); p c67_private.plan_previews%rowtype; t public.trips%rowtype;
  r c67_private.command_receipts%rowtype; input jsonb:=jsonb_build_object('preview_id',p_preview_id); response jsonb;
- d public.trip_days%rowtype; sid uuid; s jsonb; route jsonb; new_id uuid; pos integer; idx integer; ids uuid[]; st public.trip_stops%rowtype;
+ d public.trip_days%rowtype; sid uuid; s jsonb; route jsonb; new_id uuid; pos integer; idx integer; ids uuid[]; detail jsonb;
 begin
  if actor is null then raise sqlstate 'PT401' using message='Traveller session required'; end if;
  if p_request_id is null or p_preview_id is null then raise sqlstate 'PT400' using message='Preview and request ID are required'; end if;
@@ -156,6 +156,7 @@ begin
  if not found then raise sqlstate 'PT404' using message='Trip not found'; end if;
  if t.revision<>p.expected_revision then raise sqlstate 'PT409' using message='Trip revision changed'; end if;
  if t.status<>'planned' then raise sqlstate 'PT409' using message='Only planned trips may be edited'; end if;
+ if p.source_snapshot is not null then perform 1 from public.rundown_versions where id=(p.source_snapshot->>'version_id')::uuid for share; end if;
  if p.source_snapshot is not null and not exists(select 1 from public.rundown_versions v where v.id=(p.source_snapshot->>'version_id')::uuid and v.published and jsonb_build_object('rundown_id',v.rundown_id,'version_id',v.id,'version_no',v.version_no,'title',v.title,'stops',v.stops,'route_template',v.route_template)=p.source_snapshot) then raise sqlstate 'PT409' using message='Source changed; preview again'; end if;
  perform set_config('c67.graph_edit_trip',t.id::text,true);
  select * into d from public.trip_days where trip_id=t.id;
@@ -177,8 +178,9 @@ begin
   select coalesce(max(position)+1,0) into pos from public.trip_stops where trip_id=t.id;
   route:=p.source_snapshot->'route_template';
   for s in select value from jsonb_array_elements(p.source_snapshot->'stops') loop
-   insert into public.trip_stops(id,trip_id,day_id,source_id,source_stop_id,position,title)
-   values(gen_random_uuid(),t.id,d.id,sid,(s->>'id')::uuid,pos,s->>'title');pos:=pos+1;
+   detail:=null;select x into detail from jsonb_array_elements(coalesce(route->'stop_details','[]')) x where x->>'source_stop_id'=s->>'id';
+   insert into public.trip_stops(id,trip_id,day_id,source_id,source_stop_id,position,title,location,time_zone,visit_duration_seconds)
+   values(gen_random_uuid(),t.id,d.id,sid,(s->>'id')::uuid,pos,s->>'title',nullif(detail->'location','null'::jsonb),detail->>'time_zone',(detail->>'visit_duration_seconds')::numeric::integer);pos:=pos+1;
   end loop;
  end if;
  if p.patch ? 'stop_order' or p.source_snapshot is not null then
