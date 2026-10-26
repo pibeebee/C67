@@ -36,7 +36,7 @@ Create new migrations through `npm run supabase -- migration new <name>`. Do not
 
 ## Local acceptance checks
 
-- `db:test`: 141 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
+- `db:test`: 167 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
 - `db:lint`: checks the local public schema and exits nonzero for schema errors.
 - `api:test`: 66 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
 
@@ -70,7 +70,7 @@ The next additive migration separates curated rundown root/version identity and 
 
 ## Normalized graph (stage 3B)
 
-The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification awaits the [prepared homelab plan](../docs/homelab-trip-graph-plan.md); earlier deployed evidence does not cover the graph yet.
+The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification completed under the [consolidated plan](../docs/homelab-backend-completion-plan.md).
 
 ## Backend completion batch (stages 3B–7)
 

@@ -23,7 +23,7 @@ The accepted backend foundation is self-hosted Supabase. The repo provides optio
 
 The starter stores a published rundown version with ordered stops as a JSON snapshot. `create_trip` copies it into an owner-scoped trip in one database transaction. This intentionally small model does not implement the full proposed relational/PostGIS schema. Future normalized tables require migrations and contract compatibility checks.
 
-RPCs use `contracts/api/openapi.json`. Published synthetic catalog reads are allowed to anonymous and authenticated clients for development. Production catalog/guest access and creator publishing remain product decisions. Trip writes are restricted to the v1/v2 creation RPCs; its definer function uses a fixed empty search path and verified `auth.uid()`. Clients cannot submit `owner_id` or directly update tables.
+RPCs use `contracts/api/openapi.json`. Published synthetic catalog reads are allowed to anonymous and authenticated clients for development. Production catalog/guest access and creator publishing remain product decisions. Trip writes use versioned creation and explicit preview/apply commands with owner checks, fixed empty search paths and revision/receipt boundaries. Clients cannot submit `owner_id` or directly update tables.
 
 Each create command includes a request UUID. A retry with the same owner, UUID, version and timestamp returns the original trip. Reusing that UUID for different input fails with HTTP 409. The UI retains a failed command's UUID in memory; durable offline recovery is not implemented yet.
 
@@ -31,7 +31,7 @@ Each create command includes a request UUID. A retry with the same owner, UUID, 
 
 Shared development uses the homelab; SQL reset/mutation tests use an isolated homelab target. Mac Docker is optional. The starter is deployed and verified; see [homelab evidence](homelab-verification.md).
 
-Mock saving is memory-only. Live catalog loading is implemented. Live trip saving has an authenticated adapter and SQL contract, but no app sign-in flow. Auth/session refresh, local persistence, journaling/media, map routing, WeatherKit and background jobs are later slices. Studio collaborator access does not create traveller sessions.
+Mock saving is memory-only. Live catalog loading is implemented. Live trip saving has an authenticated adapter and SQL contract, but no app sign-in flow. Native Auth/session refresh, local persistence, native journaling/media, routing and WeatherKit integration are later client slices. Server-side private media validation runs in the documented worker. Studio collaborator access does not create traveller sessions.
 
 Keep creator versions separate from personal trips. Keep suggested times, selected start times, forecasts and actual events separate. Server authorization remains authoritative even if the client validates input first.
 

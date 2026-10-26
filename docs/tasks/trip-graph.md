@@ -44,10 +44,6 @@ Full disposable CI SQL/HTTP suites, contract fixtures and syntax/whitespace chec
 
 ## Result and handoff
 
-Implementation dd94b14 passes backend checks in [CI run 40046041636](https://github.com/pibeebee/C67/actions/runs/40046041636): 141/141 pgTAP assertions (79 retained + 62 graph), clean public-schema lint and 66/66 real-session HTTP checks with fixture/account cleanup. OpenAPI 0.4 and nine fixtures validate. Python syntax, documentation links, approved-input hashes and whitespace checks pass locally. All four implementation CI jobs passed, including the Simulator check; no Swift source changed.
+Graph implementation dd94b14 passed 141 SQL assertions and 66 HTTP checks with all four CI jobs, including Simulator, before the consolidated work. PR #4 was then closed at Giovan's request. The completed [backend batch](backend-completion.md) supersedes that graph-only checkpoint and is [deployed/shared-verified](../homelab-backend-completion-verification.md): persisted V1/V2 backfill/receipt checks, 167 isolated SQL assertions and 84 shared HTTP checks passed with exact cleanup. No native Swift source changed.
 
-PR #4 was closed at Giovan's request. Continue stages 3B–7 on this branch and open one new PR only after the complete agreed backend scope is verified. Shared homelab remains at the three previous migrations; the graph is not deployed there. The prepared plan separately gates restore/backfill of persisted V1/V2 records, 141 matching-image SQL checks, official migration and 67 shared HTTP checks. No shared mutation has been run in this stage.
-
-The iOS data owner can adopt the new published source-route and authenticated graph endpoints without changing existing consumers. Full multi-day/multi-source creation, scheduler/provider work, edits/concurrency receipts and lifecycle/journaling remain later contracts. Stage 3B supplies the initial one-day normalized model and explicit landing semantics.
-
-Final graph/shared verification is complete in the [consolidated execution](../homelab-backend-completion-verification.md); the earlier pending boundaries above describe the graph-only checkpoint, superseded by that result.
+Source/day/stop/leg graph and explicit origin/landing/first-stop behavior are ready for iOS data adoption. Full multi-day creation, providers/optimizer and public creator/lifecycle policies remain separate contracts; planned source append/overlap editing and private journals are implemented under ADR-0005.

@@ -48,6 +48,6 @@ Final verified data: one original Auth account, one original catalog version/roo
 
 ## Handoff and limits
 
-The agreed server batch is deployed and verified. Open one new review PR, preserving closed PR #4 and all branch history; no merge is authorized by deployment. The iOS data owner can adopt the documented discovery/graph/edit/upload/album contracts and keep existing callers compatible. See [ADR-0005](decisions/0005-backend-mvp.md) and [operations](backend-operations.md).
+The agreed server batch is deployed and verified. One new review PR is prepared only after this verified execution, preserving closed PR #4 and branch history; no merge is authorized by deployment. The iOS data owner can adopt the documented discovery/graph/edit/upload/album contracts and keep existing callers compatible. See [ADR-0005](decisions/0005-backend-mvp.md) and [operations](backend-operations.md).
 
 The selected scope is curated catalog, private albums, location at upload-session creation, planned-only editing/merge and protected pending/accepted journal plans. No public creator publishing, completed/skip/ended_early lifecycle, route optimizer/provider integration or native authentication/HEIC conversion is claimed. Physical iPhone/field GPS, adversarial sensor authenticity, queue/load capacity, scheduled/off-host backup, RPO/RTO and full Storage service restore remain separate evidence. Initial GPS/time/size/rate limits are development defaults to be tuned from device/field results.
