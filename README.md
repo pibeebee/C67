@@ -24,4 +24,6 @@ Read [Getting started](docs/getting-started.md) for detailed setup, [Architectur
 | `contracts/` | Authoritative wire contract and synthetic fixtures | [Contract guide](contracts/README.md) |
 | `docs/` | Context, decisions, onboarding and first assignments | [Team handoff](docs/team-starter.md) |
 
-The existing self-hosted Supabase is the shared backend foundation. The server migrations and v1/v2 RPCs have been deployed and verified through explicitly approved backup/restore procedures; see [latest server evidence](docs/homelab-trip-model-verification.md). Native app sign-in and V2 client integration remain follow-up work. Studio access for collaborators is separate from traveller authentication in the app.
+The existing self-hosted Supabase is the shared backend foundation. The server migrations and v1/v2 RPCs have been deployed and verified through explicitly approved backup/restore procedures; see [latest server evidence](docs/homelab-backend-completion-verification.md). Native app sign-in and V2 client integration remain follow-up work. Studio access for collaborators is separate from traveller authentication in the app.
+
+Server completion evidence covers discovery, graph, planned edits/merge, private photo validation/journal/album and a restricted homelab worker. The native app remains the starter/mock integration until its data owner adopts those APIs; see [server handoff](docs/tasks/backend-completion.md).

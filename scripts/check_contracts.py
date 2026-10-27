@@ -9,6 +9,11 @@ root = Path(__file__).resolve().parents[1]
 spec = json.loads((root / "contracts/api/openapi.json").read_text())
 validate(spec)
 for filename, schema in [
+    ("journal-upload.json", {"$ref": "#/components/schemas/JournalUploadSession"}),
+    ("route-template-separate.json", {"$ref": "#/components/schemas/RouteTemplate"}),
+    ("route-template-first-stop.json", {"$ref": "#/components/schemas/RouteTemplate"}),
+    ("trip-graph.json", {"$ref": "#/components/schemas/TripGraph"}),
+    ("trip-graph-legacy.json", {"$ref": "#/components/schemas/TripGraph"}),
     ("rundowns.json", {"type": "array", "items": {"$ref": "#/components/schemas/Rundown"}}),
     ("trip.json", {"$ref": "#/components/schemas/Trip"}),
     ("trip-page.json", {"$ref": "#/components/schemas/TripPage"}),

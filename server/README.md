@@ -13,7 +13,7 @@ server/
 │   ├── tests/                       # pgTAP authorization and retry checks
 │   └── functions/                   # future orchestration
 ├── src/modules/                     # reserved domain grouping, no API executable
-├── workers/media/                   # reserved, no running worker
+├── workers/media/                   # private image worker (deployment approval required)
 └── deploy/                          # reserved, no automatic deployment
 ```
 
@@ -36,9 +36,9 @@ Create new migrations through `npm run supabase -- migration new <name>`. Do not
 
 ## Local acceptance checks
 
-- `db:test`: 79 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
+- `db:test`: 167 pgTAP checks of grants, RLS, snapshot copying, retry behavior and private trip reads. Synthetic role/claim tests run in a rolled-back transaction.
 - `db:lint`: checks the local public schema and exits nonzero for schema errors.
-- `api:test`: 54 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
+- `api:test`: 66 HTTP checks through Auth, the gateway and Data API. It signs up two unique synthetic accounts, performs password login and refresh, checks both directions of account isolation, tests denied direct writes and hidden drafts, sends four concurrent retries of one command, and verifies private list/detail pagination, cursor validation and persisted snapshots.
 
 The HTTP suite reads keys from the pinned local CLI into memory. It accepts only project `c67-starter` at `http://127.0.0.1:54321`, ignores HTTP proxy settings, rejects redirects, and offers no remote URL option. Local email confirmation must be disabled as in the checked-in development config. No SMTP account, Studio password or hand-copied token is needed.
 
@@ -67,3 +67,19 @@ The additive migration adds `list_my_trips` and `get_trip_snapshot` with the exi
 ## Trip model foundation (stage 3A)
 
 The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. The [approved shared execution](../docs/homelab-trip-model-verification.md) is complete: both databases restored, persisted legacy backfill verified, 79/79 isolated SQL assertions and 55/55 shared HTTP checks passed; original data/services preserved and temporary records/container removed.
+
+## Normalized graph (stage 3B)
+
+The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification completed under the [consolidated plan](../docs/homelab-backend-completion-plan.md).
+
+## Backend completion batch (stages 3B–7)
+
+PR #4 was closed at Giovan's request. Work stays on `gi/trip-graph`; branch CI runs on pushes without a PR. One new review PR is opened only after the agreed batch is complete and verified. See [completion task](../docs/tasks/backend-completion.md).
+
+The batch adds discovery, immutable creation/apply receipts, planned preview/apply edits and explicit merge choices, private session/Storage/journal/album APIs, and the image worker with operational tooling. No native UI/Auth, public creator publishing, completed/skip/ended_early policy or automatic route/weather provider is introduced. [ADR-0005](../docs/decisions/0005-backend-mvp.md) records the human-approved product boundaries.
+
+The database CI additionally installs/tests the locked media worker, runs `scripts/test_backend_completion.py`, the read-only `scripts/ops_status.py`, and `scripts/test_worker_container.py`. The container check is Linux/disposable-CI-only and does not start Mac Docker. Shared equivalents require the refreshed concrete plan and explicit approval; do not infer shared verification from CI.
+
+Worker configuration: [media README](workers/media/README.md), [Compose](deploy/media-worker.compose.yml), [operations runbook](../docs/backend-operations.md). Copy real env into private server configuration with mode 600; the `.env.example` has no credential values. Source/API handlers never print secrets, response bodies or personal records.
+
+The consolidated batch has now completed [approved shared deployment and verification](../docs/homelab-backend-completion-verification.md): 167 isolated SQL assertions, 84 shared HTTP checks, private Storage and healthy restricted worker. The earlier pending notes describe implementation checkpoints; shared verification is no longer pending. Native integration remains a separate handoff.

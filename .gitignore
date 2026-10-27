@@ -38,3 +38,8 @@ server/supabase/.branches/
 __pycache__/
 *.pyc
 .tools/
+
+# Nested worker dependency tree
+server/workers/media/node_modules/
+
+server/deploy/media-worker.env

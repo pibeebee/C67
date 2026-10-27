@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "C67 starter RPC contract",
-    "version": "0.3.0"
+    "version": "0.5.0"
   },
   "servers": [
     {
@@ -650,6 +650,981 @@
           }
         }
       }
+    },
+    "/rest/v1/rpc/create_trip_v3": {
+      "post": {
+        "operationId": "create_trip_v3",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_version_id",
+                  "p_starts_at",
+                  "p_request_id",
+                  "p_time_zone",
+                  "p_start_time_basis"
+                ],
+                "properties": {
+                  "p_version_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_time_zone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255,
+                    "description": "Recognized IANA region/name or UTC; an offset alone is insufficient."
+                  },
+                  "p_start_time_basis": {
+                    "type": "string",
+                    "enum": [
+                      "unspecified",
+                      "departure_origin",
+                      "start_at_landing"
+                    ]
+                  },
+                  "p_origin": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/GraphPoint"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired traveller session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Published version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Request ID reused with different input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Atomically copy one source into a normalized one-day graph. Explicit start basis and optional origin are command identity. departure_origin requires an origin and known source landing; other bases reject retained origin. Unspecified legacy values remain unknown. V1/V2 payloads remain unchanged."
+      }
+    },
+    "/rest/v1/rpc/get_trip_graph": {
+      "post": {
+        "operationId": "get_trip_graph",
+        "description": "Owner-only stored normalized graph formed in one statement, with stable occurrence identities and null unknowns. Foreign/missing trip IDs share 404.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "p_trip_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Trip does not exist or belongs to another account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/get_rundown_route": {
+      "post": {
+        "operationId": "get_rundown_route",
+        "security": [
+          {
+            "clientKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_version_id"
+                ],
+                "properties": {
+                  "p_version_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RundownRoute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired traveller session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Published version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Request ID reused with different input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Published curated source route metadata. Missing or unpublished versions return the same 404; no schedule/ETA is inferred."
+      }
+    },
+    "/rest/v1/rpc/search_rundowns": {
+      "post": {
+        "operationId": "search_rundowns",
+        "description": "Published curated text/area search; simple lexeme AND matching, case-folded exact area, ID-descending keyset. Cursor bound to normalized query/area; live pages.",
+        "security": [
+          {
+            "clientKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                  "p_query": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 120,
+                    "default": ""
+                  },
+                  "p_area": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 80,
+                    "default": null
+                  },
+                  "p_limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 20
+                  },
+                  "p_cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 1024,
+                    "default": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoveryPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/preview_trip_change": {
+      "post": {
+        "operationId": "preview_trip_change",
+        "description": "Preview explicit planned-trip title/reorder/keep-all append. Pins source bytes, expires after 15 minutes; no graph mutation. Apply rechecks revision/source and journal protection.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id",
+                  "p_expected_revision",
+                  "p_patch"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_expected_revision": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "p_patch": {
+                    "$ref": "#/components/schemas/TripPatch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripChangePreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/apply_trip_change": {
+      "post": {
+        "operationId": "apply_trip_change",
+        "description": "Atomically apply approved preview at expected revision. Stable immutable owner/request receipt survives later edits. Appends keep both source occurrences; old adjacency estimates are invalidated. Journal/pending-upload topology is protected.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_preview_id",
+                  "p_request_id"
+                ],
+                "properties": {
+                  "p_preview_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/begin_journal_upload": {
+      "post": {
+        "operationId": "begin_journal_upload",
+        "description": "Private session. Recent device-reported sample within distance+accuracy <=100m; max age30s/future10s, max20 sessions/hour. Expires after15m. Repeat original request exactly for idempotency. Raw coordinates are not persisted. This does not certify physical presence or image authenticity.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id",
+                  "p_stop_id",
+                  "p_request_id",
+                  "p_content_type",
+                  "p_location"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_content_type": {
+                    "type": "string",
+                    "enum": [
+                      "image/jpeg",
+                      "image/png"
+                    ]
+                  },
+                  "p_location": {
+                    "$ref": "#/components/schemas/ReportedLocation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalUploadSession"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/submit_journal_upload": {
+      "post": {
+        "operationId": "submit_journal_upload",
+        "description": "After create-only raw Storage upload, enqueue byte validation. Poll same operation for status; finalization is worker-only. Accepted pending session is not re-evaluated for location when processing is delayed.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_upload_id"
+                ],
+                "properties": {
+                  "p_upload_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalUploadStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision, identity or state conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/list_trip_album": {
+      "post": {
+        "operationId": "list_trip_album",
+        "description": "Owner-only accepted private journal projection. Download via authenticated private Storage URL; no public URLs. Journal acceptance does not complete trip/stop.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "p_trip_id"
+                ],
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlbumEntry"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Traveller session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing or foreign record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed trip ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/storage/v1/object/c67-journal-raw/{objectPath}": {
+      "post": {
+        "operationId": "upload_journal_bytes",
+        "description": "Create-only; exact path from upload session. No client upsert/update/delete/read of raw objects. PNG/JPEG <=5MiB; worker validates actual bytes before private publication.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "objectPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bytes stored, not yet an accepted journal"
+          },
+          "400": {
+            "description": "Invalid/oversize/existing object"
+          },
+          "403": {
+            "description": "Session/path not authorized"
+          }
+        }
+      }
+    },
+    "/storage/v1/object/authenticated/c67-journal-ready/{objectPath}": {
+      "get": {
+        "operationId": "download_journal_photo",
+        "description": "Owner-only normalized JPEG, EXIF removed. Private bucket; foreign/missing paths reveal no readable bytes.",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "objectPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Processed JPEG",
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Object absent or inaccessible"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -897,6 +1872,1063 @@
           "status": {
             "type": "string",
             "const": "planned"
+          }
+        }
+      },
+      "GraphPoint": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      },
+      "RouteTemplate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "landing": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "first_stop",
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "location"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "separate",
+                    "type": "string"
+                  },
+                  "location": {
+                    "$ref": "#/components/schemas/GraphPoint"
+                  }
+                }
+              }
+            ]
+          },
+          "stop_details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_stop_id"
+              ],
+              "properties": {
+                "source_stop_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "location": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/GraphPoint"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "visit_duration_seconds": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 2147483647
+                },
+                "time_zone": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 255
+                }
+              }
+            }
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "kind",
+                "to_stop_id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "landing_to_first",
+                    "between_stops"
+                  ]
+                },
+                "from_stop_id": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "to_stop_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "transport_mode": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "walk",
+                    "drive",
+                    "transit",
+                    "other",
+                    "unknown",
+                    null
+                  ]
+                },
+                "duration_seconds": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 2147483647
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "kind": {
+                        "const": "between_stops"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "from_stop_id"
+                    ],
+                    "properties": {
+                      "from_stop_id": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "from_stop_id": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "RundownRoute": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version_id",
+          "rundown_id",
+          "version_no",
+          "stops",
+          "route_template"
+        ],
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rundown_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          },
+          "route_template": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RouteTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "GraphSource": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "rundown_id",
+          "version_id",
+          "version_no",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rundown_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "GraphDay": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "day_index",
+          "starts_at",
+          "time_zone",
+          "local_date",
+          "start_time_basis",
+          "origin",
+          "landing"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "day_index": {
+            "type": "integer",
+            "const": 0
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 255
+          },
+          "local_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "start_time_basis": {
+            "type": "string",
+            "enum": [
+              "unspecified",
+              "departure_origin",
+              "start_at_landing"
+            ]
+          },
+          "origin": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GraphPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "landing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "trip_stop_id",
+              "location"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "unknown",
+                  "first_stop",
+                  "separate"
+                ]
+              },
+              "trip_stop_id": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "location": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/GraphPoint"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "unknown"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "trip_stop_id": {
+                      "type": "null"
+                    },
+                    "location": {
+                      "type": "null"
+                    }
+                  }
+                },
+                "else": {
+                  "if": {
+                    "properties": {
+                      "kind": {
+                        "const": "first_stop"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "trip_stop_id": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "trip_stop_id": {
+                        "type": "null"
+                      },
+                      "location": {
+                        "$ref": "#/components/schemas/GraphPoint"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "start_time_basis": {
+                  "const": "departure_origin"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "origin": {
+                  "$ref": "#/components/schemas/GraphPoint"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "origin": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "GraphStop": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "day_id",
+          "source_id",
+          "source_stop_id",
+          "position",
+          "title",
+          "location",
+          "time_zone",
+          "visit_duration_seconds",
+          "progress_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source_stop_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "title": {
+            "type": "string"
+          },
+          "location": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GraphPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 255
+          },
+          "visit_duration_seconds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "progress_status": {
+            "type": "string",
+            "const": "not_started"
+          }
+        }
+      },
+      "GraphLeg": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "day_id",
+          "position",
+          "kind",
+          "from_trip_stop_id",
+          "to_trip_stop_id",
+          "transport_mode",
+          "duration_seconds",
+          "source_leg_id",
+          "estimate_origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "access",
+              "landing_to_first",
+              "between_stops"
+            ]
+          },
+          "from_trip_stop_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "to_trip_stop_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "transport_mode": {
+            "type": "string",
+            "enum": [
+              "walk",
+              "drive",
+              "transit",
+              "other",
+              "unknown"
+            ]
+          },
+          "duration_seconds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "source_leg_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "estimate_origin": {
+            "type": "string",
+            "enum": [
+              "creator",
+              "unknown"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "access"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "from_trip_stop_id": {
+                  "type": "null"
+                },
+                "to_trip_stop_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "landing_to_first"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "from_trip_stop_id": {
+                    "type": "null"
+                  },
+                  "to_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "from_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "to_trip_stop_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TripGraph": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schema_version",
+          "id",
+          "title",
+          "starts_at",
+          "revision",
+          "status",
+          "sources",
+          "days",
+          "stops",
+          "legs",
+          "warnings"
+        ],
+        "properties": {
+          "schema_version": {
+            "type": "integer",
+            "const": 3
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "const": "planned"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphSource"
+            },
+            "minItems": 1
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphDay"
+            },
+            "minItems": 1,
+            "maxItems": 1
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphStop"
+            }
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphLeg"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "landing_unknown",
+                "start_basis_unspecified",
+                "stop_location_unknown",
+                "visit_duration_unknown",
+                "leg_duration_unknown"
+              ]
+            }
+          }
+        }
+      },
+      "DiscoveryPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/Rundown"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1024
+          }
+        }
+      },
+      "TripPatch": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "stop_order": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "uniqueItems": true,
+            "description": "Explicit ordered retained occurrence IDs. Nonempty, unique subset of current IDs; omitted occurrences are removed only if the plan has no pending/accepted journals. Lets the user resolve overlap after a keep-all append."
+          },
+          "append_version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time_zone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        },
+        "minProperties": 1
+      },
+      "TripChangePreview": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "preview_id",
+          "trip_id",
+          "expected_revision",
+          "patch",
+          "append_source",
+          "expires_in_seconds",
+          "warnings"
+        ],
+        "properties": {
+          "preview_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "patch": {
+            "$ref": "#/components/schemas/TripPatch"
+          },
+          "append_source": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MergeSourceSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "const": 900
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ReportedLocation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "latitude",
+          "longitude",
+          "accuracy_m",
+          "sampled_at"
+        ],
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "accuracy_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "sampled_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      },
+      "JournalUploadSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "upload_id",
+          "bucket",
+          "path",
+          "expires_at",
+          "state"
+        ],
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bucket": {
+            "type": "string",
+            "const": "c67-journal-raw"
+          },
+          "path": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "uploading",
+              "queued",
+              "processing",
+              "ready",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "JournalUploadStatus": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "upload_id",
+          "state",
+          "failure_code"
+        ],
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "uploading",
+              "queued",
+              "processing",
+              "ready",
+              "rejected"
+            ]
+          },
+          "failure_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "AlbumEntry": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "stop_id",
+          "accepted_at",
+          "bucket",
+          "object_path",
+          "width",
+          "height",
+          "verification_origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "stop_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accepted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bucket": {
+            "type": "string",
+            "const": "c67-journal-ready"
+          },
+          "object_path": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2048
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2048
+          },
+          "verification_origin": {
+            "type": "string",
+            "const": "device_reported_session_v1"
+          }
+        }
+      },
+      "MergeSourceSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rundown_id",
+          "version_id",
+          "version_no",
+          "title",
+          "stops",
+          "route_template"
+        ],
+        "properties": {
+          "rundown_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          },
+          "route_template": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RouteTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
       }

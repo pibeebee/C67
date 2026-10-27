@@ -39,12 +39,13 @@ class HomelabAPI(LocalAPI):
             except (IndexError, ValueError, UnicodeError):
                 raise CheckFailure("Invalid shared legacy key structure") from None
         self.user_ids, self.draft_id, self.passed = [], None, 0
+        self.extra_version_ids = []
         self.context = ssl.create_default_context(cafile=certifi.where())
         self.baseline_ids = self.account_ids()
         require(len(self.baseline_ids) == 1, "Auth baseline changed; re-review the shared preflight")
         spec = self.expect(self.request("GET", "/rest/v1/", admin=True), 200)
         require(all("/rpc/" + name in spec.get("paths", {})
-                    for name in ["list_rundowns", "get_rundown", "create_trip", "list_my_trips", "get_trip_snapshot", "create_trip_v2", "get_trip_snapshot_v2"]),
+                    for name in ["list_rundowns", "get_rundown", "create_trip", "list_my_trips", "get_trip_snapshot", "create_trip_v2", "get_trip_snapshot_v2", "create_trip_v3", "get_trip_graph", "get_rundown_route"]),
                 "Required shared RPCs are not available")
 
     def request(self, method, path, body=None, token=None, admin=False, key=True):

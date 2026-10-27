@@ -1,0 +1,114 @@
+{
+  "schema_version": 3,
+  "id": "51111111-1111-4111-8111-111111111111",
+  "title": "Synthetic graph route",
+  "starts_at": "2026-11-01T02:00:00Z",
+  "revision": 1,
+  "status": "planned",
+  "sources": [
+    {
+      "id": "71111111-1111-4111-8111-111111111111",
+      "rundown_id": "61111111-1111-4111-8111-111111111111",
+      "version_id": "11111111-1111-4111-8111-111111111111",
+      "version_no": 1,
+      "title": "Synthetic graph route"
+    }
+  ],
+  "days": [
+    {
+      "id": "41111111-1111-4111-8111-111111111111",
+      "day_index": 0,
+      "starts_at": "2026-11-01T02:00:00Z",
+      "time_zone": "UTC",
+      "local_date": "2026-11-01",
+      "start_time_basis": "departure_origin",
+      "origin": {
+        "latitude": 0,
+        "longitude": 0,
+        "label": "Synthetic origin"
+      },
+      "landing": {
+        "kind": "separate",
+        "trip_stop_id": null,
+        "location": {
+          "latitude": 0,
+          "longitude": 1,
+          "label": "Synthetic landing"
+        }
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "31111111-1111-4111-8111-111111111111",
+      "day_id": "41111111-1111-4111-8111-111111111111",
+      "source_id": "71111111-1111-4111-8111-111111111111",
+      "source_stop_id": "21111111-1111-4111-8111-111111111111",
+      "position": 0,
+      "title": "Fatahillah Square",
+      "location": {
+        "latitude": 0,
+        "longitude": 2
+      },
+      "time_zone": "UTC",
+      "visit_duration_seconds": 300,
+      "progress_status": "not_started"
+    },
+    {
+      "id": "31111111-1111-4111-8111-111111111112",
+      "day_id": "41111111-1111-4111-8111-111111111111",
+      "source_id": "71111111-1111-4111-8111-111111111111",
+      "source_stop_id": "21111111-1111-4111-8111-111111111112",
+      "position": 1,
+      "title": "Kota Intan Bridge",
+      "location": {
+        "latitude": 0,
+        "longitude": 3
+      },
+      "time_zone": "UTC",
+      "visit_duration_seconds": 600,
+      "progress_status": "not_started"
+    }
+  ],
+  "legs": [
+    {
+      "id": "81111111-1111-4111-8111-111111111120",
+      "day_id": "41111111-1111-4111-8111-111111111111",
+      "position": 0,
+      "kind": "access",
+      "from_trip_stop_id": null,
+      "to_trip_stop_id": null,
+      "transport_mode": "unknown",
+      "duration_seconds": null,
+      "source_leg_id": null,
+      "estimate_origin": "unknown"
+    },
+    {
+      "id": "81111111-1111-4111-8111-111111111121",
+      "day_id": "41111111-1111-4111-8111-111111111111",
+      "position": 1,
+      "kind": "landing_to_first",
+      "from_trip_stop_id": null,
+      "to_trip_stop_id": "31111111-1111-4111-8111-111111111111",
+      "transport_mode": "walk",
+      "duration_seconds": 90,
+      "source_leg_id": "81111111-1111-4111-8111-111111111111",
+      "estimate_origin": "creator"
+    },
+    {
+      "id": "81111111-1111-4111-8111-111111111122",
+      "day_id": "41111111-1111-4111-8111-111111111111",
+      "position": 2,
+      "kind": "between_stops",
+      "from_trip_stop_id": "31111111-1111-4111-8111-111111111111",
+      "to_trip_stop_id": "31111111-1111-4111-8111-111111111112",
+      "transport_mode": "walk",
+      "duration_seconds": 180,
+      "source_leg_id": "81111111-1111-4111-8111-111111111112",
+      "estimate_origin": "creator"
+    }
+  ],
+  "warnings": [
+    "leg_duration_unknown"
+  ]
+}
