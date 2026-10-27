@@ -3,6 +3,8 @@
 Apply the [root instructions](../AGENTS.md). Scope: `ios-ui/`.
 
 - Follow the working `Features/Discovery/` VIPER example and [UI README](README.md).
+- Read the [design-system guide](../docs/design-system.md) before visual work. Use its documented palette, typography, layout, state and accessibility rules; do not turn the flight examples into C67 features or treat the source's HIG label as verification.
+- Put reusable visual tokens and components in [Shared/DesignSystem](Shared/DesignSystem/README.md) when an implementation task authorizes them. Inspect existing code first, reuse native controls and avoid repeating raw style values across features. The guide alone does not mean these components or the Gabarito font are installed.
 - Views render state and forward actions. Presenters own main-actor presentation state. Interactors use domain/application protocols. Routers define navigation; Assembly and `App/CompositionRoot/` wire dependencies.
 - Import shared entities from `C67Domain`; do not create a second Rundown/Trip model per screen. Presentation-specific view state is allowed.
 - Keep network calls, DTO decoding and vendor SDKs out of Views/Presenters. Concrete Data implementations belong in the composition root.

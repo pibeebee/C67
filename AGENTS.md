@@ -15,6 +15,7 @@ Use [the AI workflow](docs/ai/workflow.md) and a task brief based on [the templa
 - `server/`: Supabase SQL/RPCs and future orchestration. Node manages development tooling, not a custom API server.
 - `contracts/api/openapi.json`: authoritative wire contract. `contracts/fixtures/`: authoritative synthetic fixtures.
 - `docs/decisions/`: architecture decisions; update a relevant ADR when an approved decision changes.
+- [Design system](docs/design-system.md): the shared visual reference for UI work; the guide distinguishes documented specifications from implemented components.
 
 Link to these sources instead of duplicating their contents in instruction files. Keep all code identifiers, committed documentation and comments in English.
 
