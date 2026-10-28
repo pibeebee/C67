@@ -1,0 +1,6 @@
+// Copy to Production.local.xcconfig and choose the intended deployed backend before distributing.
+C67_DATA_MODE = live
+SUPABASE_SCHEME = https
+SUPABASE_HOST = your-supabase-host.example
+SUPABASE_CLIENT_KEY = your-public-client-key
+// Never use a service-role key or a traveller session here.

@@ -18,13 +18,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Shared package tests
         run: swift test --package-path ios-backend
-      - name: Mock Simulator smoke test
+      - name: Mock Simulator and session tests
         shell: bash
         run: |
           destination=$(python3 scripts/simulator_destination.py)
           xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
             -destination "$destination" -derivedDataPath /tmp/c67-ci \
-            CODE_SIGNING_ALLOWED=NO test
+            CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock test
   contracts:
     runs-on: ubuntu-latest
     steps:

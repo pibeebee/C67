@@ -101,3 +101,141 @@ Scope: documentation only, on `gi/design-system-guide` from `origin/main` at `53
 All seven affected Markdown files passed local path/link, fence and whitespace checks; 48 relative links resolve. The documented 11 text styles, three brand HEX values and spacing/radius/touch values were checked for transcription consistency. Source filename, dimensions and SHA-256 are recorded in the guide. The original backend checkout remained clean; no Swift, font, project, API or server file changed. At this documentation-validation checkpoint, publication had not yet been requested; commit, push and PR were subsequently authorized in the task handoff.
 
 No Simulator/build/database test was run for this documentation-only change. Runtime Gabarito rendering, Dynamic Type behavior, color contrast, Light/Dark visuals, accessibility and formal HIG conformance remain unverified. The source's HIG label is not treated as audit evidence.
+
+
+## Native traveller sessions and API queries — 28 October 2026
+
+[Auth/API task](tasks/ios-auth-api.md), branch `gi/ios-auth-api` from main `5e2d943`:
+**21 package tests passed**, plus **6 C67 Simulator tests passed** on iPhone 18 Pro / iOS 27.0
+(4 native Account/Keychain and 2 mock UI tests). Tests ran after code changes. Native Keychain
+create/update/read/delete and backend isolation require an ad hoc signed Simulator test host;
+an initial unsigned failure was corrected by using `CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=-`.
+CI uses those flags with explicit `C67_DATA_MODE=mock`; no signing team or storage downgrade added.
+
+The live Account form/navigation/dismiss test passed separately at standard and accessibility XXXL
+text sizes, with screenshots inspected. A temporary external Swift probe using the changed adapter
+read a real HTTPS `search_rundowns` page from the configured homelab (one published synthetic item).
+No shared Auth account, trip or database object was created. Live catalog loading also ran in the app.
+Pinned formatting, contract/fixture/seed validation and whitespace checks passed.
+
+This establishes native session logic against synthetic Auth responses, real Simulator Keychain,
+mock UI, live form rendering and a real public query. Successful homelab traveller login/refresh/logout,
+owner trip/graph reads, physical devices, iOS 18 runtime and a full accessibility audit remain
+unverified. Search/My Trips/graph UI and remaining server RPC adoption are separate slices.
+No commit, push, PR or server deployment occurred in this batch.
+
+
+## Expanded native Auth/session — 28 October 2026
+
+[Current Auth task and verification](tasks/ios-auth-api.md) supersede the earlier existing-account-only
+checkpoint. Package tests: **29 passed**. Final native unit/integration run: **9 passed, 1 skipped**
+(shared cohort already cleaned), on iPhone 18 Pro / iOS 27.0. The matching isolated GoTrue v2.197.0
+and real SMTP sink exercised registration/resend/PKCE/relaunch/refresh/recovery/password update/
+logout with actual Simulator Keychain. A prior combined run passed all 9 then-existing tests,
+including real shared native two-account owner privacy and both mock UI smoke paths.
+
+Shared Auth callback/password/refresh settings were deployed with private config backup and rollback;
+only Auth restarted, its 10 Supabase siblings retained IDs/start times, confirmation remains required,
+and final shared counts are one original user/zero trips. The exact temporary shared accounts,
+owned trips, isolated fixture containers/volume/networks/files and SSH tunnel were cleaned.
+SMTP verified TLS/authentication; external inbox delivery was not tested. Release Simulator build passed.
+
+Interactive signup form typing now passes. The native strong-password suggestion intercepted
+XCTest input; the test closes that suggestion before entering synthetic text, preserving native
+SecureField/AutoFill behavior. Passive Account restore also no longer clears callback error feedback.
+A regression test checks preservation until an explicit successful retry.
+
+Final targeted verification on iPhone 18 Pro / iOS 27.0, Xcode 27.1: **9 passed, 0 skipped** (six
+Account/Keychain/state tests plus three live UI scenarios). Account and registration/recovery
+passed with Accessibility XXXL text and scrolling. A system-opened synthetic callback from Home
+reopened Account and displayed the missing pending-flow error. Screenshots were inspected. This
+is OS-routing/rejection evidence; real PKCE exchange was exercised by the isolated test above.
+A final standard-text run also passed all three live UI cases.
+The attempted Dark launch argument did not change screenshot appearance and was removed;
+Dark appearance, physical-device/iOS 18 evidence and external inbox delivery remain unverified.
+
+Final clean mock scheme run: **11 passed, 4 skipped** with all live opt-ins disabled; no failures.
+The skips cover the isolated provider, shared cohort, live form and system callback tests. No
+commit/push/PR occurred. All 99 affected local Markdown links resolved; private configuration
+values were absent from unignored source, pinned formatting passed for all 36 Swift files, and
+whitespace checks passed. Release contains no inherited Debug endpoint/key.
+
+
+## Native Sign in with Apple — 28 October 2026
+
+[Apple task](tasks/apple-auth.md): native button, nonce/state, Supabase ID-token exchange, existing
+Keychain/refresh/logout isolation and matching Apple credential-revocation checks are implemented.
+Shared Apple provider activation subsequently passed as recorded below; Apple Developer provisioning/real authorization remain pending.
+
+Package: **34/34 passed** (HTTP stubs, including five Apple transport/session cases). Full mock
+Simulator scheme: **15 passed, 4 intentionally skipped**, including Apple nonce/state/expiry and
+revoked-vs-transient credential-state tests. Final live UI: **3/3 passed**, iPhone 18 Pro / iOS 27.0,
+Xcode 27.1, Accessibility XXXL. Exported screenshots confirm the official button and scrollable
+forms. The synthetic email/recovery and system-callback regressions pass without sending email
+or completing Apple authorization. The test helper loads lazy Form rows before XCTest taps;
+it does not mistake a large row's isHittable snapshot for a failed action. No Dark/device claim.
+
+Before activation, homelab preflight and TLS-verified `/auth/v1/settings` HTTP 200 confirmed Apple disabled.
+The guarded deployment helper passes compilation and preservation/overwrite/drift-layout checks;
+its read-only plan pins only three Apple environment keys and an Auth-only restart with backup,
+rollback and sibling lifecycle verification. No live Auth configuration or database write occurred during that implementation checkpoint.
+The exact [plan](homelab-apple-auth-plan.md) was subsequently approved and applied as recorded below. No matching local signing profile was
+found; an entitlement in source/ad-hoc Simulator signature does not establish Developer capability.
+
+OpenAPI/fixtures/bundled copy/seed validate. All 119 affected local Markdown links resolved,
+private configuration values were absent from unignored source, formatting passed for 41 Swift
+files and whitespace checks passed. No commit, push or PR occurred for this extension.
+
+Unsigned Release build for generic iOS also passed. Its bundle remains live with empty production
+client credentials and no inherited homelab endpoint; the Apple entitlement is present in the
+source configuration. Xcode reports the existing interface-orientation warning and AppIntents
+metadata-skip message; no device provisioning or real Apple authorization is implied.
+
+
+## Shared Apple provider activation — 28 October 2026
+
+Giovan explicitly approved the reviewed native-only Apple provider activation. Rechecked fingerprint
+matched the approved plan; only the three Apple settings in Auth changed, with nonce checks enabled
+and audience `io.pibeebee.c67.starter`. The same GoTrue v2.197.0 image was recreated for Auth only.
+
+Auth is healthy. Ten other Supabase service IDs/start times are unchanged. Private backup
+`/home/giovan/backups/c67/before-apple-auth-2026-10-28T061902Z` passes checksum and permission checks;
+`.env` and tunnel Compose are unchanged. TLS-verified public settings HTTP 200 reports Apple=true
+and email=true. No rollback was needed, no database operation was issued, and no real Apple login
+was attempted. Apple Developer capability/provisioning and user authorization remain the final
+acceptance gates. See [deployment and rollback record](homelab-apple-auth-plan.md).
+
+## Primary checkout consolidation — 28 October 2026
+
+At Giovan's request, the native Auth/API work and merged design-system guide were consolidated
+into the primary C67 checkout on `gi/trip-graph`, matching the project opened in Xcode. The existing
+Apple signing team was retained in `project.yml`; the Apple entitlement uses the existing
+`ios-ui/C67.entitlements` file. The generated project and callback configuration were checked.
+Ignored development/server configuration and the previously staged entitlement were preserved.
+
+Verification from the consolidated checkout: Simulator build/install/launch passed; the Swift
+package passed **34/34** tests; `C67UITests/StarterUITests/testAccountUsesConfiguredMode` passed
+**1/1** in live mode on iPhone 18 Pro / iOS 27.0. It opened Account and verified the native Apple
+button plus email/password controls without submitting credentials. SwiftFormat and whitespace
+checks passed. Xcode's visible project path, `gi/trip-graph` branch, selected signing team and
+Sign In with Apple capability were observed. No real Apple authorization was performed.
+
+Private archives include tracked/untracked files, meaningful ignored configuration, original Git
+indexes and patches; archived bytes were verified with SHA-256. A verified Git bundle and local
+branch refs retain history. After destination-file comparison, the unused `C67-ios-auth-api` and
+`C67-design-system-guide` worktrees were removed. Only the primary checkout remains.
+At the consolidation checkpoint the changes were local and uncommitted; Giovan subsequently
+authorized commit, push and a review PR.
+
+## Auth PR preparation — 28 October 2026
+
+The consolidated checkout passed the full mock C67 scheme on iPhone 18 Pro / iOS 27.0:
+**15 passed, 0 failed, 4 intentionally skipped** (isolated/shared integration and live UI opt-ins).
+The previously recorded 34/34 package tests and 1/1 live Account UI check remain applicable;
+no Swift implementation changed after those checks. OpenAPI/fixtures/seed validation, SwiftFormat,
+Python source parsing, ignored-config checks and whitespace checks passed before commit.
+
+After the user reported signing in, a read-only database transaction confirmed an Apple identity
+with a recent sign-in, a session and an owned trip. This establishes live backend sign-in acceptance;
+Hide My Email, relaunch/refresh/logout/revocation and device-specific acceptance are not inferred.
+No new shared data/configuration write or deployment was performed during PR preparation.

@@ -31,7 +31,13 @@ Each create command includes a request UUID. A retry with the same owner, UUID, 
 
 Shared development uses the homelab; SQL reset/mutation tests use an isolated homelab target. Mac Docker is optional. The starter is deployed and verified; see [homelab evidence](homelab-verification.md).
 
-Mock saving is memory-only. Live catalog loading is implemented. Live trip saving has an authenticated adapter and SQL contract, but no app sign-in flow. Native Auth/session refresh, local persistence, native journaling/media, routing and WeatherKit integration are later client slices. Server-side private media validation runs in the documented worker. Studio collaborator access does not create traveller sessions.
+Mock saving is memory-only. Live catalog loading and authenticated trip saving use the composition
+root's session provider. The Account VIPER feature supports email/password login, registration/confirmation and recovery/reset with PKCE callbacks.
+Data owns Keychain persistence, single shared refresh, expiry/rejection, and local-scope logout;
+Domain exposes account identity, session-change snapshots and an authentication interface. Private response tickets reject results after login transitions. Auth and RPC share URL validation
+and transport coding. Search, owner trip pages and graph DTOs are available to later features;
+My Trips/search UI, graph create/edit commands, local trip persistence, native journaling/media,
+routing and WeatherKit integration remain later slices. See [Auth/API evidence](tasks/ios-auth-api.md). Server-side private media validation runs in the documented worker. Studio collaborator access does not create traveller sessions.
 
 Keep creator versions separate from personal trips. Keep suggested times, selected start times, forecasts and actual events separate. Server authorization remains authoritative even if the client validates input first.
 

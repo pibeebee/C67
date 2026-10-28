@@ -83,3 +83,21 @@ The database CI additionally installs/tests the locked media worker, runs `scrip
 Worker configuration: [media README](workers/media/README.md), [Compose](deploy/media-worker.compose.yml), [operations runbook](../docs/backend-operations.md). Copy real env into private server configuration with mode 600; the `.env.example` has no credential values. Source/API handlers never print secrets, response bodies or personal records.
 
 The consolidated batch has now completed [approved shared deployment and verification](../docs/homelab-backend-completion-verification.md): 167 isolated SQL assertions, 84 shared HTTP checks, private Storage and healthy restricted worker. The earlier pending notes describe implementation checkpoints; shared verification is no longer pending. Native integration remains a separate handoff.
+
+
+## Native Auth/session operations
+
+The existing GoTrue service supplies native email/password lifecycle; no custom Auth server or SQL
+migration was added. [Native Auth setup](../docs/native-auth.md) covers PKCE callbacks, local config,
+isolated mail verification and exact shared synthetic-account cleanup. The approved 28 October Auth
+config deployment changed only callback/minimum-password/refresh settings with private backup and
+rollback. See [the current task](../docs/tasks/ios-auth-api.md) for passed API evidence and unresolved
+interactive UI acceptance. Existing SMTP credentials and confirmation requirements are preserved.
+
+## Native Apple provider
+
+The app's Apple ID-token adapter uses standard GoTrue sessions and existing RLS. Shared provider
+activation was approved and deployed on 28 October 2026: [exact plan](../docs/homelab-apple-auth-plan.md),
+[setup and acceptance](../docs/apple-auth.md). The guarded helper defaults to read-only plan and
+requires separate approval plus its reviewed fingerprint for an Auth-only configuration/restart.
+No Apple OAuth client secret is needed for this native-only flow.

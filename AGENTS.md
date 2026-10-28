@@ -2,7 +2,7 @@
 
 ## Start with the task and current code
 
-C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native app sign-in/integration remains separate work.
+C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native email/password sessions and discovery/trip query adapters are implemented with their verification tracked separately.
 
 Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
@@ -38,7 +38,7 @@ Run from the repository root unless stated otherwise. See [setup](docs/getting-s
 - Shared client: `swift test --package-path ios-backend`.
 - Contract: `.venv/bin/python scripts/check_contracts.py` after installing `scripts/requirements.txt` in the local virtual environment.
 - Build: `xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/c67-build CODE_SIGNING_ALLOWED=NO build`.
-- UI: get an available destination using `python3 scripts/simulator_destination.py`, then use that destination with the same project/scheme and `xcodebuild test`. Keep mock mode enabled.
+- UI: get an available destination using `python3 scripts/simulator_destination.py`, then use that destination with the same project/scheme and `xcodebuild test`. Keep mock mode enabled and use `CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock` for Simulator tests so the test host can access Keychain.
 - Database: from `server/`, `npm ci`, then `npm run db:test` against a running, migrated local stack. [Server instructions](server/AGENTS.md) cover startup/reset separately.
 - Before handoff: `git diff --check`; review new files and ignored configuration for accidental secrets/build output.
 
