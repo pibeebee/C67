@@ -77,13 +77,26 @@ SUPABASE_CLIENT_KEY = <local publishable or legacy anon client key>
 
 Get the local client key from local Studio or the local CLI status output. Never commit CLI status output or copy a service-role key into the app. Rebuild the app after changing `.xcconfig` values. Loopback works for the iOS Simulator on the same Mac; physical-device networking is a separate setup task.
 
-Live mode reads the synthetic catalog through RPC. **Saving a live trip requires a verified traveller access token.** The repository accepts an async token provider, but the starter composition root deliberately has no real session or sign-in UI. The app reports that sign-in is needed. Implement secure session storage and refresh as the Account task; do not substitute Studio Basic Auth credentials.
+Live mode reads the synthetic catalog through RPC. Open **Account** in the Discover toolbar to
+sign in with an existing traveller email/password account. The app stores its session in Keychain,
+refreshes before private requests/foreground activation, and supports local-scope logout. Saving a
+live trip uses the injected traveller JWT. Studio Basic Auth credentials cannot sign in here.
+Account also includes Create account, confirmation resend, Forgot password and Set new password
+using PKCE links on the requesting device. See [native Auth setup and current UI acceptance issue](native-auth.md).
+Apple/OAuth remains a separate setup.
 
-For a later homelab integration use HTTPS and the homelab client key, after reviewing and deploying the schema separately. Setting a URL does not install the RPCs there. Never point reset commands at the homelab.
+For the existing shared homelab, use `SUPABASE_SCHEME = https`,
+`SUPABASE_HOST = supabase.mrt.qzz.io` and its anon client key in the ignored override; no Mac-local
+Supabase is needed. The server RPCs are already deployed as recorded in the server handoff.
+Configuration defaults remain mock. Debug includes the development override; Release requires its own ignored
+Production.local.xcconfig before distributing a build. Never point reset commands at the homelab.
 
 ## 6. UI smoke test
 
-Run the **C67** scheme's Test action in Xcode. The UI test opens the rundown and saves a mock trip. Keep data mode set to `mock` for this test.
+Run the **C67** scheme's Test action in Xcode. The UI test opens the rundown and saves a mock trip. Keep data mode set to `mock` for these tests. For command-line Simulator tests, use
+`CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock`; ad hoc signing permits the
+native Keychain test to run without an Apple development team. Disabling signing causes Keychain
+access to fail in the test host. Ordinary build-only checks can still disable signing.
 
 CI also runs package tests, contract validation, the Simulator smoke test, and local Supabase database tests. See [Verification](verification.md) for what has actually run locally.
 

@@ -1,0 +1,7 @@
+#include "Base.xcconfig"
+// Release requires its own explicit client configuration; missing values fail visibly at app startup.
+C67_DATA_MODE = live
+SUPABASE_SCHEME = https
+SUPABASE_HOST =
+SUPABASE_CLIENT_KEY =
+#include? "Production.local.xcconfig"

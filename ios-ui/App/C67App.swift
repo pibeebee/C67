@@ -8,11 +8,12 @@ struct C67App: App {
 }
 
 private struct StarterRootView: View {
-    private let result = Result { try AppDependencies.make() }
+    @State private var result = Result { try AppDependencies.make() }
     var body: some View {
         switch result {
         case .success(let dependencies):
-            DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode)
+            DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
+                                   authentication: dependencies.authentication)
         case .failure(let error):
             ContentUnavailableView("Configuration needed", systemImage: "gearshape",
                                    description: Text(error.localizedDescription))

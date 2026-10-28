@@ -15,6 +15,7 @@ settings:
     INFOPLIST_KEY_UILaunchScreen_Generation: YES
     TARGETED_DEVICE_FAMILY: "1,2"
     CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: DP5XP7C2AM
 targets:
   C67:
     type: application
@@ -27,19 +28,44 @@ targets:
     info:
       path: Configuration/Info.plist
       properties:
+        CFBundleURLTypes:
+          - CFBundleURLName: io.pibeebee.c67.auth
+            CFBundleURLSchemes: [c67]
         C67_DATA_MODE: $(C67_DATA_MODE)
         SUPABASE_URL: $(SUPABASE_SCHEME)://$(SUPABASE_HOST)
         SUPABASE_CLIENT_KEY: $(SUPABASE_CLIENT_KEY)
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
+    entitlements:
+      path: C67.entitlements
+      properties:
+        com.apple.developer.applesignin: [Default]
+    attributes:
+      SystemCapabilities:
+        com.apple.SignInWithApple:
+          enabled: 1
     configFiles:
-      Debug: Configuration/Base.xcconfig
-      Release: Configuration/Base.xcconfig
+      Debug: Configuration/Debug.xcconfig
+      Release: Configuration/Release.xcconfig
     dependencies:
       - package: C67Backend
         product: C67Domain
       - package: C67Backend
         product: C67Data
+  C67AppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/Unit
+    dependencies:
+      - target: C67
+      - package: C67Backend
+        product: C67Domain
+      - package: C67Backend
+        product: C67Data
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.pibeebee.c67.starter.apptests
   C67UITests:
     type: bundle.ui-testing
     platform: iOS
@@ -60,4 +86,5 @@ schemes:
     test:
       config: Debug
       targets:
+        - C67AppTests
         - C67UITests

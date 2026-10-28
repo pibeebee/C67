@@ -4,6 +4,9 @@ import C67Domain
 struct DiscoveryView: View {
     @State var presenter: DiscoveryPresenter
     let mode: String
+    @State var accountPresenter: AccountPresenter?
+    @State private var showsAccount = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         NavigationStack {
@@ -31,6 +34,34 @@ struct DiscoveryView: View {
                 }
             }
             .navigationTitle("Discover")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Account", systemImage: "person.crop.circle") { showsAccount = true }
+                }
+            }
+            .sheet(isPresented: $showsAccount) {
+                if let accountPresenter { AccountView(presenter: accountPresenter) }
+                else {
+                    NavigationStack {
+                        ContentUnavailableView("Sign-in needs live mode", systemImage: "person.crop.circle",
+                                               description: Text("Mock mode uses synthetic data and memory-only trips."))
+                            .toolbar { ToolbarItem(placement: .confirmationAction) {
+                                Button("Done") { showsAccount = false }
+                            } }
+                    }
+                }
+            }
+            .modifier(AppleCredentialRevocationModifier {
+                Task { await accountPresenter?.restore() }
+            })
+            .task { await accountPresenter?.observe() }
+            .onOpenURL { url in
+                showsAccount = true
+                Task { await accountPresenter?.callback(url) }
+            }
+            .task(id: scenePhase) {
+                if scenePhase == .active { await accountPresenter?.restore() }
+            }
             .navigationDestination(for: DiscoveryRoute.self) { route in
                 switch route {
                 case .rundown(let rundown): RundownDetailView(rundown: rundown, presenter: presenter)

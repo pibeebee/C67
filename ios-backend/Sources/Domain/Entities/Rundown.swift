@@ -38,15 +38,17 @@ public struct Trip: Codable, Identifiable, Equatable, Sendable {
 }
 
 public enum RepositoryError: Error, Equatable, LocalizedError, Sendable {
-    case notFound, authenticationRequired, invalidConfiguration, idempotencyConflict
+    case notFound, authenticationRequired, invalidConfiguration, idempotencyConflict, invalidInput, accessDenied
     case server(status: Int)
 
     public var errorDescription: String? {
         switch self {
-        case .notFound: "This rundown is no longer available."
-        case .authenticationRequired: "A traveller session is required. App sign-in is a follow-up task."
+        case .notFound: "This item is no longer available."
+        case .authenticationRequired: "Sign in to access your trips."
         case .invalidConfiguration: "Check the local Supabase URL and client key."
         case .idempotencyConflict: "This request ID was already used for a different trip."
+        case .invalidInput: "Check the request values and try again."
+        case .accessDenied: "You do not have access to this item."
         case .server(let status): "The server could not complete this request (HTTP \(status))."
         }
     }
