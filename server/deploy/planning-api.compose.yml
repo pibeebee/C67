@@ -1,0 +1,33 @@
+# Prepared configuration only. Review/apply the new migration and concrete shared
+# service/gateway plan before deployment. Does not modify the existing Supabase stack.
+services:
+  planning-api:
+    build:
+      context: ../planning
+    env_file:
+      - ${C67_PLANNING_ENV:?Set an absolute path to the private planning env file}
+    environment:
+      PLANNING_DATA_MODE: live
+      HOST: 0.0.0.0
+      PORT: "8788"
+    ports:
+      - "127.0.0.1:8788:8788"
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 64
+    mem_limit: 256m
+    cpus: 1.0
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8788/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

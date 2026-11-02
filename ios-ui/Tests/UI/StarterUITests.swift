@@ -125,6 +125,7 @@ final class StarterUITests: XCTestCase {
 
     @MainActor func testMockDiscoveryDetailAndTrip() {
         let app = XCUIApplication()
+        app.launchArguments += ["--legacy-catalog"]
         app.launch()
         XCTAssertTrue(app.staticTexts["Mock • memory only"].waitForExistence(timeout: 10))
         app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Kota Tua Photo Walk")).firstMatch.tap()

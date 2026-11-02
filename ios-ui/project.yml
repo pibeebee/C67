@@ -34,6 +34,8 @@ targets:
         C67_DATA_MODE: $(C67_DATA_MODE)
         SUPABASE_URL: $(SUPABASE_SCHEME)://$(SUPABASE_HOST)
         SUPABASE_CLIENT_KEY: $(SUPABASE_CLIENT_KEY)
+        PLANNING_API_URL: $(PLANNING_SCHEME)://$(PLANNING_HOST)
+        NSLocationWhenInUseUsageDescription: Use your position as the starting point for a trip you choose to plan.
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
     entitlements:

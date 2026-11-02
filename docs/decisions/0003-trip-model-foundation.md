@@ -1,5 +1,7 @@
 # ADR-0003 — Additive trip model foundation
 
+**Context note — 29 October 2026:** [ADR-0008](0008-ai-trip-planning-direction.md) updates the target recommendation engine. This ADR remains the record of its implemented source/version/graph/planned-edit scope. It does not claim AI/browser orchestration or active-trip replanning, and its runtime guards are unchanged.
+
 Status: Implemented and verified on the shared homelab for stage 3A. See [execution evidence](../homelab-trip-model-verification.md).
 Date: 23 October 2026.
 

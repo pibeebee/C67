@@ -1,5 +1,15 @@
 # iOS UI
 
+## Default planning flow — 30 October 2026
+
+`Features/Planning` is now the default SwiftUI/VIPER feature: draft input → optional candidates → proposal/review → My Trips → manual start/arrival/extension/completion and recalculation. Platform helpers own MapKit place search/directions and user-requested Core Location. A marker map accompanies selected places. Native controls and source/uncertainty disclosure use the existing style; no new font/design-system dependency is introduced.
+
+Mock is explicitly synthetic and memory-only. Live uses `PLANNING_SCHEME` / `PLANNING_HOST` plus existing Supabase traveller authentication; model/Apple/service credentials stay on the server. Missing planning configuration reports a visible error while Account stays usable. See [setup](../server/planning/README.md), [planning semantics](../docs/ai-trip-planning.md) and [task evidence](../docs/tasks/ai-trip-planning-implementation.md).
+
+`Resources/PrivacyInfo.xcprivacy` declares app-only UserDefaults use (`CA92.1`) for pending-command recovery, following [Apple's required-reason documentation](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitypereasons). It is a required-reason API entry, not a completed App Store data-collection disclosure.
+
+Launch with `--legacy-catalog` to use the preserved Discovery example described below. The existing UI smoke test selects that argument. No iOS tests or Simulator interactions were run for this batch at the user's explicit request; only build/static evidence is recorded. Existing Auth/Apple evidence remains in its dated tasks; a real user Apple sign-in was previously observed, while full device lifecycle acceptance remains separate.
+
 Open `C67.xcodeproj`, select **C67**, and run an iPhone Simulator. Default mode is mock; no server or key is needed.
 
 `Features/Discovery/` is the working VIPER example:

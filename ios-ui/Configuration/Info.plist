@@ -36,6 +36,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use your position as the starting point for a trip you choose to plan.</string>
+	<key>PLANNING_API_URL</key>
+	<string>$(PLANNING_SCHEME)://$(PLANNING_HOST)</string>
 	<key>SUPABASE_CLIENT_KEY</key>
 	<string>$(SUPABASE_CLIENT_KEY)</string>
 	<key>SUPABASE_URL</key>

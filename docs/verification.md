@@ -1,5 +1,13 @@
 # Starter verification
 
+## Personal planning repository implementation — 30 October 2026
+
+See [the current task](tasks/ai-trip-planning-implementation.md) for exact commands, cases and exclusions. The new default planning flow, API/worker/provider adapters, additive SQL and OpenAPI 0.6 are implemented locally. Backend TypeScript/style checks and 21 synthetic Node tests/subtests pass, including migration execution on disposable PostgreSQL 18.6 with simulated roles/claims. Contract/resource/legacy compatibility, configuration and local documentation checks pass.
+
+The Swift package and generic iOS Simulator target compile successfully; **no iOS/package/UI tests or Simulator interaction were run**, as explicitly requested for this batch. Real Apple/model calls, matching-image PostgreSQL 17/full Supabase acceptance, new container runtime, GitHub CI results and new shared deployment are not established. The prepared Compose configuration validates without starting services. Existing migration/fixture/seed bytes and legacy contract entries remain intact.
+
+The sections below retain earlier dated evidence; their counts and deployment results do not apply to the new planning slice.
+
 **23 October 2026.** Evidence below distinguishes starter/mock, disposable CI and shared homelab checks; it does not establish product validation.
 
 | Check | Result / boundary |

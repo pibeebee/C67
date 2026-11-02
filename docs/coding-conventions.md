@@ -33,7 +33,7 @@ Supported types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`. Describe th
 | XCTest file/type | Feature or behavior + `Tests` | `StarterUITests.swift`, `StarterUITests` |
 | Test function | State the behavior verified | `retryReturnsExistingTrip()` |
 
-Choose names that read clearly at the call site. Use domain terms consistently: a creator's published rundown version differs from a traveller's personal trip. A `Stop` is an occurrence in a sequence. Preserve the current meanings in the shared contract. Document an approved terminology change before renaming it across layers.
+Choose names that read clearly at the call site. Use domain terms consistently. In current catalog-based payloads, a creator's published rundown version differs from a traveller's personal trip. New AI proposals have their own input/proposal identity as described in [ADR-0008](decisions/0008-ai-trip-planning-direction.md); do not invent creator IDs for them. A `Stop` is an occurrence in a sequence. Preserve current shared-contract meanings until a compatible implementation changes them. Document an approved terminology change before renaming it across layers.
 
 Protocols describe a capability or role. Existing examples are `RundownRepository`; do not add `Protocol` mechanically. Implementations may express their source, such as `MockRundownRepository` and `SupabaseRundownRepository`.
 

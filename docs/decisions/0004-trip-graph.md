@@ -1,5 +1,7 @@
 # ADR-0004 — Normalized immutable trip graph
 
+**Context note — 29 October 2026:** [ADR-0008](0008-ai-trip-planning-direction.md) updates the target recommendation engine. This ADR remains the record of its implemented source/version/graph/planned-edit scope. It does not claim AI/browser orchestration or active-trip replanning, and its runtime guards are unchanged.
+
 Status: Implemented and matching-image/shared-verified in the consolidated backend batch. See [task](../tasks/trip-graph.md).
 Date: 24 October 2026.
 

@@ -10,7 +10,9 @@ let package = Package(
     targets: [
         .target(name: "C67Domain", path: "Sources/Domain"),
         .target(name: "C67Data", dependencies: ["C67Domain"], path: "Sources/Data",
-                resources: [.copy("Fixtures/rundowns.json")]),
+                resources: [.copy("Fixtures/rundowns.json"), .copy("Fixtures/planning-input.json"),
+                            .copy("Fixtures/planning-result.json"), .copy("Fixtures/planning-job.json"),
+                            .copy("Fixtures/personal-planning-trip.json")]),
         .testTarget(name: "C67BackendTests", dependencies: ["C67Domain", "C67Data"], path: "Tests/Starter")
     ]
 )

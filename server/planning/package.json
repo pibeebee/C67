@@ -1,0 +1,22 @@
+{
+  "name": "c67-planning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types src/main.ts",
+    "check": "tsc --noEmit",
+    "format:check": "prettier --check src test package.json tsconfig.json .prettierrc.json",
+    "format": "prettier --write src test package.json tsconfig.json .prettierrc.json",
+    "test": "node --experimental-strip-types --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.13",
+    "@types/node": "24.19.2",
+    "prettier": "3.9.10",
+    "typescript": "7.0.2"
+  }
+}

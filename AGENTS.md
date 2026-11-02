@@ -2,7 +2,7 @@
 
 ## Start with the task and current code
 
-C67 is an iOS travel-rundown app. The starter supports synthetic discovery/detail and memory-only mock trips. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native email/password sessions and discovery/trip query adapters are implemented with their verification tracked separately.
+C67 targets AI-generated personal trip recommendations from user-selected places, preferences, weather and time; see [product context](docs/product-context.md) and [ADR-0008](docs/decisions/0008-ai-trip-planning-direction.md). Personal planning UI, a Node/TypeScript API/worker, provider adapters and an additive SQL aggregate are implemented locally; see [ADR-0009](docs/decisions/0009-personal-planning-implementation.md) and [task evidence](docs/tasks/ai-trip-planning-implementation.md). The new service/migration are not shared-deployed. The default mock flow is synthetic personal planning; the legacy Discovery example remains accessible. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native email/password sessions and discovery/trip query adapters are implemented with their verification tracked separately.
 
 Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
@@ -12,7 +12,7 @@ Use [the AI workflow](docs/ai/workflow.md) and a task brief based on [the templa
 
 - `ios-ui/`: SwiftUI and VIPER View/Interactor/Presenter/Router/Assembly.
 - `ios-backend/`: on-device code. `C67Domain` owns shared entities/interfaces; `C67Data` implements them.
-- `server/`: Supabase SQL/RPCs and future orchestration. Node manages development tooling, not a custom API server.
+- `server/`: Supabase SQL/RPCs and the separate `planning/` Node API/worker. The root server package pins Supabase tooling; planning has its own locked development dependencies.
 - `contracts/api/openapi.json`: authoritative wire contract. `contracts/fixtures/`: authoritative synthetic fixtures.
 - `docs/decisions/`: architecture decisions; update a relevant ADR when an approved decision changes.
 - [Design system](docs/design-system.md): the shared visual reference for UI work; the guide distinguishes documented specifications from implemented components.
@@ -23,11 +23,11 @@ Link to these sources instead of duplicating their contents in instruction files
 
 1. Inspect the affected implementation and `git status` before editing. State the outcome, scope and verification briefly, then carry out authorized work.
 2. Reuse existing patterns and the working Discovery module. Add layers, dependencies and services only for a concrete need; keep changes reviewable.
-3. Keep creator versions separate from personal trip snapshots. Never infer merge, presence, publication or photo-access policies from placeholder folders.
+3. Preserve creator-version and personal-snapshot meanings in existing code/contracts. New AI plans must not be forced through invented creator identities. Never infer merge, presence, publication, photo-access or active-trip mutation policies from placeholder folders or target documentation.
 4. Keep mock/live behavior explicit. Do not use fabricated data without a synthetic label or treat mock success as a working live integration.
 5. Keep client keys separate from traveller JWTs. Never place Studio, SMTP, service-role credentials or real sessions in source, fixtures, logs or app configuration.
 6. Use the task's agreed branch and scope. Commit, push, deploy, remote schema changes and destructive operations require the user's authorization for that action; existing authorization remains valid. Routine local edits and checks do not need repeated permission.
-7. Use the homelab for shared development and an isolated homelab database/container for SQL tests that mutate/reset data. Mac-local Supabase is optional and CI still uses a disposable local stack. Shared changes require their reviewed operational scope; never substitute a shared reset for isolated tests.
+7. Use the homelab for shared development and an isolated homelab database/container for SQL tests that mutate/reset data. A disposable embedded PostgreSQL check of the new personal-planning migration is also available without Docker; it does not replace matching-image/full-stack acceptance. Mac-local Supabase is optional and CI still uses a disposable local stack. Shared changes require their reviewed operational scope; never substitute a shared reset for isolated tests.
 8. Complete relevant checks, then report results, limitations and follow-up work. Do not claim tests ran when only test files or CI configuration were added.
 
 ## Verification commands
@@ -36,6 +36,7 @@ Run from the repository root unless stated otherwise. See [setup](docs/getting-s
 
 - Swift layout: `python3 scripts/swift_format.py --check`; use `--write` to apply the pinned formatter.
 - Shared client: `swift test --package-path ios-backend`.
+- Planning backend: `npm ci --prefix server/planning --ignore-scripts`, `npm run check --prefix server/planning`, `npm test --prefix server/planning` (synthetic + disposable embedded PostgreSQL, no real providers).
 - Contract: `.venv/bin/python scripts/check_contracts.py` after installing `scripts/requirements.txt` in the local virtual environment.
 - Build: `xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/c67-build CODE_SIGNING_ALLOWED=NO build`.
 - UI: get an available destination using `python3 scripts/simulator_destination.py`, then use that destination with the same project/scheme and `xcodebuild test`. Keep mock mode enabled and use `CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock` for Simulator tests so the test host can access Keychain.

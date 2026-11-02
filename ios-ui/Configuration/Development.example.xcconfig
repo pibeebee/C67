@@ -5,3 +5,6 @@ SUPABASE_HOST = 127.0.0.1:54321
 // For live catalog, set mode=live and copy the local publishable/anon CLIENT key.
 // Never use a service-role key, Studio password or SMTP password here.
 SUPABASE_CLIENT_KEY =
+// For a configured live planner on this Mac's Simulator only:
+// PLANNING_SCHEME = http
+// PLANNING_HOST = 127.0.0.1:8788

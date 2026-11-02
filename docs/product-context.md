@@ -1,27 +1,39 @@
 # Product context
 
-Updated 23 October 2026 from the workspace CBL record and explicit team decisions. The original source manifest remains a historical provenance record; it is not a claim that later starter code appeared in those source files.
+Updated 30 October 2026 from the user's explicit direction and authorized repository implementation. See [ADR-0009](decisions/0009-personal-planning-implementation.md) and [task evidence](tasks/ai-trip-planning-implementation.md) for the local code and its verification/deployment limits.
 
-## Core journey
+## Current product direction
 
-A traveller discovers an area or browses a map, selects a creator's travel rundown, understands its stops and context, chooses a suitable start time, follows the trip, documents visits and obtains an album. Social export is optional.
+A traveller brings places they want to visit, preferences, a date, departure time and finish-by time. AI produces recommendations for optional additional places, visit order and timing, informed by location, routes, weather and place information. Recommendations can be recalculated during the trip. The traveller controls destination additions, replacements and omissions.
 
-Athar's design scenario goes from Agora Mall Thamrin to Kota Tua: discover, select, reach the landing point, visit stops, add photos and view an album. The landing point can differ from the first stop. The Tokyo A/B scenario adds another creator's rundown to an existing plan; overlap resolution and rescheduling remain open decisions.
+The underlying journey remains continuous with the earlier concept: intention → plan → visits → adjustments. The main change is the trip recommendation/planning engine. Recommendations no longer depend on creator-authored rundowns or someone's previous visit.
 
-## Constraints to preserve
+The selected framework focus is MapKit, Core Location and WeatherKit. AI is accessed through a backend API rather than a self-hosted model. The backend is intended to use a browser to research place context. The repository now includes a Node orchestration service, an OpenAI-compatible model adapter, Apple REST adapters and a bounded public-site text reader. A paid model/credentials, actual coverage and data-policy acceptance remain unconfigured/unverified.
 
-- Creator rundowns are the primary product; photos/GPS support execution and journaling.
-- Creator times are recommendations, not mandatory traveller start times.
-- Published creator versions and independently editable personal trips are different objects.
-- Best-case journaling includes photos per stop. Skip/partial completion and early ending remain unresolved.
-- Camera/gallery/selfie/edited photos are possible inputs. Device location is not proof of image authenticity; arrival is not a permanent upload permission.
-- Weather supports preparation and decisions; missing ETA, opening hours or forecasts must not be invented.
-- Chat, booking, payments, gamification and tracking other people are not requirements of this starter.
+“Full AI” refers to who produces recommendations. User input, provider estimates, sourced place facts, AI interpretation and actual events remain different types of evidence. Browser retrieval does not establish factual correctness by itself.
 
-## Technical decisions and evidence
+## Johan and active recalculation
 
-The team agreed on one repo with iOS UI, on-device iOS Backend and Server areas, using VIPER as the iOS direction. Self-hosted Supabase is the backend foundation; the repository supplies migrations/contracts and optional local development assets. The server foundation and V2 model have been applied to that host through separately approved procedures; see [verification](homelab-trip-model-verification.md).
+Johan likes coffee and reading and has moved from Jogja to Jakarta for Academy activities. He already wants to visit a coffee shop in Cipete. He may select additional AI suggestions, then request an ordered plan for his time window. This is a design scenario, not a validated persona or field observation.
 
-The starter implements synthetic discovery/detail and memory-only mock trip creation, plus an authenticated RPC adapter and SQL development baseline. The full product specification, native journaling PoC and HTML wireframe remain separate artifacts. None establishes product adoption or field validation.
+During the trip he wants to stay longer at D, while C is recommended around golden hour. Recalculation should explain the impact on arrival at C, the experience window, remaining visits and the finish-by time. Missing the preferred light does not automatically cancel C. Johan chooses whether to leave, stay or change destinations.
 
-Guest/catalog access, creator distribution, merge, presence policy, photo audiences, moderation, retention, transit and detailed offline behavior still need decisions. Public synthetic catalog access in local development does not settle production access policy. App sign-in is a follow-up; Studio access is a developer concern.
+## Confirmed boundaries and open decisions
+
+- Confirmed: user-selected places/preferences/date/departure/finish-by; optional additions; AI recommendations; recalculation during a trip; user control over destinations.
+- MVP implementation choices: one to six places, explicit visit durations/origin, at most 24 hours, walking/driving, finish-by at the end of the last visit, reviewed proposal/apply and manual event-triggered recalculation. See the planning document for numerical/tool bounds.
+- Open: actual provider capability/data policy, model choice and real cost/quality, automatic recalculation cadence, undo, multi-day/transit and expanded source strategies.
+- Photos/albums, upload presence, completion/skip/partial trips, creator merge and public contributions have not been re-scoped for this engine. Existing implementations retain their current policies until separately changed.
+- HealthKit/MusicKit are outside the currently selected framework focus. Walkability and non-mainstream places are not universal trip restrictions.
+
+## Current implementation boundary
+
+C67 now defaults to personal planning inputs, reviewed proposals, My Trips and manual active-trip changes. It includes domain/data adapters, a separate planning service/worker, OpenAPI 0.6 fixtures and an additive SQL aggregate. Mock output is synthetic; live providers are implemented as adapters but not acceptance-tested or deployed by this batch.
+
+Existing creator/version data, Discovery, Auth/session, graph/query and private journal/media boundaries remain intact. New personal planning does not weaken journal guards or invent source identities. The new SQL/service deployment is pending; existing homelab evidence covers the previous implementation only.
+
+## Sources and handoff
+
+Read [AI trip planning target](ai-trip-planning.md), [ADR-0008](decisions/0008-ai-trip-planning-direction.md), [architecture](architecture.md) and [roadmap](server-roadmap.md). The source research workspace is `/Users/giovan/Documents/ChatGPT/C6 - Pisang Besar Balaraja`; its `CBL.md` and 29 October context/flow/engine/validation documents record the same direction in Indonesian.
+
+The original [source manifest](source-manifest.json), older ADRs, source checksums and deployment/test evidence remain historical records. They do not assert that the new engine has been implemented or evaluated.

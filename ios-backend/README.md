@@ -1,5 +1,13 @@
 # iOS Backend (on-device code)
 
+## Personal planning — 30 October 2026
+
+`Domain/Planning` owns pure Foundation input/place/evidence/proposal/job/trip/event values and `PlanningRepository`. `Data/Planning` owns wire DTOs and synthetic/mock plus HTTPS/live implementations. Live sends a session-bound traveller JWT to the separate Planning API, validates transport origin, rejects redirects and stale-login responses, and retains one exact pending command per endpoint/account for retry/resume. Apply/event request identities are retained by the presenter during the app session; full offline trip persistence/outbox is separate.
+
+The four new authoritative synthetic fixtures are bundled resources and checked by the root contract script. Existing `RundownRepository`, Auth, catalog/graph adapters and fixture meanings are preserved. Personal creation does not invent creator/version IDs. See [ADR-0009](../docs/decisions/0009-personal-planning-implementation.md), [semantics](../docs/ai-trip-planning.md) and [implementation evidence](../docs/tasks/ai-trip-planning-implementation.md).
+
+For this batch the user explicitly requested no iOS tests. The package/app were compiled only; the normal test commands below are documented for separately authorized future verification, not recorded as run here.
+
 This is a local Swift package, not a remote server. It exports two products:
 
 | Target | Responsibility |

@@ -3,3 +3,6 @@ C67_DATA_MODE = mock
 SUPABASE_SCHEME = http
 SUPABASE_HOST = 127.0.0.1:54321
 SUPABASE_CLIENT_KEY =
+// The planning API is a separate service. No model/Apple/server secret belongs here.
+PLANNING_SCHEME = https
+PLANNING_HOST =
