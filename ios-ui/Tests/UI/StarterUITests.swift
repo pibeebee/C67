@@ -32,6 +32,8 @@ final class StarterUITests: XCTestCase {
         screenshot.lifetime = .keepAlways
         add(screenshot)
         app.buttons["Done"].tap()
+        XCTAssertTrue(app.navigationBars["Discover"].waitForExistence(timeout: 5))
+        app.tabBars.buttons["Journey"].tap()
         XCTAssertTrue(app.staticTexts[expectsLive ? "Live • Supabase" : "Mock • memory only"].waitForExistence(timeout: 5))
     }
 

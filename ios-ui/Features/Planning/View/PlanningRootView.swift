@@ -6,6 +6,10 @@ struct PlanningRootView: View {
     @State private var presenter: PlanningPresenter
     @State private var accountPresenter: AccountPresenter?
     @State private var showsAccount = false
+    @State private var selectedTab: MainTab = .discover
+    @State private var selectedJourneySection: JourneySection = .plan
+    @State private var selectedCategory: SampleCategory?
+    @State private var searchText = ""
     @Environment(\.scenePhase) private var scenePhase
     let mode: String
 
@@ -13,33 +17,35 @@ struct PlanningRootView: View {
         _presenter = State(initialValue: presenter); _accountPresenter = State(initialValue: accountPresenter); self.mode = mode
     }
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationStack {
-                PlanningEditorView(presenter: presenter, mode: mode)
+                DiscoverSliceView(selectedCategory: $selectedCategory) { selectedTab = .search }
                     .toolbar { accountButton }
-                    .navigationDestination(item: $presenter.openTripID) { id in ActivePlanningTripView(tripID: id, presenter: presenter) }
-            }.tabItem { Label("Plan", systemImage: "map") }
+            }.tabItem { Label("Discover", systemImage: "house") }.tag(MainTab.discover)
             NavigationStack {
-                List {
-                    Section { Text(mode).font(.caption).foregroundStyle(.secondary) }
-                    if let error = presenter.error { Text(error).foregroundStyle(.red) }
-                    ForEach(presenter.trips) { trip in
-                        NavigationLink {
-                            ActivePlanningTripView(tripID: trip.id, presenter: presenter)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(trip.title).font(.headline)
-                                Text("\(trip.plan.stops.count) stops · \(trip.status.rawValue)").font(.subheadline).foregroundStyle(.secondary)
-                                if trip.synthetic { Text("Synthetic demonstration").font(.caption) }
-                            }
-                        }
+                VStack(spacing: 0) {
+                    Picker("Journey section", selection: $selectedJourneySection) {
+                        Text("Plan").tag(JourneySection.plan)
+                        Text("My Trips").tag(JourneySection.trips)
+                    }.pickerStyle(.segmented).padding()
+                    if selectedJourneySection == .plan {
+                        PlanningEditorView(presenter: presenter, mode: mode)
+                    } else {
+                        journeyTrips
                     }
-                    if presenter.trips.isEmpty {
-                        ContentUnavailableView("No personal trips", systemImage: "map", description: Text("Choose places, review a proposal, and save your trip."))
-                    }
-                }.navigationTitle("My Trips").toolbar { accountButton }
-                    .refreshable { await presenter.load() }
-            }.tabItem { Label("My Trips", systemImage: "list.bullet.rectangle") }
+                }
+                .navigationTitle(selectedJourneySection == .plan ? "Plan your trip" : "My Trips")
+                .toolbar { accountButton }
+                .navigationDestination(item: $presenter.openTripID) { id in ActivePlanningTripView(tripID: id, presenter: presenter) }
+            }.tabItem { Label("Journey", systemImage: "map") }.tag(MainTab.journey)
+            NavigationStack {
+                ContentUnavailableView("No bookmarks yet", systemImage: "bookmark", description: Text("Bookmarks will appear here."))
+                    .navigationTitle("Bookmark")
+            }.tabItem { Label("Bookmark", systemImage: "bookmark") }.tag(MainTab.bookmark)
+            NavigationStack {
+                SearchSliceView(query: $searchText, selectedCategory: $selectedCategory)
+                    .toolbar { accountButton }
+            }.tabItem { Label("Search", systemImage: "magnifyingglass") }.tag(MainTab.search)
         }
         .sheet(isPresented: $showsAccount) {
             if let accountPresenter { AccountView(presenter: accountPresenter) }
@@ -61,7 +67,30 @@ struct PlanningRootView: View {
     @ToolbarContentBuilder private var accountButton: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) { Button("Account", systemImage: "person.crop.circle") { showsAccount = true } }
     }
+
+    private var journeyTrips: some View {
+        List {
+            Section { Text(mode).font(.caption).foregroundStyle(.secondary) }
+            if let error = presenter.error { Text(error).foregroundStyle(.red) }
+            ForEach(presenter.trips) { trip in
+                NavigationLink {
+                    ActivePlanningTripView(tripID: trip.id, presenter: presenter)
+                } label: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(trip.title).font(.headline)
+                        Text("\(trip.plan.stops.count) stops · \(trip.status.rawValue)").font(.subheadline).foregroundStyle(.secondary)
+                        if trip.synthetic { Text("Synthetic demonstration").font(.caption) }
+                    }
+                }
+            }
+            if presenter.trips.isEmpty {
+                ContentUnavailableView("No personal trips", systemImage: "map", description: Text("Choose places, review a proposal, and save your trip."))
+            }
+        }.refreshable { await presenter.load() }
+    }
 }
+
+private enum JourneySection { case plan, trips }
 
 private enum PlaceSearchPurpose: String, Identifiable { case origin, destination; var id: String { rawValue } }
 
@@ -126,7 +155,6 @@ private struct PlanningEditorView: View {
                 if let proposal = result.proposal { PlanningProposalSections(proposal: proposal, presenter: presenter) }
             }
         }
-        .navigationTitle("Plan your trip")
         .sheet(item: $searchPurpose) { purpose in
             PlanningSearchSheet(near: presenter.origin, title: purpose == .origin ? "Starting point" : "Add a place") { place in
                 if purpose == .origin { location.cancel(); presenter.origin = place.location; presenter.originLabel = place.name }

@@ -17,6 +17,7 @@
 		3ADB95746548B21598219B5E /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BC9090F754F4E9DD12F48 /* AccountTests.swift */; };
 		41CCF009021A16BE232EDBA3 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3843810F4D9FB9CCB238DF8 /* AccountView.swift */; };
 		4B668A43FE83BF9E6680C159 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535467B807B9E3BF6D5236BA /* AppDependencies.swift */; };
+		4EBD7D17AF7E5837D1E81DCE /* ExploreSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A677A7FF74416E59707370 /* ExploreSliceView.swift */; };
 		5211DBE7E2077AC38D25E84D /* PlanningInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE93F567D3E6B5CAA7C538D /* PlanningInteractor.swift */; };
 		544B54CC2B305ACBB004DC56 /* C67Domain in Frameworks */ = {isa = PBXBuildFile; productRef = B961506357355BAFEDE834E6 /* C67Domain */; };
 		59E55D938EACB44043295669 /* C67Data in Frameworks */ = {isa = PBXBuildFile; productRef = A68E4C7D6CA709DB817A9B3F /* C67Data */; };
@@ -124,6 +125,7 @@
 		D9D7A9B02F335897438A1AE2 /* AuthLifecycleIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLifecycleIntegrationTests.swift; sourceTree = "<group>"; };
 		DAA7925A07574A0F0EF8BE8E /* DiscoveryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryRouter.swift; sourceTree = "<group>"; };
 		E2C31338F8DDC79143445DDA /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		E4A677A7FF74416E59707370 /* ExploreSliceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSliceView.swift; sourceTree = "<group>"; };
 		E5B61FA18FD7353824626C90 /* AppleSignInAttemptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInAttemptTests.swift; sourceTree = "<group>"; };
 		E796575296A8D71E842E4611 /* C67UITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = C67UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C0CAE3EF07FE9DFCC67B1F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				BEA3C4561F0AEE9A24134F8A /* Album */,
 				C4EA84C38B9D5FE0C184492D /* Creator */,
 				B2D213289594460E26B9E490 /* Discovery */,
+				C79C44469C7A140B91BCACBB /* ExploreSlice */,
 				864ED21FED9163F8A39BF882 /* Journal */,
 				932D3498F987FEBF535AE15E /* Planning */,
 				0AE22EDABACBA8AAD73FD6CA /* Rundown */,
@@ -662,6 +665,14 @@
 			path = Creator;
 			sourceTree = "<group>";
 		};
+		C79C44469C7A140B91BCACBB /* ExploreSlice */ = {
+			isa = PBXGroup;
+			children = (
+				E4A677A7FF74416E59707370 /* ExploreSliceView.swift */,
+			);
+			path = ExploreSlice;
+			sourceTree = "<group>";
+		};
 		CE2928794AD23F6845791F39 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,6 +914,7 @@
 				199526327DB835035E6C7A33 /* DiscoveryPresenter.swift in Sources */,
 				F351065B0340EB865FED3AEF /* DiscoveryRouter.swift in Sources */,
 				7B3D1FA1FE1A02386E2B4A2B /* DiscoveryView.swift in Sources */,
+				4EBD7D17AF7E5837D1E81DCE /* ExploreSliceView.swift in Sources */,
 				0E124480535AA1CC8D430FC9 /* PlanningAssembly.swift in Sources */,
 				5211DBE7E2077AC38D25E84D /* PlanningInteractor.swift in Sources */,
 				ACE330E90DF30C67CA559232 /* PlanningPlaces.swift in Sources */,
