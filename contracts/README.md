@@ -1,6 +1,23 @@
 # Shared API contract
 
-`api/openapi.json` is the authoritative OpenAPI 3.1 contract for the deployed starter, private trip reads and additive v2 model. Reusable schemas are defined inside that file; do not maintain a second schema source in `schemas/`.
+## Personal planning — OpenAPI 0.6, 30 October 2026
+
+The authoritative contract now adds a separate Planning HTTP API, owner RPCs, service-only worker RPCs and personal-planning schemas. Existing paths/schemas remain semantically unchanged. The new service/migration are not shared-deployed by this batch; see [implementation evidence](../docs/tasks/ai-trip-planning-implementation.md).
+
+| Boundary | Operations and rules |
+|---|---|
+| Planning HTTP | Request/poll jobs, list personal trips, apply proposals and record manual events; bearer traveller token, separate server URL |
+| Owner RPCs | `request_planning_job`, `get_planning_job`, `list_personal_planning_trips`, `apply_planning_proposal`, `record_planning_event`; verified owner, explicit grants and request/revision checks |
+| Worker RPCs | `claim_planning_job`, `renew_planning_job`, `finish_planning_job`; service role and lease only; never call from the app |
+| Fixtures | `planning-input`, `planning-result`, `planning-job`, `personal-planning-trip`; synthetic, copied to Swift resources by `scripts/sync_fixtures.py` |
+
+Inputs preserve the user's selected places, origin, visit durations, preferences, departure/finish-by/zone and walking/driving mode. New trips need no `p_version_id`. Suggestions are unselected candidates; feasible proposals require explicit application. Active changes retain completed history and reject superseded revisions. Manual arrival is distinct from starting a trip or GPS presence.
+
+Inputs require offset-bearing instants and a trip range of at most 24 hours. HTTP bodies are limited to 64 KiB. A pending job lives at most ten minutes; proposal application expires after 15 minutes. Matching request IDs cannot be reused for changed inputs; applied-job/command retries return the original response. See [planning semantics](../docs/ai-trip-planning.md) for all MVP and source limits. Planning HTTP uses its own safe error envelope; PostgREST keeps the existing `Error` envelope.
+
+The following tables/sections document the existing creator/version operations and dated stages. They retain their meanings and planned-only journal guards; no invented creator identity or bypass is introduced by personal planning.
+
+`api/openapi.json` is the authoritative OpenAPI 3.1 contract for the existing server interfaces and the new personal-planning slice. Reusable schemas are defined inside that file; do not maintain a second schema source in `schemas/`.
 
 | RPC | Input | Result |
 |---|---|---|

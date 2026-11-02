@@ -12,8 +12,14 @@ private struct StarterRootView: View {
     var body: some View {
         switch result {
         case .success(let dependencies):
-            DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
-                                   authentication: dependencies.authentication)
+            if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
+                DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
+                                       authentication: dependencies.authentication)
+            } else {
+                PlanningAssembly.make(repository: dependencies.planningRepository, mode: dependencies.mode,
+                                      initialInput: dependencies.planningInitialInput,
+                                      authentication: dependencies.authentication)
+            }
         case .failure(let error):
             ContentUnavailableView("Configuration needed", systemImage: "gearshape",
                                    description: Text(error.localizedDescription))

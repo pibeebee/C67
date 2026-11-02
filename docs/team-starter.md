@@ -1,36 +1,21 @@
-# Team starter and first assignments
+# Team handoff
 
-## Shared milestone
+Updated 30 October 2026. Start with [product context](product-context.md), [planning semantics](ai-trip-planning.md), [ADR-0009](decisions/0009-personal-planning-implementation.md), [architecture](architecture.md) and [implementation evidence](tasks/ai-trip-planning-implementation.md).
 
-Demonstrate catalog → detail → personal trip using one contract. Mock mode is ready for parallel UI work. Live creation remains gated on a real traveller session and a separately reviewed server deployment.
+The default native experience now collects user places/preferences/time, presents optional suggestions and a plan proposal, saves a personal trip and supports manual start/arrival/extension/completion plus reviewed remaining-trip recalculation. Mock output is explicitly synthetic. The repository includes the live HTTP/provider adapters and additive SQL; neither the new service nor migration is shared-deployed by this work.
 
-| Workstream | Starter available | Suggested first assignment | Acceptance evidence |
-|---|---|---|---|
-| iOS UI | Runnable VIPER list/detail, mock data, navigation | Refine discovery/detail against the agreed wireframe | Simulator walkthrough including loading/error/empty states |
-| iOS Backend | Domain protocol, mock and RPC implementations | Add secure Auth session provider and session lifecycle tests | Expired/missing session handling; no server secrets in app |
-| Server | Local config, migration, seed and pgTAP tests | Run database tests, review model against full specification, prepare deployment proposal | Two-account isolation and idempotent trip creation |
-| Shared | OpenAPI and fixtures | Review version identity, timestamps, errors and fixture changes together | Contract checks and compatible adapters |
+## Next bounded acceptance work
 
-Area-owner assignment, contributor role changes and CODEOWNERS were deferred by the user. Select reviewers for each task from eligible collaborators. One person may cover multiple workstreams; shared contracts belong to the whole team. App Auth work concerns traveller accounts, while Studio access concerns developers.
+| Area | Next concrete outcome | Evidence needed |
+|---|---|---|
+| Native app | Exercise Plan/My Trips, account transitions, permission denial, interruptions and larger text | Authorized Simulator/device interaction checks; none run for this batch at the user's request |
+| Backend operations | Review a matching-image migration/recovery and service/gateway plan | Fresh backup/restore/isolation checks and explicit deployment scope |
+| Providers | Select a model and private Apple/model credentials; validate coverage and response assumptions | Approved bounded real-provider requests, attribution/data-policy review and observed errors |
+| Planning quality | Evaluate D extension/C experience-window conflicts, grounded facts and alternatives | Measured factual support, feasibility, tool calls, latency/cost and traveller decisions |
+| Product scope | Decide destination edits, skip/partial completion, undo, journal/album links and multi-day/transit | Explicit contracts and user evaluation before extending behavior |
 
-## Starter readiness check
+The scheduler and synthetic checks establish software invariants, not travel correctness or product differentiation. Venue research is a bounded website text reader rather than a general web-search or JavaScript browser. Forecast gaps and unverifiable opening hours must remain visible.
 
-- Every teammate can clone and run the mock app without a key.
-- Every iOS developer can run the package tests.
-- The server owner can run a fresh local stack, reset only its disposable database, and run pgTAP.
-- Everyone understands which parts are mocked and which are remote.
-- Repository access, reviewer names and the chosen Xcode version are agreed.
+Use [AGENTS.md](../AGENTS.md), [AI workflow](ai/workflow.md), [task template](tasks/TASK-TEMPLATE.md), [coding conventions](coding-conventions.md) and [onboarding](onboarding-checklist.md). Keep local implementation, tests, deployment and user evidence separate. Area owners/reviewers remain team decisions. Traveller app sign-in and developer Studio access remain different identities.
 
-The repo contains the technical starter. Use [the individual onboarding checklist](onboarding-checklist.md) and [coding conventions](coding-conventions.md). Team access provisioning and real-person assignments remain separate; see [repository settings](repository-settings.md) before the first protected merge.
-
-## Deferred slices
-
-Trip editing, creator publishing, version lifecycle, geospatial search, journaling/media, presence policy, routing/weather, persistence/offline recovery, merge and albums need further contracts and acceptance criteria. Do not activate unresolved product policies from folder names alone.
-
-## ACT evaluation
-
-This starter checks whether the team can build one consistent flow across boundaries. It does not establish that travellers understand or want the product. Evaluate the next UI iteration with reachable travellers and record what they actually do, the task outcome and the decision to revise or continue.
-
-## Shared AI setup
-
-Before assigning implementation tickets, have every member read [the AI workflow](ai/workflow.md) and load the root plus affected area `AGENTS.md` files in their assistant. Use [the task template](tasks/TASK-TEMPLATE.md) for shared acceptance criteria. Try one small task with mock data and review its diff/evidence together before expanding work in parallel. No shared AI account is required.
+Earlier [documentation work](tasks/ai-planning-documentation.md), original manifests and deployed-server records are preserved as historical evidence. New implementation status is in the current task, not inferred from those records.

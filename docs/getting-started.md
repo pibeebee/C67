@@ -1,5 +1,7 @@
 # Getting started
 
+**Current flow — 30 October 2026:** the default app runs personal planning in explicit synthetic mock mode. Live planning uses the separate [Planning service setup](../server/planning/README.md), the new additive migration and server-only provider credentials. Existing shared Supabase/Auth does not enable that service automatically. [Task evidence](tasks/ai-trip-planning-implementation.md) records build-only iOS verification for this batch.
+
 ## 1. Run the mock app
 
 Requirements: macOS, Xcode 16+ with an iOS Simulator runtime, Swift 6 language support. The app targets iOS 18+. The initial verification uses Xcode 27.1; test your team's chosen Xcode version before standardizing it. Signing is unnecessary for Simulator; choose your own development team for a physical device.
@@ -10,7 +12,7 @@ cd C67
 open ios-ui/C67.xcodeproj
 ```
 
-Select **C67**, choose an iPhone Simulator, and Run. You should see **Mock • memory only** and one synthetic rundown. Open its detail, choose a start time, and save a personal trip. Relaunching clears mock trips.
+Select **C67**, choose an iPhone Simulator, and Run. You should see **Mock • memory only** and sample places. Adjust the draft, tap **Plan my trip**, review and save the proposal, then start/arrive/extend/recalculate in My Trips. Relaunching clears mock trips. Launch with `--legacy-catalog` to inspect the earlier synthetic rundown example.
 
 The committed Xcode project is ready to open. XcodeGen is only needed when changing targets or source groups:
 
@@ -60,7 +62,7 @@ npm run supabase -- status
 
 Default ports: API `54321`, database `54322`, Studio `54323`, local mail inbox `54324`. Close an older stack using these ports first. Local Auth emails stay in the local inbox; no Brevo credentials are needed. PostgreSQL 17 is the generated local baseline; verify the actual homelab version and migration compatibility before any future deployment.
 
-## 5. Try the live local catalog
+## 5. Configure live mode
 
 ```sh
 cp ios-ui/Configuration/Development.example.xcconfig ios-ui/Configuration/Development.local.xcconfig
@@ -77,7 +79,9 @@ SUPABASE_CLIENT_KEY = <local publishable or legacy anon client key>
 
 Get the local client key from local Studio or the local CLI status output. Never commit CLI status output or copy a service-role key into the app. Rebuild the app after changing `.xcconfig` values. Loopback works for the iOS Simulator on the same Mac; physical-device networking is a separate setup task.
 
-Live mode reads the synthetic catalog through RPC. Open **Account** in the Discover toolbar to
+For personal planning, also set `PLANNING_SCHEME` / `PLANNING_HOST` to the configured API (loopback HTTP on the same Mac Simulator or HTTPS for shared access). If omitted, Account remains available and planning reports configuration required. The API forwards traveller JWTs to the new owner RPCs; it never accepts an app service-role key.
+
+The legacy catalog still reads synthetic sources through RPC. Open **Account** from the app toolbar to
 sign in with an existing traveller email/password account. The app stores its session in Keychain,
 refreshes before private requests/foreground activation, and supports local-scope logout. Saving a
 live trip uses the injected traveller JWT. Studio Basic Auth credentials cannot sign in here.
@@ -93,7 +97,7 @@ Production.local.xcconfig before distributing a build. Never point reset command
 
 ## 6. UI smoke test
 
-Run the **C67** scheme's Test action in Xcode. The UI test opens the rundown and saves a mock trip. Keep data mode set to `mock` for these tests. For command-line Simulator tests, use
+Run the **C67** scheme's Test action in Xcode. The legacy UI smoke test launches `--legacy-catalog`, opens the rundown and saves a mock trip. A new planning walkthrough has not been run in this implementation batch. Keep data mode set to `mock` for these tests. For command-line Simulator tests, use
 `CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock`; ad hoc signing permits the
 native Keychain test to run without an Apple development team. Disabling signing causes Keychain
 access to fail in the test host. Ordinary build-only checks can still disable signing.

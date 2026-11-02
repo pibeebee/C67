@@ -1,5 +1,13 @@
 # Server
 
+## Current addition — personal planning, 30 October 2026
+
+[`planning/`](planning/README.md) is the separate Node/TypeScript Planning API and leased worker. The root `package.json` remains Supabase tooling. It adds hosted-model/Apple/weather/site adapters, bounded scheduling, owner RPCs and a new independent trip aggregate through `20261029235123_add_personal_ai_planning.sql`. The native app now defaults to this personal-planning flow in synthetic mock mode.
+
+Run `npm ci --prefix planning --ignore-scripts`, `npm run check --prefix planning` and `npm test --prefix planning` from here. These checks use no real providers or shared database; the new migration is checked on disposable embedded PostgreSQL 18 with simulated roles/claims. Full pgTAP/PostgREST/GoTrue and matching-image PostgreSQL 17 acceptance are separate. No new migration/service was deployed by this batch. See [ADR-0009](../docs/decisions/0009-personal-planning-implementation.md) and [task evidence](../docs/tasks/ai-trip-planning-implementation.md).
+
+The sections below retain the older Supabase/media setup and dated evidence. Their native-planning gaps describe that earlier slice, rather than overriding the current implementation above.
+
 Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed, private trip reads and V2 model foundation have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/homelab-verification.md) and [private read verification](../docs/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
 
 ```text

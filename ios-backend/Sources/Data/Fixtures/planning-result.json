@@ -1,0 +1,104 @@
+{
+  "proposal": {
+    "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    "input": {
+      "title": "Synthetic coffee afternoon",
+      "origin": {
+        "latitude": -6.26,
+        "longitude": 106.8
+      },
+      "places": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "name": "Synthetic stop 1",
+          "location": {
+            "latitude": -6.2589999999999995,
+            "longitude": 106.801
+          },
+          "visit_seconds": 1800
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "name": "Synthetic stop 2",
+          "location": {
+            "latitude": -6.258,
+            "longitude": 106.80199999999999
+          },
+          "visit_seconds": 1800
+        },
+        {
+          "id": "33333333-3333-4333-8333-333333333333",
+          "name": "Synthetic stop 3",
+          "location": {
+            "latitude": -6.257,
+            "longitude": 106.803
+          },
+          "visit_seconds": 1800
+        }
+      ],
+      "preferences": "Coffee and reading; relaxed pace",
+      "starts_at": "2026-11-01T08:00:00.000Z",
+      "finish_by": "2026-11-01T14:00:00.000Z",
+      "time_zone": "Asia/Jakarta",
+      "mode": "walking"
+    },
+    "stops": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Synthetic stop 1",
+        "location": {
+          "latitude": -6.2589999999999995,
+          "longitude": 106.801
+        },
+        "arrival_at": "2026-11-01T08:02:10.000Z",
+        "departure_at": "2026-11-01T08:32:10.000Z",
+        "visit_seconds": 1800,
+        "travel_seconds": 130,
+        "warnings": []
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "name": "Synthetic stop 2",
+        "location": {
+          "latitude": -6.258,
+          "longitude": 106.80199999999999
+        },
+        "arrival_at": "2026-11-01T08:34:20.000Z",
+        "departure_at": "2026-11-01T09:04:20.000Z",
+        "visit_seconds": 1800,
+        "travel_seconds": 130,
+        "warnings": []
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "name": "Synthetic stop 3",
+        "location": {
+          "latitude": -6.257,
+          "longitude": 106.803
+        },
+        "arrival_at": "2026-11-01T09:06:30.000Z",
+        "departure_at": "2026-11-01T09:36:30.000Z",
+        "visit_seconds": 1800,
+        "travel_seconds": 130,
+        "warnings": []
+      }
+    ],
+    "finishes_at": "2026-11-01T09:36:30.000Z",
+    "feasible": true,
+    "explanation": "Synthetic demonstration of a checked schedule. No hosted AI, live traffic, venue research or actual weather was used.",
+    "warnings": [
+      "Synthetic demonstration: no real forecast for Synthetic stop 1.",
+      "Synthetic demonstration: no real forecast for Synthetic stop 2.",
+      "Synthetic demonstration: no real forecast for Synthetic stop 3."
+    ],
+    "evidence": [],
+    "synthetic": true
+  },
+  "candidates": [],
+  "warnings": [
+    "Synthetic demonstration: no real forecast for Synthetic stop 1.",
+    "Synthetic demonstration: no real forecast for Synthetic stop 2.",
+    "Synthetic demonstration: no real forecast for Synthetic stop 3."
+  ],
+  "synthetic": true
+}

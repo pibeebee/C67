@@ -1,58 +1,46 @@
 # Architecture boundaries
 
+Updated 30 October 2026. [ADR-0009](decisions/0009-personal-planning-implementation.md) records the implemented personal-planning slice. The new service and migration are prepared in the repository; the existing homelab deployment does not yet include them.
+
 ## Dependency direction
 
 ```text
-SwiftUI View → Presenter → Interactor → RundownRepository protocol (C67Domain)
-       navigation uses DiscoveryRoute             ↑
-App composition root wires Mock / Supabase adapter (C67Data)
-                                                  ↓
-                        Supabase Data API → SQL RPC → PostgreSQL + RLS
+SwiftUI Planning/Account → Presenter → Interactor → C67Domain protocols
+              ↑ app composition wires C67Data adapters
+              │                  ↓ traveller session ticket
+              │           HTTPPlanningRepository
+              │                  ↓ HTTPS + JWT
+              │           Node Planning API → owner-scoped Supabase RPCs
+              │                                      ↓
+              │                         durable private jobs / trip revisions / receipts
+              │                                      ↑ leased service RPCs
+              └──── proposals and events ← Planning worker
+                                              ├─ hosted model API
+                                              ├─ Apple Maps Server API / WeatherKit REST
+                                              ├─ bounded public HTTPS text reader
+                                              └─ deterministic schedule validation
 ```
 
-- `C67Domain` owns entities and the repository interface. It imports Foundation, not UI or vendor SDKs.
-- `C67Data` implements the interface with a memory-only actor and a URLSession RPC adapter.
-- VIPER View, Interactor, Presenter, Router and Assembly live under `ios-ui/Features/Discovery/`. The starter keeps list/detail in one small feature; split the detail module when its behavior needs separate ownership.
-- Entity comes from the shared Domain target. Presenter owns display state on the main actor. Router defines destinations; Assembly creates the feature.
-- The app composition root selects mock/live. Only this wiring knows concrete adapters.
-- Application/Platform are reserved folders. Add targets or shared use cases when needed; do not add a second wrapper around a single repository call solely to fill folders.
+`C67Domain` imports Foundation and owns personal inputs, proposals, jobs, trips, events and `PlanningRepository`. `C67Data` owns Codable DTOs, synthetic mock behavior, HTTP transport, one pending-command recovery record and existing Keychain-backed Auth/session handling. It sends traveller JWTs to the Planning API; model, Apple and service-role secrets stay server-only.
 
-## First server slice
+`Features/Planning` follows the native View/Presenter/Interactor/Assembly boundary. Views forward user actions; presentation owns main-actor state; platform helpers own MapKit search/directions and requested Core Location. Account remains the existing VIPER feature. `App/CompositionRoot` selects explicit mock/live adapters. Mock is labelled synthetic and memory-only; missing live planning configuration reports a visible error while Account remains available.
 
-The accepted backend foundation is self-hosted Supabase. The repo provides optional local Supabase configuration, SQL RPCs and a single migration history under `server/supabase/migrations/`. It adds no custom Node API server. `server/package.json` pins development tooling only.
+## Planning API, worker and storage
 
-The starter stores a published rundown version with ordered stops as a JSON snapshot. `create_trip` copies it into an owner-scoped trip in one database transaction. This intentionally small model does not implement the full proposed relational/PostGIS schema. Future normalized tables require migrations and contract compatibility checks.
+`server/planning` owns a separate dependency-free Node runtime; `server/package.json` still pins Supabase development tooling. HTTP handlers forward traveller tokens to owner RPCs. PostgreSQL verifies the session, ownership, request identity and current trip revision. They do not trust submitted owner IDs. The worker uses server-only service credentials with a renewable lease and performs external I/O outside database transactions.
 
-RPCs use `contracts/api/openapi.json`. Published synthetic catalog reads are allowed to anonymous and authenticated clients for development. Production catalog/guest access and creator publishing remain product decisions. Trip writes use versioned creation and explicit preview/apply commands with owner checks, fixed empty search paths and revision/receipt boundaries. Clients cannot submit `owner_id` or directly update tables.
+The scheduler evaluates bounded orders, refreshes candidate-leg ETAs at candidate departure times and validates time arithmetic and destination preservation. The model proposes/selects/explains orders without writing rows or supplying unchecked travel times. Provider context carries source/check time; weather includes attribution. Unavailable route data fails explicitly, while missing weather/venue context is explained. Live mode never substitutes synthetic data.
 
-Each create command includes a request UUID. A retry with the same owner, UUID, version and timestamp returns the original trip. Reusing that UUID for different input fails with HTTP 409. The UI retains a failed command's UUID in memory; durable offline recovery is not implemented yet.
+The additive personal aggregate stores the accepted plan, immutable root input, revision, manual visit state and private event history. Jobs are durable, owner-bound and rate limited; receipts make apply/events idempotent. Active replanning derives only remaining visits, pins a confirmed current stop first, retains completed rows and requires a reviewed revision-bound apply. See [planning semantics and limits](ai-trip-planning.md) and [wire contract](../contracts/README.md).
 
-## Runtime boundaries
+## Existing catalog, graph and media boundaries
 
-Shared development uses the homelab; SQL reset/mutation tests use an isolated homelab target. Mac Docker is optional. The starter is deployed and verified; see [homelab evidence](homelab-verification.md).
+The old `RundownRepository`, Discovery example and creator root/version identities remain intact; launch `--legacy-catalog` to inspect that native example. Original creation, v2/v3 snapshots, graph, planned edits, private upload/session/worker/journal and album operations retain their wire meanings and data guards. Personal planning is not forced through invented creator IDs, and it does not bypass topology/time protection for journal-backed trips.
 
-Mock saving is memory-only. Live catalog loading and authenticated trip saving use the composition
-root's session provider. The Account VIPER feature supports email/password login, registration/confirmation and recovery/reset with PKCE callbacks.
-Data owns Keychain persistence, single shared refresh, expiry/rejection, and local-scope logout;
-Domain exposes account identity, session-change snapshots and an authentication interface. Private response tickets reject results after login transitions. Auth and RPC share URL validation
-and transport coding. Search, owner trip pages and graph DTOs are available to later features;
-My Trips/search UI, graph create/edit commands, local trip persistence, native journaling/media,
-routing and WeatherKit integration remain later slices. See [Auth/API evidence](tasks/ios-auth-api.md). Server-side private media validation runs in the documented worker. Studio collaborator access does not create traveller sessions.
+Earlier architectural decisions remain historical references: [trip identity](decisions/0003-trip-model-foundation.md), [graph](decisions/0004-trip-graph.md), [planned edit/media](decisions/0005-backend-mvp.md), [native sessions](decisions/0006-native-auth-session.md) and [AI direction](decisions/0008-ai-trip-planning-direction.md). The existing server batch is [shared-verified](homelab-backend-completion-verification.md); its evidence does not cover the new Planning service.
 
-Keep creator versions separate from personal trips. Keep suggested times, selected start times, forecasts and actual events separate. Server authorization remains authoritative even if the client validates input first.
+## Operational and verification boundaries
 
-## Trip model stage 3A
+There is one additive SQL migration history in `server/supabase/migrations`. Local embedded PostgreSQL tests exercise the new migration with simulated Auth roles/claims and no shared data; they do not reproduce GoTrue, PostgREST, the matching-image Supabase stack or concurrent multi-connection locking. Full stack CI remains separate. Shared migrations, gateway exposure and container deployment require a concrete operational plan; no reset or incidental deployment is part of this implementation.
 
-[ADR-0003](decisions/0003-trip-model-foundation.md) adds curated root/version identity, explicit destination zone/date and a server revision behind two new RPCs. The original payloads remain unchanged. The migration is additive; shared deployment is tracked separately. Ordered stop JSON remains until the next stop/leg slice can represent origin, landing and first stop explicitly. No client edit/concurrency/lifecycle policy is enabled by this metadata foundation.
-
-## Trip graph stage 3B
-
-[ADR-0004](decisions/0004-trip-graph.md) normalizes owner source/day/stop/leg rows behind three opt-in endpoints. Seven existing RPC shapes remain compatible. Explicit access/landing_to_first/between_stops edges preserve separate origin/landing/first-stop semantics. Unknown route facts remain null with warnings, and immutable graph guards prevent independent child/root drift. Initial graph creation is one source/day 0; full scheduling, edits/receipts and multi-day/multi-source commands are subsequent work. CI evidence and the unexecuted shared deployment plan are tracked in the [task](tasks/trip-graph.md).
-
-## Consolidated backend completion
-
-[ADR-0005](decisions/0005-backend-mvp.md) adds bounded discovery, immutable private command receipts, revision-checked preview/apply planned edits and explicit source-overlap choices, plus a private session/Storage/worker/journal/album path. The worker performs byte IO outside database locks; only its leased service command accepts journals. Pending/accepted journal plans protect topology and time. Creation receipts remain stable after edits/journals; old RPC wire shapes stay compatible.
-
-Source code and disposable CI evidence are separate from shared deployment. PR #4 is closed by user request. The [completion task](tasks/backend-completion.md) requires one review PR only after the full agreed backend batch is verified; the [new combined homelab plan](homelab-backend-completion-plan.md) needs its own exact operational approval before four migrations/two buckets/new worker are applied.
-
-The consolidated server batch is now [deployed and shared-verified](homelab-backend-completion-verification.md). This supersedes the earlier pending deployment notes for stages 3B–7; native integration and documented production/field boundaries remain separate.
+See [implementation evidence](tasks/ai-trip-planning-implementation.md) for backend tests, contract checks and build-only iOS verification. Real providers, signed-device behavior, end-user interactions and product evaluation remain acceptance layers, not conclusions from compilation or synthetic tests.

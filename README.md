@@ -1,32 +1,28 @@
 # C67
 
-An iOS starter for discovering creator travel rundowns, copying a version into a personal trip, and later documenting the journey as an album.
+C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
 
-**Starter scope — 23 October 2026:** runnable SwiftUI/VIPER discovery → detail → personal trip in mock mode; a shared Swift package; an RPC contract; and Supabase migrations, synthetic seed, versioned destination-aware trip snapshots and access-policy tests. Native journaling, photos, maps, weather and production readiness remain follow-up work. Email/password lifecycle, sessions and query adapters were added on 28 October; see [Auth/API evidence](docs/tasks/ios-auth-api.md).
+**Repository implementation — 30 October 2026:** the default iOS flow is now Plan → review → My Trips → start/arrive/extend/recalculate. It includes synthetic mock adapters, a separate Node/TypeScript Planning API and worker, Apple Maps/Weather and hosted-model adapters, a bounded public-site reader, OpenAPI 0.6 and an additive SQL migration. This batch is local code, not a shared deployment or live-provider acceptance. Read [implementation/evidence](docs/tasks/ai-trip-planning-implementation.md), [planning design](docs/ai-trip-planning.md) and [ADR-0009](docs/decisions/0009-personal-planning-implementation.md).
 
-Native Sign in with Apple is implemented and the homelab provider is active; Apple Developer provisioning/real-device authorization remain pending;
-see [Apple setup and evidence](docs/apple-auth.md).
+## Run the app
 
-For AI-assisted team work, start with [AGENTS.md](AGENTS.md) and the [shared workflow](docs/ai/workflow.md).
+1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
+2. In default mock mode, review the sample places, adjust durations/time/preferences and tap **Plan my trip**.
+3. Review the synthetic proposal and **Save this trip**. In My Trips, start, manually confirm arrival, extend/finish a visit and recalculate.
 
-## Start here
+Mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
 
-1. Clone the repository and open `ios-ui/C67.xcodeproj` in Xcode 16 or later.
-2. Select the **C67** scheme and an iPhone Simulator, then Run. Mock mode needs no credentials or server.
-3. Open **Kota Tua Photo Walk**, choose a start time, and tap **Save as my trip**.
-
-Mock trips exist in memory and disappear when the app closes. All displayed starter content is synthetic. This demonstrates software integration, not validated travel information or a completed CBL solution.
-
-Read [Getting started](docs/getting-started.md) for detailed setup, [Architecture](docs/architecture.md) for boundaries, and [Contributing](docs/contributing.md) before opening a PR. Complete the relevant [onboarding checklist](docs/onboarding-checklist.md) and follow [coding conventions](docs/coding-conventions.md).
+Live planning requires a configured HTTPS Planning API, the new SQL migration, backend provider credentials and traveller sign-in. Existing Supabase/Auth deployment does not deploy this new service. See [planning setup](server/planning/README.md) and [getting started](docs/getting-started.md). Missing planning configuration leaves Account usable and reports an explicit planning error.
 
 | Area | Responsibility | Entry point |
 |---|---|---|
-| `ios-ui/` | SwiftUI, VIPER, navigation and dependency wiring | [UI guide](ios-ui/README.md) |
-| `ios-backend/` | On-device domain, repository protocols, mock and remote data | [Client guide](ios-backend/README.md) |
-| `server/` | Supabase migrations, RPCs, authorization and future workers | [Server guide](server/README.md) |
+| `ios-ui/` | SwiftUI/VIPER planning, MapKit search, requested location and Account | [UI guide](ios-ui/README.md) |
+| `ios-backend/` | Domain models/protocols, mock/live repositories and session handling | [Client guide](ios-backend/README.md) |
+| `server/planning/` | Planning HTTP API/worker, scheduler, model and data adapters | [Planning guide](server/planning/README.md) |
+| `server/supabase/` | One additive migration history, RPCs, jobs, receipts and RLS | [Server guide](server/README.md) |
 | `contracts/` | Authoritative wire contract and synthetic fixtures | [Contract guide](contracts/README.md) |
-| `docs/` | Context, decisions, onboarding and first assignments | [Team handoff](docs/team-starter.md) |
+| `docs/` | Product context, decisions, setup and verification | [Team handoff](docs/team-starter.md) |
 
-The existing self-hosted Supabase is the shared backend foundation. The server migrations and v1/v2 RPCs have been deployed and verified through explicitly approved backup/restore procedures; see [latest server evidence](docs/homelab-backend-completion-verification.md). Native email/password lifecycle/session code and discovery/owner-trip/graph adapters are implemented; native Auth/session verification passed on Simulator; physical-device and external inbox checks remain. Remaining RPC/UI integration is follow-up work. Studio access for collaborators is separate from traveller authentication in the app.
+Existing creator/version trips, graph, planned edits, private journal/media and authentication retain their contracts. Personal planning has its own aggregate and does not bypass journal guards or invent creator IDs. Native email/password and Sign in with Apple retain their separately recorded [Auth/API](docs/tasks/ios-auth-api.md) and [Apple](docs/tasks/apple-auth.md) evidence; device lifecycle acceptance remains separate.
 
-Server completion evidence covers discovery, graph, planned edits/merge, private photo validation/journal/album and a restricted homelab worker. The native app now includes Account/session wiring and query adapters; My Trips, graph and journal/album UI remain follow-up work; see [server handoff](docs/tasks/backend-completion.md).
+For team work, start with [AGENTS.md](AGENTS.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md) and the [AI workflow](docs/ai/workflow.md). Synthetic integration success does not establish travel accuracy, product validation or production readiness.

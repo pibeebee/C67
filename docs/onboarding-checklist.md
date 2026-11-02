@@ -18,7 +18,7 @@ Mac / Xcode / Simulator version: <actual versions>
 ## iOS work
 
 - [ ] I opened `ios-ui/C67.xcodeproj` and ran C67 on an iPhone Simulator in mock mode.
-- [ ] I opened the synthetic rundown, selected a start time and saved a mock trip.
+- [ ] I adjusted sample places/time, reviewed a synthetic proposal and saved/started a personal trip. I know `--legacy-catalog` opens the older rundown example.
 - [ ] `swift test --package-path ios-backend` passes.
 - [ ] `python3 scripts/swift_format.py --check` passes.
 - [ ] I recorded the actual Xcode/Simulator versions above; physical-device signing is a separate setup.
@@ -26,10 +26,11 @@ Mac / Xcode / Simulator version: <actual versions>
 ## Server/contract work (when relevant)
 
 - [ ] I installed the pinned CLI using `npm ci` inside `server/`.
-- [ ] My local Docker engine runs; I started my local Supabase stack.
+- [ ] I know whether I am using an isolated local Docker stack, a separately approved isolated homelab target, or only the narrower embedded planning database checks.
 - [ ] I understand that `npm run db:reset` rebuilds disposable local data and never targets the homelab.
 - [ ] After the documented authorized local setup, `npm run db:test` passes.
 - [ ] Contract validation passes using the environment from Getting started.
+- [ ] For planning work, `npm ci --prefix server/planning --ignore-scripts`, `npm run check --prefix server/planning` and `npm test --prefix server/planning` pass; I understand these use synthetic sources/simulated claims rather than live providers or deployed Auth.
 - [ ] I can explain that Studio developer access does not supply a traveller session to the app.
 
 ## First collaboration exercise

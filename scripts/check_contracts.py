@@ -9,6 +9,10 @@ root = Path(__file__).resolve().parents[1]
 spec = json.loads((root / "contracts/api/openapi.json").read_text())
 validate(spec)
 for filename, schema in [
+    ("planning-input.json", {"$ref": "#/components/schemas/PlanningInput"}),
+    ("planning-result.json", {"$ref": "#/components/schemas/PlanningResult"}),
+    ("planning-job.json", {"$ref": "#/components/schemas/PlanningJob"}),
+    ("personal-planning-trip.json", {"$ref": "#/components/schemas/PersonalPlanningTrip"}),
     ("journal-upload.json", {"$ref": "#/components/schemas/JournalUploadSession"}),
     ("route-template-separate.json", {"$ref": "#/components/schemas/RouteTemplate"}),
     ("route-template-first-stop.json", {"$ref": "#/components/schemas/RouteTemplate"}),
@@ -26,5 +30,7 @@ for filename, schema in [
 source = root / "contracts/fixtures/rundowns.json"
 copy = root / "ios-backend/Sources/Data/Fixtures/rundowns.json"
 assert source.read_bytes() == copy.read_bytes(), "Run scripts/sync_fixtures.py"
+for filename in ["planning-input.json", "planning-result.json", "planning-job.json", "personal-planning-trip.json"]:
+    assert (root / "contracts/fixtures" / filename).read_bytes() == (root / "ios-backend/Sources/Data/Fixtures" / filename).read_bytes(), "Run scripts/sync_fixtures.py"
 assert (root / "server/supabase/seed.sql").read_text() == render_seed(json.loads(source.read_text())), "Run scripts/sync_fixtures.py"
 print("PASS: OpenAPI, fixture schemas, bundled fixture copy, and synthetic SQL seed")

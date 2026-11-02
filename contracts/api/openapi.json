@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "C67 starter RPC contract",
-    "version": "0.5.0"
+    "title": "C67 travel and personal planning contract",
+    "version": "0.6.0"
   },
   "servers": [
     {
@@ -1625,6 +1625,1479 @@
           }
         }
       }
+    },
+    "/v1/planning/jobs": {
+      "post": {
+        "operationId": "requestPlanningJob",
+        "security": [
+          {
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds the 64 KiB input limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanningRequest"
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://127.0.0.1:8788",
+          "description": "Separate planning API; use an explicit HTTPS endpoint for shared/live access."
+        }
+      ]
+    },
+    "/v1/planning/jobs/{jobID}": {
+      "get": {
+        "operationId": "getPlanningJob",
+        "security": [
+          {
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds the 64 KiB input limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://127.0.0.1:8788",
+          "description": "Separate planning API; use an explicit HTTPS endpoint for shared/live access."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "jobID",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ]
+    },
+    "/v1/planning/trips": {
+      "get": {
+        "operationId": "listPersonalPlanningTrips",
+        "security": [
+          {
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonalPlanningTrip"
+                  },
+                  "maxItems": 50
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds the 64 KiB input limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://127.0.0.1:8788",
+          "description": "Separate planning API; use an explicit HTTPS endpoint for shared/live access."
+        }
+      ]
+    },
+    "/v1/planning/proposals/{jobID}/apply": {
+      "post": {
+        "operationId": "applyPlanningProposal",
+        "security": [
+          {
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalPlanningTrip"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds the 64 KiB input limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyPlanningProposal"
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://127.0.0.1:8788",
+          "description": "Separate planning API; use an explicit HTTPS endpoint for shared/live access."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "jobID",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ]
+    },
+    "/v1/planning/trips/{tripID}/events": {
+      "post": {
+        "operationId": "recordPlanningEvent",
+        "security": [
+          {
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalPlanningTrip"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds the 64 KiB input limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanningEvent"
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://127.0.0.1:8788",
+          "description": "Separate planning API; use an explicit HTTPS endpoint for shared/live access."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "tripID",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ]
+    },
+    "/rest/v1/rpc/request_planning_job": {
+      "post": {
+        "operationId": "request_planning_job",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_request": {
+                    "$ref": "#/components/schemas/PlanningRequest"
+                  }
+                },
+                "required": [
+                  "p_request"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/get_planning_job": {
+      "post": {
+        "operationId": "get_planning_job",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_job_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "p_job_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/list_personal_planning_trips": {
+      "post": {
+        "operationId": "list_personal_planning_trips",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonalPlanningTrip"
+                  },
+                  "maxItems": 50
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/apply_planning_proposal": {
+      "post": {
+        "operationId": "apply_planning_proposal",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalPlanningTrip"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_job_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_request_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_expected_revision": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "p_job_id",
+                  "p_request_id",
+                  "p_expected_revision"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/record_planning_event": {
+      "post": {
+        "operationId": "record_planning_event",
+        "security": [
+          {
+            "clientKey": [],
+            "travellerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalPlanningTrip"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_trip_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_event": {
+                    "$ref": "#/components/schemas/PlanningEvent"
+                  }
+                },
+                "required": [
+                  "p_trip_id",
+                  "p_event"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/claim_planning_job": {
+      "post": {
+        "operationId": "claim_planning_job",
+        "security": [
+          {
+            "clientKey": [],
+            "workerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PlanningWorkerJob"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Worker identity required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              }
+            }
+          }
+        },
+        "description": "Internal worker only. Requires service_role JWT and API key; never call from the iOS app.",
+        "x-internal": true
+      }
+    },
+    "/rest/v1/rpc/renew_planning_job": {
+      "post": {
+        "operationId": "renew_planning_job",
+        "security": [
+          {
+            "clientKey": [],
+            "workerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {},
+                  "required": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Worker identity required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_job_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_lease_token": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "p_job_id",
+                  "p_lease_token"
+                ]
+              }
+            }
+          }
+        },
+        "description": "Internal worker only. Requires service_role JWT and API key; never call from the iOS app.",
+        "x-internal": true
+      }
+    },
+    "/rest/v1/rpc/finish_planning_job": {
+      "post": {
+        "operationId": "finish_planning_job",
+        "security": [
+          {
+            "clientKey": [],
+            "workerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {},
+                  "required": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Planning request failed without exposing provider credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Worker identity required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "p_job_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_lease_token": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "p_result": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/PlanningResult"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "p_error_code": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 64
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "p_job_id",
+                  "p_lease_token",
+                  "p_result",
+                  "p_error_code"
+                ]
+              }
+            }
+          }
+        },
+        "description": "Internal worker only. Requires service_role JWT and API key; never call from the iOS app.",
+        "x-internal": true
+      }
     }
   },
   "components": {
@@ -1638,6 +3111,12 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "workerToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "service_role JWT",
+        "description": "Server-only service identity; never distribute to the iOS app."
       }
     },
     "schemas": {
@@ -2931,6 +4410,799 @@
             ]
           }
         }
+      },
+      "PlanningPoint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ]
+      },
+      "PlanningPlace": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "location": {
+            "$ref": "#/components/schemas/PlanningPoint"
+          },
+          "visit_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 86400
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferred_after": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferred_before": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "location",
+          "visit_seconds"
+        ]
+      },
+      "PlanningInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "origin": {
+            "$ref": "#/components/schemas/PlanningPoint"
+          },
+          "places": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanningPlace"
+            },
+            "maxItems": 6,
+            "minItems": 1
+          },
+          "preferences": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finish_by": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time_zone": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "walking",
+              "automobile"
+            ]
+          },
+          "first_place_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "title",
+          "origin",
+          "places",
+          "preferences",
+          "starts_at",
+          "finish_by",
+          "time_zone",
+          "mode"
+        ]
+      },
+      "PlanningEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 240
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "route",
+              "weather",
+              "place"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 7000
+          },
+          "synthetic": {
+            "type": "boolean"
+          },
+          "attribution_logo_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "url",
+          "checked_at",
+          "kind",
+          "summary",
+          "synthetic"
+        ]
+      },
+      "ScheduledPlanningStop": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "location": {
+            "$ref": "#/components/schemas/PlanningPoint"
+          },
+          "arrival_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "departure_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "visit_seconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "travel_seconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 3000
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "location",
+          "arrival_at",
+          "departure_at",
+          "visit_seconds",
+          "travel_seconds",
+          "warnings"
+        ]
+      },
+      "PlanProposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanningInput"
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduledPlanningStop"
+            },
+            "maxItems": 6,
+            "minItems": 1
+          },
+          "finishes_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feasible": {
+            "type": "boolean"
+          },
+          "explanation": {
+            "type": "string",
+            "maxLength": 3000
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 3000
+            },
+            "maxItems": 100
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanningEvidence"
+            },
+            "maxItems": 100
+          },
+          "synthetic": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "input",
+          "stops",
+          "finishes_at",
+          "feasible",
+          "explanation",
+          "warnings",
+          "evidence",
+          "synthetic"
+        ]
+      },
+      "PlanningResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanProposal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanningPlace"
+            },
+            "maxItems": 4
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 3000
+            },
+            "maxItems": 100
+          },
+          "synthetic": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "proposal",
+          "candidates",
+          "warnings",
+          "synthetic"
+        ]
+      },
+      "PlanningRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "plan",
+              "suggest",
+              "replan"
+            ]
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanningInput"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "base_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_origin": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "request_id",
+          "purpose",
+          "input"
+        ]
+      },
+      "PlanningJob": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "plan",
+              "suggest",
+              "replan"
+            ]
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanningInput"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "base_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "purpose",
+          "input",
+          "trip_id",
+          "base_revision",
+          "result",
+          "error_code",
+          "created_at"
+        ]
+      },
+      "PersonalPlanningTrip": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "active",
+              "completed"
+            ]
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanningInput"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/PlanProposal"
+          },
+          "completed_stop_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 6,
+            "uniqueItems": true
+          },
+          "current_stop_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_arrived_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "synthetic": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "revision",
+          "status",
+          "input",
+          "plan",
+          "completed_stop_ids",
+          "current_stop_id",
+          "current_arrived_at",
+          "synthetic",
+          "created_at"
+        ]
+      },
+      "PlanningEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "start",
+              "arrive",
+              "complete_stop",
+              "extend_stay"
+            ]
+          },
+          "stop_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extra_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 7200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "request_id",
+          "expected_revision",
+          "kind"
+        ]
+      },
+      "PlanningAPIError": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "retryable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "code",
+              "retryable"
+            ]
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
+      "ApplyPlanningProposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "request_id",
+          "expected_revision"
+        ]
+      },
+      "PlanningWorkerJob": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "plan",
+              "suggest",
+              "replan"
+            ]
+          },
+          "input": {
+            "$ref": "#/components/schemas/PlanningInput"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "base_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lease_token": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "purpose",
+          "input",
+          "trip_id",
+          "base_revision",
+          "result",
+          "error_code",
+          "created_at",
+          "owner_id",
+          "lease_token"
+        ]
       }
     }
   }
