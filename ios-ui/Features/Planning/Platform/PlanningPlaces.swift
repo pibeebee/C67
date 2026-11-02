@@ -1,6 +1,6 @@
 import Foundation
 import Observation
-import MapKit
+@preconcurrency import MapKit
 import CoreLocation
 import C67Domain
 
