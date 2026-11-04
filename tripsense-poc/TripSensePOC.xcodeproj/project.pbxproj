@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		044C5ADB873516562D6E919A /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12F114291748F87CBBD1ED /* TripViewModel.swift */; };
+		17B76E80D9B8B8625E7860C7 /* TripSenseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 196E0C0827F89E99218E8E96 /* TripSenseCore */; };
+		6A69AABDBA97A08AAB400DD0 /* TripViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E2358102740206C183CCC2 /* TripViewModelTests.swift */; };
+		D4F9856BD50E67C757C88AB8 /* TripSenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C77DB46FEF7C3D6AE64018 /* TripSenseApp.swift */; };
+		E34F891DD1C386E8D929C075 /* TripSenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E080412F40284C70F50392B /* TripSenseView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF3BE16C2D7868F4AF0A94F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35AEC3670BE0760382541BBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5623EAAF9AFA66DF1D01CFA3;
+			remoteInfo = TripSensePOC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E080412F40284C70F50392B /* TripSenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSenseView.swift; sourceTree = "<group>"; };
+		881072A454F457CB0DB738D7 /* TripSenseKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TripSenseKit; sourceTree = SOURCE_ROOT; };
+		B05A746B994380BC44030113 /* TripSensePOCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripSensePOCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7C77DB46FEF7C3D6AE64018 /* TripSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSenseApp.swift; sourceTree = "<group>"; };
+		D0EF3F19D98341B6C34C5EF5 /* TripSensePOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripSensePOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E2358102740206C183CCC2 /* TripViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModelTests.swift; sourceTree = "<group>"; };
+		FD12F114291748F87CBBD1ED /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B756293334B43C30377486E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17B76E80D9B8B8625E7860C7 /* TripSenseCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07F8C609BC22475D62083C0C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				881072A454F457CB0DB738D7 /* TripSenseKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		35A85A7F6DAEBD3F384C56C0 = {
+			isa = PBXGroup;
+			children = (
+				AD3FAF06EBBBC943AA0409B9 /* App */,
+				EFD0770DE275CE77851EBE58 /* AppTests */,
+				07F8C609BC22475D62083C0C /* Packages */,
+				A71DFED32C65D4528DD5C9AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A71DFED32C65D4528DD5C9AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0EF3F19D98341B6C34C5EF5 /* TripSensePOC.app */,
+				B05A746B994380BC44030113 /* TripSensePOCTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD3FAF06EBBBC943AA0409B9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B7C77DB46FEF7C3D6AE64018 /* TripSenseApp.swift */,
+				2E080412F40284C70F50392B /* TripSenseView.swift */,
+				FD12F114291748F87CBBD1ED /* TripViewModel.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EFD0770DE275CE77851EBE58 /* AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D6E2358102740206C183CCC2 /* TripViewModelTests.swift */,
+			);
+			path = AppTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		284C26BB68464B831D4D52C8 /* TripSensePOCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A475F7594D48D229C32601F8 /* Build configuration list for PBXNativeTarget "TripSensePOCTests" */;
+			buildPhases = (
+				3EA0CA45E6E74633FD041C89 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40A6E16FDEC7859619061943 /* PBXTargetDependency */,
+			);
+			name = TripSensePOCTests;
+			packageProductDependencies = (
+			);
+			productName = TripSensePOCTests;
+			productReference = B05A746B994380BC44030113 /* TripSensePOCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5623EAAF9AFA66DF1D01CFA3 /* TripSensePOC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5914FBF17E4F95901A3425E5 /* Build configuration list for PBXNativeTarget "TripSensePOC" */;
+			buildPhases = (
+				C855D4128E957FC5F73A29BA /* Sources */,
+				1B756293334B43C30377486E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TripSensePOC;
+			packageProductDependencies = (
+				196E0C0827F89E99218E8E96 /* TripSenseCore */,
+			);
+			productName = TripSensePOC;
+			productReference = D0EF3F19D98341B6C34C5EF5 /* TripSensePOC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		35AEC3670BE0760382541BBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2720;
+				TargetAttributes = {
+					284C26BB68464B831D4D52C8 = {
+						ProvisioningStyle = Automatic;
+					};
+					5623EAAF9AFA66DF1D01CFA3 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7DC4BF58703FF0BC22594835 /* Build configuration list for PBXProject "TripSensePOC" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 35A85A7F6DAEBD3F384C56C0;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4809DC3FE6A0545209B519E5 /* XCLocalSwiftPackageReference "TripSenseKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A71DFED32C65D4528DD5C9AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5623EAAF9AFA66DF1D01CFA3 /* TripSensePOC */,
+				284C26BB68464B831D4D52C8 /* TripSensePOCTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EA0CA45E6E74633FD041C89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A69AABDBA97A08AAB400DD0 /* TripViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C855D4128E957FC5F73A29BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F9856BD50E67C757C88AB8 /* TripSenseApp.swift in Sources */,
+				E34F891DD1C386E8D929C075 /* TripSenseView.swift in Sources */,
+				044C5ADB873516562D6E919A /* TripViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40A6E16FDEC7859619061943 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5623EAAF9AFA66DF1D01CFA3 /* TripSensePOC */;
+			targetProxy = BF3BE16C2D7868F4AF0A94F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		564F2F134CE98E953542D8A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendra.TripSensePOCTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripSensePOC.app/TripSensePOC";
+			};
+			name = Debug;
+		};
+		58BD1AE4C7F990000D3D0FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = K39QVFTK2A;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendra.TripSensePOC;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6705FEB5FA8A083E7874CA28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "TripSense POC";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		878F6CBA60697A0969C40EF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendra.TripSensePOCTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripSensePOC.app/TripSensePOC";
+			};
+			name = Release;
+		};
+		9C400E8303563A85C3ECC5C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = K39QVFTK2A;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendra.TripSensePOC;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0E8C090F1CABA35FB981F71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "TripSense POC";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5914FBF17E4F95901A3425E5 /* Build configuration list for PBXNativeTarget "TripSensePOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C400E8303563A85C3ECC5C4 /* Debug */,
+				58BD1AE4C7F990000D3D0FDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7DC4BF58703FF0BC22594835 /* Build configuration list for PBXProject "TripSensePOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0E8C090F1CABA35FB981F71 /* Debug */,
+				6705FEB5FA8A083E7874CA28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A475F7594D48D229C32601F8 /* Build configuration list for PBXNativeTarget "TripSensePOCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				564F2F134CE98E953542D8A5 /* Debug */,
+				878F6CBA60697A0969C40EF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4809DC3FE6A0545209B519E5 /* XCLocalSwiftPackageReference "TripSenseKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TripSenseKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		196E0C0827F89E99218E8E96 /* TripSenseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TripSenseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 35AEC3670BE0760382541BBE /* Project object */;
+}

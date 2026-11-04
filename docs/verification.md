@@ -1,5 +1,13 @@
 # Starter verification
 
+## TripSense optimization and OSM — 3 November 2026
+
+The standalone POC now compares up to 720 candidate orders using a directed ETA matrix, validates up to five schedules at actual segment departure times, and has an OSM hours adapter with conservative matching. [Live evidence](../tripsense-poc/FEASIBILITY.md) shows lower travel estimates than revalidated baselines in three Mac scenarios. The six-place OSM audit could not establish coverage: the provider timed out in this environment, and a separate direct endpoint probe returned HTTP 406. Test, Simulator and formatting outcomes are recorded in [task evidence](tasks/tripsense-poc.md). Physical-device and accessibility acceptance remain separate.
+
+## TripSense standalone native experiment — 3 November 2026
+
+[TripSense feasibility](../tripsense-poc/FEASIBILITY.md) records actual on-device Mac Foundation Models → Tool → MapKit execution, real Jakarta directions/schedules, 17 deterministic package tests, a separate passing opt-in live integration test, and 2 iOS 27.2 Simulator application unit tests. The separate iOS 26+ project builds with Xcode 27.2. This does not change the C67 iOS 18 deployment target or establish phone execution, UI/accessibility acceptance, venue hours or optimal routing. The measured four-stop geographic heuristic was 1,096 seconds slower than its baseline. See [task/evidence](tasks/tripsense-poc.md).
+
 ## Personal planning repository implementation — 30 October 2026
 
 See [the current task](tasks/ai-trip-planning-implementation.md) for exact commands, cases and exclusions. The new default planning flow, API/worker/provider adapters, additive SQL and OpenAPI 0.6 are implemented locally. Backend TypeScript/style checks and 21 synthetic Node tests/subtests pass, including migration execution on disposable PostgreSQL 18.6 with simulated roles/claims. Contract/resource/legacy compatibility, configuration and local documentation checks pass.

@@ -1,0 +1,44 @@
+name: TripSensePOC
+options:
+  bundleIdPrefix: com.hendra
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  TripSenseKit:
+    path: TripSenseKit
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: TripSense POC
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+    CODE_SIGN_STYLE: Automatic
+targets:
+  TripSensePOC:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: TripSenseKit
+        product: TripSenseCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hendra.TripSensePOC
+  TripSensePOCTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [AppTests]
+    dependencies:
+      - target: TripSensePOC
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hendra.TripSensePOCTests
+schemes:
+  TripSensePOC:
+    build:
+      targets:
+        TripSensePOC: all
+    test:
+      targets: [TripSensePOCTests]

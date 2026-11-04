@@ -1,0 +1,7 @@
+Scenario B. Fixed public Jakarta scenario, live services; no fixture fallback. Start: 2026-11-04T02:00:00Z
+SCENARIO FAILED: An error occurred while invoking the tool: SearchPlacesTool(name: "searchPlaces", description: "Find real places on Apple Maps near the trip origin. Use English queries. Never treat results as open.", maps: TripSenseCore.MapServices, origin: TripSenseCore.Coordinate(latitude: -6.1754, longitude: 106.8272)) Underlying error: The operation couldn’t be completed. (MKErrorDomain error 4.)
+Model: available; English: true; Indonesian: false. Fresh session, on-device inference; MapKit uses network.
+Tool searchPlaces #1: query/location redacted; radius=2000, theme=history, max=4
+searchPlaces failed: MapKit error (details redacted)
+Generation failed: ToolCallError; details/prompt redacted
+Model generation duration: 2.61 seconds

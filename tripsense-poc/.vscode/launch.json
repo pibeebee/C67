@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:tripsense-poc}",
+            "name": "Debug TripSenseProbe",
+            "target": "TripSenseProbe",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug TripSenseProbe"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:tripsense-poc}",
+            "name": "Release TripSenseProbe",
+            "target": "TripSenseProbe",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release TripSenseProbe"
+        }
+    ]
+}

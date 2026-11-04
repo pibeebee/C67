@@ -1,0 +1,48 @@
+Scenario B. Fixed public Jakarta scenario, live services; no fixture fallback. Start: 2026-11-04T02:00:00Z
+Model selected: ["I750161F20158437E", "I19B8BBA746EBE63F", "IBAACE8DF54BBFDF9", "I4B2B9DC5D57E55A4"]
+Retrieved: I750161F20158437E | National Museum | MKPOICategoryMuseum | themes ["culture", "history"]
+Retrieved: I19B8BBA746EBE63F | Indonesia National Gallery | MKPOICategoryMuseum | themes ["culture", "history"]
+Retrieved: IBAACE8DF54BBFDF9 | Museum Taman Prasasti | MKPOICategoryMuseum | themes ["culture", "history"]
+Retrieved: I4B2B9DC5D57E55A4 | Jakarta History Museum | MKPOICategoryMuseum | themes ["culture", "history"]
+Retrieved: I5101158B5620EBD5 | Kopi Nako Monas (Abdul Muis) | MKPOICategoryCafe | themes ["food"]
+Retrieved: ID8B25DD5DAE407B0 | D'Stupid Baker | MKPOICategoryCafe | themes ["food"]
+Retrieved: IA327E8883B085CC5 | Loko Cafe | MKPOICategoryCafe | themes ["food"]
+Retrieved: IAC77FDCE8DB658AC | 21 Factory Gelato | MKPOICategoryCafe | themes ["food"]
+Native accepted: 4 stops; route meters=10955; travel seconds=9320; visit seconds=10800
+Stop National Museum: 2026-11-04T02:21:24Z – 2026-11-04T03:06:24Z; Unknown — verify before visiting; reason: Museum showcasing Central Jakarta's historical artifacts.
+Stop Museum Taman Prasasti: 2026-11-04T03:27:11Z – 2026-11-04T04:12:11Z; Unknown — verify before visiting; reason: Museum focusing on historical cultural exhibits.
+Stop Indonesia National Gallery: 2026-11-04T04:48:26Z – 2026-11-04T05:33:26Z; Unknown — verify before visiting; reason: Gallery displaying historical Indonesian art.
+Stop Jakarta History Museum: 2026-11-04T07:10:20Z – 2026-11-04T07:55:20Z; Unknown — verify before visiting; reason: Museum with historical collections in West Jakarta.
+Baseline model order actual MapKit travel seconds=8224; heuristic delta=1096s (negative is less travel). Not a global optimum.
+Model: available; English: true; Indonesian: false. Fresh session, on-device inference; MapKit uses network.
+Tool searchPlaces #1: query/location redacted; radius=8000, theme=history, max=4
+searchPlaces returned 4 real results; hours unknown. IDs: I750161F20158437E, I19B8BBA746EBE63F, IBAACE8DF54BBFDF9, I4B2B9DC5D57E55A4
+Tool searchPlaces #2: query/location redacted; radius=8000, theme=history, max=4
+searchPlaces returned 4 real results; hours unknown. IDs: I5101158B5620EBD5, ID8B25DD5DAE407B0, IA327E8883B085CC5, IAC77FDCE8DB658AC
+Tool getRoute: I5101158B5620EBD5 → I750161F20158437E, mode=walking; departure optional ISO8601 or trip start; timestamp redacted
+MKDirections I5101158B5620EBD5 → I750161F20158437E, walking: route 963m, ETA 772s, geometry 33 points
+Tool getRoute: I5101158B5620EBD5 → I19B8BBA746EBE63F, mode=walking; departure optional ISO8601 or trip start; timestamp redacted
+MKDirections I5101158B5620EBD5 → I19B8BBA746EBE63F, walking: route 2155m, ETA 1695s, geometry 64 points
+Tool getRoute: I19B8BBA746EBE63F → IBAACE8DF54BBFDF9, mode=walking; departure optional ISO8601 or trip start; timestamp redacted
+MKDirections I19B8BBA746EBE63F → IBAACE8DF54BBFDF9, walking: route 2360m, ETA 1868s, geometry 68 points
+Tool getRoute: IBAACE8DF54BBFDF9 → I4B2B9DC5D57E55A4, mode=walking; departure optional ISO8601 or trip start; timestamp redacted
+MKDirections IBAACE8DF54BBFDF9 → I4B2B9DC5D57E55A4, walking: route 4456m, ETA 3836s, geometry 60 points
+Model decisions: I5101158B5620EBD5, I750161F20158437E, I19B8BBA746EBE63F, IBAACE8DF54BBFDF9, I4B2B9DC5D57E55A4. Reasons are model interpretation, not verified facts.
+Native category-validated IDs: I750161F20158437E, I19B8BBA746EBE63F, IBAACE8DF54BBFDF9, I4B2B9DC5D57E55A4; category/name matching is heuristic, not factual verification
+Model generation duration: 18.11 seconds
+MKDirections origin → I750161F20158437E, walking: route 1293m, ETA 984s, geometry 52 points
+Native schedule: I750161F20158437E, score 75, Unknown — verify before visiting
+MKDirections I750161F20158437E → IBAACE8DF54BBFDF9, walking: route 1168m, ETA 947s, geometry 33 points
+Native schedule: IBAACE8DF54BBFDF9, score 77, Unknown — verify before visiting
+MKDirections IBAACE8DF54BBFDF9 → I19B8BBA746EBE63F, walking: route 2360m, ETA 1875s, geometry 66 points
+Native schedule: I19B8BBA746EBE63F, score 52, Unknown — verify before visiting
+MKDirections I19B8BBA746EBE63F → I4B2B9DC5D57E55A4, walking: route 6134m, ETA 5514s, geometry 122 points
+Native schedule: I4B2B9DC5D57E55A4, score -64, Unknown — verify before visiting
+Route cache hit: origin → I750161F20158437E
+Native schedule: I750161F20158437E, score 75, Unknown — verify before visiting
+MKDirections I750161F20158437E → I19B8BBA746EBE63F, walking: route 2038m, ETA 1536s, geometry 71 points
+Native schedule: I19B8BBA746EBE63F, score 61, Unknown — verify before visiting
+MKDirections I19B8BBA746EBE63F → IBAACE8DF54BBFDF9, walking: route 2360m, ETA 1868s, geometry 68 points
+Native schedule: IBAACE8DF54BBFDF9, score 51, Unknown — verify before visiting
+MKDirections IBAACE8DF54BBFDF9 → I4B2B9DC5D57E55A4, walking: route 4456m, ETA 3836s, geometry 60 points
+Native schedule: I4B2B9DC5D57E55A4, score -24, Unknown — verify before visiting

@@ -26,3 +26,7 @@ Live planning requires a configured HTTPS Planning API, the new SQL migration, b
 Existing creator/version trips, graph, planned edits, private journal/media and authentication retain their contracts. Personal planning has its own aggregate and does not bypass journal guards or invent creator IDs. Native email/password and Sign in with Apple retain their separately recorded [Auth/API](docs/tasks/ios-auth-api.md) and [Apple](docs/tasks/apple-auth.md) evidence; device lifecycle acceptance remains separate.
 
 For team work, start with [AGENTS.md](AGENTS.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md) and the [AI workflow](docs/ai/workflow.md). Synthetic integration success does not establish travel accuracy, product validation or production readiness.
+
+## Standalone native AI experiment
+
+[TripSense POC](tripsense-poc/README.md) is an isolated iOS 26+ Foundation Models/MapKit experiment with a separate Xcode project. Its [feasibility report](tripsense-poc/FEASIBILITY.md) separates actual Mac tool-call/routing evidence, synthetic tests and pending physical-iPhone acceptance. It does not replace the C67 app or change shared backend behavior.
