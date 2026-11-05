@@ -1,0 +1,454 @@
+{
+  "snapshots": {
+    "first": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0y6wf7q",
+      "seq": 77,
+      "count": 143,
+      "targets": [
+        "e113|tap|button|Riwayat dan eksperimen preferensi||preference-experiments",
+        "e65|tap|button|Kopi||prefer-interest-coffee",
+        "e68|tap|button|Membaca||prefer-interest-reading",
+        "e71|tap|button|Alam||prefer-interest-nature",
+        "e74|tap|button|Budaya||prefer-interest-culture",
+        "e77|tap|button|Kuliner||prefer-interest-food",
+        "e80|tap|button|Seni||prefer-interest-art",
+        "e83|tap|button|Belanja||prefer-interest-shopping",
+        "e86|tap|button|Fotografi||prefer-interest-photography",
+        "e89|tap|button|Ramai / hidup||prefer-interest-lively",
+        "e92|tap|button|Tenang||prefer-interest-quiet",
+        "e122|tap|tab|01 · Foundation|0|",
+        "e124|tap|tab|02 · Preferensi|1|"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e29|text|text|Tempat yang semakin sesuai dengan Anda||",
+        "e33|text|text|Pilih minat atau sukai beberapa tempat. Bandingkan pencocokan kategori dengan makna deskripsinya.||",
+        "e38|text|text|Eksperimen 02 · profil lokal + embeddings. Tidak membuat rute atau informasi jam kunjung.||",
+        "e50|text|text|Katalog||",
+        "e49|text|text|Sintetis · atribut ilustrasi||",
+        "e54|text|text|Semua tempat dan atribut pada katalog ini fiktif. Koordinat hanya ilustrasi Jakarta.||",
+        "e66|text|text|Kopi||",
+        "e69|text|text|Membaca||",
+        "e72|text|text|Alam||",
+        "e75|text|text|Budaya||",
+        "e78|text|text|Kuliner||",
+        "e81|text|text|Seni||",
+        "e84|text|text|Belanja||",
+        "e87|text|text|Fotografi||",
+        "e90|text|text|Ramai / hidup||",
+        "e93|text|text|Tenang||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "cold-click": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0uzaybm",
+      "seq": 86,
+      "count": 119,
+      "targets": [
+        "e54|tap|button|Sumber dan ketidakpastian||",
+        "e64|tap|button|Sumber dan ketidakpastian||",
+        "e75|tap|button|Sumber dan ketidakpastian||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e56|tap|button|||",
+        "e66|tap|button|||",
+        "e77|tap|button|||",
+        "e98|tap|tab|01 · Foundation|0|sparkles",
+        "e100|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e32|text|text|Katalog sintetis · 14 tempat||",
+        "e36|text|text|0.02 detik · kandidat yang sama untuk dua metode||",
+        "e41|text|text|Belum ada sinyal kesukaan. Daftar ini masih umum, belum personal.||",
+        "e51|text|text|Ruang Buku · contoh||",
+        "e52|text|text|Coffee cafe with reading tables, books and a quiet indoor room. A calm place to enjoy coffee while reading.||",
+        "e53|text|text|Bobot kategori: 0.00||",
+        "e55|text|text|Sumber dan ketidakpastian||",
+        "e61|text|text|Kopi Kebun · contoh||",
+        "e62|text|text|Coffee in an outdoor garden. Lively social tables for meeting friends and enjoying the greenery.||",
+        "e63|text|text|Bobot kategori: 0.00||",
+        "e65|text|text|Sumber dan ketidakpastian||",
+        "e72|text|text|Galeri Warna · contoh||",
+        "e73|text|text|An indoor art gallery with paintings, contemporary exhibitions and a quiet atmosphere for appreciating visual art.||",
+        "e74|text|text|Bobot kategori: 0.00||",
+        "e76|text|text|Sumber dan ketidakpastian||",
+        "e83|text|text|Belum ada kategori yang cocok; urutan pembanding ini umum.||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "liked-result": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1c30m0y",
+      "seq": 99,
+      "count": 117,
+      "targets": [
+        "e55|tap|button|Sumber dan ketidakpastian||",
+        "e66|tap|button|Sumber dan ketidakpastian||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e57|tap|button|||",
+        "e68|tap|button|||",
+        "e96|tap|tab|01 · Foundation|0|sparkles",
+        "e98|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e32|text|text|Katalog sintetis · 14 tempat||",
+        "e36|text|text|0.91 detik · kandidat yang sama untuk dua metode||",
+        "e41|text|text|Usulan untuk ditinjau. Skor kemiripan bukan persentase kecocokan atau jaminan kualitas tempat.||",
+        "e51|text|text|Kedai Halaman · contoh||",
+        "e52|text|text|A quiet outdoor coffee cafe with books and tables for reading. Relax with a book and a cup of coffee.||",
+        "e53|text|text|Bobot kategori: 3.00||",
+        "e54|text|text|Atribut yang bertemu: Kopi, Membaca, Tenang||",
+        "e56|text|text|Sumber dan ketidakpastian||",
+        "e62|text|text|Perpustakaan Sudut · contoh||",
+        "e63|text|text|A quiet indoor library with a collection of books and reading desks. Spend time reading in a calm room.||",
+        "e64|text|text|Bobot kategori: 3.00||",
+        "e65|text|text|Atribut yang bertemu: Membaca, Tenang, Indoor||",
+        "e67|text|text|Sumber dan ketidakpastian||",
+        "e74|text|text|Galeri Warna · contoh||",
+        "e75|text|text|An indoor art gallery with paintings, contemporary exhibitions and a quiet atmosphere for appreciating visual art.||",
+        "e76|text|text|Bobot kategori: 2.00||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "semantic": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0uh8bsx",
+      "seq": 102,
+      "count": 139,
+      "targets": [
+        "e31|tap|button|Sumber dan ketidakpastian||",
+        "e48|tap|button|Sumber dan ketidakpastian||",
+        "e60|tap|button|Sumber dan ketidakpastian||",
+        "e77|tap|button|Sumber dan ketidakpastian||",
+        "e88|tap|button|Sumber dan ketidakpastian||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e33|tap|button|||",
+        "e50|tap|button|||",
+        "e62|tap|button|||",
+        "e79|tap|button|||",
+        "e90|tap|button|||",
+        "e118|tap|tab|01 · Foundation|0|sparkles",
+        "e120|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e29|text|text|Bobot kategori: 3.00||",
+        "e30|text|text|Atribut yang bertemu: Kopi, Membaca, Tenang||",
+        "e32|text|text|Sumber dan ketidakpastian||",
+        "e44|text|text|Perpustakaan Sudut · contoh||",
+        "e45|text|text|A quiet indoor library with a collection of books and reading desks. Spend time reading in a calm room.||",
+        "e46|text|text|Bobot kategori: 3.00||",
+        "e47|text|text|Atribut yang bertemu: Membaca, Tenang, Indoor||",
+        "e49|text|text|Sumber dan ketidakpastian||",
+        "e56|text|text|Galeri Warna · contoh||",
+        "e57|text|text|An indoor art gallery with paintings, contemporary exhibitions and a quiet atmosphere for appreciating visual art.||",
+        "e58|text|text|Bobot kategori: 2.00||",
+        "e59|text|text|Atribut yang bertemu: Tenang, Indoor||",
+        "e61|text|text|Sumber dan ketidakpastian||",
+        "e73|text|text|Kedai Halaman · contoh||",
+        "e74|text|text|A quiet outdoor coffee cafe with books and tables for reading. Relax with a book and a cup of coffee.||",
+        "e75|text|text|Kemiripan relatif: 0.919||",
+        "e76|text|text|Atribut yang bertemu: Kopi, Membaca, Tenang||",
+        "e78|text|text|Sumber dan ketidakpastian||",
+        "e84|text|text|Perpustakaan Sudut · contoh||",
+        "e85|text|text|A quiet indoor library with a collection of books and reading desks. Spend time reading in a calm room.||",
+        "e86|text|text|Kemiripan relatif: 0.898||",
+        "e87|text|text|Atribut yang bertemu: Membaca, Tenang, Indoor||",
+        "e89|text|text|Sumber dan ketidakpastian||",
+        "e96|text|text|Kopi Kebun · contoh||",
+        "e97|text|text|Coffee in an outdoor garden. Lively social tables for meeting friends and enjoying the greenery.||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "legacy": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0pij96e",
+      "seq": 104,
+      "count": 109,
+      "targets": [
+        "e54|tap|button|Belum · pilihkan untuk saya||has-places",
+        "e65|tap|button|Lanjut · Preferensi Anda||onboarding-next",
+        "e59|tap|button|Sudah punya tempat||has-places",
+        "e72|tap|button|Eksperimen dan riwayat||recommendation-experiments",
+        "e88|tap|tab|01 · Foundation|1|sparkles",
+        "e90|tap|tab|02 · Preferensi|0|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e8|swipe|other|||",
+        "e9|swipe|other|||",
+        "e10|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||",
+        "e13|swipe|other|||",
+        "e14|swipe|other|||",
+        "e17|swipe|other|||",
+        "e18|swipe|other|||",
+        "e19|swipe|other|||",
+        "e20|swipe|other|||",
+        "e21|swipe|other|||"
+      ],
+      "text": [
+        "e30|text|text|Tempat yang cocok untuk Anda||",
+        "e34|text|text|Pilih minat Anda. Aplikasi mencari tempat dan menyarankan waktu berkunjung.||",
+        "e39|text|text|Jakarta · rekomendasi tempat dan waktu||",
+        "e66|text|text|Lanjut · Preferensi Anda||",
+        "e73|text|text|Eksperimen dan riwayat||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "final-home": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1tulxx7",
+      "seq": 105,
+      "count": 146,
+      "targets": [
+        "e116|tap|button|Riwayat dan eksperimen preferensi||preference-experiments",
+        "e65|tap|button|Kopi||prefer-interest-coffee",
+        "e68|tap|button|Membaca||prefer-interest-reading",
+        "e71|tap|button|Alam||prefer-interest-nature",
+        "e74|tap|button|Budaya||prefer-interest-culture",
+        "e77|tap|button|Kuliner||prefer-interest-food",
+        "e80|tap|button|Seni||prefer-interest-art",
+        "e83|tap|button|Belanja||prefer-interest-shopping",
+        "e86|tap|button|Fotografi||prefer-interest-photography",
+        "e89|tap|button|Ramai / hidup||prefer-interest-lively",
+        "e92|tap|button|Tenang||prefer-interest-quiet",
+        "e113|tap|button|Bandingkan preferensi||compare-preferences-toolbar",
+        "e125|tap|tab|01 · Foundation|0|",
+        "e127|tap|tab|02 · Preferensi|1|"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e29|text|text|Tempat yang semakin sesuai dengan Anda||",
+        "e33|text|text|Pilih minat atau sukai beberapa tempat. Bandingkan pencocokan kategori dengan makna deskripsinya.||",
+        "e38|text|text|Eksperimen 02 · profil lokal + embeddings. Tidak membuat rute atau informasi jam kunjung.||",
+        "e50|text|text|Katalog||",
+        "e49|text|text|Sintetis · atribut ilustrasi||",
+        "e54|text|text|Semua tempat dan atribut pada katalog ini fiktif. Koordinat hanya ilustrasi Jakarta.||",
+        "e66|text|text|Kopi||",
+        "e69|text|text|Membaca||",
+        "e72|text|text|Alam||",
+        "e75|text|text|Budaya||",
+        "e78|text|text|Kuliner||",
+        "e81|text|text|Seni||",
+        "e84|text|text|Belanja||",
+        "e87|text|text|Fotografi||",
+        "e90|text|text|Ramai / hidup||",
+        "e93|text|text|Tenang||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "history": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1uak2i7",
+      "seq": 112,
+      "count": 117,
+      "targets": [
+        "e50|tap|button|Jalankan kategori tanpa embedding||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e60|tap|button|Buka hasil ini||open-preference-result",
+        "e96|tap|tab|01 · Foundation|0|sparkles",
+        "e98|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e8|swipe|other|||",
+        "e9|swipe|other|||",
+        "e10|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||",
+        "e13|swipe|other|||",
+        "e14|swipe|other|||",
+        "e18|swipe|other|||",
+        "e19|swipe|other|||",
+        "e20|swipe|other|||",
+        "e21|swipe|other|||",
+        "e22|swipe|other|||"
+      ],
+      "text": [
+        "e36|text|text|E5 multilingual kecil + ONNX Runtime. Inferensi menggunakan model yang dibundel (sekitar 136 MB termasuk tokenizer), tanpa mengirim preferensi ke API AI.||",
+        "e40|text|text|ONNX Runtime 1.24.2 / CPU / int8||",
+        "e45|text|text|Eksperimen 01 Foundation Models tetap tersedia pada tab sebelumnya. Profil dan riwayatnya terpisah.||",
+        "e61|text|text|Buka hasil ini||",
+        "e66|text|text|7F82F409-2872-473E-B28C-F0A68B226857||",
+        "e71|text|text|semantic_completed · 2026-11-05T00:33:45Z||",
+        "e76|text|text|intfloat/multilingual-e5-small ONNX Runtime 1.24.2 / CPU / int8 614241f622f53c4eeff9890bdc4f31cfecc418b3||",
+        "e81|text|text|Illustrative Jakarta coordinates and fictional venue attributes; authored for this experiment on 2026-11-05. Not real venue observations.||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "export": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1u5cpsp",
+      "seq": 116,
+      "count": 155,
+      "targets": [
+        "e47|tap|button|Jalankan kategori tanpa embedding||",
+        "e115|tap|button|2026-11-05T00:33:45Z · Katalog sintetis · 14 tempat||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e57|tap|button|Buka hasil ini||open-preference-result",
+        "e83|tap|button|Profil dan query||",
+        "e85|tap|button|||",
+        "e91|tap|button|Siapkan ekspor||export-preference-run",
+        "e96|tap|button|Bagikan JSON||",
+        "e103|tap|button|Bagikan Markdown||",
+        "e134|tap|tab|01 · Foundation|0|sparkles",
+        "e136|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e27|text|text|E5 multilingual kecil + ONNX Runtime. Inferensi menggunakan model yang dibundel (sekitar 136 MB termasuk tokenizer), tanpa mengirim preferensi ke API AI.||",
+        "e37|text|text|ONNX Runtime 1.24.2 / CPU / int8||",
+        "e42|text|text|Eksperimen 01 Foundation Models tetap tersedia pada tab sebelumnya. Profil dan riwayatnya terpisah.||",
+        "e58|text|text|Buka hasil ini||",
+        "e63|text|text|7F82F409-2872-473E-B28C-F0A68B226857||",
+        "e68|text|text|semantic_completed · 2026-11-05T00:33:45Z||",
+        "e73|text|text|intfloat/multilingual-e5-small ONNX Runtime 1.24.2 / CPU / int8 614241f622f53c4eeff9890bdc4f31cfecc418b3||",
+        "e78|text|text|Illustrative Jakarta coordinates and fictional venue attributes; authored for this experiment on 2026-11-05. Not real venue observations.||",
+        "e84|text|text|Profil dan query||",
+        "e98|text|text|Bagikan JSON||",
+        "e105|text|text|Bagikan Markdown||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "snapshot-catalog": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1s9kdmw",
+      "seq": 123,
+      "count": 149,
+      "targets": [
+        "e21|tap|button|Riwayat dan eksperimen preferensi||preference-experiments",
+        "e18|tap|button|Bandingkan preferensi||compare-preferences-toolbar",
+        "e73|tap|button|Kopi||prefer-interest-coffee",
+        "e76|tap|button|Membaca||prefer-interest-reading",
+        "e79|tap|button|Alam||prefer-interest-nature",
+        "e82|tap|button|Budaya||prefer-interest-culture",
+        "e85|tap|button|Kuliner||prefer-interest-food",
+        "e88|tap|button|Seni||prefer-interest-art",
+        "e91|tap|button|Belanja||prefer-interest-shopping",
+        "e94|tap|button|Fotografi||prefer-interest-photography",
+        "e97|tap|button|Ramai / hidup||prefer-interest-lively",
+        "e100|tap|button|Tenang||prefer-interest-quiet",
+        "e125|tap|tab|01 · Foundation|0|sparkles",
+        "e127|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e37|text|text|Tempat yang semakin sesuai dengan Anda||",
+        "e41|text|text|Pilih minat atau sukai beberapa tempat. Bandingkan pencocokan kategori dengan makna deskripsinya.||",
+        "e46|text|text|Eksperimen 02 · profil lokal + embeddings. Tidak membuat rute atau informasi jam kunjung.||",
+        "e58|text|text|Katalog||",
+        "e57|text|text|MapKit · snapshot 5 Nov||",
+        "e62|text|text|Data nyata yang tersimpan dari pengujian 5 November. Tidak melakukan pencarian baru; fasilitas dan jam buka belum diketahui.||",
+        "e74|text|text|Kopi||",
+        "e77|text|text|Membaca||",
+        "e80|text|text|Alam||",
+        "e83|text|text|Budaya||",
+        "e86|text|text|Kuliner||",
+        "e89|text|text|Seni||",
+        "e92|text|text|Belanja||",
+        "e95|text|text|Fotografi||",
+        "e98|text|text|Ramai / hidup||",
+        "e101|text|text|Tenang||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "real-result": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "07hi2jl",
+      "seq": 128,
+      "count": 118,
+      "targets": [
+        "e55|tap|button|Sumber dan ketidakpastian||",
+        "e65|tap|button|Sumber dan ketidakpastian||",
+        "e16|tap|button|Preferensi lokal||BackButton",
+        "e57|tap|button|||",
+        "e67|tap|button|||",
+        "e94|tap|tab|01 · Foundation|0|sparkles",
+        "e96|tap|tab|02 · Preferensi|1|heart.text.clipboard"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e32|text|text|Snapshot MapKit · 5 Nov 2026||",
+        "e36|text|text|0.07 detik · kandidat yang sama untuk dua metode||",
+        "e41|text|text|Usulan untuk ditinjau. Skor kemiripan bukan persentase kecocokan atau jaminan kualitas tempat.||",
+        "e51|text|text|Coffeeshop Jakarta International Expo||",
+        "e52|text|text|Coffeeshop Jakarta International Expo. MapKit category: MKPOICategoryCafe. No further venue attributes were supplied.||",
+        "e53|text|text|Bobot kategori: 2.00||",
+        "e54|text|text|Atribut yang bertemu: Kopi||",
+        "e56|text|text|Sumber dan ketidakpastian||",
+        "e62|text|text|Pasar Pulo Jahe||",
+        "e63|text|text|Pasar Pulo Jahe. MapKit category: MKPOICategoryStore. No further venue attributes were supplied.||",
+        "e64|text|text|Bobot kategori: 0.00||",
+        "e66|text|text|Sumber dan ketidakpastian||",
+        "e73|text|text|Toko Buku Al-Ikhlas||",
+        "e74|text|text|Toko Buku Al-Ikhlas. MapKit category: MKPOICategoryStore. No further venue attributes were supplied.||",
+        "e75|text|text|Bobot kategori: 0.00||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    }
+  },
+  "shots": {
+    "home": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_2305f7d6-2d19-4f1c-9db0-ddcbba635999.jpg",
+    "comparison": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_9cc7fea4-15ff-41d1-8bfd-9fde90e6ccb2.jpg",
+    "legacy": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_94a295a6-0a07-4959-ad02-4ec4cd2ada28.jpg"
+  },
+  "build": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 11381,
+      "target": "simulator"
+    },
+    "artifacts": {
+      "appPath": "/tmp/c67-preference-ios/Build/Products/Debug-iphonesimulator/C67FoundationLab.app",
+      "bundleId": "giovanchristoffel.c67-foundation-lab",
+      "processId": 80616,
+      "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE",
+      "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-05T00-32-24-275Z_pid72339_268591e0.log",
+      "runtimeLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.c67-foundation-lab_2026-11-05T00-32-32-910Z_helperpid80570_ownerpid72339_16f6192b.log",
+      "osLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.c67-foundation-lab_oslog_2026-11-05T00-32-35-637Z_helperpid80726_ownerpid72339_a6d0450b.log"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,25 @@
+PASS pairing code round trips 256-bit key
+PASS invalid pairing code rejected
+PASS short key rejected
+PASS fresh accurate sample accepted
+PASS stale sample rejected
+PASS future sample outside clock tolerance rejected
+PASS invalid coordinate rejected
+PASS low precision sample rejected
+PASS nonfinite coordinate and invalid accuracy rejected
+PASS partial TCP header retained
+PASS partial TCP payload retained
+PASS encrypted location round trip
+PASS coalesced TCP frames parsed independently
+PASS wrong secret rejected by authentication tag
+PASS tampered ciphertext rejected
+PASS oversized frame rejected before payload allocation
+PASS actual TCP pairing with wrong key is rejected
+PASS wrong key cannot authenticate either peer
+PASS real Bonjour TCP peers authenticate on local host
+PASS encrypted GPS packet delivered over actual TCP
+PASS receiver obtains target coordinate once
+PASS disconnect invalidates authenticated peer state
+PASS navigator reconnects after listener returns with a new connection epoch
+PASS stop closes both transport sessions
+24 live data/channel checks passed; same Mac, not two physical iPhones.

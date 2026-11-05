@@ -1,0 +1,2059 @@
+{
+  "catalog" : {
+    "candidates" : [
+      {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "bdt-faq"
+            ],
+            "statement" : "On-site reading is described for this room.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Wi-Fi is listed for the facility rooms.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+            "value" : "no"
+          }
+        ],
+        "id" : "bdt-rbbj",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Ruang Temu RBBJ",
+        "sourceIDs" : [
+          "bdt-faq",
+          "bdt-home",
+          "bdt-terms",
+          "benefit-bdt-home",
+          "benefit-bdt-faq"
+        ],
+        "venueID" : "bdt"
+      },
+      {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Dedicated reading room.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "quietPolicy",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+            "value" : "no"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Wi-Fi is listed for the facility rooms.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Interior reading room.",
+            "value" : "no"
+          }
+        ],
+        "id" : "bdt-silent",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Ruang Baca Hening",
+        "sourceIDs" : [
+          "bdt-home",
+          "bdt-terms",
+          "benefit-bdt-faq"
+        ],
+        "venueID" : "bdt"
+      },
+      {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Coffee is listed for the cafe.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bdt-cafe",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Kafe Makan Di Tebet",
+        "sourceIDs" : [
+          "bdt-home",
+          "benefit-bdt-home"
+        ],
+        "venueID" : "bdt"
+      },
+      {
+        "address" : "COMO Park, Kemang Timur Raya 998",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Coffee service is described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Wi-Fi is listed.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Indoor is listed.",
+            "value" : "no"
+          },
+          {
+            "feature" : "smokingArea",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "newsroom",
+        "mapQuery" : "The Newsroom COMO Park Jakarta",
+        "matchWords" : [
+          "newsroom"
+        ],
+        "name" : "The Newsroom",
+        "scope" : "Published cafe \/ community space",
+        "sourceIDs" : [
+          "newsroom",
+          "benefit-newsroom"
+        ],
+        "venueID" : "newsroom"
+      },
+      {
+        "address" : "Cikini Raya 25",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bakoel"
+            ],
+            "statement" : "Coffee consumption at the Cikini cafe is described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bakoel-cikini",
+        "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+        "matchWords" : [
+          "bakoel",
+          "cikini"
+        ],
+        "name" : "Bakoel Koffie Cikini",
+        "scope" : "Cikini cafe only",
+        "sourceIDs" : [
+          "bakoel",
+          "benefit-bakoel"
+        ],
+        "venueID" : "bakoel"
+      },
+      {
+        "address" : "Kemang, Jakarta Selatan",
+        "claims" : [
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "dialogue"
+            ],
+            "statement" : "Public art and design exhibitions are described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "dialogue"
+            ],
+            "statement" : "Art, design and cultural programs are described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "dialogue",
+        "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+        "matchWords" : [
+          "gue"
+        ],
+        "name" : "Dia.Lo.Gue",
+        "scope" : "Art space",
+        "sourceIDs" : [
+          "dialogue",
+          "benefit-dialogue"
+        ],
+        "venueID" : "dialogue"
+      },
+      {
+        "address" : "AKR Tower, Kebon Jeruk",
+        "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "claims" : [
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Museum gallery area.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Food and drinks are prohibited in the gallery.",
+            "value" : "no"
+          }
+        ],
+        "id" : "macan-gallery",
+        "mapQuery" : "Museum MACAN Jakarta",
+        "matchWords" : [
+          "macan"
+        ],
+        "name" : "Museum MACAN",
+        "scope" : "Gallery",
+        "sourceIDs" : [
+          "macan"
+        ],
+        "venueID" : "macan"
+      },
+      {
+        "address" : "AKR Tower, Kebon Jeruk",
+        "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "macan-cafe",
+        "mapQuery" : "Museum MACAN Jakarta",
+        "matchWords" : [
+          "macan"
+        ],
+        "name" : "Museum MACAN",
+        "scope" : "Common Grounds cafe listed within facility",
+        "sourceIDs" : [
+          "macan"
+        ],
+        "venueID" : "macan"
+      },
+      {
+        "address" : "Pintu 7 Senayan, Jakarta Pusat",
+        "claims" : [
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "gbk"
+            ],
+            "statement" : "Public urban park.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "nature",
+            "sourceIDs" : [
+              "gbk"
+            ],
+            "statement" : "Urban forest\/park listing.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "gbk",
+        "mapQuery" : "Hutan Kota GBK Jakarta",
+        "matchWords" : [
+          "hutan",
+          "kota"
+        ],
+        "name" : "Hutan Kota GBK",
+        "scope" : "Public park",
+        "sourceIDs" : [
+          "gbk",
+          "benefit-gbk"
+        ],
+        "venueID" : "gbk"
+      },
+      {
+        "address" : "Harsono RM 1, Ragunan",
+        "claims" : [
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "ragunan"
+            ],
+            "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "nature",
+            "sourceIDs" : [
+              "ragunan"
+            ],
+            "statement" : "Trees, wildlife and park grounds are described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "ragunan",
+        "mapQuery" : "Ragunan Zoo Jakarta",
+        "matchWords" : [
+          "ragunan"
+        ],
+        "name" : "Taman Margasatwa Ragunan",
+        "scope" : "Park grounds",
+        "sourceIDs" : [
+          "ragunan",
+          "benefit-ragunan"
+        ],
+        "venueID" : "ragunan"
+      },
+      {
+        "address" : "Upper Marketplace L2, ASHTA",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "ashta"
+            ],
+            "statement" : "Reading in the program area was described for its published period.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "quietPolicy",
+            "sourceIDs" : [
+              "ashta"
+            ],
+            "statement" : "The program requested low voices, not measured crowd levels.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "ashta-reading",
+        "mapQuery" : "ASHTA District 8 Jakarta",
+        "matchWords" : [
+          "ashta"
+        ],
+        "name" : "ASHTA Bookhive",
+        "scope" : "2025 reading-space program",
+        "sourceIDs" : [
+          "ashta"
+        ],
+        "validThrough" : "2025-12-31",
+        "venueID" : "ashta"
+      },
+      {
+        "address" : "Kuningan, Jakarta",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "The library welcomes on-site readers.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "Literature and cultural learning are described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "The named library interior, not external grounds.",
+            "value" : "no"
+          }
+        ],
+        "id" : "erasmus",
+        "mapQuery" : "Erasmus Huis Jakarta",
+        "matchWords" : [
+          "erasmus"
+        ],
+        "name" : "Erasmus Huis Library",
+        "scope" : "Library",
+        "sourceIDs" : [
+          "erasmus",
+          "benefit-erasmus"
+        ],
+        "venueID" : "erasmus"
+      },
+      {
+        "address" : "Jl. Pasar Ikan No. 1, Jakarta Utara",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bahari",
+        "mapQuery" : "Museum Bahari Jakarta",
+        "matchWords" : [
+          "museum",
+          "bahari"
+        ],
+        "name" : "Museum Bahari",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "bahari"
+      },
+      {
+        "address" : "Jl. Taman Fatahillah No. 1, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "sejarah",
+        "mapQuery" : "Museum Sejarah Jakarta Jakarta",
+        "matchWords" : [
+          "museum",
+          "sejarah",
+          "jakarta"
+        ],
+        "name" : "Museum Sejarah Jakarta",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "sejarah"
+      },
+      {
+        "address" : "Jl. K.S. Tubun No. 2-4, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "tekstil",
+        "mapQuery" : "Museum Tekstil Jakarta",
+        "matchWords" : [
+          "museum",
+          "tekstil"
+        ],
+        "name" : "Museum Tekstil",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "tekstil"
+      },
+      {
+        "address" : "Jl. Pintu Besar Utara No. 27, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Published collection includes visual arts or puppet arts.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "wayang",
+        "mapQuery" : "Museum Wayang Jakarta",
+        "matchWords" : [
+          "museum",
+          "wayang"
+        ],
+        "name" : "Museum Wayang",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "wayang"
+      },
+      {
+        "address" : "Jl. Pos Kota No. 2, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Published collection includes visual arts or puppet arts.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "seni-rupa",
+        "mapQuery" : "Museum Seni Rupa dan Keramik Jakarta",
+        "matchWords" : [
+          "museum",
+          "seni",
+          "rupa",
+          "dan",
+          "keramik"
+        ],
+        "name" : "Museum Seni Rupa dan Keramik",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "seni-rupa"
+      },
+      {
+        "address" : "Jl. Menteng Raya No. 31, Jakarta Pusat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "joang",
+        "mapQuery" : "Museum Joang 45 Jakarta",
+        "matchWords" : [
+          "museum",
+          "joang",
+          "45"
+        ],
+        "name" : "Museum Joang 45",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "joang"
+      },
+      {
+        "address" : "Jl. Pintu Besar Utara No. 3, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-bi-museum"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bi",
+        "mapQuery" : "Museum Bank Indonesia Jakarta",
+        "matchWords" : [
+          "museum",
+          "bank",
+          "indonesia"
+        ],
+        "name" : "Museum Bank Indonesia",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-bi-museum"
+        ],
+        "venueID" : "bi"
+      }
+    ],
+    "id" : "benefit-jakarta-sourced-v1",
+    "schemaVersion" : 1,
+    "sources" : [
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "bdt-home",
+        "relation" : "venue_operator",
+        "sha256" : "b22a44ddba4706bf3b4fe7dc9cf80f6deeb56a8bfc9184459bf6d8ba09cf0576",
+        "title" : "Baca Di Tebet — fasilitas",
+        "url" : "https:\/\/bacaditebet.id\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "bdt-faq",
+        "relation" : "venue_operator",
+        "sha256" : "09953ad15179558e64390b4ec8f4c401b580ef2011c6aa518619c28e7e008eb9",
+        "title" : "Baca Di Tebet — FAQ",
+        "url" : "https:\/\/bacaditebet.id\/faq\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "bdt-terms",
+        "relation" : "venue_operator",
+        "sha256" : "fbad078565c25d48ad76a77a73286bcb98938b443fe76633e64328f029f058ed",
+        "title" : "Baca Di Tebet — tata tertib",
+        "url" : "https:\/\/bacaditebet.id\/terms\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:54Z",
+        "id" : "newsroom",
+        "publishedDate" : "2023-06-29",
+        "relation" : "venue_operator",
+        "sha256" : "dcc8ad2ed6fbf5214d7770289d5ae533c607e01895c28a209c3e37a97b4578de",
+        "title" : "MANUAL — The Newsroom (operator publication)",
+        "url" : "https:\/\/manual.co.id\/directory\/the-newsroom\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "bakoel",
+        "relation" : "venue_operator",
+        "sha256" : "609406c6b17c334830a171f737c28015ebd878f6dc594a37eee1c3ac48be2c92",
+        "title" : "Bakoel Koffie — Cikini",
+        "url" : "https:\/\/www.bakoelkoffie.com\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "dialogue",
+        "relation" : "venue_operator",
+        "sha256" : "8f9425d22e523521bff272fcf2426c8db32b154835661d59cf3291f9dc7f85d6",
+        "title" : "Dia.Lo.Gue — about",
+        "url" : "https:\/\/dialogue-artspace.com\/profile\/about\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "ashta",
+        "relation" : "venue_operator",
+        "sha256" : "918af4bfda6e4992c8ab3268ffd74298980c4bdc8b0dc828873c8a2466357332",
+        "title" : "ASHTA — program reading space",
+        "url" : "https:\/\/ashta.co.id\/program\/free-reading-space\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "macan",
+        "relation" : "venue_operator",
+        "sha256" : "bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+        "title" : "Museum MACAN — visit",
+        "url" : "https:\/\/www.museummacan.org\/visit"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:56Z",
+        "id" : "ragunan",
+        "relation" : "venue_operator",
+        "sha256" : "25988dc7a3350878e75c67899143509a82f2fec26e93f0468f1cb2f17c5c82b0",
+        "title" : "Ragunan — official",
+        "url" : "https:\/\/ragunanzoo.jakarta.go.id\/language\/en\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:10:55Z",
+        "id" : "gbk",
+        "relation" : "local_government",
+        "sha256" : "31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+        "title" : "Jakarta Pusat — Hutan Kota GBK",
+        "url" : "https:\/\/pusat.jakarta.go.id\/kelurahan\/kelurahan-gelora\/fasilitas\/fasilitas-taman-hutan-kota\/taman-hutan-kota"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:14:25Z",
+        "id" : "erasmus",
+        "relation" : "venue_operator",
+        "sha256" : "f622968f1427d5d3589b8da426e1db09b938c1f7e57ee0f7c4410526a6a74a91",
+        "title" : "Erasmus Huis — library",
+        "url" : "https:\/\/www.netherlandsandyou.nl\/web\/indonesia\/erasmushuis\/library"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:44Z",
+        "id" : "benefit-erasmus",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "c4248763d7fd3efed8374c0a1864e3d921a2ffa5ebfe4c56de5c69f3d93ce65c",
+        "title" : "Embedding benefit source: erasmus",
+        "url" : "https:\/\/www.netherlandsandyou.nl\/web\/indonesia\/erasmushuis\/library"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-bdt-faq",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "09953ad15179558e64390b4ec8f4c401b580ef2011c6aa518619c28e7e008eb9",
+        "title" : "Embedding benefit source: bdt-faq",
+        "url" : "https:\/\/bacaditebet.id\/faq\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-bdt-home",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "b22a44ddba4706bf3b4fe7dc9cf80f6deeb56a8bfc9184459bf6d8ba09cf0576",
+        "title" : "Embedding benefit source: bdt-home",
+        "url" : "https:\/\/bacaditebet.id\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-newsroom",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "dcc8ad2ed6fbf5214d7770289d5ae533c607e01895c28a209c3e37a97b4578de",
+        "title" : "Embedding benefit source: newsroom",
+        "url" : "https:\/\/manual.co.id\/directory\/the-newsroom\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-bakoel",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "609406c6b17c334830a171f737c28015ebd878f6dc594a37eee1c3ac48be2c92",
+        "title" : "Embedding benefit source: bakoel",
+        "url" : "https:\/\/www.bakoelkoffie.com\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-dialogue",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "8f9425d22e523521bff272fcf2426c8db32b154835661d59cf3291f9dc7f85d6",
+        "title" : "Embedding benefit source: dialogue",
+        "url" : "https:\/\/dialogue-artspace.com\/profile\/about\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:44Z",
+        "id" : "benefit-ragunan",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "b6897054c7f055f8c9ec94b6cc6934995cafa32854b12f551e3eace87fac0acf",
+        "title" : "Embedding benefit source: ragunan",
+        "url" : "https:\/\/ragunanzoo.jakarta.go.id\/language\/en\/"
+      },
+      {
+        "checkedAt" : "2026-11-05T06:59:42Z",
+        "id" : "benefit-gbk",
+        "relation" : "operator\/government; retrieved_HTML",
+        "sha256" : "31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+        "title" : "Embedding benefit source: gbk",
+        "url" : "https:\/\/pusat.jakarta.go.id\/kelurahan\/kelurahan-gelora\/fasilitas\/fasilitas-taman-hutan-kota\/taman-hutan-kota"
+      },
+      {
+        "checkedAt" : "2026-11-05T07:09:37Z",
+        "id" : "benefit-jakarta-museums",
+        "relation" : "operator\/government; curation_note_not_source_HTML",
+        "sha256" : "41fa32cfb969a74a47493321f216fadd6d42d51ed94e5f6e8181834aefdd4edd",
+        "title" : "Embedding benefit source: jakarta-museums",
+        "url" : "https:\/\/www.jakarta.go.id\/museum"
+      },
+      {
+        "checkedAt" : "2026-11-05T07:09:37Z",
+        "id" : "benefit-bi-museum",
+        "relation" : "operator\/government; curation_note_not_source_HTML",
+        "sha256" : "4f927fcb8d62a107aa56860eeaf5ca391d3ccb4308c491f7fcc837fd7436135a",
+        "title" : "Embedding benefit source: bi-museum",
+        "url" : "https:\/\/www.bi.go.id\/en\/layanan\/museum-bi\/default.aspx"
+      }
+    ]
+  },
+  "createdAt" : "2026-11-05T07:10:35Z",
+  "datasetID" : "embedding-benefit-jakarta-2026-11-05-v1",
+  "decisions" : [
+    {
+      "candidate" : {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "bdt-faq"
+            ],
+            "statement" : "On-site reading is described for this room.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Wi-Fi is listed for the facility rooms.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+            "value" : "no"
+          }
+        ],
+        "id" : "bdt-rbbj",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Ruang Temu RBBJ",
+        "sourceIDs" : [
+          "bdt-faq",
+          "bdt-home",
+          "bdt-terms",
+          "benefit-bdt-home",
+          "benefit-bdt-faq"
+        ],
+        "venueID" : "bdt"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Dedicated reading room.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "quietPolicy",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-terms"
+            ],
+            "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+            "value" : "no"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Wi-Fi is listed for the facility rooms.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Interior reading room.",
+            "value" : "no"
+          }
+        ],
+        "id" : "bdt-silent",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Ruang Baca Hening",
+        "sourceIDs" : [
+          "bdt-home",
+          "bdt-terms",
+          "benefit-bdt-faq"
+        ],
+        "venueID" : "bdt"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Tebet Barat Dalam Raya 29",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bdt-home"
+            ],
+            "statement" : "Coffee is listed for the cafe.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bdt-cafe",
+        "mapQuery" : "Baca Di Tebet Jakarta",
+        "matchWords" : [
+          "baca",
+          "tebet"
+        ],
+        "name" : "Baca Di Tebet",
+        "scope" : "Kafe Makan Di Tebet",
+        "sourceIDs" : [
+          "bdt-home",
+          "benefit-bdt-home"
+        ],
+        "venueID" : "bdt"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "COMO Park, Kemang Timur Raya 998",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Coffee service is described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "wifi",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Wi-Fi is listed.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "Indoor is listed.",
+            "value" : "no"
+          },
+          {
+            "feature" : "smokingArea",
+            "sourceIDs" : [
+              "newsroom"
+            ],
+            "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "newsroom",
+        "mapQuery" : "The Newsroom COMO Park Jakarta",
+        "matchWords" : [
+          "newsroom"
+        ],
+        "name" : "The Newsroom",
+        "scope" : "Published cafe \/ community space",
+        "sourceIDs" : [
+          "newsroom",
+          "benefit-newsroom"
+        ],
+        "venueID" : "newsroom"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Cikini Raya 25",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "bakoel"
+            ],
+            "statement" : "Coffee consumption at the Cikini cafe is described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bakoel-cikini",
+        "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+        "matchWords" : [
+          "bakoel",
+          "cikini"
+        ],
+        "name" : "Bakoel Koffie Cikini",
+        "scope" : "Cikini cafe only",
+        "sourceIDs" : [
+          "bakoel",
+          "benefit-bakoel"
+        ],
+        "venueID" : "bakoel"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Kemang, Jakarta Selatan",
+        "claims" : [
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "dialogue"
+            ],
+            "statement" : "Public art and design exhibitions are described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "dialogue"
+            ],
+            "statement" : "Art, design and cultural programs are described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "dialogue",
+        "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+        "matchWords" : [
+          "gue"
+        ],
+        "name" : "Dia.Lo.Gue",
+        "scope" : "Art space",
+        "sourceIDs" : [
+          "dialogue",
+          "benefit-dialogue"
+        ],
+        "venueID" : "dialogue"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "AKR Tower, Kebon Jeruk",
+        "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "claims" : [
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Museum gallery area.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Food and drinks are prohibited in the gallery.",
+            "value" : "no"
+          }
+        ],
+        "id" : "macan-gallery",
+        "mapQuery" : "Museum MACAN Jakarta",
+        "matchWords" : [
+          "macan"
+        ],
+        "name" : "Museum MACAN",
+        "scope" : "Gallery",
+        "sourceIDs" : [
+          "macan"
+        ],
+        "venueID" : "macan"
+      },
+      "reasons" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+      ],
+      "state" : "blocked",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "AKR Tower, Kebon Jeruk",
+        "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "claims" : [
+          {
+            "feature" : "coffee",
+            "sourceIDs" : [
+              "macan"
+            ],
+            "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "macan-cafe",
+        "mapQuery" : "Museum MACAN Jakarta",
+        "matchWords" : [
+          "macan"
+        ],
+        "name" : "Museum MACAN",
+        "scope" : "Common Grounds cafe listed within facility",
+        "sourceIDs" : [
+          "macan"
+        ],
+        "venueID" : "macan"
+      },
+      "reasons" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+      ],
+      "state" : "blocked",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Pintu 7 Senayan, Jakarta Pusat",
+        "claims" : [
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "gbk"
+            ],
+            "statement" : "Public urban park.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "nature",
+            "sourceIDs" : [
+              "gbk"
+            ],
+            "statement" : "Urban forest\/park listing.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "gbk",
+        "mapQuery" : "Hutan Kota GBK Jakarta",
+        "matchWords" : [
+          "hutan",
+          "kota"
+        ],
+        "name" : "Hutan Kota GBK",
+        "scope" : "Public park",
+        "sourceIDs" : [
+          "gbk",
+          "benefit-gbk"
+        ],
+        "venueID" : "gbk"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Harsono RM 1, Ragunan",
+        "claims" : [
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "ragunan"
+            ],
+            "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "nature",
+            "sourceIDs" : [
+              "ragunan"
+            ],
+            "statement" : "Trees, wildlife and park grounds are described.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "ragunan",
+        "mapQuery" : "Ragunan Zoo Jakarta",
+        "matchWords" : [
+          "ragunan"
+        ],
+        "name" : "Taman Margasatwa Ragunan",
+        "scope" : "Park grounds",
+        "sourceIDs" : [
+          "ragunan",
+          "benefit-ragunan"
+        ],
+        "venueID" : "ragunan"
+      },
+      "reasons" : [
+
+      ],
+      "state" : "needs_check",
+      "unknown" : [
+        "culture"
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Upper Marketplace L2, ASHTA",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "ashta"
+            ],
+            "statement" : "Reading in the program area was described for its published period.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "quietPolicy",
+            "sourceIDs" : [
+              "ashta"
+            ],
+            "statement" : "The program requested low voices, not measured crowd levels.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "ashta-reading",
+        "mapQuery" : "ASHTA District 8 Jakarta",
+        "matchWords" : [
+          "ashta"
+        ],
+        "name" : "ASHTA Bookhive",
+        "scope" : "2025 reading-space program",
+        "sourceIDs" : [
+          "ashta"
+        ],
+        "validThrough" : "2025-12-31",
+        "venueID" : "ashta"
+      },
+      "reasons" : [
+        "Sumber program berakhir 2025-12-31; keberlanjutan belum diverifikasi."
+      ],
+      "state" : "blocked",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Kuningan, Jakarta",
+        "claims" : [
+          {
+            "feature" : "reading",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "The library welcomes on-site readers.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "Literature and cultural learning are described.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "outdoor",
+            "sourceIDs" : [
+              "erasmus"
+            ],
+            "statement" : "The named library interior, not external grounds.",
+            "value" : "no"
+          }
+        ],
+        "id" : "erasmus",
+        "mapQuery" : "Erasmus Huis Jakarta",
+        "matchWords" : [
+          "erasmus"
+        ],
+        "name" : "Erasmus Huis Library",
+        "scope" : "Library",
+        "sourceIDs" : [
+          "erasmus",
+          "benefit-erasmus"
+        ],
+        "venueID" : "erasmus"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Pasar Ikan No. 1, Jakarta Utara",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bahari",
+        "mapQuery" : "Museum Bahari Jakarta",
+        "matchWords" : [
+          "museum",
+          "bahari"
+        ],
+        "name" : "Museum Bahari",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "bahari"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Taman Fatahillah No. 1, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "sejarah",
+        "mapQuery" : "Museum Sejarah Jakarta Jakarta",
+        "matchWords" : [
+          "museum",
+          "sejarah",
+          "jakarta"
+        ],
+        "name" : "Museum Sejarah Jakarta",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "sejarah"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. K.S. Tubun No. 2-4, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "tekstil",
+        "mapQuery" : "Museum Tekstil Jakarta",
+        "matchWords" : [
+          "museum",
+          "tekstil"
+        ],
+        "name" : "Museum Tekstil",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "tekstil"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Pintu Besar Utara No. 27, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Published collection includes visual arts or puppet arts.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "wayang",
+        "mapQuery" : "Museum Wayang Jakarta",
+        "matchWords" : [
+          "museum",
+          "wayang"
+        ],
+        "name" : "Museum Wayang",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "wayang"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Pos Kota No. 2, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          },
+          {
+            "feature" : "art",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Published collection includes visual arts or puppet arts.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "seni-rupa",
+        "mapQuery" : "Museum Seni Rupa dan Keramik Jakarta",
+        "matchWords" : [
+          "museum",
+          "seni",
+          "rupa",
+          "dan",
+          "keramik"
+        ],
+        "name" : "Museum Seni Rupa dan Keramik",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "seni-rupa"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Menteng Raya No. 31, Jakarta Pusat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-jakarta-museums"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "joang",
+        "mapQuery" : "Museum Joang 45 Jakarta",
+        "matchWords" : [
+          "museum",
+          "joang",
+          "45"
+        ],
+        "name" : "Museum Joang 45",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ],
+        "venueID" : "joang"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    },
+    {
+      "candidate" : {
+        "address" : "Jl. Pintu Besar Utara No. 3, Jakarta Barat",
+        "claims" : [
+          {
+            "feature" : "culture",
+            "sourceIDs" : [
+              "benefit-bi-museum"
+            ],
+            "statement" : "Government\/operator describes a cultural museum collection.",
+            "value" : "yes"
+          }
+        ],
+        "id" : "bi",
+        "mapQuery" : "Museum Bank Indonesia Jakarta",
+        "matchWords" : [
+          "museum",
+          "bank",
+          "indonesia"
+        ],
+        "name" : "Museum Bank Indonesia",
+        "scope" : "Published collection; current admission not checked",
+        "sourceIDs" : [
+          "benefit-bi-museum"
+        ],
+        "venueID" : "bi"
+      },
+      "reasons" : [
+        "Wajib didukung: Budaya."
+      ],
+      "state" : "eligible",
+      "unknown" : [
+
+      ]
+    }
+  ],
+  "documentEncodes" : 9,
+  "documents" : [
+    {
+      "id" : "bdt-rbbj",
+      "sourceIDs" : [
+        "benefit-bdt-home"
+      ],
+      "text" : "A social reading room permits food and beverages. Visitors can read books here and converse; piano and literary events are described for this shared room."
+    },
+    {
+      "id" : "bdt-silent",
+      "sourceIDs" : [
+        "benefit-bdt-faq"
+      ],
+      "text" : "A dedicated silent reading and study room. Food, drinks and telephone or online conversations are prohibited by its published room rules."
+    },
+    {
+      "id" : "bdt-cafe",
+      "sourceIDs" : [
+        "benefit-bdt-home"
+      ],
+      "text" : "A social cafe area for conversation and coffee. Permission for sustained on-site reading in this cafe scope has not been established by the supplied evidence."
+    },
+    {
+      "id" : "newsroom",
+      "sourceIDs" : [
+        "benefit-newsroom"
+      ],
+      "text" : "A media and creative community space with specialty coffee, selected independent publications, design titles and a mini library. Its operator describes inspiration, exchanging ideas and connecting creative industries. Wi-Fi and a smoking area are listed."
+    },
+    {
+      "id" : "bakoel-cikini",
+      "sourceIDs" : [
+        "benefit-bakoel"
+      ],
+      "text" : "Coffee served in an old colonial shophouse in the Menteng district. The operator describes a meeting place for people from different backgrounds near an arts center."
+    },
+    {
+      "id" : "dialogue",
+      "sourceIDs" : [
+        "benefit-dialogue"
+      ],
+      "text" : "A collective public art space connecting artists, designers and local communities. Its program promotes experimentation, emerging creators and design through changing exhibits and community collaboration."
+    },
+    {
+      "id" : "erasmus",
+      "sourceIDs" : [
+        "benefit-erasmus"
+      ],
+      "text" : "An indoor library with Dutch literature, translations into English and Indonesian, and publications on Indonesian history and Dutch-Indonesian cultural relations. Visitors may read on site; membership is required to borrow titles."
+    },
+    {
+      "id" : "ragunan",
+      "sourceIDs" : [
+        "benefit-ragunan"
+      ],
+      "text" : "A zoological park whose official site presents animals, conservation, education and recreation. Outdoor park grounds are documented; access to individual enclosures and current animal visibility are not guaranteed."
+    },
+    {
+      "id" : "gbk",
+      "sourceIDs" : [
+        "benefit-gbk"
+      ],
+      "text" : "A public urban green park in central Jakarta. Outdoor lawns and trees provide a setting for enjoying green space; current crowding, shade at a particular seat and food permissions are unknown."
+    },
+    {
+      "id" : "ashta-reading",
+      "sourceIDs" : [
+        "ashta"
+      ],
+      "text" : "An archival reading-space program with a published end date in 2025; continuation is unverified."
+    },
+    {
+      "id" : "macan-gallery",
+      "sourceIDs" : [
+        "macan"
+      ],
+      "text" : "A gallery presenting modern and contemporary visual art; the preserved closure notice blocks this area."
+    },
+    {
+      "id" : "macan-cafe",
+      "sourceIDs" : [
+        "macan"
+      ],
+      "text" : "A listed museum cafe; the preserved closure notice blocks access pending verification."
+    },
+    {
+      "id" : "bahari",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "Maritime and fishing heritage from across the Indonesian archipelago."
+    },
+    {
+      "id" : "sejarah",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "City history from prehistoric settlements through port development, colonial rule and independence; original historical objects and replicas."
+    },
+    {
+      "id" : "tekstil",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "Batik fabrics, woven cloth, textile equipment and other textile collections."
+    },
+    {
+      "id" : "wayang",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "Indonesian and international puppets and dolls, with gamelan instruments and puppet paintings."
+    },
+    {
+      "id" : "seni-rupa",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "Indonesian visual art spanning the nineteenth century to the present."
+    },
+    {
+      "id" : "joang",
+      "sourceIDs" : [
+        "benefit-jakarta-museums"
+      ],
+      "text" : "Independence struggle documented through photographs, paintings, dioramas and vehicles of the first president and vice president."
+    },
+    {
+      "id" : "bi",
+      "sourceIDs" : [
+        "benefit-bi-museum"
+      ],
+      "text" : "Numismatic collections, monetary policy and central banking history inside a preserved former bank building."
+    }
+  ],
+  "embedding" : {
+    "artifactSHA256" : "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88",
+    "dimensions" : 384,
+    "model" : "intfloat\/multilingual-e5-small",
+    "revision" : "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "runtime" : "ONNX Runtime 1.24.2 \/ CPU \/ int8"
+  },
+  "embeddingSeconds" : 0.01578497886657715,
+  "error" : "",
+  "evaluationClock" : "2026-11-05T07:09:38Z",
+  "gatePassed" : true,
+  "id" : "A663001D-7670-43CB-979C-24B61B3373E3",
+  "input" : {
+    "expectedEligible" : [
+      "dialogue",
+      "erasmus",
+      "bahari",
+      "sejarah",
+      "tekstil",
+      "wayang",
+      "seni-rupa",
+      "joang",
+      "bi"
+    ],
+    "expectedStatus" : "comparison_completed",
+    "family" : "paraphrase",
+    "group" : "puppets",
+    "id" : "puppets-paraphrase",
+    "judgments" : {
+      "wayang" : {
+        "grade" : 2,
+        "reason" : "Puppets and international dolls directly support the requested collection.",
+        "sourceIDs" : [
+          "benefit-jakarta-museums"
+        ]
+      }
+    },
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "I am curious about the little figures used to tell stories on a stage.",
+      "directionConfirmed" : true,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+        "culture"
+      ],
+      "prefer" : [
+
+      ],
+      "schemaVersion" : 1
+    },
+    "title" : "Wayang dan boneka · paraphrase"
+  },
+  "lexicalSeconds" : 0.0003470182418823242,
+  "maskedNames" : true,
+  "policy" : "benefit-v1-bm25-1.2-0.75-combined-0.6-0.4",
+  "queryEncodes" : 1,
+  "rankings" : [
+    {
+      "id" : "category",
+      "metrics" : {
+        "ndcgAt3" : 0.23676997261905083,
+        "precisionAt3" : 0.1111111111111111,
+        "topOneRelevance" : 0.2222222222222222
+      },
+      "rows" : [
+        {
+          "id" : "bahari",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "bi",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "dialogue",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "erasmus",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "joang",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "sejarah",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "seni-rupa",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "tekstil",
+          "primary" : 0,
+          "secondary" : 0
+        },
+        {
+          "id" : "wayang",
+          "primary" : 0,
+          "secondary" : 0
+        }
+      ]
+    },
+    {
+      "id" : "lexical",
+      "metrics" : {
+        "ndcgAt3" : 0,
+        "precisionAt3" : 0,
+        "topOneRelevance" : 0
+      },
+      "rows" : [
+        {
+          "id" : "bahari",
+          "primary" : 0,
+          "secondary" : 0.12704431854929724
+        },
+        {
+          "id" : "tekstil",
+          "primary" : 0,
+          "secondary" : 0.11661818906348864
+        },
+        {
+          "id" : "seni-rupa",
+          "primary" : 0,
+          "secondary" : 0.11351297101150226
+        },
+        {
+          "id" : "wayang",
+          "primary" : 0,
+          "secondary" : 0.11056883055299069
+        },
+        {
+          "id" : "bi",
+          "primary" : 0,
+          "secondary" : 0.10777355112889823
+        },
+        {
+          "id" : "joang",
+          "primary" : 0,
+          "secondary" : 0.10777355112889823
+        },
+        {
+          "id" : "sejarah",
+          "primary" : 0,
+          "secondary" : 0.10258658877510096
+        },
+        {
+          "id" : "dialogue",
+          "primary" : 0,
+          "secondary" : 0.08432392132283026
+        },
+        {
+          "id" : "erasmus",
+          "primary" : 0,
+          "secondary" : 0.07537796503317831
+        }
+      ]
+    },
+    {
+      "id" : "e5",
+      "metrics" : {
+        "ndcgAt3" : 1,
+        "precisionAt3" : 0.3333333333333333,
+        "topOneRelevance" : 2
+      },
+      "rows" : [
+        {
+          "id" : "wayang",
+          "primary" : 0,
+          "secondary" : 0.844043539616703
+        },
+        {
+          "id" : "tekstil",
+          "primary" : 0,
+          "secondary" : 0.842934145726798
+        },
+        {
+          "id" : "bi",
+          "primary" : 0,
+          "secondary" : 0.8352364753817855
+        },
+        {
+          "id" : "sejarah",
+          "primary" : 0,
+          "secondary" : 0.834623070395319
+        },
+        {
+          "id" : "joang",
+          "primary" : 0,
+          "secondary" : 0.8186108470988415
+        },
+        {
+          "id" : "erasmus",
+          "primary" : 0,
+          "secondary" : 0.8071078602288579
+        },
+        {
+          "id" : "seni-rupa",
+          "primary" : 0,
+          "secondary" : 0.8054115072908198
+        },
+        {
+          "id" : "bahari",
+          "primary" : 0,
+          "secondary" : 0.8046325840943032
+        },
+        {
+          "id" : "dialogue",
+          "primary" : 0,
+          "secondary" : 0.7999051403288894
+        }
+      ]
+    },
+    {
+      "id" : "combined",
+      "metrics" : {
+        "ndcgAt3" : 1,
+        "precisionAt3" : 0.3333333333333333,
+        "topOneRelevance" : 2
+      },
+      "rows" : [
+        {
+          "id" : "wayang",
+          "primary" : 0.36880870792334064,
+          "secondary" : 0
+        },
+        {
+          "id" : "tekstil",
+          "primary" : 0.3685868291453596,
+          "secondary" : 0
+        },
+        {
+          "id" : "bi",
+          "primary" : 0.36704729507635714,
+          "secondary" : 0
+        },
+        {
+          "id" : "sejarah",
+          "primary" : 0.36692461407906385,
+          "secondary" : 0
+        },
+        {
+          "id" : "joang",
+          "primary" : 0.3637221694197683,
+          "secondary" : 0
+        },
+        {
+          "id" : "erasmus",
+          "primary" : 0.36142157204577163,
+          "secondary" : 0
+        },
+        {
+          "id" : "seni-rupa",
+          "primary" : 0.361082301458164,
+          "secondary" : 0
+        },
+        {
+          "id" : "bahari",
+          "primary" : 0.3609265168188607,
+          "secondary" : 0
+        },
+        {
+          "id" : "dialogue",
+          "primary" : 0.35998102806577786,
+          "secondary" : 0
+        }
+      ]
+    }
+  ],
+  "schemaVersion" : 1,
+  "status" : "comparison_completed",
+  "totalSeconds" : 0.017130017280578613
+}

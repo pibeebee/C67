@@ -1,0 +1,151 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.00016498565673828125,
+  "id" : "79A02001-528D-456F-9ACE-4A79A17A203C",
+  "options" : [
+
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 1080,
+      "start" : 600
+    },
+    "date" : "2026-11-06",
+    "durationMinutes" : 60,
+    "goal" : "openingOnly",
+    "venueID" : "macan"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "macan",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+      "title" : "Museum MACAN — informasi kunjungan",
+      "url" : "https:\/\/www.museummacan.org\/visit"
+    }
+  ],
+  "status" : "suspended",
+  "validStartRanges" : [
+
+  ],
+  "venue" : {
+    "address" : "AKR Tower lantai M, Panjang 5, Kebon Jeruk",
+    "exposure" : "unknown",
+    "id" : "macan",
+    "name" : "Museum MACAN",
+    "notice" : "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang.",
+    "noticeSourceID" : "macan",
+    "query" : "Museum MACAN, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "lastEntry" : 1050,
+        "sessions" : [
+          {
+            "end" : 1080,
+            "start" : 600
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "macan"
+    ],
+    "suspended" : true,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+    "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang."
+  ]
+}

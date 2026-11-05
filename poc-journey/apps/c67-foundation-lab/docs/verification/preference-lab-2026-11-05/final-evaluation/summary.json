@@ -1,0 +1,462 @@
+[
+  {
+    "case": "cold",
+    "exitCode": 0,
+    "requiredFixtureTags": [],
+    "status": "general_not_personalized",
+    "error": "",
+    "elapsedSeconds": 0.001022934913635254,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": null,
+    "semanticRanking": [],
+    "semanticRankingAllRequiredTags": null,
+    "filtersRespected": true
+  },
+  {
+    "case": "coffee-id",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "coffee",
+      "reading",
+      "quiet"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 1.0039390325546265,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "H",
+        "score": 0.8449875314693369
+      },
+      {
+        "id": "A",
+        "score": 0.8397451996553126
+      },
+      {
+        "id": "G",
+        "score": 0.8232719862931785
+      }
+    ],
+    "semanticRankingAllRequiredTags": 2,
+    "filtersRespected": true
+  },
+  {
+    "case": "coffee-en",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "coffee",
+      "reading",
+      "quiet"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.7346830368041992,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "G",
+        "score": 0.9119014580549918
+      },
+      {
+        "id": "A",
+        "score": 0.9061837648426508
+      },
+      {
+        "id": "H",
+        "score": 0.8991752534600199
+      }
+    ],
+    "semanticRankingAllRequiredTags": 2,
+    "filtersRespected": true
+  },
+  {
+    "case": "art-id",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "art"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.7058640718460083,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "C",
+        "score": 0.8210956788032866
+      },
+      {
+        "id": "F",
+        "score": 0.8046146096707922
+      },
+      {
+        "id": "L",
+        "score": 0.7987348488422307
+      }
+    ],
+    "semanticRankingAllRequiredTags": 2,
+    "filtersRespected": true
+  },
+  {
+    "case": "art-en",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "art"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.721316933631897,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "C",
+        "score": 0.8724888338584728
+      },
+      {
+        "id": "L",
+        "score": 0.8342185690839448
+      },
+      {
+        "id": "I",
+        "score": 0.8249379012206651
+      }
+    ],
+    "semanticRankingAllRequiredTags": 2,
+    "filtersRespected": true
+  },
+  {
+    "case": "liked-coffee",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "coffee",
+      "reading",
+      "quiet"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.8145580291748047,
+    "categoryRanking": [
+      {
+        "id": "G",
+        "score": 3
+      },
+      {
+        "id": "H",
+        "score": 3
+      },
+      {
+        "id": "C",
+        "score": 2
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "G",
+        "score": 0.9194173882658904
+      },
+      {
+        "id": "H",
+        "score": 0.8978776540721415
+      },
+      {
+        "id": "B",
+        "score": 0.8593008164021729
+      }
+    ],
+    "semanticRankingAllRequiredTags": 1,
+    "filtersRespected": true
+  },
+  {
+    "case": "liked-art",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "art"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.7724200487136841,
+    "categoryRanking": [
+      {
+        "id": "I",
+        "score": 3
+      },
+      {
+        "id": "L",
+        "score": 3
+      },
+      {
+        "id": "A",
+        "score": 2
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "L",
+        "score": 0.8900632927085376
+      },
+      {
+        "id": "I",
+        "score": 0.8732349084616504
+      },
+      {
+        "id": "H",
+        "score": 0.8470333003781909
+      }
+    ],
+    "semanticRankingAllRequiredTags": 1,
+    "filtersRespected": true
+  },
+  {
+    "case": "explicit-avoid",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "nature",
+      "outdoor"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.6536020040512085,
+    "categoryRanking": [
+      {
+        "id": "D",
+        "score": 4
+      },
+      {
+        "id": "G",
+        "score": 2
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "D",
+        "score": 0.8628418654785838
+      },
+      {
+        "id": "G",
+        "score": 0.8101718749734992
+      }
+    ],
+    "semanticRankingAllRequiredTags": 1,
+    "filtersRespected": true
+  },
+  {
+    "case": "text-negation-only",
+    "exitCode": 0,
+    "requiredFixtureTags": [],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 0.6866910457611084,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "B",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": null,
+    "semanticRanking": [
+      {
+        "id": "E",
+        "score": 0.8014612373902609
+      },
+      {
+        "id": "B",
+        "score": 0.8000932444198458
+      },
+      {
+        "id": "J",
+        "score": 0.7963071191778555
+      }
+    ],
+    "semanticRankingAllRequiredTags": null,
+    "filtersRespected": true
+  },
+  {
+    "case": "text-plus-avoid",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "coffee"
+    ],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 1.757807970046997,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 0
+      },
+      {
+        "id": "C",
+        "score": 0
+      },
+      {
+        "id": "D",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": 1,
+    "semanticRanking": [
+      {
+        "id": "D",
+        "score": 0.7656019505269297
+      },
+      {
+        "id": "J",
+        "score": 0.7602683422512478
+      },
+      {
+        "id": "G",
+        "score": 0.759871159364099
+      }
+    ],
+    "semanticRankingAllRequiredTags": 1,
+    "filtersRespected": true
+  },
+  {
+    "case": "snapshot-thin-data",
+    "exitCode": 0,
+    "requiredFixtureTags": [],
+    "status": "semantic_completed",
+    "error": "",
+    "elapsedSeconds": 1.1528030633926392,
+    "categoryRanking": [
+      {
+        "id": "I25A66804C1B7EC10",
+        "score": 0
+      },
+      {
+        "id": "I4E63063242A27CD6",
+        "score": 0
+      },
+      {
+        "id": "I6E1D6D1467D78A1",
+        "score": 0
+      }
+    ],
+    "categoryRankingAllRequiredTags": null,
+    "semanticRanking": [
+      {
+        "id": "IBAD8B0A41EB5759A",
+        "score": 0.7937870749658943
+      },
+      {
+        "id": "ID2297F5095AFA139",
+        "score": 0.7920593768532493
+      },
+      {
+        "id": "I6E1D6D1467D78A1",
+        "score": 0.7847557557472608
+      }
+    ],
+    "semanticRankingAllRequiredTags": null,
+    "filtersRespected": true
+  },
+  {
+    "case": "category-only",
+    "exitCode": 0,
+    "requiredFixtureTags": [
+      "coffee",
+      "reading"
+    ],
+    "status": "category_only",
+    "error": "",
+    "elapsedSeconds": 0.0006489753723144531,
+    "categoryRanking": [
+      {
+        "id": "A",
+        "score": 4
+      },
+      {
+        "id": "G",
+        "score": 4
+      },
+      {
+        "id": "B",
+        "score": 2
+      }
+    ],
+    "categoryRankingAllRequiredTags": 2,
+    "semanticRanking": [],
+    "semanticRankingAllRequiredTags": null,
+    "filtersRespected": true
+  }
+]

@@ -1,0 +1,428 @@
+[
+  {
+    "at": "2026-11-03T08:03:16Z",
+    "category": "route_map",
+    "event": "map.routes_started",
+    "fields": {
+      "legs": "5",
+      "retryFailed": "false"
+    },
+    "id": "E257954A-31B3-4AF8-B751-EC413365A907",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 155,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:16Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:0",
+      "mode": "automobile",
+      "requestCount": "1",
+      "to": "Grand Indonesia"
+    },
+    "id": "931B1D4A-DD35-40AB-BD70-533911329F43",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 156,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:16Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "distanceMeters": "1171.0",
+      "elapsedSeconds": "0.4180259704589844",
+      "from": "Stasiun sudirman",
+      "itinerarySeconds": "237.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:0",
+      "mode": "automobile",
+      "points": "27",
+      "routeSeconds": "237.0",
+      "status": "available",
+      "to": "Grand Indonesia"
+    },
+    "id": "4D4A71C7-3793-49DE-A078-3B9FF85087C1",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 157,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:16Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "mode": "automobile",
+      "requestCount": "2",
+      "to": "National Monument"
+    },
+    "id": "5073C090-837F-4DC7-96E4-8C6FE6207F15",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 158,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:17Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "distanceMeters": "5559.0",
+      "elapsedSeconds": "1.1005940437316895",
+      "from": "Grand Indonesia",
+      "itinerarySeconds": "1260.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "mode": "automobile",
+      "points": "136",
+      "routeSeconds": "1260.0",
+      "status": "available",
+      "to": "National Monument"
+    },
+    "id": "5F696FFD-1845-463D-BEDE-3F8E61ED4220",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 159,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:17Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "from": "National Monument",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:2",
+      "mode": "automobile",
+      "requestCount": "3",
+      "to": "Kota Tua"
+    },
+    "id": "3B499C35-4115-4328-A659-AC6383F80448",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 160,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:18Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "distanceMeters": "5751.0",
+      "elapsedSeconds": "1.2267520427703857",
+      "from": "National Monument",
+      "itinerarySeconds": "1088.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:2",
+      "mode": "automobile",
+      "points": "72",
+      "routeSeconds": "1116.0",
+      "status": "available",
+      "to": "Kota Tua"
+    },
+    "id": "7F135E9F-FBD5-485D-ABF5-249B4EC5AE3B",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 161,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:18Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "mode": "automobile",
+      "requestCount": "4",
+      "to": "Summarecon Mall Kelapa Gading"
+    },
+    "id": "92607CAC-79AE-426E-A2EF-837B8336BF93",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 162,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:20Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "distanceMeters": "16073.0",
+      "elapsedSeconds": "1.2576509714126587",
+      "from": "Kota Tua",
+      "itinerarySeconds": "2136.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "mode": "automobile",
+      "points": "236",
+      "routeSeconds": "2078.0",
+      "status": "available",
+      "to": "Summarecon Mall Kelapa Gading"
+    },
+    "id": "66F9741E-DB12-4ED6-A9CD-008CD2C0AC9B",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 163,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:20Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:4",
+      "mode": "automobile",
+      "requestCount": "5",
+      "to": "Stasiun sudirman"
+    },
+    "id": "820EF480-28A8-417C-B900-6C559FB3A1DE",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 164,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:21Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "distanceMeters": "14833.0",
+      "elapsedSeconds": "1.1838250160217285",
+      "from": "Summarecon Mall Kelapa Gading",
+      "itinerarySeconds": "2620.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:4",
+      "mode": "automobile",
+      "points": "233",
+      "routeSeconds": "2499.0",
+      "status": "available",
+      "to": "Stasiun sudirman"
+    },
+    "id": "F088FCD8-9C1B-4656-8075-A470DC9EE2FB",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 165,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:21Z",
+    "category": "route_map",
+    "event": "map.routes_completed",
+    "fields": {
+      "available": "5",
+      "failed": "0",
+      "legs": "5",
+      "requestCount": "5"
+    },
+    "id": "0AAAB758-39A8-4565-8615-A79A63BA0798",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 166,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:03:56Z",
+    "category": "route_map",
+    "event": "map.leg_selected",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "mode": "automobile",
+      "selection": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "to": "National Monument"
+    },
+    "id": "041519B6-BE5A-491E-B18A-193E3C40EB57",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 167,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:22Z",
+    "category": "route_map",
+    "event": "map.leg_selected",
+    "fields": {
+      "selection": "all"
+    },
+    "id": "BF93922F-A6A8-40AF-893A-EC071BCBBF15",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 168,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:30Z",
+    "category": "route_map",
+    "event": "map.leg_selected",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "mode": "automobile",
+      "selection": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "to": "Summarecon Mall Kelapa Gading"
+    },
+    "id": "BDC68A9A-1B2A-4F19-AA39-D2129B0630B6",
+    "level": "info",
+    "operationID": "5754DDDC-81B5-42D4-A51A-D501664D2365",
+    "schemaVersion": 1,
+    "sequence": 169,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.routes_started",
+    "fields": {
+      "legs": "5",
+      "retryFailed": "false"
+    },
+    "id": "1130F622-E242-4ADB-9B63-25F903BB80BE",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 170,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.route_cache_hit",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:0",
+      "mode": "automobile",
+      "points": "27",
+      "to": "Grand Indonesia"
+    },
+    "id": "6B812B57-C12B-459C-80CB-6A3A171CFBB3",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 171,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.route_cache_hit",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "mode": "automobile",
+      "points": "136",
+      "to": "National Monument"
+    },
+    "id": "7238C69D-17E5-4A1A-888C-6C47D06BCDAA",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 172,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.route_cache_hit",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "from": "National Monument",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:2",
+      "mode": "automobile",
+      "points": "72",
+      "to": "Kota Tua"
+    },
+    "id": "BEE07C0D-F673-410E-B96C-F2D90DFEBBC9",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 173,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.route_cache_hit",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "mode": "automobile",
+      "points": "236",
+      "to": "Summarecon Mall Kelapa Gading"
+    },
+    "id": "9F537FE7-9DB2-4791-8E7C-B0C5C82C1A74",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 174,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.route_cache_hit",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:4",
+      "mode": "automobile",
+      "points": "233",
+      "to": "Stasiun sudirman"
+    },
+    "id": "8D9AE7E8-D522-42C1-B26D-E56C978C049B",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 175,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  },
+  {
+    "at": "2026-11-03T08:04:42Z",
+    "category": "route_map",
+    "event": "map.routes_completed",
+    "fields": {
+      "available": "5",
+      "failed": "0",
+      "legs": "5",
+      "requestCount": "5"
+    },
+    "id": "2493AF4F-72A6-4476-8AA4-79D9E6669002",
+    "level": "info",
+    "operationID": "BCCB2C08-804A-45EB-B4A6-AED65E5759A2",
+    "schemaVersion": 1,
+    "sequence": 176,
+    "sessionID": "B3128931-205D-4800-9BE1-51CDDDF4649E"
+  }
+]

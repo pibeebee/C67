@@ -1,0 +1,44 @@
+# Public diagnostic extract
+# The original system-daemon log is excluded because it includes unrelated system noise.
+# Imported diagnostic-copy SHA256 before compaction: 7213ee8dc73a6733fcf1083525ba18885cdfabb6fbee66994899f60a1df5fa13
+# Matching C67 app lifecycle/error lines only; absence is not a pass result.
+2026-11-05 16:49:50.198 Df C67TripIntegration[95895:21d56a1] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x1069752c0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538494 (elapsed = 0).
+2026-11-05 16:49:51.449 Df C67TripIntegration[95895:21d56af] [com.apple.UIKit:BackgroundTask] Ending task with identifier 1 and description: <_UIBackgroundTaskInfo: 0x1069752c0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538494 (elapsed = 1), _expireHandler: (null)
+2026-11-05 16:49:51.449 Df C67TripIntegration[95895:21d56af] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x105c9c070> (used by background task with identifier 1: <_UIBackgroundTaskInfo: 0x1069752c0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538494 (elapsed = 1))
+2026-11-05 16:49:51.627 Df C67TripIntegration[95895:21d56ae] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:49:51.722 Df C67TripIntegration[95895:21d5660] [com.apple.app_launch_measurement:ApplicationLaunch] alm_acquire_pageins_recording_assertion: acquired pageins recording assertion!
+2026-11-05 16:49:52.431 E  C67TripIntegration[95895:21d5660] [com.apple.BoardServices:XPCErrors] non-launching port is incompatible with service identifier "com.apple.PointerUI.pointeruid.default-service"
+2026-11-05 16:49:52.654 Df C67TripIntegration[95895:21d5660] [com.apple.app_launch_measurement:ApplicationLaunch] alm_release_pageins_recording_assertion: releasing pageins recording assertion
+2026-11-05 16:49:55.892 Df C67TripIntegration[95895:21d56af] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:49:55.907 Df C67TripIntegration[95895:21d56af] [com.apple.dt.xctest:Default] Replying to query  with results: <XCTElementQueryResults: 0x1071bcab0> (error: (null))
+2026-11-05 16:49:55.955 Df C67TripIntegration[95895:21d56af] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x1071bc060> (error: (null))
+2026-11-05 16:49:56.758 Df C67TripIntegration[95895:21d5660] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:49:58.720 Df C67TripIntegration[95895:21d56ef] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:49:58.772 Df C67TripIntegration[95895:21d56a8] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x1071bd6e0> (error: (null))
+2026-11-05 16:49:59.591 Df C67TripIntegration[95895:21d5660] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:50:01.450 Df C67TripIntegration[95927:21d5803] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x102174ac0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538505 (elapsed = 0).
+2026-11-05 16:50:02.620 Df C67TripIntegration[95927:21d5803] [com.apple.UIKit:BackgroundTask] Ending task with identifier 1 and description: <_UIBackgroundTaskInfo: 0x102174ac0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538505 (elapsed = 2), _expireHandler: (null)
+2026-11-05 16:50:02.620 Df C67TripIntegration[95927:21d5803] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x1016c2f10> (used by background task with identifier 1: <_UIBackgroundTaskInfo: 0x102174ac0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 1538505 (elapsed = 2))
+2026-11-05 16:50:02.763 Df C67TripIntegration[95927:21d5808] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:50:02.791 Df C67TripIntegration[95927:21d57ee] [com.apple.app_launch_measurement:ApplicationLaunch] alm_acquire_pageins_recording_assertion: acquired pageins recording assertion!
+2026-11-05 16:50:03.048 E  C67TripIntegration[95927:21d5806] [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-05 16:50:03.070 E  C67TripIntegration[95927:21d57ee] [com.apple.BoardServices:XPCErrors] non-launching port is incompatible with service identifier "com.apple.PointerUI.pointeruid.default-service"
+2026-11-05 16:50:03.224 Df C67TripIntegration[95927:21d57ee] [com.apple.app_launch_measurement:ApplicationLaunch] alm_release_pageins_recording_assertion: releasing pageins recording assertion
+2026-11-05 16:50:03.224 E  C67TripIntegration[95927:21d581b] [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-11-05 16:50:55.827 Df C67TripIntegration[95927:21d5cc8] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:50:55.842 Df C67TripIntegration[95927:21d5803] [com.apple.dt.xctest:Default] Replying to query  with results: <XCTElementQueryResults: 0x102da0840> (error: (null))
+2026-11-05 16:50:55.866 Df C67TripIntegration[95927:21d5cc8] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x102da0c00> (error: (null))
+2026-11-05 16:50:56.525 Df C67TripIntegration[95927:21d57ee] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:50:58.535 Df C67TripIntegration[95927:21d5d29] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:50:58.583 Df C67TripIntegration[95927:21d5d29] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x102da1710> (error: (null))
+2026-11-05 16:50:59.171 Df C67TripIntegration[95927:21d57ee] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:51:29.331 Df C67TripIntegration[95927:21d5803] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:51:29.348 Df C67TripIntegration[95927:21d5cc8] [com.apple.dt.xctest:Default] Replying to query  with results: <XCTElementQueryResults: 0x102da1410> (error: (null))
+2026-11-05 16:51:29.376 Df C67TripIntegration[95927:21d5cc8] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x102da1380> (error: (null))
+2026-11-05 16:51:29.796 Df C67TripIntegration[95927:21d5cc8] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:51:31.338 Df C67TripIntegration[95927:21d5d2b] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:51:31.381 Df C67TripIntegration[95927:21d5d2b] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x102da1710> (error: (null))
+2026-11-05 16:51:31.936 Df C67TripIntegration[95927:21d57ee] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:52:02.053 Df C67TripIntegration[95927:21d5803] [com.apple.dt.xctest:Default] Sending animations idle reply with error: (null)
+2026-11-05 16:52:02.067 Df C67TripIntegration[95927:21d5803] [com.apple.dt.xctest:Default] Replying to query  with results: <XCTElementQueryResults: 0x102da17d0> (error: (null))
+2026-11-05 16:52:02.088 Df C67TripIntegration[95927:21d5803] [com.apple.dt.xctest:Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x102da12c0> (error: (null))

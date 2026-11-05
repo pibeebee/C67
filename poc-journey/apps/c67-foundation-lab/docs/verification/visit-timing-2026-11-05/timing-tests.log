@@ -1,0 +1,82 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'visittiming': failed storing manifest for 'visittiming' in cache: attempt to write a readonly database
+Building for debugging...
+[5 / 16] VisitTimingTests-product
+[8 / 19] VisitTimingTests-product
+[11 / 17] VisitTimingTests-product
+[13 / 17] VisitTimingTests-product
+Build complete! (1.32 sec)
+Test Suite 'All tests' started at 2026-11-05 08:56:08.178.
+Test Suite 'All tests' passed at 2026-11-05 08:56:08.179.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite EnvironmentContractChecks started.
+􀟈  Suite AcquiredForecastReplay started.
+􀟈  Suite PublishedJakartaCases started.
+􀟈  Test partialHourGapNullAndInvalidRainAreUnknown() started.
+􀟈  Test actualGbkDaylightEndsBeforeSunset() started.
+􀟈  Test actualGbkSunsetPreferenceFitsClosingTime() started.
+􀟈  Test actualRagunanSunsetCannotFitBeforeSixteen() started.
+􀟈  Test fridayCikiniNewEntryIsPaused() started.
+􀟈  Test fridayPauseIsNotVenueClosure() started.
+􀟈  Test wrongVenueExpiredAndMissingDataAreNotReused() started.
+􀟈  Test gbkMiddayIsOutsidePublishedSessions() started.
+􀟈  Test storageKeepsUnreadableFileAndRestoresValidRuns() started.
+􀟈  Test unknownVenueAndSourceRejected() started.
+􀟈  Test fridayCheckinResumesAtThirteen() started.
+􀟈  Test noOutdoorContextInventedForLibrary() started.
+􀟈  Test macanClosureNoticeOverridesRegularTable() started.
+􀟈  Test actualGbkRainOptionsStayInPublishedSessions() started.
+􀟈  Test unpublishedBestTimeRemainsUnknown() started.
+􀟈  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() started.
+􀟈  Test omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test invalidCalendarDateRejected() started.
+􀟈  Test jatiWeekendClosesAtFourteenThirty() started.
+􀟈  Test ragunanCannotStayAfterSixteen() started.
+􀟈  Test jakartaDateIsIndependentOfDeviceTimeZone() started.
+􀟈  Test missingForecastDoesNotMeanZeroRain() started.
+􀟈  Test historicalDayIsNotReconstructedFromNewSnapshot() started.
+􀟈  Test ragunanMondayIsExplicitlyClosed() started.
+􀟈  Test staleFactsBlockCurrentSuggestions() started.
+􀟈  Test gbkWholeVisitCannotCrossMiddayClosure() started.
+􀟈  Test actualCatalogProvenance() started.
+􀟈  Test gbkHasTwoSeparateStartRanges() started.
+􀟈  Test case passing 1 argument venue → "tanjung-duren" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument venue → "gandaria" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument venue → "koja" to omittedWeekendHoursRemainUnknown(_:) started.
+􁁛  Test partialHourGapNullAndInvalidRainAreUnknown() passed after 0.030 seconds.
+􁁛  Test gbkMiddayIsOutsidePublishedSessions() passed after 0.030 seconds.
+􁁛  Test fridayCikiniNewEntryIsPaused() passed after 0.030 seconds.
+􁁛  Test unknownVenueAndSourceRejected() passed after 0.030 seconds.
+􁁛  Test fridayCheckinResumesAtThirteen() passed after 0.030 seconds.
+􁁛  Test macanClosureNoticeOverridesRegularTable() passed after 0.030 seconds.
+􁁛  Test fridayPauseIsNotVenueClosure() passed after 0.030 seconds.
+􁁛  Test invalidCalendarDateRejected() passed after 0.030 seconds.
+􁁛  Test jakartaDateIsIndependentOfDeviceTimeZone() passed after 0.030 seconds.
+􁁛  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() passed after 0.030 seconds.
+􁁛  Test ragunanCannotStayAfterSixteen() passed after 0.030 seconds.
+􁁛  Test omittedWeekendHoursRemainUnknown(_:) with 3 test cases passed after 0.030 seconds.
+􁁛  Test jatiWeekendClosesAtFourteenThirty() passed after 0.030 seconds.
+􁁛  Test historicalDayIsNotReconstructedFromNewSnapshot() passed after 0.030 seconds.
+􁁛  Test ragunanMondayIsExplicitlyClosed() passed after 0.030 seconds.
+􁁛  Test staleFactsBlockCurrentSuggestions() passed after 0.030 seconds.
+􁁛  Test gbkWholeVisitCannotCrossMiddayClosure() passed after 0.030 seconds.
+􁁛  Test actualGbkRainOptionsStayInPublishedSessions() passed after 0.030 seconds.
+􁁛  Test actualCatalogProvenance() passed after 0.030 seconds.
+􁁛  Suite EnvironmentContractChecks passed after 0.031 seconds.
+􁁛  Test storageKeepsUnreadableFileAndRestoresValidRuns() passed after 0.035 seconds.
+􁁛  Test actualGbkSunsetPreferenceFitsClosingTime() passed after 0.036 seconds.
+􁁛  Test missingForecastDoesNotMeanZeroRain() passed after 0.036 seconds.
+􁁛  Test actualGbkDaylightEndsBeforeSunset() passed after 0.039 seconds.
+􁁛  Test noOutdoorContextInventedForLibrary() passed after 0.040 seconds.
+􁁛  Test unpublishedBestTimeRemainsUnknown() passed after 0.041 seconds.
+􁁛  Test gbkHasTwoSeparateStartRanges() passed after 0.042 seconds.
+􁁛  Suite PublishedJakartaCases passed after 0.042 seconds.
+􁁛  Test actualRagunanSunsetCannotFitBeforeSixteen() passed after 0.043 seconds.
+􁁛  Test wrongVenueExpiredAndMissingDataAreNotReused() passed after 0.044 seconds.
+􁁛  Suite AcquiredForecastReplay passed after 0.044 seconds.
+􁁛  Test run with 28 tests in 3 suites passed after 0.045 seconds.

@@ -1,0 +1,255 @@
+[
+  {
+    "case": "text-coffee-reading",
+    "exitCode": 0,
+    "status": "semantic_completed",
+    "elapsedSeconds": 1.6331849098205566,
+    "search": {
+      "choices": [
+        {
+          "activity": "coffee",
+          "basis": "recognized activity words in current text",
+          "query": "coffee shop, Jakarta"
+        },
+        {
+          "activity": "reading",
+          "basis": "recognized activity words in current text",
+          "query": "bookstore, Jakarta"
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:30Z",
+      "filteredCount": 14,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.7803670167922974,
+      "receivedCount": 26,
+      "searchSeconds": 0.8527489900588989,
+      "unmatchedActivityCount": 12
+    },
+    "semanticTop": [
+      "I96DE75FA7E20161C",
+      "I6E1D6D1467D78A1",
+      "ID2297F5095AFA139"
+    ],
+    "categoryTop": [
+      "I1306894ECA45168B",
+      "I21CEBDCE6CD050B2",
+      "I4E573D601C7FEE4D"
+    ],
+    "error": ""
+  },
+  {
+    "case": "liked-place-new-search",
+    "exitCode": 0,
+    "status": "semantic_completed",
+    "elapsedSeconds": 1.828413963317871,
+    "search": {
+      "choices": [
+        {
+          "activity": "reading",
+          "basis": "attributes of previously liked MapKit places",
+          "query": "bookstore, Jakarta"
+        },
+        {
+          "activity": "shopping",
+          "basis": "attributes of previously liked MapKit places",
+          "query": "shopping mall, Jakarta"
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:32Z",
+      "filteredCount": 20,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.7439559698104858,
+      "receivedCount": 27,
+      "searchSeconds": 1.0843650102615356,
+      "unmatchedActivityCount": 0
+    },
+    "semanticTop": [
+      "ICE7F11DB1E0987F9",
+      "I1306894ECA45168B",
+      "I6E1D6D1467D78A1"
+    ],
+    "categoryTop": [
+      "I1306894ECA45168B",
+      "I4E573D601C7FEE4D",
+      "I4E63063242A27CD6"
+    ],
+    "error": ""
+  },
+  {
+    "case": "empty-general",
+    "exitCode": 0,
+    "status": "general_not_personalized",
+    "elapsedSeconds": 2.196610927581787,
+    "search": {
+      "choices": [
+        {
+          "activity": "coffee",
+          "basis": "general Jakarta discovery; no inferred personal activity",
+          "query": "coffee shop, Jakarta"
+        },
+        {
+          "activity": "culture",
+          "basis": "general Jakarta discovery; no inferred personal activity",
+          "query": "museum, Jakarta"
+        },
+        {
+          "activity": "nature",
+          "basis": "general Jakarta discovery; no inferred personal activity",
+          "query": "park, Jakarta"
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:35Z",
+      "filteredCount": 19,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours.",
+        "Broad discovery is not a personalized search when no supported activity signal is available."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.00013196468353271484,
+      "receivedCount": 51,
+      "searchSeconds": 2.196433901786804,
+      "unmatchedActivityCount": 11
+    },
+    "semanticTop": [],
+    "categoryTop": [
+      "I185B5948F18CAA9D",
+      "I19B8BBA746EBE63F",
+      "I1B23E22A0A0E66A4"
+    ],
+    "error": ""
+  },
+  {
+    "case": "semantic-search-intent",
+    "exitCode": 0,
+    "status": "semantic_completed",
+    "elapsedSeconds": 2.4790079593658447,
+    "search": {
+      "choices": [
+        {
+          "activity": "culture",
+          "basis": "E5 semantic search intent; not a verified preference",
+          "query": "museum, Jakarta",
+          "score": 0.8186704445705629
+        },
+        {
+          "activity": "entertainment",
+          "basis": "E5 semantic search intent; not a verified preference",
+          "query": "cinema, Jakarta",
+          "score": 0.8110699392045065
+        },
+        {
+          "activity": "art",
+          "basis": "E5 semantic search intent; not a verified preference",
+          "query": "art gallery, Jakarta",
+          "score": 0.8083368994690059
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:37Z",
+      "filteredCount": 19,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.11095499992370605,
+      "receivedCount": 28,
+      "searchSeconds": 2.368010997772217,
+      "unmatchedActivityCount": 8
+    },
+    "semanticTop": [
+      "I750161F20158437E",
+      "IEB696E80FDFA7867",
+      "IDA943B8076A33503"
+    ],
+    "categoryTop": [
+      "I151FF458E425A34",
+      "I19B8BBA746EBE63F",
+      "I2406AED5970286ED"
+    ],
+    "error": ""
+  },
+  {
+    "case": "explicit-reading-avoid-coffee",
+    "exitCode": 0,
+    "status": "semantic_completed",
+    "elapsedSeconds": 1.67739999294281,
+    "search": {
+      "choices": [
+        {
+          "activity": "reading",
+          "basis": "explicit interest",
+          "query": "bookstore, Jakarta"
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:38Z",
+      "filteredCount": 13,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.8828219175338745,
+      "receivedCount": 25,
+      "searchSeconds": 0.7945330142974854,
+      "unmatchedActivityCount": 12
+    },
+    "semanticTop": [
+      "I1306894ECA45168B",
+      "ID2297F5095AFA139",
+      "IDCEABF81EDA1CD2F"
+    ],
+    "categoryTop": [
+      "I1306894ECA45168B",
+      "I21CEBDCE6CD050B2",
+      "I4E573D601C7FEE4D"
+    ],
+    "error": ""
+  },
+  {
+    "case": "native-category-baseline",
+    "exitCode": 0,
+    "status": "category_only",
+    "elapsedSeconds": 0.9567090272903442,
+    "search": {
+      "choices": [
+        {
+          "activity": "coffee",
+          "basis": "explicit interest",
+          "query": "coffee shop, Jakarta"
+        },
+        {
+          "activity": "reading",
+          "basis": "explicit interest",
+          "query": "bookstore, Jakarta"
+        }
+      ],
+      "errors": [],
+      "fetchedAt": "2026-11-05T00:58:40Z",
+      "filteredCount": 14,
+      "notices": [
+        "Category/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+      ],
+      "provider": "MapKit MKLocalSearch live",
+      "rankingSeconds": 0.0001289844512939453,
+      "receivedCount": 26,
+      "searchSeconds": 0.9565410614013672,
+      "unmatchedActivityCount": 12
+    },
+    "semanticTop": [],
+    "categoryTop": [
+      "I1306894ECA45168B",
+      "I21CEBDCE6CD050B2",
+      "I4E573D601C7FEE4D"
+    ],
+    "error": ""
+  }
+]

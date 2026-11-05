@@ -1,0 +1,574 @@
+{
+  "phase": "complete",
+  "cycle": 1,
+  "stopReason": "planner_request_failed",
+  "model": {
+    "calls": [
+      {
+        "purpose": "researcher",
+        "elapsedMs": 17792,
+        "chargedTokens": 14827,
+        "usage": {
+          "prompt_tokens": 11468,
+          "completion_tokens": 3359,
+          "total_tokens": 14827,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 3254,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 4148,
+        "chargedTokens": 17383,
+        "usage": {
+          "prompt_tokens": 17030,
+          "completion_tokens": 353,
+          "total_tokens": 17383,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 108,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 27007,
+        "chargedTokens": 27500,
+        "usage": {
+          "prompt_tokens": 21513,
+          "completion_tokens": 5987,
+          "total_tokens": 27500,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 17344,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 5644,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 3761,
+        "chargedTokens": 28598,
+        "usage": {
+          "prompt_tokens": 27703,
+          "completion_tokens": 895,
+          "total_tokens": 28598,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 26016,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 572,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 27380,
+        "chargedTokens": 33415,
+        "usage": {
+          "prompt_tokens": 28658,
+          "completion_tokens": 4757,
+          "total_tokens": 33415,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 26016,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 3959,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 4212,
+        "chargedTokens": 37217,
+        "usage": {
+          "prompt_tokens": 36600,
+          "completion_tokens": 617,
+          "total_tokens": 37217,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 30352,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 428,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 4904,
+        "chargedTokens": 40795,
+        "usage": {
+          "prompt_tokens": 40043,
+          "completion_tokens": 752,
+          "total_tokens": 40795,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 34688,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 734,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 19823,
+        "chargedTokens": 48011,
+        "usage": {
+          "prompt_tokens": 42812,
+          "completion_tokens": 5199,
+          "total_tokens": 48011,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 39024,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2749,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 12850,
+        "chargedTokens": 50947,
+        "usage": {
+          "prompt_tokens": 48052,
+          "completion_tokens": 2895,
+          "total_tokens": 50947,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 39024,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 415,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "researcher",
+        "elapsedMs": 12068,
+        "chargedTokens": 54568,
+        "usage": {
+          "prompt_tokens": 50979,
+          "completion_tokens": 3589,
+          "total_tokens": 54568,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 47696,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1386,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 43468,
+        "chargedTokens": 29270,
+        "usage": {
+          "prompt_tokens": 20702,
+          "completion_tokens": 8568,
+          "total_tokens": 29270,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 8160,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 8052,
+        "chargedTokens": 32581,
+        "usage": {
+          "prompt_tokens": 31360,
+          "completion_tokens": 1221,
+          "total_tokens": 32581,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 26016,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 857,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 17171,
+        "chargedTokens": 35009,
+        "usage": {
+          "prompt_tokens": 32695,
+          "completion_tokens": 2314,
+          "total_tokens": 35009,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 30352,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2098,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 77702,
+        "chargedTokens": 58434,
+        "usage": {
+          "prompt_tokens": 40793,
+          "completion_tokens": 17641,
+          "total_tokens": 58434,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 34688,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 12669,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 32686,
+        "chargedTokens": 66467,
+        "usage": {
+          "prompt_tokens": 58955,
+          "completion_tokens": 7512,
+          "total_tokens": 66467,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 52032,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2049,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 10412,
+        "chargedTokens": 68319,
+        "usage": {
+          "prompt_tokens": 66500,
+          "completion_tokens": 1819,
+          "total_tokens": 68319,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 56368,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1590,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 25007,
+        "chargedTokens": 72512,
+        "usage": {
+          "prompt_tokens": 70667,
+          "completion_tokens": 1845,
+          "total_tokens": 72512,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 65040,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1466,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "planner",
+        "elapsedMs": 18066,
+        "chargedTokens": 76043,
+        "usage": {
+          "prompt_tokens": 72545,
+          "completion_tokens": 3498,
+          "total_tokens": 76043,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 65040,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2812,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      }
+    ],
+    "maxCalls": 48,
+    "chargedTokens": 791896,
+    "totalTokenLimit": 1000000,
+    "missingUsageChargedAtConservativeReservation": true,
+    "internalReasoningStored": false
+  },
+  "outcomes": [
+    {
+      "role": "researcher",
+      "result": {
+        "status": "stalled",
+        "submission": null,
+        "error": "Repeated invalid tool actions.",
+        "turns": 10
+      }
+    },
+    {
+      "role": "planner",
+      "result": {
+        "status": "request_failed",
+        "submission": null,
+        "error": "Run AI token budget exhausted before request.",
+        "turns": 9
+      }
+    }
+  ]
+}

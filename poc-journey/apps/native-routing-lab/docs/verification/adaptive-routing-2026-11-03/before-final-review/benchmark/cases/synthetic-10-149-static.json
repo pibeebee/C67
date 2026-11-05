@@ -1,0 +1,1210 @@
+{
+  "id": "synthetic-10-149-static",
+  "kind": "synthetic_static",
+  "draft": {
+    "departure": "2026-11-05T00:00:00Z",
+    "timeZoneID": "Asia/Jakarta",
+    "searchContext": "Synthetic replay only",
+    "origin": {
+      "id": "p00",
+      "title": "Synthetic 0",
+      "query": "",
+      "latitude": -6.2403447754403345,
+      "longitude": 106.78629662811606
+    },
+    "end": {
+      "id": "end",
+      "title": "Unused",
+      "query": ""
+    },
+    "returnsToOrigin": true,
+    "defaultDwell": 30,
+    "walking": false,
+    "transit": false,
+    "automobile": true,
+    "maximumWalkingMinutes": 45,
+    "extraWeatherMinutes": 15,
+    "rainWeight": 2,
+    "stops": [
+      {
+        "point": {
+          "id": "p01",
+          "title": "Synthetic 1",
+          "query": "",
+          "latitude": -6.143471261384624,
+          "longitude": 106.85919295205343
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 465,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p02",
+          "title": "Synthetic 2",
+          "query": "",
+          "latitude": -6.160180933920652,
+          "longitude": 106.8663903217357
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 510,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p03",
+          "title": "Synthetic 3",
+          "query": "",
+          "latitude": -6.222658167275913,
+          "longitude": 106.79797075840376
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 555,
+          "closesMinute": 1380,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p04",
+          "title": "Synthetic 4",
+          "query": "",
+          "latitude": -6.263271693181671,
+          "longitude": 106.8649769172976
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 600,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p05",
+          "title": "Synthetic 5",
+          "query": "",
+          "latitude": -6.147032275594452,
+          "longitude": 106.77087072904433
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 420,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p06",
+          "title": "Synthetic 6",
+          "query": "",
+          "latitude": -6.147186443068793,
+          "longitude": 106.80505868771998
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 465,
+          "closesMinute": 1380,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p07",
+          "title": "Synthetic 7",
+          "query": "",
+          "latitude": -6.167874754860629,
+          "longitude": 106.87477820793437
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 510,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p08",
+          "title": "Synthetic 8",
+          "query": "",
+          "latitude": -6.179754306130182,
+          "longitude": 106.8676009033774
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 555,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p09",
+          "title": "Synthetic 9",
+          "query": "",
+          "latitude": -6.267238536553532,
+          "longitude": 106.83722675724788
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 600,
+          "closesMinute": 1380,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p10",
+          "title": "Synthetic 10",
+          "query": "",
+          "latitude": -6.189669570404663,
+          "longitude": 106.76485589553855
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 420,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      }
+    ],
+    "carUse": "onDemand",
+    "routingRequestLimit": 96,
+    "routingEvaluationLimit": 12000,
+    "routingSecondsLimit": 3.0,
+    "routingBeamWidth": 8
+  },
+  "oracle": [
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1727,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1216,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 345,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1379,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 1383,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1065,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1805,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 1771,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 563,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 750,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1940,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 321,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 1273,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1913,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 836,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1045,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 438,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 627,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 1736,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 1180,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 932,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 401,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 1207,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1556,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 1633,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 644,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 327,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 469,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 1168,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 1701,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 540,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1202,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1653,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 977,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 1305,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1308,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1620,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 860,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 779,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 757,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 642,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1399,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1153,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 1131,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 2498,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1514,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1113,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 1295,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 401,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 1765,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 692,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 793,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1695,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 858,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1635,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 416,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1373,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 892,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 1302,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 732,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p05"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1019,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 771,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1071,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 590,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 2030,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 514,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1102,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 562,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 977,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 470,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p06"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1701,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 318,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 395,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 1313,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1491,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 1275,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1289,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 208,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 1673,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 866,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p07"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1434,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 771,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 428,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 632,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 710,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 857,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 766,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 213,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 811,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 1468,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p08"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 698,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1111,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1068,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 553,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 641,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 1653,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 1853,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 798,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 1209,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p10",
+      "mode": "automobile",
+      "seconds": 1848,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p09"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1080,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1152,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1110,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 531,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1206,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p05",
+      "mode": "automobile",
+      "seconds": 699,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p06",
+      "mode": "automobile",
+      "seconds": 472,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p07",
+      "mode": "automobile",
+      "seconds": 1471,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p08",
+      "mode": "automobile",
+      "seconds": 1157,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    },
+    {
+      "to": "p09",
+      "mode": "automobile",
+      "seconds": 1073,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p10"
+    }
+  ],
+  "provenance": "Seeded asymmetric fictional ETA oracle. Timed durations increase after +120 min (FIFO); not provider evidence.",
+  "suite": "additional"
+}

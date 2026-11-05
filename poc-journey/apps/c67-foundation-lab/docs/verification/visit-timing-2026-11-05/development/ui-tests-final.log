@@ -1,0 +1,20 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 30bc232d5ad1841e541e5ad9ea444ca4d3a63f6f03ec8fc57dc3679dcb16edb1
+2026-11-05 08:47:49.854 appintentsmetadataprocessor[1445:34877471] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+2026-11-05 08:47:49.987 appintentsmetadataprocessor[1448:34877485] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'Selected tests' started at 2026-11-05 08:47:57.383.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 08:47:57.386.
+Test Suite 'VisitTimingUITests' started at 2026-11-05 08:47:57.386.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+objc[1458]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x105c30310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105c84398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' passed (26.269 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' passed (30.628 seconds).
+Test Suite 'VisitTimingUITests' passed at 2026-11-05 08:48:54.287.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 56.897 (56.901) seconds
+Test Suite 'C67FoundationLabUITests.xctest' passed at 2026-11-05 08:48:54.292.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 56.897 (56.906) seconds
+Test Suite 'Selected tests' passed at 2026-11-05 08:48:54.292.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 56.897 (56.909) seconds
+Test session results, code coverage, and logs:
+** TEST SUCCEEDED **

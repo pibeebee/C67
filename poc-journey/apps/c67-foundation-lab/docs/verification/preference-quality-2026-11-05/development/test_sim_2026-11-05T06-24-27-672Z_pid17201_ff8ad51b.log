@@ -1,0 +1,36 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 8bbc274c5638af96c88ff8fd202cf8feeb702c23626b776af2f859ad574fcded
+2026-11-05 13:24:33.336 appintentsmetadataprocessor[48289:35144697] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+2026-11-05 13:24:33.937 appintentsmetadataprocessor[48293:35144726] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+** TEST BUILD SUCCEEDED **
+Test Suite 'All tests' started at 2026-11-05 13:24:44.434.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 13:24:44.436.
+Test Suite 'LivePreferenceUITests' started at 2026-11-05 13:24:44.436.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' started.
+objc[48305]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x105f88310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105fbc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' passed (13.644 seconds).
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' passed (24.459 seconds).
+Test Suite 'LivePreferenceUITests' passed at 2026-11-05 13:25:22.544.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 38.103 (38.108) seconds
+Test Suite 'QualityLabUITests' started at 2026-11-05 13:25:22.550.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' started.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' passed (38.123 seconds).
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' started.
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/QualityLabUITests.swift:16: error: -[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' failed (30.455 seconds).
+Test Suite 'QualityLabUITests' failed at 2026-11-05 13:26:31.130.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 68.579 (68.581) seconds
+Test Suite 'VisitTimingUITests' started at 2026-11-05 13:26:31.132.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' passed (25.907 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' passed (32.507 seconds).
+Test Suite 'VisitTimingUITests' passed at 2026-11-05 13:27:29.547.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 58.414 (58.416) seconds
+Test Suite 'C67FoundationLabUITests.xctest' failed at 2026-11-05 13:27:29.548.
+	 Executed 6 tests, with 1 failure (0 unexpected) in 165.095 (165.112) seconds
+Test Suite 'All tests' failed at 2026-11-05 13:27:29.550.
+	 Executed 6 tests, with 1 failure (0 unexpected) in 165.095 (165.115) seconds
+Test session results, code coverage, and logs:
+** TEST EXECUTE FAILED **

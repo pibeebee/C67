@@ -1,0 +1,273 @@
+import Foundation
+import PreferenceLearning
+
+public enum BenefitScoring {
+    // Fixed English stop words; no dataset-specific synonyms or query expansion.
+    private static let stop = Set(
+        "a an and are as at be been but by can could do for from had has have how i in into is it its me my of on or our should show some that the their them there these they this to us want was we were what where which while who will with would you your"
+            .split(separator: " ").map(String.init))
+    public static func tokens(_ text: String) -> [String] {
+        text.lowercased().folding(
+            options: .diacriticInsensitive, locale: Locale(identifier: "en_US_POSIX")
+        )
+        .components(separatedBy: CharacterSet.alphanumerics.inverted)
+        .filter { !$0.isEmpty && !stop.contains($0) }
+    }
+    public static func bm25(query: String, documents: [String]) -> [Double] {
+        guard !documents.isEmpty else { return [] }
+        let terms = Set(tokens(query))
+        let docs = documents.map(tokens)
+        let average = Double(docs.reduce(0) { $0 + $1.count }) / Double(docs.count)
+        guard average > 0 else { return Array(repeating: 0, count: docs.count) }
+        return docs.map { document in
+            terms.reduce(0.0) { score, term in
+                let frequency = Double(document.filter { $0 == term }.count)
+                guard frequency > 0 else { return score }
+                let df = Double(docs.filter { $0.contains(term) }.count)
+                let idf = log(1 + (Double(docs.count) - df + 0.5) / (df + 0.5))
+                let denominator = frequency + 1.2 * (1 - 0.75 + 0.75 * Double(document.count) / average)
+                return score + idf * frequency * 2.2 / denominator
+            }
+        }
+    }
+    public static func sorted(_ rows: [BenefitRow]) -> [BenefitRow] {
+        rows.sorted {
+            if $0.primary != $1.primary { return $0.primary > $1.primary }
+            if $0.secondary != $1.secondary { return $0.secondary > $1.secondary }
+            return $0.id < $1.id
+        }
+    }
+    public static func metrics(rows: [BenefitRow], judgments: [String: BenefitJudgment])
+        -> BenefitMetrics
+    {
+        let ranking = sorted(rows)
+        let grades = judgments.mapValues(\.grade)
+        let ideal = grades.values.sorted(by: >).prefix(3).enumerated().reduce(0.0) {
+            $0 + (pow(2, Double($1.element)) - 1) / log2(Double($1.offset + 2))
+        }
+        var dcg = 0.0
+        var hits = 0.0
+        var top = 0.0
+        var start = 0
+        while start < min(3, ranking.count) {
+            let row = ranking[start]
+            var end = start + 1
+            while end < ranking.count && ranking[end].primary == row.primary
+                && ranking[end].secondary == row.secondary
+            { end += 1 }
+            let group = ranking[start ..< end]
+            let gain =
+                group.reduce(0.0) { $0 + pow(2, Double(grades[$1.id] ?? 0)) - 1 } / Double(group.count)
+            let positive = Double(group.filter { (grades[$0.id] ?? 0) > 0 }.count) / Double(group.count)
+            if start == 0 {
+                top = group.reduce(0.0) { $0 + Double(grades[$1.id] ?? 0) } / Double(group.count)
+            }
+            for position in start ..< min(3, end) {
+                dcg += gain / log2(Double(position + 2))
+                hits += positive
+            }
+            start = end
+        }
+        return .init(
+            ndcgAt3: ideal == 0 ? 0 : dcg / ideal,
+            precisionAt3: hits / 3, topOneRelevance: top)
+    }
+}
+
+public struct BenefitPipeline: Sendable {
+    public let embedding: any PreferenceEmbedding
+    public init(embedding: any PreferenceEmbedding = E5Embedding()) { self.embedding = embedding }
+    public func run(
+        item: BenefitCase, dataset: BenefitDataset, maskNames: Bool = true,
+        useEmbedding: Bool = true, now: Date = .now,
+        progress: @escaping @Sendable (String) async -> Void = { _ in }
+    ) async throws -> BenefitRun {
+        let began = Date()
+        try dataset.validate()
+        // Validate caller-provided cases too; UI may edit the soft direction.
+        try item.profile.validate(catalog: dataset.catalog)
+        let base = try await QualityPipeline(embedding: embedding).run(
+            profile: item.profile, catalog: dataset.catalog, useEmbedding: false, now: now)
+        var run = BenefitRun(
+            createdAt: .now, evaluationClock: now, datasetID: dataset.id,
+            input: item, catalog: dataset.catalog, documents: dataset.documents, maskedNames: maskNames,
+            decisions: base.decisions, rankings: [], status: base.status, error: "",
+            gatePassed: Set(base.decisions.filter { $0.state == "eligible" }.map(\.id))
+                == Set(item.expectedEligible),
+            lexicalSeconds: 0, embeddingSeconds: 0, totalSeconds: 0, queryEncodes: 0, documentEncodes: 0)
+        let rows = base.category.map { BenefitRow(id: $0.id, primary: $0.categoryScore) }
+        func ranking(_ id: String, _ rows: [BenefitRow]) -> BenefitRanking {
+            .init(
+                id: id, rows: BenefitScoring.sorted(rows),
+                metrics: item.family == "safety"
+                    ? nil : BenefitScoring.metrics(rows: rows, judgments: item.judgments))
+        }
+        if base.status != "category_only" {
+            run.totalSeconds = Date().timeIntervalSince(began)
+            return run
+        }
+        run.rankings.append(ranking("category", rows))
+        let lexicalBegan = Date()
+        let passages = rows.map { dataset.passage($0.id, maskNames: maskNames) }
+        let lexical = BenefitScoring.bm25(query: item.profile.query, documents: passages)
+        run.rankings.append(
+            ranking(
+                "lexical",
+                zip(rows, lexical).map {
+                    BenefitRow(id: $0.0.id, primary: $0.0.primary, secondary: $0.1)
+                }))
+        run.lexicalSeconds = Date().timeIntervalSince(lexicalBegan)
+        guard useEmbedding else {
+            run.status = "lexical_only"
+            run.totalSeconds = Date().timeIntervalSince(began)
+            return run
+        }
+        let modelBegan = Date()
+        do {
+            run.embedding = try await embedding.metadata()
+            let query = try await embedding.encode(item.profile.query, query: true)
+            run.queryEncodes = 1
+            var semantic: [BenefitRow] = []
+            var combined: [BenefitRow] = []
+            for (index, row) in rows.enumerated() {
+                try Task.checkCancellation()
+                await progress("Mencocokkan \(index + 1)/\(rows.count)")
+                let vector = try await embedding.encode(passages[index], query: false)
+                run.documentEncodes += 1
+                let cosine = try PreferenceRanker.cosine(query, vector)
+                semantic.append(.init(id: row.id, primary: row.primary, secondary: cosine))
+                combined.append(.init(id: row.id, primary: 0.6 * row.primary + 0.4 * ((cosine + 1) / 2)))
+            }
+            try Task.checkCancellation()
+            run.rankings.append(ranking("e5", semantic))
+            run.rankings.append(ranking("combined", combined))
+            run.status = "comparison_completed"
+        } catch is CancellationError { throw CancellationError() } catch {
+            run.status = "lexical_fallback"
+            run.error = error.localizedDescription
+            run.embedding = nil
+        }
+        run.embeddingSeconds = Date().timeIntervalSince(modelBegan)
+        run.totalSeconds = Date().timeIntervalSince(began)
+        try Self.validate(run)
+        return run
+    }
+    public static func validate(_ run: BenefitRun) throws {
+        try BenefitDataset(
+            schemaVersion: 1, id: run.datasetID, catalog: run.catalog,
+            documents: run.documents, cases: [run.input]
+        ).validate()
+        let eligible = Set(
+            try QualityPipeline.decisions(
+                profile: run.input.profile,
+                catalog: run.catalog, now: run.evaluationClock
+            ).filter { $0.state == "eligible" }.map(\.id))
+        guard run.schemaVersion == 1, run.policy == "benefit-v1-bm25-1.2-0.75-combined-0.6-0.4",
+              [run.totalSeconds, run.lexicalSeconds, run.embeddingSeconds].allSatisfy({
+                  $0.isFinite && $0 >= 0
+              }),
+              run.createdAt.timeIntervalSince1970.isFinite,
+              run.evaluationClock.timeIntervalSince1970.isFinite,
+              run.queryEncodes >= 0, run.documentEncodes >= 0,
+              Set(run.decisions.map(\.id)) == Set(run.catalog.candidates.map(\.id)),
+              run.decisions.count == run.catalog.candidates.count,
+              Set(run.rankings.map(\.id)).count == run.rankings.count,
+              run.rankings.allSatisfy({ ranking in
+                  ["category", "lexical", "e5", "combined"].contains(ranking.id)
+                      && Set(ranking.rows.map(\.id)) == eligible && ranking.rows.count == eligible.count
+                      && ranking.rows.allSatisfy { $0.primary.isFinite && $0.secondary.isFinite }
+              })
+        else { throw PreferenceError.invalid("Hasil eksperimen semantik tidak valid.") }
+        let ids = Set(run.rankings.map(\.id))
+        switch run.status {
+        case "comparison_completed":
+            guard ids == Set(["category", "lexical", "e5", "combined"]), run.embedding != nil else {
+                throw PreferenceError.invalid("Perbandingan model tidak lengkap.")
+            }
+        case "lexical_only", "lexical_fallback":
+            guard ids == Set(["category", "lexical"]), run.embedding == nil else {
+                throw PreferenceError.invalid("Pembanding fallback tidak sesuai.")
+            }
+        case "no_verified_match", "preference_review_required", "no_supported_preference",
+             "general_not_personalized":
+            guard ids.isEmpty, run.embedding == nil else {
+                throw PreferenceError.invalid("Status awal tidak boleh memuat ranking model.")
+            }
+        default: throw PreferenceError.invalid("Status semantik tidak dikenal.")
+        }
+        for ranking in run.rankings {
+            if run.input.family == "safety" {
+                guard ranking.metrics == nil else {
+                    throw PreferenceError.invalid("Kasus safety bukan mutu ranking.")
+                }
+            } else {
+                guard let actual = ranking.metrics else { throw PreferenceError.invalid("Metrik hilang.") }
+                let expected = BenefitScoring.metrics(rows: ranking.rows, judgments: run.input.judgments)
+                guard abs(actual.ndcgAt3 - expected.ndcgAt3) < 1e-10,
+                      abs(actual.precisionAt3 - expected.precisionAt3) < 1e-10,
+                      abs(actual.topOneRelevance - expected.topOneRelevance) < 1e-10
+                else { throw PreferenceError.invalid("Metrik tidak sesuai ranking dan relevansi.") }
+            }
+        }
+    }
+}
+
+public actor BenefitStore {
+    public let directory: URL
+    public init(directory: URL) { self.directory = directory }
+    public func save(_ run: BenefitRun) throws {
+        try Task.checkCancellation()
+        try BenefitPipeline.validate(run)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let url = directory.appendingPathComponent(run.id.uuidString + ".json")
+        let data = try BenefitCodec.encode(run)
+        if FileManager.default.fileExists(atPath: url.path) {
+            guard try Data(contentsOf: url) == data else {
+                throw PreferenceError.invalid("ID run sudah dipakai.")
+            }
+        } else {
+            try data.write(to: url, options: .atomic)
+        }
+    }
+    public func history() throws -> (runs: [BenefitRun], unreadable: Int) {
+        guard FileManager.default.fileExists(atPath: directory.path) else { return ([], 0) }
+        var runs: [BenefitRun] = []
+        var unreadable = 0
+        for url in try FileManager.default.contentsOfDirectory(
+            at: directory, includingPropertiesForKeys: nil)
+            where url.pathExtension == "json" {
+            do {
+                let run = try BenefitCodec.decode(BenefitRun.self, data: Data(contentsOf: url))
+                try BenefitPipeline.validate(run)
+                runs.append(run)
+            } catch { unreadable += 1 }
+        }
+        return (runs.sorted { $0.createdAt > $1.createdAt }, unreadable)
+    }
+    public func export(_ run: BenefitRun) throws -> URL {
+        try save(run)
+        let folder = directory.appendingPathComponent("Exports/" + run.id.uuidString)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        try BenefitCodec.encode(run).write(
+            to: folder.appendingPathComponent("run.json"), options: .atomic)
+        let rows = run.rankings.map { ranking in
+            "| \(ranking.id) | \(ranking.rows.prefix(3).map(\.id).joined(separator: ", ")) | \(ranking.metrics.map { String(format: "%.4f", $0.ndcgAt3) } ?? "n/a") |"
+        }.joined(separator: "\n")
+        let report = """
+        # Embedding benefit experiment
+        Case: \(run.input.id); dataset: \(run.datasetID); policy: \(run.policy).
+        Status: \(run.status). Name-masked: \(run.maskedNames). Gate: \(run.gatePassed).
+        Direction: \(run.input.profile.direction)
+
+        | Method | Top 3 area IDs | Expected-tie NDCG@3 |
+        | --- | --- | --- |
+        \(rows)
+
+        Authored relevance judgments; not an independent human assessment. Soft text is not a verified requirement. No routing, operational guarantee or reduced-user-burden claim.
+        Total: \(run.totalSeconds) seconds; model stage: \(run.embeddingSeconds).
+        Error: \(run.error)
+        """
+        try Data(report.utf8).write(to: folder.appendingPathComponent("REPORT.md"), options: .atomic)
+        return folder
+    }
+}

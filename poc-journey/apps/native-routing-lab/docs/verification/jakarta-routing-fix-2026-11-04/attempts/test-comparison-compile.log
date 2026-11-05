@@ -1,0 +1,7 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 5b0756b370b6be817499fe8f8fbe6d04698dcf336b6a90696706de493a59338c
+error: SwiftCompile normal arm64 /private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.KQcyDM/Tests/LocalTests/JakartaProfileTests.swift failed with a nonzero exit code. Command line:     cd /private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T
+/private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.KQcyDM/Tests/LocalTests/JakartaProfileTests.swift:196:5: error: global function 'XCTAssertEqual(_:_:_:file:line:)' requires that 'NativeTripVisitState' conform to 'Equatable'
+    |     `- error: global function 'XCTAssertEqual(_:_:_:file:line:)' requires that 'NativeTripVisitState' conform to 'Equatable'
+error: Build failed
+error: fatalError

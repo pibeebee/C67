@@ -1,0 +1,1019 @@
+[
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": true,
+    "error": "Failed to get accessibility hierarchy.",
+    "data": {
+      "summary": {
+        "status": "FAILED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [
+          {
+            "message": "Timed out creating the simulator remote automation session"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "1mz3mt2",
+        "seq": 3,
+        "count": 119,
+        "targets": [
+          "e56|tap|button|Contoh Jakarta · 5 tujuan||example-jakarta",
+          "e63|tap|button|Contoh sintetis · 3 tujuan||example-synthetic",
+          "e71|tap|button|Impor hasil routing (.json)||import-routing",
+          "e109|tap|button|Lanjut · Berikan arahan||continue-preferences"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e10|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||"
+        ],
+        "text": [
+          "e25|text|text|Dari itinerary ke rekomendasi yang sesuai Anda.||",
+          "e32|text|text|Mulai dari contoh atau hasil routing tersimpan. Jadwal asli tetap dipertahankan.||",
+          "e40|text|text|Mode fixture · tanpa inferensi model||",
+          "e86|text|text|Data sintetis||",
+          "e93|text|text|3 tujuan · Asia/Jakarta||",
+          "e101|text|text|Tanggal asli: 2026-11-05T08:00:00+07:00||",
+          "e110|text|text|Lanjut · Berikan arahan||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      },
+      "waitMatch": {
+        "predicate": "exists",
+        "matches": [
+          "e109|tap|button|Lanjut · Berikan arahan||continue-preferences"
+        ]
+      }
+    },
+    "nextSteps": [
+      "Capture a fresh runtime UI snapshot: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait until the UI is settled: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0ved795",
+        "seq": 5,
+        "count": 119,
+        "targets": [
+          "e87|tap|button|Ritme, Ikuti arahan · default seimbang||trip-pace",
+          "e109|tap|button|Profil saya · disimpan terpisah||",
+          "e32|typeText|text-field||e.g. Relaxed, coffee and reading|trip-direction",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e57|tap|button|Kopi||interest-coffee",
+          "e60|tap|button|Membaca||interest-reading",
+          "e63|tap|button|Suasana tenang||interest-quiet",
+          "e66|tap|button|Indoor||interest-indoor",
+          "e69|tap|button|Budaya dan museum||interest-culture",
+          "e72|tap|button|Outdoor||interest-outdoor",
+          "e75|tap|button|Kuliner||interest-food",
+          "e78|tap|button|Fotografi||interest-photography",
+          "e97|tap|button|Hal yang dihindari||",
+          "e99|tap|button|||",
+          "e111|tap|button|||"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e41|text|text|Opsional · teks bebas dalam bahasa Inggris. Anda dapat langsung memakai pilihan di bawah.||",
+          "e58|text|text|Kopi||",
+          "e61|text|text|Membaca||",
+          "e64|text|text|Suasana tenang||",
+          "e67|text|text|Indoor||",
+          "e70|text|text|Budaya dan museum||",
+          "e73|text|text|Outdoor||",
+          "e76|text|text|Kuliner||",
+          "e79|text|text|Fotografi||",
+          "e89|text|text|Ritme||",
+          "e88|text|text|Ikuti arahan · default seimbang||",
+          "e98|text|text|Hal yang dihindari||",
+          "e110|text|text|Profil saya · disimpan terpisah||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch same-screen taps: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e57\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e87\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "11yteyz",
+        "seq": 7,
+        "count": 119,
+        "targets": [
+          "e87|tap|button|Ritme, Ikuti arahan · default seimbang||trip-pace",
+          "e109|tap|button|Profil saya · disimpan terpisah||",
+          "e32|typeText|text-field||e.g. Relaxed, coffee and reading|trip-direction",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e57|tap|button|Kopi||interest-coffee",
+          "e60|tap|button|Membaca||interest-reading",
+          "e63|tap|button|Suasana tenang||interest-quiet",
+          "e66|tap|button|Indoor||interest-indoor",
+          "e69|tap|button|Budaya dan museum||interest-culture",
+          "e72|tap|button|Outdoor||interest-outdoor",
+          "e75|tap|button|Kuliner||interest-food",
+          "e78|tap|button|Fotografi||interest-photography",
+          "e97|tap|button|Hal yang dihindari||",
+          "e99|tap|button|||",
+          "e111|tap|button|||"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e41|text|text|Opsional · teks bebas dalam bahasa Inggris. Anda dapat langsung memakai pilihan di bawah.||",
+          "e58|text|text|Kopi||",
+          "e61|text|text|Membaca||",
+          "e64|text|text|Suasana tenang||",
+          "e67|text|text|Indoor||",
+          "e70|text|text|Budaya dan museum||",
+          "e73|text|text|Outdoor||",
+          "e76|text|text|Kuliner||",
+          "e79|text|text|Fotografi||",
+          "e89|text|text|Ritme||",
+          "e88|text|text|Ikuti arahan · default seimbang||",
+          "e98|text|text|Hal yang dihindari||",
+          "e110|text|text|Profil saya · disimpan terpisah||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch same-screen taps: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e57\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e87\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "11yteyz",
+        "seq": 8,
+        "count": 119,
+        "targets": [
+          "e87|tap|button|Ritme, Ikuti arahan · default seimbang||trip-pace",
+          "e109|tap|button|Profil saya · disimpan terpisah||",
+          "e32|typeText|text-field||e.g. Relaxed, coffee and reading|trip-direction",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e57|tap|button|Kopi||interest-coffee",
+          "e60|tap|button|Membaca||interest-reading",
+          "e63|tap|button|Suasana tenang||interest-quiet",
+          "e66|tap|button|Indoor||interest-indoor",
+          "e69|tap|button|Budaya dan museum||interest-culture",
+          "e72|tap|button|Outdoor||interest-outdoor",
+          "e75|tap|button|Kuliner||interest-food",
+          "e78|tap|button|Fotografi||interest-photography",
+          "e97|tap|button|Hal yang dihindari||",
+          "e99|tap|button|||",
+          "e111|tap|button|||"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e41|text|text|Opsional · teks bebas dalam bahasa Inggris. Anda dapat langsung memakai pilihan di bawah.||",
+          "e58|text|text|Kopi||",
+          "e61|text|text|Membaca||",
+          "e64|text|text|Suasana tenang||",
+          "e67|text|text|Indoor||",
+          "e70|text|text|Budaya dan museum||",
+          "e73|text|text|Outdoor||",
+          "e76|text|text|Kuliner||",
+          "e79|text|text|Fotografi||",
+          "e89|text|text|Ritme||",
+          "e88|text|text|Ikuti arahan · default seimbang||",
+          "e98|text|text|Hal yang dihindari||",
+          "e110|text|text|Profil saya · disimpan terpisah||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch same-screen taps: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e57\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e87\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0svu9h3",
+        "seq": 10,
+        "count": 127,
+        "targets": [
+          "e88|tap|button|Ritme, Ikuti arahan · default seimbang||trip-pace",
+          "e110|tap|button|Profil saya · disimpan terpisah||",
+          "e33|typeText|text-field||e.g. Relaxed, coffee and reading|trip-direction",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e58|tap|button|Kopi||interest-coffee",
+          "e61|tap|button|Membaca||interest-reading",
+          "e64|tap|button|Suasana tenang||interest-quiet",
+          "e67|tap|button|Indoor||interest-indoor",
+          "e70|tap|button|Budaya dan museum||interest-culture",
+          "e73|tap|button|Outdoor||interest-outdoor",
+          "e76|tap|button|Kuliner||interest-food",
+          "e79|tap|button|Fotografi||interest-photography",
+          "e98|tap|button|Hal yang dihindari||",
+          "e100|tap|button|||",
+          "e112|tap|button|||",
+          "e121|tap|button|Buat rekomendasi||generate-recommendations"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e42|text|text|Opsional · teks bebas dalam bahasa Inggris. Anda dapat langsung memakai pilihan di bawah.||",
+          "e59|text|text|Kopi||",
+          "e62|text|text|Membaca||",
+          "e65|text|text|Suasana tenang||",
+          "e68|text|text|Indoor||",
+          "e71|text|text|Budaya dan museum||",
+          "e74|text|text|Outdoor||",
+          "e77|text|text|Kuliner||",
+          "e80|text|text|Fotografi||",
+          "e90|text|text|Ritme||",
+          "e89|text|text|Ikuti arahan · default seimbang||",
+          "e99|text|text|Hal yang dihindari||",
+          "e111|text|text|Profil saya · disimpan terpisah||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch same-screen taps: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e58\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e88\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0danaq0",
+        "seq": 12,
+        "count": 137,
+        "targets": [
+          "e88|tap|button|Ritme, Ikuti arahan · default seimbang||trip-pace",
+          "e110|tap|button|Profil saya · disimpan terpisah||",
+          "e33|typeText|text-field||e.g. Relaxed, coffee and reading|trip-direction",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e58|tap|button|Kopi||interest-coffee",
+          "e61|tap|button|Membaca||interest-reading",
+          "e64|tap|button|Suasana tenang||interest-quiet",
+          "e67|tap|button|Indoor||interest-indoor",
+          "e70|tap|button|Budaya dan museum||interest-culture",
+          "e73|tap|button|Outdoor||interest-outdoor",
+          "e76|tap|button|Kuliner||interest-food",
+          "e79|tap|button|Fotografi||interest-photography",
+          "e98|tap|button|Hal yang dihindari||",
+          "e100|tap|button|||",
+          "e112|tap|button|||",
+          "e121|tap|button|Buat rekomendasi||generate-recommendations",
+          "e128|tap|button|Lihat rekomendasi||view-results"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e42|text|text|Opsional · teks bebas dalam bahasa Inggris. Anda dapat langsung memakai pilihan di bawah.||",
+          "e59|text|text|Kopi||",
+          "e62|text|text|Membaca||",
+          "e65|text|text|Suasana tenang||",
+          "e68|text|text|Indoor||",
+          "e71|text|text|Budaya dan museum||",
+          "e74|text|text|Outdoor||",
+          "e77|text|text|Kuliner||",
+          "e80|text|text|Fotografi||",
+          "e90|text|text|Ritme||",
+          "e89|text|text|Ikuti arahan · default seimbang||",
+          "e99|text|text|Hal yang dihindari||",
+          "e111|text|text|Profil saya · disimpan terpisah||",
+          "e129|text|text|Lihat rekomendasi||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      },
+      "waitMatch": {
+        "predicate": "exists",
+        "matches": [
+          "e128|tap|button|Lihat rekomendasi||view-results"
+        ]
+      }
+    },
+    "nextSteps": [
+      "Capture a fresh runtime UI snapshot: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait until the UI is settled: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "04uvveb",
+        "seq": 14,
+        "count": 127,
+        "targets": [
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e26|text|text|3 · Rekomendasi perjalanan||",
+          "e33|text|text|Tempat tambahan dan jendela kunjungan masih usulan. Jadwal baru belum dihitung kelayakannya.||",
+          "e41|text|text|Konteks sintetis||",
+          "e56|text|text|Kopi, Membaca||",
+          "e63|text|text|Ritme: balanced||",
+          "e71|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e86|text|text|2026-11-05T08:00:00+07:00 · Asia/Jakarta||",
+          "e93|text|text|Example Museum (fictional)||",
+          "e94|text|text|Tiba 08:20 · kunjungan 60 menit||",
+          "e102|text|text|Example Reading Cafe (fictional)||",
+          "e103|text|text|Tiba 10:20 · kunjungan 45 menit||",
+          "e111|text|text|Example Garden (fictional)||",
+          "e112|text|text|Tiba 11:25 · kunjungan 30 menit||",
+          "e120|text|text|Selesai: 12:15 · batas 18:00||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e9\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "04uvveb",
+        "seq": 15,
+        "count": 127,
+        "targets": [
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e26|text|text|3 · Rekomendasi perjalanan||",
+          "e33|text|text|Tempat tambahan dan jendela kunjungan masih usulan. Jadwal baru belum dihitung kelayakannya.||",
+          "e41|text|text|Konteks sintetis||",
+          "e56|text|text|Kopi, Membaca||",
+          "e63|text|text|Ritme: balanced||",
+          "e71|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e86|text|text|2026-11-05T08:00:00+07:00 · Asia/Jakarta||",
+          "e93|text|text|Example Museum (fictional)||",
+          "e94|text|text|Tiba 08:20 · kunjungan 60 menit||",
+          "e102|text|text|Example Reading Cafe (fictional)||",
+          "e103|text|text|Tiba 10:20 · kunjungan 45 menit||",
+          "e111|text|text|Example Garden (fictional)||",
+          "e112|text|text|Tiba 11:25 · kunjungan 30 menit||",
+          "e120|text|text|Selesai: 12:15 · batas 18:00||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e9\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0kfigv8",
+        "seq": 17,
+        "count": 126,
+        "targets": [
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e23|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e41|text|text|2026-11-05T08:00:00+07:00 · Asia/Jakarta||",
+          "e48|text|text|Example Museum (fictional)||",
+          "e49|text|text|Tiba 08:20 · kunjungan 60 menit||",
+          "e57|text|text|Example Reading Cafe (fictional)||",
+          "e58|text|text|Tiba 10:20 · kunjungan 45 menit||",
+          "e66|text|text|Example Garden (fictional)||",
+          "e67|text|text|Tiba 11:25 · kunjungan 30 menit||",
+          "e75|text|text|Selesai: 12:15 · batas 18:00||",
+          "e83|text|text|Memenuhi batas yang diketahui pada snapshot||",
+          "e98|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e105|text|text|Example Museum (fictional)||",
+          "e106|text|text|Tidak ada jendela khusus yang terbukti||",
+          "e107|text|text|Template: keep the imported visit. A better window has not been established; routing validation is still required.||",
+          "e108|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||",
+          "e116|text|text|Example Reading Cafe (fictional)||",
+          "e117|text|text|Tidak ada jendela khusus yang terbukti||",
+          "e118|text|text|Template: keep the imported visit. A better window has not been established; routing validation is still required.||",
+          "e119|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e9\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0ofm4fo",
+        "seq": 19,
+        "count": 101,
+        "targets": [
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e23|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e34|text|text|Example Museum (fictional)||",
+          "e35|text|text|Tidak ada jendela khusus yang terbukti||",
+          "e36|text|text|Template: keep the imported visit. A better window has not been established; routing validation is still required.||",
+          "e37|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||",
+          "e45|text|text|Example Reading Cafe (fictional)||",
+          "e46|text|text|Tidak ada jendela khusus yang terbukti||",
+          "e47|text|text|Template: keep the imported visit. A better window has not been established; routing validation is still required.||",
+          "e48|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||",
+          "e56|text|text|Example Garden (fictional)||",
+          "e57|text|text|Tidak ada jendela khusus yang terbukti||",
+          "e58|text|text|Template: keep the imported visit. A better window has not been established; routing validation is still required.||",
+          "e59|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||",
+          "e74|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e81|text|text|Synthetic search fixture; not live MapKit||",
+          "e89|text|text|Example Book Cafe (fictional)||",
+          "e90|text|text|Lokasi: -6.24000, 106.81000||",
+          "e91|text|text|Template shortlist from search results; personal fit and route feasibility are not established.||",
+          "e92|text|text|Belum diketahui: price, quietness, opening hours, detour, schedule feasibility||",
+          "e93|text|text|Tambahan waktu dan kelayakan belum dihitung||",
+          "e94|text|text|Sumber: Synthetic candidate fixture, not MapKit results||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e9\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0j3ja59",
+        "seq": 21,
+        "count": 106,
+        "targets": [
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e26|text|text|Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative||",
+          "e44|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e51|text|text|Synthetic search fixture; not live MapKit||",
+          "e59|text|text|Example Book Cafe (fictional)||",
+          "e60|text|text|Lokasi: -6.24000, 106.81000||",
+          "e61|text|text|Template shortlist from search results; personal fit and route feasibility are not established.||",
+          "e62|text|text|Belum diketahui: price, quietness, opening hours, detour, schedule feasibility||",
+          "e63|text|text|Tambahan waktu dan kelayakan belum dihitung||",
+          "e64|text|text|Sumber: Synthetic candidate fixture, not MapKit results||",
+          "e72|text|text|Example Gallery (fictional)||",
+          "e73|text|text|Lokasi: -6.19000, 106.83000||",
+          "e74|text|text|Template shortlist from search results; personal fit and route feasibility are not established.||",
+          "e75|text|text|Belum diketahui: price, quietness, opening hours, detour, schedule feasibility||",
+          "e76|text|text|Tambahan waktu dan kelayakan belum dihitung||",
+          "e77|text|text|Sumber: Synthetic candidate fixture, not MapKit results||",
+          "e92|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e99|text|text|Memenuhi batas yang diketahui pada snapshot. Example Museum (fictional) → Example Reading Cafe (fictional) → Example Garden (fictional). Selesai: 12:15. Deadline: 18:00. Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative. Informasi harga, suasana dan jam yang tidak diberikan tetap belum diketahui.||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e9\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "08omzpz",
+        "seq": 23,
+        "count": 99,
+        "targets": [
+          "e91|tap|button|Detail eksperimen dan ekspor||results-experiments",
+          "e9|tap|button|Preferensi Anda||BackButton"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e26|text|text|Belum diketahui: price, quietness, opening hours, detour, schedule feasibility||",
+          "e27|text|text|Tambahan waktu dan kelayakan belum dihitung||",
+          "e28|text|text|Sumber: Synthetic candidate fixture, not MapKit results||",
+          "e39|text|text|Example Gallery (fictional)||",
+          "e40|text|text|Lokasi: -6.19000, 106.83000||",
+          "e41|text|text|Template shortlist from search results; personal fit and route feasibility are not established.||",
+          "e42|text|text|Belum diketahui: price, quietness, opening hours, detour, schedule feasibility||",
+          "e43|text|text|Tambahan waktu dan kelayakan belum dihitung||",
+          "e44|text|text|Sumber: Synthetic candidate fixture, not MapKit results||",
+          "e59|text|text|Template · model belum memberikan hasil yang dapat digunakan||",
+          "e66|text|text|Memenuhi batas yang diketahui pada snapshot. Example Museum (fictional) → Example Reading Cafe (fictional) → Example Garden (fictional). Selesai: 12:15. Deadline: 18:00. Sumber: Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative. Informasi harga, suasana dan jam yang tidak diberikan tetap belum diketahui.||",
+          "e74|text|text|Prices and crowd levels unknown||",
+          "e82|text|text|Garden afternoon preference has not been inserted into a new timetable||",
+          "e92|text|text|Detail eksperimen dan ekspor||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e91\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "1g1sc7t",
+        "seq": 25,
+        "count": 136,
+        "targets": [
+          "e40|tap|switch|Mode fixture · tanpa inferensi|1|fixture-mode",
+          "e58|tap|button|Jalankan pembanding tanpa model||",
+          "e96|tap|button|Siapkan ekspor JSON dan Markdown||prepare-export",
+          "e9|tap|button|Rekomendasi||BackButton",
+          "e42|tap|switch||1|"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e32|text|text|Mode fixture · tanpa inferensi model||",
+          "e41|text|text|Mode fixture · tanpa inferensi||",
+          "e50|text|text|Model: English · kontrol: Indonesia · batas 20 detik/tugas, 800 token keluaran, tanpa retry otomatis.||",
+          "e73|text|text|53C5874D-4C90-484F-9387-580F31010131||",
+          "e80|text|text|0.02 detik · input 1 · koreksi 0||",
+          "e88|text|text|Validasi bentuk/referensi tidak membuktikan kebenaran semua kalimat.||",
+          "e111|text|text|deterministic · blocked · 0.000 s||",
+          "e118|text|text|Fixture mode; live model disabled; English supported: true||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch visible switch toggles: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e40\"},{\"action\":\"tap\",\"elementRef\":\"e42\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e58\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "194exg1",
+        "seq": 27,
+        "count": 137,
+        "targets": [
+          "e40|tap|switch|Mode fixture · tanpa inferensi|1|fixture-mode",
+          "e58|tap|button|Jalankan pembanding tanpa model||",
+          "e96|tap|button|Siapkan ekspor JSON dan Markdown||prepare-export",
+          "e114|tap|button|Bagikan laporan Markdown||",
+          "e9|tap|button|Rekomendasi||BackButton",
+          "e42|tap|switch||1|",
+          "e104|tap|button|Bagikan JSON||"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e32|text|text|Mode fixture · tanpa inferensi model||",
+          "e41|text|text|Mode fixture · tanpa inferensi||",
+          "e50|text|text|Model: English · kontrol: Indonesia · batas 20 detik/tugas, 800 token keluaran, tanpa retry otomatis.||",
+          "e73|text|text|53C5874D-4C90-484F-9387-580F31010131||",
+          "e80|text|text|0.02 detik · input 1 · koreksi 0||",
+          "e88|text|text|Validasi bentuk/referensi tidak membuktikan kebenaran semua kalimat.||",
+          "e106|text|text|Bagikan JSON||",
+          "e116|text|text|Bagikan laporan Markdown||",
+          "e131|text|text|deterministic · blocked · 0.000 s||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch visible switch toggles: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e40\"},{\"action\":\"tap\",\"elementRef\":\"e42\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e58\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "0upsa02",
+        "seq": 28,
+        "count": 88,
+        "targets": [
+          "e56|tap|button|Contoh Jakarta · 5 tujuan||example-jakarta",
+          "e63|tap|button|Contoh sintetis · 3 tujuan||example-synthetic",
+          "e71|tap|button|Impor hasil routing (.json)||import-routing",
+          "e80|tap|button|Eksperimen dan riwayat||open-experiments"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e10|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||"
+        ],
+        "text": [
+          "e25|text|text|Dari itinerary ke rekomendasi yang sesuai Anda.||",
+          "e32|text|text|Mulai dari contoh atau hasil routing tersimpan. Jadwal asli tetap dipertahankan.||",
+          "e40|text|text|Mode fixture · tanpa inferensi model||",
+          "e81|text|text|Eksperimen dan riwayat||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e56\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "051jj6b",
+        "seq": 30,
+        "count": 101,
+        "targets": [
+          "e40|tap|switch|Mode fixture · tanpa inferensi|1|fixture-mode",
+          "e65|tap|button|2026-11-04T09:22:22Z · 3 tujuan||",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e42|tap|switch||1|"
+        ],
+        "scroll": [
+          "e2|swipe|other|||",
+          "e3|swipe|other|||",
+          "e4|swipe|other|||",
+          "e5|swipe|other|||",
+          "e6|swipe|other|||",
+          "e7|swipe|other|||",
+          "e11|swipe|other|||",
+          "e12|swipe|other|||",
+          "e13|swipe|other|||",
+          "e14|swipe|other|||",
+          "e15|swipe|other|||"
+        ],
+        "text": [
+          "e32|text|text|Mode fixture · tanpa inferensi model||",
+          "e41|text|text|Mode fixture · tanpa inferensi||",
+          "e50|text|text|Model: English · kontrol: Indonesia · batas 20 detik/tugas, 800 token keluaran, tanpa retry otomatis.||",
+          "e79|text|text|Mask Jakarta geoBoundaries/OSM, vintage 2017, ODbL 1.0; cakupan operasional PoC.||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch visible switch toggles: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e40\"},{\"action\":\"tap\",\"elementRef\":\"e42\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e65\" })"
+    ]
+  },
+  {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE"
+      },
+      "capture": {
+        "type": "runtime-snapshot",
+        "rs": "1",
+        "screenHash": "193oy8j",
+        "seq": 32,
+        "count": 136,
+        "targets": [
+          "e40|tap|switch|Mode fixture · tanpa inferensi|1|fixture-mode",
+          "e58|tap|button|Jalankan pembanding tanpa model||",
+          "e96|tap|button|Siapkan ekspor JSON dan Markdown||prepare-export",
+          "e9|tap|button|C67 Foundation Lab||BackButton",
+          "e42|tap|switch||1|"
+        ],
+        "scroll": [
+          "e1|swipe|application|C67 Foundation Lab||"
+        ],
+        "text": [
+          "e32|text|text|Mode fixture · tanpa inferensi model||",
+          "e41|text|text|Mode fixture · tanpa inferensi||",
+          "e50|text|text|Model: English · kontrol: Indonesia · batas 20 detik/tugas, 800 token keluaran, tanpa retry otomatis.||",
+          "e73|text|text|53C5874D-4C90-484F-9387-580F31010131||",
+          "e80|text|text|0.02 detik · input 1 · koreksi 0||",
+          "e88|text|text|Validasi bentuk/referensi tidak membuktikan kebenaran semua kalimat.||",
+          "e111|text|text|deterministic · blocked · 0.000 s||",
+          "e118|text|text|Fixture mode; live model disabled; English supported: true||"
+        ],
+        "udid": "<REDACTED_DEVICE_METADATA>"
+      }
+    },
+    "nextSteps": [
+      "Refresh after layout changes: snapshot_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\" })",
+      "Wait for UI to settle: wait_for_ui({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", predicate: \"settled\" })",
+      "Batch visible switch toggles: batch({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", steps: [{\"action\":\"tap\",\"elementRef\":\"e40\"},{\"action\":\"tap\",\"elementRef\":\"e42\"}] })",
+      "Tap an elementRef: tap({ simulatorId: \"0F32DA7F-20C4-481E-8A0E-01FB5F153CBE\", elementRef: \"e58\" })"
+    ]
+  }
+]

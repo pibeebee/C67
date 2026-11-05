@@ -1,0 +1,36 @@
+name: C67FoundationLab
+options:
+  bundleIdPrefix: giovanchristoffel
+  deploymentTarget:
+    iOS: '26.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    DEVELOPMENT_TEAM: DP5XP7C2AM
+    MARKETING_VERSION: '0.1'
+    CURRENT_PROJECT_VERSION: '2'
+packages:
+  TripIntelligence:
+    path: Packages/TripIntelligence
+targets:
+  C67FoundationLab:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: TripIntelligence
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: giovanchristoffel.c67-foundation-lab
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: C67 Foundation Lab
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
+        TARGETED_DEVICE_FAMILY: '1,2'
+        SUPPORTS_MACCATALYST: NO
+schemes:
+  C67FoundationLab:
+    build:
+      targets:
+        C67FoundationLab: all

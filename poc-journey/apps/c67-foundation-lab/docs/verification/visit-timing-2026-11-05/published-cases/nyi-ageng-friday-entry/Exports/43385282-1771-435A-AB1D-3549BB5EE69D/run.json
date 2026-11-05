@@ -1,0 +1,149 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.0001709461212158203,
+  "id" : "43385282-1771-435A-AB1D-3549BB5EE69D",
+  "options" : [
+
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 780,
+      "start" : 690
+    },
+    "date" : "2026-11-06",
+    "durationMinutes" : 30,
+    "goal" : "openingOnly",
+    "venueID" : "nyi-ageng"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "jaklitera",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 1208aebe34ef56832f601795d33c9eb2e897c6c4e36fc244789fb65f3d672f17",
+      "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+      "url" : "https:\/\/perpustakaan.jakarta.go.id\/supports\/about-us"
+    }
+  ],
+  "status" : "no_window",
+  "validStartRanges" : [
+
+  ],
+  "venue" : {
+    "address" : "HR Rasuna Said C22, lantai 7–8, Jakarta Selatan",
+    "exposure" : "unknown",
+    "id" : "nyi-ageng",
+    "name" : "Perpustakaan Jakarta — Nyi Ageng Serang",
+    "query" : "Perpustakaan Jakarta — Nyi Ageng Serang, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+          {
+            "end" : 780,
+            "start" : 690
+          }
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "jaklitera"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 30 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+    "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+  ]
+}

@@ -1,0 +1,497 @@
+{
+  "version": "0.4",
+  "build": 5,
+  "date": "2026-10-15",
+  "uniqueTests": 67,
+  "passed": 67,
+  "failed": 0,
+  "skipped": 0,
+  "note": "Latest result per unique case parsed from XCTest case completion lines. Full run executed 51 unit/integration and 15 UI cases, with one UI case failing two assertions. Its result-bundle diagnostics finalization hung and xcodebuild was interrupted after cases completed. Followup repeated all 51 unit/integration plus corrected UI case and new direct-pin UI case: 53/53 passed, TEST SUCCEEDED and finalized xcresult. No failures treated as passes without rerun.",
+  "runs": [
+    {
+      "sourceLog": "c67-map-v4-final.log",
+      "resultBundleFinalized": false,
+      "testCases": 66,
+      "passedCases": 65,
+      "failedCases": 1
+    },
+    {
+      "sourceLog": "c67-map-v4-followup.log",
+      "resultBundleFinalized": true,
+      "testCases": 53,
+      "passedCases": 53,
+      "failedCases": 0
+    }
+  ],
+  "testCases": [
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testAllDemoScenariosAreConsistentAndResetLocalSession",
+      "status": "passed",
+      "durationSeconds": 0.031,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoCannotOverwriteBoundRealRun",
+      "status": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoLoadDoesNotModifyStateWhenSaveFails",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoStaleLocationIsSimulatedAndDoesNotVerifyP01",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testFilteringDoesNotChangeSummaryAndDuplicateNameSearchWorks",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testRegroupHasExpectedUnresolvedAndOpenCase",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testReviewedScenarioUsesExplicitEventsAndRequiresClosure",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testAllExcludedRequiresNotedClosure",
+      "status": "passed",
+      "durationSeconds": 0.002,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testClockSkewAndInvalidSamplesDoNotBecomeFresh",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testClosingWithUnresolvedNeedsNoteAndPreservesThem",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testCommittedStateReloadsIncludingClosureAndHistory",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testExcludedParticipantCaseStillCounts",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testExclusionAndRejoinNeedNewVerification",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFailedSaveRollsBackEventAndStateAndRetryCommitsOnce",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFollowUpIsIndependentAndNotDuplicated",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFreshnessNeverChangesByRepeatedReads",
+      "status": "passed",
+      "durationSeconds": 0.002,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testLocalSensorRejectedInSimulationAndResetProtectsOwnedShare",
+      "status": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNamedParticipantsRemainDistinct",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNextSessionCannotOverlapAndResetsState",
+      "status": "passed",
+      "durationSeconds": 0.002,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNormalCloseRequiresCasesResolvedEvenIfVerified",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testProximityExpressesUncertaintyAndNeverVerifies",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testSequenceEpochAndRunGuards",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testSimulationIsExplicitAndCannotChangeAttendance",
+      "status": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testStartWithoutConsentDoesNotStartSensorOrCreateCloudOwner",
+      "status": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testUndoRequiresReasonAndDoesNotTouchOtherAyu",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testUploadRejectsExpiredStoppedOldAndSimulatedData",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testVerificationIsIdempotentAndRecordedOnce",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testDemoShowsAllParticipantsAtOnceAndLeaderWithoutChangingAttendance",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderBindingBlocksResetAndOldSnapshotStillDecodes",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderCannotStartWithoutConsentAndNoSensorStartsOnInit",
+      "status": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderReferencesPersistSeparatelyAndBlockRunReplacement",
+      "status": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderURLIsCoveredByWelcomeSignatureAndOldQRVersionRejected",
+      "status": "passed",
+      "durationSeconds": 0.005,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMapKeepsStaleMeasurementButRejectsExpiredLeaseWrongRunAndInvalidCoordinates",
+      "status": "passed",
+      "durationSeconds": 0.002,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMeetingPointSnapshotValidatesBoundsAndIsSigned",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMissingRealLocationsAreNotPlacedAtMeetingPoint",
+      "status": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testParticipantMapDoesNotExposeOtherParticipants",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testPausedLeaderClearsCoordinatesAndNewEpochDoesNotReuseOldSample",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testRepeatedLeaderFetchDoesNotRefreshMeasurementAgeOrAcceptOldSequence",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testActualQRCodeImageCanBeDecoded",
+      "status": "passed",
+      "durationSeconds": 0.201,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testCreateQRJourneyRejectsLiveShareAndJoinDoesNotStartGPS",
+      "status": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testInviteRoundTripAndExpiry",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testLegacySnapshotStillLoadsAndPreservesManualBinding",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testPairedRosterReferencesReloadWithSeparateAccounts",
+      "status": "passed",
+      "durationSeconds": 0.005,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testReceiptCannotStartDifferentParticipantOrChallenge",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRegistrationSaveFailureCannotExposePartialRoster",
+      "status": "passed",
+      "durationSeconds": 0.005,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRejoiningSameAccountKeepsIDAndDoesNotDuplicateOrResetCheck",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRosterCapAndNextSessionCarryNamesWithoutVerification",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testTwoPeopleWithSameNameHaveSeparateBindingsAndNoAttendance",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testUnsupportedOrMalformedInviteCannotBeUsed",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testWelcomeMustMatchQRKeyAccountRunAndChallenge",
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testWrongRunClosedSessionOrIDCollisionCannotRegister",
+      "status": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testDemoScenarioRequiresConfirmationAndShowsCorrectCounts",
+      "status": "passed",
+      "durationSeconds": 11.051,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testGroupMapShowsAllPinsSelectionAndCameraControls",
+      "status": "passed",
+      "durationSeconds": 16.854,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testInvalidQRDoesNotAllowJoining",
+      "status": "passed",
+      "durationSeconds": 12.291,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testLeaderLocationRequiresConsentAndConnectedParticipants",
+      "status": "passed",
+      "durationSeconds": 8.646,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testLeaderSettingsOnlyContainMeetingPoint",
+      "status": "passed",
+      "durationSeconds": 5.753,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testManualCheckAtAccessibilityTextSize",
+      "status": "passed",
+      "durationSeconds": 37.57,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testManualPairingLivesInLab",
+      "status": "passed",
+      "durationSeconds": 10.418,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testNotedClosureAndNextSessionReset",
+      "status": "passed",
+      "durationSeconds": 28.696,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantActionSheetKeepsFollowUpIndependent",
+      "status": "passed",
+      "durationSeconds": 27.136,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantGuideDoesNotAllowUnconsentedStart",
+      "status": "passed",
+      "durationSeconds": 7.013,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantMapContainsLeaderAndSelfOnly",
+      "status": "passed",
+      "durationSeconds": 11.116,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testQRJoinShowsDestinationAndRequiresConsent",
+      "status": "passed",
+      "durationSeconds": 23.351,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testQRJourneyCreationIsExplicitAndRosterStartsEmpty",
+      "status": "passed",
+      "durationSeconds": 13.913,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testSimulationDoesNotVerifyAndManualCheckWorks",
+      "status": "passed",
+      "durationSeconds": 33.612,
+      "sourceLog": "c67-map-v4-followup.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testStoredParticipantShowsStopAndConsentOnlyOnResume",
+      "status": "passed",
+      "durationSeconds": 12.855,
+      "sourceLog": "c67-map-v4-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testMapPinCanBeSelectedDirectly",
+      "status": "passed",
+      "durationSeconds": 11.055,
+      "sourceLog": "c67-map-v4-followup.log"
+    }
+  ]
+}

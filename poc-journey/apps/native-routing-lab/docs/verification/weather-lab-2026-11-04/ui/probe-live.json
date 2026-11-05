@@ -1,0 +1,89 @@
+{
+  "authenticationBlocked" : true,
+  "cacheTTLSeconds" : 900,
+  "events" : [
+    {
+      "date" : "2026-11-04T10:04:32Z",
+      "id" : "AFEBCD2B-D50F-413B-BD36-6F140DDE898B",
+      "message" : "LIVE: hanya request cuaca; tidak ada pencarian\/routing MapKit."
+    },
+    {
+      "date" : "2026-11-04T10:04:32Z",
+      "id" : "EEA4D528-C4C6-4BED-BB9C-F6831EE1B147",
+      "message" : "Blok M: meminta Apple Weather, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:04:32Z",
+      "id" : "0C1A5D28-E6C7-402C-A73D-287A8C747065",
+      "message" : "Blok M: Apple Weather: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) [WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors:0]"
+    },
+    {
+      "date" : "2026-11-04T10:04:32Z",
+      "id" : "A236D5DA-34CD-436B-8593-92698789101B",
+      "message" : "Blok M: prakiraan belum diketahui; tidak dianggap 0% hujan."
+    }
+  ],
+  "exportedAt" : "2026-11-04T10:04:32Z",
+  "maxConcurrentGroups" : 2,
+  "mode" : "weatherKitOnly",
+  "probe" : true,
+  "radiusMeters" : 3000,
+  "requestedGroups" : [
+    {
+      "members" : [
+        {
+          "id" : "blok-m",
+          "latitude" : -6.2445743,
+          "longitude" : 106.8006164,
+          "name" : "Blok M"
+        }
+      ],
+      "representative" : {
+        "id" : "blok-m",
+        "latitude" : -6.2445743,
+        "longitude" : 106.8006164,
+        "name" : "Blok M"
+      }
+    }
+  ],
+  "results" : [
+    {
+      "cached" : false,
+      "group" : {
+        "members" : [
+          {
+            "id" : "blok-m",
+            "latitude" : -6.2445743,
+            "longitude" : 106.8006164,
+            "name" : "Blok M"
+          }
+        ],
+        "representative" : {
+          "id" : "blok-m",
+          "latitude" : -6.2445743,
+          "longitude" : 106.8006164,
+          "name" : "Blok M"
+        }
+      },
+      "notes" : [
+        "Apple Weather: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) [WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors:0]"
+      ]
+    }
+  ],
+  "schema" : 1,
+  "simulation" : false,
+  "startedAt" : "2026-11-04T10:04:32Z",
+  "stats" : {
+    "cacheHits" : 0,
+    "elapsedSeconds" : 0.005642056465148926,
+    "maxConcurrentGroups" : 1,
+    "openMeteoRequests" : 0,
+    "weatherKitRequests" : 1
+  },
+  "status" : "Selesai: 0\/1 kelompok memiliki prakiraan lengkap.",
+  "timeoutPerProviderSeconds" : 8,
+  "window" : {
+    "end" : "2026-11-04T17:00:00Z",
+    "start" : "2026-11-04T11:00:00Z"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "catalog" : {
+    "id" : "mapkit-live-v1",
+    "places" : [
+      {
+        "address" : "Jl Benyamin Sueb No. 1, Jakarta Utara, Jakarta 14410, Indonesia",
+        "category" : "MKPOICategoryCafe",
+        "description" : "Coffeeshop Jakarta International Expo. MapKit category: MKPOICategoryCafe. Broad category\/name activity matches: coffee, food. No further venue attributes were supplied.",
+        "id" : "ID563BEA42E02BF5",
+        "latitude" : -6.1478725,
+        "longitude" : 106.8459141,
+        "name" : "Coffeeshop Jakarta International Expo",
+        "observedAt" : "2026-11-05T00:55:50Z",
+        "source" : "MapKit MKLocalSearch identity\/category\/coordinate; native broad category\/name interpretation only",
+        "synthetic" : false,
+        "tags" : [
+          "coffee",
+          "food"
+        ],
+        "unknowns" : [
+          "opening hours",
+          "reading seats",
+          "quietness",
+          "crowds",
+          "price",
+          "accessibility",
+          "travel feasibility"
+        ]
+      }
+    ],
+    "provenance" : "MapKit MKLocalSearch live; retrieved 2026-11-05T00:55:50Z; category-interleaved, deduplicated and checked against the frozen Jakarta geoBoundaries\/OSM operational mask (2017, ODbL 1.0). No routing performed.",
+    "title" : "MapKit langsung · Jakarta"
+  },
+  "categoryRanking" : [
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "address" : "Jl Benyamin Sueb No. 1, Jakarta Utara, Jakarta 14410, Indonesia",
+        "category" : "MKPOICategoryCafe",
+        "description" : "Coffeeshop Jakarta International Expo. MapKit category: MKPOICategoryCafe. Broad category\/name activity matches: coffee, food. No further venue attributes were supplied.",
+        "id" : "ID563BEA42E02BF5",
+        "latitude" : -6.1478725,
+        "longitude" : 106.8459141,
+        "name" : "Coffeeshop Jakarta International Expo",
+        "observedAt" : "2026-11-05T00:55:50Z",
+        "source" : "MapKit MKLocalSearch identity\/category\/coordinate; native broad category\/name interpretation only",
+        "synthetic" : false,
+        "tags" : [
+          "coffee",
+          "food"
+        ],
+        "unknowns" : [
+          "opening hours",
+          "reading seats",
+          "quietness",
+          "crowds",
+          "price",
+          "accessibility",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    }
+  ],
+  "createdAt" : "2026-11-05T00:55:50Z",
+  "elapsedSeconds" : 1.5471229553222656,
+  "embedding" : {
+    "artifactSHA256" : "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88",
+    "dimensions" : 384,
+    "model" : "intfloat\/multilingual-e5-small",
+    "revision" : "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "runtime" : "ONNX Runtime 1.24.2 \/ CPU \/ int8"
+  },
+  "error" : "",
+  "id" : "BF52D236-C502-4F37-A210-2BEBB0D74D0F",
+  "os" : "Version 27.0.1 (Build 26A434)",
+  "profile" : {
+    "avoids" : [
+
+    ],
+    "feedback" : {
+
+    },
+    "interests" : [
+
+    ],
+    "schemaVersion" : 1,
+    "text" : "Saya ingin ngopi sambil membaca di tempat yang tenang"
+  },
+  "query" : "Saya ingin ngopi sambil membaca di tempat yang tenang",
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "search" : {
+    "choices" : [
+      {
+        "activity" : "coffee",
+        "basis" : "recognized activity words in current text",
+        "query" : "coffee shop, Jakarta"
+      },
+      {
+        "activity" : "reading",
+        "basis" : "recognized activity words in current text",
+        "query" : "bookstore library, Jakarta"
+      }
+    ],
+    "errors" : [
+
+    ],
+    "fetchedAt" : "2026-11-05T00:55:50Z",
+    "filteredCount" : 1,
+    "notices" : [
+      "Category\/name matching is a broad interpretation, not evidence of quietness, seating, price, crowds or opening hours."
+    ],
+    "provider" : "MapKit MKLocalSearch live",
+    "rankingSeconds" : 0.6197630167007446,
+    "receivedCount" : 2,
+    "searchSeconds" : 0.9273389577865601
+  },
+  "semanticRanking" : [
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "address" : "Jl Benyamin Sueb No. 1, Jakarta Utara, Jakarta 14410, Indonesia",
+        "category" : "MKPOICategoryCafe",
+        "description" : "Coffeeshop Jakarta International Expo. MapKit category: MKPOICategoryCafe. Broad category\/name activity matches: coffee, food. No further venue attributes were supplied.",
+        "id" : "ID563BEA42E02BF5",
+        "latitude" : -6.1478725,
+        "longitude" : 106.8459141,
+        "name" : "Coffeeshop Jakarta International Expo",
+        "observedAt" : "2026-11-05T00:55:50Z",
+        "source" : "MapKit MKLocalSearch identity\/category\/coordinate; native broad category\/name interpretation only",
+        "synthetic" : false,
+        "tags" : [
+          "coffee",
+          "food"
+        ],
+        "unknowns" : [
+          "opening hours",
+          "reading seats",
+          "quietness",
+          "crowds",
+          "price",
+          "accessibility",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0.7520828303068128
+    }
+  ],
+  "status" : "semantic_completed"
+}

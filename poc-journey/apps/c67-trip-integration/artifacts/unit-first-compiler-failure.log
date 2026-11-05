@@ -1,0 +1,13 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 461342b4b75c26e0f7c63ca936b5a202815cd44f0671e86f5a42b69ec40c1bb6
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:43:29: warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+    |                             `- warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:53:27: warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+    |                           `- warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+error: SwiftCompile normal arm64 <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/WeatherCoordinator.swift failed with a nonzero exit code. Command line:     cd <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-trip-integration/Packages
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/WeatherCoordinator.swift:170:17: error: pattern that the region-based isolation checker does not understand how to check. Please file a bug
+    |                 `- error: pattern that the region-based isolation checker does not understand how to check. Please file a bug
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/WeatherCoordinator.swift:170:17: error: pattern that the region-based isolation checker does not understand how to check. Please file a bug
+    |                 `- error: pattern that the region-based isolation checker does not understand how to check. Please file a bug
+error: Build failed
+error: fatalError

@@ -1,0 +1,74 @@
+{
+  "note": "Offline diagnosis only: timestamps were converted in a copy for structural inspection. No production candidate or result was changed; no route simulation/reviewer was run on this normalized copy.",
+  "checks": [
+    {
+      "index": 1,
+      "formatOnlyDiagnostic": "Timeline teleports between locations.",
+      "unknownEvidence": [],
+      "order": [
+        "P15",
+        "P14",
+        "P07",
+        "P08",
+        "P06",
+        "P02",
+        "P01",
+        "P11",
+        "P03",
+        "P12",
+        "P05",
+        "P04",
+        "P13",
+        "P09",
+        "P10"
+      ],
+      "acceptedByActualRun": false
+    },
+    {
+      "index": 2,
+      "formatOnlyDiagnostic": "Timeline has a gap or overlap; use an explicit wait row.",
+      "unknownEvidence": [],
+      "order": [
+        "P15",
+        "P14",
+        "P07",
+        "P08",
+        "P06",
+        "P02",
+        "P01",
+        "P11",
+        "P03",
+        "P12",
+        "P05",
+        "P04",
+        "P13",
+        "P09",
+        "P10"
+      ],
+      "acceptedByActualRun": false
+    },
+    {
+      "index": 3,
+      "formatOnlyDiagnostic": "Timeline has a gap or overlap; use an explicit wait row.",
+      "unknownEvidence": [],
+      "order": [
+        "P15",
+        "P14",
+        "P07",
+        "P08",
+        "P06",
+        "P02",
+        "P01",
+        "P11",
+        "P03",
+        "P12",
+        "P05",
+        "P04",
+        "P13",
+        "P09",
+        "P10"
+      ],
+      "acceptedByActualRun": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-03",
+  "baseline": "f55d1ecfdce973f8f1b387cba128441c92f3afe7",
+  "branch": "gi/itinerary-time-aware",
+  "build": {
+    "schema": "xcodebuildmcp.output.build-result",
+    "schemaVersion": "3",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 4384,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_sim_2026-11-03T09-32-00-767Z_pid5925_b038fbf5.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Get built app path in simulator derived data: get_sim_app_path({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", scheme: \"poc-c67\", platform: \"iOS Simulator\", derivedDataPath: \"/tmp/c67-routing-v2/build\" })"
+    ]
+  },
+  "localChecks": {
+    "routing": 18,
+    "pipeline": 6,
+    "input": 10,
+    "ortoolsRoundTrip": true,
+    "ortoolsElapsedAndCarChecks": 2
+  },
+  "benchmark": {
+    "cases": 22,
+    "seeds": [
+      11,
+      67,
+      101
+    ],
+    "arms": 4,
+    "runs": 264,
+    "auditErrors": 0,
+    "liveProvider": false
+  },
+  "ui": {
+    "finalInteractionVerified": false,
+    "reason": "Mac locked; CUA could not unlock it automatically. No alternate UI driver used."
+  },
+  "physicalDeviceValidated": false,
+  "xctestRun": false,
+  "format": "swift-format strict passed",
+  "shellSyntax": "passed",
+  "pythonSyntax": "passed"
+}

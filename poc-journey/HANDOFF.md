@@ -1,0 +1,62 @@
+# Teammate handoff
+
+## 1. Read the current boundary
+
+Start with [STATUS](STATUS.md) and [JOURNEY](JOURNEY.md). The native recommendation path no longer needs the team's OpenRouter/backend service. It still uses Apple's online Maps/Weather services for live data. Local E5 handles semantic ranking; native gates, sourced hours and the routing engine own factual/time constraints.
+
+The current integrated flow is **pre-trip**. Earlier active-trip arrival/skip/replanning work lives in Native Routing Lab and has separate evidence. Neither implies that the full production C67 app already integrates these results.
+
+## 2. Bootstrap and run deterministic checks
+
+From the repository root:
+
+```sh
+python3 poc-journey/scripts/bootstrap.py
+python3 poc-journey/scripts/verify_portability.py
+bash poc-journey/scripts/verify.sh packages
+bash poc-journey/scripts/verify.sh cli
+bash poc-journey/scripts/verify.sh native
+bash poc-journey/scripts/verify.sh build
+```
+
+Outputs go to a fresh ignored `.verification/` folder, not the preserved evidence. For UI replay, choose an installed iOS 26+ Simulator and pass its destination:
+
+```sh
+P3_SIMULATOR_DESTINATION='platform=iOS Simulator,id=YOUR_SIMULATOR_ID' \
+  bash poc-journey/scripts/verify.sh ui
+```
+
+Fixtures are explicitly synthetic, even when the system Map loads real base-map tiles. The fixture path does not exercise real WeatherKit authentication or establish iPhone inference.
+
+## 3. Open the app
+
+Open `apps/c67-trip-integration/C67TripIntegration.xcodeproj`, scheme `C67TripIntegration`. The normal launch does not automatically call providers. Optional preferences can be skipped, but a skipped profile must be described as general rather than personalized. Review destinations and any ambiguous MapKit branch before calculating a route.
+
+Use `--p3-replay` only for the fixed synthetic scenario. Debug-only `--p3-live-eval` runs real provider/evaluation scenarios with **separate** storage under `Documents/P3LiveEval`; it does not modify the normal accepted itinerary. It keeps the screen awake while the evaluation screen is visible. Normal launch restores normal screen behavior.
+
+## 4. Configure live signing and WeatherKit separately
+
+The recorded build used Team `DP5XP7C2AM` and Bundle ID `giovanchristoffel.c67-trip-integration`. These identifiers are evidence, not credentials or a promise of access for the next developer. Use a team/App ID you can sign; override `DEVELOPMENT_TEAM` and `PRODUCT_BUNDLE_IDENTIFIER` locally without committing personal provisioning data.
+
+Enable WeatherKit under both App Capabilities and App Services for the matching App ID, update provisioning, build/sign and install on the physical iPhone. Follow [Apple's native WeatherKit setup](https://developer.apple.com/help/account/services/weatherkit/). No REST JWT key is needed by this native `WeatherService` client. Start with the one-point diagnosis **without fallback**; Open-Meteo success is not Apple Weather authentication evidence.
+
+The Foundation Models experiment additionally needs supported hardware, enabled/available Apple Intelligence, downloaded model and supported language. It uses English model inputs; unsupported/unavailable paths remain explicit. P3 E5 ranking is a different local runtime and must not be presented as Apple Foundation Models inference.
+
+## 5. Understand data and proposals
+
+- Jakarta/WIB, one day, maximum six selected destinations, automobile/on-demand car. Live evidence currently covers one, two and three venues, not every six-place combination.
+- Every chosen destination remains; a missing fact or impossible deadline is a visible correction/conflict, not silent removal.
+- Area-level preference claims cannot be borrowed from another room or branch. Cikini's English MapKit alias still requires the Cikini address.
+- Published hours and full-stay entry/session rules are hard checks. Rain/daylight/sunset advice is contextual; the route does not promise every preferred window is globally optimized.
+- Snapshot/source dates stay fixed. Recheck stale facts as a new dated catalog for a new live run; never shift historical fixture dates to hide expiry.
+- Extra 30 minutes creates a new pre-trip proposal. Accept/reject/version guards preserve the accepted baseline. No automatic user-trip mutation is delegated to a model.
+
+## 6. Continue with a bounded task
+
+The next teammate should first reproduce the imported fixture checks, then choose one task: broaden sourced venue coverage, observe recommendation relevance/user effort, measure/request-budget routing performance, or integrate the earlier active-trip lifecycle. Record the selected task and new evidence before porting anything into production VIPER/domain/data modules.
+
+The original three-place device run took approximately 29.5 seconds; the preference stage's first E5 call took approximately 0.78 seconds, with a later cache hit around 1.3 ms. Warm-cache latency is not new inference speed. Do not change the locked adaptive hybrid algorithm solely to improve a benchmark without a separate decision and validation.
+
+## Historical inputs
+
+The full [CBL source record](docs/source-records/CBL.md) preserves earlier decisions and later corrections. The [teammate's first Foundation Models report](docs/source-records/foundation-models-teammate-report.md) has result-file references that were not supplied beside it; those are gaps, not inferred successful runs. New explanatory documentation is English; archival inputs retain their language and attribution.

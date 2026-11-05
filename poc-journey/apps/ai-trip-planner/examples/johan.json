@@ -1,0 +1,52 @@
+{
+  "title": "Johan — illustrative Jakarta itinerary",
+  "date": "tomorrow",
+  "timeZone": "Asia/Jakarta",
+  "startTime": "14:00",
+  "finishTime": "19:00",
+  "mode": "DRIVE",
+  "preferences": [
+    "Saya ingin ngopi sambil membaca dan menikmati tempat luar ruang menjelang sunset.",
+    "Hindari kunjungan luar ruang ketika peluang hujan tinggi, jika memungkinkan.",
+    "Semua tujuan pilihan saya tetap dikunjungi; jelaskan jika waktunya tidak cukup."
+  ],
+  "origin": {
+    "id": "A",
+    "name": "A — illustrative starting point in Cipete",
+    "latitude": -6.2728,
+    "longitude": 106.7976
+  },
+  "places": [
+    {
+      "id": "B",
+      "name": "B — coffee stop (example coordinate)",
+      "latitude": -6.2613,
+      "longitude": 106.8106,
+      "durationMinutes": 60,
+      "exposure": "indoor",
+      "context": "User-supplied scenario: an indoor coffee visit. This is not a verified venue listing.",
+      "openingHours": { "opensAt": "10:00", "closesAt": "20:00" }
+    },
+    {
+      "id": "C",
+      "name": "C — outdoor stop (example coordinate)",
+      "latitude": -6.2601,
+      "longitude": 106.8124,
+      "durationMinutes": 45,
+      "exposure": "outdoor",
+      "context": "User-supplied scenario: an outdoor visit preferred before sunset. Visibility and suitability are unverified.",
+      "openingHours": { "opensAt": "08:00", "closesAt": "20:00" },
+      "preferredWindow": { "kind": "sunset", "minutesBefore": 60 }
+    },
+    {
+      "id": "D",
+      "name": "D — reading stop (example coordinate)",
+      "latitude": -6.2649,
+      "longitude": 106.7984,
+      "durationMinutes": 45,
+      "exposure": "indoor",
+      "context": "User-supplied scenario: a reading stop where Johan may want to stay longer. This is not a verified venue listing.",
+      "openingHours": { "opensAt": "09:00", "closesAt": "20:00" }
+    }
+  ]
+}

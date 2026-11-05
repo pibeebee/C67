@@ -1,0 +1,93 @@
+Building for debugging...
+[Computing dependencies]
+[2 / 7] TripIntegrationTests-product
+[4 / 9] TripIntegrationTests-product
+[7 / 10] TripIntegrationTests-product
+[9 / 10] TripIntegrationTests-product
+[11 / 11] TripIntegrationTests-product
+Build complete! (2.92 sec)
+Test Suite 'All tests' started at 2026-11-05 17:20:37.011.
+Test Suite 'All tests' passed at 2026-11-05 17:20:37.013.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "P3 weather cache and isolated persistence" started.
+􀟈  Suite "P3 location and interval weather" started.
+􀟈  Suite "P3 complete replay and failure paths" started.
+􀟈  Suite "P3 contracts and sourced time rules" started.
+􀟈  Test groupingBoundsEveryMemberAgainstRepresentative() started.
+􀟈  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() started.
+􀟈  Test englishAliasCannotTransferCikiniFactsToAnotherBranch() started.
+􀟈  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() started.
+􀟈  Test crossingAnHourlyBoundaryUsesBothIntervals() started.
+􀟈  Test observedEnglishCikiniNameRequiresMatchingBranchAddress() started.
+􀟈  Test fullReplayPreservesPlacesAndExactArithmetic() started.
+􀟈  Test duplicateOrInvalidWeatherNeverBecomesZero() started.
+􀟈  Test ambiguousBranchNeedsExplicitSelection() started.
+􀟈  Test wrongBranchNotAutomaticallyAccepted() started.
+􀟈  Test staleFactsAndSuspendedMuseumBlock() started.
+􀟈  Test publishedGBKSessionGapRequiresFullStay() started.
+􀟈  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() started.
+􀟈  Test supersededOperationCannotPublish() started.
+􀟈  Test wrongDayAndDuplicateAreasRejected() started.
+􀟈  Test publishedFridayEntryPause() started.
+􀟈  Test WIBDateAndRoundingNeverRoundBackward() started.
+􀟈  Test limitsAndNegationConflictRejected() started.
+􁁛  Test groupingBoundsEveryMemberAgainstRepresentative() passed after 0.002 seconds.
+􁁛  Test observedEnglishCikiniNameRequiresMatchingBranchAddress() passed after 0.002 seconds.
+􁁛  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() passed after 0.002 seconds.
+􁁛  Test englishAliasCannotTransferCikiniFactsToAnotherBranch() passed after 0.002 seconds.
+􁁛  Test wrongBranchNotAutomaticallyAccepted() passed after 0.002 seconds.
+􁁛  Test ambiguousBranchNeedsExplicitSelection() passed after 0.002 seconds.
+􁁛  Test crossingAnHourlyBoundaryUsesBothIntervals() passed after 0.002 seconds.
+􁁛  Test supersededOperationCannotPublish() passed after 0.002 seconds.
+􁁛  Test duplicateOrInvalidWeatherNeverBecomesZero() passed after 0.002 seconds.
+􁁛  Suite "P3 location and interval weather" passed after 0.002 seconds.
+􁁛  Test WIBDateAndRoundingNeverRoundBackward() passed after 0.002 seconds.
+􁁛  Test wrongDayAndDuplicateAreasRejected() passed after 0.008 seconds.
+􁁛  Test limitsAndNegationConflictRejected() passed after 0.008 seconds.
+􁁛  Test staleFactsAndSuspendedMuseumBlock() passed after 0.008 seconds.
+􁁛  Test publishedGBKSessionGapRequiresFullStay() passed after 0.009 seconds.
+􁁛  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() passed after 0.009 seconds.
+􀟈  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() started.
+􁁛  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() passed after 0.009 seconds.
+􁁛  Test publishedFridayEntryPause() passed after 0.009 seconds.
+􁁛  Suite "P3 contracts and sourced time rules" passed after 0.009 seconds.
+􁁛  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() passed after 0.001 seconds.
+􀟈  Test cooperativeTimeoutProducesUnknownWeather() started.
+􁁛  Test cooperativeTimeoutProducesUnknownWeather() passed after 0.008 seconds.
+􀟈  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() started.
+􁁛  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() passed after 0.001 seconds.
+􀟈  Test weatherFailureStillAllowsRouteWithExplicitUnknown() started.
+􁁛  Test fullReplayPreservesPlacesAndExactArithmetic() passed after 0.028 seconds.
+􀟈  Test emptyProfileIsGeneralRatherThanPersonalized() started.
+􁁛  Test emptyProfileIsGeneralRatherThanPersonalized() passed after 0.003 seconds.
+􀟈  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() started.
+􁁛  Test weatherFailureStillAllowsRouteWithExplicitUnknown() passed after 0.016 seconds.
+􁁛  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() passed after 0.003 seconds.
+􀟈  Test corruptFileWithoutBackupDoesNotResetToEmpty() started.
+􀟈  Test unknownSourceReferenceRejectedByFinalAudit() started.
+􁁛  Test corruptFileWithoutBackupDoesNotResetToEmpty() passed after 0.001 seconds.
+􁁛  Suite "P3 weather cache and isolated persistence" passed after 0.036 seconds.
+􁁛  Test unknownSourceReferenceRejectedByFinalAudit() passed after 0.009 seconds.
+􀟈  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() started.
+􁁛  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() passed after 0.013 seconds.
+􀟈  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() started.
+􁁛  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() passed after 0.008 seconds.
+􀟈  Test unsupportedRequiredPlaceIsKeptForCorrection() started.
+􁁛  Test unsupportedRequiredPlaceIsKeptForCorrection() passed after 0.003 seconds.
+􀟈  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() started.
+􁁛  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() passed after 0.002 seconds.
+􀟈  Test unavailableETAProducesConflictInsteadOfInventedDuration() started.
+􁁛  Test unavailableETAProducesConflictInsteadOfInventedDuration() passed after 3.114 seconds.
+􀟈  Test cancellationNeverBecomesSuccess() started.
+􁁛  Test cancellationNeverBecomesSuccess() passed after 0.014 seconds.
+􀟈  Test changedRevisionAndForgedPinRejectedBeforeRouting() started.
+􁁛  Test changedRevisionAndForgedPinRejectedBeforeRouting() passed after 0.006 seconds.
+􀟈  Test applyRejectAndStaleBaseGuard() started.
+􁁛  Test applyRejectAndStaleBaseGuard() passed after 0.014 seconds.
+􀟈  Test storageRoundTripBackupRecoveryAndExport() started.
+􁁛  Test storageRoundTripBackupRecoveryAndExport() passed after 0.025 seconds.
+􁁛  Suite "P3 complete replay and failure paths" passed after 3.248 seconds.
+􁁛  Test run with 35 tests in 4 suites passed after 3.248 seconds.

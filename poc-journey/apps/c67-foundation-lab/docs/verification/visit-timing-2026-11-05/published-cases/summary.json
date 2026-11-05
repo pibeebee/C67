@@ -1,0 +1,449 @@
+{
+  "scope": "published regular rules, not on-site verification or blind quality benchmark",
+  "binarySHA256": "62991048f859fbcd26f756c1b5e04c5e0bf4d5023282e4616abb8258ce0c554c",
+  "catalogSHA256": "e1bf4f568dd45e64b5e272f5bf14e3071586c2d60f1cc28ce0857b376a22f28f",
+  "cases": [
+    {
+      "case": "gbk-midday",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "gbk"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "gbk",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "600",
+        "--end",
+        "900",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/gbk-midday"
+      ],
+      "runID": "E321F1B4-1EE1-4DBC-B68F-6938DE70A23F",
+      "options": 0
+    },
+    {
+      "case": "gbk-split",
+      "expected": "regular_hours_options",
+      "actual": "regular_hours_options",
+      "passed": true,
+      "sourceIDs": [
+        "gbk"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "gbk",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "360",
+        "--end",
+        "1080",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/gbk-split"
+      ],
+      "runID": "4ED8A880-25D0-40A8-90F2-085078D69917",
+      "options": 3
+    },
+    {
+      "case": "gbk-cross-session",
+      "expected": "regular_hours_options",
+      "actual": "regular_hours_options",
+      "passed": true,
+      "sourceIDs": [
+        "gbk"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "gbk",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "540",
+        "--end",
+        "1020",
+        "--duration",
+        "120",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/gbk-cross-session"
+      ],
+      "runID": "2B378DE8-92BC-4E1A-9252-D6B2E9855139",
+      "options": 1
+    },
+    {
+      "case": "ragunan-monday",
+      "expected": "closed_regular",
+      "actual": "closed_regular",
+      "passed": true,
+      "sourceIDs": [
+        "ragunan"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "ragunan",
+        "--date",
+        "2026-11-09",
+        "--start",
+        "420",
+        "--end",
+        "960",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/ragunan-monday"
+      ],
+      "runID": "F94784AE-57E2-4474-AE5C-EC1DC20E2F69",
+      "options": 0
+    },
+    {
+      "case": "ragunan-late",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "ragunan"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "ragunan",
+        "--date",
+        "2026-11-07",
+        "--start",
+        "930",
+        "--end",
+        "1080",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/ragunan-late"
+      ],
+      "runID": "11AE2ACD-A372-4F4F-8F6B-68DBAFE6002C",
+      "options": 0
+    },
+    {
+      "case": "cikini-friday-entry",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "cikini",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "690",
+        "--end",
+        "780",
+        "--duration",
+        "30",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/cikini-friday-entry"
+      ],
+      "runID": "E29CF699-0D97-40A5-B73A-522109D27278",
+      "options": 0
+    },
+    {
+      "case": "cikini-friday-stay",
+      "expected": "regular_hours_options",
+      "actual": "regular_hours_options",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "cikini",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "660",
+        "--end",
+        "840",
+        "--duration",
+        "120",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/cikini-friday-stay"
+      ],
+      "runID": "11D2239A-9FD2-42E8-A2A3-B83C6B278F44",
+      "options": 1
+    },
+    {
+      "case": "cikini-friday-resume",
+      "expected": "regular_hours_options",
+      "actual": "regular_hours_options",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "cikini",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "780",
+        "--end",
+        "840",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/cikini-friday-resume"
+      ],
+      "runID": "1B1C7C9C-6350-4707-AA4B-0DEC67D622C7",
+      "options": 1
+    },
+    {
+      "case": "nyi-ageng-friday-entry",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "nyi-ageng",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "690",
+        "--end",
+        "780",
+        "--duration",
+        "30",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/nyi-ageng-friday-entry"
+      ],
+      "runID": "43385282-1771-435A-AB1D-3549BB5EE69D",
+      "options": 0
+    },
+    {
+      "case": "hb-jassin-friday-entry",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "hb-jassin",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "690",
+        "--end",
+        "780",
+        "--duration",
+        "30",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/hb-jassin-friday-entry"
+      ],
+      "runID": "B05F05B9-11AA-493F-AA1A-3F4207A2F8B1",
+      "options": 0
+    },
+    {
+      "case": "petojo-friday-entry",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "petojo",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "690",
+        "--end",
+        "780",
+        "--duration",
+        "30",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/petojo-friday-entry"
+      ],
+      "runID": "AB75E25B-0135-4119-B652-712FE882CF1F",
+      "options": 0
+    },
+    {
+      "case": "jatinegara-weekend",
+      "expected": "regular_hours_options",
+      "actual": "regular_hours_options",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "jatinegara",
+        "--date",
+        "2026-11-08",
+        "--start",
+        "840",
+        "--end",
+        "960",
+        "--duration",
+        "30",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/jatinegara-weekend"
+      ],
+      "runID": "7A97C48E-5F6F-4956-882A-8B3A823B6C2C",
+      "options": 1
+    },
+    {
+      "case": "petojo-weekend",
+      "expected": "no_window",
+      "actual": "no_window",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "petojo",
+        "--date",
+        "2026-11-08",
+        "--start",
+        "840",
+        "--end",
+        "960",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/petojo-weekend"
+      ],
+      "runID": "E619B9D4-AA84-4168-931E-4EC2DB49A5E5",
+      "options": 0
+    },
+    {
+      "case": "tanjung-weekend",
+      "expected": "hours_unknown",
+      "actual": "hours_unknown",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "tanjung-duren",
+        "--date",
+        "2026-11-08",
+        "--start",
+        "540",
+        "--end",
+        "1200",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/tanjung-weekend"
+      ],
+      "runID": "EED2E95C-17E3-4A7B-A840-58A0F04ECF3E",
+      "options": 0
+    },
+    {
+      "case": "gandaria-weekend",
+      "expected": "hours_unknown",
+      "actual": "hours_unknown",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "gandaria",
+        "--date",
+        "2026-11-08",
+        "--start",
+        "540",
+        "--end",
+        "1200",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/gandaria-weekend"
+      ],
+      "runID": "577B2A20-0E98-4705-9B8C-5C2FF519CAC6",
+      "options": 0
+    },
+    {
+      "case": "koja-weekend",
+      "expected": "hours_unknown",
+      "actual": "hours_unknown",
+      "passed": true,
+      "sourceIDs": [
+        "jaklitera"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "koja",
+        "--date",
+        "2026-11-08",
+        "--start",
+        "540",
+        "--end",
+        "1200",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/koja-weekend"
+      ],
+      "runID": "60FBF659-90D6-44F5-9725-43DAC62FEB03",
+      "options": 0
+    },
+    {
+      "case": "macan-closure-notice",
+      "expected": "suspended",
+      "actual": "suspended",
+      "passed": true,
+      "sourceIDs": [
+        "macan"
+      ],
+      "invocation": [
+        "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/.build/timing/out/Products/Debug/visit-time-eval",
+        "--venue",
+        "macan",
+        "--date",
+        "2026-11-06",
+        "--start",
+        "600",
+        "--end",
+        "1080",
+        "--duration",
+        "60",
+        "--out",
+        "docs/verification/visit-timing-2026-11-05/published-cases/macan-closure-notice"
+      ],
+      "runID": "79A02001-528D-456F-9ACE-4A79A17A203C",
+      "options": 0
+    }
+  ]
+}

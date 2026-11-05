@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-03",
+  "project": "poc-c67",
+  "minimumIOS": "18.0",
+  "xcode": "27.2 (27B52)",
+  "destination": "generic/platform=iOS",
+  "codeSigningAllowed": false,
+  "build": "succeeded",
+  "iosTestsRun": false,
+  "simulatorRun": false,
+  "physicalDeviceRun": false,
+  "liveMapKitETAValidated": false,
+  "weatherKitAuthenticationValidated": false,
+  "existingCloudKitEntitlementsPreserved": true,
+  "newSources": {
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "bab46d28fac9e56a35f24e1d8190180020c753fe9699c42e90a71ea0655b08fd",
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "6dba919a56649f3d1824f10bea63a56ce32d949d005b483abb45cb46fe2235db",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "7748d0c99fcce834a3fcec3b419c375f78b181c94ce40e36a046fa032faa4b27",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "f2e52dc6e12834c1d0d06ad4220b9eceacdba1953137ea7389af8d2dc933194f",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "2f3438c4ed1698d9ae21532282688db07b5b01ef3ecd64fd59ed6f6c1da61aec",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "d68f8943587a8583f4e894aa646b5da69426dec220ef6cd5f309167f7cf4b357"
+  },
+  "buildLogSHA256": "985e3d305245418224d218ad906a078977e2e5dd229d939bbaf6d8857024dd43",
+  "buildLogLocalPath": "/private/tmp/c67-native-itinerary-20261103/build-ios-verified.log"
+}

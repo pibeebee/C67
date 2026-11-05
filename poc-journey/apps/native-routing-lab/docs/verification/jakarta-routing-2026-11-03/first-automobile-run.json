@@ -1,0 +1,3989 @@
+{
+  "acquisitionSeconds" : 39.70474696159363,
+  "problem" : {
+    "arcs" : [
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "walking",
+        "note" : "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+        "seconds" : 921,
+        "start" : 0,
+        "status" : "available",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 237,
+        "start" : 0,
+        "status" : "available",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "walking",
+        "note" : "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+        "seconds" : 2473,
+        "start" : 0,
+        "status" : "available",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1156,
+        "start" : 0,
+        "status" : "available",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "walking",
+        "note" : "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 4665,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1019,
+        "start" : 0,
+        "status" : "available",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "walking",
+        "note" : "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 13777,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1982,
+        "start" : 0,
+        "status" : "available",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "walking",
+        "note" : "ETA berjalan 216 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 12938,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 2867,
+        "start" : 0,
+        "status" : "available",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "walking",
+        "note" : "ETA berjalan 218 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 13046,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1919,
+        "start" : 0,
+        "status" : "available",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "walking",
+        "note" : "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 13787,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 2009,
+        "start" : 0,
+        "status" : "available",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "walking",
+        "note" : "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 4659,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1603,
+        "start" : 0,
+        "status" : "available",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "walking",
+        "note" : "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+        "seconds" : 2327,
+        "start" : 0,
+        "status" : "available",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 487,
+        "start" : 0,
+        "status" : "available",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "walking",
+        "note" : "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+        "seconds" : 935,
+        "start" : 0,
+        "status" : "available",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 424,
+        "start" : 0,
+        "status" : "available",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "walking",
+        "note" : "ETA berjalan 48 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 2880,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1060,
+        "start" : 0,
+        "status" : "available",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "walking",
+        "note" : "ETA berjalan 127 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 7594,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 0,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1583,
+        "start" : 0,
+        "status" : "available",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "walking",
+        "note" : "ETA berjalan 193 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 11560,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1565,
+        "start" : 0,
+        "status" : "available",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "walking",
+        "note" : "ETA berjalan 49 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 2891,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 1,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 625,
+        "start" : 0,
+        "status" : "available",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "walking",
+        "note" : "ETA berjalan 225 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 13476,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 2127,
+        "start" : 0,
+        "status" : "available",
+        "to" : 3
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "walking",
+        "note" : "ETA berjalan 119 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 7121,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 2,
+        "mode" : "automobile",
+        "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "seconds" : 1621,
+        "start" : 0,
+        "status" : "available",
+        "to" : 4
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "walking",
+        "note" : "ETA berjalan 191 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+        "seconds" : 11434,
+        "start" : 0,
+        "status" : "excluded_by_walking_limit",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "automobile",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 1
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "walking",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 3,
+        "mode" : "automobile",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "walking",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "automobile",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 2
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "walking",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "transit",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      },
+      {
+        "end" : 172800,
+        "from" : 4,
+        "mode" : "automobile",
+        "note" : "MapKit belum memberi ETA: Directions Not Available",
+        "start" : 0,
+        "status" : "unavailable",
+        "to" : 0
+      }
+    ],
+    "baselineOrders" : [
+      [
+        2,
+        1,
+        4,
+        3
+      ],
+      [
+        3,
+        4,
+        1,
+        2
+      ]
+    ],
+    "deadline" : 61200,
+    "end" : 0,
+    "extraWeatherSeconds" : 900,
+    "id" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+    "kind" : "mapkit_static_snapshot",
+    "label" : "Snapshot MapKit · Nov 5, 2026 at 7:00",
+    "nodes" : [
+      {
+        "dwell" : 0,
+        "id" : "origin",
+        "name" : "Stasiun sudirman",
+        "x" : 106.8234359,
+        "y" : -6.2023912
+      },
+      {
+        "dwell" : 1800,
+        "id" : "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "name" : "National Monument",
+        "x" : 106.827186,
+        "y" : -6.1753936
+      },
+      {
+        "dwell" : 1800,
+        "id" : "E32284F7-2A9E-4739-9991-4A086BB990DF",
+        "name" : "Grand Indonesia",
+        "x" : 106.8196893,
+        "y" : -6.1951799
+      },
+      {
+        "dwell" : 1800,
+        "id" : "106E65CA-64AA-4292-9D96-DED708AF9D94",
+        "name" : "Summarecon Mall Kelapa Gading",
+        "x" : 106.9084284,
+        "y" : -6.1573955
+      },
+      {
+        "dwell" : 1800,
+        "id" : "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "name" : "Kota Tua",
+        "x" : 106.8130414,
+        "y" : -6.1347997
+      }
+    ],
+    "origin" : 0,
+    "rainWeight" : 2,
+    "schemaVersion" : 1,
+    "targets" : [
+      1,
+      2,
+      3,
+      4
+    ],
+    "weather" : [
+      {
+        "chance" : 0,
+        "end" : 3600,
+        "node" : 0,
+        "start" : 0
+      },
+      {
+        "chance" : 0,
+        "end" : 7200,
+        "node" : 0,
+        "start" : 3600
+      },
+      {
+        "chance" : 0.02,
+        "end" : 10800,
+        "node" : 0,
+        "start" : 7200
+      },
+      {
+        "chance" : 0.23,
+        "end" : 14400,
+        "node" : 0,
+        "start" : 10800
+      },
+      {
+        "chance" : 0.52,
+        "end" : 18000,
+        "node" : 0,
+        "start" : 14400
+      },
+      {
+        "chance" : 0.75,
+        "end" : 21600,
+        "node" : 0,
+        "start" : 18000
+      },
+      {
+        "chance" : 0.87,
+        "end" : 25200,
+        "node" : 0,
+        "start" : 21600
+      },
+      {
+        "chance" : 0.92,
+        "end" : 28800,
+        "node" : 0,
+        "start" : 25200
+      },
+      {
+        "chance" : 0.94,
+        "end" : 32400,
+        "node" : 0,
+        "start" : 28800
+      },
+      {
+        "chance" : 0.94,
+        "end" : 36000,
+        "node" : 0,
+        "start" : 32400
+      },
+      {
+        "chance" : 0.91,
+        "end" : 39600,
+        "node" : 0,
+        "start" : 36000
+      },
+      {
+        "chance" : 0.8,
+        "end" : 43200,
+        "node" : 0,
+        "start" : 39600
+      },
+      {
+        "chance" : 0.56,
+        "end" : 46800,
+        "node" : 0,
+        "start" : 43200
+      },
+      {
+        "chance" : 0.24,
+        "end" : 50400,
+        "node" : 0,
+        "start" : 46800
+      },
+      {
+        "chance" : 0.02,
+        "end" : 54000,
+        "node" : 0,
+        "start" : 50400
+      },
+      {
+        "chance" : 0,
+        "end" : 57600,
+        "node" : 0,
+        "start" : 54000
+      },
+      {
+        "chance" : 0.05,
+        "end" : 61200,
+        "node" : 0,
+        "start" : 57600
+      },
+      {
+        "chance" : 0,
+        "end" : 3600,
+        "node" : 1,
+        "start" : 0
+      },
+      {
+        "chance" : 0,
+        "end" : 7200,
+        "node" : 1,
+        "start" : 3600
+      },
+      {
+        "chance" : 0.02,
+        "end" : 10800,
+        "node" : 1,
+        "start" : 7200
+      },
+      {
+        "chance" : 0.23,
+        "end" : 14400,
+        "node" : 1,
+        "start" : 10800
+      },
+      {
+        "chance" : 0.52,
+        "end" : 18000,
+        "node" : 1,
+        "start" : 14400
+      },
+      {
+        "chance" : 0.75,
+        "end" : 21600,
+        "node" : 1,
+        "start" : 18000
+      },
+      {
+        "chance" : 0.87,
+        "end" : 25200,
+        "node" : 1,
+        "start" : 21600
+      },
+      {
+        "chance" : 0.92,
+        "end" : 28800,
+        "node" : 1,
+        "start" : 25200
+      },
+      {
+        "chance" : 0.94,
+        "end" : 32400,
+        "node" : 1,
+        "start" : 28800
+      },
+      {
+        "chance" : 0.94,
+        "end" : 36000,
+        "node" : 1,
+        "start" : 32400
+      },
+      {
+        "chance" : 0.91,
+        "end" : 39600,
+        "node" : 1,
+        "start" : 36000
+      },
+      {
+        "chance" : 0.8,
+        "end" : 43200,
+        "node" : 1,
+        "start" : 39600
+      },
+      {
+        "chance" : 0.56,
+        "end" : 46800,
+        "node" : 1,
+        "start" : 43200
+      },
+      {
+        "chance" : 0.24,
+        "end" : 50400,
+        "node" : 1,
+        "start" : 46800
+      },
+      {
+        "chance" : 0.02,
+        "end" : 54000,
+        "node" : 1,
+        "start" : 50400
+      },
+      {
+        "chance" : 0,
+        "end" : 57600,
+        "node" : 1,
+        "start" : 54000
+      },
+      {
+        "chance" : 0.05,
+        "end" : 61200,
+        "node" : 1,
+        "start" : 57600
+      },
+      {
+        "chance" : 0,
+        "end" : 3600,
+        "node" : 2,
+        "start" : 0
+      },
+      {
+        "chance" : 0,
+        "end" : 7200,
+        "node" : 2,
+        "start" : 3600
+      },
+      {
+        "chance" : 0.02,
+        "end" : 10800,
+        "node" : 2,
+        "start" : 7200
+      },
+      {
+        "chance" : 0.23,
+        "end" : 14400,
+        "node" : 2,
+        "start" : 10800
+      },
+      {
+        "chance" : 0.52,
+        "end" : 18000,
+        "node" : 2,
+        "start" : 14400
+      },
+      {
+        "chance" : 0.75,
+        "end" : 21600,
+        "node" : 2,
+        "start" : 18000
+      },
+      {
+        "chance" : 0.87,
+        "end" : 25200,
+        "node" : 2,
+        "start" : 21600
+      },
+      {
+        "chance" : 0.92,
+        "end" : 28800,
+        "node" : 2,
+        "start" : 25200
+      },
+      {
+        "chance" : 0.94,
+        "end" : 32400,
+        "node" : 2,
+        "start" : 28800
+      },
+      {
+        "chance" : 0.94,
+        "end" : 36000,
+        "node" : 2,
+        "start" : 32400
+      },
+      {
+        "chance" : 0.91,
+        "end" : 39600,
+        "node" : 2,
+        "start" : 36000
+      },
+      {
+        "chance" : 0.8,
+        "end" : 43200,
+        "node" : 2,
+        "start" : 39600
+      },
+      {
+        "chance" : 0.56,
+        "end" : 46800,
+        "node" : 2,
+        "start" : 43200
+      },
+      {
+        "chance" : 0.24,
+        "end" : 50400,
+        "node" : 2,
+        "start" : 46800
+      },
+      {
+        "chance" : 0.02,
+        "end" : 54000,
+        "node" : 2,
+        "start" : 50400
+      },
+      {
+        "chance" : 0,
+        "end" : 57600,
+        "node" : 2,
+        "start" : 54000
+      },
+      {
+        "chance" : 0.05,
+        "end" : 61200,
+        "node" : 2,
+        "start" : 57600
+      },
+      {
+        "chance" : 0,
+        "end" : 3600,
+        "node" : 3,
+        "start" : 0
+      },
+      {
+        "chance" : 0,
+        "end" : 7200,
+        "node" : 3,
+        "start" : 3600
+      },
+      {
+        "chance" : 0,
+        "end" : 10800,
+        "node" : 3,
+        "start" : 7200
+      },
+      {
+        "chance" : 0.22,
+        "end" : 14400,
+        "node" : 3,
+        "start" : 10800
+      },
+      {
+        "chance" : 0.51,
+        "end" : 18000,
+        "node" : 3,
+        "start" : 14400
+      },
+      {
+        "chance" : 0.75,
+        "end" : 21600,
+        "node" : 3,
+        "start" : 18000
+      },
+      {
+        "chance" : 0.88,
+        "end" : 25200,
+        "node" : 3,
+        "start" : 21600
+      },
+      {
+        "chance" : 0.94,
+        "end" : 28800,
+        "node" : 3,
+        "start" : 25200
+      },
+      {
+        "chance" : 0.94,
+        "end" : 32400,
+        "node" : 3,
+        "start" : 28800
+      },
+      {
+        "chance" : 0.87,
+        "end" : 36000,
+        "node" : 3,
+        "start" : 32400
+      },
+      {
+        "chance" : 0.73,
+        "end" : 39600,
+        "node" : 3,
+        "start" : 36000
+      },
+      {
+        "chance" : 0.57,
+        "end" : 43200,
+        "node" : 3,
+        "start" : 39600
+      },
+      {
+        "chance" : 0.37,
+        "end" : 46800,
+        "node" : 3,
+        "start" : 43200
+      },
+      {
+        "chance" : 0.15,
+        "end" : 50400,
+        "node" : 3,
+        "start" : 46800
+      },
+      {
+        "chance" : 0,
+        "end" : 54000,
+        "node" : 3,
+        "start" : 50400
+      },
+      {
+        "chance" : 0,
+        "end" : 57600,
+        "node" : 3,
+        "start" : 54000
+      },
+      {
+        "chance" : 0.04,
+        "end" : 61200,
+        "node" : 3,
+        "start" : 57600
+      },
+      {
+        "chance" : 0,
+        "end" : 3600,
+        "node" : 4,
+        "start" : 0
+      },
+      {
+        "chance" : 0,
+        "end" : 7200,
+        "node" : 4,
+        "start" : 3600
+      },
+      {
+        "chance" : 0.02,
+        "end" : 10800,
+        "node" : 4,
+        "start" : 7200
+      },
+      {
+        "chance" : 0.23,
+        "end" : 14400,
+        "node" : 4,
+        "start" : 10800
+      },
+      {
+        "chance" : 0.52,
+        "end" : 18000,
+        "node" : 4,
+        "start" : 14400
+      },
+      {
+        "chance" : 0.75,
+        "end" : 21600,
+        "node" : 4,
+        "start" : 18000
+      },
+      {
+        "chance" : 0.87,
+        "end" : 25200,
+        "node" : 4,
+        "start" : 21600
+      },
+      {
+        "chance" : 0.92,
+        "end" : 28800,
+        "node" : 4,
+        "start" : 25200
+      },
+      {
+        "chance" : 0.94,
+        "end" : 32400,
+        "node" : 4,
+        "start" : 28800
+      },
+      {
+        "chance" : 0.94,
+        "end" : 36000,
+        "node" : 4,
+        "start" : 32400
+      },
+      {
+        "chance" : 0.91,
+        "end" : 39600,
+        "node" : 4,
+        "start" : 36000
+      },
+      {
+        "chance" : 0.8,
+        "end" : 43200,
+        "node" : 4,
+        "start" : 39600
+      },
+      {
+        "chance" : 0.56,
+        "end" : 46800,
+        "node" : 4,
+        "start" : 43200
+      },
+      {
+        "chance" : 0.24,
+        "end" : 50400,
+        "node" : 4,
+        "start" : 46800
+      },
+      {
+        "chance" : 0.02,
+        "end" : 54000,
+        "node" : 4,
+        "start" : 50400
+      },
+      {
+        "chance" : 0,
+        "end" : 57600,
+        "node" : 4,
+        "start" : 54000
+      },
+      {
+        "chance" : 0.05,
+        "end" : 61200,
+        "node" : 4,
+        "start" : 57600
+      }
+    ],
+    "weatherAttribution" : [
+      "Data cuaca: Open-Meteo (https:\/\/open-meteo.com\/), CC BY 4.0 (https:\/\/creativecommons.org\/licenses\/by\/4.0\/). Peluang presipitasi dikonversi ke 0–1 dan interval satu jam sebelumnya untuk perhitungan paparan."
+    ],
+    "weatherSources" : {
+      "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE" : "open_meteo",
+      "106E65CA-64AA-4292-9D96-DED708AF9D94" : "open_meteo",
+      "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC" : "open_meteo",
+      "E32284F7-2A9E-4739-9991-4A086BB990DF" : "open_meteo",
+      "origin" : "open_meteo"
+    }
+  },
+  "requests" : 60,
+  "results" : [
+    {
+      "algorithm" : "baseline",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 4.9948692321777344e-05,
+      "evaluations" : 2,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "completed"
+    },
+    {
+      "algorithm" : "local",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13801,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 4164,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5964,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 4164
+            },
+            {
+              "arrival" : 7973,
+              "departure" : 5964,
+              "from" : 3,
+              "leave" : 9773,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 7973
+            },
+            {
+              "arrival" : 11376,
+              "departure" : 9773,
+              "from" : 4,
+              "leave" : 13176,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 11376
+            },
+            {
+              "arrival" : 13801,
+              "departure" : 13176,
+              "from" : 1,
+              "leave" : 13801,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13801
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            3,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 6601,
+          "unknownWeather" : 13801,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15093,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3658,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5458,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3658
+            },
+            {
+              "arrival" : 7061,
+              "departure" : 5458,
+              "from" : 4,
+              "leave" : 8861,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 7061
+            },
+            {
+              "arrival" : 10426,
+              "departure" : 8861,
+              "from" : 1,
+              "leave" : 12226,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10426
+            },
+            {
+              "arrival" : 15093,
+              "departure" : 12226,
+              "from" : 3,
+              "leave" : 15093,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15093
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            4,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7893,
+          "unknownWeather" : 15093,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15217,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3347,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5147,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 3347
+            },
+            {
+              "arrival" : 6768,
+              "departure" : 5147,
+              "from" : 2,
+              "leave" : 8568,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6768
+            },
+            {
+              "arrival" : 10550,
+              "departure" : 8568,
+              "from" : 4,
+              "leave" : 12350,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10550
+            },
+            {
+              "arrival" : 15217,
+              "departure" : 12350,
+              "from" : 3,
+              "leave" : 15217,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15217
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8017,
+          "unknownWeather" : 15217,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15867,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            },
+            {
+              "arrival" : 4986,
+              "departure" : 3383,
+              "from" : 4,
+              "leave" : 6786,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 4986
+            },
+            {
+              "arrival" : 7273,
+              "departure" : 6786,
+              "from" : 1,
+              "leave" : 9073,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 7273
+            },
+            {
+              "arrival" : 11200,
+              "departure" : 9073,
+              "from" : 2,
+              "leave" : 13000,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 11200
+            },
+            {
+              "arrival" : 15867,
+              "departure" : 13000,
+              "from" : 3,
+              "leave" : 15867,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15867
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            4,
+            1,
+            2,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8667,
+          "unknownWeather" : 15867,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3383,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            4,
+            2,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 1583,
+          "unknownWeather" : 3383,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3383,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            4,
+            2,
+            3,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 1583,
+          "unknownWeather" : 3383,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 0.00592803955078125,
+      "evaluations" : 500,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "data_incomplete"
+    },
+    {
+      "algorithm" : "insertion",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13801,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 4164,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5964,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 4164
+            },
+            {
+              "arrival" : 7973,
+              "departure" : 5964,
+              "from" : 3,
+              "leave" : 9773,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 7973
+            },
+            {
+              "arrival" : 11376,
+              "departure" : 9773,
+              "from" : 4,
+              "leave" : 13176,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 11376
+            },
+            {
+              "arrival" : 13801,
+              "departure" : 13176,
+              "from" : 1,
+              "leave" : 13801,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13801
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            3,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 6601,
+          "unknownWeather" : 13801,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15093,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3658,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5458,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3658
+            },
+            {
+              "arrival" : 7061,
+              "departure" : 5458,
+              "from" : 4,
+              "leave" : 8861,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 7061
+            },
+            {
+              "arrival" : 10426,
+              "departure" : 8861,
+              "from" : 1,
+              "leave" : 12226,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10426
+            },
+            {
+              "arrival" : 15093,
+              "departure" : 12226,
+              "from" : 3,
+              "leave" : 15093,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15093
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            4,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7893,
+          "unknownWeather" : 15093,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15867,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            },
+            {
+              "arrival" : 4986,
+              "departure" : 3383,
+              "from" : 4,
+              "leave" : 6786,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 4986
+            },
+            {
+              "arrival" : 7273,
+              "departure" : 6786,
+              "from" : 1,
+              "leave" : 9073,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 7273
+            },
+            {
+              "arrival" : 11200,
+              "departure" : 9073,
+              "from" : 2,
+              "leave" : 13000,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 11200
+            },
+            {
+              "arrival" : 15867,
+              "departure" : 13000,
+              "from" : 3,
+              "leave" : 15867,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15867
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            4,
+            1,
+            2,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8667,
+          "unknownWeather" : 15867,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 3600,
+          "finish" : 7165,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            },
+            {
+              "arrival" : 5365,
+              "departure" : 3383,
+              "from" : 4,
+              "leave" : 7165,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 5365
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            4,
+            3,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 3565,
+          "unknownWeather" : 7165,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 3600,
+          "finish" : 7528,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            4,
+            2,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 3928,
+          "unknownWeather" : 7528,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 5400,
+          "finish" : 9461,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3879,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5679,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3879
+            },
+            {
+              "arrival" : 7661,
+              "departure" : 5679,
+              "from" : 4,
+              "leave" : 9461,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 7661
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 4061,
+          "unknownWeather" : 9461,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 0.0004819631576538086,
+      "evaluations" : 47,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "data_incomplete"
+    },
+    {
+      "algorithm" : "beam",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15093,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3658,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5458,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3658
+            },
+            {
+              "arrival" : 7061,
+              "departure" : 5458,
+              "from" : 4,
+              "leave" : 8861,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 7061
+            },
+            {
+              "arrival" : 10426,
+              "departure" : 8861,
+              "from" : 1,
+              "leave" : 12226,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10426
+            },
+            {
+              "arrival" : 15093,
+              "departure" : 12226,
+              "from" : 3,
+              "leave" : 15093,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15093
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            4,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7893,
+          "unknownWeather" : 15093,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15217,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3347,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5147,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 3347
+            },
+            {
+              "arrival" : 6768,
+              "departure" : 5147,
+              "from" : 2,
+              "leave" : 8568,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6768
+            },
+            {
+              "arrival" : 10550,
+              "departure" : 8568,
+              "from" : 4,
+              "leave" : 12350,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10550
+            },
+            {
+              "arrival" : 15217,
+              "departure" : 12350,
+              "from" : 3,
+              "leave" : 15217,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15217
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8017,
+          "unknownWeather" : 15217,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15867,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            },
+            {
+              "arrival" : 4986,
+              "departure" : 3383,
+              "from" : 4,
+              "leave" : 6786,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 4986
+            },
+            {
+              "arrival" : 7273,
+              "departure" : 6786,
+              "from" : 1,
+              "leave" : 9073,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 7273
+            },
+            {
+              "arrival" : 11200,
+              "departure" : 9073,
+              "from" : 2,
+              "leave" : 13000,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 11200
+            },
+            {
+              "arrival" : 15867,
+              "departure" : 13000,
+              "from" : 3,
+              "leave" : 15867,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15867
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            4,
+            1,
+            2,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8667,
+          "unknownWeather" : 15867,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 5400,
+          "finish" : 9240,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3658,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5458,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3658
+            },
+            {
+              "arrival" : 7440,
+              "departure" : 5458,
+              "from" : 4,
+              "leave" : 9240,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 7440
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            2,
+            4,
+            3,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 3840,
+          "unknownWeather" : 9240,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 5400,
+          "finish" : 9461,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3879,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5679,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3879
+            },
+            {
+              "arrival" : 7661,
+              "departure" : 5679,
+              "from" : 4,
+              "leave" : 9461,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 7661
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 4061,
+          "unknownWeather" : 9461,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 12167,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6558,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 8358,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 6558
+            },
+            {
+              "arrival" : 10367,
+              "departure" : 8358,
+              "from" : 3,
+              "leave" : 12167,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 10367
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            2,
+            1,
+            3,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 4967,
+          "unknownWeather" : 12167,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 12883,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3347,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5147,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 3347
+            },
+            {
+              "arrival" : 7274,
+              "departure" : 5147,
+              "from" : 2,
+              "leave" : 9074,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 7274
+            },
+            {
+              "arrival" : 11083,
+              "departure" : 9074,
+              "from" : 3,
+              "leave" : 12883,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 11083
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 5683,
+          "unknownWeather" : 12883,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 0.0006519556045532227,
+      "evaluations" : 50,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "data_incomplete"
+    },
+    {
+      "algorithm" : "alns",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13801,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 4164,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5964,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 4164
+            },
+            {
+              "arrival" : 7973,
+              "departure" : 5964,
+              "from" : 3,
+              "leave" : 9773,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 7973
+            },
+            {
+              "arrival" : 11376,
+              "departure" : 9773,
+              "from" : 4,
+              "leave" : 13176,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 11376
+            },
+            {
+              "arrival" : 13801,
+              "departure" : 13176,
+              "from" : 1,
+              "leave" : 13801,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13801
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            3,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 6601,
+          "unknownWeather" : 13801,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 0.010532021522521973,
+      "evaluations" : 1653,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "data_incomplete"
+    },
+    {
+      "algorithm" : "exact",
+      "alternatives" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13642,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            },
+            {
+              "arrival" : 5728,
+              "departure" : 3719,
+              "from" : 3,
+              "leave" : 7528,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 5728
+            },
+            {
+              "arrival" : 9131,
+              "departure" : 7528,
+              "from" : 4,
+              "leave" : 10931,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 9131
+            },
+            {
+              "arrival" : 11418,
+              "departure" : 10931,
+              "from" : 1,
+              "leave" : 13218,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 11418
+            },
+            {
+              "arrival" : 13642,
+              "departure" : 13218,
+              "from" : 2,
+              "leave" : 13642,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13642
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 6442,
+          "unknownWeather" : 13642,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 13801,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 4164,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5964,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 4164
+            },
+            {
+              "arrival" : 7973,
+              "departure" : 5964,
+              "from" : 3,
+              "leave" : 9773,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 7973
+            },
+            {
+              "arrival" : 11376,
+              "departure" : 9773,
+              "from" : 4,
+              "leave" : 13176,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 11376
+            },
+            {
+              "arrival" : 13801,
+              "departure" : 13176,
+              "from" : 1,
+              "leave" : 13801,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 13801
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            3,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 6601,
+          "unknownWeather" : 13801,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 14461,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3193,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 4993,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 3193
+            },
+            {
+              "arrival" : 6012,
+              "departure" : 4993,
+              "from" : 1,
+              "leave" : 7812,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6012
+            },
+            {
+              "arrival" : 9794,
+              "departure" : 7812,
+              "from" : 4,
+              "leave" : 11594,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 9794
+            },
+            {
+              "arrival" : 14461,
+              "departure" : 11594,
+              "from" : 3,
+              "leave" : 14461,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 14461
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            1,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7261,
+          "unknownWeather" : 14461,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15093,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 237,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2037,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 237
+            },
+            {
+              "arrival" : 3658,
+              "departure" : 2037,
+              "from" : 2,
+              "leave" : 5458,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 3658
+            },
+            {
+              "arrival" : 7061,
+              "departure" : 5458,
+              "from" : 4,
+              "leave" : 8861,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 7061
+            },
+            {
+              "arrival" : 10426,
+              "departure" : 8861,
+              "from" : 1,
+              "leave" : 12226,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10426
+            },
+            {
+              "arrival" : 15093,
+              "departure" : 12226,
+              "from" : 3,
+              "leave" : 15093,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15093
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            2,
+            4,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 7893,
+          "unknownWeather" : 15093,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15217,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1060,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 2860,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 1060
+            },
+            {
+              "arrival" : 3347,
+              "departure" : 2860,
+              "from" : 1,
+              "leave" : 5147,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 3347
+            },
+            {
+              "arrival" : 6768,
+              "departure" : 5147,
+              "from" : 2,
+              "leave" : 8568,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 6768
+            },
+            {
+              "arrival" : 10550,
+              "departure" : 8568,
+              "from" : 4,
+              "leave" : 12350,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 10550
+            },
+            {
+              "arrival" : 15217,
+              "departure" : 12350,
+              "from" : 3,
+              "leave" : 15217,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15217
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8017,
+          "unknownWeather" : 15217,
+          "waiting" : 0
+        },
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwell" : 7200,
+          "finish" : 15867,
+          "fullTour" : true,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            },
+            {
+              "arrival" : 4986,
+              "departure" : 3383,
+              "from" : 4,
+              "leave" : 6786,
+              "mode" : "automobile",
+              "to" : 1,
+              "visit" : 4986
+            },
+            {
+              "arrival" : 7273,
+              "departure" : 6786,
+              "from" : 1,
+              "leave" : 9073,
+              "mode" : "automobile",
+              "to" : 2,
+              "visit" : 7273
+            },
+            {
+              "arrival" : 11200,
+              "departure" : 9073,
+              "from" : 2,
+              "leave" : 13000,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 11200
+            },
+            {
+              "arrival" : 15867,
+              "departure" : 13000,
+              "from" : 3,
+              "leave" : 15867,
+              "mode" : "automobile",
+              "to" : 0,
+              "visit" : 15867
+            }
+          ],
+          "missing" : 0,
+          "order" : [
+            4,
+            1,
+            2,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 8667,
+          "unknownWeather" : 15867,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3383,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            4,
+            2,
+            1,
+            3
+          ],
+          "rain" : 0,
+          "travel" : 1583,
+          "unknownWeather" : 3383,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3383,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1583,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3383,
+              "mode" : "automobile",
+              "to" : 4,
+              "visit" : 1583
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            4,
+            2,
+            3,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 1583,
+          "unknownWeather" : 3383,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        },
+        {
+          "complete" : false,
+          "conflicts" : [
+
+          ],
+          "dwell" : 1800,
+          "finish" : 3719,
+          "fullTour" : false,
+          "legs" : [
+            {
+              "arrival" : 1919,
+              "departure" : 0,
+              "from" : 0,
+              "leave" : 3719,
+              "mode" : "automobile",
+              "to" : 3,
+              "visit" : 1919
+            }
+          ],
+          "missing" : 1,
+          "order" : [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain" : 0,
+          "travel" : 1919,
+          "unknownWeather" : 3719,
+          "waiting" : 0
+        }
+      ],
+      "configuration" : {
+        "beamWidth" : 8,
+        "evaluationLimit" : 100000,
+        "iterations" : 150,
+        "secondsLimit" : 3,
+        "seed" : 67
+      },
+      "elapsed" : 0.0002779960632324219,
+      "evaluations" : 26,
+      "note" : "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "proof" : "not_proven",
+      "termination" : "data_incomplete"
+    }
+  ],
+  "statistics" : [
+    {
+      "algorithm" : "alns",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 0.010532021522521973,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    },
+    {
+      "algorithm" : "baseline",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 4.9948692321777344e-05,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    },
+    {
+      "algorithm" : "beam",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 0.0006519556045532227,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    },
+    {
+      "algorithm" : "exact",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 0.0002779960632324219,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    },
+    {
+      "algorithm" : "insertion",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 0.0004819631576538086,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    },
+    {
+      "algorithm" : "local",
+      "feasibleRuns" : 1,
+      "maximumTravel" : 6442,
+      "medianCPU" : 0.00592803955078125,
+      "medianTravel" : 6442,
+      "minimumTravel" : 6442,
+      "problemID" : "ACDAB5A7-B672-4B1D-B083-B99B7E4B15F1",
+      "runs" : 1
+    }
+  ]
+}

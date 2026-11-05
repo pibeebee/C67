@@ -1,0 +1,241 @@
+{
+  "candidates" : [
+    {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 0,
+      "finish" : "2026-11-05T03:23:14Z",
+      "id" : "",
+      "legs" : [
+        {
+          "arrival" : "2026-11-05T03:23:14Z",
+          "chosen" : {
+            "distance" : 7133,
+            "expectedArrival" : "2026-11-05T03:23:14Z",
+            "expectedDeparture" : "2026-11-05T02:59:36Z",
+            "id" : "glodok>origin:automobile:1793847576.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1418,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T02:59:36Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "glodok",
+            "latitude" : -6.1434347,
+            "longitude" : 106.815066,
+            "query" : "Jalan Pasar Glodok Selatan",
+            "resolvedName" : "Jalan Pasar Glodok Selatan",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Jalan Pasar Glodok Selatan"
+          },
+          "id" : ":0",
+          "isReturn" : true,
+          "leave" : "2026-11-05T03:23:14Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 7133,
+              "expectedArrival" : "2026-11-05T03:23:14Z",
+              "expectedDeparture" : "2026-11-05T02:59:36Z",
+              "id" : "glodok>origin:automobile:1793847576.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1418,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+            "id" : "origin",
+            "latitude" : -6.2023912,
+            "longitude" : 106.8234359,
+            "query" : "Stasiun Sudirman",
+            "resolvedName" : "Stasiun Sudirman",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Stasiun Sudirman"
+          },
+          "visit" : "2026-11-05T03:23:14Z"
+        }
+      ],
+      "order" : [
+
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 23.633333333333333,
+      "uncertainties" : [
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 23.633333333333333,
+      "waitingMinutes" : 0
+    }
+  ],
+  "draft" : {
+    "automobile" : true,
+    "carUse" : "onDemand",
+    "defaultDwell" : 30,
+    "departure" : "2026-11-05T02:59:36Z",
+    "end" : {
+      "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+      "id" : "origin",
+      "latitude" : -6.2023912,
+      "longitude" : 106.8234359,
+      "query" : "Stasiun Sudirman",
+      "resolvedName" : "Stasiun Sudirman",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+      "title" : "Stasiun Sudirman"
+    },
+    "extraWeatherMinutes" : 15,
+    "finishBy" : "2026-11-05T11:00:00Z",
+    "maximumWalkingMinutes" : 45,
+    "origin" : {
+      "address" : "Jakarta; pin dari log 4 November 2026",
+      "id" : "glodok",
+      "latitude" : -6.1434347,
+      "longitude" : 106.815066,
+      "query" : "Jalan Pasar Glodok Selatan",
+      "resolvedName" : "Jalan Pasar Glodok Selatan",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+      "title" : "Jalan Pasar Glodok Selatan"
+    },
+    "planningArea" : "jakarta",
+    "rainWeight" : 2,
+    "returnsToOrigin" : false,
+    "routingAdaptive" : true,
+    "routingAlgorithm" : "hybrid",
+    "routingRequestLimit" : 512,
+    "searchContext" : "Jakarta",
+    "stops" : [
+
+    ],
+    "timeZoneID" : "Asia\/Jakarta",
+    "transit" : false,
+    "walking" : false
+  },
+  "fastest" : {
+    "complete" : true,
+    "conflicts" : [
+
+    ],
+    "dwellMinutes" : 0,
+    "finish" : "2026-11-05T03:23:14Z",
+    "id" : "",
+    "legs" : [
+      {
+        "arrival" : "2026-11-05T03:23:14Z",
+        "chosen" : {
+          "distance" : 7133,
+          "expectedArrival" : "2026-11-05T03:23:14Z",
+          "expectedDeparture" : "2026-11-05T02:59:36Z",
+          "id" : "glodok>origin:automobile:1793847576.0",
+          "mode" : "automobile",
+          "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+          "seconds" : 1418,
+          "status" : "available"
+        },
+        "departure" : "2026-11-05T02:59:36Z",
+        "dwellMinutes" : 0,
+        "dwellSource" : "transfer",
+        "from" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "glodok",
+          "latitude" : -6.1434347,
+          "longitude" : 106.815066,
+          "query" : "Jalan Pasar Glodok Selatan",
+          "resolvedName" : "Jalan Pasar Glodok Selatan",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Jalan Pasar Glodok Selatan"
+        },
+        "id" : ":0",
+        "isReturn" : true,
+        "leave" : "2026-11-05T03:23:14Z",
+        "notes" : [
+          "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+        ],
+        "options" : [
+          {
+            "distance" : 7133,
+            "expectedArrival" : "2026-11-05T03:23:14Z",
+            "expectedDeparture" : "2026-11-05T02:59:36Z",
+            "id" : "glodok>origin:automobile:1793847576.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1418,
+            "status" : "available"
+          }
+        ],
+        "to" : {
+          "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+          "id" : "origin",
+          "latitude" : -6.2023912,
+          "longitude" : 106.8234359,
+          "query" : "Stasiun Sudirman",
+          "resolvedName" : "Stasiun Sudirman",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Stasiun Sudirman"
+        },
+        "visit" : "2026-11-05T03:23:14Z"
+      }
+    ],
+    "order" : [
+
+    ],
+    "rainExposureMinutes" : 0,
+    "travelMinutes" : 23.633333333333333,
+    "uncertainties" : [
+      "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+    ],
+    "unknownWeatherMinutes" : 23.633333333333333,
+    "waitingMinutes" : 0
+  },
+  "forecasts" : [
+
+  ],
+  "generatedAt" : "2026-11-04T07:17:56Z",
+  "optimizerNote" : "Tidak ada tujuan tersisa; endpoint asal tetap dipertahankan.",
+  "requests" : 1,
+  "weatherNote" : "Ruas menuju titik akhir; data cuaca baru tidak diminta."
+}

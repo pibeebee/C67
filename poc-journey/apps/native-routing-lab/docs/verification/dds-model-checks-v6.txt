@@ -1,0 +1,42 @@
+PASS path clamps negative progress
+PASS path ends without teleport or wrap
+PASS path interpolates by distance
+PASS off-route uses segment projection, not nearest vertex
+PASS off-route detects perpendicular separation
+PASS initial route is requested
+PASS unchanged positions preserve route
+PASS target movement triggers route
+PASS origin movement triggers route
+PASS off-route triggers route
+PASS only one request can be active
+PASS successful request publishes route and clears loading
+PASS reset preserves device cooldown
+PASS request resumes after cooldown
+PASS new session can start while cancelled completion is pending
+PASS stale success cannot publish route or clear newer loading
+PASS current completion remains authoritative
+PASS cancel before task starts makes no provider call
+PASS stage 1 moves B and keeps A fixed
+PASS moving target never cancels and starves active request
+PASS pending movement reroutes after cooldown
+PASS rerouting uses newest target, not queued old coordinates
+PASS pause freezes simulation and rejects pending completion
+PASS cancelled result does not count as success
+PASS stage 2 moves both points
+PASS network error is visible and loading terminates
+PASS network failure applies backoff
+PASS MapKit throttling applies 60-second backoff
+PASS area changes cannot bypass throttle backoff
+PASS successful retry recovers from error
+PASS stationary origin does not reroute because MapKit snapped the route
+PASS simulation clamps at final positions
+PASS simulation routes the final positions after cooldown
+PASS simulation stops after final route without restarting
+PASS live mode does not route using preset fallback coordinates
+PASS live input requests real origin and target
+PASS stale live input cancels active request
+PASS late response cannot publish after live input expires
+PASS live rerouting resumes without advancing simulation
+PASS paused live routing cannot issue background requests
+
+40 deterministic checks passed. Fake provider only; no Apple service coverage claim.

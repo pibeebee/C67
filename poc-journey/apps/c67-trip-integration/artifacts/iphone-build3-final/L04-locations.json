@@ -1,0 +1,116 @@
+{
+  "locations" : [
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+          "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+          "latitude" : -6.1912059,
+          "longitude" : 106.8226755,
+          "name" : "Bundaran HI Bank Jakarta",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "origin",
+      "manualConfirmation" : false,
+      "query" : "Bundaran HI Jakarta",
+      "selected" : {
+        "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+        "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+        "latitude" : -6.1912059,
+        "longitude" : 106.8226755,
+        "name" : "Bundaran HI Bank Jakarta",
+        "source" : "MapKit search"
+      }
+    },
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+          "id" : "Hutan Kota GBK:-6.219204:106.804564",
+          "latitude" : -6.219204,
+          "longitude" : 106.804564,
+          "name" : "Hutan Kota GBK",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "gbk",
+      "manualConfirmation" : false,
+      "query" : "Hutan Kota GBK Jakarta",
+      "selected" : {
+        "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+        "id" : "Hutan Kota GBK:-6.219204:106.804564",
+        "latitude" : -6.219204,
+        "longitude" : 106.804564,
+        "name" : "Hutan Kota GBK",
+        "source" : "MapKit search"
+      }
+    },
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+          "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+          "latitude" : -6.3115769,
+          "longitude" : 106.8210661,
+          "name" : "Ragunan Zoo",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "ragunan",
+      "manualConfirmation" : false,
+      "query" : "Ragunan Zoo Jakarta",
+      "selected" : {
+        "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+        "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+        "latitude" : -6.3115769,
+        "longitude" : 106.8210661,
+        "name" : "Ragunan Zoo",
+        "source" : "MapKit search"
+      }
+    }
+  ],
+  "request" : {
+    "allowOpenMeteo" : false,
+    "deadline" : "2026-11-06T12:00:00Z",
+    "defaultDuration" : 60,
+    "departure" : "2026-11-06T00:00:00Z",
+    "desiredCount" : 3,
+    "durationByVenue" : {
+
+    },
+    "goal" : "lowerRain",
+    "id" : "F61832BC-5F15-4F6D-83B5-7A27A372DD38",
+    "originQuery" : "Bundaran HI Jakarta",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+        "outdoor",
+        "nature"
+      ],
+      "schemaVersion" : 1
+    },
+    "requiredCandidateIDs" : [
+      "gbk",
+      "ragunan"
+    ],
+    "revision" : 0,
+    "useEmbedding" : false
+  },
+  "searchRequests" : 3,
+  "searchSeconds" : 0.8954019546508789,
+  "selectedIDs" : [
+    "gbk",
+    "ragunan"
+  ]
+}

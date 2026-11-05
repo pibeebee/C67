@@ -1,0 +1,686 @@
+{
+  "id": "jakarta-recorded-static",
+  "kind": "recorded_static",
+  "draft": {
+    "automobile": true,
+    "defaultDwell": 30,
+    "departure": "2026-11-05T00:00:00Z",
+    "end": {
+      "id": "end",
+      "query": "",
+      "title": "Titik akhir"
+    },
+    "extraWeatherMinutes": 15,
+    "maximumWalkingMinutes": 45,
+    "origin": {
+      "address": "Jalan Kendal No. 1, Kota Administrasi Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310, Indonesia",
+      "id": "origin",
+      "latitude": -6.2023912,
+      "longitude": 106.8234359,
+      "query": "Stasiun sudirman",
+      "resolvedName": "Stasiun Sudirman",
+      "selectionSource": "MapKit Local Search",
+      "title": "Stasiun sudirman"
+    },
+    "rainWeight": 2,
+    "returnsToOrigin": true,
+    "searchContext": "Jakarta, Indonesia",
+    "stops": [
+      {
+        "exposure": "unknown",
+        "point": {
+          "address": "Gambir\nCentral Jakarta\nJakarta 10110\nIndonesia",
+          "id": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+          "latitude": -6.1753936,
+          "longitude": 106.827186,
+          "query": "Monas",
+          "resolvedName": "National Monument",
+          "selectionSource": "MapKit Local Search",
+          "title": "National Monument"
+        },
+        "role": "visit"
+      },
+      {
+        "exposure": "unknown",
+        "point": {
+          "address": "Jl MH Thamrin No. 1\nKebon Melati, Tanah Abang, Central Jakarta\n Jakarta 10310\nIndonesia",
+          "id": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+          "latitude": -6.1951799,
+          "longitude": 106.8196893,
+          "query": "Grand Indonesia",
+          "resolvedName": "Grand Indonesia",
+          "selectionSource": "MapKit Local Search",
+          "title": "Grand Indonesia"
+        },
+        "role": "visit"
+      },
+      {
+        "exposure": "unknown",
+        "point": {
+          "address": "Jl. Bulevar Kelapa Gading Blok M, Jakarta Utara, Jakarta 14240, Indonesia",
+          "id": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+          "latitude": -6.1573955,
+          "longitude": 106.9084284,
+          "query": "Summarecon Kelapa Gading",
+          "resolvedName": "Summarecon Mall Kelapa Gading",
+          "selectionSource": "MapKit Local Search",
+          "title": "Summarecon Mall Kelapa Gading"
+        },
+        "role": "visit",
+        "opening": {
+          "opensMinute": 600,
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "sourceNote": "Jam buka 10.00 berdasarkan informasi pengguna pada 3 November 2026; jam tutup belum diketahui. Tidak diverifikasi ke sumber eksternal."
+        }
+      },
+      {
+        "exposure": "unknown",
+        "point": {
+          "address": "Jalan Kali Besar Timur No. 10, West Jakarta, Jakarta 11270, Indonesia",
+          "id": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+          "latitude": -6.1347997,
+          "longitude": 106.8130414,
+          "query": "Kota Tua Jakarta",
+          "resolvedName": "Kota Tua",
+          "selectionSource": "MapKit Local Search",
+          "title": "Kota Tua"
+        },
+        "role": "visit"
+      }
+    ],
+    "timeZoneID": "Asia/Jakarta",
+    "transit": true,
+    "walking": true,
+    "carUse": "onDemand",
+    "routingRequestLimit": 96,
+    "routingEvaluationLimit": 12000,
+    "routingSecondsLimit": 3.0,
+    "routingBeamWidth": 8
+  },
+  "oracle": [
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "seconds": 921,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 237,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "seconds": 2473,
+      "start": 0,
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1156,
+      "start": 0,
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 4665,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1019,
+      "start": 0,
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 13777,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1982,
+      "start": 0,
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 216 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 12938,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 2867,
+      "start": 0,
+      "status": "available",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "walking",
+      "note": "ETA berjalan 218 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 13046,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1919,
+      "start": 0,
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 13787,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 2009,
+      "start": 0,
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 4659,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1603,
+      "start": 0,
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "seconds": 2327,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 487,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "seconds": 935,
+      "start": 0,
+      "status": "available",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 424,
+      "start": 0,
+      "status": "available",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "walking",
+      "note": "ETA berjalan 48 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 2880,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1060,
+      "start": 0,
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "walking",
+      "note": "ETA berjalan 127 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 7594,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1583,
+      "start": 0,
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "ETA berjalan 193 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 11560,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1565,
+      "start": 0,
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "ETA berjalan 49 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 2891,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 625,
+      "start": 0,
+      "status": "available",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "ETA berjalan 225 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 13476,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 2127,
+      "start": 0,
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "ETA berjalan 119 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 7121,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1621,
+      "start": 0,
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 191 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 11434,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 2556,
+      "start": 0,
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 221 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 13219,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 2944,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 120 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 7200,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1428,
+      "start": 0,
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 127 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "seconds": 7601,
+      "start": 0,
+      "status": "excluded_by_walking_limit",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "start": 0,
+      "status": "unavailable",
+      "to": "origin"
+    },
+    {
+      "end": 172800,
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "seconds": 1682,
+      "start": 0,
+      "status": "available",
+      "to": "origin"
+    }
+  ],
+  "provenance": "Recorded MapKit departure snapshot, held static for replay. Not a forecast for all later departures.",
+  "source": "docs/verification/opening-hours-jakarta-2026-11-03/comparison.json",
+  "sourceSHA256": "71b67fd4a8c150d594f8b7f6dd5bc62b10acc7d380f9164fa1d734b153665e52"
+}

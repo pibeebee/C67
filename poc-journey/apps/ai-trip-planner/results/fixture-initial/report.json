@@ -1,0 +1,1839 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-11-02T08:48:38.491Z",
+  "mode": "fixture",
+  "validationStatus": "Fixture only; AI was NOT executed. Not evidence of AI quality.",
+  "input": {
+    "title": "Johan — illustrative Jakarta itinerary",
+    "date": "2026-11-03",
+    "timeZone": "Asia/Jakarta",
+    "startTime": "14:00",
+    "finishTime": "19:00",
+    "mode": "DRIVE",
+    "preferences": [
+      "Saya ingin ngopi sambil membaca dan menikmati tempat luar ruang menjelang sunset.",
+      "Hindari kunjungan luar ruang ketika peluang hujan tinggi, jika memungkinkan.",
+      "Semua tujuan pilihan saya tetap dikunjungi; jelaskan jika waktunya tidak cukup."
+    ],
+    "origin": {
+      "id": "A",
+      "name": "A — illustrative starting point in Cipete",
+      "latitude": -6.2728,
+      "longitude": 106.7976
+    },
+    "places": [
+      {
+        "id": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "latitude": -6.2613,
+        "longitude": 106.8106,
+        "durationMinutes": 60,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: an indoor coffee visit. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "10:00",
+          "closesAt": "20:00"
+        }
+      },
+      {
+        "id": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "latitude": -6.2601,
+        "longitude": 106.8124,
+        "durationMinutes": 45,
+        "exposure": "outdoor",
+        "context": "User-supplied scenario: an outdoor visit preferred before sunset. Visibility and suitability are unverified.",
+        "openingHours": {
+          "opensAt": "08:00",
+          "closesAt": "20:00"
+        },
+        "preferredWindow": {
+          "kind": "sunset",
+          "minutesBefore": 60
+        }
+      },
+      {
+        "id": "D",
+        "name": "D — reading stop (example coordinate)",
+        "latitude": -6.2649,
+        "longitude": 106.7984,
+        "durationMinutes": 45,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: a reading stop where Johan may want to stay longer. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "09:00",
+          "closesAt": "20:00"
+        }
+      }
+    ]
+  },
+  "progress": {
+    "visitedIds": [],
+    "originNow": {
+      "id": "A",
+      "name": "A — illustrative starting point in Cipete",
+      "latitude": -6.2728,
+      "longitude": 106.7976
+    },
+    "departureAt": "2026-11-03T07:00:00.000Z",
+    "finishBy": "2026-11-03T12:00:00.000Z"
+  },
+  "ai": {
+    "called": false,
+    "model": null,
+    "responseId": null,
+    "usage": null,
+    "latencyMs": 0,
+    "decision": {
+      "candidateId": "B-D-C:direct",
+      "summary": "SIMULATION ONLY — selected by the transparent scoring function; OpenRouter was not called.",
+      "rationale": [
+        {
+          "placeId": "B",
+          "reason": "Synthetic route, timing and weather were evaluated by code. This is not an AI explanation.",
+          "evidenceIds": [
+            "input:B",
+            "fixture-route:A/B@1793689200",
+            "weather:B"
+          ]
+        },
+        {
+          "placeId": "D",
+          "reason": "Synthetic route, timing and weather were evaluated by code. This is not an AI explanation.",
+          "evidenceIds": [
+            "input:D",
+            "fixture-route:B/D@1793694000",
+            "weather:D"
+          ]
+        },
+        {
+          "placeId": "C",
+          "reason": "Synthetic route, timing and weather were evaluated by code. This is not an AI explanation.",
+          "evidenceIds": [
+            "input:C",
+            "fixture-route:D/C@1793699400",
+            "weather:C"
+          ]
+        }
+      ],
+      "tradeoffs": [
+        "This fixture run checks plumbing and arithmetic, not AI quality or real travel feasibility."
+      ],
+      "uncertainties": [
+        "All provider data in this mode is synthetic."
+      ]
+    },
+    "explanationValidation": "Destination IDs and evidence references checked. Prose claims are not automatically fact-checked."
+  },
+  "recommendation": {
+    "id": "B-D-C:direct",
+    "order": [
+      "B",
+      "D",
+      "C"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "B",
+          "departureAt": 1793689200,
+          "durationSeconds": 1200,
+          "distanceMeters": 10000,
+          "evidenceId": "fixture-route:A/B@1793689200"
+        },
+        "arrivalAt": 1793690400,
+        "visitAt": 1793690400,
+        "leaveAt": 1793694000,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "fixture-route:A/B@1793689200",
+          "weather:B"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "B",
+          "toId": "D",
+          "departureAt": 1793694000,
+          "durationSeconds": 2700,
+          "distanceMeters": 18000,
+          "evidenceId": "fixture-route:B/D@1793694000"
+        },
+        "arrivalAt": 1793696700,
+        "visitAt": 1793696700,
+        "leaveAt": 1793699400,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "fixture-route:B/D@1793694000",
+          "weather:D"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "D",
+          "toId": "C",
+          "departureAt": 1793699400,
+          "durationSeconds": 600,
+          "distanceMeters": 1000,
+          "evidenceId": "fixture-route:D/C@1793699400"
+        },
+        "arrivalAt": 1793700000,
+        "visitAt": 1793700000,
+        "leaveAt": 1793702700,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 4.5,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793700000,
+          "end": 1793703600
+        },
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:C",
+          "fixture-route:D/C@1793699400",
+          "weather:C"
+        ],
+        "warnings": []
+      }
+    ],
+    "finishesAt": 1793702700,
+    "travelMinutes": 75,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 4.5,
+    "preferredWindowMissMinutes": 0,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 84
+  },
+  "baselineOriginal": {
+    "id": "B-C-D:direct",
+    "order": [
+      "B",
+      "C",
+      "D"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "B",
+          "departureAt": 1793689200,
+          "durationSeconds": 1200,
+          "distanceMeters": 10000,
+          "evidenceId": "fixture-route:A/B@1793689200"
+        },
+        "arrivalAt": 1793690400,
+        "visitAt": 1793690400,
+        "leaveAt": 1793694000,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "fixture-route:A/B@1793689200",
+          "weather:B"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "B",
+          "toId": "C",
+          "departureAt": 1793694000,
+          "durationSeconds": 1800,
+          "distanceMeters": 12000,
+          "evidenceId": "fixture-route:B/C@1793694000"
+        },
+        "arrivalAt": 1793695800,
+        "visitAt": 1793695800,
+        "leaveAt": 1793698500,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 27.77777777777778,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 12.5,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793700000,
+          "end": 1793703600
+        },
+        "preferredWindowMissMinutes": 30,
+        "evidenceIds": [
+          "input:C",
+          "fixture-route:B/C@1793694000",
+          "weather:C"
+        ],
+        "warnings": [
+          "Preferred-window overlap is short by 30 minutes; destination retained."
+        ]
+      },
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "C",
+          "toId": "D",
+          "departureAt": 1793698500,
+          "durationSeconds": 600,
+          "distanceMeters": 1000,
+          "evidenceId": "fixture-route:C/D@1793698500"
+        },
+        "arrivalAt": 1793699100,
+        "visitAt": 1793699100,
+        "leaveAt": 1793701800,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "fixture-route:C/D@1793698500",
+          "weather:D"
+        ],
+        "warnings": []
+      }
+    ],
+    "finishesAt": 1793701800,
+    "travelMinutes": 60,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 12.5,
+    "preferredWindowMissMinutes": 30,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 175
+  },
+  "baselineTravelOnly": {
+    "id": "D-C-B:direct",
+    "order": [
+      "D",
+      "C",
+      "B"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "D",
+          "departureAt": 1793689200,
+          "durationSeconds": 480,
+          "distanceMeters": 2000,
+          "evidenceId": "fixture-route:A/D@1793689200"
+        },
+        "arrivalAt": 1793689680,
+        "visitAt": 1793689680,
+        "leaveAt": 1793692380,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "fixture-route:A/D@1793689200",
+          "weather:D"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "D",
+          "toId": "C",
+          "departureAt": 1793692380,
+          "durationSeconds": 600,
+          "distanceMeters": 1000,
+          "evidenceId": "fixture-route:D/C@1793692380"
+        },
+        "arrivalAt": 1793692980,
+        "visitAt": 1793692980,
+        "leaveAt": 1793695680,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 90,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 40.5,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793700000,
+          "end": 1793703600
+        },
+        "preferredWindowMissMinutes": 30,
+        "evidenceIds": [
+          "input:C",
+          "fixture-route:D/C@1793692380",
+          "weather:C"
+        ],
+        "warnings": [
+          "Preferred-window overlap is short by 30 minutes; destination retained."
+        ]
+      },
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "C",
+          "toId": "B",
+          "departureAt": 1793695680,
+          "durationSeconds": 1800,
+          "distanceMeters": 12000,
+          "evidenceId": "fixture-route:C/B@1793695680"
+        },
+        "arrivalAt": 1793697480,
+        "visitAt": 1793697480,
+        "leaveAt": 1793701080,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 10,
+          "temperatureC": 29,
+          "cloudCover": 40,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "fixture-route:C/B@1793695680",
+          "weather:B"
+        ],
+        "warnings": []
+      }
+    ],
+    "finishesAt": 1793701080,
+    "travelMinutes": 48,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 40.5,
+    "preferredWindowMissMinutes": 30,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 219
+  },
+  "alternatives": [
+    {
+      "id": "B-D-C:wait",
+      "order": [
+        "B",
+        "D",
+        "C"
+      ],
+      "waitForPreferredWindow": true,
+      "stops": [
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "B",
+            "departureAt": 1793689200,
+            "durationSeconds": 1200,
+            "distanceMeters": 10000,
+            "evidenceId": "fixture-route:A/B@1793689200"
+          },
+          "arrivalAt": 1793690400,
+          "visitAt": 1793690400,
+          "leaveAt": 1793694000,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "fixture-route:A/B@1793689200",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "D",
+            "departureAt": 1793694000,
+            "durationSeconds": 2700,
+            "distanceMeters": 18000,
+            "evidenceId": "fixture-route:B/D@1793694000"
+          },
+          "arrivalAt": 1793696700,
+          "visitAt": 1793696700,
+          "leaveAt": 1793699400,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "fixture-route:B/D@1793694000",
+            "weather:D"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "D",
+            "toId": "C",
+            "departureAt": 1793699400,
+            "durationSeconds": 600,
+            "distanceMeters": 1000,
+            "evidenceId": "fixture-route:D/C@1793699400"
+          },
+          "arrivalAt": 1793700000,
+          "visitAt": 1793700000,
+          "leaveAt": 1793702700,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 4.5,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793700000,
+            "end": 1793703600
+          },
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:C",
+            "fixture-route:D/C@1793699400",
+            "weather:C"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793702700,
+      "travelMinutes": 75,
+      "waitMinutes": 0,
+      "rainExposureMinutes": 4.5,
+      "preferredWindowMissMinutes": 0,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 84
+    },
+    {
+      "id": "B-C-D:wait",
+      "order": [
+        "B",
+        "C",
+        "D"
+      ],
+      "waitForPreferredWindow": true,
+      "stops": [
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "B",
+            "departureAt": 1793689200,
+            "durationSeconds": 1200,
+            "distanceMeters": 10000,
+            "evidenceId": "fixture-route:A/B@1793689200"
+          },
+          "arrivalAt": 1793690400,
+          "visitAt": 1793690400,
+          "leaveAt": 1793694000,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "fixture-route:A/B@1793689200",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "C",
+            "departureAt": 1793694000,
+            "durationSeconds": 1800,
+            "distanceMeters": 12000,
+            "evidenceId": "fixture-route:B/C@1793694000"
+          },
+          "arrivalAt": 1793695800,
+          "visitAt": 1793700000,
+          "leaveAt": 1793702700,
+          "waitMinutes": 70,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 4.5,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793700000,
+            "end": 1793703600
+          },
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:C",
+            "fixture-route:B/C@1793694000",
+            "weather:C"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "C",
+            "toId": "D",
+            "departureAt": 1793702700,
+            "durationSeconds": 600,
+            "distanceMeters": 1000,
+            "evidenceId": "fixture-route:C/D@1793702700"
+          },
+          "arrivalAt": 1793703300,
+          "visitAt": 1793703300,
+          "leaveAt": 1793706000,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "fixture-route:C/D@1793702700",
+            "weather:D"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793706000,
+      "travelMinutes": 60,
+      "waitMinutes": 70,
+      "rainExposureMinutes": 4.5,
+      "preferredWindowMissMinutes": 0,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 86.5
+    },
+    {
+      "id": "B-C-D:direct",
+      "order": [
+        "B",
+        "C",
+        "D"
+      ],
+      "waitForPreferredWindow": false,
+      "stops": [
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "B",
+            "departureAt": 1793689200,
+            "durationSeconds": 1200,
+            "distanceMeters": 10000,
+            "evidenceId": "fixture-route:A/B@1793689200"
+          },
+          "arrivalAt": 1793690400,
+          "visitAt": 1793690400,
+          "leaveAt": 1793694000,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "fixture-route:A/B@1793689200",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "C",
+            "departureAt": 1793694000,
+            "durationSeconds": 1800,
+            "distanceMeters": 12000,
+            "evidenceId": "fixture-route:B/C@1793694000"
+          },
+          "arrivalAt": 1793695800,
+          "visitAt": 1793695800,
+          "leaveAt": 1793698500,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 27.77777777777778,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 12.5,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793700000,
+            "end": 1793703600
+          },
+          "preferredWindowMissMinutes": 30,
+          "evidenceIds": [
+            "input:C",
+            "fixture-route:B/C@1793694000",
+            "weather:C"
+          ],
+          "warnings": [
+            "Preferred-window overlap is short by 30 minutes; destination retained."
+          ]
+        },
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "C",
+            "toId": "D",
+            "departureAt": 1793698500,
+            "durationSeconds": 600,
+            "distanceMeters": 1000,
+            "evidenceId": "fixture-route:C/D@1793698500"
+          },
+          "arrivalAt": 1793699100,
+          "visitAt": 1793699100,
+          "leaveAt": 1793701800,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "fixture-route:C/D@1793698500",
+            "weather:D"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793701800,
+      "travelMinutes": 60,
+      "waitMinutes": 0,
+      "rainExposureMinutes": 12.5,
+      "preferredWindowMissMinutes": 30,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 175
+    },
+    {
+      "id": "D-C-B:direct",
+      "order": [
+        "D",
+        "C",
+        "B"
+      ],
+      "waitForPreferredWindow": false,
+      "stops": [
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "D",
+            "departureAt": 1793689200,
+            "durationSeconds": 480,
+            "distanceMeters": 2000,
+            "evidenceId": "fixture-route:A/D@1793689200"
+          },
+          "arrivalAt": 1793689680,
+          "visitAt": 1793689680,
+          "leaveAt": 1793692380,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "fixture-route:A/D@1793689200",
+            "weather:D"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "D",
+            "toId": "C",
+            "departureAt": 1793692380,
+            "durationSeconds": 600,
+            "distanceMeters": 1000,
+            "evidenceId": "fixture-route:D/C@1793692380"
+          },
+          "arrivalAt": 1793692980,
+          "visitAt": 1793692980,
+          "leaveAt": 1793695680,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 90,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 40.5,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793700000,
+            "end": 1793703600
+          },
+          "preferredWindowMissMinutes": 30,
+          "evidenceIds": [
+            "input:C",
+            "fixture-route:D/C@1793692380",
+            "weather:C"
+          ],
+          "warnings": [
+            "Preferred-window overlap is short by 30 minutes; destination retained."
+          ]
+        },
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "C",
+            "toId": "B",
+            "departureAt": 1793695680,
+            "durationSeconds": 1800,
+            "distanceMeters": 12000,
+            "evidenceId": "fixture-route:C/B@1793695680"
+          },
+          "arrivalAt": 1793697480,
+          "visitAt": 1793697480,
+          "leaveAt": 1793701080,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "fixture-route:C/B@1793695680",
+            "weather:B"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793701080,
+      "travelMinutes": 48,
+      "waitMinutes": 0,
+      "rainExposureMinutes": 40.5,
+      "preferredWindowMissMinutes": 30,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 219
+    }
+  ],
+  "comparisonWithOriginal": {
+    "travelMinutesDelta": 15,
+    "rainExposureMinutesDelta": -8,
+    "preferredWindowMissMinutesDelta": -30,
+    "finishesMinutesDelta": 15
+  },
+  "checks": {
+    "destinationsPreserved": true,
+    "visitDurationsPreserved": true,
+    "timelineArithmeticChecked": true,
+    "selectedPlanFeasible": true,
+    "noSilentAIOrRouteFallback": true,
+    "aiActuallyCalled": false,
+    "allProviderDataLive": false,
+    "completeRainForecastCoverage": true
+  },
+  "search": {
+    "initialCandidateCount": 12,
+    "refinedCandidateCount": 5,
+    "globallyOptimal": false,
+    "strategy": "All permutations at initial departure, each with direct/preferred-wait variants; refine top 3 plus original-order and travel-only baselines at per-leg departures.",
+    "weights": {
+      "travel": 1,
+      "waiting": 0.25,
+      "missedPreferredWindow": 3,
+      "rainExposure": 2
+    }
+  },
+  "diagnostics": {
+    "elapsedMs": 10,
+    "httpCalls": {}
+  },
+  "warnings": [
+    "Routing, forecast and sunset are synthetic fixtures.",
+    "OpenRouter was not called. This run is only a local pipeline demonstration.",
+    "Place context, exposure and opening hours are user-supplied assumptions; no web research was performed.",
+    "Finish time means the end of the final visit. No journey home is included.",
+    "Before-sunset preference does not establish golden hour, cloud visibility or venue suitability.",
+    "Rain exposure is a scoring proxy, not a forecast of how many minutes it will rain. Waiting and journey weather are not scored.",
+    "Weights, shortlist quality and AI reasoning need evaluation. No global optimality or user benefit is established."
+  ],
+  "evidence": [
+    {
+      "id": "input:B",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "id": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "latitude": -6.2613,
+        "longitude": 106.8106,
+        "durationMinutes": 60,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: an indoor coffee visit. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "10:00",
+          "closesAt": "20:00"
+        }
+      }
+    },
+    {
+      "id": "input:C",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "id": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "latitude": -6.2601,
+        "longitude": 106.8124,
+        "durationMinutes": 45,
+        "exposure": "outdoor",
+        "context": "User-supplied scenario: an outdoor visit preferred before sunset. Visibility and suitability are unverified.",
+        "openingHours": {
+          "opensAt": "08:00",
+          "closesAt": "20:00"
+        },
+        "preferredWindow": {
+          "kind": "sunset",
+          "minutesBefore": 60
+        }
+      }
+    },
+    {
+      "id": "input:D",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "id": "D",
+        "name": "D — reading stop (example coordinate)",
+        "latitude": -6.2649,
+        "longitude": 106.7984,
+        "durationMinutes": 45,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: a reading stop where Johan may want to stay longer. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "09:00",
+          "closesAt": "20:00"
+        }
+      }
+    },
+    {
+      "id": "fixture-route:A/B@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "A",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 1200,
+        "distanceMeters": 10000,
+        "evidenceId": "fixture-route:A/B@1793689200"
+      }
+    },
+    {
+      "id": "weather:B",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data — synthetic forecast",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "placeId": "B",
+        "evidenceId": "weather:B",
+        "sunrise": 1793658600,
+        "sunset": 1793703600,
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "weather:C",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data — synthetic forecast",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "placeId": "C",
+        "evidenceId": "weather:C",
+        "sunrise": 1793658600,
+        "sunset": 1793703600,
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 90,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 90,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "weather:D",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data — synthetic forecast",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "placeId": "D",
+        "evidenceId": "weather:D",
+        "sunrise": 1793658600,
+        "sunset": 1793703600,
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 10,
+            "temperatureC": 29,
+            "cloudCover": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "fixture-route:A/C@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "A",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 900,
+        "distanceMeters": 5000,
+        "evidenceId": "fixture-route:A/C@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:A/D@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "A",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 480,
+        "distanceMeters": 2000,
+        "evidenceId": "fixture-route:A/D@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:B/C@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "B",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 1800,
+        "distanceMeters": 12000,
+        "evidenceId": "fixture-route:B/C@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:B/D@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "B",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 2700,
+        "distanceMeters": 18000,
+        "evidenceId": "fixture-route:B/D@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:C/B@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "C",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 1800,
+        "distanceMeters": 12000,
+        "evidenceId": "fixture-route:C/B@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:C/D@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "C",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:C/D@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:D/B@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "D",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 2700,
+        "distanceMeters": 18000,
+        "evidenceId": "fixture-route:D/B@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:D/C@1793689200",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.482Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:D/C@1793689200"
+      }
+    },
+    {
+      "id": "fixture-route:B/D@1793694000",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "B",
+        "toId": "D",
+        "departureAt": 1793694000,
+        "durationSeconds": 2700,
+        "distanceMeters": 18000,
+        "evidenceId": "fixture-route:B/D@1793694000"
+      }
+    },
+    {
+      "id": "fixture-route:D/C@1793699400",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793699400,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:D/C@1793699400"
+      }
+    },
+    {
+      "id": "fixture-route:B/C@1793694000",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "B",
+        "toId": "C",
+        "departureAt": 1793694000,
+        "durationSeconds": 1800,
+        "distanceMeters": 12000,
+        "evidenceId": "fixture-route:B/C@1793694000"
+      }
+    },
+    {
+      "id": "fixture-route:C/D@1793702700",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "C",
+        "toId": "D",
+        "departureAt": 1793702700,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:C/D@1793702700"
+      }
+    },
+    {
+      "id": "fixture-route:C/D@1793698500",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "C",
+        "toId": "D",
+        "departureAt": 1793698500,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:C/D@1793698500"
+      }
+    },
+    {
+      "id": "fixture-route:D/C@1793692380",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793692380,
+        "durationSeconds": 600,
+        "distanceMeters": 1000,
+        "evidenceId": "fixture-route:D/C@1793692380"
+      }
+    },
+    {
+      "id": "fixture-route:C/B@1793695680",
+      "source": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "fromId": "C",
+        "toId": "B",
+        "departureAt": 1793695680,
+        "durationSeconds": 1800,
+        "distanceMeters": 12000,
+        "evidenceId": "fixture-route:C/B@1793695680"
+      }
+    },
+    {
+      "id": "candidate:B-D-C:direct",
+      "source": "PoC schedule calculation",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "order": [
+          "B",
+          "D",
+          "C"
+        ],
+        "score": 84,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:B-D-C:wait",
+      "source": "PoC schedule calculation",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "order": [
+          "B",
+          "D",
+          "C"
+        ],
+        "score": 84,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:B-C-D:wait",
+      "source": "PoC schedule calculation",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "order": [
+          "B",
+          "C",
+          "D"
+        ],
+        "score": 86.5,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:B-C-D:direct",
+      "source": "PoC schedule calculation",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "order": [
+          "B",
+          "C",
+          "D"
+        ],
+        "score": 175,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:D-C-B:direct",
+      "source": "PoC schedule calculation",
+      "synthetic": true,
+      "fetchedAt": "2026-11-02T08:48:38.491Z",
+      "data": {
+        "order": [
+          "D",
+          "C",
+          "B"
+        ],
+        "score": 219,
+        "feasible": true,
+        "violations": []
+      }
+    }
+  ]
+}

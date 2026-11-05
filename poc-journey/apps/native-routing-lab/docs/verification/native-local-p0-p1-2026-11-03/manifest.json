@@ -1,0 +1,24 @@
+{
+  "baseCommit": "712f036b222839173d7ea82bb736dd57aaeed6f5",
+  "workingTree": true,
+  "scope": "P0-P1; active-trip replanning deferred",
+  "sourceSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "15d14c7a29db7cc96618d2b3520650c9b2888d4e0038564043e97d54763b675e",
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": "23c4c3d59ad5f989e13f3a5fefd075b57d75bfb8a5c5e4cbc438604f28ed4109",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "95ace9177427ff0b23548614c74e96784ed6dc65b39ff4c1cb21928239a3c750",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "1545e840c3cc926af1c98c34977cd2743d6d11910bbc6e43ef419cb4ca0cc0ec",
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": "2d3e70e372af061388e5ca0f3e5ac4634a6ee7e18983a6125545c42ba8e4994e",
+    "poc-c67/Features/NativePlanner/NativeTripLocalStore.swift": "2521efe8539064e782c463c756c9d5bd74a199d07a941396569b21331f7d4031",
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "6db474767fce24dd2811429bf8b6b63af851d400df2b298b022310221ceb8dde",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "9ce064ef687b2916d6120ec527b34fdabc828d833280602ee84537c9d7734f77",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "f4df9b462237b99a48a9626e2a04dbe950afef0a0ec9e97e9bbadcb0efac3c7e",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "114a87c1f88b069e5b446c23f1cba1d621c6af70eaf2ef6c51c3d908e822a59c",
+    "checks/local/LocalTripTests.swift": "154affba093eff622387c3e2fd0f76fa5d1c013a3b53b799359225328bd77aee",
+    "scripts/test-native-trip-local.sh": "2c92cc9b2b517d6541db61d91f893c45e77c83bdeea778cb89362f08a7fb32a9",
+    "poc-c67/poc_c67App.swift": "746ce1f1bd75b6907f7bf939f7ad515dc8cbc15035fa39a2b7a9123eda54ba6b"
+  },
+  "device": "iPhone 18 Pro Simulator iOS 27.0; no physical iPhone",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "network": "Unit/replay tests offline; UI storage example synthetic; no live provider acceptance"
+}

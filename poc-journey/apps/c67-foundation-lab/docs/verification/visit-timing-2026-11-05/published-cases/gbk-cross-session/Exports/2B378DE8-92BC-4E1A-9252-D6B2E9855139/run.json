@@ -1,0 +1,174 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.0003319978713989258,
+  "id" : "2B378DE8-92BC-4E1A-9252-D6B2E9855139",
+  "options" : [
+    {
+      "end" : "2026-11-06T10:00:00Z",
+      "reason" : "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.",
+      "start" : "2026-11-06T08:00:00Z"
+    }
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 1020,
+      "start" : 540
+    },
+    "date" : "2026-11-06",
+    "durationMinutes" : 120,
+    "goal" : "openingOnly",
+    "venueID" : "gbk"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "gbk",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+      "title" : "Pemkot Jakarta Pusat — Hutan Kota GBK",
+      "url" : "https:\/\/pusat.jakarta.go.id\/kelurahan\/kelurahan-gelora\/fasilitas\/fasilitas-taman-hutan-kota\/taman-hutan-kota"
+    }
+  ],
+  "status" : "regular_hours_options",
+  "validStartRanges" : [
+    {
+      "end" : 900,
+      "start" : 900
+    }
+  ],
+  "venue" : {
+    "address" : "Pintu 7 Senayan, Gelora, Jakarta Pusat",
+    "exposure" : "outdoor",
+    "exposureSourceID" : "gbk",
+    "id" : "gbk",
+    "name" : "Hutan Kota GBK",
+    "query" : "Hutan Kota GBK, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "gbk"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 120 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak."
+  ]
+}

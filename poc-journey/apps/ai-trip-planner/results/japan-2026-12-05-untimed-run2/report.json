@@ -1,0 +1,1722 @@
+{
+  "generatedAt": "2026-11-02T14:12:25.821Z",
+  "mode": "untimed_one_day_ai_proposal",
+  "repairProposalSource": "results/japan-2026-12-05-untimed-run1/proposal.json",
+  "reusedProviderEvidenceSource": "results/japan-2026-12-05-untimed-run1/collected.json",
+  "reusedAIProposalSource": null,
+  "status": "proposal_needs_verification",
+  "allOutputTimesSource": "AI proposal; user supplied no clock times or durations",
+  "input": {
+    "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+    "date": "2026-12-05",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "E03",
+        "locationId": "komachi",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "E04",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "optional": false
+      },
+      {
+        "id": "E05",
+        "locationId": "kamakura_meal",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "optional": false
+      },
+      {
+        "id": "E07",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "E09",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "optional": false
+      },
+      {
+        "id": "E11",
+        "locationId": "kokomae",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "optional": false
+      },
+      {
+        "id": "E13",
+        "locationId": "enoshima_station",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "E15",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "E16",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "optional": false
+      },
+      {
+        "id": "E17",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "locationId": "sea_candle",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "E19",
+        "locationId": "sea_candle",
+        "label": "Menyaksikan Illumination",
+        "optional": false
+      },
+      {
+        "id": "E20",
+        "locationId": "enoshima_dinner",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "optional": false
+      },
+      {
+        "id": "E22",
+        "locationId": "fujisawa_station",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      }
+    ],
+    "requiredWalk": {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+    },
+    "transportContext": [
+      "Kereta dan jalan kaki, mengikuti daftar semula.",
+      "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+    ],
+    "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan.",
+    "requiredTransit": [
+      {
+        "from": "funabashi_station",
+        "to": "kamakura_station"
+      },
+      {
+        "from": "kamakura_station",
+        "to": "inamura_station"
+      },
+      {
+        "from": "inamura_station",
+        "to": "shichiri_station"
+      },
+      {
+        "from": "kokomae",
+        "to": "enoshima_station"
+      },
+      {
+        "from": "katase_station",
+        "to": "fujisawa_station"
+      },
+      {
+        "from": "fujisawa_station",
+        "to": "funabashi_station"
+      }
+    ]
+  },
+  "ai": {
+    "metadata": {
+      "requestedModel": "nvidia/nemotron-3.5-super-vl:free",
+      "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+      "reasoning": "on",
+      "maxCompletionTokens": 16384,
+      "contextBudget": {
+        "limitTokens": 1000000,
+        "reservedOutputTokens": 16384,
+        "estimatedInputTokens": 33326,
+        "estimatedTotalTokens": 49710,
+        "estimateMethod": "UTF-8 request bytes + 8192 overhead reserve; conservative estimate, not exact model tokenization."
+      },
+      "reportedUsageCheck": {
+        "inputTokens": 6739,
+        "completionTokens": 12027,
+        "totalTokens": 18766,
+        "withinLimit": true
+      },
+      "usage": {
+        "prompt_tokens": 6739,
+        "completion_tokens": 12027,
+        "total_tokens": 18766,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8829,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "latencyMs": 70950,
+      "internalReasoningTextStored": false
+    },
+    "proposal": {
+      "status": "proposal_needs_verification",
+      "summary": "One-day itinerary for 2026-12-05 from Funabashi Station and back. All times are proposed by the assistant and must be verified. Train allocations are unverified AI assumptions, not actual schedules/lines/fares.",
+      "rows": [
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "funabashi_station",
+          "to": "kamakura_station",
+          "start": "07:00",
+          "end": "08:15",
+          "mode": "TRANSIT",
+          "note": "Perjalanan ke Kamakura (asumsi AI, belum diverifikasi)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "komachi",
+          "start": "08:15",
+          "end": "08:25",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Komachi Street + buffer"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E03",
+          "from": "komachi",
+          "to": "komachi",
+          "start": "08:25",
+          "end": "09:00",
+          "mode": "NONE",
+          "note": "Stasiun Kamakura & Komachi Street"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "komachi",
+          "to": "hachimangu",
+          "start": "09:00",
+          "end": "09:10",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Tsurugaoka Hachimangu"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E04",
+          "from": "hachimangu",
+          "to": "hachimangu",
+          "start": "09:10",
+          "end": "10:00",
+          "mode": "NONE",
+          "note": "Tsurugaoka Hachimangu & Perempatan"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "hachimangu",
+          "to": "kamakura_meal",
+          "start": "10:00",
+          "end": "10:10",
+          "mode": "WALK",
+          "note": "Pindah ke lokasi makan siang (area Kamakura, lokasi tidak diketahui)"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E05",
+          "from": "kamakura_meal",
+          "to": "kamakura_meal",
+          "start": "10:10",
+          "end": "11:00",
+          "mode": "NONE",
+          "note": "Makan Siang Pagi (Area Kamakura)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_meal",
+          "to": "kamakura_station",
+          "start": "11:00",
+          "end": "11:15",
+          "mode": "WALK",
+          "note": "Kembali ke Stasiun Kamakura (jarak tidak diketahui, buffer)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "inamura_station",
+          "start": "11:15",
+          "end": "11:25",
+          "mode": "TRANSIT",
+          "note": "Perjalanan ke Inamuragasaki (asumsi AI, belum diverifikasi)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "inamura_park",
+          "start": "11:25",
+          "end": "11:30",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Kamakura Seaside Park"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E07",
+          "from": "inamura_park",
+          "to": "inamura_park",
+          "start": "11:30",
+          "end": "12:00",
+          "mode": "NONE",
+          "note": "Kamakura Seaside Park (Cape Inamuragasaki)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_park",
+          "to": "inamura_station",
+          "start": "12:00",
+          "end": "12:05",
+          "mode": "WALK",
+          "note": "Kaki kaki kembali ke stasiun"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "shichiri_station",
+          "start": "12:05",
+          "end": "12:15",
+          "mode": "TRANSIT",
+          "note": "Perjalanan ke Shichirigahama (asumsi AI, belum diverifikasi)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "shichiri_station",
+          "to": "shichiri_beach",
+          "start": "12:15",
+          "end": "12:25",
+          "mode": "WALK",
+          "note": "Kaki kaki ke pantai"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E09",
+          "from": "shichiri_beach",
+          "to": "shichiri_beach",
+          "start": "12:25",
+          "end": "13:05",
+          "mode": "NONE",
+          "note": "Shichirigahama Beach (Depan Sekolah)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "shichiri_beach",
+          "to": "kokomae",
+          "start": "13:05",
+          "end": "13:23",
+          "mode": "WALK",
+          "note": "Jalan kaki langsung: Pantai Shichirigahama → Kamakurakokomae"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E11",
+          "from": "kokomae",
+          "to": "kokomae",
+          "start": "13:23",
+          "end": "13:50",
+          "mode": "NONE",
+          "note": "Kamakurakokomae Station (Foto Area Stasiun — waktu foto terpisah)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kokomae",
+          "to": "enoshima_station",
+          "start": "13:50",
+          "end": "14:10",
+          "mode": "TRANSIT",
+          "note": "Perjalanan ke Enoshima (asumsi AI, belum diverifikasi)"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E13",
+          "from": "enoshima_station",
+          "to": "enoshima_station",
+          "start": "14:10",
+          "end": "14:30",
+          "mode": "NONE",
+          "note": "Toko Suvenir Enoshima Station"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "enoshima_station",
+          "to": "tourist_center",
+          "start": "14:30",
+          "end": "14:40",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Fujisawa City Tourist Center"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E15",
+          "from": "tourist_center",
+          "to": "tourist_center",
+          "start": "14:40",
+          "end": "15:30",
+          "mode": "NONE",
+          "note": "Fujisawa City Tourist Center (selesai dalam jam operasional 08:30–17:00)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "tourist_center",
+          "to": "bridge",
+          "start": "15:30",
+          "end": "15:35",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Enoshima Ohashi Bridge"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E16",
+          "from": "bridge",
+          "to": "bridge",
+          "start": "15:35",
+          "end": "16:00",
+          "mode": "NONE",
+          "note": "Enoshima Ohashi Bridge (Video & Jalan Santai)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "bridge",
+          "to": "oiwayamichi",
+          "start": "16:00",
+          "end": "16:15",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Oiwayamichi Street"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E17",
+          "from": "oiwayamichi",
+          "to": "oiwayamichi",
+          "start": "16:15",
+          "end": "16:45",
+          "mode": "NONE",
+          "note": "Oiwayamichi Street (Opsional) & Naik ke Atas"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "oiwayamichi",
+          "to": "sea_candle",
+          "start": "16:45",
+          "end": "16:53",
+          "mode": "WALK",
+          "note": "Kaki kaki ke area Enoshima Sea Candle"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E18",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "16:53",
+          "end": "17:25",
+          "mode": "NONE",
+          "note": "Tiba di Area Enoshima Sea Candle (jam umum 09:00–20:00, terpisah dari jam acara)"
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "17:25",
+          "end": "17:35",
+          "mode": "NONE",
+          "note": "Tunggu penyaluran iluminasi (acara 17:00–21:00)"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E19",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "17:35",
+          "end": "18:20",
+          "mode": "NONE",
+          "note": "Menyaksikan Illumination (interpretasi: Shonan no Hoseki)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "sea_candle",
+          "to": "katase_station",
+          "start": "18:20",
+          "end": "18:44",
+          "mode": "WALK",
+          "note": "Kaki kaki ke Stasiun Katase-Enoshima"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "katase_station",
+          "to": "enoshima_dinner",
+          "start": "18:44",
+          "end": "18:54",
+          "mode": "WALK",
+          "note": "Pindah ke lokasi makan malam (area Enoshima, lokasi tidak diketahui)"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E20",
+          "from": "enoshima_dinner",
+          "to": "enoshima_dinner",
+          "start": "18:54",
+          "end": "19:50",
+          "mode": "NONE",
+          "note": "Turun dari Pulau & Makan Malam di Enoshima"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "enoshima_dinner",
+          "to": "katase_station",
+          "start": "19:50",
+          "end": "20:00",
+          "mode": "WALK",
+          "note": "Kembali ke Stasiun Katase-Enoshima (jarak tidak diketahui)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "katase_station",
+          "to": "fujisawa_station",
+          "start": "20:00",
+          "end": "20:10",
+          "mode": "TRANSIT",
+          "note": "Perjalanan ke Stasiun Fujisawa (asumsi AI, belum diverifikasi)"
+        },
+        {
+          "kind": "visit",
+          "activityId": "E22",
+          "from": "fujisawa_station",
+          "to": "fujisawa_station",
+          "start": "20:10",
+          "end": "20:40",
+          "mode": "NONE",
+          "note": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)"
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "fujisawa_station",
+          "to": "funabashi_station",
+          "start": "20:40",
+          "end": "22:00",
+          "mode": "TRANSIT",
+          "note": "Pulang ke Stasiun Funabashi (asumsi AI, belum diverifikasi)"
+        }
+      ],
+      "assumptions": [
+        "Semua perjalanan kereta adalah alokasi sementara AI, bukan jadwal, rute, atau tarif aktual.",
+        "Estimasi jalan kaki dari daftar ditambah buffer; jarak ke lokasi makan siang/malam tidak diketahui.",
+        "Illumination ditafsirkan sebagai \"Shonan no Hoseki\" (periode 2026-12-01–2027-02-28; penyaluran Sabtu 17:00–21:00) — perlu konfirmasi.",
+        "Jam umum Sea Candle (09:00–20:00) dipisahkan dari jam acara iluminasi.",
+        "Lokasi makan siang dan malam tidak dipilih/digantikan restoran tertentu."
+      ],
+      "uncertainties": [
+        "Tidak ada jadwal kereta, cuaca, atau waktu matahari terbenam yang tersedia.",
+        "Jam toko Komachi, toko suvenir, dan restoran tidak diverifikasi.",
+        "Titik tepat perempatan Hachimangu, depan sekolah pantai, dan menara jam Fujisawa tidak diketahui."
+      ]
+    },
+    "rawFinal": null,
+    "error": null
+  },
+  "weather": {
+    "status": "outside_forecast_horizon",
+    "daysAhead": 33,
+    "checkedAt": "2026-11-02T14:05:39.090Z",
+    "rainProbability": null,
+    "sunrise": null,
+    "sunset": null,
+    "note": "No date-specific forecast or sunset is supplied. Never invent clear weather, rain probability or a sunset clock time. Open-Meteo forecast horizon is up to 16 days.",
+    "source": "https://open-meteo.com/en/docs"
+  },
+  "transfers": [
+    {
+      "id": "T1",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "depart": "07:00",
+      "arriveBy": "08:15",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T1",
+      "status": "no_route",
+      "plannedMinutes": 75,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          }
+        }
+      }
+    },
+    {
+      "id": "T2",
+      "from": "kamakura_station",
+      "to": "komachi",
+      "depart": "08:15",
+      "arriveBy": "08:25",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T2",
+      "status": "ok",
+      "plannedMinutes": 10,
+      "estimatedMinutes": 5.666666666666667,
+      "remainingMinutes": 4.333333333333333,
+      "estimatedArrival": "2026-12-05T08:20:40.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": true,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 410,
+            "duration": "340s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "route"
+            ],
+            "placeId": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8"
+          }
+        }
+      }
+    },
+    {
+      "id": "T3",
+      "from": "komachi",
+      "to": "hachimangu",
+      "depart": "09:00",
+      "arriveBy": "09:10",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T3",
+      "status": "ok",
+      "plannedMinutes": 10,
+      "estimatedMinutes": 5.216666666666667,
+      "remainingMinutes": 4.783333333333333,
+      "estimatedArrival": "2026-12-05T09:05:13.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 373,
+            "duration": "313s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "route"
+            ],
+            "placeId": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "place_of_worship",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJiaqQeLhFGGARtTZQEBCtZ6g"
+          }
+        }
+      }
+    },
+    {
+      "id": "T4",
+      "from": "hachimangu",
+      "to": "kamakura_meal",
+      "depart": "10:00",
+      "arriveBy": "10:10",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T4",
+      "status": "unresolved_location",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "T5",
+      "from": "kamakura_meal",
+      "to": "kamakura_station",
+      "depart": "11:00",
+      "arriveBy": "11:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T5",
+      "status": "unresolved_location",
+      "plannedMinutes": 15,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "T6",
+      "from": "kamakura_station",
+      "to": "inamura_station",
+      "depart": "11:15",
+      "arriveBy": "11:25",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T6",
+      "status": "no_route",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          }
+        }
+      }
+    },
+    {
+      "id": "T7",
+      "from": "inamura_station",
+      "to": "inamura_park",
+      "depart": "11:25",
+      "arriveBy": "11:30",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T7",
+      "status": "ok",
+      "plannedMinutes": 5,
+      "estimatedMinutes": 4.816666666666666,
+      "remainingMinutes": 0.18333333333333357,
+      "estimatedArrival": "2026-12-05T11:29:49.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 345,
+            "duration": "289s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "park",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk"
+          }
+        }
+      }
+    },
+    {
+      "id": "T8",
+      "from": "inamura_park",
+      "to": "inamura_station",
+      "depart": "12:00",
+      "arriveBy": "12:05",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T8",
+      "status": "ok",
+      "plannedMinutes": 5,
+      "estimatedMinutes": 4.883333333333334,
+      "remainingMinutes": 0.11666666666666625,
+      "estimatedArrival": "2026-12-05T12:04:53.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 345,
+            "duration": "293s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "park",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          }
+        }
+      }
+    },
+    {
+      "id": "T9",
+      "from": "inamura_station",
+      "to": "shichiri_station",
+      "depart": "12:05",
+      "arriveBy": "12:15",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T9",
+      "status": "no_route",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJ99KENUBPGGARS5wAoUOpSbA"
+          }
+        }
+      }
+    },
+    {
+      "id": "T10",
+      "from": "shichiri_station",
+      "to": "shichiri_beach",
+      "depart": "12:15",
+      "arriveBy": "12:25",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T10",
+      "status": "ok",
+      "plannedMinutes": 10,
+      "estimatedMinutes": 7.233333333333333,
+      "remainingMinutes": 2.7666666666666666,
+      "estimatedArrival": "2026-12-05T12:22:14.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 527,
+            "duration": "434s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJ99KENUBPGGARS5wAoUOpSbA"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "natural_feature"
+            ],
+            "placeId": "ChIJJVoJcURPGGARDdQBeLN5FOo"
+          }
+        }
+      }
+    },
+    {
+      "id": "T11",
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "depart": "13:05",
+      "arriveBy": "13:23",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T11",
+      "status": "ok",
+      "plannedMinutes": 18,
+      "estimatedMinutes": 17.583333333333332,
+      "remainingMinutes": 0.41666666666666785,
+      "estimatedArrival": "2026-12-05T13:22:35.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 1283,
+            "duration": "1055s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "natural_feature"
+            ],
+            "placeId": "ChIJJVoJcURPGGARDdQBeLN5FOo"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk"
+          }
+        }
+      }
+    },
+    {
+      "id": "T12",
+      "from": "kokomae",
+      "to": "enoshima_station",
+      "depart": "13:50",
+      "arriveBy": "14:10",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T12",
+      "status": "no_route",
+      "plannedMinutes": 20,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4"
+          }
+        }
+      }
+    },
+    {
+      "id": "T13",
+      "from": "enoshima_station",
+      "to": "tourist_center",
+      "depart": "14:30",
+      "arriveBy": "14:40",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T13",
+      "status": "ok",
+      "plannedMinutes": 10,
+      "estimatedMinutes": 10,
+      "remainingMinutes": 0,
+      "estimatedArrival": "2026-12-05T14:40:00.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": true,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 703,
+            "duration": "600s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "premise",
+              "street_address"
+            ],
+            "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY"
+          }
+        }
+      }
+    },
+    {
+      "id": "T14",
+      "from": "tourist_center",
+      "to": "bridge",
+      "depart": "15:30",
+      "arriveBy": "15:35",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T14",
+      "status": "ok",
+      "plannedMinutes": 5,
+      "estimatedMinutes": 5,
+      "remainingMinutes": 0,
+      "estimatedArrival": "2026-12-05T15:35:00.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 380,
+            "duration": "300s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "premise",
+              "street_address"
+            ],
+            "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest"
+            ],
+            "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU"
+          }
+        }
+      }
+    },
+    {
+      "id": "T15",
+      "from": "bridge",
+      "to": "oiwayamichi",
+      "depart": "16:00",
+      "arriveBy": "16:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T15",
+      "status": "ok",
+      "plannedMinutes": 15,
+      "estimatedMinutes": 14.833333333333334,
+      "remainingMinutes": 0.16666666666666607,
+      "estimatedArrival": "2026-12-05T16:14:50.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 984,
+            "duration": "890s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest"
+            ],
+            "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "food",
+              "point_of_interest",
+              "store"
+            ],
+            "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w"
+          }
+        }
+      }
+    },
+    {
+      "id": "T16",
+      "from": "oiwayamichi",
+      "to": "sea_candle",
+      "depart": "16:45",
+      "arriveBy": "16:53",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T16",
+      "status": "ok",
+      "plannedMinutes": 8,
+      "estimatedMinutes": 7.566666666666666,
+      "remainingMinutes": 0.43333333333333357,
+      "estimatedArrival": "2026-12-05T16:52:34.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 401,
+            "duration": "454s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "food",
+              "point_of_interest",
+              "store"
+            ],
+            "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJvVsEzuVOGGARs99YuxNfbDU"
+          }
+        }
+      }
+    },
+    {
+      "id": "T17",
+      "from": "sea_candle",
+      "to": "katase_station",
+      "depart": "18:20",
+      "arriveBy": "18:44",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T17",
+      "status": "ok",
+      "plannedMinutes": 24,
+      "estimatedMinutes": 23.1,
+      "remainingMinutes": 0.8999999999999986,
+      "estimatedArrival": "2026-12-05T18:43:06.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 1556,
+            "duration": "1386s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJvVsEzuVOGGARs99YuxNfbDU"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJSdyjbPxOGGARohA5GYPzeuA"
+          }
+        }
+      }
+    },
+    {
+      "id": "T18",
+      "from": "katase_station",
+      "to": "enoshima_dinner",
+      "depart": "18:44",
+      "arriveBy": "18:54",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T18",
+      "status": "unresolved_location",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "T19",
+      "from": "enoshima_dinner",
+      "to": "katase_station",
+      "depart": "19:50",
+      "arriveBy": "20:00",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T19",
+      "status": "unresolved_location",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "T20",
+      "from": "katase_station",
+      "to": "fujisawa_station",
+      "depart": "20:00",
+      "arriveBy": "20:10",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T20",
+      "status": "no_route",
+      "plannedMinutes": 10,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJSdyjbPxOGGARohA5GYPzeuA"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "placeId": "ChIJC0kMNstPGGARmu_dZscfvjI"
+          }
+        }
+      }
+    },
+    {
+      "id": "T21",
+      "from": "fujisawa_station",
+      "to": "funabashi_station",
+      "depart": "20:40",
+      "arriveBy": "22:00",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [],
+      "evidenceId": "route:T21",
+      "status": "no_route",
+      "plannedMinutes": 80,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "placeId": "ChIJC0kMNstPGGARmu_dZscfvjI"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE"
+          }
+        }
+      }
+    }
+  ],
+  "visitChecks": [
+    {
+      "evidenceId": "official:tourist-center",
+      "activityId": "E15",
+      "starts": "14:40",
+      "ends": "15:30",
+      "status": "within_published_general_hours",
+      "dateInPublishedSeason": true,
+      "note": "General published hours and period, not a guarantee against date-specific closure."
+    },
+    {
+      "evidenceId": "official:hoseki-saturday-hours",
+      "activityId": "E19",
+      "starts": "17:35",
+      "ends": "18:20",
+      "status": "within_published_general_hours",
+      "dateInPublishedSeason": true,
+      "note": "General published hours and period, not a guarantee against date-specific closure."
+    },
+    {
+      "evidenceId": "official:sea-candle-hours",
+      "activityId": "E18",
+      "starts": "16:53",
+      "ends": "17:25",
+      "status": "within_published_general_hours",
+      "dateInPublishedSeason": true,
+      "note": "General published hours and period, not a guarantee against date-specific closure."
+    }
+  ],
+  "callsThisRun": {
+    "OpenRouter untimed day proposal": 1,
+    "Google audit route": 17
+  },
+  "coverage": {
+    "activitiesRequested": 14,
+    "activitiesScheduled": 14,
+    "start": "funabashi_station",
+    "finish": "funabashi_station",
+    "date": "2026-12-05",
+    "requiredTransitPairsPreserved": 6,
+    "coastalWalkPreserved": true
+  },
+  "checks": {
+    "continuousTimeline": true,
+    "noOverlappingRows": true,
+    "sameDayStationReturn": true,
+    "transferConflicts": 0,
+    "unverifiedTransfers": 10,
+    "visitHoursConflicts": 0,
+    "fullyVerifiedFeasible": false
+  },
+  "limitations": [
+    "Times and unknown transit allocations are AI proposals, not a confirmed timetable.",
+    "Each route check is independent; delays are not propagated and no automatic repair/global optimization is claimed.",
+    "No route means this provider query returned no route, never that actual trains are unavailable.",
+    "Forecast and exact sunset unavailable; no weather-aware optimality claim.",
+    "Jam toko di Komachi, restoran, dan toko suvenir belum dipilih/diverifikasi.",
+    "Perempatan di Hachimangu, depan sekolah di pantai, dan menara jam Fujisawa belum punya titik tepat.",
+    "Lokasi makan siang dan malam tetap belum diketahui; jangan menggantinya diam-diam dengan restoran atau stasiun.",
+    "Rute ke titik referensi Oiwayamichi tidak mewakili seluruh panjang jalan atau antrean."
+  ]
+}

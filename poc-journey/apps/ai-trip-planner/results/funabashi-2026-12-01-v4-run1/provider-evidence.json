@@ -1,0 +1,2343 @@
+[
+  {
+    "id": "provider:f57a4521c6a884d4",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "JR船橋駅 千葉県船橋市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJQcvP-XiAGGARjUivo7Jf4kE",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "7 Chome-1 Honcho, Funabashi, Chiba 273-0005",
+          "location": {
+            "latitude": 35.7017357,
+            "longitude": 139.9853815
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Funabashi Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJH7s59niAGGARwCpv5YeUV6o",
+          "types": [
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "Honcho, Funabashi, Chiba 273-0005, Japan",
+          "location": {
+            "latitude": 35.701558600000006,
+            "longitude": 139.9853417
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Funabashi Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.007Z"
+  },
+  {
+    "id": "provider:fad6b990d7c47648",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJLYesE1dPGGARvS8NpfHv0Lk",
+          "types": [
+            "park",
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "1 Chome-19 Inamuragasaki, Kamakura, Kanagawa 248-0024",
+          "location": {
+            "latitude": 35.3026605,
+            "longitude": 139.5248028
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 0,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Kamakura Seaside Park",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 0,
+                  "minute": 0,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 23,
+                  "minute": 59,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.015Z"
+  },
+  {
+    "id": "provider:012f4f8afeadefb6",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "稲村ヶ崎駅 鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJdyCtIlpPGGARyc2ymvhKonE",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2 Chome-8 Inamuragasaki, Kamakura, Kanagawa 248-0024, Japan",
+          "location": {
+            "latitude": 35.3043597,
+            "longitude": 139.5219085
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Inamuragasaki Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.015Z"
+  },
+  {
+    "id": "provider:9b4cfdd8886172af",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJw2VZvH9PGGAR54FMNYe5V70",
+          "types": [
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "〒251-0055 Kanagawa, Fujisawa, Kugenumaishigami, 1-chōme−1−１ 江ノ電第2ビル",
+          "location": {
+            "latitude": 35.337064999999996,
+            "longitude": 139.4872234
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Electric Railway Fujisawa Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+          "location": {
+            "latitude": 35.311047699999996,
+            "longitude": 139.4873844
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJvWFucAJPGGARmQ9tbMTbWWE",
+          "types": [
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "1-chōme-8-16 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "location": {
+            "latitude": 35.3105456,
+            "longitude": 139.4885701
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Railway Headquarters",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.399Z"
+  },
+  {
+    "id": "provider:c1717f6f8fbb7e00",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "江の島大橋 藤沢市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJETfaTyxPGGARzgy4Uqoq9uU",
+          "types": [
+            "bridge",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "1-chōme-14-5 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "location": {
+            "latitude": 35.304615,
+            "longitude": 139.48242299999998
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 22,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 5,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 22,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 5:00 AM – 10:00 PM",
+              "Tuesday: 5:00 AM – 10:00 PM",
+              "Wednesday: 5:00 AM – 10:00 PM",
+              "Thursday: 5:00 AM – 10:00 PM",
+              "Friday: 5:00 AM – 10:00 PM",
+              "Saturday: 5:00 AM – 10:00 PM",
+              "Sunday: 5:00 AM – 10:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T13:00:00Z"
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima-ohashi Bridge",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 5,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 22,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 5:00 AM – 10:00 PM",
+              "Tuesday: 5:00 AM – 10:00 PM",
+              "Wednesday: 5:00 AM – 10:00 PM",
+              "Thursday: 5:00 AM – 10:00 PM",
+              "Friday: 5:00 AM – 10:00 PM",
+              "Saturday: 5:00 AM – 10:00 PM",
+              "Sunday: 5:00 AM – 10:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T13:00:00Z"
+          }
+        },
+        {
+          "id": "ChIJIQPxryFPGGARGOG1_Jtfldg",
+          "types": [
+            "bridge",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2 Chome Enoshima, Fujisawa, Kanagawa 251-0036",
+          "location": {
+            "latitude": 35.303965399999996,
+            "longitude": 139.4819516
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 0,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Benten Bridge",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 0,
+                  "minute": 0,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 23,
+                  "minute": 59,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.401Z"
+  },
+  {
+    "id": "provider:38e844000d36e58a",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJvVsEzuVOGGARs99YuxNfbDU",
+          "types": [
+            "observation_deck",
+            "scenic_spot",
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2-chōme-3-28 Enoshima, Fujisawa, Kanagawa 251-0036",
+          "location": {
+            "latitude": 35.2997417,
+            "longitude": 139.478425
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 9:00 AM – 8:00 PM",
+              "Tuesday: 9:00 AM – 8:00 PM",
+              "Wednesday: 9:00 AM – 8:00 PM",
+              "Thursday: 9:00 AM – 8:00 PM",
+              "Friday: 9:00 AM – 8:00 PM",
+              "Saturday: 9:00 AM – 8:00 PM",
+              "Sunday: 9:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Sea Candle",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 9:00 AM – 8:00 PM",
+              "Tuesday: 9:00 AM – 8:00 PM",
+              "Wednesday: 9:00 AM – 8:00 PM",
+              "Thursday: 9:00 AM – 8:00 PM",
+              "Friday: 9:00 AM – 8:00 PM",
+              "Saturday: 9:00 AM – 8:00 PM",
+              "Sunday: 9:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.403Z"
+  },
+  {
+    "id": "provider:1452f54edf9f22e6",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "鎌倉高校前駅 鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJIRZ85hZPGGARffzavFo4QRk",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "1 Chome-1 Koshigoe, Kamakura, Kanagawa 248-0033, Japan",
+          "location": {
+            "latitude": 35.3067242,
+            "longitude": 139.5005569
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Kamakurakōkō-Mae Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.562Z"
+  },
+  {
+    "id": "provider:c32182ccc9bef9ef",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJiaqQeLhFGGARtTZQEBCtZ6g",
+          "types": [
+            "shinto_shrine",
+            "tourist_attraction",
+            "place_of_worship",
+            "association_or_organization",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2-chōme-1-31 Yukinoshita, Kamakura, Kanagawa 248-8588",
+          "location": {
+            "latitude": 35.325985599999996,
+            "longitude": 139.5563462
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 6,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 6:00 AM – 8:00 PM",
+              "Tuesday: 6:00 AM – 8:00 PM",
+              "Wednesday: 6:00 AM – 8:00 PM",
+              "Thursday: 6:00 AM – 8:00 PM",
+              "Friday: 6:00 AM – 8:00 PM",
+              "Saturday: 6:00 AM – 8:00 PM",
+              "Sunday: 6:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Tsurugaoka Hachiman-gu",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 6,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 6:00 AM – 8:00 PM",
+              "Tuesday: 6:00 AM – 8:00 PM",
+              "Wednesday: 6:00 AM – 8:00 PM",
+              "Thursday: 6:00 AM – 8:00 PM",
+              "Friday: 6:00 AM – 8:00 PM",
+              "Saturday: 6:00 AM – 8:00 PM",
+              "Sunday: 6:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          }
+        },
+        {
+          "id": "ChIJFQ3QoMdFGGARNMgA5c0tE1Y",
+          "types": [
+            "shinto_shrine",
+            "place_of_worship",
+            "association_or_organization",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2-chōme-1-31 Yukinoshita, Kamakura, Kanagawa 248-0005",
+          "location": {
+            "latitude": 35.326149199999996,
+            "longitude": 139.55644479999998
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 0,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Hongu (Jogu)",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 0,
+                  "minute": 0,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 23,
+                  "minute": 59,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          }
+        },
+        {
+          "id": "ChIJrUsQn8dFGGARJ4zHUXO_rU4",
+          "types": [
+            "parking_lot",
+            "parking",
+            "transportation_service",
+            "point_of_interest",
+            "service",
+            "establishment"
+          ],
+          "formattedAddress": "2-chōme-18-18 Yukinoshita, Kamakura, Kanagawa 248-0005",
+          "location": {
+            "latitude": 35.327021099999996,
+            "longitude": 139.5561661
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 8,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 8:00 AM – 8:00 PM",
+              "Tuesday: 8:00 AM – 8:00 PM",
+              "Wednesday: 8:00 AM – 8:00 PM",
+              "Thursday: 8:00 AM – 8:00 PM",
+              "Friday: 8:00 AM – 8:00 PM",
+              "Saturday: 8:00 AM – 8:00 PM",
+              "Sunday: 8:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Tsurugaoka Hachimangu Parking Lot",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 8,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 20,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 8:00 AM – 8:00 PM",
+              "Tuesday: 8:00 AM – 8:00 PM",
+              "Wednesday: 8:00 AM – 8:00 PM",
+              "Thursday: 8:00 AM – 8:00 PM",
+              "Friday: 8:00 AM – 8:00 PM",
+              "Saturday: 8:00 AM – 8:00 PM",
+              "Sunday: 8:00 AM – 8:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T11:00:00Z"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.591Z"
+  },
+  {
+    "id": "provider:1359903f973f1073",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "七里ヶ浜海岸 鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJJVoJcURPGGARDdQBeLN5FOo",
+          "types": [
+            "beach",
+            "natural_feature",
+            "establishment"
+          ],
+          "formattedAddress": "Shichirihama Beach, 2-chōme-1-12 Shichirigahamahigashi, Kamakura, Kanagawa 248-0025",
+          "location": {
+            "latitude": 35.3039166,
+            "longitude": 139.51433079999998
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 0,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Shichirihama Beach",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 0,
+                  "minute": 0,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 23,
+                  "minute": 59,
+                  "truncated": true,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: Open 24 hours",
+              "Tuesday: Open 24 hours",
+              "Wednesday: Open 24 hours",
+              "Thursday: Open 24 hours",
+              "Friday: Open 24 hours",
+              "Saturday: Open 24 hours",
+              "Sunday: Open 24 hours"
+            ]
+          }
+        },
+        {
+          "id": "ChIJtQ46c0RPGGARoL-K9wNTcZ0",
+          "types": [
+            "beach",
+            "natural_feature",
+            "establishment"
+          ],
+          "formattedAddress": "〒248-0026 Kanagawa, Kamakura, Shichirigahamahigashi, 2-chōme−1, 七里ガ浜",
+          "location": {
+            "latitude": 35.3043891,
+            "longitude": 139.513901
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Shichirigahama Beach",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.606Z"
+  },
+  {
+    "id": "provider:2586c79ae01f09bd",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJHWIWfvxOGGARMBUsDhy5xUY",
+          "types": [
+            "premise",
+            "street_address"
+          ],
+          "formattedAddress": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 2-chōme−20−１３ 藤沢市観光センター",
+          "location": {
+            "latitude": 35.3078288,
+            "longitude": 139.4824408
+          },
+          "displayName": {
+            "text": "藤沢市観光センター",
+            "languageCode": "ja"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.737Z"
+  },
+  {
+    "id": "provider:fd2179dd2a84d96b",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "藤沢駅 神奈川県藤沢市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJLZQy1cpPGGARLSXIdXeEvYM",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "〒251-0052 Kanagawa, Fujisawa, 神奈川県藤沢市",
+          "location": {
+            "latitude": 35.338916399999995,
+            "longitude": 139.4874922
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Fujisawa Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJC0kMNstPGGARmu_dZscfvjI",
+          "types": [
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "Fujisawa, Kanagawa, Japan",
+          "location": {
+            "latitude": 35.3388984,
+            "longitude": 139.4874695
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Fujisawa Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.744Z"
+  },
+  {
+    "id": "provider:6df1d6834b60f080",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJJ1-f-uVOGGARpMDRUIVea3w",
+          "types": [
+            "confectionery",
+            "food_store",
+            "food",
+            "store",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2-chōme-5-25 Enoshima, Fujisawa, Kanagawa 251-0036",
+          "location": {
+            "latitude": 35.2995053,
+            "longitude": 139.4776781
+          },
+          "regularOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 18,
+                  "minute": 0
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 9,
+                  "minute": 0
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 18,
+                  "minute": 0
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 9:00 AM – 6:00 PM",
+              "Tuesday: 9:00 AM – 6:00 PM",
+              "Wednesday: 9:00 AM – 6:00 PM",
+              "Thursday: 9:00 AM – 6:00 PM",
+              "Friday: 9:00 AM – 6:00 PM",
+              "Saturday: 9:00 AM – 6:00 PM",
+              "Sunday: 9:00 AM – 6:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T09:00:00Z"
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Nakamuraya",
+            "languageCode": "en"
+          },
+          "currentOpeningHours": {
+            "openNow": true,
+            "periods": [
+              {
+                "open": {
+                  "day": 0,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                },
+                "close": {
+                  "day": 0,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 8
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 1,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                },
+                "close": {
+                  "day": 1,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 9
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 2,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                },
+                "close": {
+                  "day": 2,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 3
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 3,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                },
+                "close": {
+                  "day": 3,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 4
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 4,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                },
+                "close": {
+                  "day": 4,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 5
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 5,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                },
+                "close": {
+                  "day": 5,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 6
+                  }
+                }
+              },
+              {
+                "open": {
+                  "day": 6,
+                  "hour": 9,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                },
+                "close": {
+                  "day": 6,
+                  "hour": 18,
+                  "minute": 0,
+                  "date": {
+                    "year": 2026,
+                    "month": 11,
+                    "day": 7
+                  }
+                }
+              }
+            ],
+            "weekdayDescriptions": [
+              "Monday: 9:00 AM – 6:00 PM",
+              "Tuesday: 9:00 AM – 6:00 PM",
+              "Wednesday: 9:00 AM – 6:00 PM",
+              "Thursday: 9:00 AM – 6:00 PM",
+              "Friday: 9:00 AM – 6:00 PM",
+              "Saturday: 9:00 AM – 6:00 PM",
+              "Sunday: 9:00 AM – 6:00 PM"
+            ],
+            "nextCloseTime": "2026-11-03T09:00:00Z"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.791Z"
+  },
+  {
+    "id": "provider:b789726ea76679a2",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "片瀬江ノ島駅 藤沢市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJSdyjbPxOGGARohA5GYPzeuA",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "2 Chome-15 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "location": {
+            "latitude": 35.3087721,
+            "longitude": 139.4834867
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Katase-Enoshima Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+          "location": {
+            "latitude": 35.311047699999996,
+            "longitude": 139.4873844
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Enoshima Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.914Z"
+  },
+  {
+    "id": "provider:0f30e6440c8540aa",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "小町通り 鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8",
+          "types": [
+            "route"
+          ],
+          "formattedAddress": "Komachi St, Kamakura, Kanagawa",
+          "location": {
+            "latitude": 35.3222668,
+            "longitude": 139.5526999
+          },
+          "displayName": {
+            "text": "Komachi Street",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.916Z"
+  },
+  {
+    "id": "provider:83c3aabb00a91653",
+    "service": "Google Places Search",
+    "request": {
+      "url": "https://places.googleapis.com/v1/places:searchText",
+      "body": {
+        "textQuery": "鎌倉駅 神奈川県鎌倉市",
+        "pageSize": 3,
+        "languageCode": "en",
+        "regionCode": "JP"
+      },
+      "fields": "places.id,places.displayName,places.formattedAddress,places.location,places.types,places.businessStatus,places.regularOpeningHours,places.currentOpeningHours"
+    },
+    "data": {
+      "places": [
+        {
+          "id": "ChIJ33NPKsJFGGARDg77hD466cc",
+          "types": [
+            "train_station",
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "1-chōme-1-15 Onarimachi, Kamakura, Kanagawa 248-0012",
+          "location": {
+            "latitude": 35.3190125,
+            "longitude": 139.5506805
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Kamakura Station",
+            "languageCode": "en"
+          }
+        },
+        {
+          "id": "ChIJwX2sK8JFGGARG8fO9m2xiYw",
+          "types": [
+            "transit_station",
+            "transportation_service",
+            "point_of_interest",
+            "establishment"
+          ],
+          "formattedAddress": "Kamakura, Kanagawa, Japan",
+          "location": {
+            "latitude": 35.3190647,
+            "longitude": 139.5504119
+          },
+          "businessStatus": "OPERATIONAL",
+          "displayName": {
+            "text": "Kamakura Station",
+            "languageCode": "en"
+          }
+        }
+      ]
+    },
+    "fetchedAt": "2026-11-03T00:11:50.979Z"
+  }
+]

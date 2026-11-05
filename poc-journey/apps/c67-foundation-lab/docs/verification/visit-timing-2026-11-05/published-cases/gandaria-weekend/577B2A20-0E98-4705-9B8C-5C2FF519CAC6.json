@@ -1,0 +1,123 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.00016808509826660156,
+  "id" : "577B2A20-0E98-4705-9B8C-5C2FF519CAC6",
+  "options" : [
+
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 1200,
+      "start" : 540
+    },
+    "date" : "2026-11-08",
+    "durationMinutes" : 60,
+    "goal" : "openingOnly",
+    "venueID" : "gandaria"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "jaklitera",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 1208aebe34ef56832f601795d33c9eb2e897c6c4e36fc244789fb65f3d672f17",
+      "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+      "url" : "https:\/\/perpustakaan.jakarta.go.id\/supports\/about-us"
+    }
+  ],
+  "status" : "hours_unknown",
+  "validStartRanges" : [
+
+  ],
+  "venue" : {
+    "address" : "Gandaria Tengah V 3",
+    "exposure" : "unknown",
+    "id" : "gandaria",
+    "name" : "Perpustakaan Jakarta Selatan — Gandaria Tengah",
+    "query" : "Perpustakaan Jakarta Selatan — Gandaria Tengah, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1200,
+            "start" : 540
+          }
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1200,
+            "start" : 540
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1200,
+            "start" : 540
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1200,
+            "start" : 540
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1200,
+            "start" : 540
+          }
+        ],
+        "weekday" : 5
+      }
+    ],
+    "sourceIDs" : [
+      "jaklitera"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik",
+      "jam akhir pekan tidak dicantumkan pada direktori"
+    ]
+  },
+  "warnings" : [
+    "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+    "Jam untuk hari ini tidak dipublikasikan pada sumber yang dipakai."
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.0004010200500488281,
+  "id" : "1B1C7C9C-6350-4707-AA4B-0DEC67D622C7",
+  "options" : [
+    {
+      "end" : "2026-11-06T07:00:00Z",
+      "reason" : "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.",
+      "start" : "2026-11-06T06:00:00Z"
+    }
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 840,
+      "start" : 780
+    },
+    "date" : "2026-11-06",
+    "durationMinutes" : 60,
+    "goal" : "openingOnly",
+    "venueID" : "cikini"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "jaklitera",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 1208aebe34ef56832f601795d33c9eb2e897c6c4e36fc244789fb65f3d672f17",
+      "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+      "url" : "https:\/\/perpustakaan.jakarta.go.id\/supports\/about-us"
+    }
+  ],
+  "status" : "regular_hours_options",
+  "validStartRanges" : [
+    {
+      "end" : 780,
+      "start" : 780
+    }
+  ],
+  "venue" : {
+    "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+    "exposure" : "unknown",
+    "id" : "cikini",
+    "name" : "Perpustakaan Jakarta — Cikini",
+    "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+          {
+            "end" : 780,
+            "start" : 690
+          }
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 1320,
+            "start" : 540
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "jaklitera"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak."
+  ]
+}

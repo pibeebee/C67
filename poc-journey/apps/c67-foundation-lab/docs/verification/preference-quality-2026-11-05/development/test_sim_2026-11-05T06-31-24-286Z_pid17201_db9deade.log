@@ -1,0 +1,21 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 172fb48368526587f484bee44101528a4b20dec5bb690f1ebdff515b8fe4353e
+2026-11-05 13:31:28.468 appintentsmetadataprocessor[51143:35163483] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+** TEST BUILD SUCCEEDED **
+Test Suite 'Selected tests' started at 2026-11-05 13:31:35.694.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 13:31:35.695.
+Test Suite 'QualityLabUITests' started at 2026-11-05 13:31:35.695.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' started.
+objc[51152]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106078310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1060ac398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' passed (39.687 seconds).
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' started.
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/QualityLabUITests.swift:16: error: -[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' failed (31.135 seconds).
+Test Suite 'QualityLabUITests' failed at 2026-11-05 13:32:46.522.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 70.822 (70.827) seconds
+Test Suite 'C67FoundationLabUITests.xctest' failed at 2026-11-05 13:32:46.530.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 70.822 (70.835) seconds
+Test Suite 'Selected tests' failed at 2026-11-05 13:32:46.531.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 70.822 (70.837) seconds
+Test session results, code coverage, and logs:
+** TEST EXECUTE FAILED **

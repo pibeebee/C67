@@ -1,0 +1,21 @@
+2026-11-05 Asia/Jakarta
+Project: C67TripIntegration v0.1 build 1
+Command: xcodegen generate --spec project.yml
+Result: Created C67TripIntegration.xcodeproj (exit 0)
+Post-generation hook: nested WeatherKit capability dictionary written to this project.
+Prepared bundle ID: giovanchristoffel.c67-trip-integration
+Prepared team: DP5XP7C2AM
+Build: NOT RUN
+Unit/integration/UI tests: NOT RUN
+Install/launch/model/provider requests: NOT RUN
+Gate: awaiting Giovan confirmation for WeatherKit activation on this new App ID.
+
+Verification continuation after explicit user confirmation:
+Final signed binary: v0.1 build 3, minimum iOS 26.0
+Package suite: 35 passed / 0 failed
+Simulator UI: 2 passed / 0 failed, iOS 27.2
+Physical iPhone scripted live evaluation: 7 passed / 0 failed, iPhone 17 iOS 27.0.1
+Completed results: artifacts/iphone-build3-final/status.json
+Phone returned to normal app using --terminate-existing after copying completed evidence.
+No additional provider requests are running.
+Full report: docs/VERIFICATION_REPORT_2026-11-05.md

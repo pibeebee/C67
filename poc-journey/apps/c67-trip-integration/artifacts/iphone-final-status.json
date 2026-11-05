@@ -1,0 +1,43 @@
+{
+  "complete" : false,
+  "os" : "Version 27.0.1 (Build 24A446)",
+  "progress" : "L06: Snapshot ETA 12/12 · 17 request",
+  "results" : [
+    {
+      "artifact" : "L01-weatherkit.json",
+      "detail" : "weatherkit/available: 3h; ",
+      "id" : "L01",
+      "seconds" : 0.15568602085113525,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L02-plan.json",
+      "detail" : "General profile; 3 venues retained, persisted, restored and exported to CE510818-1040-4C5A-830C-BC679699E63A.",
+      "id" : "L02",
+      "seconds" : 29.46524202823639,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L03-plan.json",
+      "detail" : "Coffee and reading supported in the same BDT RBBJ area; real MapKit and routing.",
+      "id" : "L03",
+      "seconds" : 2.3181320428848267,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L04-plan.json",
+      "detail" : "Outdoor sessions audited. Advisory statuses: context_ranked, context_ranked; unknown context remains explicit.",
+      "id" : "L04",
+      "seconds" : 7.348062992095947,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L05-e5-cold.json",
+      "detail" : "comparison_completed, category 0.0005270242691040039s; E5 cold 0.7779330015182495s, warm 0.0013060569763183594s. Same native gates.",
+      "id" : "L05",
+      "seconds" : 0.8048050403594971,
+      "status" : "pass"
+    }
+  ],
+  "updatedAt" : "2026-11-05T10:04:04Z"
+}

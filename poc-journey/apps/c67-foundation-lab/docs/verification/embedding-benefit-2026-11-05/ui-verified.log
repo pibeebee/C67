@@ -1,0 +1,42 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 4187f85ca434587451ad0e1894bdbe21509b1c3338ca735e0c106c60e89d817b
+2026-11-05 14:21:19.934 appintentsmetadataprocessor[69246:35266765] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'All tests' started at 2026-11-05 14:21:28.971.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 14:21:28.973.
+Test Suite 'BenefitLabUITests' started at 2026-11-05 14:21:28.973.
+Test Case '-[C67FoundationLabUITests.BenefitLabUITests testActualEmbeddingComparisonSourcesExportAndHistory]' started.
+objc[69253]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107ce8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x107d1c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.BenefitLabUITests testActualEmbeddingComparisonSourcesExportAndHistory]' passed (36.380 seconds).
+Test Case '-[C67FoundationLabUITests.BenefitLabUITests testImpossibleCombinationAndUnconfirmedNegationSkipModelRanking]' started.
+Test Case '-[C67FoundationLabUITests.BenefitLabUITests testImpossibleCombinationAndUnconfirmedNegationSkipModelRanking]' passed (12.693 seconds).
+Test Suite 'BenefitLabUITests' passed at 2026-11-05 14:22:18.052.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 49.073 (49.079) seconds
+Test Suite 'LivePreferenceUITests' started at 2026-11-05 14:22:18.055.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' passed (11.905 seconds).
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' passed (22.534 seconds).
+Test Suite 'LivePreferenceUITests' passed at 2026-11-05 14:22:52.497.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 34.439 (34.441) seconds
+Test Suite 'QualityLabUITests' started at 2026-11-05 14:22:52.497.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' started.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testCombinedNeedsCorrectionsHistoryAndExport]' passed (54.215 seconds).
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' started.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testLikeLearnsOnlySelectedFacetAndReranks]' passed (24.007 seconds).
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testUnconfirmedNegationRequiresCorrection]' started.
+Test Case '-[C67FoundationLabUITests.QualityLabUITests testUnconfirmedNegationRequiresCorrection]' passed (23.570 seconds).
+Test Suite 'QualityLabUITests' passed at 2026-11-05 14:24:34.292.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 101.792 (101.795) seconds
+Test Suite 'VisitTimingUITests' started at 2026-11-05 14:24:34.292.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' passed (24.774 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' passed (32.594 seconds).
+Test Suite 'VisitTimingUITests' passed at 2026-11-05 14:25:31.663.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 57.368 (57.370) seconds
+Test Suite 'C67FoundationLabUITests.xctest' passed at 2026-11-05 14:25:31.663.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 242.673 (242.690) seconds
+Test Suite 'All tests' passed at 2026-11-05 14:25:31.664.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 242.673 (242.693) seconds
+Test session results, code coverage, and logs:
+** TEST SUCCEEDED **

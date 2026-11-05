@@ -1,0 +1,1948 @@
+{
+  "candidates" : [
+    {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 180,
+      "finish" : "2026-11-06T08:04:57Z",
+      "id" : "cikini/bdt-rbbj/erasmus",
+      "legs" : [
+        {
+          "arrival" : "2026-11-06T02:12:58Z",
+          "chosen" : {
+            "distance" : 4309,
+            "expectedArrival" : "2026-11-06T02:12:58Z",
+            "expectedDeparture" : "2026-11-06T02:00:00Z",
+            "id" : "origin>cikini:automobile:1793930400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 778,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T02:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "id" : "cikini/bdt-rbbj/erasmus:0",
+          "isReturn" : false,
+          "leave" : "2026-11-06T03:15:00Z",
+          "notes" : [
+            "Buka 09.00 · tutup 22.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 4309,
+              "expectedArrival" : "2026-11-06T02:12:58Z",
+              "expectedDeparture" : "2026-11-06T02:00:00Z",
+              "id" : "origin>cikini:automobile:1793930400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 778,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "visit" : "2026-11-06T02:15:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T03:31:35Z",
+          "chosen" : {
+            "distance" : 6296,
+            "expectedArrival" : "2026-11-06T03:31:35Z",
+            "expectedDeparture" : "2026-11-06T03:15:00Z",
+            "id" : "cikini>bdt-rbbj:automobile:1793934900.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 995,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T03:15:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "id" : "cikini/bdt-rbbj/erasmus:1",
+          "isReturn" : false,
+          "leave" : "2026-11-06T06:30:00Z",
+          "notes" : [
+            "Buka 12.30 · tutup 21.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-bdt-home: https://bacaditebet.id/",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 6296,
+              "expectedArrival" : "2026-11-06T03:31:35Z",
+              "expectedDeparture" : "2026-11-06T03:15:00Z",
+              "id" : "cikini>bdt-rbbj:automobile:1793934900.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 995,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "visit" : "2026-11-06T05:30:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T06:43:12Z",
+          "chosen" : {
+            "distance" : 3672,
+            "expectedArrival" : "2026-11-06T06:43:12Z",
+            "expectedDeparture" : "2026-11-06T06:30:00Z",
+            "id" : "bdt-rbbj>erasmus:automobile:1793946600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 792,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T06:30:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "id" : "cikini/bdt-rbbj/erasmus:2",
+          "isReturn" : false,
+          "leave" : "2026-11-06T07:45:00Z",
+          "notes" : [
+            "Buka 10.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 3672,
+              "expectedArrival" : "2026-11-06T06:43:12Z",
+              "expectedDeparture" : "2026-11-06T06:30:00Z",
+              "id" : "bdt-rbbj>erasmus:automobile:1793946600.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 792,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "visit" : "2026-11-06T06:45:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T08:04:57Z",
+          "chosen" : {
+            "distance" : 6582,
+            "expectedArrival" : "2026-11-06T08:04:57Z",
+            "expectedDeparture" : "2026-11-06T07:45:00Z",
+            "id" : "erasmus>origin:automobile:1793951100.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1197,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T07:45:00Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "id" : "cikini/bdt-rbbj/erasmus:3",
+          "isReturn" : true,
+          "leave" : "2026-11-06T08:04:57Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 6582,
+              "expectedArrival" : "2026-11-06T08:04:57Z",
+              "expectedDeparture" : "2026-11-06T07:45:00Z",
+              "id" : "erasmus>origin:automobile:1793951100.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1197,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "visit" : "2026-11-06T08:04:57Z",
+          "weatherProvider" : "weatherkit"
+        }
+      ],
+      "order" : [
+        "cikini",
+        "bdt-rbbj",
+        "erasmus"
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 62.7,
+      "uncertainties" : [
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 124.73333333333333,
+      "waitingMinutes" : 122.25
+    },
+    {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 180,
+      "finish" : "2026-11-06T08:16:00Z",
+      "id" : "erasmus/bdt-rbbj/cikini",
+      "legs" : [
+        {
+          "arrival" : "2026-11-06T02:21:43Z",
+          "chosen" : {
+            "distance" : 8638,
+            "expectedArrival" : "2026-11-06T02:21:43Z",
+            "expectedDeparture" : "2026-11-06T02:00:00Z",
+            "id" : "origin>erasmus:automobile:1793930400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1303,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T02:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "id" : "erasmus/bdt-rbbj/cikini:0",
+          "isReturn" : false,
+          "leave" : "2026-11-06T04:00:00Z",
+          "notes" : [
+            "Buka 10.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 8638,
+              "expectedArrival" : "2026-11-06T02:21:43Z",
+              "expectedDeparture" : "2026-11-06T02:00:00Z",
+              "id" : "origin>erasmus:automobile:1793930400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1303,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "visit" : "2026-11-06T03:00:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T04:12:36Z",
+          "chosen" : {
+            "distance" : 3805,
+            "expectedArrival" : "2026-11-06T04:12:36Z",
+            "expectedDeparture" : "2026-11-06T04:00:00Z",
+            "id" : "erasmus>bdt-rbbj:automobile:1793937600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 756,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T04:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "id" : "erasmus/bdt-rbbj/cikini:1",
+          "isReturn" : false,
+          "leave" : "2026-11-06T06:30:00Z",
+          "notes" : [
+            "Buka 12.30 · tutup 21.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-bdt-home: https://bacaditebet.id/",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 3805,
+              "expectedArrival" : "2026-11-06T04:12:36Z",
+              "expectedDeparture" : "2026-11-06T04:00:00Z",
+              "id" : "erasmus>bdt-rbbj:automobile:1793937600.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 756,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "visit" : "2026-11-06T05:30:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T06:52:48Z",
+          "chosen" : {
+            "distance" : 7108,
+            "expectedArrival" : "2026-11-06T06:52:48Z",
+            "expectedDeparture" : "2026-11-06T06:30:00Z",
+            "id" : "bdt-rbbj>cikini:automobile:1793946600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1368,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T06:30:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "id" : "erasmus/bdt-rbbj/cikini:2",
+          "isReturn" : false,
+          "leave" : "2026-11-06T08:00:00Z",
+          "notes" : [
+            "Buka 09.00 · tutup 22.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 7108,
+              "expectedArrival" : "2026-11-06T06:52:48Z",
+              "expectedDeparture" : "2026-11-06T06:30:00Z",
+              "id" : "bdt-rbbj>cikini:automobile:1793946600.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1368,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "visit" : "2026-11-06T07:00:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T08:16:00Z",
+          "chosen" : {
+            "distance" : 4810,
+            "expectedArrival" : "2026-11-06T08:16:00Z",
+            "expectedDeparture" : "2026-11-06T08:00:00Z",
+            "id" : "cikini>origin:automobile:1793952000.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 960,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T08:00:00Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "id" : "erasmus/bdt-rbbj/cikini:3",
+          "isReturn" : true,
+          "leave" : "2026-11-06T08:16:00Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 4810,
+              "expectedArrival" : "2026-11-06T08:16:00Z",
+              "expectedDeparture" : "2026-11-06T08:00:00Z",
+              "id" : "cikini>origin:automobile:1793952000.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 960,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "visit" : "2026-11-06T08:16:00Z",
+          "weatherProvider" : "weatherkit"
+        }
+      ],
+      "order" : [
+        "erasmus",
+        "bdt-rbbj",
+        "cikini"
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 73.11666666666666,
+      "uncertainties" : [
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 140.31666666666666,
+      "waitingMinutes" : 122.88333333333334
+    },
+    {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 180,
+      "finish" : "2026-11-06T06:55:21Z",
+      "id" : "cikini/erasmus/bdt-rbbj",
+      "legs" : [
+        {
+          "arrival" : "2026-11-06T02:12:58Z",
+          "chosen" : {
+            "distance" : 4309,
+            "expectedArrival" : "2026-11-06T02:12:58Z",
+            "expectedDeparture" : "2026-11-06T02:00:00Z",
+            "id" : "origin>cikini:automobile:1793930400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 778,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T02:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "id" : "cikini/erasmus/bdt-rbbj:0",
+          "isReturn" : false,
+          "leave" : "2026-11-06T03:15:00Z",
+          "notes" : [
+            "Buka 09.00 · tutup 22.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 4309,
+              "expectedArrival" : "2026-11-06T02:12:58Z",
+              "expectedDeparture" : "2026-11-06T02:00:00Z",
+              "id" : "origin>cikini:automobile:1793930400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 778,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "visit" : "2026-11-06T02:15:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T03:32:31Z",
+          "chosen" : {
+            "distance" : 7548,
+            "expectedArrival" : "2026-11-06T03:32:31Z",
+            "expectedDeparture" : "2026-11-06T03:15:00Z",
+            "id" : "cikini>erasmus:automobile:1793934900.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1051,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T03:15:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "id" : "cikini/erasmus/bdt-rbbj:1",
+          "isReturn" : false,
+          "leave" : "2026-11-06T04:45:00Z",
+          "notes" : [
+            "Buka 10.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 7548,
+              "expectedArrival" : "2026-11-06T03:32:31Z",
+              "expectedDeparture" : "2026-11-06T03:15:00Z",
+              "id" : "cikini>erasmus:automobile:1793934900.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1051,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "visit" : "2026-11-06T03:45:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T04:56:38Z",
+          "chosen" : {
+            "distance" : 3805,
+            "expectedArrival" : "2026-11-06T04:56:38Z",
+            "expectedDeparture" : "2026-11-06T04:45:00Z",
+            "id" : "erasmus>bdt-rbbj:automobile:1793940300.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 698,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T04:45:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "id" : "cikini/erasmus/bdt-rbbj:2",
+          "isReturn" : false,
+          "leave" : "2026-11-06T06:30:00Z",
+          "notes" : [
+            "Buka 12.30 · tutup 21.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-bdt-home: https://bacaditebet.id/",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 3805,
+              "expectedArrival" : "2026-11-06T04:56:38Z",
+              "expectedDeparture" : "2026-11-06T04:45:00Z",
+              "id" : "erasmus>bdt-rbbj:automobile:1793940300.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 698,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "visit" : "2026-11-06T05:30:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T06:55:21Z",
+          "chosen" : {
+            "distance" : 8176,
+            "expectedArrival" : "2026-11-06T06:55:21Z",
+            "expectedDeparture" : "2026-11-06T06:30:00Z",
+            "id" : "bdt-rbbj>origin:automobile:1793946600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1521,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T06:30:00Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "id" : "cikini/erasmus/bdt-rbbj:3",
+          "isReturn" : true,
+          "leave" : "2026-11-06T06:55:21Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 8176,
+              "expectedArrival" : "2026-11-06T06:55:21Z",
+              "expectedDeparture" : "2026-11-06T06:30:00Z",
+              "id" : "bdt-rbbj>origin:automobile:1793946600.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1521,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "visit" : "2026-11-06T06:55:21Z",
+          "weatherProvider" : "weatherkit"
+        }
+      ],
+      "order" : [
+        "cikini",
+        "erasmus",
+        "bdt-rbbj"
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 67.46666666666667,
+      "uncertainties" : [
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 129.5,
+      "waitingMinutes" : 47.88333333333333
+    },
+    {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 180,
+      "finish" : "2026-11-06T08:54:47Z",
+      "id" : "erasmus/cikini/bdt-rbbj",
+      "legs" : [
+        {
+          "arrival" : "2026-11-06T02:21:43Z",
+          "chosen" : {
+            "distance" : 8638,
+            "expectedArrival" : "2026-11-06T02:21:43Z",
+            "expectedDeparture" : "2026-11-06T02:00:00Z",
+            "id" : "origin>erasmus:automobile:1793930400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1303,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T02:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "id" : "erasmus/cikini/bdt-rbbj:0",
+          "isReturn" : false,
+          "leave" : "2026-11-06T04:00:00Z",
+          "notes" : [
+            "Buka 10.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 8638,
+              "expectedArrival" : "2026-11-06T02:21:43Z",
+              "expectedDeparture" : "2026-11-06T02:00:00Z",
+              "id" : "origin>erasmus:automobile:1793930400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1303,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "visit" : "2026-11-06T03:00:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T04:17:10Z",
+          "chosen" : {
+            "distance" : 7184,
+            "expectedArrival" : "2026-11-06T04:17:10Z",
+            "expectedDeparture" : "2026-11-06T04:00:00Z",
+            "id" : "erasmus>cikini:automobile:1793937600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1030,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T04:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+            "id" : "erasmus",
+            "latitude" : -6.23406,
+            "longitude" : 106.8283543,
+            "query" : "Erasmus Huis Jakarta",
+            "resolvedName" : "Erasmus Huis",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Erasmus Huis"
+          },
+          "id" : "erasmus/cikini/bdt-rbbj:1",
+          "isReturn" : false,
+          "leave" : "2026-11-06T07:00:00Z",
+          "notes" : [
+            "Buka 09.00 · tutup 22.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 7184,
+              "expectedArrival" : "2026-11-06T04:17:10Z",
+              "expectedDeparture" : "2026-11-06T04:00:00Z",
+              "id" : "erasmus>cikini:automobile:1793937600.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1030,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "visit" : "2026-11-06T06:00:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T07:19:52Z",
+          "chosen" : {
+            "distance" : 6296,
+            "expectedArrival" : "2026-11-06T07:19:52Z",
+            "expectedDeparture" : "2026-11-06T07:00:00Z",
+            "id" : "cikini>bdt-rbbj:automobile:1793948400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1192,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T07:00:00Z",
+          "dwellMinutes" : 60,
+          "dwellSource" : "pengguna",
+          "from" : {
+            "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+            "id" : "cikini",
+            "latitude" : -6.19023,
+            "longitude" : 106.838857,
+            "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+            "resolvedName" : "Jakarta Provincial Library",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Jakarta Provincial Library"
+          },
+          "id" : "erasmus/cikini/bdt-rbbj:2",
+          "isReturn" : false,
+          "leave" : "2026-11-06T08:30:00Z",
+          "notes" : [
+            "Buka 12.30 · tutup 21.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+            "Catatan sumber jam operasional: t-bdt-home: https://bacaditebet.id/",
+            "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 6296,
+              "expectedArrival" : "2026-11-06T07:19:52Z",
+              "expectedDeparture" : "2026-11-06T07:00:00Z",
+              "id" : "cikini>bdt-rbbj:automobile:1793948400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1192,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "visit" : "2026-11-06T07:30:00Z",
+          "weatherProvider" : "weatherkit"
+        },
+        {
+          "arrival" : "2026-11-06T08:54:47Z",
+          "chosen" : {
+            "distance" : 9648,
+            "expectedArrival" : "2026-11-06T08:54:47Z",
+            "expectedDeparture" : "2026-11-06T08:30:00Z",
+            "id" : "bdt-rbbj>origin:automobile:1793953800.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1487,
+            "status" : "available"
+          },
+          "departure" : "2026-11-06T08:30:00Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+            "id" : "bdt-rbbj",
+            "latitude" : -6.236237,
+            "longitude" : 106.846974,
+            "query" : "Baca Di Tebet Jakarta",
+            "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+          },
+          "id" : "erasmus/cikini/bdt-rbbj:3",
+          "isReturn" : true,
+          "leave" : "2026-11-06T08:54:47Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 9648,
+              "expectedArrival" : "2026-11-06T08:54:47Z",
+              "expectedDeparture" : "2026-11-06T08:30:00Z",
+              "id" : "bdt-rbbj>origin:automobile:1793953800.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1487,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "origin",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "query" : "Bundaran HI Jakarta",
+            "resolvedName" : "Bundaran HI Bank Jakarta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+            "title" : "Bundaran HI Bank Jakarta"
+          },
+          "visit" : "2026-11-06T08:54:47Z",
+          "weatherProvider" : "weatherkit"
+        }
+      ],
+      "order" : [
+        "erasmus",
+        "cikini",
+        "bdt-rbbj"
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 83.53333333333333,
+      "uncertainties" : [
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 246.36666666666667,
+      "waitingMinutes" : 151.25
+    }
+  ],
+  "draft" : {
+    "automobile" : true,
+    "carUse" : "onDemand",
+    "defaultDwell" : 60,
+    "departure" : "2026-11-06T02:00:00Z",
+    "end" : {
+      "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+      "id" : "origin",
+      "latitude" : -6.1912059,
+      "longitude" : 106.8226755,
+      "query" : "Bundaran HI Jakarta",
+      "resolvedName" : "Bundaran HI Bank Jakarta",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+      "title" : "Bundaran HI Bank Jakarta"
+    },
+    "extraWeatherMinutes" : 15,
+    "finishBy" : "2026-11-06T12:00:00Z",
+    "maximumWalkingMinutes" : 45,
+    "origin" : {
+      "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+      "id" : "origin",
+      "latitude" : -6.1912059,
+      "longitude" : 106.8226755,
+      "query" : "Bundaran HI Jakarta",
+      "resolvedName" : "Bundaran HI Bank Jakarta",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+      "title" : "Bundaran HI Bank Jakarta"
+    },
+    "planningArea" : "jakarta",
+    "rainWeight" : 2,
+    "returnsToOrigin" : true,
+    "routingAdaptive" : true,
+    "routingAlgorithm" : "hybrid",
+    "routingRequestLimit" : 512,
+    "searchContext" : "Jakarta",
+    "stops" : [
+      {
+        "dwellOverride" : 60,
+        "exposure" : "indoor",
+        "opening" : {
+          "closesMinute" : 1260,
+          "opensMinute" : 750,
+          "serviceDate" : "2026-11-06",
+          "sourceNote" : "t-bdt-home: https://bacaditebet.id/",
+          "timeZoneID" : "Asia/Jakarta"
+        },
+        "point" : {
+          "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+          "id" : "bdt-rbbj",
+          "latitude" : -6.236237,
+          "longitude" : 106.846974,
+          "query" : "Baca Di Tebet Jakarta",
+          "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+        },
+        "role" : "visit"
+      },
+      {
+        "dwellOverride" : 60,
+        "exposure" : "unknown",
+        "opening" : {
+          "closesMinute" : 1320,
+          "opensMinute" : 540,
+          "serviceDate" : "2026-11-06",
+          "sourceNote" : "t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+          "timeZoneID" : "Asia/Jakarta"
+        },
+        "point" : {
+          "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+          "id" : "cikini",
+          "latitude" : -6.19023,
+          "longitude" : 106.838857,
+          "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "resolvedName" : "Jakarta Provincial Library",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Jakarta Provincial Library"
+        },
+        "role" : "visit"
+      },
+      {
+        "dwellOverride" : 60,
+        "exposure" : "indoor",
+        "opening" : {
+          "closesMinute" : 960,
+          "opensMinute" : 600,
+          "serviceDate" : "2026-11-06",
+          "sourceNote" : "t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+          "timeZoneID" : "Asia/Jakarta"
+        },
+        "point" : {
+          "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+          "id" : "erasmus",
+          "latitude" : -6.23406,
+          "longitude" : 106.8283543,
+          "query" : "Erasmus Huis Jakarta",
+          "resolvedName" : "Erasmus Huis",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Erasmus Huis"
+        },
+        "role" : "visit"
+      }
+    ],
+    "timeZoneID" : "Asia/Jakarta",
+    "transit" : false,
+    "walking" : false
+  },
+  "fastest" : {
+    "complete" : true,
+    "conflicts" : [
+
+    ],
+    "dwellMinutes" : 180,
+    "finish" : "2026-11-06T06:55:21Z",
+    "id" : "cikini/erasmus/bdt-rbbj",
+    "legs" : [
+      {
+        "arrival" : "2026-11-06T02:12:58Z",
+        "chosen" : {
+          "distance" : 4309,
+          "expectedArrival" : "2026-11-06T02:12:58Z",
+          "expectedDeparture" : "2026-11-06T02:00:00Z",
+          "id" : "origin>cikini:automobile:1793930400.0",
+          "mode" : "automobile",
+          "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+          "seconds" : 778,
+          "status" : "available"
+        },
+        "departure" : "2026-11-06T02:00:00Z",
+        "dwellMinutes" : 60,
+        "dwellSource" : "pengguna",
+        "from" : {
+          "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+          "id" : "origin",
+          "latitude" : -6.1912059,
+          "longitude" : 106.8226755,
+          "query" : "Bundaran HI Jakarta",
+          "resolvedName" : "Bundaran HI Bank Jakarta",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Bundaran HI Bank Jakarta"
+        },
+        "id" : "cikini/erasmus/bdt-rbbj:0",
+        "isReturn" : false,
+        "leave" : "2026-11-06T03:15:00Z",
+        "notes" : [
+          "Buka 09.00 · tutup 22.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+          "Catatan sumber jam operasional: t-jaklitera: https://perpustakaan.jakarta.go.id/supports/about-us",
+          "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+          "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+        ],
+        "options" : [
+          {
+            "distance" : 4309,
+            "expectedArrival" : "2026-11-06T02:12:58Z",
+            "expectedDeparture" : "2026-11-06T02:00:00Z",
+            "id" : "origin>cikini:automobile:1793930400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 778,
+            "status" : "available"
+          }
+        ],
+        "to" : {
+          "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+          "id" : "cikini",
+          "latitude" : -6.19023,
+          "longitude" : 106.838857,
+          "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "resolvedName" : "Jakarta Provincial Library",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Jakarta Provincial Library"
+        },
+        "visit" : "2026-11-06T02:15:00Z",
+        "weatherProvider" : "weatherkit"
+      },
+      {
+        "arrival" : "2026-11-06T03:32:31Z",
+        "chosen" : {
+          "distance" : 7548,
+          "expectedArrival" : "2026-11-06T03:32:31Z",
+          "expectedDeparture" : "2026-11-06T03:15:00Z",
+          "id" : "cikini>erasmus:automobile:1793934900.0",
+          "mode" : "automobile",
+          "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+          "seconds" : 1051,
+          "status" : "available"
+        },
+        "departure" : "2026-11-06T03:15:00Z",
+        "dwellMinutes" : 60,
+        "dwellSource" : "pengguna",
+        "from" : {
+          "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+          "id" : "cikini",
+          "latitude" : -6.19023,
+          "longitude" : 106.838857,
+          "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "resolvedName" : "Jakarta Provincial Library",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Jakarta Provincial Library"
+        },
+        "id" : "cikini/erasmus/bdt-rbbj:1",
+        "isReturn" : false,
+        "leave" : "2026-11-06T04:45:00Z",
+        "notes" : [
+          "Buka 10.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+          "Catatan sumber jam operasional: t-erasmus: https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library",
+          "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+          "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+        ],
+        "options" : [
+          {
+            "distance" : 7548,
+            "expectedArrival" : "2026-11-06T03:32:31Z",
+            "expectedDeparture" : "2026-11-06T03:15:00Z",
+            "id" : "cikini>erasmus:automobile:1793934900.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1051,
+            "status" : "available"
+          }
+        ],
+        "to" : {
+          "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+          "id" : "erasmus",
+          "latitude" : -6.23406,
+          "longitude" : 106.8283543,
+          "query" : "Erasmus Huis Jakarta",
+          "resolvedName" : "Erasmus Huis",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Erasmus Huis"
+        },
+        "visit" : "2026-11-06T03:45:00Z",
+        "weatherProvider" : "weatherkit"
+      },
+      {
+        "arrival" : "2026-11-06T04:56:38Z",
+        "chosen" : {
+          "distance" : 3805,
+          "expectedArrival" : "2026-11-06T04:56:38Z",
+          "expectedDeparture" : "2026-11-06T04:45:00Z",
+          "id" : "erasmus>bdt-rbbj:automobile:1793940300.0",
+          "mode" : "automobile",
+          "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+          "seconds" : 698,
+          "status" : "available"
+        },
+        "departure" : "2026-11-06T04:45:00Z",
+        "dwellMinutes" : 60,
+        "dwellSource" : "pengguna",
+        "from" : {
+          "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+          "id" : "erasmus",
+          "latitude" : -6.23406,
+          "longitude" : 106.8283543,
+          "query" : "Erasmus Huis Jakarta",
+          "resolvedName" : "Erasmus Huis",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Erasmus Huis"
+        },
+        "id" : "cikini/erasmus/bdt-rbbj:2",
+        "isReturn" : false,
+        "leave" : "2026-11-06T06:30:00Z",
+        "notes" : [
+          "Buka 12.30 · tutup 21.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+          "Catatan sumber jam operasional: t-bdt-home: https://bacaditebet.id/",
+          "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+          "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+        ],
+        "options" : [
+          {
+            "distance" : 3805,
+            "expectedArrival" : "2026-11-06T04:56:38Z",
+            "expectedDeparture" : "2026-11-06T04:45:00Z",
+            "id" : "erasmus>bdt-rbbj:automobile:1793940300.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 698,
+            "status" : "available"
+          }
+        ],
+        "to" : {
+          "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+          "id" : "bdt-rbbj",
+          "latitude" : -6.236237,
+          "longitude" : 106.846974,
+          "query" : "Baca Di Tebet Jakarta",
+          "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+        },
+        "visit" : "2026-11-06T05:30:00Z",
+        "weatherProvider" : "weatherkit"
+      },
+      {
+        "arrival" : "2026-11-06T06:55:21Z",
+        "chosen" : {
+          "distance" : 8176,
+          "expectedArrival" : "2026-11-06T06:55:21Z",
+          "expectedDeparture" : "2026-11-06T06:30:00Z",
+          "id" : "bdt-rbbj>origin:automobile:1793946600.0",
+          "mode" : "automobile",
+          "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+          "seconds" : 1521,
+          "status" : "available"
+        },
+        "departure" : "2026-11-06T06:30:00Z",
+        "dwellMinutes" : 0,
+        "dwellSource" : "transfer",
+        "from" : {
+          "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+          "id" : "bdt-rbbj",
+          "latitude" : -6.236237,
+          "longitude" : 106.846974,
+          "query" : "Baca Di Tebet Jakarta",
+          "resolvedName" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Baca Di Tebet Perpustakaan dan Ruang Temu"
+        },
+        "id" : "cikini/erasmus/bdt-rbbj:3",
+        "isReturn" : true,
+        "leave" : "2026-11-06T06:55:21Z",
+        "notes" : [
+          "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+        ],
+        "options" : [
+          {
+            "distance" : 8176,
+            "expectedArrival" : "2026-11-06T06:55:21Z",
+            "expectedDeparture" : "2026-11-06T06:30:00Z",
+            "id" : "bdt-rbbj>origin:automobile:1793946600.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1521,
+            "status" : "available"
+          }
+        ],
+        "to" : {
+          "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+          "id" : "origin",
+          "latitude" : -6.1912059,
+          "longitude" : 106.8226755,
+          "query" : "Bundaran HI Jakarta",
+          "resolvedName" : "Bundaran HI Bank Jakarta",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "MapKit · satu kecocokan nama/cabang",
+          "title" : "Bundaran HI Bank Jakarta"
+        },
+        "visit" : "2026-11-06T06:55:21Z",
+        "weatherProvider" : "weatherkit"
+      }
+    ],
+    "order" : [
+      "cikini",
+      "erasmus",
+      "bdt-rbbj"
+    ],
+    "rainExposureMinutes" : 0,
+    "travelMinutes" : 67.46666666666667,
+    "uncertainties" : [
+      "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+      "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+      "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+      "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+    ],
+    "unknownWeatherMinutes" : 129.5,
+    "waitingMinutes" : 47.88333333333333
+  },
+  "forecasts" : [
+    {
+      "fetchedAt" : "2026-11-05T10:03:05Z",
+      "hours" : [
+        {
+          "date" : "2026-11-06T02:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 30.309999465942383
+        },
+        {
+          "date" : "2026-11-06T03:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 31.510000228881836
+        },
+        {
+          "date" : "2026-11-06T04:00:00Z",
+          "rainChance" : 0.03,
+          "temperatureC" : 32.369998931884766
+        },
+        {
+          "date" : "2026-11-06T05:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 32.79999923706055
+        },
+        {
+          "date" : "2026-11-06T06:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 32.540000915527344
+        },
+        {
+          "date" : "2026-11-06T07:00:00Z",
+          "rainChance" : 0.07,
+          "temperatureC" : 31.860000610351562
+        },
+        {
+          "date" : "2026-11-06T08:00:00Z",
+          "rainChance" : 0.09,
+          "temperatureC" : 31.790000915527344
+        },
+        {
+          "date" : "2026-11-06T09:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 31.079999923706055
+        },
+        {
+          "date" : "2026-11-06T10:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 30.299999237060547
+        },
+        {
+          "date" : "2026-11-06T11:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 28.75
+        },
+        {
+          "date" : "2026-11-06T12:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 27.790000915527344
+        }
+      ],
+      "note" : "",
+      "pointID" : "origin",
+      "provider" : "weatherkit",
+      "retrievedAt" : "2026-11-05T10:03:05Z",
+      "status" : "available"
+    },
+    {
+      "fetchedAt" : "2026-11-05T09:57:34Z",
+      "hours" : [
+        {
+          "date" : "2026-11-06T02:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 30.18000030517578
+        },
+        {
+          "date" : "2026-11-06T03:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 31.450000762939453
+        },
+        {
+          "date" : "2026-11-06T04:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 32.349998474121094
+        },
+        {
+          "date" : "2026-11-06T05:00:00Z",
+          "rainChance" : 0.03,
+          "temperatureC" : 32.900001525878906
+        },
+        {
+          "date" : "2026-11-06T06:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 33.099998474121094
+        },
+        {
+          "date" : "2026-11-06T07:00:00Z",
+          "rainChance" : 0.06,
+          "temperatureC" : 32.56999969482422
+        },
+        {
+          "date" : "2026-11-06T08:00:00Z",
+          "rainChance" : 0.08,
+          "temperatureC" : 32.25
+        },
+        {
+          "date" : "2026-11-06T09:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 31.520000457763672
+        },
+        {
+          "date" : "2026-11-06T10:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 30.780000686645508
+        },
+        {
+          "date" : "2026-11-06T11:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 29.170000076293945
+        },
+        {
+          "date" : "2026-11-06T12:00:00Z",
+          "rainChance" : 0.15,
+          "temperatureC" : 28.09000015258789
+        }
+      ],
+      "note" : "",
+      "pointID" : "bdt-rbbj",
+      "provider" : "weatherkit",
+      "retrievedAt" : "2026-11-05T10:03:04Z",
+      "status" : "available"
+    },
+    {
+      "fetchedAt" : "2026-11-05T10:03:05Z",
+      "hours" : [
+        {
+          "date" : "2026-11-06T02:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 30.309999465942383
+        },
+        {
+          "date" : "2026-11-06T03:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 31.510000228881836
+        },
+        {
+          "date" : "2026-11-06T04:00:00Z",
+          "rainChance" : 0.03,
+          "temperatureC" : 32.369998931884766
+        },
+        {
+          "date" : "2026-11-06T05:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 32.79999923706055
+        },
+        {
+          "date" : "2026-11-06T06:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 32.540000915527344
+        },
+        {
+          "date" : "2026-11-06T07:00:00Z",
+          "rainChance" : 0.07,
+          "temperatureC" : 31.860000610351562
+        },
+        {
+          "date" : "2026-11-06T08:00:00Z",
+          "rainChance" : 0.09,
+          "temperatureC" : 31.790000915527344
+        },
+        {
+          "date" : "2026-11-06T09:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 31.079999923706055
+        },
+        {
+          "date" : "2026-11-06T10:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 30.299999237060547
+        },
+        {
+          "date" : "2026-11-06T11:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 28.75
+        },
+        {
+          "date" : "2026-11-06T12:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 27.790000915527344
+        }
+      ],
+      "note" : "",
+      "pointID" : "cikini",
+      "provider" : "weatherkit",
+      "retrievedAt" : "2026-11-05T10:03:05Z",
+      "status" : "available"
+    },
+    {
+      "fetchedAt" : "2026-11-05T09:57:34Z",
+      "hours" : [
+        {
+          "date" : "2026-11-06T02:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 30.18000030517578
+        },
+        {
+          "date" : "2026-11-06T03:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 31.450000762939453
+        },
+        {
+          "date" : "2026-11-06T04:00:00Z",
+          "rainChance" : 0.02,
+          "temperatureC" : 32.349998474121094
+        },
+        {
+          "date" : "2026-11-06T05:00:00Z",
+          "rainChance" : 0.03,
+          "temperatureC" : 32.900001525878906
+        },
+        {
+          "date" : "2026-11-06T06:00:00Z",
+          "rainChance" : 0.04,
+          "temperatureC" : 33.099998474121094
+        },
+        {
+          "date" : "2026-11-06T07:00:00Z",
+          "rainChance" : 0.06,
+          "temperatureC" : 32.56999969482422
+        },
+        {
+          "date" : "2026-11-06T08:00:00Z",
+          "rainChance" : 0.08,
+          "temperatureC" : 32.25
+        },
+        {
+          "date" : "2026-11-06T09:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 31.520000457763672
+        },
+        {
+          "date" : "2026-11-06T10:00:00Z",
+          "rainChance" : 0.12,
+          "temperatureC" : 30.780000686645508
+        },
+        {
+          "date" : "2026-11-06T11:00:00Z",
+          "rainChance" : 0.14,
+          "temperatureC" : 29.170000076293945
+        },
+        {
+          "date" : "2026-11-06T12:00:00Z",
+          "rainChance" : 0.15,
+          "temperatureC" : 28.09000015258789
+        }
+      ],
+      "note" : "",
+      "pointID" : "erasmus",
+      "provider" : "weatherkit",
+      "retrievedAt" : "2026-11-05T10:03:04Z",
+      "status" : "available"
+    }
+  ],
+  "generatedAt" : "2026-11-05T10:03:33Z",
+  "optimizerNote" : "Hybrid · durasi trip · elapsed_v2 · 675 evaluasi · 3 putaran · 2 kandidat tambahan live. Baseline live tetap ikut pemilihan. Snapshot dan sampel waktu terbatas tidak membuktikan optimum lalu lintas dunia nyata.",
+  "requests" : 24,
+  "storedWeatherCredit" : {
+    "combinedMarkDarkURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_wht_en_3X_090122.png",
+    "combinedMarkLightURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_blk_en_3X_090122.png",
+    "legalPageURL" : "https://weatherkit.apple.com/legal-attribution.html",
+    "serviceName" : "Apple Weather"
+  },
+  "weatherNote" : "Alternatif cuaca ditunda sampai data paparan cukup; jam buka dan batas selesai tetap diperiksa."
+}

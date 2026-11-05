@@ -1,0 +1,49 @@
+{
+  "errors": [],
+  "checkedFinalAttempts": 72,
+  "checkedPipelineArtifacts": [
+    "mac-live-v3",
+    "mac-baseline-v3",
+    "simulator-restored",
+    "iphone-observed",
+    "iphone-smoke"
+  ],
+  "finalSourceChangedSinceFreeze": [
+    "Packages/TripIntelligence/Sources/TripIntelligence/Pipeline.swift",
+    "Packages/TripIntelligence/Tests/TripIntelligenceTests/LabTests.swift",
+    "project.yml",
+    "scripts/audit-evidence.py"
+  ],
+  "explainedPostFreezeChanges": {
+    "Packages/TripIntelligence/Sources/TripIntelligence/Pipeline.swift": {
+      "evaluatedSHA256": "ea5c24251dc5ad1819c8f1c0c086aa9fa18efe7f33b5ee764a1b61b37c3cc75c",
+      "finalSHA256": "0720c0f899cab067fe1166bcbdd007db807e4d31d446e2fcb6fb2914e592e738",
+      "evaluatedCopy": "evaluated-source-v3/Packages/TripIntelligence/Sources/TripIntelligence/Pipeline.swift.txt",
+      "reason": "Post-evaluation native empty-input guard, its unit tests, build number, or artifact audit bookkeeping. Model prompt/schema/generation/evaluation code unchanged."
+    },
+    "Packages/TripIntelligence/Tests/TripIntelligenceTests/LabTests.swift": {
+      "evaluatedSHA256": "c83ee285fcc70b657a19d1c5e6f0fd35502ddcea375cae48dbfc32af5d929795",
+      "finalSHA256": "1296c55c6867c677e2f0ed707ddc475b058bfaeacc07a67a7228ee8e73002b27",
+      "evaluatedCopy": "evaluated-source-v3/Packages/TripIntelligence/Tests/TripIntelligenceTests/LabTests.swift.txt",
+      "reason": "Post-evaluation native empty-input guard, its unit tests, build number, or artifact audit bookkeeping. Model prompt/schema/generation/evaluation code unchanged."
+    },
+    "project.yml": {
+      "evaluatedSHA256": "46ce064581c72dda567dd717303cd6271c16197f7ffcb070f45c14fb132d7130",
+      "finalSHA256": "b2df06726942a91bc56b0fbe9bdb7accb59dfd6ad41e261d4d5f753ed10f117f",
+      "evaluatedCopy": "evaluated-source-v3/project.yml.txt",
+      "reason": "Post-evaluation native empty-input guard, its unit tests, build number, or artifact audit bookkeeping. Model prompt/schema/generation/evaluation code unchanged."
+    },
+    "scripts/audit-evidence.py": {
+      "evaluatedSHA256": "ff9144149fb2eb2575d45a9f108b66b04b5f3d2d9fb28bc496da326654382efd",
+      "finalSHA256": "829ef45f0f51755b6403b862fb6ba660d2f32e99af1220382cf4b13214c6a64f",
+      "evaluatedCopy": "evaluated-source-v3/scripts/audit-evidence.py.txt",
+      "reason": "Post-evaluation native empty-input guard, its unit tests, build number, or artifact audit bookkeeping. Model prompt/schema/generation/evaluation code unchanged."
+    }
+  },
+  "modelEvaluationCodeUnchanged": true,
+  "routingSourceChangesObserved": [
+    "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67.xcodeproj/project.pbxproj"
+  ],
+  "routingSourcePolicy": "This implementation only writes inside c67-foundation-lab; concurrent routing changes, if any, require separate attribution",
+  "semanticQuality": "not established by this auditor"
+}

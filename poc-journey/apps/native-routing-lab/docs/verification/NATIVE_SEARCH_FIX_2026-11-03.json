@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-03",
+  "build": "generic iOS unsigned succeeded",
+  "syntheticMacPolicyChecks": {
+    "passed": 7,
+    "failed": 0,
+    "realMapKitRequests": 0
+  },
+  "physicalDeviceReadOnly": "App metadata confirmed for requested bundle; no install/launch/termination",
+  "physicalTimeoutResolvedVerified": false,
+  "iosTestsRun": false,
+  "simulatorRun": false,
+  "sources": {
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "8860c7786a75e1337ae4efbb7169579819598881cdaa03af990737d5099512e9",
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "a6e3a353cffe8e110d448d4c9e7935cb3a10f045389379e06c6a899644701f4b",
+    "poc-c67/Features/NativePlanner/NativeTripPinPicker.swift": "77b41f20534dc46a8b528a6be8b6e8264aec50cfbfb57522e25ea0adc7145cbc",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "9a07fe5048742e51b5f43f7e775b1d52f768be9039703236a760384abc00f5f7",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "f2e52dc6e12834c1d0d06ad4220b9eceacdba1953137ea7389af8d2dc933194f",
+    "poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "3890f6dd799a771eaa2736452bcb48eea8dc9c11f570ab1f5c2e2a95fd797931",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "201d899bbc9715142403ebd85b82b2bd7d37d44d3f0bc17d8a58fe6c2d4d7f92"
+  },
+  "buildLogSHA256": "7255b8f68c986c3ecf4b2eee2841fdca9c3ee65b7caeda3cb906825d53be3035",
+  "checkLogSHA256": "0827be0f9798e32528df2e5bf070c78849b353dd35d7f64ee7a687490743d03e"
+}

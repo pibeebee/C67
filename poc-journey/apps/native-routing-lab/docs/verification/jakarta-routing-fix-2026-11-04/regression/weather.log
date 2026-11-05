@@ -1,0 +1,9 @@
+PASS primary success preserves WeatherKit and avoids fallback
+PASS attribution/request failure and empty forecasts use labeled fallback
+PASS both providers failing and outside horizons preserve missing data
+PASS primary/backup cancellation propagates without triggering new requests
+PASS request dates, coordinates and 16-day horizon boundaries
+PASS interval alignment, percent conversion, nulls and source provenance
+PASS malformed data, units and overlapping intervals are rejected
+PASS HTTP client success and rate limit via local URLProtocol; no live requests
+8 weather check groups passed

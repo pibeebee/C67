@@ -1,0 +1,49 @@
+Launched application with giovanchristoffel.c67-trip-integration bundle identifier.
+Waiting for the application to terminate…
+C67_P3_LIVE LIVE · provider asli, storage evaluasi terpisah
+C67_P3_LIVE L01: pass — weatherkit/available: 3h; 
+C67_P3_LIVE L02: preferensi dan jam layanan
+C67_P3_LIVE L02: Mencari lokasi: Bundaran HI Jakarta
+C67_P3_LIVE L02: Mencari lokasi: Baca Di Tebet Jakarta
+C67_P3_LIVE L02: Mencari lokasi: Perpustakaan Jakarta — Cikini, Jakarta
+C67_P3_LIVE L02: Mencari lokasi: Erasmus Huis Jakarta
+C67_P3_LIVE L02: fail — TripIntegration.IntegrationError [0]: Location review required: Perpustakaan Jakarta — Cikini, Jakarta: Hasil MapKit tidak cocok dengan nama/cabang bersumber. Tidak menerapkan fakta ke cabang lain.
+C67_P3_LIVE L03: preferensi dan jam layanan
+C67_P3_LIVE L03: Mencari lokasi: Bundaran HI Jakarta
+C67_P3_LIVE L03: Mencari lokasi: Baca Di Tebet Jakarta
+C67_P3_LIVE L03: Mengambil cuaca untuk tanggal dan rentang trip
+C67_P3_LIVE L03: Ruas 1/2: Bundaran HI Bank Jakarta → Baca Di Tebet Perpustakaan dan Ruang Temu
+C67_P3_LIVE L03: Ruas 2/2: Baca Di Tebet Perpustakaan dan Ruang Temu → Bundaran HI Bank Jakarta
+C67_P3_LIVE L03: Baseline tervalidasi dipertahankan; optimasi tambahan dilewati
+C67_P3_LIVE L03: pass — Coffee and reading supported in the same BDT RBBJ area; real MapKit and routing.
+C67_P3_LIVE L04: preferensi dan jam layanan
+C67_P3_LIVE L04: Mencari lokasi: Bundaran HI Jakarta
+C67_P3_LIVE L04: Mencari lokasi: Hutan Kota GBK Jakarta
+C67_P3_LIVE L04: Mencari lokasi: Ragunan Zoo Jakarta
+C67_P3_LIVE L04: Mengambil cuaca untuk tanggal dan rentang trip
+C67_P3_LIVE L04: Ruas 1/3: Bundaran HI Bank Jakarta → Hutan Kota GBK
+C67_P3_LIVE L04: Ruas 2/3: Hutan Kota GBK → Ragunan Zoo
+C67_P3_LIVE L04: Ruas 3/3: Ragunan Zoo → Bundaran HI Bank Jakarta
+C67_P3_LIVE L04: Ruas 1/3: Bundaran HI Bank Jakarta → Ragunan Zoo
+C67_P3_LIVE L04: Ruas 2/3: Ragunan Zoo → Hutan Kota GBK
+C67_P3_LIVE L04: Ruas 3/3: Hutan Kota GBK → Bundaran HI Bank Jakarta
+C67_P3_LIVE L04: Baseline tervalidasi dipertahankan; optimasi tambahan dilewati
+C67_P3_LIVE L04: pass — Outdoor sessions audited. Advisory statuses: context_ranked, context_ranked; unknown context remains explicit.
+C67_P3_LIVE L05 cold: Mencocokkan Baca Di Tebet
+C67_P3_LIVE L05 cold: Mencocokkan Baca Di Tebet
+C67_P3_LIVE L05 cold: Mencocokkan Baca Di Tebet
+C67_P3_LIVE L05 cold: Mencocokkan The Newsroom
+C67_P3_LIVE L05 cold: Mencocokkan Bakoel Koffie Cikini
+C67_P3_LIVE L05 cold: Mencocokkan Dia.Lo.Gue
+C67_P3_LIVE L05 cold: Mencocokkan Hutan Kota GBK
+C67_P3_LIVE L05 cold: Mencocokkan Taman Margasatwa Ragunan
+C67_P3_LIVE L05 cold: Mencocokkan Erasmus Huis Library
+C67_P3_LIVE L05 cold: Mencocokkan Perpustakaan Jakarta — Cikini
+C67_P3_LIVE L05: pass — comparison_completed, category 0.0006830692291259766s; E5 cold 0.8702059984207153s, warm 0.0016820430755615234s. Same native gates.
+C67_P3_LIVE L06: blocked — No accepted three-place baseline; no fabricated substitute.
+C67_P3_LIVE L07: preferensi dan jam layanan
+C67_P3_LIVE L07: Mencari lokasi: Bundaran HI Jakarta
+C67_P3_LIVE L07: Mencari lokasi: Perpustakaan Jakarta — Cikini, Jakarta
+C67_P3_LIVE L07: blocked — TripIntegration.IntegrationError [0]: Location review required: Perpustakaan Jakarta — Cikini, Jakarta: Hasil MapKit tidak cocok dengan nama/cabang bersumber. Tidak menerapkan fakta ke cabang lain.
+C67_P3_LIVE Evaluasi live selesai. 4/7 pass; lihat status.json untuk fail/blocked.
+App terminated due to signal 9.

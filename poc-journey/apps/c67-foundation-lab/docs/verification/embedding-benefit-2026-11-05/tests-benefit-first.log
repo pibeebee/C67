@@ -1,0 +1,22 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 4190119384be4ee781de5fb9cc4dd4821470c29e1acc296b915b3b70ab81d72f
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'preferencequality': failed storing manifest for 'preferencequality' in cache: attempt to write a readonly database
+warning: 'preferencelearning': failed storing manifest for 'preferencelearning' in cache: attempt to write a readonly database
+warning: 'swift-transformers': failed storing manifest for 'swift-transformers' in cache: attempt to write a readonly database
+warning: 'tripintelligence': failed storing manifest for 'tripintelligence' in cache: attempt to write a readonly database
+warning: 'onnxruntime-swift-package-manager': failed storing manifest for 'onnxruntime-swift-package-manager' in cache: attempt to write a readonly database
+warning: 'yyjson': failed storing manifest for 'yyjson' in cache: attempt to write a readonly database
+warning: 'swift-huggingface': failed storing manifest for 'swift-huggingface' in cache: attempt to write a readonly database
+warning: 'swift-collections': failed storing manifest for 'swift-collections' in cache: attempt to write a readonly database
+warning: 'swift-jinja': failed storing manifest for 'swift-jinja' in cache: attempt to write a readonly database
+warning: 'swift-crypto': failed storing manifest for 'swift-crypto' in cache: attempt to write a readonly database
+warning: 'swift-asn1': failed storing manifest for 'swift-asn1' in cache: attempt to write a readonly database
+warning: 'eventsource': failed storing manifest for 'eventsource' in cache: attempt to write a readonly database
+error: SwiftCompile normal arm64 <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-foundation-lab/Packages/PreferenceQuality/Tests/PreferenceQualityTests/BenefitTests.swift failed with a nonzero exit code. Command line:     cd <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-foundation-lab/Packages
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/PreferenceQuality/Tests/PreferenceQualityTests/BenefitTests.swift:70:29: error: ambiguous use of 'log2'
+    |                             `- error: ambiguous use of 'log2'
+error: Build failed
+error: fatalError

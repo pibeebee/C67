@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-05T10:21:07.104440+00:00",
+  "app": {
+    "CFBundleIdentifier": "giovanchristoffel.c67-trip-integration",
+    "CFBundleShortVersionString": "0.1",
+    "CFBundleVersion": "3",
+    "MinimumOSVersion": "26.0"
+  },
+  "xcode": "27.2 (27B52)",
+  "packageTests": {
+    "passed": 35,
+    "failed": 0,
+    "suites": 4,
+    "log": "artifacts/unit-final.log",
+    "elapsedSeconds": 3.248
+  },
+  "simulatorUI": {
+    "passed": 2,
+    "failed": 0,
+    "os": "iOS 27.2",
+    "device": "iPhone 18 Pro",
+    "evidence": "synthetic replay, not live providers"
+  },
+  "iPhone": {
+    "device": "Giovan iPhone 17",
+    "os": "Version 27.0.1 (Build 24A446)",
+    "complete": true,
+    "cases": [
+      {
+        "artifact": "L01-weatherkit.json",
+        "detail": "weatherkit/available: 3h; ",
+        "id": "L01",
+        "seconds": 0.15568602085113525,
+        "status": "pass"
+      },
+      {
+        "artifact": "L02-plan.json",
+        "detail": "General profile; 3 venues retained, persisted, restored and exported to CE510818-1040-4C5A-830C-BC679699E63A.",
+        "id": "L02",
+        "seconds": 29.46524202823639,
+        "status": "pass"
+      },
+      {
+        "artifact": "L03-plan.json",
+        "detail": "Coffee and reading supported in the same BDT RBBJ area; real MapKit and routing.",
+        "id": "L03",
+        "seconds": 2.3181320428848267,
+        "status": "pass"
+      },
+      {
+        "artifact": "L04-plan.json",
+        "detail": "Outdoor sessions audited. Advisory statuses: context_ranked, context_ranked; unknown context remains explicit.",
+        "id": "L04",
+        "seconds": 7.348062992095947,
+        "status": "pass"
+      },
+      {
+        "artifact": "L05-e5-cold.json",
+        "detail": "comparison_completed, category 0.0005270242691040039s; E5 cold 0.7779330015182495s, warm 0.0013060569763183594s. Same native gates.",
+        "id": "L05",
+        "seconds": 0.8048050403594971,
+        "status": "pass"
+      },
+      {
+        "artifact": "L06-plan.json",
+        "detail": "All places retained; +30m recomputed. Baseline kept through proposal/rejection. New status ready.",
+        "id": "L06",
+        "seconds": 29.154484033584595,
+        "status": "pass"
+      },
+      {
+        "artifact": "L07-plan.json",
+        "detail": "Short return deadline rejected; selected IDs retained; [\"Jakarta Provincial Library: tidak ada waktu mulai valid setelah tiba untuk seluruh durasi kunjungan.\", \"Melewati batas tiba di titik akhir. Sisa tujuan tetap ada pada input; jadwal tidak dipangkas agar muat.\", \"Waktu mulai Perpustakaan Jakarta — Cikini tidak lolos audit jam layanan.\"]",
+        "id": "L07",
+        "seconds": 2.6999419927597046,
+        "status": "pass"
+      }
+    ],
+    "consoleExitNote": "Streaming devicectl session returned 1 after intentional --terminate-existing relaunch into the normal app. Completed status.json and exported case artifacts establish the test outcomes."
+  },
+  "notLiveTested": [
+    "manual network loss/recovery on iPhone",
+    "manual in-flight input changes/background/relaunch on physical iPhone",
+    "4-6 destination live trips",
+    "iOS 26 runtime",
+    "participant relevance/input reduction",
+    "energy and memory benchmarks"
+  ]
+}

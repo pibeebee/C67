@@ -1,0 +1,201 @@
+{
+  "tokenChecks": [
+    {
+      "text": "  kopi\n buku  ",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        19179,
+        16558,
+        6,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        19179,
+        16558,
+        6,
+        2
+      ]
+    },
+    {
+      "text": "Coffee and reading",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        110047,
+        136,
+        16454,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        110047,
+        136,
+        16454,
+        2
+      ]
+    },
+    {
+      "text": "Saya ingin ngopi sambil membaca",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        7775,
+        7628,
+        234,
+        57027,
+        24606,
+        27326,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        7775,
+        7628,
+        234,
+        57027,
+        24606,
+        27326,
+        2
+      ]
+    },
+    {
+      "text": "Seni dan budaya",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        92434,
+        123,
+        49450,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        92434,
+        123,
+        49450,
+        2
+      ]
+    },
+    {
+      "text": "kopi \u2615 dan buku \ud83d\udcda",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        19179,
+        6,
+        245281,
+        123,
+        16558,
+        6,
+        245912,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        19179,
+        6,
+        245281,
+        123,
+        16558,
+        6,
+        245912,
+        2
+      ]
+    },
+    {
+      "text": "quiet caf\u00e9",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        92136,
+        26216,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        92136,
+        26216,
+        2
+      ]
+    },
+    {
+      "text": "\u6771\u4eac\u306e\u30ab\u30d5\u30a7",
+      "matches": true,
+      "swift": [
+        0,
+        41,
+        1294,
+        12,
+        6,
+        22888,
+        154,
+        134283,
+        2
+      ],
+      "reference": [
+        0,
+        41,
+        1294,
+        12,
+        6,
+        22888,
+        154,
+        134283,
+        2
+      ]
+    }
+  ],
+  "vectors": [
+    {
+      "text": "Saya ingin ngopi sambil membaca",
+      "sameTokens": true,
+      "maxAbsoluteError": 0.006546357459759145,
+      "cosine": 0.9993430939946275
+    },
+    {
+      "text": "A quiet cafe with books and reading tables.",
+      "sameTokens": true,
+      "maxAbsoluteError": 0.00565736041679285,
+      "cosine": 0.9991852582384578
+    }
+  ],
+  "referenceRuntime": "1.31.1"
+}

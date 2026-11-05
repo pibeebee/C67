@@ -1,0 +1,58 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🚀 Build & Run\n\nErrors (8):\n\n  ✗ property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123\n\n  ✗ |                                                 `- error: property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122\n\n  ✗ |                                                                                                                `- error: property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122\n\n  ✗ |                                                                         `- error: property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123\n\n  ✗ |                                                                                                        `- error: property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n❌ Build failed. (⏱️ 8.4s)\n  └ Files:\n     └── ~/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-18-22-384Z_pid22489_35a08cae.log — Build Logs\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": true,
+    "error": "Build failed",
+    "data": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 8374,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-18-22-384Z_pid22489_35a08cae.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [
+          {
+            "message": "property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+            "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123"
+          },
+          {
+            "message": "|                                                 `- error: property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+          },
+          {
+            "message": "property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+            "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122"
+          },
+          {
+            "message": "|                                                                                                                `- error: property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+          },
+          {
+            "message": "property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+            "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122"
+          },
+          {
+            "message": "|                                                                         `- error: property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+          },
+          {
+            "message": "property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+            "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123"
+          },
+          {
+            "message": "|                                                                                                        `- error: property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+          }
+        ]
+      }
+    }
+  },
+  "isError": true
+}

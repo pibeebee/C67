@@ -1,0 +1,104 @@
+{
+  "tests": 24,
+  "failures": 0,
+  "skipped": 0,
+  "source": "Actual XCTest console events, cross-checked with suite summary; JUnit reconstructed when SwiftPM omits it",
+  "cases": [
+    {
+      "name": "testAcceptedEndpointCannotBeChangedSilently",
+      "status": "passed"
+    },
+    {
+      "name": "testAcceptedReportRoundTripPreservesScheduleAndUnknowns",
+      "status": "passed"
+    },
+    {
+      "name": "testAdaptiveCannotSkipDeadlineConflict",
+      "status": "passed"
+    },
+    {
+      "name": "testBothCorruptRemainUntouchedAndBlockSaving",
+      "status": "passed"
+    },
+    {
+      "name": "testCorruptPrimaryRecoversValidatedBackup",
+      "status": "passed"
+    },
+    {
+      "name": "testDeadlineReachesBothPipelineAndSnapshot",
+      "status": "passed"
+    },
+    {
+      "name": "testDefaultNativeLaunchDoesNotRequireLegacyBootstrap",
+      "status": "passed"
+    },
+    {
+      "name": "testDeviceZoneDoesNotChangeDeadlineOrOperationalDate",
+      "status": "passed"
+    },
+    {
+      "name": "testDraftEditsDoNotEraseAcceptedChoice",
+      "status": "passed"
+    },
+    {
+      "name": "testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider",
+      "status": "passed"
+    },
+    {
+      "name": "testExplicitTimeZoneChangePreservesBothWallClocks",
+      "status": "passed"
+    },
+    {
+      "name": "testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks",
+      "status": "passed"
+    },
+    {
+      "name": "testFutureVersionBlocksEvenWithValidBackup",
+      "status": "passed"
+    },
+    {
+      "name": "testInfeasibleAcceptedPlanCannotCommit",
+      "status": "passed"
+    },
+    {
+      "name": "testInvalidAcceptedArithmeticCannotCommit",
+      "status": "passed"
+    },
+    {
+      "name": "testLegacyDraftRetainsEndOfDayAndCarPolicy",
+      "status": "passed"
+    },
+    {
+      "name": "testLocalDemoUsesValidSyntheticScheduleWithoutServices",
+      "status": "passed"
+    },
+    {
+      "name": "testMissingPrimaryUsesBackupWithVisibleNotice",
+      "status": "passed"
+    },
+    {
+      "name": "testOversizedPrimaryIsNotDecodedOrOverwritten",
+      "status": "passed"
+    },
+    {
+      "name": "testRejectsDeadlineBeforeStartAndBeyondDay",
+      "status": "passed"
+    },
+    {
+      "name": "testRestorationDoesNotClearReportOnObservationEcho",
+      "status": "passed"
+    },
+    {
+      "name": "testSaveFailurePreservesDiskAndPublishedRevision",
+      "status": "passed"
+    },
+    {
+      "name": "testStaleWriterCannotOverwriteNewerSavedDraft",
+      "status": "passed"
+    },
+    {
+      "name": "testWeatherMetadataAndCreditSurviveRestore",
+      "status": "passed"
+    }
+  ]
+}

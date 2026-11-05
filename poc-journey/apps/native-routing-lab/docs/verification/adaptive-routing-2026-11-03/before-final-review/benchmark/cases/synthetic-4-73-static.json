@@ -1,0 +1,292 @@
+{
+  "id": "synthetic-4-73-static",
+  "kind": "synthetic_static",
+  "draft": {
+    "departure": "2026-11-05T00:00:00Z",
+    "timeZoneID": "Asia/Jakarta",
+    "searchContext": "Synthetic replay only",
+    "origin": {
+      "id": "p00",
+      "title": "Synthetic 0",
+      "query": "",
+      "latitude": -6.175288839804988,
+      "longitude": 106.86023405342608
+    },
+    "end": {
+      "id": "end",
+      "title": "Unused",
+      "query": ""
+    },
+    "returnsToOrigin": true,
+    "defaultDwell": 30,
+    "walking": false,
+    "transit": false,
+    "automobile": true,
+    "maximumWalkingMinutes": 45,
+    "extraWeatherMinutes": 15,
+    "rainWeight": 2,
+    "stops": [
+      {
+        "point": {
+          "id": "p01",
+          "title": "Synthetic 1",
+          "query": "",
+          "latitude": -6.1660595988797935,
+          "longitude": 106.82382944780962
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 465,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p02",
+          "title": "Synthetic 2",
+          "query": "",
+          "latitude": -6.147125026386152,
+          "longitude": 106.77477471328484
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 510,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p03",
+          "title": "Synthetic 3",
+          "query": "",
+          "latitude": -6.209915916523602,
+          "longitude": 106.81079565135063
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 555,
+          "closesMinute": 1380,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      },
+      {
+        "point": {
+          "id": "p04",
+          "title": "Synthetic 4",
+          "query": "",
+          "latitude": -6.134703201613589,
+          "longitude": 106.76733180512075
+        },
+        "role": "visit",
+        "exposure": "unknown",
+        "opening": {
+          "serviceDate": "2026-11-05",
+          "timeZoneID": "Asia/Jakarta",
+          "opensMinute": 600,
+          "closesMinute": 1430,
+          "sourceNote": "Synthetic constraint; not real opening hours"
+        }
+      }
+    ],
+    "carUse": "onDemand",
+    "routingRequestLimit": 96,
+    "routingEvaluationLimit": 12000,
+    "routingSecondsLimit": 3.0,
+    "routingBeamWidth": 8
+  },
+  "oracle": [
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 560,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1239,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 1011,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 971,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p00"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 789,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 908,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 578,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1018,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p01"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 1474,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 852,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 708,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 496,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p02"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 494,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 878,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 1118,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p04",
+      "mode": "automobile",
+      "seconds": 1393,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p03"
+    },
+    {
+      "to": "p00",
+      "mode": "automobile",
+      "seconds": 990,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p01",
+      "mode": "automobile",
+      "seconds": 1101,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p02",
+      "mode": "automobile",
+      "seconds": 331,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    },
+    {
+      "to": "p03",
+      "mode": "automobile",
+      "seconds": 856,
+      "start": 0,
+      "end": 172800,
+      "status": "available",
+      "from": "p04"
+    }
+  ],
+  "provenance": "Seeded asymmetric fictional ETA oracle. Timed durations increase after +120 min (FIFO); not provider evidence.",
+  "suite": "original"
+}

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "requestedModel": "nvidia/nemotron-3.5-super-vl:free",
+    "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+    "reasoning": "on",
+    "maxCompletionTokens": 16384,
+    "contextBudget": {
+      "limitTokens": 1000000,
+      "reservedOutputTokens": 16384,
+      "estimatedInputTokens": 30299,
+      "estimatedTotalTokens": 46683,
+      "estimateMethod": "UTF-8 request bytes + 8192 overhead reserve; conservative estimate, not exact model tokenization."
+    },
+    "reportedUsageCheck": {
+      "inputTokens": 6145,
+      "completionTokens": 16384,
+      "totalTokens": 22529,
+      "withinLimit": true
+    },
+    "usage": {
+      "prompt_tokens": 6145,
+      "completion_tokens": 16384,
+      "total_tokens": 22529,
+      "cost": 0,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 14053,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "length",
+    "latencyMs": 123588,
+    "internalReasoningTextStored": false
+  },
+  "proposal": null,
+  "rawFinal": null,
+  "error": "Incomplete AI final: length"
+}
