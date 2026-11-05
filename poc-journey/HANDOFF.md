@@ -60,3 +60,7 @@ The original three-place device run took approximately 29.5 seconds; the prefere
 ## Historical inputs
 
 The full [CBL source record](docs/source-records/CBL.md) preserves earlier decisions and later corrections. The [teammate's first Foundation Models report](docs/source-records/foundation-models-teammate-report.md) has result-file references that were not supplied beside it; those are gaps, not inferred successful runs. New explanatory documentation is English; archival inputs retain their language and attribution.
+
+## Delivery and review
+
+The handoff is published for review in [C67 PR #10](https://github.com/pibeebee/C67/pull/10), branch `gi/poc-journey-handoff`. The initial import commit is [0094e3a](https://github.com/pibeebee/C67/commit/0094e3a7061617733b43d79e824d1a5b74864291); subsequent delivery documentation and CI corrections, if any, are visible in the PR history. Follow the PR checks for the current CI outcome. No merge or deployment is part of this delivery.

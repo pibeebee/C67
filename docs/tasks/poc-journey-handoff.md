@@ -1,6 +1,6 @@
 # Task: Import the complete PoC journey for teammate continuation
 
-Status: Implementation and local verification complete; remote PR delivery in progress
+Status: Implemented, locally verified and published for review in PR #10
 Owner: Giovan
 Reviewers: C67 teammate review through the normal PR process; no reviewer assigned automatically
 Branch: `gi/poc-journey-handoff`
@@ -27,10 +27,12 @@ A teammate can discover the current integrated experiment, run it from a new che
 - [x] Relevant relocated tests/build/replay checks have actual results recorded.
 - [x] Public file review excludes secrets, generated products and opaque device dumps; original and published hashes remain distinct.
 - [x] Root checks and CI scope preserve production behavior.
-- [ ] Commit/remote branch/PR are verified and linked in the handoff.
+- [x] Commit/remote branch/PR are verified and linked in the handoff.
 
 ## Result and handoff
 
 The [relocation verification](../../poc-journey/evidence/relocation-verification.md) records 220 package, 55 CLI, 126 native and 11 Simulator UI test executions passing, plus three unsigned builds. Pinned model bootstrap, public-file/link/package checks, imported hashes and root Swift layout passed. Original physical-device results are retained as historical evidence, not rerun or inherited automatically.
 
 No production source, contracts, deployment configuration or unrelated feature checkout was changed. Original local sources remain intact. The scoped archive retains failed runs, marks unavailable external evidence and restores large model assets by pinned checksums rather than committing them.
+
+Delivery: [PR #10](https://github.com/pibeebee/C67/pull/10), branch `gi/poc-journey-handoff`, initial import [0094e3a](https://github.com/pibeebee/C67/commit/0094e3a7061617733b43d79e824d1a5b74864291). The PR check runs record remote verification separately from the local results above. No merge or deployment was performed.
