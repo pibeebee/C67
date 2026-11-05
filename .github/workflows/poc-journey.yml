@@ -38,12 +38,12 @@ jobs:
           key: e5-614241f622f53c4eeff9890bdc4f31cfecc418b3-dd476dd0
       - name: Restore and verify pinned model assets
         run: python3 poc-journey/scripts/bootstrap.py
+      - name: Unsigned Simulator builds
+        run: bash poc-journey/scripts/verify.sh build
       - name: Swift package fixture suites
         run: bash poc-journey/scripts/verify.sh packages
       - name: Native local and Jakarta replay harnesses
         run: bash poc-journey/scripts/verify.sh native
-      - name: Unsigned Simulator builds
-        run: bash poc-journey/scripts/verify.sh build
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -33,6 +33,8 @@ The first GitHub run exposed two model metadata files that were incorrectly igno
 
 The maintained model adapter uses the SDK 26 `sampling:` initializer (available under a deprecated name in SDK 27). Both MapKit search adapters now hold cancellation in a main-actor object because SDK 26 does not declare `MKLocalSearch` Sendable. The affected shared-package suites were rerun locally after these corrections. Routing, ranking and prompts are unchanged. Original/publication hashes record these compatibility edits separately from the historical evaluated versions.
 
+The native lab's copied project now uses object format 77, matching its declared preferred format, instead of Xcode 27's format 110. Its existing object types and deployment settings remain intact. This makes the imported project readable by Xcode 26; the original local project is preserved. CI builds run before the longer fixture suites so a project/SDK incompatibility is reported promptly.
+
 The verification wrapper now prints the final error output on failure, and CI retains logs from its hidden output directory. Earlier failed workflow attempts remain visible in [PR #10](https://github.com/pibeebee/C67/pull/10); follow the current head's checks for the final remote outcome.
 
 No new live-provider or physical-device run is implied by this relocation. E5 use in Simulator is not Apple Foundation Models inference or physical-iPhone proof. Production C67 source and behavior are unchanged by this import.
