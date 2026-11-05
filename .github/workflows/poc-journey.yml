@@ -53,3 +53,4 @@ jobs:
             poc-journey/.verification/**/summary.json
             poc-journey/.verification/**/REPORT.md
           retention-days: 14
+          include-hidden-files: true

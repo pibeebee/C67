@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
@@ -11,12 +12,18 @@ parser.add_argument('--refresh-publication-hashes', action='store_true', help='R
 args = parser.parse_args()
 path = ROOT / 'evidence/publication-manifest.json'
 manifest = json.loads(path.read_text())
+published_paths = set(subprocess.check_output(
+    ['git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', 'poc-journey'],
+    cwd=ROOT.parent,
+).decode().split('\0'))
 issues = []; count = 0
 for entry in manifest['files']:
     if entry['disposition'] != 'included':
         continue
     count += 1
     target = ROOT / entry['publicationPath']
+    if 'poc-journey/' + entry['publicationPath'] not in published_paths:
+        issues.append(entry['publicationPath'] + ': included file is ignored or absent from the publication tree')
     if not target.is_file():
         issues.append(entry['publicationPath'] + ': missing publication copy')
         continue
