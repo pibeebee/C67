@@ -31,7 +31,7 @@ A teammate can discover the current integrated experiment, run it from a new che
 
 ## Result and handoff
 
-The [relocation verification](../../poc-journey/evidence/relocation-verification.md) records 220 package, 55 CLI, 126 native and 11 Simulator UI test executions passing, plus three unsigned builds. Pinned model bootstrap, public-file/link/package checks, imported hashes and root Swift layout passed. Original physical-device results are retained as historical evidence, not rerun or inherited automatically.
+The [relocation verification](../../poc-journey/evidence/relocation-verification.md) records 220 package, 55 CLI, 126 native and 12 Simulator UI test executions passing, plus three unsigned builds. Pinned model bootstrap, public-file/link/package checks, imported hashes and root Swift layout passed. Original physical-device results are retained as historical evidence, not rerun or inherited automatically.
 
 No production source, contracts, deployment configuration or unrelated feature checkout was changed. Original local sources remain intact. The scoped archive retains failed runs, marks unavailable external evidence and restores large model assets by pinned checksums rather than committing them.
 

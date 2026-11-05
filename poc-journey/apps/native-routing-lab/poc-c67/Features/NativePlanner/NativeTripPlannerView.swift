@@ -19,188 +19,197 @@ struct NativeTripPlannerView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
+        NavigationStack {
+            plannerForm
+                .navigationTitle("Rencana")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink("Log") { NativeTripLogView(store: model.logs) }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Menu {
+                            Button("Muat simulasi trip aktif", systemImage: "clock.arrow.circlepath") {
+                                showsActiveExampleConfirmation = true
+                            }
+                            Button("Rencana baru", systemImage: "square.and.pencil") {
+                                showsNewTripConfirmation = true
+                            }
+                            Button("Muat simulasi penyimpanan", systemImage: "internaldrive") {
+                                showsStorageExampleConfirmation = true
+                            }
+                            Button("Muat kasus Jakarta · 5 tujuan", systemImage: "list.bullet.rectangle") {
+                                showsExampleConfirmation = true
+                            }
+                        } label: {
+                            Label("Kelola rencana", systemImage: "ellipsis.circle")
+                        }
+                        .disabled(model.isBusy || model.hasActiveTrip)
+                    }
+                }
+                .confirmationDialog(
+                    "Muat simulasi trip aktif? Jam, lokasi dan ETA sintetis; rencana tersimpan baru diganti setelah Simpan itinerary pilihan.",
+                    isPresented: $showsActiveExampleConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Muat contoh trip aktif") { model.useActiveExample() }
+                }
+                .confirmationDialog(
+                    "Ganti input dengan simulasi lokal? Lokasi dan ETA sintetis, tanpa request jaringan. Data tersimpan tidak diganti sampai Anda menekan Simpan.",
+                    isPresented: $showsStorageExampleConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Muat simulasi lokal") { model.useStorageExample() }
+                }
+                .confirmationDialog(
+                    "Muat lima tujuan Jakarta dari log? Pin perlu diperiksa, tanggal besok pukul 08.00–18.00 WIB. Data tersimpan baru diganti jika Anda menyimpan.",
+                    isPresented: $showsExampleConfirmation,
+                    titleVisibility: .visible
+                ) {
+                    Button("Muat kasus Jakarta") { model.useJakartaExample() }
+                }
+                .confirmationDialog(
+                    "Pakai profil Jakarta, WIB dan mobil/taksi? Koordinat serta tujuan dipertahankan; rencana lama tersimpan belum diganti.",
+                    isPresented: $confirmsJakarta, titleVisibility: .visible
+                ) {
+                    Button("Gunakan profil Jakarta") { model.adoptJakartaProfile() }
+                }
+                .confirmationDialog(
+                    "Mulai rencana kosong? Input di layar akan diganti.",
+                    isPresented: $showsNewTripConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Mulai rencana kosong", role: .destructive) { model.startNewTrip() }
+                }
+                .confirmationDialog(
+                    "Simpan sebagai itinerary pilihan? Pilihan tersimpan sebelumnya akan diganti; data tetap hanya di perangkat ini.",
+                    isPresented: $showsAcceptConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Simpan itinerary pilihan") { model.saveLocal(acceptReport: true) }
+                }
+                .confirmationDialog(
+                    "Buka kembali data tersimpan? Perubahan yang belum disimpan akan dilepas.",
+                    isPresented: $showsRestoreConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Buka data tersimpan") { model.restoreLocal() }
+                }
+                .sheet(isPresented: $importingDraft) { draftImportSheet }
+                .sheet(isPresented: $showsListInput) {
+                    NativeTripListInputSheet(
+                        remaining: NativeTripListInput.maximumStops - model.draft.stops.count
+                    ) { try model.appendPlaces($0) }
+                }
+                .sheet(item: $searchPoint) { point in
+                    NativeTripSearchSheet(
+                        point: point, initialMatches: model.matches[point.id] ?? [],
+                        searchContext: model.draft.searchContext, jakartaOnly: true
+                    ) { model.select($0) }
+                }
+                .onChange(of: model.draft) { _, _ in model.inputChanged() }
+                .onChange(of: scenePhase) { _, value in
+                    model.logs.record(
+                        "app.phase_changed", category: "app", fields: ["phase": String(describing: value)])
+                    if value != .active { model.cancel(reason: "app_\(String(describing: value))") }
+                    Task { await model.logs.flush() }
+                }
+        }
+    }
+
+    private var plannerForm: some View {
         @Bindable var model = model
+        return Form {
+            NativeTripLocalSection(
+                model: model, onRestore: { showsRestoreConfirmation = true },
+                onAccept: { showsAcceptConfirmation = true })
+            Section("PoC Jakarta") {
+                Text("Tempat di Jakarta · WIB · perjalanan mobil/taksi")
+                Text(NativeTripJakarta.motorNotice).font(.footnote)
+                if !model.draft.isJakartaProfile {
+                    Text(
+                        "Rencana lama tetap tersedia. Pilih profil Jakarta sebelum menghitung itinerary baru."
+                    )
+                    .font(.footnote)
+                    Button("Gunakan profil Jakarta dan mobil/taksi") { confirmsJakarta = true }
+                        .disabled(model.isBusy || model.hasActiveTrip)
+                }
+            }
+            NativeTripEndpointsSection(model: model) { searchPoint = $0 }
+                .disabled(model.isBusy || model.hasActiveTrip)
+            NativeTripStopsSection(
+                model: model,
+                onAdd: {
+                    searchPoint = .init(
+                        id: UUID().uuidString, title: "Tempat baru", query: "",
+                        searchRegion: model.draft.isJakartaProfile ? NativeTripJakarta.region : nil)
+                }, onPaste: { showsListInput = true }
+            ).disabled(model.isBusy || model.hasActiveTrip)
+            if !model.draft.locationWarnings.isEmpty {
+                Section("Periksa lokasi") {
+                    ForEach(model.draft.locationWarnings, id: \.self) {
+                        Text($0).font(.footnote).foregroundStyle(.orange)
+                    }
+                }
+            }
+            Section {
+                Button("Muat input JSON") { importingDraft = true }.disabled(
+                    model.isBusy || model.hasActiveTrip)
+                if let importError {
+                    Text(importError).font(.footnote).foregroundStyle(.red)
+                        .accessibilityIdentifier("native-draft-import-error")
+                }
+                NavigationLink("Pengaturan") { NativeTripPreferencesView(draft: $model.draft) }
+                    .disabled(model.isBusy || model.hasActiveTrip)
+                NavigationLink("Bandingkan algoritme") { NativeTripRoutingLabView(draft: model.draft) }
+                    .disabled(model.isBusy || model.hasActiveTrip || !model.draft.isJakartaProfile)
+            }
+            NativeTripActionsSection(model: model)
+            if let report = model.report {
+                Section {
+                    NavigationLink {
+                        NativeTripReportView(report: report, attribution: model.attribution)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Lihat itinerary")
+                            Text(report.status).font(.caption).foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private var draftImportSheet: some View {
         NavigationStack {
             Form {
-                NativeTripLocalSection(
-                    model: model, onRestore: { showsRestoreConfirmation = true },
-                    onAccept: { showsAcceptConfirmation = true })
-                Section("PoC Jakarta") {
-                    Text("Tempat di Jakarta · WIB · perjalanan mobil/taksi")
-                    Text(NativeTripJakarta.motorNotice).font(.footnote)
-                    if !model.draft.isJakartaProfile {
-                        Text(
-                            "Rencana lama tetap tersedia. Pilih profil Jakarta sebelum menghitung itinerary baru."
-                        )
-                        .font(.footnote)
-                        Button("Gunakan profil Jakarta dan mobil/taksi") { confirmsJakarta = true }
-                            .disabled(model.isBusy || model.hasActiveTrip)
-                    }
-                }
-                NativeTripEndpointsSection(model: model) { searchPoint = $0 }
-                    .disabled(model.isBusy || model.hasActiveTrip)
-                NativeTripStopsSection(
-                    model: model,
-                    onAdd: {
-                        searchPoint = .init(
-                            id: UUID().uuidString, title: "Tempat baru", query: "",
-                            searchRegion: model.draft.isJakartaProfile ? NativeTripJakarta.region : nil)
-                    }, onPaste: { showsListInput = true }
-                ).disabled(model.isBusy || model.hasActiveTrip)
-                if !model.draft.locationWarnings.isEmpty {
-                    Section("Periksa lokasi") {
-                        ForEach(model.draft.locationWarnings, id: \.self) {
-                            Text($0).font(.footnote).foregroundStyle(.orange)
-                        }
-                    }
-                }
-                Section {
-                    Button("Muat input JSON") { importingDraft = true }.disabled(
-                        model.isBusy || model.hasActiveTrip)
+                Section("Pulihkan kasus dari log input.snapshot") {
+                    TextField("Tempel JSON rencana", text: $inputJSON)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled()
+                        .accessibilityLabel("JSON rencana")
+                    Text(
+                        "Tempel objek JSON rencana. Seluruh koordinat, tanggal dan zona waktu divalidasi sebelum mengganti input di layar."
+                    )
+                    .font(.footnote)
+                    Button("Gunakan input JSON") {
+                        do {
+                            // Validation happens before asking to replace the current draft.
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .iso8601
+                            let value = try decoder.decode(NativeTripDraft.self, from: Data(inputJSON.utf8))
+                            try value.validate()
+                            showsImportConfirmation = true
+                        } catch { importError = error.localizedDescription }
+                    }.disabled(inputJSON.isEmpty)
                     if let importError { Text(importError).font(.footnote).foregroundStyle(.red) }
-                    NavigationLink("Pengaturan") { NativeTripPreferencesView(draft: $model.draft) }
-                        .disabled(model.isBusy || model.hasActiveTrip)
-                    NavigationLink("Bandingkan algoritme") { NativeTripRoutingLabView(draft: model.draft) }
-                        .disabled(model.isBusy || model.hasActiveTrip || !model.draft.isJakartaProfile)
                 }
-                NativeTripActionsSection(model: model)
-                if let report = model.report {
-                    Section {
-                        NavigationLink {
-                            NativeTripReportView(report: report, attribution: model.attribution)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Lihat itinerary")
-                                Text(report.status).font(.caption).foregroundStyle(.secondary)
-                            }
-                        }
+            }.navigationTitle("Input diagnostik")
+                .confirmationDialog(
+                    "Ganti input di layar? Rencana tersimpan tetap tersedia sampai Anda menyimpan perubahan.",
+                    isPresented: $showsImportConfirmation, titleVisibility: .visible
+                ) {
+                    Button("Ganti input") {
+                        do {
+                            try model.importDraft(Data(inputJSON.utf8))
+                            importError = nil
+                            importingDraft = false
+                        } catch { importError = error.localizedDescription }
                     }
                 }
-            }
-            .navigationTitle("Rencana")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink("Log") { NativeTripLogView(store: model.logs) }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button("Muat simulasi trip aktif", systemImage: "clock.arrow.circlepath") {
-                            showsActiveExampleConfirmation = true
-                        }
-                        Button("Rencana baru", systemImage: "square.and.pencil") {
-                            showsNewTripConfirmation = true
-                        }
-                        Button("Muat simulasi penyimpanan", systemImage: "internaldrive") {
-                            showsStorageExampleConfirmation = true
-                        }
-                        Button("Muat kasus Jakarta · 5 tujuan", systemImage: "list.bullet.rectangle") {
-                            showsExampleConfirmation = true
-                        }
-                    } label: {
-                        Label("Kelola rencana", systemImage: "ellipsis.circle")
-                    }
-                    .disabled(model.isBusy || model.hasActiveTrip)
-                }
-            }
-            .confirmationDialog(
-                "Muat simulasi trip aktif? Jam, lokasi dan ETA sintetis; rencana tersimpan baru diganti setelah Simpan itinerary pilihan.",
-                isPresented: $showsActiveExampleConfirmation, titleVisibility: .visible
-            ) {
-                Button("Muat contoh trip aktif") { model.useActiveExample() }
-            }
-            .confirmationDialog(
-                "Ganti input dengan simulasi lokal? Lokasi dan ETA sintetis, tanpa request jaringan. Data tersimpan tidak diganti sampai Anda menekan Simpan.",
-                isPresented: $showsStorageExampleConfirmation, titleVisibility: .visible
-            ) {
-                Button("Muat simulasi lokal") { model.useStorageExample() }
-            }
-            .confirmationDialog(
-                "Muat lima tujuan Jakarta dari log? Pin perlu diperiksa, tanggal besok pukul 08.00–18.00 WIB. Data tersimpan baru diganti jika Anda menyimpan.",
-                isPresented: $showsExampleConfirmation,
-                titleVisibility: .visible
-            ) {
-                Button("Muat kasus Jakarta") { model.useJakartaExample() }
-            }
-            .confirmationDialog(
-                "Pakai profil Jakarta, WIB dan mobil/taksi? Koordinat serta tujuan dipertahankan; rencana lama tersimpan belum diganti.",
-                isPresented: $confirmsJakarta, titleVisibility: .visible
-            ) {
-                Button("Gunakan profil Jakarta") { model.adoptJakartaProfile() }
-            }
-            .confirmationDialog(
-                "Mulai rencana kosong? Input di layar akan diganti.",
-                isPresented: $showsNewTripConfirmation, titleVisibility: .visible
-            ) {
-                Button("Mulai rencana kosong", role: .destructive) { model.startNewTrip() }
-            }
-            .confirmationDialog(
-                "Simpan sebagai itinerary pilihan? Pilihan tersimpan sebelumnya akan diganti; data tetap hanya di perangkat ini.",
-                isPresented: $showsAcceptConfirmation, titleVisibility: .visible
-            ) {
-                Button("Simpan itinerary pilihan") { model.saveLocal(acceptReport: true) }
-            }
-            .confirmationDialog(
-                "Buka kembali data tersimpan? Perubahan yang belum disimpan akan dilepas.",
-                isPresented: $showsRestoreConfirmation, titleVisibility: .visible
-            ) {
-                Button("Buka data tersimpan") { model.restoreLocal() }
-            }
-            .sheet(isPresented: $importingDraft) {
-                NavigationStack {
-                    Form {
-                        Section("Pulihkan kasus dari log input.snapshot") {
-                            TextField("Tempel JSON rencana", text: $inputJSON)
-                                .textInputAutocapitalization(.never).autocorrectionDisabled()
-                                .accessibilityLabel("JSON rencana")
-                            Text(
-                                "Tempel objek JSON rencana. Seluruh koordinat, tanggal dan zona waktu divalidasi sebelum mengganti input di layar."
-                            )
-                            .font(.footnote)
-                            Button("Gunakan input JSON") {
-                                do {
-                                    // Validation happens before asking to replace the current draft.
-                                    let decoder = JSONDecoder()
-                                    decoder.dateDecodingStrategy = .iso8601
-                                    let value = try decoder.decode(NativeTripDraft.self, from: Data(inputJSON.utf8))
-                                    try value.validate()
-                                    showsImportConfirmation = true
-                                } catch { importError = error.localizedDescription }
-                            }.disabled(inputJSON.isEmpty)
-                            if let importError { Text(importError).font(.footnote).foregroundStyle(.red) }
-                        }
-                    }.navigationTitle("Input diagnostik")
-                        .confirmationDialog(
-                            "Ganti input di layar? Rencana tersimpan tetap tersedia sampai Anda menyimpan perubahan.",
-                            isPresented: $showsImportConfirmation, titleVisibility: .visible
-                        ) {
-                            Button("Ganti input") {
-                                do {
-                                    try model.importDraft(Data(inputJSON.utf8))
-                                    importError = nil
-                                    importingDraft = false
-                                } catch { importError = error.localizedDescription }
-                            }
-                        }
-                }
-            }
-            .sheet(isPresented: $showsListInput) {
-                NativeTripListInputSheet(
-                    remaining: NativeTripListInput.maximumStops - model.draft.stops.count
-                ) { try model.appendPlaces($0) }
-            }
-            .sheet(item: $searchPoint) { point in
-                NativeTripSearchSheet(
-                    point: point, initialMatches: model.matches[point.id] ?? [],
-                    searchContext: model.draft.searchContext, jakartaOnly: true
-                ) { model.select($0) }
-            }
-            .onChange(of: model.draft) { _, _ in model.inputChanged() }
-            .onChange(of: scenePhase) { _, value in
-                model.logs.record(
-                    "app.phase_changed", category: "app", fields: ["phase": String(describing: value)])
-                if value != .active { model.cancel(reason: "app_\(String(describing: value))") }
-                Task { await model.logs.flush() }
-            }
         }
     }
 }

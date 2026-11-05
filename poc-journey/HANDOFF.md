@@ -24,9 +24,13 @@ Outputs go to a fresh ignored `.verification/` folder, not the preserved evidenc
 ```sh
 P3_SIMULATOR_DESTINATION='platform=iOS Simulator,id=YOUR_SIMULATOR_ID' \
   bash poc-journey/scripts/verify.sh ui
+P3_SIMULATOR_DESTINATION='platform=iOS Simulator,id=YOUR_SIMULATOR_ID' \
+  bash poc-journey/scripts/verify.sh native-ui
 ```
 
 Fixtures are explicitly synthetic, even when the system Map loads real base-map tiles. The fixture path does not exercise real WeatherKit authentication or establish iPhone inference.
+
+`native-ui` selects the planner portability regression only: confirmation, synthetic report navigation and rejection of invalid imported JSON. It uses the existing separate Jakarta UI-test storage and does not execute all retained legacy group/diary UI tests.
 
 ## 3. Open the app
 

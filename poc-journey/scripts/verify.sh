@@ -60,6 +60,15 @@ case "${1:-}" in
       printf 'PASS: %s fixture UI tests\n' "$scheme"
     done
     ;;
-  *) printf 'Usage: verify.sh packages|cli|native|build|ui\n' >&2; exit 64 ;;
+  native-ui)
+    : "${P3_SIMULATOR_DESTINATION:?Choose an installed iOS 26+ Simulator destination}"
+    run_logged "$output_root/ui-native-planner.log" xcodebuild -quiet \
+      -project "$journey_root/apps/native-routing-lab/poc-c67.xcodeproj" -scheme poc-c67 \
+      -destination "$P3_SIMULATOR_DESTINATION" -derivedDataPath "$output_root/DerivedData-poc-c67" \
+      -resultBundlePath "$output_root/poc-c67.xcresult" CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- \
+      -only-testing:poc-c67UITests/NativePlannerPortabilityTests -parallel-testing-enabled NO test
+    printf 'PASS: native planner fixture UI regression\n'
+    ;;
+  *) printf 'Usage: verify.sh packages|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"

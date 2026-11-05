@@ -18,7 +18,7 @@ Snapshot date: **5 November 2026**. These are technical experiments with bounded
 
 This import changes location, public metadata and Swift layout. [Relocation results](evidence/relocation-verification.md) records checks actually run against these published copies. Historical pass counts are not automatically inherited by the import or by production C67.
 
-The relocated copies passed 220 package tests, 55 CLI tests, 126 native fixture tests, 11 Simulator UI tests and three unsigned Simulator builds. No new physical-device or live-provider run is claimed by this handoff.
+The relocated copies passed 220 package tests, 55 CLI tests, 126 native fixture tests, 12 Simulator UI tests and three unsigned Simulator builds. No new physical-device or live-provider run is claimed by this handoff.
 
 ## Current development entry point
 
