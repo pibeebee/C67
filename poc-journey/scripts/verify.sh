@@ -41,13 +41,18 @@ case "${1:-}" in
     tail -n 5 "$output_root/native-jakarta.log"
     ;;
   build)
+    build_failures=0
     for definition in 'native-routing-lab:poc-c67' 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration'; do
       app="${definition%%:*}"; scheme="${definition##*:}"
-      run_logged "$output_root/build-$scheme.log" xcodebuild -quiet -project "$journey_root/apps/$app/$scheme.xcodeproj" -scheme "$scheme" \
+      if run_logged "$output_root/build-$scheme.log" xcodebuild -quiet -project "$journey_root/apps/$app/$scheme.xcodeproj" -scheme "$scheme" \
         -destination 'generic/platform=iOS Simulator' -derivedDataPath "$output_root/DerivedData-$scheme" \
-        CODE_SIGNING_ALLOWED=NO build
-      printf 'PASS: %s unsigned Simulator build\n' "$scheme"
+        CODE_SIGNING_ALLOWED=NO build; then
+        printf 'PASS: %s unsigned Simulator build\n' "$scheme"
+      else
+        build_failures=$((build_failures + 1))
+      fi
     done
+    if [[ "$build_failures" -gt 0 ]]; then exit 1; fi
     ;;
   ui)
     : "${P3_SIMULATOR_DESTINATION:?Choose an installed iOS 26+ Simulator destination}"

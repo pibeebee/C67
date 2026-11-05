@@ -38,6 +38,8 @@ The native lab's copied project now uses object format 77, matching its declared
 
 SDK 26 also exceeded its type-checking budget for the old planner's combined form/dialog/sheet expression. The form and diagnostic-import sheet are now small computed views, with the same owning state, action bodies, dialog/sheet bindings and UI text. A focused `native-ui` regression exercises the synthetic confirmation/report flow and invalid JSON rejection in the existing separate test storage. The retained legacy group/diary UI suite is outside this regression's scope.
 
+The synthetic routing fixture builder now declares its node, dwell and weather types explicitly for the older compiler. Its constants, seed/RNG calls, calculations and ordering are unchanged. The build wrapper collects failures across all three independent app schemes before returning failure, so one scheme cannot hide diagnostics for the remaining apps.
+
 The verification wrapper now prints the final error output on failure, and CI retains logs from its hidden output directory. Earlier failed workflow attempts remain visible in [PR #10](https://github.com/pibeebee/C67/pull/10); follow the current head's checks for the final remote outcome.
 
 No new live-provider or physical-device run is implied by this relocation. E5 use in Simulator is not Apple Foundation Models inference or physical-iPhone proof. Production C67 source and behavior are unchanged by this import.

@@ -3,10 +3,12 @@ import Foundation
 enum TripRoutingFixtures {
     static func make(count: Int = 8, dynamic: Bool = false, seed: UInt64 = 67) -> TripRoutingProblem {
         let count = min(20, max(1, count))
-        let nodes = (0 ... count).map { i in
-            TripRoutingNode(
-                id: "synthetic-\(i)", name: i == 0 ? "Awal / akhir sintetis" : "Tempat sintetis \(i)",
-                x: Double(i % 4), y: Double(i / 4), dwell: i == 0 ? 0 : 1800, opens: nil, closes: nil,
+        let nodes: [TripRoutingNode] = (0 ... count).map { i -> TripRoutingNode in
+            let name = i == 0 ? "Awal / akhir sintetis" : "Tempat sintetis \(i)"
+            let dwell: Double = i == 0 ? 0 : 1800
+            return TripRoutingNode(
+                id: "synthetic-\(i)", name: name,
+                x: Double(i % 4), y: Double(i / 4), dwell: dwell, opens: nil, closes: nil,
                 exposure: 1)
         }
         var rng = TripRoutingRandom(state: seed)
@@ -27,13 +29,14 @@ enum TripRoutingFixtures {
             }
         }
         let targets = Array(1 ... count)
+        let weather: [TripRoutingWeather] = nodes.indices.map { node in
+            TripRoutingWeather(node: node, start: 0, end: 172800, chance: Double(node % 4) * 0.2)
+        }
         var result = TripRoutingProblem(
             label: dynamic ? "Sintetis · ETA berubah pada +120 menit" : "Sintetis · waktu statis berarah",
             kind: dynamic ? "synthetic_piecewise" : "synthetic_static", nodes: nodes, targets: targets,
             origin: 0, end: 0, deadline: 17 * 3600, arcs: arcs, baselineOrders: [],
-            weather: nodes.indices.map {
-                .init(node: $0, start: 0, end: 172800, chance: Double($0 % 4) * 0.2)
-            })
+            weather: weather)
         result.baselineOrders = geographicalOrders(result)
         return result
     }
