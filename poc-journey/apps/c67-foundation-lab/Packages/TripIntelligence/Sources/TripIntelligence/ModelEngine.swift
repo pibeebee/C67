@@ -318,7 +318,8 @@ public actor FoundationModelEngine: ModelGenerating {
             let session = LanguageModelSession(model: model, instructions: instructions)
             let response = try await session.respond(
                 to: prompt, schema: schema,
-                options: GenerationOptions(samplingMode: .greedy, maximumResponseTokens: 800))
+                // The SDK 26 initializer remains available under its deprecated name in SDK 27.
+                options: GenerationOptions(sampling: .greedy, maximumResponseTokens: 800))
             try Task.checkCancellation()
             return RawGeneration(
                 raw: response.rawContent.jsonString, inputTokens: total,

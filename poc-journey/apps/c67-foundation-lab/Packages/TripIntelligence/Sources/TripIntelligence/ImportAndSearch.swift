@@ -247,6 +247,13 @@ public enum CandidateFilter {
         }
     }
 }
+// SDK 26 does not mark MKLocalSearch Sendable. Keep cancellation on the main actor.
+@MainActor private final class MapSearchCancellation {
+    let search: MKLocalSearch
+    init(_ search: MKLocalSearch) { self.search = search }
+    func cancel() { search.cancel() }
+}
+
 public struct MapKitPlaceSearch: PlaceSearching {
     public init() {}
     public func search(profile: PreferenceExtraction, context: TripContextV1) async throws
@@ -277,11 +284,13 @@ public struct MapKitPlaceSearch: PlaceSearching {
             center: CLLocationCoordinate2D(latitude: -6.2, longitude: 106.83),
             latitudinalMeters: 35_000, longitudinalMeters: 35_000)
         let search = MKLocalSearch(request: request)
+        let cancellation = MapSearchCancellation(search)
         let response = try await withTaskCancellationHandler {
             try await search.start()
         } onCancel: {
-            search.cancel()
+            Task { @MainActor in cancellation.cancel() }
         }
+        try Task.checkCancellation()
         let at = Date().ISO8601Format()
         return response.mapItems.map { item in
             let location = item.location.coordinate

@@ -27,4 +27,12 @@ The final UI reruns used XcodeBuildMCP `test_sim` with the same project, scheme,
 
 The import checks are bounded static scans and actual fixture/build runs, not an exhaustive privacy or security audit. GitHub Actions separately checks publication/CLI, package/native fixtures and unsigned builds. Its results belong to the PR, not this local run.
 
+## Clean-checkout and SDK compatibility corrections
+
+The first GitHub run exposed two model metadata files that were incorrectly ignored, and compilation differences under Xcode 26.6 / Swift 6.3.3. The small `config.json` and `tokenizer_config.json` files are now committed; only the large model and tokenizer data are restored separately. A fresh local clone passed both publication checks and a fresh pinned bootstrap. The evidence validator also rejects an included artifact that is ignored or absent from the publication tree.
+
+The maintained model adapter uses the SDK 26 `sampling:` initializer (available under a deprecated name in SDK 27). Both MapKit search adapters now hold cancellation in a main-actor object because SDK 26 does not declare `MKLocalSearch` Sendable. The affected shared-package suites were rerun locally after these corrections. Routing, ranking and prompts are unchanged. Original/publication hashes record these compatibility edits separately from the historical evaluated versions.
+
+The verification wrapper now prints the final error output on failure, and CI retains logs from its hidden output directory. Earlier failed workflow attempts remain visible in [PR #10](https://github.com/pibeebee/C67/pull/10); follow the current head's checks for the final remote outcome.
+
 No new live-provider or physical-device run is implied by this relocation. E5 use in Simulator is not Apple Foundation Models inference or physical-iPhone proof. Production C67 source and behavior are unchanged by this import.
