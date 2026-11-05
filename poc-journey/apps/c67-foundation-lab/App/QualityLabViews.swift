@@ -256,33 +256,14 @@ private struct QualityCandidateCard: View {
             Text(candidate.name).font(.headline)
             Text(candidate.scope).font(.subheadline)
             Text(candidate.address).font(.caption)
-            Text(
-                "Kategori " + String(format: "%.3f", row.categoryScore)
-                    + (row.semanticScore.map { " · cosine " + String(format: "%.3f", $0) } ?? "")
-                    + (row.combinedScore.map { " · gabungan " + String(format: "%.3f", $0) } ?? "")
-            )
-            .font(.caption)
+            Text(scoreSummary).font(.caption)
             Text("Preferensi didukung: \(row.supportedPreferences.map(\.label).joined(separator: ", "))")
                 .font(.caption)
             if row.supportedPreferences.isEmpty {
                 Text("Belum ada preferensi lunak yang terbukti pada area ini.")
                     .font(.caption).foregroundStyle(.secondary)
             }
-            DisclosureGroup("Fakta dan sumber area ini") {
-                ForEach(candidate.claims, id: \.feature) { claim in
-                    Text("\(claim.feature.label): \(claim.value.rawValue)").font(.caption.bold())
-                    Text(claim.statement).font(.caption)
-                }
-                Text("Atribut lain tetap unknown; makanan/minuman tidak otomatis boleh di semua area.")
-                    .font(.caption)
-                ForEach(catalog.sources.filter { candidate.sourceIDs.contains($0.id) }) { source in
-                    Link(source.title, destination: source.url).font(.caption)
-                    Text(
-                        "Diperiksa \(QualityPipeline.date(source.checkedAt)); publikasi \(source.publishedDate ?? "tanggal tidak tercantum")"
-                    )
-                    .font(.caption)
-                }
-            }
+            factDisclosure
             Menu("Saya suka aspek…") {
                 ForEach(candidate.claims.filter { $0.value == .yes }, id: \.feature) { claim in
                     Button(claim.feature.label) { model.like(candidate.id, feature: claim.feature) }
@@ -291,5 +272,30 @@ private struct QualityCandidateCard: View {
             Button("Lewati kandidat ini") { model.dismiss(candidate.id) }
                 .accessibilityIdentifier("quality-dismiss-\(candidate.id)")
         }.padding(.vertical, 4)
+    }
+
+    private var scoreSummary: String {
+        var parts: [String] = ["Kategori " + String(format: "%.3f", row.categoryScore)]
+        if let score = row.semanticScore { parts.append("cosine " + String(format: "%.3f", score)) }
+        if let score = row.combinedScore { parts.append("gabungan " + String(format: "%.3f", score)) }
+        return parts.joined(separator: " · ")
+    }
+
+    private var factDisclosure: some View {
+        DisclosureGroup("Fakta dan sumber area ini") {
+            ForEach(candidate.claims, id: \.feature) { claim in
+                Text("\(claim.feature.label): \(claim.value.rawValue)").font(.caption.bold())
+                Text(claim.statement).font(.caption)
+            }
+            Text("Atribut lain tetap unknown; makanan/minuman tidak otomatis boleh di semua area.")
+                .font(.caption)
+            ForEach(catalog.sources.filter { candidate.sourceIDs.contains($0.id) }) { source in
+                Link(source.title, destination: source.url).font(.caption)
+                Text(
+                    "Diperiksa \(QualityPipeline.date(source.checkedAt)); publikasi \(source.publishedDate ?? "tanggal tidak tercantum")"
+                )
+                .font(.caption)
+            }
+        }
     }
 }

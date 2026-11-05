@@ -40,6 +40,8 @@ SDK 26 also exceeded its type-checking budget for the old planner's combined for
 
 The synthetic routing fixture builder now declares its node, dwell and weather types explicitly for the older compiler. Its constants, seed/RNG calls, calculations and ordering are unchanged. The build wrapper collects failures across all three independent app schemes before returning failure, so one scheme cannot hide diagnostics for the remaining apps.
 
+The Foundation Lab candidate card's score text and facts disclosure are also separate expressions for SDK 26's type checker. Labels, formatting, preference actions and data remain the same. Its three existing QualityLab UI tests passed again after this extraction; [rerun results](relocated-quality-ui-compat.json) are not counted as three additional independent cases. The setup guide names Xcode 26.6 as the checked lower toolchain rather than promising compatibility with every 26.x SDK.
+
 The verification wrapper now prints the final error output on failure, and CI retains logs from its hidden output directory. Earlier failed workflow attempts remain visible in [PR #10](https://github.com/pibeebee/C67/pull/10); follow the current head's checks for the final remote outcome.
 
 No new live-provider or physical-device run is implied by this relocation. E5 use in Simulator is not Apple Foundation Models inference or physical-iPhone proof. Production C67 source and behavior are unchanged by this import.

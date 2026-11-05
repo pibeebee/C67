@@ -15,7 +15,7 @@ The main C67 app still targets iOS 18. These experimental apps/packages declare 
 
 ## First checkout
 
-Requirements: Python 3.11+, compatible macOS/Xcode (Swift 6.2+, SDK 26+; recorded toolchain 27.2), Node 24+ for the CLI. Apple Silicon is the locally verified architecture.
+Requirements: Python 3.11+, compatible macOS with Xcode 26.6+ (Swift 6.3+; checked with Xcode 26.6 and local 27.2), Node 24+ for the CLI. Apple Silicon is the verified architecture. SDK/compiler compatibility does not establish an iOS 26 runtime test.
 
 ```sh
 python3 poc-journey/scripts/bootstrap.py

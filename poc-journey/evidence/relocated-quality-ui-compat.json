@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "mode": "three previously counted QualityLab UI tests rerun after score/facts view extraction; not three additional independent cases",
+  "simulator": "iPhone 18 Pro / iOS 27.2",
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 120549,
+    "counts": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "testCases": [
+    {
+      "suite": "QualityLabUITests",
+      "test": "testCombinedNeedsCorrectionsHistoryAndExport",
+      "status": "passed",
+      "durationMs": 55896
+    },
+    {
+      "suite": "QualityLabUITests",
+      "test": "testLikeLearnsOnlySelectedFacetAndReranks",
+      "status": "passed",
+      "durationMs": 24206
+    },
+    {
+      "suite": "QualityLabUITests",
+      "test": "testUnconfirmedNegationRequiresCorrection",
+      "status": "passed",
+      "durationMs": 23379
+    }
+  ]
+}
