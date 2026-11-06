@@ -1,0 +1,4377 @@
+{
+  "acceptedReport" : {
+    "candidates" : [
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:20:10Z",
+        "id" : "monas\/glodok\/kotatua\/blokm\/ashta",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:18:02Z",
+            "chosen" : {
+              "distance" : 5214,
+              "expectedArrival" : "2026-11-05T01:18:02Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>monas:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1082,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:48:02Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 5214,
+                "expectedArrival" : "2026-11-05T01:18:02Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>monas:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1082,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T01:18:02Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T01:59:36Z",
+            "chosen" : {
+              "distance" : 4172,
+              "expectedArrival" : "2026-11-05T01:59:36Z",
+              "expectedDeparture" : "2026-11-05T01:48:02Z",
+              "id" : "monas>glodok:automobile:1793843282.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 694,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:48:02Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:29:36Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 4172,
+                "expectedArrival" : "2026-11-05T01:59:36Z",
+                "expectedDeparture" : "2026-11-05T01:48:02Z",
+                "id" : "monas>glodok:automobile:1793843282.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 694,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T01:59:36Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T02:36:54Z",
+            "chosen" : {
+              "distance" : 1610,
+              "expectedArrival" : "2026-11-05T02:36:54Z",
+              "expectedDeparture" : "2026-11-05T02:29:36Z",
+              "id" : "glodok>kotatua:automobile:1793845776.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 438,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:29:36Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:06:54Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 1610,
+                "expectedArrival" : "2026-11-05T02:36:54Z",
+                "expectedDeparture" : "2026-11-05T02:29:36Z",
+                "id" : "glodok>kotatua:automobile:1793845776.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 438,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T02:36:54Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:49:29Z",
+            "chosen" : {
+              "distance" : 16475,
+              "expectedArrival" : "2026-11-05T03:49:29Z",
+              "expectedDeparture" : "2026-11-05T03:06:54Z",
+              "id" : "kotatua>blokm:automobile:1793848014.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2555,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:06:54Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:19:29Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 16475,
+                "expectedArrival" : "2026-11-05T03:49:29Z",
+                "expectedDeparture" : "2026-11-05T03:06:54Z",
+                "id" : "kotatua>blokm:automobile:1793848014.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2555,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T03:49:29Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:29:38Z",
+            "chosen" : {
+              "distance" : 2942,
+              "expectedArrival" : "2026-11-05T04:29:38Z",
+              "expectedDeparture" : "2026-11-05T04:19:29Z",
+              "id" : "blokm>ashta:automobile:1793852369.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 609,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:19:29Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:59:38Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2942,
+                "expectedArrival" : "2026-11-05T04:29:38Z",
+                "expectedDeparture" : "2026-11-05T04:19:29Z",
+                "id" : "blokm>ashta:automobile:1793852369.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 609,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T04:29:38Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:20:10Z",
+            "chosen" : {
+              "distance" : 6659,
+              "expectedArrival" : "2026-11-05T05:20:10Z",
+              "expectedDeparture" : "2026-11-05T04:59:38Z",
+              "id" : "ashta>origin:automobile:1793854778.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1232,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:59:38Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "monas\/glodok\/kotatua\/blokm\/ashta:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:20:10Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6659,
+                "expectedArrival" : "2026-11-05T05:20:10Z",
+                "expectedDeparture" : "2026-11-05T04:59:38Z",
+                "id" : "ashta>origin:automobile:1793854778.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1232,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:20:10Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "monas",
+          "glodok",
+          "kotatua",
+          "blokm",
+          "ashta"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 110.16666666666667,
+        "uncertainties" : [
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 260.1666666666667,
+        "waitingMinutes" : 0
+      },
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:35:02Z",
+        "id" : "ashta\/blokm\/kotatua\/glodok\/monas",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:14:43Z",
+            "chosen" : {
+              "distance" : 6442,
+              "expectedArrival" : "2026-11-05T01:14:43Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>ashta:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 883,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:44:43Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6442,
+                "expectedArrival" : "2026-11-05T01:14:43Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>ashta:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 883,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T01:14:43Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T01:53:26Z",
+            "chosen" : {
+              "distance" : 2761,
+              "expectedArrival" : "2026-11-05T01:53:26Z",
+              "expectedDeparture" : "2026-11-05T01:44:43Z",
+              "id" : "ashta>blokm:automobile:1793843083.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 523,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:44:43Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:23:26Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2761,
+                "expectedArrival" : "2026-11-05T01:53:26Z",
+                "expectedDeparture" : "2026-11-05T01:44:43Z",
+                "id" : "ashta>blokm:automobile:1793843083.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 523,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T01:53:26Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:07:18Z",
+            "chosen" : {
+              "distance" : 18998,
+              "expectedArrival" : "2026-11-05T03:07:18Z",
+              "expectedDeparture" : "2026-11-05T02:23:26Z",
+              "id" : "blokm>kotatua:automobile:1793845406.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2632,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:23:26Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:37:18Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 18998,
+                "expectedArrival" : "2026-11-05T03:07:18Z",
+                "expectedDeparture" : "2026-11-05T02:23:26Z",
+                "id" : "blokm>kotatua:automobile:1793845406.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2632,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T03:07:18Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:55:39Z",
+            "chosen" : {
+              "distance" : 3546,
+              "expectedArrival" : "2026-11-05T03:55:39Z",
+              "expectedDeparture" : "2026-11-05T03:37:18Z",
+              "id" : "kotatua>glodok:automobile:1793849838.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1101,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:37:18Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:25:39Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3546,
+                "expectedArrival" : "2026-11-05T03:55:39Z",
+                "expectedDeparture" : "2026-11-05T03:37:18Z",
+                "id" : "kotatua>glodok:automobile:1793849838.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1101,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T03:55:39Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:50:58Z",
+            "chosen" : {
+              "distance" : 6977,
+              "expectedArrival" : "2026-11-05T04:50:58Z",
+              "expectedDeparture" : "2026-11-05T04:25:39Z",
+              "id" : "glodok>monas:automobile:1793852739.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1519,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:25:39Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T05:20:58Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6977,
+                "expectedArrival" : "2026-11-05T04:50:58Z",
+                "expectedDeparture" : "2026-11-05T04:25:39Z",
+                "id" : "glodok>monas:automobile:1793852739.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1519,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T04:50:58Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:35:02Z",
+            "chosen" : {
+              "distance" : 3585,
+              "expectedArrival" : "2026-11-05T05:35:02Z",
+              "expectedDeparture" : "2026-11-05T05:20:58Z",
+              "id" : "monas>origin:automobile:1793856058.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 844,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T05:20:58Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "ashta\/blokm\/kotatua\/glodok\/monas:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:35:02Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3585,
+                "expectedArrival" : "2026-11-05T05:35:02Z",
+                "expectedDeparture" : "2026-11-05T05:20:58Z",
+                "id" : "monas>origin:automobile:1793856058.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 844,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:35:02Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "ashta",
+          "blokm",
+          "kotatua",
+          "glodok",
+          "monas"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 125.03333333333333,
+        "uncertainties" : [
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 275.03333333333336,
+        "waitingMinutes" : 0
+      },
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:37:13Z",
+        "id" : "blokm\/ashta\/kotatua\/glodok\/monas",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:17:52Z",
+            "chosen" : {
+              "distance" : 7737,
+              "expectedArrival" : "2026-11-05T01:17:52Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>blokm:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1072,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:47:52Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 7737,
+                "expectedArrival" : "2026-11-05T01:17:52Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>blokm:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1072,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T01:17:52Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T02:01:31Z",
+            "chosen" : {
+              "distance" : 2942,
+              "expectedArrival" : "2026-11-05T02:01:31Z",
+              "expectedDeparture" : "2026-11-05T01:47:52Z",
+              "id" : "blokm>ashta:automobile:1793843272.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 819,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:47:52Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:31:31Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2942,
+                "expectedArrival" : "2026-11-05T02:01:31Z",
+                "expectedDeparture" : "2026-11-05T01:47:52Z",
+                "id" : "blokm>ashta:automobile:1793843272.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 819,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T02:01:31Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:09:35Z",
+            "chosen" : {
+              "distance" : 17772,
+              "expectedArrival" : "2026-11-05T03:09:35Z",
+              "expectedDeparture" : "2026-11-05T02:31:31Z",
+              "id" : "ashta>kotatua:automobile:1793845891.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2284,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:31:31Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:39:35Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 17772,
+                "expectedArrival" : "2026-11-05T03:09:35Z",
+                "expectedDeparture" : "2026-11-05T02:31:31Z",
+                "id" : "ashta>kotatua:automobile:1793845891.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2284,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T03:09:35Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:58:03Z",
+            "chosen" : {
+              "distance" : 3546,
+              "expectedArrival" : "2026-11-05T03:58:03Z",
+              "expectedDeparture" : "2026-11-05T03:39:35Z",
+              "id" : "kotatua>glodok:automobile:1793849975.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1108,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:39:35Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:28:03Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3546,
+                "expectedArrival" : "2026-11-05T03:58:03Z",
+                "expectedDeparture" : "2026-11-05T03:39:35Z",
+                "id" : "kotatua>glodok:automobile:1793849975.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1108,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T03:58:03Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:53:28Z",
+            "chosen" : {
+              "distance" : 6977,
+              "expectedArrival" : "2026-11-05T04:53:28Z",
+              "expectedDeparture" : "2026-11-05T04:28:03Z",
+              "id" : "glodok>monas:automobile:1793852883.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1525,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:28:03Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T05:23:28Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6977,
+                "expectedArrival" : "2026-11-05T04:53:28Z",
+                "expectedDeparture" : "2026-11-05T04:28:03Z",
+                "id" : "glodok>monas:automobile:1793852883.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1525,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T04:53:28Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:37:13Z",
+            "chosen" : {
+              "distance" : 3585,
+              "expectedArrival" : "2026-11-05T05:37:13Z",
+              "expectedDeparture" : "2026-11-05T05:23:28Z",
+              "id" : "monas>origin:automobile:1793856208.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 825,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T05:23:28Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "blokm\/ashta\/kotatua\/glodok\/monas:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:37:13Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3585,
+                "expectedArrival" : "2026-11-05T05:37:13Z",
+                "expectedDeparture" : "2026-11-05T05:23:28Z",
+                "id" : "monas>origin:automobile:1793856208.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 825,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:37:13Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "blokm",
+          "ashta",
+          "kotatua",
+          "glodok",
+          "monas"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 127.21666666666668,
+        "uncertainties" : [
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 277.21666666666664,
+        "waitingMinutes" : 0
+      },
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:36:21Z",
+        "id" : "ashta\/blokm\/glodok\/kotatua\/monas",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:14:43Z",
+            "chosen" : {
+              "distance" : 6442,
+              "expectedArrival" : "2026-11-05T01:14:43Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>ashta:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 883,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:44:43Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6442,
+                "expectedArrival" : "2026-11-05T01:14:43Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>ashta:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 883,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T01:14:43Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T01:53:26Z",
+            "chosen" : {
+              "distance" : 2761,
+              "expectedArrival" : "2026-11-05T01:53:26Z",
+              "expectedDeparture" : "2026-11-05T01:44:43Z",
+              "id" : "ashta>blokm:automobile:1793843083.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 523,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:44:43Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:23:26Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2761,
+                "expectedArrival" : "2026-11-05T01:53:26Z",
+                "expectedDeparture" : "2026-11-05T01:44:43Z",
+                "id" : "ashta>blokm:automobile:1793843083.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 523,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T01:53:26Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:07:41Z",
+            "chosen" : {
+              "distance" : 13625,
+              "expectedArrival" : "2026-11-05T03:07:41Z",
+              "expectedDeparture" : "2026-11-05T02:23:26Z",
+              "id" : "blokm>glodok:automobile:1793845406.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2655,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:23:26Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:37:41Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 13625,
+                "expectedArrival" : "2026-11-05T03:07:41Z",
+                "expectedDeparture" : "2026-11-05T02:23:26Z",
+                "id" : "blokm>glodok:automobile:1793845406.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2655,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T03:07:41Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:45:53Z",
+            "chosen" : {
+              "distance" : 1610,
+              "expectedArrival" : "2026-11-05T03:45:53Z",
+              "expectedDeparture" : "2026-11-05T03:37:41Z",
+              "id" : "glodok>kotatua:automobile:1793849861.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 492,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:37:41Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:15:53Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 1610,
+                "expectedArrival" : "2026-11-05T03:45:53Z",
+                "expectedDeparture" : "2026-11-05T03:37:41Z",
+                "id" : "glodok>kotatua:automobile:1793849861.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 492,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T03:45:53Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:52:27Z",
+            "chosen" : {
+              "distance" : 9283,
+              "expectedArrival" : "2026-11-05T04:52:27Z",
+              "expectedDeparture" : "2026-11-05T04:15:53Z",
+              "id" : "kotatua>monas:automobile:1793852153.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2194,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:15:53Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T05:22:27Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 9283,
+                "expectedArrival" : "2026-11-05T04:52:27Z",
+                "expectedDeparture" : "2026-11-05T04:15:53Z",
+                "id" : "kotatua>monas:automobile:1793852153.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2194,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T04:52:27Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:36:21Z",
+            "chosen" : {
+              "distance" : 3585,
+              "expectedArrival" : "2026-11-05T05:36:21Z",
+              "expectedDeparture" : "2026-11-05T05:22:27Z",
+              "id" : "monas>origin:automobile:1793856147.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 834,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T05:22:27Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "ashta\/blokm\/glodok\/kotatua\/monas:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:36:21Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3585,
+                "expectedArrival" : "2026-11-05T05:36:21Z",
+                "expectedDeparture" : "2026-11-05T05:22:27Z",
+                "id" : "monas>origin:automobile:1793856147.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 834,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:36:21Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "ashta",
+          "blokm",
+          "glodok",
+          "kotatua",
+          "monas"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 126.35000000000002,
+        "uncertainties" : [
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 276.34999999999997,
+        "waitingMinutes" : 0
+      },
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:39:03Z",
+        "id" : "blokm\/ashta\/glodok\/kotatua\/monas",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:17:52Z",
+            "chosen" : {
+              "distance" : 7737,
+              "expectedArrival" : "2026-11-05T01:17:52Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>blokm:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1072,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:47:52Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 7737,
+                "expectedArrival" : "2026-11-05T01:17:52Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>blokm:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1072,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T01:17:52Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T02:01:31Z",
+            "chosen" : {
+              "distance" : 2942,
+              "expectedArrival" : "2026-11-05T02:01:31Z",
+              "expectedDeparture" : "2026-11-05T01:47:52Z",
+              "id" : "blokm>ashta:automobile:1793843272.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 819,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:47:52Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:31:31Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2942,
+                "expectedArrival" : "2026-11-05T02:01:31Z",
+                "expectedDeparture" : "2026-11-05T01:47:52Z",
+                "id" : "blokm>ashta:automobile:1793843272.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 819,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T02:01:31Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:10:32Z",
+            "chosen" : {
+              "distance" : 12400,
+              "expectedArrival" : "2026-11-05T03:10:32Z",
+              "expectedDeparture" : "2026-11-05T02:31:31Z",
+              "id" : "ashta>glodok:automobile:1793845891.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2341,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:31:31Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:40:32Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 12400,
+                "expectedArrival" : "2026-11-05T03:10:32Z",
+                "expectedDeparture" : "2026-11-05T02:31:31Z",
+                "id" : "ashta>glodok:automobile:1793845891.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2341,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T03:10:32Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:48:48Z",
+            "chosen" : {
+              "distance" : 1610,
+              "expectedArrival" : "2026-11-05T03:48:48Z",
+              "expectedDeparture" : "2026-11-05T03:40:32Z",
+              "id" : "glodok>kotatua:automobile:1793850032.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 496,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:40:32Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:18:48Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 1610,
+                "expectedArrival" : "2026-11-05T03:48:48Z",
+                "expectedDeparture" : "2026-11-05T03:40:32Z",
+                "id" : "glodok>kotatua:automobile:1793850032.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 496,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T03:48:48Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:55:33Z",
+            "chosen" : {
+              "distance" : 9283,
+              "expectedArrival" : "2026-11-05T04:55:33Z",
+              "expectedDeparture" : "2026-11-05T04:18:48Z",
+              "id" : "kotatua>monas:automobile:1793852328.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2205,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:18:48Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T05:25:33Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 9283,
+                "expectedArrival" : "2026-11-05T04:55:33Z",
+                "expectedDeparture" : "2026-11-05T04:18:48Z",
+                "id" : "kotatua>monas:automobile:1793852328.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2205,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T04:55:33Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:39:03Z",
+            "chosen" : {
+              "distance" : 3585,
+              "expectedArrival" : "2026-11-05T05:39:03Z",
+              "expectedDeparture" : "2026-11-05T05:25:33Z",
+              "id" : "monas>origin:automobile:1793856333.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 810,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T05:25:33Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "blokm\/ashta\/glodok\/kotatua\/monas:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:39:03Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 3585,
+                "expectedArrival" : "2026-11-05T05:39:03Z",
+                "expectedDeparture" : "2026-11-05T05:25:33Z",
+                "id" : "monas>origin:automobile:1793856333.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 810,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:39:03Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "blokm",
+          "ashta",
+          "glodok",
+          "kotatua",
+          "monas"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 129.05,
+        "uncertainties" : [
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 279.05,
+        "waitingMinutes" : 0
+      },
+      {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 150,
+        "finish" : "2026-11-05T05:45:50Z",
+        "id" : "ashta\/blokm\/monas\/glodok\/kotatua",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T01:14:43Z",
+            "chosen" : {
+              "distance" : 6442,
+              "expectedArrival" : "2026-11-05T01:14:43Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>ashta:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 883,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:00:00Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:0",
+            "isReturn" : false,
+            "leave" : "2026-11-05T01:44:43Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 6442,
+                "expectedArrival" : "2026-11-05T01:14:43Z",
+                "expectedDeparture" : "2026-11-05T01:00:00Z",
+                "id" : "origin>ashta:automobile:1793840400.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 883,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "visit" : "2026-11-05T01:14:43Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T01:53:26Z",
+            "chosen" : {
+              "distance" : 2761,
+              "expectedArrival" : "2026-11-05T01:53:26Z",
+              "expectedDeparture" : "2026-11-05T01:44:43Z",
+              "id" : "ashta>blokm:automobile:1793843083.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 523,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T01:44:43Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "ashta",
+              "latitude" : -6.229714,
+              "longitude" : 106.807101,
+              "query" : "Ashta",
+              "resolvedName" : "Ashta",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Ashta"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:1",
+            "isReturn" : false,
+            "leave" : "2026-11-05T02:23:26Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 2761,
+                "expectedArrival" : "2026-11-05T01:53:26Z",
+                "expectedDeparture" : "2026-11-05T01:44:43Z",
+                "id" : "ashta>blokm:automobile:1793843083.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 523,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "visit" : "2026-11-05T01:53:26Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:09:16Z",
+            "chosen" : {
+              "distance" : 11179,
+              "expectedArrival" : "2026-11-05T03:09:16Z",
+              "expectedDeparture" : "2026-11-05T02:23:26Z",
+              "id" : "blokm>monas:automobile:1793845406.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2750,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:23:26Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "blokm",
+              "latitude" : -6.2445743,
+              "longitude" : 106.8006164,
+              "query" : "Blok M Square",
+              "resolvedName" : "Blok M Square",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Blok M Square"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:2",
+            "isReturn" : false,
+            "leave" : "2026-11-05T03:39:16Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 11179,
+                "expectedArrival" : "2026-11-05T03:09:16Z",
+                "expectedDeparture" : "2026-11-05T02:23:26Z",
+                "id" : "blokm>monas:automobile:1793845406.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2750,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "visit" : "2026-11-05T03:09:16Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T03:57:28Z",
+            "chosen" : {
+              "distance" : 4172,
+              "expectedArrival" : "2026-11-05T03:57:28Z",
+              "expectedDeparture" : "2026-11-05T03:39:16Z",
+              "id" : "monas>glodok:automobile:1793849956.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1092,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T03:39:16Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "monas",
+              "latitude" : -6.1753936,
+              "longitude" : 106.827186,
+              "query" : "Monas",
+              "resolvedName" : "Monas",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Monas"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:3",
+            "isReturn" : false,
+            "leave" : "2026-11-05T04:27:28Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 4172,
+                "expectedArrival" : "2026-11-05T03:57:28Z",
+                "expectedDeparture" : "2026-11-05T03:39:16Z",
+                "id" : "monas>glodok:automobile:1793849956.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1092,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "visit" : "2026-11-05T03:57:28Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T04:36:04Z",
+            "chosen" : {
+              "distance" : 1610,
+              "expectedArrival" : "2026-11-05T04:36:04Z",
+              "expectedDeparture" : "2026-11-05T04:27:28Z",
+              "id" : "glodok>kotatua:automobile:1793852848.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 516,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T04:27:28Z",
+            "dwellMinutes" : 30,
+            "dwellSource" : "default",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:4",
+            "isReturn" : false,
+            "leave" : "2026-11-05T05:06:04Z",
+            "notes" : [
+              "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 1610,
+                "expectedArrival" : "2026-11-05T04:36:04Z",
+                "expectedDeparture" : "2026-11-05T04:27:28Z",
+                "id" : "glodok>kotatua:automobile:1793852848.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 516,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "visit" : "2026-11-05T04:36:04Z",
+            "weatherProvider" : "open_meteo"
+          },
+          {
+            "arrival" : "2026-11-05T05:45:50Z",
+            "chosen" : {
+              "distance" : 9595,
+              "expectedArrival" : "2026-11-05T05:45:50Z",
+              "expectedDeparture" : "2026-11-05T05:06:04Z",
+              "id" : "kotatua>origin:automobile:1793855164.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2386,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T05:06:04Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "kotatua",
+              "latitude" : -6.1347997,
+              "longitude" : 106.8130414,
+              "query" : "Kota Tua",
+              "resolvedName" : "Kota Tua",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Kota Tua"
+            },
+            "id" : "ashta\/blokm\/monas\/glodok\/kotatua:5",
+            "isReturn" : true,
+            "leave" : "2026-11-05T05:45:50Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 9595,
+                "expectedArrival" : "2026-11-05T05:45:50Z",
+                "expectedDeparture" : "2026-11-05T05:06:04Z",
+                "id" : "kotatua>origin:automobile:1793855164.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 2386,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T05:45:50Z",
+            "weatherProvider" : "open_meteo"
+          }
+        ],
+        "order" : [
+          "ashta",
+          "blokm",
+          "monas",
+          "glodok",
+          "kotatua"
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 135.83333333333331,
+        "uncertainties" : [
+          "Jam operasional Ashta belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Blok M Square belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Monas belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Jam operasional Kota Tua belum diisi.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 285.83333333333337,
+        "waitingMinutes" : 0
+      }
+    ],
+    "draft" : {
+      "automobile" : true,
+      "carUse" : "onDemand",
+      "defaultDwell" : 30,
+      "departure" : "2026-11-05T01:00:00Z",
+      "end" : {
+        "id" : "end",
+        "query" : "",
+        "searchRegion" : {
+          "label" : "Jakarta",
+          "latitude" : -6.2,
+          "longitude" : 106.83,
+          "radiusMeters" : 35000
+        },
+        "title" : "Titik akhir"
+      },
+      "extraWeatherMinutes" : 15,
+      "finishBy" : "2026-11-05T11:00:00Z",
+      "maximumWalkingMinutes" : 45,
+      "origin" : {
+        "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+        "id" : "origin",
+        "latitude" : -6.2023912,
+        "longitude" : 106.8234359,
+        "query" : "Stasiun Sudirman",
+        "resolvedName" : "Stasiun Sudirman",
+        "searchRegion" : {
+          "label" : "Jakarta",
+          "latitude" : -6.2,
+          "longitude" : 106.83,
+          "radiusMeters" : 35000
+        },
+        "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+        "title" : "Stasiun Sudirman"
+      },
+      "planningArea" : "jakarta",
+      "rainWeight" : 2,
+      "returnsToOrigin" : true,
+      "routingAdaptive" : true,
+      "routingAlgorithm" : "hybrid",
+      "routingRequestLimit" : 512,
+      "searchContext" : "Jakarta",
+      "stops" : [
+        {
+          "exposure" : "unknown",
+          "point" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "monas",
+            "latitude" : -6.1753936,
+            "longitude" : 106.827186,
+            "query" : "Monas",
+            "resolvedName" : "Monas",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Monas"
+          },
+          "role" : "visit"
+        },
+        {
+          "exposure" : "unknown",
+          "point" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "kotatua",
+            "latitude" : -6.1347997,
+            "longitude" : 106.8130414,
+            "query" : "Kota Tua",
+            "resolvedName" : "Kota Tua",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Kota Tua"
+          },
+          "role" : "visit"
+        },
+        {
+          "exposure" : "unknown",
+          "point" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "glodok",
+            "latitude" : -6.1434347,
+            "longitude" : 106.815066,
+            "query" : "Jalan Pasar Glodok Selatan",
+            "resolvedName" : "Jalan Pasar Glodok Selatan",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Jalan Pasar Glodok Selatan"
+          },
+          "role" : "visit"
+        },
+        {
+          "exposure" : "unknown",
+          "point" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "ashta",
+            "latitude" : -6.229714,
+            "longitude" : 106.807101,
+            "query" : "Ashta",
+            "resolvedName" : "Ashta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Ashta"
+          },
+          "role" : "visit"
+        },
+        {
+          "exposure" : "unknown",
+          "point" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "blokm",
+            "latitude" : -6.2445743,
+            "longitude" : 106.8006164,
+            "query" : "Blok M Square",
+            "resolvedName" : "Blok M Square",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Blok M Square"
+          },
+          "role" : "visit"
+        }
+      ],
+      "timeZoneID" : "Asia\/Jakarta",
+      "transit" : false,
+      "walking" : false
+    },
+    "fastest" : {
+      "complete" : true,
+      "conflicts" : [
+
+      ],
+      "dwellMinutes" : 150,
+      "finish" : "2026-11-05T05:20:10Z",
+      "id" : "monas\/glodok\/kotatua\/blokm\/ashta",
+      "legs" : [
+        {
+          "arrival" : "2026-11-05T01:18:02Z",
+          "chosen" : {
+            "distance" : 5214,
+            "expectedArrival" : "2026-11-05T01:18:02Z",
+            "expectedDeparture" : "2026-11-05T01:00:00Z",
+            "id" : "origin>monas:automobile:1793840400.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1082,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T01:00:00Z",
+          "dwellMinutes" : 30,
+          "dwellSource" : "default",
+          "from" : {
+            "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+            "id" : "origin",
+            "latitude" : -6.2023912,
+            "longitude" : 106.8234359,
+            "query" : "Stasiun Sudirman",
+            "resolvedName" : "Stasiun Sudirman",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Stasiun Sudirman"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:0",
+          "isReturn" : false,
+          "leave" : "2026-11-05T01:48:02Z",
+          "notes" : [
+            "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 5214,
+              "expectedArrival" : "2026-11-05T01:18:02Z",
+              "expectedDeparture" : "2026-11-05T01:00:00Z",
+              "id" : "origin>monas:automobile:1793840400.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1082,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "monas",
+            "latitude" : -6.1753936,
+            "longitude" : 106.827186,
+            "query" : "Monas",
+            "resolvedName" : "Monas",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Monas"
+          },
+          "visit" : "2026-11-05T01:18:02Z",
+          "weatherProvider" : "open_meteo"
+        },
+        {
+          "arrival" : "2026-11-05T01:59:36Z",
+          "chosen" : {
+            "distance" : 4172,
+            "expectedArrival" : "2026-11-05T01:59:36Z",
+            "expectedDeparture" : "2026-11-05T01:48:02Z",
+            "id" : "monas>glodok:automobile:1793843282.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 694,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T01:48:02Z",
+          "dwellMinutes" : 30,
+          "dwellSource" : "default",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "monas",
+            "latitude" : -6.1753936,
+            "longitude" : 106.827186,
+            "query" : "Monas",
+            "resolvedName" : "Monas",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Monas"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:1",
+          "isReturn" : false,
+          "leave" : "2026-11-05T02:29:36Z",
+          "notes" : [
+            "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 4172,
+              "expectedArrival" : "2026-11-05T01:59:36Z",
+              "expectedDeparture" : "2026-11-05T01:48:02Z",
+              "id" : "monas>glodok:automobile:1793843282.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 694,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "glodok",
+            "latitude" : -6.1434347,
+            "longitude" : 106.815066,
+            "query" : "Jalan Pasar Glodok Selatan",
+            "resolvedName" : "Jalan Pasar Glodok Selatan",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Jalan Pasar Glodok Selatan"
+          },
+          "visit" : "2026-11-05T01:59:36Z",
+          "weatherProvider" : "open_meteo"
+        },
+        {
+          "arrival" : "2026-11-05T02:36:54Z",
+          "chosen" : {
+            "distance" : 1610,
+            "expectedArrival" : "2026-11-05T02:36:54Z",
+            "expectedDeparture" : "2026-11-05T02:29:36Z",
+            "id" : "glodok>kotatua:automobile:1793845776.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 438,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T02:29:36Z",
+          "dwellMinutes" : 30,
+          "dwellSource" : "default",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "glodok",
+            "latitude" : -6.1434347,
+            "longitude" : 106.815066,
+            "query" : "Jalan Pasar Glodok Selatan",
+            "resolvedName" : "Jalan Pasar Glodok Selatan",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Jalan Pasar Glodok Selatan"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:2",
+          "isReturn" : false,
+          "leave" : "2026-11-05T03:06:54Z",
+          "notes" : [
+            "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 1610,
+              "expectedArrival" : "2026-11-05T02:36:54Z",
+              "expectedDeparture" : "2026-11-05T02:29:36Z",
+              "id" : "glodok>kotatua:automobile:1793845776.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 438,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "kotatua",
+            "latitude" : -6.1347997,
+            "longitude" : 106.8130414,
+            "query" : "Kota Tua",
+            "resolvedName" : "Kota Tua",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Kota Tua"
+          },
+          "visit" : "2026-11-05T02:36:54Z",
+          "weatherProvider" : "open_meteo"
+        },
+        {
+          "arrival" : "2026-11-05T03:49:29Z",
+          "chosen" : {
+            "distance" : 16475,
+            "expectedArrival" : "2026-11-05T03:49:29Z",
+            "expectedDeparture" : "2026-11-05T03:06:54Z",
+            "id" : "kotatua>blokm:automobile:1793848014.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 2555,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T03:06:54Z",
+          "dwellMinutes" : 30,
+          "dwellSource" : "default",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "kotatua",
+            "latitude" : -6.1347997,
+            "longitude" : 106.8130414,
+            "query" : "Kota Tua",
+            "resolvedName" : "Kota Tua",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Kota Tua"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:3",
+          "isReturn" : false,
+          "leave" : "2026-11-05T04:19:29Z",
+          "notes" : [
+            "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 16475,
+              "expectedArrival" : "2026-11-05T03:49:29Z",
+              "expectedDeparture" : "2026-11-05T03:06:54Z",
+              "id" : "kotatua>blokm:automobile:1793848014.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 2555,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "blokm",
+            "latitude" : -6.2445743,
+            "longitude" : 106.8006164,
+            "query" : "Blok M Square",
+            "resolvedName" : "Blok M Square",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Blok M Square"
+          },
+          "visit" : "2026-11-05T03:49:29Z",
+          "weatherProvider" : "open_meteo"
+        },
+        {
+          "arrival" : "2026-11-05T04:29:38Z",
+          "chosen" : {
+            "distance" : 2942,
+            "expectedArrival" : "2026-11-05T04:29:38Z",
+            "expectedDeparture" : "2026-11-05T04:19:29Z",
+            "id" : "blokm>ashta:automobile:1793852369.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 609,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T04:19:29Z",
+          "dwellMinutes" : 30,
+          "dwellSource" : "default",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "blokm",
+            "latitude" : -6.2445743,
+            "longitude" : 106.8006164,
+            "query" : "Blok M Square",
+            "resolvedName" : "Blok M Square",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Blok M Square"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:4",
+          "isReturn" : false,
+          "leave" : "2026-11-05T04:59:38Z",
+          "notes" : [
+            "Jam operasional belum diisi; tempat ini belum dipastikan dapat dikunjungi pada waktu kedatangan.",
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 2942,
+              "expectedArrival" : "2026-11-05T04:29:38Z",
+              "expectedDeparture" : "2026-11-05T04:19:29Z",
+              "id" : "blokm>ashta:automobile:1793852369.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 609,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "ashta",
+            "latitude" : -6.229714,
+            "longitude" : 106.807101,
+            "query" : "Ashta",
+            "resolvedName" : "Ashta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Ashta"
+          },
+          "visit" : "2026-11-05T04:29:38Z",
+          "weatherProvider" : "open_meteo"
+        },
+        {
+          "arrival" : "2026-11-05T05:20:10Z",
+          "chosen" : {
+            "distance" : 6659,
+            "expectedArrival" : "2026-11-05T05:20:10Z",
+            "expectedDeparture" : "2026-11-05T04:59:38Z",
+            "id" : "ashta>origin:automobile:1793854778.0",
+            "mode" : "automobile",
+            "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+            "seconds" : 1232,
+            "status" : "available"
+          },
+          "departure" : "2026-11-05T04:59:38Z",
+          "dwellMinutes" : 0,
+          "dwellSource" : "transfer",
+          "from" : {
+            "address" : "Jakarta; pin dari log 4 November 2026",
+            "id" : "ashta",
+            "latitude" : -6.229714,
+            "longitude" : 106.807101,
+            "query" : "Ashta",
+            "resolvedName" : "Ashta",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Ashta"
+          },
+          "id" : "monas\/glodok\/kotatua\/blokm\/ashta:5",
+          "isReturn" : true,
+          "leave" : "2026-11-05T05:20:10Z",
+          "notes" : [
+            "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+          ],
+          "options" : [
+            {
+              "distance" : 6659,
+              "expectedArrival" : "2026-11-05T05:20:10Z",
+              "expectedDeparture" : "2026-11-05T04:59:38Z",
+              "id" : "ashta>origin:automobile:1793854778.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1232,
+              "status" : "available"
+            }
+          ],
+          "to" : {
+            "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+            "id" : "origin",
+            "latitude" : -6.2023912,
+            "longitude" : 106.8234359,
+            "query" : "Stasiun Sudirman",
+            "resolvedName" : "Stasiun Sudirman",
+            "searchRegion" : {
+              "label" : "Jakarta",
+              "latitude" : -6.2,
+              "longitude" : 106.83,
+              "radiusMeters" : 35000
+            },
+            "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+            "title" : "Stasiun Sudirman"
+          },
+          "visit" : "2026-11-05T05:20:10Z",
+          "weatherProvider" : "open_meteo"
+        }
+      ],
+      "order" : [
+        "monas",
+        "glodok",
+        "kotatua",
+        "blokm",
+        "ashta"
+      ],
+      "rainExposureMinutes" : 0,
+      "travelMinutes" : 110.16666666666667,
+      "uncertainties" : [
+        "Jam operasional Monas belum diisi.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Jam operasional Jalan Pasar Glodok Selatan belum diisi.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Jam operasional Kota Tua belum diisi.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Jam operasional Blok M Square belum diisi.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Jam operasional Ashta belum diisi.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+        "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+      ],
+      "unknownWeatherMinutes" : 260.1666666666667,
+      "waitingMinutes" : 0
+    },
+    "forecasts" : [
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.7
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 31.3
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 32.6
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 33.5
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 33.7
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 32.2
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 32.3
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 29.9
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.8
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 28.8
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.8
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28.5
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 28.1
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.6
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 27.3
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "origin",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:17Z",
+        "status" : "available"
+      },
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 30.8
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 31.4
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 31.5
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.3
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 29.1
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.9
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.8
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 27.4
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "monas",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:17Z",
+        "status" : "available"
+      },
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 30.8
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 31.4
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 31.5
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.3
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 29.1
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.9
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.8
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 27.4
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "kotatua",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:17Z",
+        "status" : "available"
+      },
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 30.8
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 31.4
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 31.5
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 31.6
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 29.5
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.3
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 29.1
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.9
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28.7
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.8
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 27.4
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "glodok",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:17Z",
+        "status" : "available"
+      },
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.4
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 32.2
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 33.3
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 34.1
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 32.2
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 32.7
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 30.5
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.2
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 27.5
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.1
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 26.8
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "ashta",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:17Z",
+        "status" : "available"
+      },
+      {
+        "hours" : [
+          {
+            "date" : "2026-11-05T01:00:00Z",
+            "rainChance" : 0.01,
+            "temperatureC" : 29.4
+          },
+          {
+            "date" : "2026-11-05T02:00:00Z",
+            "rainChance" : 0.08,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T03:00:00Z",
+            "rainChance" : 0.32,
+            "temperatureC" : 32.2
+          },
+          {
+            "date" : "2026-11-05T04:00:00Z",
+            "rainChance" : 0.64,
+            "temperatureC" : 33.3
+          },
+          {
+            "date" : "2026-11-05T05:00:00Z",
+            "rainChance" : 0.88,
+            "temperatureC" : 34.1
+          },
+          {
+            "date" : "2026-11-05T06:00:00Z",
+            "rainChance" : 0.95,
+            "temperatureC" : 32.2
+          },
+          {
+            "date" : "2026-11-05T07:00:00Z",
+            "rainChance" : 0.94,
+            "temperatureC" : 32.7
+          },
+          {
+            "date" : "2026-11-05T08:00:00Z",
+            "rainChance" : 0.9,
+            "temperatureC" : 30.9
+          },
+          {
+            "date" : "2026-11-05T09:00:00Z",
+            "rainChance" : 0.85,
+            "temperatureC" : 30.5
+          },
+          {
+            "date" : "2026-11-05T10:00:00Z",
+            "rainChance" : 0.76,
+            "temperatureC" : 29.2
+          },
+          {
+            "date" : "2026-11-05T11:00:00Z",
+            "rainChance" : 0.65,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T12:00:00Z",
+            "rainChance" : 0.49,
+            "temperatureC" : 28.3
+          },
+          {
+            "date" : "2026-11-05T13:00:00Z",
+            "rainChance" : 0.3,
+            "temperatureC" : 28
+          },
+          {
+            "date" : "2026-11-05T14:00:00Z",
+            "rainChance" : 0.16,
+            "temperatureC" : 27.5
+          },
+          {
+            "date" : "2026-11-05T15:00:00Z",
+            "rainChance" : 0.11,
+            "temperatureC" : 27.1
+          },
+          {
+            "date" : "2026-11-05T16:00:00Z",
+            "rainChance" : 0.12,
+            "temperatureC" : 26.8
+          }
+        ],
+        "note" : "Open-Meteo dipilih untuk profil Jakarta. Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+        "pointID" : "blokm",
+        "provider" : "open_meteo",
+        "retrievedAt" : "2026-11-04T07:16:18Z",
+        "status" : "available"
+      }
+    ],
+    "generatedAt" : "2026-11-04T07:17:25Z",
+    "optimizerNote" : "Hybrid · durasi trip · elapsed_v2 · 4016 evaluasi · 4 putaran · 4 kandidat tambahan live. Baseline live tetap ikut pemilihan. Snapshot dan sampel waktu terbatas tidak membuktikan optimum lalu lintas dunia nyata.",
+    "requests" : 57,
+    "weatherNote" : "Alternatif cuaca ditunda sampai data paparan cukup; jam buka dan batas selesai tetap diperiksa."
+  },
+  "activeTrip" : {
+    "acceptedOrder" : [
+
+    ],
+    "acceptedRemaining" : {
+      "candidates" : [
+        {
+          "complete" : true,
+          "conflicts" : [
+
+          ],
+          "dwellMinutes" : 0,
+          "finish" : "2026-11-05T03:23:14Z",
+          "id" : "",
+          "legs" : [
+            {
+              "arrival" : "2026-11-05T03:23:14Z",
+              "chosen" : {
+                "distance" : 7133,
+                "expectedArrival" : "2026-11-05T03:23:14Z",
+                "expectedDeparture" : "2026-11-05T02:59:36Z",
+                "id" : "glodok>origin:automobile:1793847576.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1418,
+                "status" : "available"
+              },
+              "departure" : "2026-11-05T02:59:36Z",
+              "dwellMinutes" : 0,
+              "dwellSource" : "transfer",
+              "from" : {
+                "address" : "Jakarta; pin dari log 4 November 2026",
+                "id" : "glodok",
+                "latitude" : -6.1434347,
+                "longitude" : 106.815066,
+                "query" : "Jalan Pasar Glodok Selatan",
+                "resolvedName" : "Jalan Pasar Glodok Selatan",
+                "searchRegion" : {
+                  "label" : "Jakarta",
+                  "latitude" : -6.2,
+                  "longitude" : 106.83,
+                  "radiusMeters" : 35000
+                },
+                "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+                "title" : "Jalan Pasar Glodok Selatan"
+              },
+              "id" : ":0",
+              "isReturn" : true,
+              "leave" : "2026-11-05T03:23:14Z",
+              "notes" : [
+                "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+              ],
+              "options" : [
+                {
+                  "distance" : 7133,
+                  "expectedArrival" : "2026-11-05T03:23:14Z",
+                  "expectedDeparture" : "2026-11-05T02:59:36Z",
+                  "id" : "glodok>origin:automobile:1793847576.0",
+                  "mode" : "automobile",
+                  "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                  "seconds" : 1418,
+                  "status" : "available"
+                }
+              ],
+              "to" : {
+                "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+                "id" : "origin",
+                "latitude" : -6.2023912,
+                "longitude" : 106.8234359,
+                "query" : "Stasiun Sudirman",
+                "resolvedName" : "Stasiun Sudirman",
+                "searchRegion" : {
+                  "label" : "Jakarta",
+                  "latitude" : -6.2,
+                  "longitude" : 106.83,
+                  "radiusMeters" : 35000
+                },
+                "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+                "title" : "Stasiun Sudirman"
+              },
+              "visit" : "2026-11-05T03:23:14Z"
+            }
+          ],
+          "order" : [
+
+          ],
+          "rainExposureMinutes" : 0,
+          "travelMinutes" : 23.633333333333333,
+          "uncertainties" : [
+            "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+          ],
+          "unknownWeatherMinutes" : 23.633333333333333,
+          "waitingMinutes" : 0
+        }
+      ],
+      "draft" : {
+        "automobile" : true,
+        "carUse" : "onDemand",
+        "defaultDwell" : 30,
+        "departure" : "2026-11-05T02:59:36Z",
+        "end" : {
+          "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+          "id" : "origin",
+          "latitude" : -6.2023912,
+          "longitude" : 106.8234359,
+          "query" : "Stasiun Sudirman",
+          "resolvedName" : "Stasiun Sudirman",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Stasiun Sudirman"
+        },
+        "extraWeatherMinutes" : 15,
+        "finishBy" : "2026-11-05T11:00:00Z",
+        "maximumWalkingMinutes" : 45,
+        "origin" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "glodok",
+          "latitude" : -6.1434347,
+          "longitude" : 106.815066,
+          "query" : "Jalan Pasar Glodok Selatan",
+          "resolvedName" : "Jalan Pasar Glodok Selatan",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Jalan Pasar Glodok Selatan"
+        },
+        "planningArea" : "jakarta",
+        "rainWeight" : 2,
+        "returnsToOrigin" : false,
+        "routingAdaptive" : true,
+        "routingAlgorithm" : "hybrid",
+        "routingRequestLimit" : 512,
+        "searchContext" : "Jakarta",
+        "stops" : [
+
+        ],
+        "timeZoneID" : "Asia\/Jakarta",
+        "transit" : false,
+        "walking" : false
+      },
+      "fastest" : {
+        "complete" : true,
+        "conflicts" : [
+
+        ],
+        "dwellMinutes" : 0,
+        "finish" : "2026-11-05T03:23:14Z",
+        "id" : "",
+        "legs" : [
+          {
+            "arrival" : "2026-11-05T03:23:14Z",
+            "chosen" : {
+              "distance" : 7133,
+              "expectedArrival" : "2026-11-05T03:23:14Z",
+              "expectedDeparture" : "2026-11-05T02:59:36Z",
+              "id" : "glodok>origin:automobile:1793847576.0",
+              "mode" : "automobile",
+              "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+              "seconds" : 1418,
+              "status" : "available"
+            },
+            "departure" : "2026-11-05T02:59:36Z",
+            "dwellMinutes" : 0,
+            "dwellSource" : "transfer",
+            "from" : {
+              "address" : "Jakarta; pin dari log 4 November 2026",
+              "id" : "glodok",
+              "latitude" : -6.1434347,
+              "longitude" : 106.815066,
+              "query" : "Jalan Pasar Glodok Selatan",
+              "resolvedName" : "Jalan Pasar Glodok Selatan",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Jalan Pasar Glodok Selatan"
+            },
+            "id" : ":0",
+            "isReturn" : true,
+            "leave" : "2026-11-05T03:23:14Z",
+            "notes" : [
+              "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit."
+            ],
+            "options" : [
+              {
+                "distance" : 7133,
+                "expectedArrival" : "2026-11-05T03:23:14Z",
+                "expectedDeparture" : "2026-11-05T02:59:36Z",
+                "id" : "glodok>origin:automobile:1793847576.0",
+                "mode" : "automobile",
+                "note" : "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+                "seconds" : 1418,
+                "status" : "available"
+              }
+            ],
+            "to" : {
+              "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+              "id" : "origin",
+              "latitude" : -6.2023912,
+              "longitude" : 106.8234359,
+              "query" : "Stasiun Sudirman",
+              "resolvedName" : "Stasiun Sudirman",
+              "searchRegion" : {
+                "label" : "Jakarta",
+                "latitude" : -6.2,
+                "longitude" : 106.83,
+                "radiusMeters" : 35000
+              },
+              "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+              "title" : "Stasiun Sudirman"
+            },
+            "visit" : "2026-11-05T03:23:14Z"
+          }
+        ],
+        "order" : [
+
+        ],
+        "rainExposureMinutes" : 0,
+        "travelMinutes" : 23.633333333333333,
+        "uncertainties" : [
+          "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+        ],
+        "unknownWeatherMinutes" : 23.633333333333333,
+        "waitingMinutes" : 0
+      },
+      "forecasts" : [
+
+      ],
+      "generatedAt" : "2026-11-04T07:17:56Z",
+      "optimizerNote" : "Tidak ada tujuan tersisa; endpoint asal tetap dipertahankan.",
+      "requests" : 1,
+      "weatherNote" : "Ruas menuju titik akhir; data cuaca baru tidak diminta."
+    },
+    "actualLegs" : [
+      {
+        "arrivedAt" : "2026-11-05T01:18:02Z",
+        "departedAt" : "2026-11-05T01:00:00Z",
+        "fromID" : "origin",
+        "toID" : "monas"
+      },
+      {
+        "arrivedAt" : "2026-11-05T01:59:36Z",
+        "departedAt" : "2026-11-05T01:48:02Z",
+        "fromID" : "monas",
+        "toID" : "glodok"
+      },
+      {
+        "arrivedAt" : "2026-11-05T03:23:14Z",
+        "departedAt" : "2026-11-05T02:59:36Z",
+        "fromID" : "glodok",
+        "toID" : "origin"
+      }
+    ],
+    "finishBy" : "2026-11-05T11:00:00Z",
+    "finishedAt" : "2026-11-05T03:23:14Z",
+    "inputRevision" : 13,
+    "lastEventAt" : "2026-11-05T03:23:14Z",
+    "needsReplan" : true,
+    "receipts" : [
+      {
+        "actionID" : "DEEF6FD1-0DFC-49A8-9DF1-F1E3A7E0453B",
+        "at" : "2026-11-05T01:18:02Z",
+        "event" : "visit.arrived",
+        "resultingRevision" : 1,
+        "signature" : "eyJhcnJpdmUiOnsiXzAiOiJtb25hcyJ9fQ=="
+      },
+      {
+        "actionID" : "B56A4AF8-4ACB-4DF9-835B-26FF6D860DA2",
+        "at" : "2026-11-05T01:18:02Z",
+        "event" : "visit.started",
+        "resultingRevision" : 2,
+        "signature" : "eyJiZWdpblZpc2l0Ijp7Il8wIjoibW9uYXMifX0="
+      },
+      {
+        "actionID" : "675065B3-FDAA-4AC8-8F4D-A716021695A3",
+        "at" : "2026-11-05T01:48:02Z",
+        "event" : "visit.completed",
+        "resultingRevision" : 3,
+        "signature" : "eyJkZXBhcnQiOnsiXzAiOiJtb25hcyJ9fQ=="
+      },
+      {
+        "actionID" : "D2D20015-7A79-482C-B0B1-0062A6CAAC3C",
+        "at" : "2026-11-05T01:59:36Z",
+        "event" : "visit.arrived",
+        "resultingRevision" : 4,
+        "signature" : "eyJhcnJpdmUiOnsiXzAiOiJnbG9kb2sifX0="
+      },
+      {
+        "actionID" : "C69CC342-11A4-4283-AF09-C57945383776",
+        "at" : "2026-11-05T01:59:36Z",
+        "event" : "visit.started",
+        "resultingRevision" : 5,
+        "signature" : "eyJiZWdpblZpc2l0Ijp7Il8wIjoiZ2xvZG9rIn19"
+      },
+      {
+        "actionID" : "9067253B-B9C7-4204-BA3D-E6E3C4BB1FA8",
+        "at" : "2026-11-05T02:09:36Z",
+        "event" : "visit.extended",
+        "resultingRevision" : 6,
+        "signature" : "eyJleHRlbmQiOnsiXzAiOjMwfX0="
+      },
+      {
+        "actionID" : "13515080-8804-453D-B90C-4D90DB027436",
+        "at" : "2026-11-05T02:09:36Z",
+        "event" : "proposal.applied",
+        "resultingRevision" : 7,
+        "signature" : "eyJhcHBseSI6eyJfMCI6IjdGMDc1RDc0LTJBMjUtNEFFRi05NEYzLTM0OEIyRjRBNEEwMSJ9fQ=="
+      },
+      {
+        "actionID" : "8A7924EA-B296-4691-9B0F-B21C30EF2D9D",
+        "at" : "2026-11-05T02:09:36Z",
+        "event" : "visit.skipped",
+        "resultingRevision" : 8,
+        "signature" : "eyJza2lwIjp7Il8wIjoia290YXR1YSJ9fQ=="
+      },
+      {
+        "actionID" : "31448553-ACA2-40B0-9EF0-8EAC23A6606F",
+        "at" : "2026-11-05T02:09:36Z",
+        "event" : "visit.skipped",
+        "resultingRevision" : 9,
+        "signature" : "eyJza2lwIjp7Il8wIjoiYmxva20ifX0="
+      },
+      {
+        "actionID" : "4C32E0FC-87E9-4FC2-990F-FBEA6A7758FC",
+        "at" : "2026-11-05T02:09:36Z",
+        "event" : "visit.skipped",
+        "resultingRevision" : 10,
+        "signature" : "eyJza2lwIjp7Il8wIjoiYXNodGEifX0="
+      },
+      {
+        "actionID" : "D414F79E-0066-4901-A54B-FF7249625A78",
+        "at" : "2026-11-05T02:59:36Z",
+        "event" : "visit.completed",
+        "resultingRevision" : 11,
+        "signature" : "eyJkZXBhcnQiOnsiXzAiOiJnbG9kb2sifX0="
+      },
+      {
+        "actionID" : "2D636D65-D10B-4F57-814F-72A5AA3027DE",
+        "at" : "2026-11-05T02:59:36Z",
+        "event" : "proposal.applied",
+        "resultingRevision" : 12,
+        "signature" : "eyJhcHBseSI6eyJfMCI6IkI3Q0YwMTE1LTMxNzEtNEExNC1BODQ3LTI5RTYzRDkyQkJBNSJ9fQ=="
+      },
+      {
+        "actionID" : "3B26EF1A-E5BE-4423-8756-201147503CD3",
+        "at" : "2026-11-05T03:23:14Z",
+        "event" : "trip.completed",
+        "resultingRevision" : 13,
+        "signature" : "eyJmaW5pc2giOnt9fQ=="
+      }
+    ],
+    "startedAt" : "2026-11-05T01:00:00Z",
+    "visits" : [
+      {
+        "arrivedAt" : "2026-11-05T01:18:02Z",
+        "departedAt" : "2026-11-05T01:48:02Z",
+        "plannedLeaveAt" : "2026-11-05T01:48:02Z",
+        "startedAt" : "2026-11-05T01:18:02Z",
+        "status" : "completed",
+        "stopID" : "monas"
+      },
+      {
+        "arrivedAt" : "2026-11-05T01:59:36Z",
+        "departedAt" : "2026-11-05T02:59:36Z",
+        "plannedLeaveAt" : "2026-11-05T02:59:36Z",
+        "startedAt" : "2026-11-05T01:59:36Z",
+        "status" : "completed",
+        "stopID" : "glodok"
+      },
+      {
+        "status" : "skipped",
+        "stopID" : "kotatua"
+      },
+      {
+        "status" : "skipped",
+        "stopID" : "blokm"
+      },
+      {
+        "status" : "skipped",
+        "stopID" : "ashta"
+      }
+    ]
+  },
+  "draft" : {
+    "automobile" : true,
+    "carUse" : "onDemand",
+    "defaultDwell" : 30,
+    "departure" : "2026-11-05T01:00:00Z",
+    "end" : {
+      "id" : "end",
+      "query" : "",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "title" : "Titik akhir"
+    },
+    "extraWeatherMinutes" : 15,
+    "finishBy" : "2026-11-05T11:00:00Z",
+    "maximumWalkingMinutes" : 45,
+    "origin" : {
+      "address" : "Jalan Kendal No. 1, Jakarta Pusat",
+      "id" : "origin",
+      "latitude" : -6.2023912,
+      "longitude" : 106.8234359,
+      "query" : "Stasiun Sudirman",
+      "resolvedName" : "Stasiun Sudirman",
+      "searchRegion" : {
+        "label" : "Jakarta",
+        "latitude" : -6.2,
+        "longitude" : 106.83,
+        "radiusMeters" : 35000
+      },
+      "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+      "title" : "Stasiun Sudirman"
+    },
+    "planningArea" : "jakarta",
+    "rainWeight" : 2,
+    "returnsToOrigin" : true,
+    "routingAdaptive" : true,
+    "routingAlgorithm" : "hybrid",
+    "routingRequestLimit" : 512,
+    "searchContext" : "Jakarta",
+    "stops" : [
+      {
+        "exposure" : "unknown",
+        "point" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "monas",
+          "latitude" : -6.1753936,
+          "longitude" : 106.827186,
+          "query" : "Monas",
+          "resolvedName" : "Monas",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Monas"
+        },
+        "role" : "visit"
+      },
+      {
+        "exposure" : "unknown",
+        "point" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "kotatua",
+          "latitude" : -6.1347997,
+          "longitude" : 106.8130414,
+          "query" : "Kota Tua",
+          "resolvedName" : "Kota Tua",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Kota Tua"
+        },
+        "role" : "visit"
+      },
+      {
+        "exposure" : "unknown",
+        "point" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "glodok",
+          "latitude" : -6.1434347,
+          "longitude" : 106.815066,
+          "query" : "Jalan Pasar Glodok Selatan",
+          "resolvedName" : "Jalan Pasar Glodok Selatan",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Jalan Pasar Glodok Selatan"
+        },
+        "role" : "visit"
+      },
+      {
+        "exposure" : "unknown",
+        "point" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "ashta",
+          "latitude" : -6.229714,
+          "longitude" : 106.807101,
+          "query" : "Ashta",
+          "resolvedName" : "Ashta",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Ashta"
+        },
+        "role" : "visit"
+      },
+      {
+        "exposure" : "unknown",
+        "point" : {
+          "address" : "Jakarta; pin dari log 4 November 2026",
+          "id" : "blokm",
+          "latitude" : -6.2445743,
+          "longitude" : 106.8006164,
+          "query" : "Blok M Square",
+          "resolvedName" : "Blok M Square",
+          "searchRegion" : {
+            "label" : "Jakarta",
+            "latitude" : -6.2,
+            "longitude" : 106.83,
+            "radiusMeters" : 35000
+          },
+          "selectionSource" : "Pin dari log pengguna 4 November 2026; periksa sebelum perjalanan",
+          "title" : "Blok M Square"
+        },
+        "role" : "visit"
+      }
+    ],
+    "timeZoneID" : "Asia\/Jakarta",
+    "transit" : false,
+    "walking" : false
+  },
+  "id" : "8404FCA6-5E54-465A-A2D5-D46682466442",
+  "revision" : 14,
+  "savedAt" : "2026-11-04T07:17:56Z",
+  "schemaVersion" : 2
+}

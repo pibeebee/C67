@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "mode": "relocated Simulator native-planner fixture regression; separate existing Jakarta UI-test storage, no live providers",
+  "simulator": "iPhone 18 Pro / iOS 27.2",
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 43516,
+    "counts": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "testCases": [
+    {
+      "suite": "NativePlannerPortabilityTests",
+      "test": "testFixtureConfirmationReportNavigationAndInvalidImport",
+      "status": "passed",
+      "durationMs": 25577
+    }
+  ]
+}

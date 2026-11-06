@@ -1,0 +1,17 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 9f805c7bfbeab05d268cefb4f754e55f4775138d6f776f79246ff983ac86d734
+error: SwiftCompile normal arm64 <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-trip-integration/Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift failed with a nonzero exit code. Command line:     cd <LOCAL_HOME>/Documents/ChatGPT/C6\ -\ Pisang\ Besar\ Balaraja/poc/c67-trip-integration/Packages
+macro expansion #require:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+macro expansion #require:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+macro expansion #require:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+macro expansion #require:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+macro expansion #require:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+macro expansion #expect:2:3: error: call can throw, but it is not marked with 'try' and the error is not handled
+    |  |   `- error: call can throw, but it is not marked with 'try' and the error is not handled
+error: Build failed
+error: fatalError

@@ -1,0 +1,766 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'visittiming': failed storing manifest for 'visittiming' in cache: attempt to write a readonly database
+Building for debugging...
+[Planning deferred tasks]
+[8 / 19] VisitTimingTests-product
+[10 / 21] VisitTimingTests-product
+[15 / 21] VisitTimingTests-product
+[17 / 21] VisitTimingTests-product
+Build complete! (1.61 sec)
+Test Suite 'All tests' started at 2026-11-05 09:12:31.433.
+Test Suite 'All tests' passed at 2026-11-05 09:12:31.434.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite ExtremeDateAndSourceTests started.
+􀟈  Suite EnvironmentContractChecks started.
+􀟈  Suite ExtremeForecastTests started.
+􀟈  Suite PublishedJakartaCases started.
+􀟈  Suite ExtremeStorageTests started.
+􀟈  Suite AcquiredForecastReplay started.
+􀟈  Test solarContradictionDoesNotEraseIndependentHourlyRain() started.
+􀟈  Test sourceExpiryBoundaryIsExact() started.
+􀟈  Test partialHourGapNullAndInvalidRainAreUnknown() started.
+􀟈  Test expiryIsExclusiveAndApplicationLifetimeIsCapped() started.
+􀟈  Test malformedAvailabilityRejected(_:) started.
+􀟈  Test coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test contradictoryForecastChronologyIsRejected() started.
+􀟈  Test alternateDateCannotBypassPastTimeGuard() started.
+􀟈  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􀟈  Test permutationOfUnambiguousHoursPreservesResults() started.
+􀟈  Test sessionOrderCannotChangeAllowedStartRanges() started.
+􀟈  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() started.
+􀟈  Test nonFiniteMeasurementsRemainSerializableAndUnknown() started.
+􀟈  Test malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() started.
+􀟈  Test omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test unpublishedBestTimeRemainsUnknown() started.
+􀟈  Test ragunanCannotStayAfterSixteen() started.
+􀟈  Test unknownVenueAndSourceRejected() started.
+􀟈  Test jakartaDateIsIndependentOfDeviceTimeZone() started.
+􀟈  Test oneMillisecondAfterStartCannotOfferPastSlot() started.
+􀟈  Test invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test noOutdoorContextInventedForLibrary() started.
+􀟈  Test jatiWeekendClosesAtFourteenThirty() started.
+􀟈  Test missingForecastDoesNotMeanZeroRain() started.
+􀟈  Test gbkWholeVisitCannotCrossMiddayClosure() started.
+􀟈  Test gbkMiddayIsOutsidePublishedSessions() started.
+􀟈  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() started.
+􀟈  Test ragunanMondayIsExplicitlyClosed() started.
+􀟈  Test actualCatalogProvenance() started.
+􀟈  Test historicalDayIsNotReconstructedFromNewSnapshot() started.
+􀟈  Test identityCollisionCannotOverwriteEarlierExperiment() started.
+􀟈  Test fridayCikiniNewEntryIsPaused() started.
+􀟈  Test twoHundredConcurrentSavesAndReadsLoseNoRuns() started.
+􀟈  Test staleFactsBlockCurrentSuggestions() started.
+􀟈  Test wrongVenueExpiredAndMissingDataAreNotReused() started.
+􀟈  Test actualGbkDaylightEndsBeforeSunset() started.
+􀟈  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: -1, end: 900) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: -9223372036854775808, end: 1440) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "duplicate" to ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 0, end: 9223372036854775807) to malformedAvailabilityRejected(_:) started.
+􀟈  Test gbkHasTwoSeparateStartRanges() started.
+􀟈  Test case passing 1 argument coordinate → (0.0, 0.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test fridayPauseIsNotVenueClosure() started.
+􀟈  Test case passing 1 argument kind → "overlap" to ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􀢄  Test contradictoryForecastChronologyIsRejected() recorded an issue at ExtremeTimingTests.swift:154:5: Expectation failed: try f.evaluate(weather: weather).environment == nil
+􀄵  try f.evaluate(weather: weather).environment == nil → <not evaluated>
+􀟈  Test case passing 1 argument range → MinuteRange(start: 900, end: 900) to malformedAvailabilityRejected(_:) started.
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (0.0, 0.0) at ExtremeTimingTests.swift:146:5: Expectation failed: run.environment == nil
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: 0.0, longitude: 0.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: 0.0, longitude: 0.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:57:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815536666.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "gbk"
+􀄵        latitude → 0.0
+􀄵        longitude → 0.0
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (0.0, 0.0) at ExtremeTimingTests.swift:147:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀟈  Test storageKeepsUnreadableFileAndRestoresValidRuns() started.
+􀟈  Test actualRagunanSunsetCannotFitBeforeSixteen() started.
+􀟈  Test macanClosureNoticeOverridesRegularTable() started.
+􀟈  Test case passing 1 argument coordinate → (91.0, 106.8) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀢄  Test solarContradictionDoesNotEraseIndependentHourlyRain() recorded an issue at ExtremeTimingTests.swift:172:5: Expectation failed: solar.status == "context_unavailable"
+􀄵  solar.status == "context_unavailable" → false
+􀄵    solar.status → "context_ranked"
+􀟈  Test case passing 1 argument range → MinuteRange(start: 901, end: 900) to malformedAvailabilityRejected(_:) started.
+􀢄  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() recorded an issue at ExtremeTimingTests.swift:194:7: Expectation failed: run.environment == nil
+􀄵  Invalid weather must not appear as current context on early returns.
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "macan", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "macan", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "macan"
+􀄵        latitude → -6.219204
+􀄵        longitude → 106.804564
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀟈  Test invalidCalendarDateRejected() started.
+􀟈  Test fridayCheckinResumesAtThirteen() started.
+􀟈  Test actualGbkRainOptionsStayInPublishedSessions() started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 0, end: 1441) to malformedAvailabilityRejected(_:) started.
+􀢄  Test expiryIsExclusiveAndApplicationLifetimeIsCapped() recorded an issue at ExtremeTimingTests.swift:164:5: Expectation failed: value.validUntil <= value.fetchedAt.addingTimeInterval(900)
+􀄵  value.validUntil <= value.fetchedAt.addingTimeInterval(900) → false
+􀄵    value.validUntil → 2026-11-06 01:42:46 +0000
+􀄵      timeIntervalSinceReferenceDate → 815622166.0
+􀄵    value.fetchedAt.addingTimeInterval(900) → 2026-11-05 01:57:46 +0000
+􀄵      timeIntervalSinceReferenceDate → 815536666.0
+􀟈  Test actualGbkSunsetPreferenceFitsClosingTime() started.
+􀟈  Test case passing 1 argument coordinate → (-6.2, 181.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀢄  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) recorded an issue with 1 argument kind → "duplicate" at ExtremeTimingTests.swift:127:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀢄  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) recorded an issue with 1 argument kind → "duplicate" at ExtremeTimingTests.swift:128:5: Expectation failed: run.options.isEmpty
+􀄵  run.options.isEmpty → false
+􀄵    run.options → [VisitTiming.VisitOption(start: 2026-11-05 10:00:00 +0000, end: 2026-11-05 11:00:00 +0000, maxRainChance: Optional(0.88), maxTemperatureC: Optional(31.4), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan."), VisitTiming.VisitOption(start: 2026-11-05 09:00:00 +0000, end: 2026-11-05 10:00:00 +0000, maxRainChance: Optional(0.94), maxTemperatureC: Optional(32.0), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan."), VisitTiming.VisitOption(start: 2026-11-05 08:00:00 +0000, end: 2026-11-05 09:00:00 +0000, maxRainChance: Optional(0.98), maxTemperatureC: Optional(33.6), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.")]
+􀄵    isEmpty → false
+􀟈  Test case passing 1 argument duration → -9223372036854775808 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument coordinate → (-6.2, -73.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀢄  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) recorded an issue with 1 argument kind → "overlap" at ExtremeTimingTests.swift:127:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀢄  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) recorded an issue with 1 argument kind → "overlap" at ExtremeTimingTests.swift:128:5: Expectation failed: run.options.isEmpty
+􀄵  run.options.isEmpty → false
+􀄵    run.options → [VisitTiming.VisitOption(start: 2026-11-05 10:00:00 +0000, end: 2026-11-05 11:00:00 +0000, maxRainChance: Optional(0.88), maxTemperatureC: Optional(31.4), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan."), VisitTiming.VisitOption(start: 2026-11-05 09:00:00 +0000, end: 2026-11-05 10:00:00 +0000, maxRainChance: Optional(0.94), maxTemperatureC: Optional(33.6), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan."), VisitTiming.VisitOption(start: 2026-11-05 08:00:00 +0000, end: 2026-11-05 09:00:00 +0000, maxRainChance: Optional(0.98), maxTemperatureC: Optional(33.6), reason: "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.")]
+􀄵    isEmpty → false
+􀢄  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() recorded an issue at ExtremeTimingTests.swift:194:7: Expectation failed: run.environment == nil
+􀄵  Invalid weather must not appear as current context on early returns.
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "koja", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "koja", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "koja"
+􀄵        latitude → -6.219204
+􀄵        longitude → 106.804564
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀢄  Test nonFiniteMeasurementsRemainSerializableAndUnknown() recorded an issue at ExtremeTimingTests.swift:183:5: Expectation failed: an error was thrown when none was expected: "EncodingError.invalidValue: nan (Double). Path: environment.hours[0].temperatureC. Debug description: Unable to encode Double.nan directly in JSON."
+􀄵  Never.self → <not evaluated>
+􀄵    Never → <not evaluated>
+􀄵    self → <not evaluated>
+􀢄  Test alternateDateCannotBypassPastTimeGuard() recorded an issue at ExtremeTimingTests.swift:44:5: Expectation failed: an error was expected but none was thrown and "TimingRun(schemaVersion: 1, id: A0CE7EED-F8F9-4102-A20D-B1AC7B2DCDAB, createdAt: 2026-11-05 13:00:00 +0000, policyVersion: "visit-time-v1", catalogID: "jakarta-official-2026-11-05-v1", request: VisitTiming.TimingRequest(venueID: "gbk", date: "2026-11-+5", available: VisitTiming.MinuteRange(start: 360, end: 1080), durationMinutes: 60, goal: VisitTiming.TimingGoal.openingOnly), venue: VisitTiming.VenueFacts(id: "gbk", name: "Hutan Kota GBK", address: "Pintu 7 Senayan, Gelora, Jakarta Pusat", query: "Hutan Kota GBK, Jakarta", timeZone: "Asia/Jakarta", sourceIDs: ["gbk"], schedule: [VisitTiming.DaySchedule(weekday: 1, sessions: [], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 2, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 3, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 4, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 5, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 6, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: []), VisitTiming.DaySchedule(weekday: 7, sessions: [VisitTiming.MinuteRange(start: 360, end: 600), VisitTiming.MinuteRange(start: 900, end: 1080)], lastEntry: nil, entryPauses: [])], exposure: "outdoor", exposureSourceID: Optional("gbk"), notice: nil, noticeSourceID: nil, suspended: false, unknowns: ["perubahan khusus tanggal dan hari libur", "kapasitas/slot tersedia", "durasi kunjungan yang cocok", "keramaian", "fasilitas dan izin aktivitas spesifik"]), sources: [VisitTiming.FactSource(id: "gbk", title: "Pemkot Jakarta Pusat — Hutan Kota GBK", url: https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota, checkedAt: 2026-11-05 01:34:16 +0000, method: "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual", note: "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3")], environment: nil, status: "regular_hours_options", options: [VisitTiming.VisitOption(start: 2026-11-04 23:00:00 +0000, end: 2026-11-05 00:00:00 +0000, maxRainChance: nil, maxTemperatureC: nil, reason: "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik."), VisitTiming.VisitOption(start: 2026-11-05 00:00:00 +0000, end: 2026-11-05 01:00:00 +0000, maxRainChance: nil, maxTemperatureC: nil, reason: "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik."), VisitTiming.VisitOption(start: 2026-11-05 01:00:00 +0000, end: 2026-11-05 02:00:00 +0000, maxRainChance: nil, maxTemperatureC: nil, reason: "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.")], validStartRanges: [VisitTiming.MinuteRange(start: 360, end: 540), VisitTiming.MinuteRange(start: 900, end: 1020)], warnings: ["Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.", "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.", "Prakiraan kedaluwarsa/tidak sesuai tempat atau tanggal; tidak dipakai untuk membandingkan waktu."], elapsedSeconds: 0.0, routingPerformed: false)" was returned
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument venue → "tanjung-duren" to omittedWeekendHoursRemainUnknown(_:) started.
+􀢄  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() recorded an issue at ExtremeTimingTests.swift:194:7: Expectation failed: run.environment == nil
+􀄵  Invalid weather must not appear as current context on early returns.
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "ragunan", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:42:46 +0000, date: "2026-11-05", venueID: "ragunan", latitude: -6.219204, longitude: 106.804564, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "ragunan"
+􀄵        latitude → -6.219204
+􀄵        longitude → 106.804564
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀟈  Test case passing 1 argument text → "2026--11-5" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀢄  Test nonCanonicalOrImpossibleDatesRejected(_:) recorded an issue with 1 argument text → "2026--11-5" at ExtremeTimingTests.swift:39:5: Expectation failed: an error was expected but none was thrown and "2026-11-04 17:00:00 +0000" was returned
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument duration → -15 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument venue → "gandaria" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument text → "2026-11-+5" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀢄  Test nonCanonicalOrImpossibleDatesRejected(_:) recorded an issue with 1 argument text → "2026-11-+5" at ExtremeTimingTests.swift:39:5: Expectation failed: an error was expected but none was thrown and "2026-11-04 17:00:00 +0000" was returned
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument duration → 0 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument venue → "koja" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument text → "2026-1-005" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀢄  Test nonCanonicalOrImpossibleDatesRejected(_:) recorded an issue with 1 argument text → "2026-1-005" at ExtremeTimingTests.swift:39:5: Expectation failed: an error was expected but none was thrown and "2026-01-04 17:00:00 +0000" was returned
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument text → "2026-11-05
+" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument duration → 1 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument text → "２０２６-１１-０５" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-02-29" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument duration → 14 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument text → "2026-04-31" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (91.0, 106.8) at ExtremeTimingTests.swift:146:5: Expectation failed: run.environment == nil
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: 91.0, longitude: 106.8, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: 91.0, longitude: 106.8, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:57:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815536666.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "gbk"
+􀄵        latitude → 91.0
+􀄵        longitude → 106.8
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (91.0, 106.8) at ExtremeTimingTests.swift:147:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀟈  Test case passing 1 argument text → "2026-00-05" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument duration → 16 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument kind → "unlinked-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (-6.2, -73.0) at ExtremeTimingTests.swift:146:5: Expectation failed: run.environment == nil
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: -6.2, longitude: -73.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: -6.2, longitude: -73.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:57:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815536666.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "gbk"
+􀄵        latitude → -6.2
+􀄵        longitude → -73.0
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "unlinked-exposure" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (-6.2, -73.0) at ExtremeTimingTests.swift:147:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀟈  Test case passing 1 argument duration → 359 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 361 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (-6.2, 181.0) at ExtremeTimingTests.swift:146:5: Expectation failed: run.environment == nil
+􀄵  run.environment == nil → false
+􀄵    run.environment → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: -6.2, longitude: 181.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵      some → TimingEnvironment(provider: "Open-Meteo live", fetchedAt: 2026-11-05 01:42:46 +0000, validUntil: 2026-11-05 01:57:46 +0000, date: "2026-11-05", venueID: "gbk", latitude: -6.2, longitude: 181.0, locationName: "Hutan Kota GBK", locationSource: "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification", hours: [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))], sunrise: Optional(2026-11-04 22:26:03 +0000), sunset: Optional(2026-11-05 10:47:02 +0000), attributionURL: https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius, attribution: "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/", errors: [])
+􀄵        provider → "Open-Meteo live"
+􀄵        fetchedAt → 2026-11-05 01:42:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815535766.0
+􀄵        validUntil → 2026-11-05 01:57:46 +0000
+􀄵          timeIntervalSinceReferenceDate → 815536666.0
+􀄵        date → "2026-11-05"
+􀄵        venueID → "gbk"
+􀄵        latitude → -6.2
+􀄵        longitude → 181.0
+􀄵        locationName → "Hutan Kota GBK"
+􀄵        locationSource → "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification"
+􀄵        hours → [VisitTiming.TimingHour(start: 2026-11-04 17:00:00 +0000, rainChance: Optional(0.08), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 18:00:00 +0000, rainChance: Optional(0.1), temperatureC: Optional(26.9)), VisitTiming.TimingHour(start: 2026-11-04 19:00:00 +0000, rainChance: Optional(0.07), temperatureC: Optional(26.7)), VisitTiming.TimingHour(start: 2026-11-04 20:00:00 +0000, rainChance: Optional(0.03), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-04 21:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.4)), VisitTiming.TimingHour(start: 2026-11-04 22:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.2)), VisitTiming.TimingHour(start: 2026-11-04 23:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(26.6)), VisitTiming.TimingHour(start: 2026-11-05 00:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(28.2)), VisitTiming.TimingHour(start: 2026-11-05 01:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(30.5)), VisitTiming.TimingHour(start: 2026-11-05 02:00:00 +0000, rainChance: Optional(0.0), temperatureC: Optional(32.6)), VisitTiming.TimingHour(start: 2026-11-05 03:00:00 +0000, rainChance: Optional(0.02), temperatureC: Optional(34.4)), VisitTiming.TimingHour(start: 2026-11-05 04:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(35.9)), VisitTiming.TimingHour(start: 2026-11-05 05:00:00 +0000, rainChance: Optional(0.64), temperatureC: Optional(34.5)), VisitTiming.TimingHour(start: 2026-11-05 06:00:00 +0000, rainChance: Optional(0.9), temperatureC: Optional(33.0)), VisitTiming.TimingHour(start: 2026-11-05 07:00:00 +0000, rainChance: Optional(0.99), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 08:00:00 +0000, rainChance: Optional(0.98), temperatureC: Optional(33.6)), VisitTiming.TimingHour(start: 2026-11-05 09:00:00 +0000, rainChance: Optional(0.94), temperatureC: Optional(32.0)), VisitTiming.TimingHour(start: 2026-11-05 10:00:00 +0000, rainChance: Optional(0.88), temperatureC: Optional(31.4)), VisitTiming.TimingHour(start: 2026-11-05 11:00:00 +0000, rainChance: Optional(0.79), temperatureC: Optional(30.2)), VisitTiming.TimingHour(start: 2026-11-05 12:00:00 +0000, rainChance: Optional(0.67), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 13:00:00 +0000, rainChance: Optional(0.49), temperatureC: Optional(30.0)), VisitTiming.TimingHour(start: 2026-11-05 14:00:00 +0000, rainChance: Optional(0.28), temperatureC: Optional(29.6)), VisitTiming.TimingHour(start: 2026-11-05 15:00:00 +0000, rainChance: Optional(0.14), temperatureC: Optional(29.1)), VisitTiming.TimingHour(start: 2026-11-05 16:00:00 +0000, rainChance: Optional(0.13), temperatureC: Optional(28.7))]
+􀄵        sunrise → 2026-11-04 22:26:03 +0000
+􀄵          some → 2026-11-04 22:26:03 +0000
+􀄵            timeIntervalSinceReferenceDate → 815523963.0
+􀄵        sunset → 2026-11-05 10:47:02 +0000
+􀄵          some → 2026-11-05 10:47:02 +0000
+􀄵            timeIntervalSinceReferenceDate → 815568422.0
+􀄵        attributionURL → https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius
+􀄵          _url → Foundation._SwiftURL
+􀄵            _parseInfo → Foundation.URLParseInfo
+􀄵              urlString → "https://api.open-meteo.com/v1/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia/Jakarta&timeformat=unixtime&temperature_unit=celsius"
+􀄵              schemeRange → 0[utf8] ..< 5[utf8]
+􀄵                some → 0[utf8] ..< 5[utf8]
+􀄵                  lowerBound → 0[utf8]
+􀄵                    _rawBits → 4
+􀄵                  upperBound → 5[utf8]
+􀄵                    _rawBits → 327684
+􀄵              userRange → nil
+􀄵              passwordRange → nil
+􀄵              hostRange → 8[utf8] ..< 26[utf8]
+􀄵                some → 8[utf8] ..< 26[utf8]
+􀄵                  lowerBound → 8[utf8]
+􀄵                    _rawBits → 524292
+􀄵                  upperBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵              portRange → nil
+􀄵              pathRange → 26[utf8] ..< 38[utf8]
+􀄵                some → 26[utf8] ..< 38[utf8]
+􀄵                  lowerBound → 26[utf8]
+􀄵                    _rawBits → 1703940
+􀄵                  upperBound → 38[utf8]
+􀄵                    _rawBits → 2490372
+􀄵              queryRange → 39[utf8] ..< 256[utf8]
+􀄵                some → 39[utf8] ..< 256[utf8]
+􀄵                  lowerBound → 39[utf8]
+􀄵                    _rawBits → 2555908
+􀄵                  upperBound → 256[utf8]
+􀄵                    _rawBits → 16777220
+􀄵              fragmentRange → nil
+􀄵              isIPLiteral → false
+􀄵              didPercentEncodeHost → false
+􀄵              pathHasFileID → false
+􀄵              encodedComponents → EncodedComponentSet(rawValue: 0)
+􀄵                rawValue → 0
+􀄵            _baseURL → nil
+􀄵            _encoding → Unicode (UTF-8)
+􀄵              rawValue → 4
+􀄵            _isCanonicalFileURL → false
+􀄵            _nsurlLock → ()
+􀄵        attribution → "Weather data by Open-Meteo (CC BY 4.0); https://open-meteo.com/"
+􀄵        errors → []
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) recorded an issue with 1 argument coordinate → (-6.2, 181.0) at ExtremeTimingTests.swift:147:5: Expectation failed: run.status == "context_unavailable"
+􀄵  run.status == "context_unavailable" → false
+􀄵    run.status → "context_ranked"
+􀟈  Test case passing 1 argument kind → "missing-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "missing-exposure" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument kind → "unlinked-notice" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument duration → 9223372036854775807 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "unlinked-notice" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument kind → "empty-notice" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "closed-with-admission" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "empty-id" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "invalid-url" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "empty-notice" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument kind → "unknown-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "closed-with-admission" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "invalid-url" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) recorded an issue with 1 argument kind → "unknown-exposure" at ExtremeTimingTests.swift:93:5: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀄵    (any Error) → <not evaluated>
+􀄵    self → <not evaluated>
+􀟈  Test case passing 1 argument kind → "schema" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀢄  Test sessionOrderCannotChangeAllowedStartRanges() recorded an issue at ExtremeTimingTests.swift:112:5: Expectation failed: actual.validStartRanges == expected.validStartRanges
+􀄵  actual.validStartRanges == expected.validStartRanges → false
+􀄵    actual.validStartRanges → [VisitTiming.MinuteRange(start: 900, end: 1020), VisitTiming.MinuteRange(start: 360, end: 540)]
+􀄵    expected.validStartRanges → [VisitTiming.MinuteRange(start: 360, end: 540), VisitTiming.MinuteRange(start: 900, end: 1020)]
+􀟈  Test case passing 1 argument kind → "policy" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test case passing 1 argument kind → "reference" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀢄  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() recorded an issue at ExtremeTimingTests.swift:137:5: Expectation failed: run.options.first?.maxRainChance == 0.25
+􀄵  run.options.first?.maxRainChance == 0.25 → false
+􀄵    run.options.first?.maxRainChance → 0.2501
+􀄵      some → 0.2501
+􀄵      some → 0.25
+􀢄  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() recorded an issue at ExtremeTimingTests.swift:138:5: Expectation failed: run.options.map { $0.maxRainChance! } == run.options.map { $0.maxRainChance! }.sorted()
+􀄵  run.options.map { $0.maxRainChance! } == run.options.map { $0.maxRainChance! }.sorted() → false
+􀄵    run.options.map { $0.maxRainChance! } → [0.2501, 0.25, 0.25]
+􀄵    run.options.map { $0.maxRainChance! }.sorted() → [0.25, 0.25, 0.2501]
+􀟈  Test case passing 1 argument kind → "option" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀢄  Test identityCollisionCannotOverwriteEarlierExperiment() recorded an issue at ExtremeTimingTests.swift:243:11: Expectation failed: an error was expected but none was thrown
+􀄵  (any Error).self → <not evaluated>
+􀢄  Test identityCollisionCannotOverwriteEarlierExperiment() recorded an issue at ExtremeTimingTests.swift:244:5: Expectation failed: try Data(contentsOf: file) == before
+􀄵  try Data(contentsOf: file) == before → <not evaluated>
+􀟈  Test case passing 1 argument kind → "identity" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􁁛  Test partialHourGapNullAndInvalidRainAreUnknown() passed after 0.052 seconds.
+􁁛  Test malformedAvailabilityRejected(_:) with 6 test cases passed after 0.052 seconds.
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "schema" at ExtremeTimingTests.swift:228:5: Expectation failed: result.runs.count == 1 && result.unreadable == 1
+􀄵  result.runs.count == 1 && result.unreadable == 1 → false
+􀄵    result.runs.count == 1 → false
+􀄵    result.unreadable == 1 → <not evaluated>
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "policy" at ExtremeTimingTests.swift:228:5: Expectation failed: result.runs.count == 1 && result.unreadable == 1
+􀄵  result.runs.count == 1 && result.unreadable == 1 → false
+􀄵    result.runs.count == 1 → false
+􀄵    result.unreadable == 1 → <not evaluated>
+􀢄  Test contradictoryForecastChronologyIsRejected() failed after 0.061 seconds with 1 issue.
+􀢄  Test coordinatesOutsideJakartaAreRejected(_:) with 4 test cases failed after 0.061 seconds with 8 issues.
+􁁛  Test sourceExpiryBoundaryIsExact() passed after 0.061 seconds.
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "reference" at ExtremeTimingTests.swift:228:5: Expectation failed: result.runs.count == 1 && result.unreadable == 1
+􀄵  result.runs.count == 1 && result.unreadable == 1 → false
+􀄵    result.runs.count == 1 → false
+􀄵    result.unreadable == 1 → <not evaluated>
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "option" at ExtremeTimingTests.swift:228:5: Expectation failed: result.runs.count == 1 && result.unreadable == 1
+􀄵  result.runs.count == 1 && result.unreadable == 1 → false
+􀄵    result.runs.count == 1 → false
+􀄵    result.unreadable == 1 → <not evaluated>
+􁁛  Test permutationOfUnambiguousHoursPreservesResults() passed after 0.066 seconds.
+􀢄  Test expiryIsExclusiveAndApplicationLifetimeIsCapped() failed after 0.067 seconds with 1 issue.
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "identity" at ExtremeTimingTests.swift:228:5: Expectation failed: result.runs.count == 1 && result.unreadable == 1
+􀄵  result.runs.count == 1 && result.unreadable == 1 → false
+􀄵    result.runs.count == 1 → false
+􀄵    result.unreadable == 1 → <not evaluated>
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) recorded an issue with 1 argument kind → "identity" at ExtremeTimingTests.swift:229:5: Expectation failed: result.runs.first?.id == valid.id
+􀄵  result.runs.first?.id == valid.id → false
+􀄵    result.runs.first?.id → C85C86F3-472D-4475-9D3B-31EC5849CC62
+􀄵      some → C85C86F3-472D-4475-9D3B-31EC5849CC62
+􀄵    valid.id → D8FE8890-020F-4C4B-BF13-9D7186722053
+􀢄  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) with 2 test cases failed after 0.068 seconds with 4 issues.
+􀢄  Test nonFiniteMeasurementsRemainSerializableAndUnknown() failed after 0.068 seconds with 1 issue.
+􁁛  Test malformedDurationsRejectedWithoutOverflow(_:) with 9 test cases passed after 0.068 seconds.
+􀢄  Test alternateDateCannotBypassPastTimeGuard() failed after 0.068 seconds with 1 issue.
+􀢄  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() failed after 0.068 seconds with 3 issues.
+􀢄  Test nonCanonicalOrImpossibleDatesRejected(_:) with 8 test cases failed after 0.068 seconds with 3 issues.
+􁁛  Test ragunanCannotStayAfterSixteen() passed after 0.068 seconds.
+􁁛  Test omittedWeekendHoursRemainUnknown(_:) with 3 test cases passed after 0.068 seconds.
+􁁛  Test unknownVenueAndSourceRejected() passed after 0.068 seconds.
+􀢄  Test solarContradictionDoesNotEraseIndependentHourlyRain() failed after 0.068 seconds with 1 issue.
+􁁛  Test jakartaDateIsIndependentOfDeviceTimeZone() passed after 0.068 seconds.
+􁁛  Test jatiWeekendClosesAtFourteenThirty() passed after 0.068 seconds.
+􀢄  Test invalidProvenanceAndContradictoryRulesRejected(_:) with 8 test cases failed after 0.068 seconds with 7 issues.
+􁁛  Test gbkMiddayIsOutsidePublishedSessions() passed after 0.068 seconds.
+􁁛  Test ragunanMondayIsExplicitlyClosed() passed after 0.068 seconds.
+􁁛  Test oneMillisecondAfterStartCannotOfferPastSlot() passed after 0.068 seconds.
+􁁛  Test gbkWholeVisitCannotCrossMiddayClosure() passed after 0.068 seconds.
+􁁛  Test actualCatalogProvenance() passed after 0.068 seconds.
+􁁛  Test historicalDayIsNotReconstructedFromNewSnapshot() passed after 0.068 seconds.
+􁁛  Test fridayCikiniNewEntryIsPaused() passed after 0.068 seconds.
+􁁛  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() passed after 0.068 seconds.
+􁁛  Test staleFactsBlockCurrentSuggestions() passed after 0.068 seconds.
+􀢄  Test sessionOrderCannotChangeAllowedStartRanges() failed after 0.068 seconds with 1 issue.
+􀢄  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() failed after 0.068 seconds with 2 issues.
+􀢄  Test identityCollisionCannotOverwriteEarlierExperiment() failed after 0.068 seconds with 2 issues.
+􁁛  Test missingForecastDoesNotMeanZeroRain() passed after 0.068 seconds.
+􀢄  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) with 5 test cases failed after 0.068 seconds with 6 issues.
+􁁛  Test fridayPauseIsNotVenueClosure() passed after 0.058 seconds.
+􁁛  Test macanClosureNoticeOverridesRegularTable() passed after 0.045 seconds.
+􁁛  Test invalidCalendarDateRejected() passed after 0.043 seconds.
+􁁛  Test unpublishedBestTimeRemainsUnknown() passed after 0.068 seconds.
+􁁛  Test fridayCheckinResumesAtThirteen() passed after 0.043 seconds.
+􁁛  Suite EnvironmentContractChecks passed after 0.068 seconds.
+􀢄  Suite ExtremeDateAndSourceTests failed after 0.068 seconds with 12 issues.
+􀢄  Suite ExtremeForecastTests failed after 0.068 seconds with 21 issues.
+􁁛  Test gbkHasTwoSeparateStartRanges() passed after 0.060 seconds.
+􁁛  Test noOutdoorContextInventedForLibrary() passed after 0.069 seconds.
+􁁛  Test actualGbkDaylightEndsBeforeSunset() passed after 0.074 seconds.
+􁁛  Test actualGbkRainOptionsStayInPublishedSessions() passed after 0.054 seconds.
+􁁛  Test storageKeepsUnreadableFileAndRestoresValidRuns() passed after 0.057 seconds.
+􁁛  Suite PublishedJakartaCases passed after 0.080 seconds.
+􁁛  Test actualGbkSunsetPreferenceFitsClosingTime() passed after 0.055 seconds.
+􁁛  Test wrongVenueExpiredAndMissingDataAreNotReused() passed after 0.081 seconds.
+􁁛  Test actualRagunanSunsetCannotFitBeforeSixteen() passed after 0.060 seconds.
+􁁛  Suite AcquiredForecastReplay passed after 0.083 seconds.
+􁁛  Test twoHundredConcurrentSavesAndReadsLoseNoRuns() passed after 0.402 seconds.
+􀢄  Suite ExtremeStorageTests failed after 0.403 seconds with 8 issues.
+􀢄  Test run with 48 tests in 6 suites failed after 0.403 seconds with 41 issues.
+Note: Some test targets reported failures:
+  - VisitTimingTests (Swift Testing)

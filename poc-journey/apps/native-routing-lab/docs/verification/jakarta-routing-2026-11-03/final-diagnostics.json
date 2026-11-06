@@ -1,0 +1,186 @@
+[
+  {
+    "at": "2026-11-03T06:39:23Z",
+    "category": "input",
+    "event": "input.snapshot",
+    "fields": {
+      "json": "{\"automobile\":true,\"defaultDwell\":30,\"departure\":\"2026-11-05T00:00:00Z\",\"end\":{\"id\":\"end\",\"query\":\"\",\"title\":\"Titik akhir\"},\"extraWeatherMinutes\":15,\"maximumWalkingMinutes\":45,\"origin\":{\"address\":\"Jalan Kendal No. 1, Kota Administrasi Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310, Indonesia\",\"id\":\"origin\",\"latitude\":-6.2023912,\"longitude\":106.8234359,\"query\":\"Stasiun sudirman\",\"resolvedName\":\"Stasiun Sudirman\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Stasiun sudirman\"},\"rainWeight\":2,\"returnsToOrigin\":true,\"searchContext\":\"Jakarta, Indonesia\",\"stops\":[{\"exposure\":\"unknown\",\"point\":{\"address\":\"Gambir\\nCentral Jakarta\\nJakarta 10110\\nIndonesia\",\"id\":\"0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE\",\"latitude\":-6.1753936,\"longitude\":106.827186,\"query\":\"Monas\",\"resolvedName\":\"National Monument\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"National Monument\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"point\":{\"address\":\"Jl MH Thamrin No. 1\\nKebon Melati, Tanah Abang, Central Jakarta\\n Jakarta 10310\\nIndonesia\",\"id\":\"E32284F7-2A9E-4739-9991-4A086BB990DF\",\"latitude\":-6.1951799,\"longitude\":106.8196893,\"query\":\"Grand Indonesia\",\"resolvedName\":\"Grand Indonesia\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Grand Indonesia\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"point\":{\"address\":\"Jl. Bulevar Kelapa Gading Blok M, Jakarta Utara, Jakarta 14240, Indonesia\",\"id\":\"106E65CA-64AA-4292-9D96-DED708AF9D94\",\"latitude\":-6.1573955,\"longitude\":106.9084284,\"query\":\"Summarecon Kelapa Gading\",\"resolvedName\":\"Summarecon Mall Kelapa Gading\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Summarecon Mall Kelapa Gading\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"point\":{\"address\":\"Jalan Kali Besar Timur No. 10, West Jakarta, Jakarta 11270, Indonesia\",\"id\":\"BF2C3EFA-9309-4E4D-A550-2DE23C235AFC\",\"latitude\":-6.1347997,\"longitude\":106.8130414,\"query\":\"Kota Tua Jakarta\",\"resolvedName\":\"Kota Tua\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Kota Tua\"},\"role\":\"visit\"}],\"timeZoneID\":\"Asia\\/Jakarta\",\"transit\":true,\"walking\":true}"
+    },
+    "id": "A14AB60C-0C0B-4560-9571-AF7D3DCCACAC",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 5,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:39:24Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "1.2819429636001587",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn\u2019t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "origin",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T06:39:24Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "608182EA-E5D4-4803-BF30-375CFBF729AC",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 10,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:39:25Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.1791590452194214",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn\u2019t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T06:39:25Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "BF1B3000-9FD0-4BC7-ACA7-66A92055EB77",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 14,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:39:25Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "hourCount": "17",
+      "pointID": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "provider": "open_meteo",
+      "source": "cache",
+      "status": "available"
+    },
+    "id": "43FE02FD-1ACB-47FF-8881-753AEED6D90D",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 15,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:39:25Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.1852860450744629",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn\u2019t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T06:39:25Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "23CB82C8-CC9A-4BF8-8269-079ADCA5F809",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 19,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:39:25Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.18172693252563477",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn\u2019t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T06:39:25Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "171CB62A-3C4D-41EA-A546-2FE6D3B59781",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 23,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:40:36Z",
+    "category": "optimizer",
+    "event": "routing.coverage",
+    "fields": {
+      "json": "{\"availablePairs\":20,\"blockedPairs\":[],\"modes\":[{\"available\":20,\"mode\":\"automobile\",\"sampled\":20,\"statuses\":{\"available\":20}},{\"available\":0,\"mode\":\"transit\",\"sampled\":20,\"statuses\":{\"unavailable\":20}},{\"available\":4,\"mode\":\"walking\",\"sampled\":20,\"statuses\":{\"available\":4,\"excluded_by_walking_limit\":16}}],\"requiredPairs\":20,\"unsampledPairs\":0}"
+    },
+    "id": "123340FD-54E7-45CD-B8EA-3897B4419352",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 244,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:40:36Z",
+    "category": "optimizer",
+    "event": "routing.snapshot",
+    "fields": {
+      "availableArcs": "24",
+      "kind": "mapkit_static_snapshot",
+      "nodes": "5",
+      "problemID": "858AFB30-D63D-4283-ABBE-E264602A5A45",
+      "requests": "60",
+      "requiredPairs": "20",
+      "sampledArcs": "60",
+      "sampledPairs": "20"
+    },
+    "id": "C351270A-B14F-4CF3-B34E-AFBFA255A81C",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 245,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:40:36Z",
+    "category": "optimizer",
+    "event": "routing.comparison_started",
+    "fields": {
+      "acquisitionSeconds": "73.35923790931702",
+      "kind": "mapkit_static_snapshot",
+      "problemID": "858AFB30-D63D-4283-ABBE-E264602A5A45",
+      "requests": "60"
+    },
+    "id": "F94D5D8A-FB68-4CF3-A405-D0C163ED6A89",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 246,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  },
+  {
+    "at": "2026-11-03T06:40:37Z",
+    "category": "optimizer",
+    "event": "routing.comparison_saved",
+    "fields": {},
+    "id": "A00FB6B9-9F20-4C94-8448-2B54B6325E6B",
+    "level": "info",
+    "operationID": "837327D3-3643-487B-BB44-8C8E291AF883",
+    "schemaVersion": 1,
+    "sequence": 253,
+    "sessionID": "61CA8EA8-ECEC-4641-BB5F-EE9A156832E7"
+  }
+]

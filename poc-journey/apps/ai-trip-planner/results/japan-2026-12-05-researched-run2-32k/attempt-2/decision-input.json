@@ -1,0 +1,2993 @@
+{
+  "input": {
+    "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+    "date": "2026-12-05",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "E03",
+        "locationId": "komachi",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "E04",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "optional": false
+      },
+      {
+        "id": "E05",
+        "locationId": "kamakura_meal",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "optional": false
+      },
+      {
+        "id": "E07",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "E09",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "optional": false
+      },
+      {
+        "id": "E11",
+        "locationId": "kokomae",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "optional": false
+      },
+      {
+        "id": "E13",
+        "locationId": "enoshima_station",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "E15",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "E16",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "optional": false
+      },
+      {
+        "id": "E17",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "locationId": "sea_candle",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "E19",
+        "locationId": "sea_candle",
+        "label": "Menyaksikan Illumination",
+        "optional": false
+      },
+      {
+        "id": "E20",
+        "locationId": "enoshima_dinner",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "optional": false
+      },
+      {
+        "id": "E22",
+        "locationId": "fujisawa_station",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      }
+    ],
+    "requiredWalk": {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+    },
+    "transportContext": [
+      "Kereta dan jalan kaki, mengikuti daftar semula.",
+      "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+    ],
+    "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan.",
+    "requiredTransit": [
+      {
+        "from": "funabashi_station",
+        "to": "kamakura_station"
+      },
+      {
+        "from": "kamakura_station",
+        "to": "inamura_station"
+      },
+      {
+        "from": "inamura_station",
+        "to": "shichiri_station"
+      },
+      {
+        "from": "kokomae",
+        "to": "enoshima_station"
+      },
+      {
+        "from": "katase_station",
+        "to": "fujisawa_station"
+      },
+      {
+        "from": "fujisawa_station",
+        "to": "funabashi_station"
+      }
+    ]
+  },
+  "context": {
+    "checkedAt": "2026-11-02",
+    "locations": {
+      "funabashi_station": {
+        "name": "JR Funabashi Station",
+        "address": "JR船橋駅 千葉県船橋市",
+        "area": "funabashi",
+        "precision": "named_place"
+      },
+      "kamakura_station": {
+        "name": "Kamakura Station",
+        "address": "鎌倉駅 神奈川県鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "komachi": {
+        "name": "Komachi Street",
+        "address": "小町通り 鎌倉市",
+        "area": "kamakura",
+        "precision": "street_area"
+      },
+      "hachimangu": {
+        "name": "Tsurugaoka Hachimangu",
+        "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "kamakura_meal": {
+        "name": "Makan siang di area Kamakura",
+        "address": null,
+        "area": "kamakura",
+        "precision": "unknown"
+      },
+      "inamura_station": {
+        "name": "Inamuragasaki Station",
+        "address": "稲村ヶ崎駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "inamura_park": {
+        "name": "Kamakura Seaside Park, Inamuragasaki",
+        "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "area": "kamakura",
+        "precision": "park_area"
+      },
+      "shichiri_beach": {
+        "name": "Shichirigahama Beach, area depan sekolah belum dipatok",
+        "address": "七里ヶ浜海岸 鎌倉市",
+        "area": "kamakura",
+        "precision": "beach_area"
+      },
+      "kokomae": {
+        "name": "Kamakurakokomae Station",
+        "address": "鎌倉高校前駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "enoshima_station": {
+        "name": "Enoden Enoshima Station; toko suvenir belum dipilih",
+        "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "area": "enoshima",
+        "precision": "station_area"
+      },
+      "tourist_center": {
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "bridge": {
+        "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+        "address": "江の島大橋 藤沢市",
+        "area": "enoshima",
+        "precision": "bridge_area"
+      },
+      "oiwayamichi": {
+        "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+        "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "area": "enoshima",
+        "precision": "street_reference_point"
+      },
+      "sea_candle": {
+        "name": "Enoshima Sea Candle",
+        "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "enoshima_dinner": {
+        "name": "Turun pulau dan makan malam di Enoshima",
+        "address": null,
+        "area": "enoshima",
+        "precision": "unknown"
+      },
+      "katase_station": {
+        "name": "Katase-Enoshima Station",
+        "address": "片瀬江ノ島駅 藤沢市",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "fujisawa_station": {
+        "name": "Fujisawa Station; clock tower belum dipatok",
+        "address": "藤沢駅 神奈川県藤沢市",
+        "area": "fujisawa",
+        "precision": "station_area"
+      },
+      "shichiri_station": {
+        "name": "Shichirigahama Station",
+        "address": "七里ヶ浜駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      }
+    },
+    "areas": [
+      {
+        "id": "funabashi",
+        "name": "Funabashi",
+        "latitude": 35.702,
+        "longitude": 139.985
+      },
+      {
+        "id": "kamakura",
+        "name": "Kamakura dan pesisir",
+        "latitude": 35.319,
+        "longitude": 139.55
+      },
+      {
+        "id": "enoshima",
+        "name": "Enoshima dan Katase",
+        "latitude": 35.3,
+        "longitude": 139.48
+      },
+      {
+        "id": "fujisawa",
+        "name": "Fujisawa Station area",
+        "latitude": 35.339,
+        "longitude": 139.487
+      }
+    ],
+    "facts": [
+      {
+        "id": "official:hoseki-2026",
+        "kind": "seasonal_event",
+        "name": "Shonan no Hoseki 2026–2027",
+        "startDate": "2026-12-01",
+        "endDate": "2027-02-28",
+        "url": "https://enoshima-seacandle.com/information/post-4136/",
+        "publishedDate": "2026-10-23",
+        "checkedDate": "2026-11-02",
+        "note": "Diperiksa ulang 2 November 2026. Untuk Sabtu 5 Desember: periode acara mencakup tanggal trip, jadwal penyalaan yang diumumkan 17:00–21:00. Rekomendasi identitas illumination ini adalah interpretasi sistem atas aktivitas pengguna, perlu persetujuan. Penutupan khusus/cuaca tetap perlu dicek mendekati hari H.",
+        "activityIds": [
+          "E19"
+        ]
+      },
+      {
+        "id": "official:tourist-center",
+        "kind": "opening_hours",
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "opensAt": "08:30",
+        "closesAt": "17:00",
+        "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "checkedDate": "2026-11-02",
+        "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan.",
+        "activityIds": [
+          "E15"
+        ]
+      },
+      {
+        "id": "official:oiwayamichi",
+        "kind": "place_identity",
+        "name": "Oiwayamichi Street / 御岩屋道通り",
+        "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+        "checkedDate": "2026-11-02",
+        "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan.",
+        "activityIds": [
+          "E17"
+        ]
+      },
+      {
+        "id": "official:hoseki-saturday-hours",
+        "kind": "opening_hours",
+        "activityIds": [
+          "E19"
+        ],
+        "name": "Shonan no Hoseki, jadwal Sabtu sebelum 16 Januari",
+        "opensAt": "17:00",
+        "closesAt": "21:00",
+        "url": "https://enoshima-seacandle.com/information/post-4136/",
+        "checkedDate": "2026-11-02",
+        "note": "Jam acara pada Sabtu, bukan jaminan setiap fasilitas/toko buka sampai 21:00."
+      },
+      {
+        "id": "official:sea-candle-hours",
+        "kind": "opening_hours",
+        "activityIds": [
+          "E18"
+        ],
+        "name": "Sea Candle, jam umum",
+        "opensAt": "09:00",
+        "closesAt": "20:00",
+        "url": "https://enoshima-seacandle.com/opening-hours/",
+        "checkedDate": "2026-11-02",
+        "note": "Jam umum; last entry 30 menit sebelum tutup. Acara dapat memperpanjang jam, tetapi jam acara tidak otomatis menjadi jam semua fasilitas."
+      }
+    ],
+    "walkingPairs": [
+      [
+        "kamakura_station",
+        "komachi"
+      ],
+      [
+        "komachi",
+        "hachimangu"
+      ],
+      [
+        "inamura_station",
+        "inamura_park"
+      ],
+      [
+        "shichiri_station",
+        "shichiri_beach"
+      ],
+      [
+        "shichiri_beach",
+        "kokomae"
+      ],
+      [
+        "enoshima_station",
+        "tourist_center"
+      ],
+      [
+        "tourist_center",
+        "bridge"
+      ],
+      [
+        "bridge",
+        "oiwayamichi"
+      ],
+      [
+        "oiwayamichi",
+        "sea_candle"
+      ],
+      [
+        "sea_candle",
+        "katase_station"
+      ]
+    ],
+    "limitations": [
+      "Jam toko di Komachi, restoran, dan toko suvenir belum dipilih/diverifikasi.",
+      "Perempatan di Hachimangu, depan sekolah di pantai, dan menara jam Fujisawa belum punya titik tepat.",
+      "Lokasi makan siang dan malam tetap belum diketahui; jangan menggantinya diam-diam dengan restoran atau stasiun.",
+      "Rute ke titik referensi Oiwayamichi tidak mewakili seluruh panjang jalan atau antrean."
+    ],
+    "research": {
+      "allowedHosts": [
+        "enoshima-seacandle.com",
+        "fujisawa-kanko.jp",
+        "enoden.co.jp",
+        "jreast.co.jp",
+        "odakyu.jp",
+        "hachimangu.or.jp"
+      ],
+      "seedUrls": [
+        "https://enoshima-seacandle.com/information/post-4136/",
+        "https://enoshima-seacandle.com/opening-hours/",
+        "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "https://www.enoden.co.jp/",
+        "https://www.jreast.co.jp/",
+        "https://www.odakyu.jp/"
+      ],
+      "queries": [
+        "船橋 鎌倉 電車 所要時間 公式",
+        "江ノ電 鎌倉 稲村ヶ崎 七里ヶ浜 時刻表 公式"
+      ],
+      "maxPages": 10,
+      "maxSearches": 4,
+      "maxRounds": 3,
+      "timeoutMs": 150000,
+      "maxPageChars": 16000
+    }
+  },
+  "evidence": {
+    "routeEvidence": [
+      {
+        "id": "route:43f4c29f633f0309",
+        "from": "kamakura_station",
+        "to": "komachi",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:55.771Z",
+        "status": "ok",
+        "estimatedMinutes": 5.666666666666667,
+        "distanceMeters": 410,
+        "partialAddressMatch": true,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:e70c091cecbae94b",
+        "from": "komachi",
+        "to": "hachimangu",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:55.774Z",
+        "status": "ok",
+        "estimatedMinutes": 5.216666666666667,
+        "distanceMeters": 373,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:7ac8253dee9e3c98",
+        "from": "inamura_station",
+        "to": "inamura_park",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:55.774Z",
+        "status": "ok",
+        "estimatedMinutes": 4.816666666666666,
+        "distanceMeters": 345,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:9f281ce34ecf4c05",
+        "from": "shichiri_station",
+        "to": "shichiri_beach",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.181Z",
+        "status": "ok",
+        "estimatedMinutes": 7.233333333333333,
+        "distanceMeters": 527,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:beff41e2affbee1e",
+        "from": "shichiri_beach",
+        "to": "kokomae",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.182Z",
+        "status": "ok",
+        "estimatedMinutes": 17.583333333333332,
+        "distanceMeters": 1283,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:d0adc263d6b33041",
+        "from": "enoshima_station",
+        "to": "tourist_center",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.182Z",
+        "status": "ok",
+        "estimatedMinutes": 10,
+        "distanceMeters": 703,
+        "partialAddressMatch": true,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:8e431dbc949a3b39",
+        "from": "tourist_center",
+        "to": "bridge",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.493Z",
+        "status": "ok",
+        "estimatedMinutes": 5,
+        "distanceMeters": 380,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:b41f22bea43abc57",
+        "from": "bridge",
+        "to": "oiwayamichi",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.493Z",
+        "status": "ok",
+        "estimatedMinutes": 14.833333333333334,
+        "distanceMeters": 984,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:bb16a079fcd422e8",
+        "from": "oiwayamichi",
+        "to": "sea_candle",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.493Z",
+        "status": "ok",
+        "estimatedMinutes": 7.566666666666666,
+        "distanceMeters": 401,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:b61bb090da07081a",
+        "from": "sea_candle",
+        "to": "katase_station",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:09:56.759Z",
+        "status": "ok",
+        "estimatedMinutes": 23.1,
+        "distanceMeters": 1556,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:75dd2f2101ed76c3",
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:56.760Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:88bbdeff27485b67",
+        "from": "kamakura_station",
+        "to": "inamura_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:56.761Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:932578f26e2f042d",
+        "from": "inamura_station",
+        "to": "shichiri_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:56.893Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:b80dd986bfb0bf46",
+        "from": "kokomae",
+        "to": "enoshima_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:56.893Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:a6a27e0ffad43bc0",
+        "from": "katase_station",
+        "to": "fujisawa_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:56.893Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:88d614fd17445210",
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:09:57.001Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:5d82d0a2aa0edee9",
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T05:00:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:01.531Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:3cc4d43bb98245b3",
+        "from": "hachimangu",
+        "to": "kamakura_meal",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:19:01.676Z",
+        "status": "unresolved_location",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "A selected location is not precise enough for routing; no restaurant or station was substituted."
+      },
+      {
+        "id": "route:a02a0f5b8bdd375f",
+        "from": "kamakura_meal",
+        "to": "kamakura_station",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:19:01.676Z",
+        "status": "unresolved_location",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "A selected location is not precise enough for routing; no restaurant or station was substituted."
+      },
+      {
+        "id": "route:185a86093225393b",
+        "from": "kamakura_station",
+        "to": "inamura_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T10:07:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:01.677Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:a762d33001d01bf7",
+        "from": "inamura_park",
+        "to": "inamura_station",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:19:01.722Z",
+        "status": "ok",
+        "estimatedMinutes": 4.883333333333334,
+        "distanceMeters": 345,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": null
+      },
+      {
+        "id": "route:8cfdca6d43439383",
+        "from": "inamura_station",
+        "to": "shichiri_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T12:27:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:01.838Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:771105e8e3353136",
+        "from": "kokomae",
+        "to": "enoshima_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T15:23:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:01.920Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:dc33c522edcd8754",
+        "from": "sea_candle",
+        "to": "enoshima_dinner",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:19:01.972Z",
+        "status": "unresolved_location",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "A selected location is not precise enough for routing; no restaurant or station was substituted."
+      },
+      {
+        "id": "route:381504bef2a99c31",
+        "from": "enoshima_dinner",
+        "to": "katase_station",
+        "mode": "WALK",
+        "departureAt": null,
+        "fetchedAt": "2026-11-02T15:19:01.972Z",
+        "status": "unresolved_location",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "A selected location is not precise enough for routing; no restaurant or station was substituted."
+      },
+      {
+        "id": "route:71797affce780034",
+        "from": "katase_station",
+        "to": "fujisawa_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T22:32:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:01.972Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      },
+      {
+        "id": "route:86dd54a5b378e590",
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "mode": "TRANSIT",
+        "departureAt": "2026-12-05T23:32:00.000+09:00",
+        "fetchedAt": "2026-11-02T15:19:02.057Z",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "distanceMeters": null,
+        "partialAddressMatch": false,
+        "transitDetails": [],
+        "error": "This provider query returned no route; actual transport availability remains unknown."
+      }
+    ],
+    "initialTransitProbe": "TRANSIT noon probe is a system sampling assumption, not the user's departure time or a confirmed itinerary. Final routes are queried again at propagated departures.",
+    "regionalForecasts": [
+      {
+        "id": "weather:funabashi",
+        "areaId": "funabashi",
+        "fetchedAt": "2026-11-02T15:09:57.054Z",
+        "status": "outside_forecast_horizon",
+        "hours": [],
+        "sunrise": null,
+        "sunset": null,
+        "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+      },
+      {
+        "id": "weather:kamakura",
+        "areaId": "kamakura",
+        "fetchedAt": "2026-11-02T15:09:57.054Z",
+        "status": "outside_forecast_horizon",
+        "hours": [],
+        "sunrise": null,
+        "sunset": null,
+        "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+      },
+      {
+        "id": "weather:enoshima",
+        "areaId": "enoshima",
+        "fetchedAt": "2026-11-02T15:09:57.054Z",
+        "status": "outside_forecast_horizon",
+        "hours": [],
+        "sunrise": null,
+        "sunset": null,
+        "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+      },
+      {
+        "id": "weather:fujisawa",
+        "areaId": "fujisawa",
+        "fetchedAt": "2026-11-02T15:09:57.054Z",
+        "status": "outside_forecast_horizon",
+        "hours": [],
+        "sunrise": null,
+        "sunset": null,
+        "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+      }
+    ],
+    "browserClaims": [],
+    "researchUncertainties": [],
+    "policy": {
+      "walkingBufferMinutes": 5,
+      "transitBufferMinutes": 10,
+      "maxAttempts": 3,
+      "maxRouteRequests": 90,
+      "maxModelCalls": 8,
+      "maxRunTokens": 1000000,
+      "evidenceMaxAgeMinutes": 60,
+      "allUnknownRoutesRemainUnverified": true,
+      "neverReplaceUnknownRestaurant": true
+    }
+  },
+  "repair": {
+    "previousProposal": {
+      "status": "proposal_needs_verification",
+      "summary": "Itinerary satu hari (5 Desember 2026, JST) dari dan kembali ke Stasiun Funabashi. Semua waktu dan durasi adalah usulan saya, bukan jadwal resmi atau input pengguna. Setiap transit bermasalah `no_route` ditandai sebagai asumsi AI yang belum diverifikasi.",
+      "rows": [
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "funabashi_station",
+          "to": "kamakura_station",
+          "start": "05:00",
+          "end": "06:25",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): perjalanan ke wilayah Kamakura, ~85 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "kamakura_station",
+          "start": "06:25",
+          "end": "06:35",
+          "mode": "NONE",
+          "note": "Buffer transfer/antrean 10 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "komachi",
+          "start": "06:35",
+          "end": "06:41",
+          "mode": "WALK",
+          "note": "Bukti rute: ~5,7 menit, 410 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "komachi",
+          "to": "komachi",
+          "start": "06:41",
+          "end": "06:46",
+          "mode": "NONE",
+          "note": "Buffer jalan kaki 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E03",
+          "from": "komachi",
+          "to": "komachi",
+          "start": "06:46",
+          "end": "07:26",
+          "mode": "NONE",
+          "note": "Stasiun Kamakura & Komachi Street (asumsi 40 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "komachi",
+          "to": "hachimangu",
+          "start": "07:26",
+          "end": "07:31",
+          "mode": "WALK",
+          "note": "Bukti rute: ~5,2 menit, 373 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "hachimangu",
+          "to": "hachimangu",
+          "start": "07:31",
+          "end": "07:36",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E04",
+          "from": "hachimangu",
+          "to": "hachimangu",
+          "start": "07:36",
+          "end": "08:26",
+          "mode": "NONE",
+          "note": "Tsurugaoka Hachimangu & perempatan (asumsi 50 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "hachimangu",
+          "to": "kamakura_meal",
+          "start": "08:26",
+          "end": "08:36",
+          "mode": "WALK",
+          "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "kamakura_meal",
+          "to": "kamakura_meal",
+          "start": "08:36",
+          "end": "08:41",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E05",
+          "from": "kamakura_meal",
+          "to": "kamakura_meal",
+          "start": "08:41",
+          "end": "09:41",
+          "mode": "NONE",
+          "note": "Makan siang pagi area Kamakura (asumsi 60 menit). Lokasi restoran tidak diketahui."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_meal",
+          "to": "kamakura_station",
+          "start": "09:41",
+          "end": "09:51",
+          "mode": "WALK",
+          "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "kamakura_station",
+          "start": "09:51",
+          "end": "09:56",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kamakura_station",
+          "to": "inamura_station",
+          "start": "09:56",
+          "end": "10:56",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~60 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "inamura_station",
+          "start": "10:56",
+          "end": "11:06",
+          "mode": "NONE",
+          "note": "Buffer transit 10 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "inamura_park",
+          "start": "11:06",
+          "end": "11:11",
+          "mode": "WALK",
+          "note": "Bukti rute: ~4,8 menit, 345 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "inamura_park",
+          "to": "inamura_park",
+          "start": "11:11",
+          "end": "11:16",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E07",
+          "from": "inamura_park",
+          "to": "inamura_park",
+          "start": "11:16",
+          "end": "11:56",
+          "mode": "NONE",
+          "note": "Kamakura Seaside Park, Inamuragasaki (asumsi 40 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_park",
+          "to": "inamura_station",
+          "start": "11:56",
+          "end": "12:06",
+          "mode": "WALK",
+          "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "inamura_station",
+          "start": "12:06",
+          "end": "12:11",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "inamura_station",
+          "to": "shichiri_station",
+          "start": "12:11",
+          "end": "13:01",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~50 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "shichiri_station",
+          "to": "shichiri_station",
+          "start": "13:01",
+          "end": "13:11",
+          "mode": "NONE",
+          "note": "Buffer transit 10 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "shichiri_station",
+          "to": "shichiri_beach",
+          "start": "13:11",
+          "end": "13:18",
+          "mode": "WALK",
+          "note": "Bukti rute: ~7,2 menit, 527 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "shichiri_beach",
+          "to": "shichiri_beach",
+          "start": "13:18",
+          "end": "13:23",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E09",
+          "from": "shichiri_beach",
+          "to": "shichiri_beach",
+          "start": "13:23",
+          "end": "14:03",
+          "mode": "NONE",
+          "note": "Pantai Shichirigahama, depan sekolah (asumsi 40 menit). Cuaca/jam matahari tidak diketahui."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "shichiri_beach",
+          "to": "kokomae",
+          "start": "14:03",
+          "end": "14:21",
+          "mode": "WALK",
+          "note": "Bukti rute: ~17,6 menit, 1283 m (Coastal Walk langsung Shichirigahama → Kamakurakokomae)."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "kokomae",
+          "to": "kokomae",
+          "start": "14:21",
+          "end": "14:26",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E11",
+          "from": "kokomae",
+          "to": "kokomae",
+          "start": "14:26",
+          "end": "14:56",
+          "mode": "NONE",
+          "note": "Kamakurakokomae, foto area stasiun (asumsi 30 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "kokomae",
+          "to": "enoshima_station",
+          "start": "14:56",
+          "end": "15:21",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~25 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "enoshima_station",
+          "to": "enoshima_station",
+          "start": "15:21",
+          "end": "15:31",
+          "mode": "NONE",
+          "note": "Buffer transit 10 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E13",
+          "from": "enoshima_station",
+          "to": "enoshima_station",
+          "start": "15:31",
+          "end": "15:51",
+          "mode": "NONE",
+          "note": "Toko suvenir Enoshima Station (asumsi 20 menit). Toko belum dipilih."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "enoshima_station",
+          "to": "tourist_center",
+          "start": "15:51",
+          "end": "16:01",
+          "mode": "WALK",
+          "note": "Bukti rute: 10 menit, 703 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "tourist_center",
+          "to": "tourist_center",
+          "start": "16:01",
+          "end": "16:06",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E15",
+          "from": "tourist_center",
+          "to": "tourist_center",
+          "start": "16:06",
+          "end": "16:36",
+          "mode": "NONE",
+          "note": "Fujisawa City Tourist Center, Katase Kaigan (asumsi 30 menit). Selesai dalam jam buka 08:30–17:00."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "tourist_center",
+          "to": "bridge",
+          "start": "16:36",
+          "end": "16:41",
+          "mode": "WALK",
+          "note": "Bukti rute: 5 menit, 380 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "bridge",
+          "to": "bridge",
+          "start": "16:41",
+          "end": "16:46",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E16",
+          "from": "bridge",
+          "to": "bridge",
+          "start": "16:46",
+          "end": "17:16",
+          "mode": "NONE",
+          "note": "Enoshima Ohashi Bridge, video & jalan santai (asumsi 30 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "bridge",
+          "to": "oiwayamichi",
+          "start": "17:16",
+          "end": "17:31",
+          "mode": "WALK",
+          "note": "Bukti rute: ~14,8 menit, 984 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "oiwayamichi",
+          "to": "oiwayamichi",
+          "start": "17:31",
+          "end": "17:36",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E17",
+          "from": "oiwayamichi",
+          "to": "oiwayamichi",
+          "start": "17:36",
+          "end": "18:06",
+          "mode": "NONE",
+          "note": "Oiwayamichi Street (opsional) & naik ke atas (asumsi 30 menit)."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "oiwayamichi",
+          "to": "sea_candle",
+          "start": "18:06",
+          "end": "18:14",
+          "mode": "WALK",
+          "note": "Bukti rute: ~7,6 menit, 401 m."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "18:14",
+          "end": "18:19",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E18",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "18:19",
+          "end": "18:39",
+          "mode": "NONE",
+          "note": "Tiba di area Enoshima Sea Candle (asumsi 20 menit). Jam umum 09:00–20:00 dipisahkan dari jam acara."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E19",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "18:39",
+          "end": "20:00",
+          "mode": "NONE",
+          "note": "Menyaksikan Illumination Shonan no Hoseki (interpretasi; acara Sabtu 17:00–21:00, asumsi hingga 20:00)."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "20:00",
+          "end": "20:05",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "sea_candle",
+          "to": "enoshima_dinner",
+          "start": "20:05",
+          "end": "20:15",
+          "mode": "WALK",
+          "note": "Asumsi AI, tidak terverifikasi: turun pulau ke lokasi makan malam, ~10 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "enoshima_dinner",
+          "to": "enoshima_dinner",
+          "start": "20:15",
+          "end": "20:20",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E20",
+          "from": "enoshima_dinner",
+          "to": "enoshima_dinner",
+          "start": "20:20",
+          "end": "21:20",
+          "mode": "NONE",
+          "note": "Makan malam di Enoshima (asumsi 60 menit). Lokasi tidak diketahui."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "enoshima_dinner",
+          "to": "enoshima_dinner",
+          "start": "21:20",
+          "end": "21:25",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "enoshima_dinner",
+          "to": "katase_station",
+          "start": "21:25",
+          "end": "21:40",
+          "mode": "WALK",
+          "note": "Asumsi AI, tidak terverifikasi: ke Stasiun Katase-Enoshima, ~15 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "katase_station",
+          "to": "katase_station",
+          "start": "21:40",
+          "end": "21:45",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "katase_station",
+          "to": "fujisawa_station",
+          "start": "21:45",
+          "end": "22:00",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~15 menit."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "fujisawa_station",
+          "to": "fujisawa_station",
+          "start": "22:00",
+          "end": "22:10",
+          "mode": "NONE",
+          "note": "Buffer transit 10 menit."
+        },
+        {
+          "kind": "visit",
+          "activityId": "E22",
+          "from": "fujisawa_station",
+          "to": "fujisawa_station",
+          "start": "22:10",
+          "end": "22:40",
+          "mode": "NONE",
+          "note": "Seichi junrei malam Stasiun Fujisawa & menara jam (asumsi 30 menit)."
+        },
+        {
+          "kind": "wait",
+          "activityId": null,
+          "from": "fujisawa_station",
+          "to": "fujisawa_station",
+          "start": "22:40",
+          "end": "22:45",
+          "mode": "NONE",
+          "note": "Buffer 5 menit."
+        },
+        {
+          "kind": "move",
+          "activityId": null,
+          "from": "fujisawa_station",
+          "to": "funabashi_station",
+          "start": "22:45",
+          "end": "23:40",
+          "mode": "TRANSIT",
+          "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~55 menit. Kembali ke origin Stasiun Funabashi."
+        }
+      ],
+      "assumptions": [
+        "Keberangkatan awal 05:00 JST dan pulang sekitar 23:40 JST.",
+        "Semua waktu kunjungan adalah estimasi saya karena input tidak menyediakan durasi.",
+        "Perjalanan antar stasiun yang dikembalikan `no_route` oleh penyedia diberi durasi positif sebagai asumsi AI, bukan jadwal kereta/layanan resmi.",
+        "Semua aktivitas, termasuk Oiwayamichi (opsional), muncul tepat satu kali.",
+        "Waktu foto di Kamakurakokomae dipisahkan dari jalan kaki langsung pantai menuju stasiun.",
+        "Pusat Informasi Pariwisata diakhiri pukul 16:36, dalam jam buka 08:30–17:00.",
+        "Illumination dimulai pukul 18:39, dalam rentang acara 17:00–21:00 (interpretasi Shonan no Hoseki, perlu konfirmasi).",
+        "Jam umum Sea Candle 09:00–20:00 dipisahkan dari jam acara.",
+        "Prakiraan cuaca dan waktu matahari tidak tersedia (di luar jangkauan ramalan).",
+        "Tidak memaksa optimalitas atau kelayakan lengkap."
+      ],
+      "uncertainties": [
+        "Durasi transit antar stasiun tidak diketahui penyedia (`no_route`).",
+        "Lokasi restoran makan siang dan malam belum diketahui; tidak diganti diam-diam.",
+        "Perkiraan waktu jalan tanpa bukti rute adalah asumsi AI, bukan fakta tarif/jalur resmi.",
+        "Buka tutup khusus dan cuaca pada 5 Desember 2026 belum dikonfirmasi."
+      ]
+    },
+    "propagatedSimulation": {
+      "rows": [
+        {
+          "rowIndex": 0,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "funabashi_station",
+            "to": "kamakura_station",
+            "start": "05:00",
+            "end": "06:25",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): perjalanan ke wilayah Kamakura, ~85 menit."
+          },
+          "startsAt": "2026-12-05T05:00:00.000+09:00",
+          "endsAt": "2026-12-05T06:25:00.000+09:00",
+          "allocatedMinutes": 85,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:5d82d0a2aa0edee9",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 1,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "kamakura_station",
+            "to": "kamakura_station",
+            "start": "06:25",
+            "end": "06:35",
+            "mode": "NONE",
+            "note": "Buffer transfer/antrean 10 menit."
+          },
+          "startsAt": "2026-12-05T06:25:00.000+09:00",
+          "endsAt": "2026-12-05T06:35:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 2,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "kamakura_station",
+            "to": "komachi",
+            "start": "06:35",
+            "end": "06:41",
+            "mode": "WALK",
+            "note": "Bukti rute: ~5,7 menit, 410 m."
+          },
+          "startsAt": "2026-12-05T06:35:00.000+09:00",
+          "endsAt": "2026-12-05T06:46:00.000+09:00",
+          "allocatedMinutes": 11,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:43f4c29f633f0309",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 5.666666666666667,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 5.7 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 3,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "komachi",
+            "to": "komachi",
+            "start": "06:41",
+            "end": "06:46",
+            "mode": "NONE",
+            "note": "Buffer jalan kaki 5 menit."
+          },
+          "startsAt": "2026-12-05T06:46:00.000+09:00",
+          "endsAt": "2026-12-05T06:51:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 4,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E03",
+            "from": "komachi",
+            "to": "komachi",
+            "start": "06:46",
+            "end": "07:26",
+            "mode": "NONE",
+            "note": "Stasiun Kamakura & Komachi Street (asumsi 40 menit)."
+          },
+          "startsAt": "2026-12-05T06:51:00.000+09:00",
+          "endsAt": "2026-12-05T07:31:00.000+09:00",
+          "allocatedMinutes": 40,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 5,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "komachi",
+            "to": "hachimangu",
+            "start": "07:26",
+            "end": "07:31",
+            "mode": "WALK",
+            "note": "Bukti rute: ~5,2 menit, 373 m."
+          },
+          "startsAt": "2026-12-05T07:31:00.000+09:00",
+          "endsAt": "2026-12-05T07:42:00.000+09:00",
+          "allocatedMinutes": 11,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:e70c091cecbae94b",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 5.216666666666667,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 5.2 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 6,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "hachimangu",
+            "to": "hachimangu",
+            "start": "07:31",
+            "end": "07:36",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T07:42:00.000+09:00",
+          "endsAt": "2026-12-05T07:47:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 7,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E04",
+            "from": "hachimangu",
+            "to": "hachimangu",
+            "start": "07:36",
+            "end": "08:26",
+            "mode": "NONE",
+            "note": "Tsurugaoka Hachimangu & perempatan (asumsi 50 menit)."
+          },
+          "startsAt": "2026-12-05T07:47:00.000+09:00",
+          "endsAt": "2026-12-05T08:37:00.000+09:00",
+          "allocatedMinutes": 50,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 8,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "hachimangu",
+            "to": "kamakura_meal",
+            "start": "08:26",
+            "end": "08:36",
+            "mode": "WALK",
+            "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+          },
+          "startsAt": "2026-12-05T08:37:00.000+09:00",
+          "endsAt": "2026-12-05T08:47:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:3cc4d43bb98245b3",
+          "routeStatus": "unresolved_location",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 9,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "kamakura_meal",
+            "to": "kamakura_meal",
+            "start": "08:36",
+            "end": "08:41",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T08:47:00.000+09:00",
+          "endsAt": "2026-12-05T08:52:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 10,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E05",
+            "from": "kamakura_meal",
+            "to": "kamakura_meal",
+            "start": "08:41",
+            "end": "09:41",
+            "mode": "NONE",
+            "note": "Makan siang pagi area Kamakura (asumsi 60 menit). Lokasi restoran tidak diketahui."
+          },
+          "startsAt": "2026-12-05T08:52:00.000+09:00",
+          "endsAt": "2026-12-05T09:52:00.000+09:00",
+          "allocatedMinutes": 60,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 11,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "kamakura_meal",
+            "to": "kamakura_station",
+            "start": "09:41",
+            "end": "09:51",
+            "mode": "WALK",
+            "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+          },
+          "startsAt": "2026-12-05T09:52:00.000+09:00",
+          "endsAt": "2026-12-05T10:02:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:a02a0f5b8bdd375f",
+          "routeStatus": "unresolved_location",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 12,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "kamakura_station",
+            "to": "kamakura_station",
+            "start": "09:51",
+            "end": "09:56",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T10:02:00.000+09:00",
+          "endsAt": "2026-12-05T10:07:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 13,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "kamakura_station",
+            "to": "inamura_station",
+            "start": "09:56",
+            "end": "10:56",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~60 menit."
+          },
+          "startsAt": "2026-12-05T10:07:00.000+09:00",
+          "endsAt": "2026-12-05T11:07:00.000+09:00",
+          "allocatedMinutes": 60,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:185a86093225393b",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 14,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "inamura_station",
+            "to": "inamura_station",
+            "start": "10:56",
+            "end": "11:06",
+            "mode": "NONE",
+            "note": "Buffer transit 10 menit."
+          },
+          "startsAt": "2026-12-05T11:07:00.000+09:00",
+          "endsAt": "2026-12-05T11:17:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 15,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "inamura_station",
+            "to": "inamura_park",
+            "start": "11:06",
+            "end": "11:11",
+            "mode": "WALK",
+            "note": "Bukti rute: ~4,8 menit, 345 m."
+          },
+          "startsAt": "2026-12-05T11:17:00.000+09:00",
+          "endsAt": "2026-12-05T11:27:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:7ac8253dee9e3c98",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 4.816666666666666,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 4.8 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 16,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "inamura_park",
+            "to": "inamura_park",
+            "start": "11:11",
+            "end": "11:16",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T11:27:00.000+09:00",
+          "endsAt": "2026-12-05T11:32:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 17,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E07",
+            "from": "inamura_park",
+            "to": "inamura_park",
+            "start": "11:16",
+            "end": "11:56",
+            "mode": "NONE",
+            "note": "Kamakura Seaside Park, Inamuragasaki (asumsi 40 menit)."
+          },
+          "startsAt": "2026-12-05T11:32:00.000+09:00",
+          "endsAt": "2026-12-05T12:12:00.000+09:00",
+          "allocatedMinutes": 40,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 18,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "inamura_park",
+            "to": "inamura_station",
+            "start": "11:56",
+            "end": "12:06",
+            "mode": "WALK",
+            "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+          },
+          "startsAt": "2026-12-05T12:12:00.000+09:00",
+          "endsAt": "2026-12-05T12:22:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:a762d33001d01bf7",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 4.883333333333334,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 4.9 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 19,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "inamura_station",
+            "to": "inamura_station",
+            "start": "12:06",
+            "end": "12:11",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T12:22:00.000+09:00",
+          "endsAt": "2026-12-05T12:27:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 20,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "inamura_station",
+            "to": "shichiri_station",
+            "start": "12:11",
+            "end": "13:01",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~50 menit."
+          },
+          "startsAt": "2026-12-05T12:27:00.000+09:00",
+          "endsAt": "2026-12-05T13:17:00.000+09:00",
+          "allocatedMinutes": 50,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:8cfdca6d43439383",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 21,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "shichiri_station",
+            "to": "shichiri_station",
+            "start": "13:01",
+            "end": "13:11",
+            "mode": "NONE",
+            "note": "Buffer transit 10 menit."
+          },
+          "startsAt": "2026-12-05T13:17:00.000+09:00",
+          "endsAt": "2026-12-05T13:27:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 22,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "shichiri_station",
+            "to": "shichiri_beach",
+            "start": "13:11",
+            "end": "13:18",
+            "mode": "WALK",
+            "note": "Bukti rute: ~7,2 menit, 527 m."
+          },
+          "startsAt": "2026-12-05T13:27:00.000+09:00",
+          "endsAt": "2026-12-05T13:40:00.000+09:00",
+          "allocatedMinutes": 13,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:9f281ce34ecf4c05",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 7.233333333333333,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 7.2 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 23,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "shichiri_beach",
+            "to": "shichiri_beach",
+            "start": "13:18",
+            "end": "13:23",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T13:40:00.000+09:00",
+          "endsAt": "2026-12-05T13:45:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 24,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E09",
+            "from": "shichiri_beach",
+            "to": "shichiri_beach",
+            "start": "13:23",
+            "end": "14:03",
+            "mode": "NONE",
+            "note": "Pantai Shichirigahama, depan sekolah (asumsi 40 menit). Cuaca/jam matahari tidak diketahui."
+          },
+          "startsAt": "2026-12-05T13:45:00.000+09:00",
+          "endsAt": "2026-12-05T14:25:00.000+09:00",
+          "allocatedMinutes": 40,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 25,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "shichiri_beach",
+            "to": "kokomae",
+            "start": "14:03",
+            "end": "14:21",
+            "mode": "WALK",
+            "note": "Bukti rute: ~17,6 menit, 1283 m (Coastal Walk langsung Shichirigahama → Kamakurakokomae)."
+          },
+          "startsAt": "2026-12-05T14:25:00.000+09:00",
+          "endsAt": "2026-12-05T14:48:00.000+09:00",
+          "allocatedMinutes": 23,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:beff41e2affbee1e",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 17.583333333333332,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 17.6 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 26,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "kokomae",
+            "to": "kokomae",
+            "start": "14:21",
+            "end": "14:26",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T14:48:00.000+09:00",
+          "endsAt": "2026-12-05T14:53:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 27,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E11",
+            "from": "kokomae",
+            "to": "kokomae",
+            "start": "14:26",
+            "end": "14:56",
+            "mode": "NONE",
+            "note": "Kamakurakokomae, foto area stasiun (asumsi 30 menit)."
+          },
+          "startsAt": "2026-12-05T14:53:00.000+09:00",
+          "endsAt": "2026-12-05T15:23:00.000+09:00",
+          "allocatedMinutes": 30,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 28,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "kokomae",
+            "to": "enoshima_station",
+            "start": "14:56",
+            "end": "15:21",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~25 menit."
+          },
+          "startsAt": "2026-12-05T15:23:00.000+09:00",
+          "endsAt": "2026-12-05T15:48:00.000+09:00",
+          "allocatedMinutes": 25,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:771105e8e3353136",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 29,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "enoshima_station",
+            "to": "enoshima_station",
+            "start": "15:21",
+            "end": "15:31",
+            "mode": "NONE",
+            "note": "Buffer transit 10 menit."
+          },
+          "startsAt": "2026-12-05T15:48:00.000+09:00",
+          "endsAt": "2026-12-05T15:58:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 30,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E13",
+            "from": "enoshima_station",
+            "to": "enoshima_station",
+            "start": "15:31",
+            "end": "15:51",
+            "mode": "NONE",
+            "note": "Toko suvenir Enoshima Station (asumsi 20 menit). Toko belum dipilih."
+          },
+          "startsAt": "2026-12-05T15:58:00.000+09:00",
+          "endsAt": "2026-12-05T16:18:00.000+09:00",
+          "allocatedMinutes": 20,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 31,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "enoshima_station",
+            "to": "tourist_center",
+            "start": "15:51",
+            "end": "16:01",
+            "mode": "WALK",
+            "note": "Bukti rute: 10 menit, 703 m."
+          },
+          "startsAt": "2026-12-05T16:18:00.000+09:00",
+          "endsAt": "2026-12-05T16:33:00.000+09:00",
+          "allocatedMinutes": 15,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:d0adc263d6b33041",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 10,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 10.0 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 32,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "tourist_center",
+            "to": "tourist_center",
+            "start": "16:01",
+            "end": "16:06",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T16:33:00.000+09:00",
+          "endsAt": "2026-12-05T16:38:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 33,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E15",
+            "from": "tourist_center",
+            "to": "tourist_center",
+            "start": "16:06",
+            "end": "16:36",
+            "mode": "NONE",
+            "note": "Fujisawa City Tourist Center, Katase Kaigan (asumsi 30 menit). Selesai dalam jam buka 08:30–17:00."
+          },
+          "startsAt": "2026-12-05T16:38:00.000+09:00",
+          "endsAt": "2026-12-05T17:08:00.000+09:00",
+          "allocatedMinutes": 30,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 34,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "tourist_center",
+            "to": "bridge",
+            "start": "16:36",
+            "end": "16:41",
+            "mode": "WALK",
+            "note": "Bukti rute: 5 menit, 380 m."
+          },
+          "startsAt": "2026-12-05T17:08:00.000+09:00",
+          "endsAt": "2026-12-05T17:18:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:8e431dbc949a3b39",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 5,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 5.0 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 35,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "bridge",
+            "to": "bridge",
+            "start": "16:41",
+            "end": "16:46",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T17:18:00.000+09:00",
+          "endsAt": "2026-12-05T17:23:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 36,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E16",
+            "from": "bridge",
+            "to": "bridge",
+            "start": "16:46",
+            "end": "17:16",
+            "mode": "NONE",
+            "note": "Enoshima Ohashi Bridge, video & jalan santai (asumsi 30 menit)."
+          },
+          "startsAt": "2026-12-05T17:23:00.000+09:00",
+          "endsAt": "2026-12-05T17:53:00.000+09:00",
+          "allocatedMinutes": 30,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 37,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "bridge",
+            "to": "oiwayamichi",
+            "start": "17:16",
+            "end": "17:31",
+            "mode": "WALK",
+            "note": "Bukti rute: ~14,8 menit, 984 m."
+          },
+          "startsAt": "2026-12-05T17:53:00.000+09:00",
+          "endsAt": "2026-12-05T18:13:00.000+09:00",
+          "allocatedMinutes": 20,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:b41f22bea43abc57",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 14.833333333333334,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 14.8 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 38,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "oiwayamichi",
+            "to": "oiwayamichi",
+            "start": "17:31",
+            "end": "17:36",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T18:13:00.000+09:00",
+          "endsAt": "2026-12-05T18:18:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 39,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E17",
+            "from": "oiwayamichi",
+            "to": "oiwayamichi",
+            "start": "17:36",
+            "end": "18:06",
+            "mode": "NONE",
+            "note": "Oiwayamichi Street (opsional) & naik ke atas (asumsi 30 menit)."
+          },
+          "startsAt": "2026-12-05T18:18:00.000+09:00",
+          "endsAt": "2026-12-05T18:48:00.000+09:00",
+          "allocatedMinutes": 30,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 40,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "oiwayamichi",
+            "to": "sea_candle",
+            "start": "18:06",
+            "end": "18:14",
+            "mode": "WALK",
+            "note": "Bukti rute: ~7,6 menit, 401 m."
+          },
+          "startsAt": "2026-12-05T18:48:00.000+09:00",
+          "endsAt": "2026-12-05T19:01:00.000+09:00",
+          "allocatedMinutes": 13,
+          "durationSource": "provider_plus_system_buffer",
+          "routeId": "route:bb16a079fcd422e8",
+          "routeStatus": "ok",
+          "providerTravelMinutes": 7.566666666666666,
+          "systemBufferMinutes": 5,
+          "note": "Estimasi provider 7.6 menit + buffer sistem 5 menit; buffer merupakan asumsi yang dapat dikonfigurasi."
+        },
+        {
+          "rowIndex": 41,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "sea_candle",
+            "to": "sea_candle",
+            "start": "18:14",
+            "end": "18:19",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T19:01:00.000+09:00",
+          "endsAt": "2026-12-05T19:06:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 42,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E18",
+            "from": "sea_candle",
+            "to": "sea_candle",
+            "start": "18:19",
+            "end": "18:39",
+            "mode": "NONE",
+            "note": "Tiba di area Enoshima Sea Candle (asumsi 20 menit). Jam umum 09:00–20:00 dipisahkan dari jam acara."
+          },
+          "startsAt": "2026-12-05T19:06:00.000+09:00",
+          "endsAt": "2026-12-05T19:26:00.000+09:00",
+          "allocatedMinutes": 20,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 43,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E19",
+            "from": "sea_candle",
+            "to": "sea_candle",
+            "start": "18:39",
+            "end": "20:00",
+            "mode": "NONE",
+            "note": "Menyaksikan Illumination Shonan no Hoseki (interpretasi; acara Sabtu 17:00–21:00, asumsi hingga 20:00)."
+          },
+          "startsAt": "2026-12-05T19:26:00.000+09:00",
+          "endsAt": "2026-12-05T20:47:00.000+09:00",
+          "allocatedMinutes": 81,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 44,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "sea_candle",
+            "to": "sea_candle",
+            "start": "20:00",
+            "end": "20:05",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T20:47:00.000+09:00",
+          "endsAt": "2026-12-05T20:52:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 45,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "sea_candle",
+            "to": "enoshima_dinner",
+            "start": "20:05",
+            "end": "20:15",
+            "mode": "WALK",
+            "note": "Asumsi AI, tidak terverifikasi: turun pulau ke lokasi makan malam, ~10 menit."
+          },
+          "startsAt": "2026-12-05T20:52:00.000+09:00",
+          "endsAt": "2026-12-05T21:02:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:dc33c522edcd8754",
+          "routeStatus": "unresolved_location",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 46,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "enoshima_dinner",
+            "to": "enoshima_dinner",
+            "start": "20:15",
+            "end": "20:20",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T21:02:00.000+09:00",
+          "endsAt": "2026-12-05T21:07:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 47,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E20",
+            "from": "enoshima_dinner",
+            "to": "enoshima_dinner",
+            "start": "20:20",
+            "end": "21:20",
+            "mode": "NONE",
+            "note": "Makan malam di Enoshima (asumsi 60 menit). Lokasi tidak diketahui."
+          },
+          "startsAt": "2026-12-05T21:07:00.000+09:00",
+          "endsAt": "2026-12-05T22:07:00.000+09:00",
+          "allocatedMinutes": 60,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 48,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "enoshima_dinner",
+            "to": "enoshima_dinner",
+            "start": "21:20",
+            "end": "21:25",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T22:07:00.000+09:00",
+          "endsAt": "2026-12-05T22:12:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 49,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "enoshima_dinner",
+            "to": "katase_station",
+            "start": "21:25",
+            "end": "21:40",
+            "mode": "WALK",
+            "note": "Asumsi AI, tidak terverifikasi: ke Stasiun Katase-Enoshima, ~15 menit."
+          },
+          "startsAt": "2026-12-05T22:12:00.000+09:00",
+          "endsAt": "2026-12-05T22:27:00.000+09:00",
+          "allocatedMinutes": 15,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:381504bef2a99c31",
+          "routeStatus": "unresolved_location",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 50,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "katase_station",
+            "to": "katase_station",
+            "start": "21:40",
+            "end": "21:45",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T22:27:00.000+09:00",
+          "endsAt": "2026-12-05T22:32:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 51,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "katase_station",
+            "to": "fujisawa_station",
+            "start": "21:45",
+            "end": "22:00",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~15 menit."
+          },
+          "startsAt": "2026-12-05T22:32:00.000+09:00",
+          "endsAt": "2026-12-05T22:47:00.000+09:00",
+          "allocatedMinutes": 15,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:71797affce780034",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        },
+        {
+          "rowIndex": 52,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "fujisawa_station",
+            "to": "fujisawa_station",
+            "start": "22:00",
+            "end": "22:10",
+            "mode": "NONE",
+            "note": "Buffer transit 10 menit."
+          },
+          "startsAt": "2026-12-05T22:47:00.000+09:00",
+          "endsAt": "2026-12-05T22:57:00.000+09:00",
+          "allocatedMinutes": 10,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 53,
+          "proposed": {
+            "kind": "visit",
+            "activityId": "E22",
+            "from": "fujisawa_station",
+            "to": "fujisawa_station",
+            "start": "22:10",
+            "end": "22:40",
+            "mode": "NONE",
+            "note": "Seichi junrei malam Stasiun Fujisawa & menara jam (asumsi 30 menit)."
+          },
+          "startsAt": "2026-12-05T22:57:00.000+09:00",
+          "endsAt": "2026-12-05T23:27:00.000+09:00",
+          "allocatedMinutes": 30,
+          "durationSource": "ai_visit_proposal",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+        },
+        {
+          "rowIndex": 54,
+          "proposed": {
+            "kind": "wait",
+            "activityId": null,
+            "from": "fujisawa_station",
+            "to": "fujisawa_station",
+            "start": "22:40",
+            "end": "22:45",
+            "mode": "NONE",
+            "note": "Buffer 5 menit."
+          },
+          "startsAt": "2026-12-05T23:27:00.000+09:00",
+          "endsAt": "2026-12-05T23:32:00.000+09:00",
+          "allocatedMinutes": 5,
+          "durationSource": "ai_buffer",
+          "routeId": null,
+          "routeStatus": null,
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Buffer dari proposal AI; alasan naratif AI tidak dianggap fakta operasional."
+        },
+        {
+          "rowIndex": 55,
+          "proposed": {
+            "kind": "move",
+            "activityId": null,
+            "from": "fujisawa_station",
+            "to": "funabashi_station",
+            "start": "22:45",
+            "end": "23:40",
+            "mode": "TRANSIT",
+            "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~55 menit. Kembali ke origin Stasiun Funabashi."
+          },
+          "startsAt": "2026-12-05T23:32:00.000+09:00",
+          "endsAt": "2026-12-06T00:27:00.000+09:00",
+          "allocatedMinutes": 55,
+          "durationSource": "ai_unverified_transfer",
+          "routeId": "route:86dd54a5b378e590",
+          "routeStatus": "no_route",
+          "providerTravelMinutes": null,
+          "systemBufferMinutes": 0,
+          "note": "Alokasi perpindahan AI belum terverifikasi."
+        }
+      ],
+      "issues": [
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 0,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:5d82d0a2aa0edee9"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "PARTIAL_PLACE_MATCH",
+          "severity": "unknown",
+          "rowIndex": 2,
+          "message": "Provider matched an approximate location; exact target needs confirmation.",
+          "evidenceIds": [
+            "route:43f4c29f633f0309"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 4,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 7,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "MISSING_LOCATION",
+          "severity": "unknown",
+          "rowIndex": 8,
+          "message": "A selected location is not precise enough for routing; no restaurant or station was substituted.",
+          "evidenceIds": [
+            "route:3cc4d43bb98245b3"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 10,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "MISSING_LOCATION",
+          "severity": "unknown",
+          "rowIndex": 11,
+          "message": "A selected location is not precise enough for routing; no restaurant or station was substituted.",
+          "evidenceIds": [
+            "route:a02a0f5b8bdd375f"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 13,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:185a86093225393b"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 17,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 20,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:8cfdca6d43439383"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 24,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 27,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 28,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:771105e8e3353136"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 30,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "PARTIAL_PLACE_MATCH",
+          "severity": "unknown",
+          "rowIndex": 31,
+          "message": "Provider matched an approximate location; exact target needs confirmation.",
+          "evidenceIds": [
+            "route:d0adc263d6b33041"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "VISIT_OUTSIDE_HOURS",
+          "severity": "conflict",
+          "rowIndex": 33,
+          "message": "Visit ends 2026-12-05T17:08:00.000+09:00, beyond supplied close 2026-12-05T17:00:00.000+09:00. Duration was not silently shortened.",
+          "evidenceIds": [
+            "official:tourist-center"
+          ],
+          "repairableByScheduling": true
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 36,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 39,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "MISSING_LOCATION",
+          "severity": "unknown",
+          "rowIndex": 45,
+          "message": "A selected location is not precise enough for routing; no restaurant or station was substituted.",
+          "evidenceIds": [
+            "route:dc33c522edcd8754"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 47,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "MISSING_LOCATION",
+          "severity": "unknown",
+          "rowIndex": 49,
+          "message": "A selected location is not precise enough for routing; no restaurant or station was substituted.",
+          "evidenceIds": [
+            "route:381504bef2a99c31"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 51,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:71797affce780034"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "OPENING_HOURS_UNCONFIRMED",
+          "severity": "unknown",
+          "rowIndex": 53,
+          "message": "No applicable opening-hours constraint was supplied for this activity; availability was not inferred.",
+          "evidenceIds": [],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "ROUTE_UNVERIFIED",
+          "severity": "unknown",
+          "rowIndex": 55,
+          "message": "This provider query returned no route; actual transport availability remains unknown.",
+          "evidenceIds": [
+            "route:86dd54a5b378e590"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "RETURN_AFTER_TRIP_DATE",
+          "severity": "conflict",
+          "rowIndex": null,
+          "message": "Propagated return 2026-12-06T00:27:00.000+09:00 is outside the requested one-day trip; no destination was removed or clock clamped.",
+          "evidenceIds": [],
+          "repairableByScheduling": true
+        },
+        {
+          "code": "FORECAST_UNAVAILABLE",
+          "severity": "unknown",
+          "rowIndex": null,
+          "message": "funabashi: Trip date is outside the forecast horizon. Weather and solar times were not fabricated.",
+          "evidenceIds": [
+            "weather:funabashi"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "FORECAST_UNAVAILABLE",
+          "severity": "unknown",
+          "rowIndex": null,
+          "message": "kamakura: Trip date is outside the forecast horizon. Weather and solar times were not fabricated.",
+          "evidenceIds": [
+            "weather:kamakura"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "FORECAST_UNAVAILABLE",
+          "severity": "unknown",
+          "rowIndex": null,
+          "message": "enoshima: Trip date is outside the forecast horizon. Weather and solar times were not fabricated.",
+          "evidenceIds": [
+            "weather:enoshima"
+          ],
+          "repairableByScheduling": false
+        },
+        {
+          "code": "FORECAST_UNAVAILABLE",
+          "severity": "unknown",
+          "rowIndex": null,
+          "message": "fujisawa: Trip date is outside the forecast horizon. Weather and solar times were not fabricated.",
+          "evidenceIds": [
+            "weather:fujisawa"
+          ],
+          "repairableByScheduling": false
+        }
+      ],
+      "changes": [
+        {
+          "rowIndex": 2,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 5,
+          "addedMinutes": 6,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 15,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 22,
+          "addedMinutes": 6,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 25,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 31,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 34,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 37,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        },
+        {
+          "rowIndex": 40,
+          "addedMinutes": 5,
+          "reason": "Provider travel estimate plus minimum system buffer exceeded AI allocation."
+        }
+      ],
+      "startsAt": "2026-12-05T05:00:00.000+09:00",
+      "endsAt": "2026-12-06T00:27:00.000+09:00",
+      "repairRecommended": true,
+      "status": "conflicts",
+      "verifiedTravelFeasibility": false
+    },
+    "instruction": "Repair actual opening/date conflicts and insufficient travel allocations using this simulation. Its times already propagate earlier waits/travel. Keep every destination and required mode/pair, include system buffers, and return on the trip date. Visit durations in this untimed case remain explicit AI proposals. If a source is missing, preserve unknown rather than inventing proof. A clock change cannot fix a closed event season or an unknown restaurant identity."
+  }
+}

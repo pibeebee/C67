@@ -1,0 +1,566 @@
+[
+  {
+    "key": "uiFinalInitial",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "00sd7rh",
+          "seq": 29,
+          "count": 126,
+          "targets": [
+            "e49|tap|button|1. Diagnosis satu titik WeatherKit||weather-lab-probe",
+            "e65|tap|button|2. Uji semua kelompok||weather-lab-run",
+            "e70|tap|button|Ambil ulang tanpa cache||",
+            "e105|tap|tab|Weather Lab|1|",
+            "e107|tap|tab|Rencana|0|"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e29|text|text|Eksperimen cuaca Jakarta||",
+            "e34|text|text|Uji WeatherKit di sini. Tab Rencana tetap memakai alur Jakarta dan Open-Meteo yang sudah ada.||",
+            "e39|text|text|Belum dijalankan. Tidak ada request otomatis.||weather-lab-status",
+            "e53|text|text|Request baru ke titik perwakilan pertama, tanpa cache dan cadangan. Gagal autentikasi tetap terlihat.||",
+            "e58|text|text|Provider kelompok||",
+            "e60|text|text|WeatherKit + cadangan||",
+            "e75|text|text|Radius 3 km · maksimal 2 kelompok bersamaan · 8 detik per provider, termasuk maksimal satu retry untuk putus koneksi/timeout jaringan.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e65\"},{\"action\":\"tap\",\"elementRef\":\"e70\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e49\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalAutomatic",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1bknk1j",
+          "seq": 30,
+          "count": 124,
+          "targets": [
+            "e62|tap|button|1. Diagnosis satu titik WeatherKit||weather-lab-probe",
+            "e78|tap|button|2. Uji semua kelompok||weather-lab-run",
+            "e83|tap|button|Ambil ulang tanpa cache||",
+            "e103|tap|tab|Weather Lab|1|cloud.sun",
+            "e105|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e31|text|text|Eksperimen cuaca Jakarta||",
+            "e36|text|text|Uji WeatherKit di sini. Tab Rencana tetap memakai alur Jakarta dan Open-Meteo yang sudah ada.||",
+            "e41|text|text|Selesai: 4/4 kelompok memiliki prakiraan lengkap.||weather-lab-status",
+            "e46|text|text|Autentikasi WeatherKit diblokir untuk sesi ini||",
+            "e52|text|text|Kelompok berikutnya memakai cadangan. Setelah memperbaiki konfigurasi Apple, uji satu titik lagi atau reset pemutus autentikasi.||",
+            "e66|text|text|Request baru ke titik perwakilan pertama, tanpa cache dan cadangan. Gagal autentikasi tetap terlihat.||",
+            "e73|text|text|Provider kelompok||",
+            "e72|text|text|WeatherKit + cadangan||",
+            "e88|text|text|Radius 3 km · maksimal 2 kelompok bersamaan · 8 detik per provider, termasuk maksimal satu retry untuk putus koneksi/timeout jaringan.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        },
+        "waitMatch": {
+          "predicate": "textContains",
+          "matches": [
+            "e41|none|text|Selesai: 4/4 kelompok memiliki prakiraan lengkap.||weather-lab-status"
+          ]
+        }
+      },
+      "nextSteps": [
+        "Capture a fresh runtime UI snapshot: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait until the UI is settled: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalProbe",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "09jmj9i",
+          "seq": 33,
+          "count": 124,
+          "targets": [
+            "e62|tap|button|1. Diagnosis satu titik WeatherKit||weather-lab-probe",
+            "e78|tap|button|2. Uji semua kelompok||weather-lab-run",
+            "e83|tap|button|Ambil ulang tanpa cache||",
+            "e103|tap|tab|Weather Lab|1|cloud.sun",
+            "e105|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e31|text|text|Eksperimen cuaca Jakarta||",
+            "e36|text|text|Uji WeatherKit di sini. Tab Rencana tetap memakai alur Jakarta dan Open-Meteo yang sudah ada.||",
+            "e41|text|text|Selesai: 0/1 kelompok memiliki prakiraan lengkap.||weather-lab-status",
+            "e46|text|text|Autentikasi WeatherKit diblokir untuk sesi ini||",
+            "e52|text|text|Kelompok berikutnya memakai cadangan. Setelah memperbaiki konfigurasi Apple, uji satu titik lagi atau reset pemutus autentikasi.||",
+            "e66|text|text|Request baru ke titik perwakilan pertama, tanpa cache dan cadangan. Gagal autentikasi tetap terlihat.||",
+            "e73|text|text|Provider kelompok||",
+            "e72|text|text|WeatherKit + cadangan||",
+            "e88|text|text|Radius 3 km · maksimal 2 kelompok bersamaan · 8 detik per provider, termasuk maksimal satu retry untuk putus koneksi/timeout jaringan.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        },
+        "waitMatch": {
+          "predicate": "textContains",
+          "matches": [
+            "e41|none|text|Selesai: 0/1 kelompok memiliki prakiraan lengkap.||weather-lab-status"
+          ]
+        }
+      },
+      "nextSteps": [
+        "Capture a fresh runtime UI snapshot: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait until the UI is settled: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalCache",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1bknk1j",
+          "seq": 35,
+          "count": 124,
+          "targets": [
+            "e62|tap|button|1. Diagnosis satu titik WeatherKit||weather-lab-probe",
+            "e78|tap|button|2. Uji semua kelompok||weather-lab-run",
+            "e83|tap|button|Ambil ulang tanpa cache||",
+            "e103|tap|tab|Weather Lab|1|cloud.sun",
+            "e105|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e31|text|text|Eksperimen cuaca Jakarta||",
+            "e36|text|text|Uji WeatherKit di sini. Tab Rencana tetap memakai alur Jakarta dan Open-Meteo yang sudah ada.||",
+            "e41|text|text|Selesai: 4/4 kelompok memiliki prakiraan lengkap.||weather-lab-status",
+            "e46|text|text|Autentikasi WeatherKit diblokir untuk sesi ini||",
+            "e52|text|text|Kelompok berikutnya memakai cadangan. Setelah memperbaiki konfigurasi Apple, uji satu titik lagi atau reset pemutus autentikasi.||",
+            "e66|text|text|Request baru ke titik perwakilan pertama, tanpa cache dan cadangan. Gagal autentikasi tetap terlihat.||",
+            "e73|text|text|Provider kelompok||",
+            "e72|text|text|WeatherKit + cadangan||",
+            "e88|text|text|Radius 3 km · maksimal 2 kelompok bersamaan · 8 detik per provider, termasuk maksimal satu retry untuk putus koneksi/timeout jaringan.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        },
+        "waitMatch": {
+          "predicate": "textContains",
+          "matches": [
+            "e41|none|text|Selesai: 4/4 kelompok memiliki prakiraan lengkap.||weather-lab-status"
+          ]
+        }
+      },
+      "nextSteps": [
+        "Capture a fresh runtime UI snapshot: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait until the UI is settled: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalPlanner",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0jrt5w4",
+          "seq": 38,
+          "count": 135,
+          "targets": [
+            "e48|tap|button|Simpan itinerary pilihan||",
+            "e53|tap|button|Mulai / lihat perjalanan||",
+            "e77|tap|button|Buka kembali data tersimpan||",
+            "e18|tap|button|Log||",
+            "e19|tap|button|Kelola rencana||",
+            "e43|tap|button|Simpan draft||",
+            "e65|tap|button|Itinerary tersimpan||",
+            "e87|tap|button|Uji penyimpanan lokal||",
+            "e89|tap|button|||",
+            "e114|tap|tab|Weather Lab|0|cloud.sun",
+            "e116|tap|tab|Rencana|1|map"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e8|swipe|other|||",
+            "e9|swipe|other|||",
+            "e10|swipe|other|||",
+            "e11|swipe|other|||",
+            "e12|swipe|other|||",
+            "e13|swipe|other|||",
+            "e14|swipe|other|||",
+            "e21|swipe|other|||",
+            "e22|swipe|other|||",
+            "e23|swipe|other|||",
+            "e24|swipe|other|||",
+            "e25|swipe|other|||"
+          ],
+          "text": [
+            "e39|text|text|Draft tersimpan||",
+            "e54|text|text|Mulai / lihat perjalanan||",
+            "e60|text|text|Disimpan Nov 3, 2026 at 22:49||",
+            "e66|text|text|Itinerary tersimpan||",
+            "e72|text|text|Data rute/cuaca berasal dari Nov 3, 2026 at 22:46. Hitung ulang untuk kondisi terbaru.||",
+            "e82|text|text|Rencana lokal dibuka. ETA dan cuaca merupakan data saat perhitungan sebelumnya.||",
+            "e88|text|text|Uji penyimpanan lokal||",
+            "e100|text|text|Tempat di Jakarta · WIB · perjalanan mobil/taksi||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e18\"},{\"action\":\"tap\",\"elementRef\":\"e19\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e48\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalResults",
+    "value": {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "swipe",
+          "withinElementRef": "e1",
+          "direction": "up",
+          "from": {
+            "x": 201,
+            "y": 697
+          },
+          "to": {
+            "x": 201,
+            "y": 177
+          }
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0ztcal7",
+          "seq": 43,
+          "count": 149,
+          "targets": [
+            "e54|tap|button|Blok M, Blok M, Ashta, Open-Meteo · cache, Berlaku hingga 17:18:48 WIB, WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e66|tap|button|Sudirman, Sudirman, Open-Meteo · cache, Berlaku hingga 17:18:48 WIB, WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e78|tap|button|Monas, Monas, Open-Meteo · cache, Berlaku hingga 17:18:48 WIB, WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e90|tap|button|Glodok, Glodok, Kota Tua, Open-Meteo · cache, Berlaku hingga 17:18:49 WIB, WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e128|tap|tab|Weather Lab|1|cloud.sun",
+            "e130|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|Anggota terjauh 0.00 km||",
+            "e38|text|text|Perwakilan: Glodok||",
+            "e39|text|text|Glodok, Kota Tua||",
+            "e40|text|text|Anggota terjauh 0.99 km||",
+            "e50|text|text|4 Nov 2026 18:00 – 5 Nov 2026 00:00 · WIB||",
+            "e55|text|text|Blok M||",
+            "e56|text|text|Blok M, Ashta||",
+            "e57|text|text|Open-Meteo · cache||",
+            "e60|text|text|Berlaku hingga 17:18:48 WIB||",
+            "e61|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e67|text|text|Sudirman||",
+            "e68|text|text|Sudirman||",
+            "e69|text|text|Open-Meteo · cache||",
+            "e72|text|text|Berlaku hingga 17:18:48 WIB||",
+            "e73|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e79|text|text|Monas||",
+            "e80|text|text|Monas||",
+            "e81|text|text|Open-Meteo · cache||",
+            "e84|text|text|Berlaku hingga 17:18:48 WIB||",
+            "e85|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e91|text|text|Glodok||",
+            "e92|text|text|Glodok, Kota Tua||",
+            "e93|text|text|Open-Meteo · cache||",
+            "e96|text|text|Berlaku hingga 17:18:49 WIB||",
+            "e97|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e107|text|text|Request hourly WeatherKit, 0||",
+            "e108|text|text|Request hourly WeatherKit||",
+            "e112|text|text|Request Open-Meteo, 0||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e54\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalDetail",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0co198v",
+          "seq": 45,
+          "count": 122,
+          "targets": [
+            "e75|tap|button|Nov 4, 2026||",
+            "e84|tap|button|Nov 4, 2026||",
+            "e16|tap|button|Weather Lab||BackButton",
+            "e74|tap|button|Date and Time Picker|18:00, Nov 4, 2026|",
+            "e76|tap|button|18:00||",
+            "e83|tap|button|Date and Time Picker|18:00, Nov 4, 2026|",
+            "e85|tap|button|18:00||",
+            "e101|tap|tab|Weather Lab|1|cloud.sun",
+            "e103|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e8|swipe|other|||",
+            "e9|swipe|other|||",
+            "e10|swipe|other|||",
+            "e11|swipe|other|||",
+            "e12|swipe|other|||",
+            "e13|swipe|other|||",
+            "e14|swipe|other|||",
+            "e18|swipe|other|||",
+            "e19|swipe|other|||",
+            "e20|swipe|other|||",
+            "e21|swipe|other|||",
+            "e22|swipe|other|||"
+          ],
+          "text": [
+            "e32|text|text|Blok M||",
+            "e33|text|text|Blok M, Ashta||",
+            "e34|text|text|Open-Meteo · cache||",
+            "e36|text|text|Berlaku hingga 17:18:48 WIB||",
+            "e37|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e46|text|text|Diambil: 4 Nov 2026 17:03 WIB||",
+            "e50|text|text|Kedaluwarsa: 4 Nov 2026 17:18 WIB||",
+            "e55|text|text|Prakiraan titik perwakilan dipakai sebagai perkiraan area. Waktu kunjungan setiap tempat membaca interval jamnya sendiri.||",
+            "e62|text|text|Peluang presipitasi dikonversi ke 0–1 dan interval satu jam sebelumnya untuk perhitungan paparan.||",
+            "e72|text|text|Blok M||",
+            "e77|text|text|Peluang hujan 47% · interval 18:00:00 WIB||",
+            "e81|text|text|Ashta||",
+            "e86|text|text|Peluang hujan 47% · interval 18:00:00 WIB||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e16\"},{\"action\":\"tap\",\"elementRef\":\"e74\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e75\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalShare",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1b9tpy7",
+          "seq": 49,
+          "count": 162,
+          "targets": [
+            "e27|tap|button|Glodok, Glodok, Kota Tua, Open-Meteo · cache, Berlaku hingga 17:18:49 WIB, WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e83|tap|button|Kosongkan cache eksperimen||",
+            "e88|tap|button|Reset pemutus autentikasi||",
+            "e93|tap|button|Panduan autentikasi WeatherKit||",
+            "e100|tap|button|Bagikan laporan JSON||weather-lab-export",
+            "e107|tap|button|Log eksperimen (5)||",
+            "e124|tap|tab|Weather Lab|1|cloud.sun",
+            "e126|tap|tab|Rencana|0|map"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|Glodok||",
+            "e29|text|text|Glodok, Kota Tua||",
+            "e30|text|text|Open-Meteo · cache||",
+            "e33|text|text|Berlaku hingga 17:18:49 WIB||",
+            "e34|text|text|WeatherKit dilewati: autentikasi diblokir untuk sesi ini.||",
+            "e49|text|text|Request hourly WeatherKit, 0||",
+            "e50|text|text|Request hourly WeatherKit||",
+            "e54|text|text|Request Open-Meteo, 0||",
+            "e55|text|text|Request Open-Meteo||",
+            "e60|text|text|Cache hit, 4||",
+            "e61|text|text|Cache hit||",
+            "e66|text|text|Entri cache aktif, 4||",
+            "e67|text|text|Entri cache aktif||",
+            "e72|text|text|Durasi run, 0.01 detik||",
+            "e73|text|text|Durasi run||",
+            "e78|text|text|Hitungan request mencakup retry hourly; WeatherKit juga mengambil atribusi jika belum tersedia. Cache hanya di memori, maksimal 15 menit dan mengikuti expiry Apple yang lebih awal.||",
+            "e94|text|text|Panduan autentikasi WeatherKit||",
+            "e102|text|text|Bagikan laporan JSON||",
+            "e108|text|text|Log eksperimen (5)||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e100\"},{\"action\":\"tap\",\"elementRef\":\"e107\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e27\" })"
+      ]
+    }
+  },
+  {
+    "key": "uiFinalReady",
+    "value": {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "00sd7rh",
+          "seq": 52,
+          "count": 126,
+          "targets": [
+            "e49|tap|button|1. Diagnosis satu titik WeatherKit||weather-lab-probe",
+            "e65|tap|button|2. Uji semua kelompok||weather-lab-run",
+            "e70|tap|button|Ambil ulang tanpa cache||",
+            "e105|tap|tab|Weather Lab|1|",
+            "e107|tap|tab|Rencana|0|"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e29|text|text|Eksperimen cuaca Jakarta||",
+            "e34|text|text|Uji WeatherKit di sini. Tab Rencana tetap memakai alur Jakarta dan Open-Meteo yang sudah ada.||",
+            "e39|text|text|Belum dijalankan. Tidak ada request otomatis.||weather-lab-status",
+            "e53|text|text|Request baru ke titik perwakilan pertama, tanpa cache dan cadangan. Gagal autentikasi tetap terlihat.||",
+            "e58|text|text|Provider kelompok||",
+            "e60|text|text|WeatherKit + cadangan||",
+            "e75|text|text|Radius 3 km · maksimal 2 kelompok bersamaan · 8 detik per provider, termasuk maksimal satu retry untuk putus koneksi/timeout jaringan.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e65\"},{\"action\":\"tap\",\"elementRef\":\"e70\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e49\" })"
+      ]
+    }
+  }
+]

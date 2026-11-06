@@ -1,0 +1,2991 @@
+{
+  "collectedAt": "2026-11-02T13:27:39.585Z",
+  "input": {
+    "title": "Funabashi – Kamakura – Enoshima: audit jadwal pengguna",
+    "date": "2026-11-05",
+    "timeZone": "Asia/Tokyo",
+    "source": "24 baris dari pengguna, tanggal ditentukan tiga hari setelah 2 November 2026. Jam merupakan baseline, bukan jadwal provider yang terverifikasi.",
+    "areas": [
+      {
+        "id": "funabashi",
+        "name": "Funabashi",
+        "latitude": 35.702,
+        "longitude": 139.985
+      },
+      {
+        "id": "kamakura",
+        "name": "Kamakura dan pesisir",
+        "latitude": 35.319,
+        "longitude": 139.55
+      },
+      {
+        "id": "enoshima",
+        "name": "Enoshima dan Katase",
+        "latitude": 35.3,
+        "longitude": 139.48
+      },
+      {
+        "id": "fujisawa",
+        "name": "Fujisawa Station area",
+        "latitude": 35.339,
+        "longitude": 139.487
+      }
+    ],
+    "locations": {
+      "apartment": {
+        "name": "Apartment di Funabashi",
+        "address": null,
+        "area": "funabashi",
+        "precision": "unknown"
+      },
+      "funabashi_station": {
+        "name": "JR Funabashi Station",
+        "address": "JR船橋駅 千葉県船橋市",
+        "area": "funabashi",
+        "precision": "named_place"
+      },
+      "kamakura_station": {
+        "name": "Kamakura Station",
+        "address": "鎌倉駅 神奈川県鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "komachi": {
+        "name": "Komachi Street",
+        "address": "小町通り 鎌倉市",
+        "area": "kamakura",
+        "precision": "street_area"
+      },
+      "hachimangu": {
+        "name": "Tsurugaoka Hachimangu",
+        "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "kamakura_meal": {
+        "name": "Makan siang di area Kamakura",
+        "address": null,
+        "area": "kamakura",
+        "precision": "unknown"
+      },
+      "inamura_station": {
+        "name": "Inamuragasaki Station",
+        "address": "稲村ヶ崎駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "inamura_park": {
+        "name": "Kamakura Seaside Park, Inamuragasaki",
+        "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "area": "kamakura",
+        "precision": "park_area"
+      },
+      "shichiri_beach": {
+        "name": "Shichirigahama Beach, area depan sekolah belum dipatok",
+        "address": "七里ヶ浜海岸 鎌倉市",
+        "area": "kamakura",
+        "precision": "beach_area"
+      },
+      "kokomae": {
+        "name": "Kamakurakokomae Station",
+        "address": "鎌倉高校前駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "enoshima_station": {
+        "name": "Enoden Enoshima Station; toko suvenir belum dipilih",
+        "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "area": "enoshima",
+        "precision": "station_area"
+      },
+      "tourist_center": {
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "bridge": {
+        "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+        "address": "江の島大橋 藤沢市",
+        "area": "enoshima",
+        "precision": "bridge_area"
+      },
+      "oiwayamichi": {
+        "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+        "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "area": "enoshima",
+        "precision": "street_reference_point"
+      },
+      "sea_candle": {
+        "name": "Enoshima Sea Candle",
+        "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "enoshima_dinner": {
+        "name": "Turun pulau dan makan malam di Enoshima",
+        "address": null,
+        "area": "enoshima",
+        "precision": "unknown"
+      },
+      "katase_station": {
+        "name": "Katase-Enoshima Station",
+        "address": "片瀬江ノ島駅 藤沢市",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "fujisawa_station": {
+        "name": "Fujisawa Station; clock tower belum dipatok",
+        "address": "藤沢駅 神奈川県藤沢市",
+        "area": "fujisawa",
+        "precision": "station_area"
+      }
+    },
+    "events": [
+      {
+        "id": "E01",
+        "time": "07:00",
+        "label": "Berangkat dari Apartment (Funabashi)",
+        "location": "apartment",
+        "exposure": "unknown"
+      },
+      {
+        "id": "E02",
+        "time": "07:15",
+        "label": "Stasiun Funabashi ➔ Stasiun Kamakura",
+        "location": "funabashi_station",
+        "exposure": "transit"
+      },
+      {
+        "id": "E03",
+        "time": "08:45",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "location": "komachi",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E04",
+        "time": "09:45",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "location": "hachimangu",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E05",
+        "time": "10:45",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "location": "kamakura_meal",
+        "exposure": "unknown"
+      },
+      {
+        "id": "E06",
+        "time": "11:45",
+        "label": "Stasiun Kamakura ➔ Stasiun Inamuragasaki",
+        "location": "kamakura_station",
+        "exposure": "transit"
+      },
+      {
+        "id": "E07",
+        "time": "12:00",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "location": "inamura_park",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E08",
+        "time": "12:45",
+        "label": "Stasiun Inamuragasaki ➔ Stasiun Shichirigahama",
+        "location": "inamura_station",
+        "exposure": "transit"
+      },
+      {
+        "id": "E09",
+        "time": "13:00",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "location": "shichiri_beach",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E10",
+        "time": "13:45",
+        "label": "Coastal Walk: Shichirigahama ➔ Kamakurakokomae",
+        "location": "shichiri_beach",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E11",
+        "time": "14:00",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "location": "kokomae",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E12",
+        "time": "14:30",
+        "label": "Stasiun Kamakurakokomae ➔ Stasiun Enoshima",
+        "location": "kokomae",
+        "exposure": "transit"
+      },
+      {
+        "id": "E13",
+        "time": "14:35",
+        "label": "Toko Suvenir Enoshima Station",
+        "location": "enoshima_station",
+        "exposure": "mixed"
+      },
+      {
+        "id": "E14",
+        "time": "15:00",
+        "label": "Menuju Area Jembatan & Tourist Center",
+        "location": "enoshima_station",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E15",
+        "time": "15:15",
+        "label": "Fujisawa City Tourist Center",
+        "location": "tourist_center",
+        "exposure": "indoor"
+      },
+      {
+        "id": "E16",
+        "time": "15:45",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "location": "bridge",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E17",
+        "time": "16:30",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "location": "oiwayamichi",
+        "exposure": "outdoor",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "time": "17:00",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "location": "sea_candle",
+        "exposure": "mixed"
+      },
+      {
+        "id": "E19",
+        "time": "17:30",
+        "label": "Menyaksikan Illumination",
+        "location": "sea_candle",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E20",
+        "time": "18:30",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "location": "enoshima_dinner",
+        "exposure": "unknown"
+      },
+      {
+        "id": "E21",
+        "time": "19:30",
+        "label": "Stasiun Katase-Enoshima ➔ Stasiun Fujisawa",
+        "location": "katase_station",
+        "exposure": "transit"
+      },
+      {
+        "id": "E22",
+        "time": "19:45",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "location": "fujisawa_station",
+        "exposure": "outdoor"
+      },
+      {
+        "id": "E23",
+        "time": "20:30",
+        "label": "Perjalanan Pulang ke Funabashi",
+        "location": "fujisawa_station",
+        "exposure": "transit"
+      },
+      {
+        "id": "E24",
+        "time": "22:00",
+        "label": "Tiba di Apartment",
+        "location": "apartment",
+        "exposure": "unknown"
+      }
+    ],
+    "legs": [
+      {
+        "id": "L01",
+        "from": "apartment",
+        "to": "funabashi_station",
+        "depart": "07:00",
+        "arriveBy": "07:15",
+        "mode": "WALK",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "L02",
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "depart": "07:15",
+        "arriveBy": "08:45",
+        "mode": "TRANSIT",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "L03",
+        "from": "kamakura_station",
+        "via": [
+          "komachi"
+        ],
+        "to": "hachimangu",
+        "depart": "08:45",
+        "arriveBy": "09:45",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "L04",
+        "from": "hachimangu",
+        "to": "kamakura_meal",
+        "depart": "09:45",
+        "arriveBy": "10:45",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "L05",
+        "from": "kamakura_meal",
+        "to": "kamakura_station",
+        "depart": "10:45",
+        "arriveBy": "11:45",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "L06",
+        "from": "kamakura_station",
+        "to": "inamura_park",
+        "depart": "11:45",
+        "arriveBy": "12:00",
+        "mode": "TRANSIT",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E06",
+          "E07"
+        ]
+      },
+      {
+        "id": "L07",
+        "from": "inamura_park",
+        "to": "inamura_station",
+        "depart": "12:00",
+        "arriveBy": "12:45",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E07",
+          "E08"
+        ]
+      },
+      {
+        "id": "L08",
+        "from": "inamura_station",
+        "to": "shichiri_beach",
+        "depart": "12:45",
+        "arriveBy": "13:00",
+        "mode": "TRANSIT",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E08",
+          "E09"
+        ]
+      },
+      {
+        "id": "L10",
+        "from": "shichiri_beach",
+        "to": "kokomae",
+        "depart": "13:45",
+        "arriveBy": "14:00",
+        "mode": "WALK",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E10",
+          "E11"
+        ]
+      },
+      {
+        "id": "L12",
+        "from": "kokomae",
+        "to": "enoshima_station",
+        "depart": "14:30",
+        "arriveBy": "14:35",
+        "mode": "TRANSIT",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E12",
+          "E13"
+        ]
+      },
+      {
+        "id": "L14",
+        "from": "enoshima_station",
+        "to": "tourist_center",
+        "depart": "15:00",
+        "arriveBy": "15:15",
+        "mode": "WALK",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E14",
+          "E15"
+        ]
+      },
+      {
+        "id": "L15",
+        "from": "tourist_center",
+        "to": "bridge",
+        "depart": "15:15",
+        "arriveBy": "15:45",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E15",
+          "E16"
+        ]
+      },
+      {
+        "id": "L16",
+        "from": "bridge",
+        "to": "oiwayamichi",
+        "depart": "15:45",
+        "arriveBy": "16:30",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E16",
+          "E17"
+        ]
+      },
+      {
+        "id": "L17",
+        "from": "oiwayamichi",
+        "to": "sea_candle",
+        "depart": "16:30",
+        "arriveBy": "17:00",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E17",
+          "E18"
+        ]
+      },
+      {
+        "id": "L19",
+        "from": "sea_candle",
+        "to": "enoshima_dinner",
+        "depart": "17:30",
+        "arriveBy": "18:30",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E19",
+          "E20"
+        ]
+      },
+      {
+        "id": "L20",
+        "from": "enoshima_dinner",
+        "to": "katase_station",
+        "depart": "18:30",
+        "arriveBy": "19:30",
+        "mode": "WALK",
+        "meaning": "activity_and_travel",
+        "eventIds": [
+          "E20",
+          "E21"
+        ]
+      },
+      {
+        "id": "L21",
+        "from": "katase_station",
+        "to": "fujisawa_station",
+        "depart": "19:30",
+        "arriveBy": "19:45",
+        "mode": "TRANSIT",
+        "meaning": "travel_only",
+        "eventIds": [
+          "E21",
+          "E22"
+        ]
+      },
+      {
+        "id": "L23",
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "depart": "20:30",
+        "arriveBy": "22:00",
+        "mode": "TRANSIT",
+        "meaning": "station_to_station_proxy_for_home_arrival",
+        "eventIds": [
+          "E23",
+          "E24"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "official:hoseki-2026",
+        "kind": "seasonal_event",
+        "eventIds": [
+          "E19"
+        ],
+        "name": "Shonan no Hoseki 2026–2027",
+        "startDate": "2026-12-01",
+        "endDate": "2027-02-28",
+        "url": "https://enoshima-seacandle.com/information/post-4136/",
+        "publishedDate": "2026-10-23",
+        "checkedDate": "2026-11-02",
+        "note": "Tanggal dari pengumuman operator musim 2026–2027. Halaman event umum masih memuat tanggal musim sebelumnya. Nama illumination yang dimaksud pengguna belum dikonfirmasi."
+      },
+      {
+        "id": "official:candle-2026",
+        "kind": "seasonal_event",
+        "eventIds": [
+          "E19"
+        ],
+        "name": "Shonan Candle 2026",
+        "startDate": "2026-10-10",
+        "endDate": "2026-11-03",
+        "url": "https://enoshima-seacandle.com/information/post-4039/",
+        "publishedDate": "2026-09-01",
+        "checkedDate": "2026-11-02",
+        "note": "Acara candle musiman berakhir sebelum tanggal uji. Tidak membuktikan seluruh pencahayaan biasa Sea Candle tidak tersedia."
+      },
+      {
+        "id": "official:tourist-center",
+        "kind": "opening_hours",
+        "eventIds": [
+          "E15"
+        ],
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "opensAt": "08:30",
+        "closesAt": "17:00",
+        "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "checkedDate": "2026-11-02",
+        "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan."
+      },
+      {
+        "id": "official:oiwayamichi",
+        "kind": "place_identity",
+        "eventIds": [
+          "E17"
+        ],
+        "name": "Oiwayamichi Street / 御岩屋道通り",
+        "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+        "checkedDate": "2026-11-02",
+        "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan."
+      }
+    ]
+  },
+  "legs": [
+    {
+      "id": "L01",
+      "from": "apartment",
+      "to": "funabashi_station",
+      "depart": "07:00",
+      "arriveBy": "07:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E01",
+        "E02"
+      ],
+      "evidenceId": "route:L01",
+      "status": "unresolved_location",
+      "plannedMinutes": 15,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "L02",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "depart": "07:15",
+      "arriveBy": "08:45",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E02",
+        "E03"
+      ],
+      "evidenceId": "route:L02",
+      "status": "no_route",
+      "plannedMinutes": 90,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          }
+        }
+      }
+    },
+    {
+      "id": "L03",
+      "from": "kamakura_station",
+      "via": [
+        "komachi"
+      ],
+      "to": "hachimangu",
+      "depart": "08:45",
+      "arriveBy": "09:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E03",
+        "E04"
+      ],
+      "evidenceId": "route:L03",
+      "status": "ok",
+      "plannedMinutes": 60,
+      "estimatedMinutes": 10.883333333333333,
+      "remainingMinutes": 49.11666666666667,
+      "estimatedArrival": "2026-11-05T08:55:53.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": true,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              },
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 783,
+            "duration": "653s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "place_of_worship",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJiaqQeLhFGGARtTZQEBCtZ6g"
+          },
+          "intermediates": [
+            {
+              "geocoderStatus": {},
+              "intermediateWaypointRequestIndex": 0,
+              "type": [
+                "route"
+              ],
+              "placeId": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "L04",
+      "from": "hachimangu",
+      "to": "kamakura_meal",
+      "depart": "09:45",
+      "arriveBy": "10:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E04",
+        "E05"
+      ],
+      "evidenceId": "route:L04",
+      "status": "unresolved_location",
+      "plannedMinutes": 60,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "L05",
+      "from": "kamakura_meal",
+      "to": "kamakura_station",
+      "depart": "10:45",
+      "arriveBy": "11:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E05",
+        "E06"
+      ],
+      "evidenceId": "route:L05",
+      "status": "unresolved_location",
+      "plannedMinutes": 60,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "L06",
+      "from": "kamakura_station",
+      "to": "inamura_park",
+      "depart": "11:45",
+      "arriveBy": "12:00",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E06",
+        "E07"
+      ],
+      "evidenceId": "route:L06",
+      "status": "no_route",
+      "plannedMinutes": 15,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "park",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk"
+          }
+        }
+      }
+    },
+    {
+      "id": "L07",
+      "from": "inamura_park",
+      "to": "inamura_station",
+      "depart": "12:00",
+      "arriveBy": "12:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E07",
+        "E08"
+      ],
+      "evidenceId": "route:L07",
+      "status": "ok",
+      "plannedMinutes": 45,
+      "estimatedMinutes": 4.883333333333334,
+      "remainingMinutes": 40.11666666666667,
+      "estimatedArrival": "2026-11-05T12:04:53.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 345,
+            "duration": "293s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "park",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          }
+        }
+      }
+    },
+    {
+      "id": "L08",
+      "from": "inamura_station",
+      "to": "shichiri_beach",
+      "depart": "12:45",
+      "arriveBy": "13:00",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E08",
+        "E09"
+      ],
+      "evidenceId": "route:L08",
+      "status": "no_route",
+      "plannedMinutes": 15,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "natural_feature"
+            ],
+            "placeId": "ChIJJVoJcURPGGARDdQBeLN5FOo"
+          }
+        }
+      }
+    },
+    {
+      "id": "L10",
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "depart": "13:45",
+      "arriveBy": "14:00",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E10",
+        "E11"
+      ],
+      "evidenceId": "route:L10",
+      "status": "ok",
+      "plannedMinutes": 15,
+      "estimatedMinutes": 17.583333333333332,
+      "remainingMinutes": -2.583333333333332,
+      "estimatedArrival": "2026-11-05T14:02:35.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 1283,
+            "duration": "1055s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "natural_feature"
+            ],
+            "placeId": "ChIJJVoJcURPGGARDdQBeLN5FOo"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk"
+          }
+        }
+      }
+    },
+    {
+      "id": "L12",
+      "from": "kokomae",
+      "to": "enoshima_station",
+      "depart": "14:30",
+      "arriveBy": "14:35",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E12",
+        "E13"
+      ],
+      "evidenceId": "route:L12",
+      "status": "no_route",
+      "plannedMinutes": 5,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4"
+          }
+        }
+      }
+    },
+    {
+      "id": "L14",
+      "from": "enoshima_station",
+      "to": "tourist_center",
+      "depart": "15:00",
+      "arriveBy": "15:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E14",
+        "E15"
+      ],
+      "evidenceId": "route:L14",
+      "status": "ok",
+      "plannedMinutes": 15,
+      "estimatedMinutes": 10,
+      "remainingMinutes": 5,
+      "estimatedArrival": "2026-11-05T15:10:00.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": true,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 703,
+            "duration": "600s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "premise",
+              "street_address"
+            ],
+            "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY"
+          }
+        }
+      }
+    },
+    {
+      "id": "L15",
+      "from": "tourist_center",
+      "to": "bridge",
+      "depart": "15:15",
+      "arriveBy": "15:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E15",
+        "E16"
+      ],
+      "evidenceId": "route:L15",
+      "status": "ok",
+      "plannedMinutes": 30,
+      "estimatedMinutes": 5,
+      "remainingMinutes": 25,
+      "estimatedArrival": "2026-11-05T15:20:00.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 380,
+            "duration": "300s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "premise",
+              "street_address"
+            ],
+            "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest"
+            ],
+            "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU"
+          }
+        }
+      }
+    },
+    {
+      "id": "L16",
+      "from": "bridge",
+      "to": "oiwayamichi",
+      "depart": "15:45",
+      "arriveBy": "16:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E16",
+        "E17"
+      ],
+      "evidenceId": "route:L16",
+      "status": "ok",
+      "plannedMinutes": 45,
+      "estimatedMinutes": 14.833333333333334,
+      "remainingMinutes": 30.166666666666664,
+      "estimatedArrival": "2026-11-05T15:59:50.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 984,
+            "duration": "890s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest"
+            ],
+            "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "food",
+              "point_of_interest",
+              "store"
+            ],
+            "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w"
+          }
+        }
+      }
+    },
+    {
+      "id": "L17",
+      "from": "oiwayamichi",
+      "to": "sea_candle",
+      "depart": "16:30",
+      "arriveBy": "17:00",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E17",
+        "E18"
+      ],
+      "evidenceId": "route:L17",
+      "status": "ok",
+      "plannedMinutes": 30,
+      "estimatedMinutes": 7.566666666666666,
+      "remainingMinutes": 22.433333333333334,
+      "estimatedArrival": "2026-11-05T16:37:34.000+09:00",
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": null,
+      "providerResponse": {
+        "routes": [
+          {
+            "legs": [
+              {
+                "steps": [
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  },
+                  {
+                    "travelMode": "WALK"
+                  }
+                ]
+              }
+            ],
+            "distanceMeters": 401,
+            "duration": "454s"
+          }
+        ],
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "food",
+              "point_of_interest",
+              "store"
+            ],
+            "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "tourist_attraction"
+            ],
+            "placeId": "ChIJvVsEzuVOGGARs99YuxNfbDU"
+          }
+        }
+      }
+    },
+    {
+      "id": "L19",
+      "from": "sea_candle",
+      "to": "enoshima_dinner",
+      "depart": "17:30",
+      "arriveBy": "18:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E19",
+        "E20"
+      ],
+      "evidenceId": "route:L19",
+      "status": "unresolved_location",
+      "plannedMinutes": 60,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "L20",
+      "from": "enoshima_dinner",
+      "to": "katase_station",
+      "depart": "18:30",
+      "arriveBy": "19:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": [
+        "E20",
+        "E21"
+      ],
+      "evidenceId": "route:L20",
+      "status": "unresolved_location",
+      "plannedMinutes": 60,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Exact apartment/restaurant location was not supplied; no route was invented."
+    },
+    {
+      "id": "L21",
+      "from": "katase_station",
+      "to": "fujisawa_station",
+      "depart": "19:30",
+      "arriveBy": "19:45",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": [
+        "E21",
+        "E22"
+      ],
+      "evidenceId": "route:L21",
+      "status": "no_route",
+      "plannedMinutes": 15,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "placeId": "ChIJSdyjbPxOGGARohA5GYPzeuA"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "placeId": "ChIJC0kMNstPGGARmu_dZscfvjI"
+          }
+        }
+      }
+    },
+    {
+      "id": "L23",
+      "from": "fujisawa_station",
+      "to": "funabashi_station",
+      "depart": "20:30",
+      "arriveBy": "22:00",
+      "mode": "TRANSIT",
+      "meaning": "station_to_station_proxy_for_home_arrival",
+      "eventIds": [
+        "E23",
+        "E24"
+      ],
+      "evidenceId": "route:L23",
+      "status": "no_route",
+      "plannedMinutes": 90,
+      "estimatedMinutes": null,
+      "remainingMinutes": null,
+      "estimatedArrival": null,
+      "transitServices": [],
+      "partialAddressMatch": false,
+      "error": "Provider returned no route. This is not evidence that the real journey is impossible.",
+      "providerResponse": {
+        "geocodingResults": {
+          "origin": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "transit_station"
+            ],
+            "placeId": "ChIJC0kMNstPGGARmu_dZscfvjI"
+          },
+          "destination": {
+            "geocoderStatus": {},
+            "type": [
+              "establishment",
+              "point_of_interest",
+              "train_station",
+              "transit_station"
+            ],
+            "partialMatch": true,
+            "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE"
+          }
+        }
+      }
+    }
+  ],
+  "forecasts": [
+    {
+      "areaId": "funabashi",
+      "evidenceId": "weather:funabashi",
+      "weather": {
+        "placeId": "funabashi",
+        "hours": [
+          {
+            "at": 1793804400,
+            "rainProbability": 47,
+            "temperatureC": 13.3,
+            "cloudCover": 81
+          },
+          {
+            "at": 1793808000,
+            "rainProbability": 58,
+            "temperatureC": 12.9,
+            "cloudCover": 98
+          },
+          {
+            "at": 1793811600,
+            "rainProbability": 69,
+            "temperatureC": 12.9,
+            "cloudCover": 100
+          },
+          {
+            "at": 1793815200,
+            "rainProbability": 78,
+            "temperatureC": 12.8,
+            "cloudCover": 88
+          },
+          {
+            "at": 1793818800,
+            "rainProbability": 84,
+            "temperatureC": 13.1,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793822400,
+            "rainProbability": 88,
+            "temperatureC": 13.3,
+            "cloudCover": 49
+          },
+          {
+            "at": 1793826000,
+            "rainProbability": 90,
+            "temperatureC": 13.4,
+            "cloudCover": 71
+          },
+          {
+            "at": 1793829600,
+            "rainProbability": 91,
+            "temperatureC": 13.8,
+            "cloudCover": 45
+          },
+          {
+            "at": 1793833200,
+            "rainProbability": 91,
+            "temperatureC": 14.2,
+            "cloudCover": 64
+          },
+          {
+            "at": 1793836800,
+            "rainProbability": 90,
+            "temperatureC": 14.8,
+            "cloudCover": 55
+          },
+          {
+            "at": 1793840400,
+            "rainProbability": 88,
+            "temperatureC": 16.3,
+            "cloudCover": 57
+          },
+          {
+            "at": 1793844000,
+            "rainProbability": 86,
+            "temperatureC": 17.1,
+            "cloudCover": 68
+          },
+          {
+            "at": 1793847600,
+            "rainProbability": 82,
+            "temperatureC": 17.2,
+            "cloudCover": 89
+          },
+          {
+            "at": 1793851200,
+            "rainProbability": 77,
+            "temperatureC": 17,
+            "cloudCover": 87
+          },
+          {
+            "at": 1793854800,
+            "rainProbability": 71,
+            "temperatureC": 17.6,
+            "cloudCover": 80
+          },
+          {
+            "at": 1793858400,
+            "rainProbability": 65,
+            "temperatureC": 18.1,
+            "cloudCover": 69
+          },
+          {
+            "at": 1793862000,
+            "rainProbability": 60,
+            "temperatureC": 17.9,
+            "cloudCover": 89
+          },
+          {
+            "at": 1793865600,
+            "rainProbability": 55,
+            "temperatureC": 16.8,
+            "cloudCover": 100
+          },
+          {
+            "at": 1793869200,
+            "rainProbability": 49,
+            "temperatureC": 16.8,
+            "cloudCover": 94
+          },
+          {
+            "at": 1793872800,
+            "rainProbability": 41,
+            "temperatureC": 16.1,
+            "cloudCover": 96
+          },
+          {
+            "at": 1793876400,
+            "rainProbability": 31,
+            "temperatureC": 15.7,
+            "cloudCover": 78
+          },
+          {
+            "at": 1793880000,
+            "rainProbability": 22,
+            "temperatureC": 14.8,
+            "cloudCover": 15
+          },
+          {
+            "at": 1793883600,
+            "rainProbability": 13,
+            "temperatureC": 13.9,
+            "cloudCover": 17
+          },
+          {
+            "at": 1793887200,
+            "rainProbability": 6,
+            "temperatureC": 13.6,
+            "cloudCover": 30
+          }
+        ],
+        "sunrise": 1793826329,
+        "sunset": 1793864482,
+        "evidenceId": "weather:funabashi"
+      },
+      "wind": [
+        {
+          "at": 1793804400,
+          "speedKmh": 11.4,
+          "gustKmh": 26.3
+        },
+        {
+          "at": 1793808000,
+          "speedKmh": 17.6,
+          "gustKmh": 25.9
+        },
+        {
+          "at": 1793811600,
+          "speedKmh": 12.6,
+          "gustKmh": 23.4
+        },
+        {
+          "at": 1793815200,
+          "speedKmh": 13.5,
+          "gustKmh": 29.2
+        },
+        {
+          "at": 1793818800,
+          "speedKmh": 12.8,
+          "gustKmh": 27.4
+        },
+        {
+          "at": 1793822400,
+          "speedKmh": 11,
+          "gustKmh": 25.2
+        },
+        {
+          "at": 1793826000,
+          "speedKmh": 12.8,
+          "gustKmh": 26.6
+        },
+        {
+          "at": 1793829600,
+          "speedKmh": 13.8,
+          "gustKmh": 27.7
+        },
+        {
+          "at": 1793833200,
+          "speedKmh": 10.8,
+          "gustKmh": 29.5
+        },
+        {
+          "at": 1793836800,
+          "speedKmh": 10.5,
+          "gustKmh": 33.8
+        },
+        {
+          "at": 1793840400,
+          "speedKmh": 9.1,
+          "gustKmh": 32.4
+        },
+        {
+          "at": 1793844000,
+          "speedKmh": 8.4,
+          "gustKmh": 43.6
+        },
+        {
+          "at": 1793847600,
+          "speedKmh": 4.5,
+          "gustKmh": 45
+        },
+        {
+          "at": 1793851200,
+          "speedKmh": 7.3,
+          "gustKmh": 37.4
+        },
+        {
+          "at": 1793854800,
+          "speedKmh": 8.7,
+          "gustKmh": 32
+        },
+        {
+          "at": 1793858400,
+          "speedKmh": 5.8,
+          "gustKmh": 27
+        },
+        {
+          "at": 1793862000,
+          "speedKmh": 3.7,
+          "gustKmh": 15.5
+        },
+        {
+          "at": 1793865600,
+          "speedKmh": 2.3,
+          "gustKmh": 7.9
+        },
+        {
+          "at": 1793869200,
+          "speedKmh": 4.2,
+          "gustKmh": 8.3
+        },
+        {
+          "at": 1793872800,
+          "speedKmh": 2.6,
+          "gustKmh": 9
+        },
+        {
+          "at": 1793876400,
+          "speedKmh": 1.9,
+          "gustKmh": 4.3
+        },
+        {
+          "at": 1793880000,
+          "speedKmh": 4.1,
+          "gustKmh": 7.2
+        },
+        {
+          "at": 1793883600,
+          "speedKmh": 4.7,
+          "gustKmh": 6.5
+        },
+        {
+          "at": 1793887200,
+          "speedKmh": 3.1,
+          "gustKmh": 7.9
+        }
+      ],
+      "warning": null
+    },
+    {
+      "areaId": "kamakura",
+      "evidenceId": "weather:kamakura",
+      "weather": {
+        "placeId": "kamakura",
+        "hours": [
+          {
+            "at": 1793804400,
+            "rainProbability": 49,
+            "temperatureC": 12.8,
+            "cloudCover": 74
+          },
+          {
+            "at": 1793808000,
+            "rainProbability": 62,
+            "temperatureC": 13,
+            "cloudCover": 82
+          },
+          {
+            "at": 1793811600,
+            "rainProbability": 77,
+            "temperatureC": 13.4,
+            "cloudCover": 58
+          },
+          {
+            "at": 1793815200,
+            "rainProbability": 88,
+            "temperatureC": 13.5,
+            "cloudCover": 55
+          },
+          {
+            "at": 1793818800,
+            "rainProbability": 92,
+            "temperatureC": 13.8,
+            "cloudCover": 56
+          },
+          {
+            "at": 1793822400,
+            "rainProbability": 93,
+            "temperatureC": 13.9,
+            "cloudCover": 48
+          },
+          {
+            "at": 1793826000,
+            "rainProbability": 92,
+            "temperatureC": 14.1,
+            "cloudCover": 42
+          },
+          {
+            "at": 1793829600,
+            "rainProbability": 91,
+            "temperatureC": 14.4,
+            "cloudCover": 58
+          },
+          {
+            "at": 1793833200,
+            "rainProbability": 89,
+            "temperatureC": 15.1,
+            "cloudCover": 36
+          },
+          {
+            "at": 1793836800,
+            "rainProbability": 86,
+            "temperatureC": 16.4,
+            "cloudCover": 38
+          },
+          {
+            "at": 1793840400,
+            "rainProbability": 82,
+            "temperatureC": 17.4,
+            "cloudCover": 46
+          },
+          {
+            "at": 1793844000,
+            "rainProbability": 77,
+            "temperatureC": 17.5,
+            "cloudCover": 79
+          },
+          {
+            "at": 1793847600,
+            "rainProbability": 73,
+            "temperatureC": 16.9,
+            "cloudCover": 82
+          },
+          {
+            "at": 1793851200,
+            "rainProbability": 72,
+            "temperatureC": 17.1,
+            "cloudCover": 84
+          },
+          {
+            "at": 1793854800,
+            "rainProbability": 71,
+            "temperatureC": 17.8,
+            "cloudCover": 60
+          },
+          {
+            "at": 1793858400,
+            "rainProbability": 69,
+            "temperatureC": 18.5,
+            "cloudCover": 48
+          },
+          {
+            "at": 1793862000,
+            "rainProbability": 65,
+            "temperatureC": 18.5,
+            "cloudCover": 69
+          },
+          {
+            "at": 1793865600,
+            "rainProbability": 58,
+            "temperatureC": 16.9,
+            "cloudCover": 100
+          },
+          {
+            "at": 1793869200,
+            "rainProbability": 51,
+            "temperatureC": 17.2,
+            "cloudCover": 79
+          },
+          {
+            "at": 1793872800,
+            "rainProbability": 41,
+            "temperatureC": 16.9,
+            "cloudCover": 100
+          },
+          {
+            "at": 1793876400,
+            "rainProbability": 30,
+            "temperatureC": 17.2,
+            "cloudCover": 52
+          },
+          {
+            "at": 1793880000,
+            "rainProbability": 20,
+            "temperatureC": 16.3,
+            "cloudCover": 6
+          },
+          {
+            "at": 1793883600,
+            "rainProbability": 12,
+            "temperatureC": 15.8,
+            "cloudCover": 17
+          },
+          {
+            "at": 1793887200,
+            "rainProbability": 5,
+            "temperatureC": 15.6,
+            "cloudCover": 9
+          }
+        ],
+        "sunrise": 1793826394,
+        "sunset": 1793864627,
+        "evidenceId": "weather:kamakura"
+      },
+      "wind": [
+        {
+          "at": 1793804400,
+          "speedKmh": 18.4,
+          "gustKmh": 45.7
+        },
+        {
+          "at": 1793808000,
+          "speedKmh": 18.2,
+          "gustKmh": 43.2
+        },
+        {
+          "at": 1793811600,
+          "speedKmh": 18.4,
+          "gustKmh": 41
+        },
+        {
+          "at": 1793815200,
+          "speedKmh": 17.3,
+          "gustKmh": 51.1
+        },
+        {
+          "at": 1793818800,
+          "speedKmh": 16.8,
+          "gustKmh": 49.3
+        },
+        {
+          "at": 1793822400,
+          "speedKmh": 17.8,
+          "gustKmh": 44.6
+        },
+        {
+          "at": 1793826000,
+          "speedKmh": 18.4,
+          "gustKmh": 47.5
+        },
+        {
+          "at": 1793829600,
+          "speedKmh": 17.3,
+          "gustKmh": 47.9
+        },
+        {
+          "at": 1793833200,
+          "speedKmh": 17.5,
+          "gustKmh": 47.5
+        },
+        {
+          "at": 1793836800,
+          "speedKmh": 16.7,
+          "gustKmh": 54
+        },
+        {
+          "at": 1793840400,
+          "speedKmh": 14.5,
+          "gustKmh": 49.7
+        },
+        {
+          "at": 1793844000,
+          "speedKmh": 13.8,
+          "gustKmh": 50.8
+        },
+        {
+          "at": 1793847600,
+          "speedKmh": 6.9,
+          "gustKmh": 50.4
+        },
+        {
+          "at": 1793851200,
+          "speedKmh": 12.4,
+          "gustKmh": 45
+        },
+        {
+          "at": 1793854800,
+          "speedKmh": 10.9,
+          "gustKmh": 43.6
+        },
+        {
+          "at": 1793858400,
+          "speedKmh": 7.8,
+          "gustKmh": 29.2
+        },
+        {
+          "at": 1793862000,
+          "speedKmh": 4.3,
+          "gustKmh": 18
+        },
+        {
+          "at": 1793865600,
+          "speedKmh": 2.3,
+          "gustKmh": 9
+        },
+        {
+          "at": 1793869200,
+          "speedKmh": 1.8,
+          "gustKmh": 5
+        },
+        {
+          "at": 1793872800,
+          "speedKmh": 1.8,
+          "gustKmh": 3.6
+        },
+        {
+          "at": 1793876400,
+          "speedKmh": 1.9,
+          "gustKmh": 11.5
+        },
+        {
+          "at": 1793880000,
+          "speedKmh": 2.9,
+          "gustKmh": 4
+        },
+        {
+          "at": 1793883600,
+          "speedKmh": 2.9,
+          "gustKmh": 6.8
+        },
+        {
+          "at": 1793887200,
+          "speedKmh": 3.3,
+          "gustKmh": 4.7
+        }
+      ],
+      "warning": null
+    },
+    {
+      "areaId": "enoshima",
+      "evidenceId": "weather:enoshima",
+      "weather": {
+        "placeId": "enoshima",
+        "hours": [
+          {
+            "at": 1793804400,
+            "rainProbability": 49,
+            "temperatureC": 12.9,
+            "cloudCover": 73
+          },
+          {
+            "at": 1793808000,
+            "rainProbability": 62,
+            "temperatureC": 13.4,
+            "cloudCover": 74
+          },
+          {
+            "at": 1793811600,
+            "rainProbability": 77,
+            "temperatureC": 13.7,
+            "cloudCover": 50
+          },
+          {
+            "at": 1793815200,
+            "rainProbability": 88,
+            "temperatureC": 13.8,
+            "cloudCover": 54
+          },
+          {
+            "at": 1793818800,
+            "rainProbability": 92,
+            "temperatureC": 14,
+            "cloudCover": 53
+          },
+          {
+            "at": 1793822400,
+            "rainProbability": 93,
+            "temperatureC": 14.1,
+            "cloudCover": 46
+          },
+          {
+            "at": 1793826000,
+            "rainProbability": 92,
+            "temperatureC": 14.3,
+            "cloudCover": 43
+          },
+          {
+            "at": 1793829600,
+            "rainProbability": 91,
+            "temperatureC": 14.6,
+            "cloudCover": 51
+          },
+          {
+            "at": 1793833200,
+            "rainProbability": 89,
+            "temperatureC": 15.4,
+            "cloudCover": 34
+          },
+          {
+            "at": 1793836800,
+            "rainProbability": 86,
+            "temperatureC": 16.6,
+            "cloudCover": 33
+          },
+          {
+            "at": 1793840400,
+            "rainProbability": 82,
+            "temperatureC": 17.7,
+            "cloudCover": 36
+          },
+          {
+            "at": 1793844000,
+            "rainProbability": 77,
+            "temperatureC": 17.8,
+            "cloudCover": 76
+          },
+          {
+            "at": 1793847600,
+            "rainProbability": 73,
+            "temperatureC": 17.1,
+            "cloudCover": 78
+          },
+          {
+            "at": 1793851200,
+            "rainProbability": 72,
+            "temperatureC": 17.3,
+            "cloudCover": 84
+          },
+          {
+            "at": 1793854800,
+            "rainProbability": 71,
+            "temperatureC": 18.2,
+            "cloudCover": 54
+          },
+          {
+            "at": 1793858400,
+            "rainProbability": 69,
+            "temperatureC": 19.1,
+            "cloudCover": 51
+          },
+          {
+            "at": 1793862000,
+            "rainProbability": 65,
+            "temperatureC": 19.3,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793865600,
+            "rainProbability": 58,
+            "temperatureC": 17.7,
+            "cloudCover": 98
+          },
+          {
+            "at": 1793869200,
+            "rainProbability": 51,
+            "temperatureC": 18.1,
+            "cloudCover": 75
+          },
+          {
+            "at": 1793872800,
+            "rainProbability": 41,
+            "temperatureC": 17.3,
+            "cloudCover": 99
+          },
+          {
+            "at": 1793876400,
+            "rainProbability": 30,
+            "temperatureC": 17.5,
+            "cloudCover": 41
+          },
+          {
+            "at": 1793880000,
+            "rainProbability": 20,
+            "temperatureC": 16.5,
+            "cloudCover": 24
+          },
+          {
+            "at": 1793883600,
+            "rainProbability": 12,
+            "temperatureC": 16.1,
+            "cloudCover": 28
+          },
+          {
+            "at": 1793887200,
+            "rainProbability": 5,
+            "temperatureC": 15.7,
+            "cloudCover": 41
+          }
+        ],
+        "sunrise": 1793826409,
+        "sunset": 1793864642,
+        "evidenceId": "weather:enoshima"
+      },
+      "wind": [
+        {
+          "at": 1793804400,
+          "speedKmh": 24.2,
+          "gustKmh": 42.1
+        },
+        {
+          "at": 1793808000,
+          "speedKmh": 23.8,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793811600,
+          "speedKmh": 23.3,
+          "gustKmh": 38.9
+        },
+        {
+          "at": 1793815200,
+          "speedKmh": 22,
+          "gustKmh": 44.3
+        },
+        {
+          "at": 1793818800,
+          "speedKmh": 22.1,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793822400,
+          "speedKmh": 22.9,
+          "gustKmh": 44.3
+        },
+        {
+          "at": 1793826000,
+          "speedKmh": 23.6,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793829600,
+          "speedKmh": 21.5,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793833200,
+          "speedKmh": 22.5,
+          "gustKmh": 45
+        },
+        {
+          "at": 1793836800,
+          "speedKmh": 21,
+          "gustKmh": 46.1
+        },
+        {
+          "at": 1793840400,
+          "speedKmh": 18.6,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793844000,
+          "speedKmh": 17.4,
+          "gustKmh": 43.6
+        },
+        {
+          "at": 1793847600,
+          "speedKmh": 9.7,
+          "gustKmh": 42.1
+        },
+        {
+          "at": 1793851200,
+          "speedKmh": 14.3,
+          "gustKmh": 42.8
+        },
+        {
+          "at": 1793854800,
+          "speedKmh": 13.1,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793858400,
+          "speedKmh": 9.2,
+          "gustKmh": 32
+        },
+        {
+          "at": 1793862000,
+          "speedKmh": 5.2,
+          "gustKmh": 20.2
+        },
+        {
+          "at": 1793865600,
+          "speedKmh": 1.8,
+          "gustKmh": 10.8
+        },
+        {
+          "at": 1793869200,
+          "speedKmh": 0.2,
+          "gustKmh": 2.2
+        },
+        {
+          "at": 1793872800,
+          "speedKmh": 3.2,
+          "gustKmh": 5.8
+        },
+        {
+          "at": 1793876400,
+          "speedKmh": 5.2,
+          "gustKmh": 15.5
+        },
+        {
+          "at": 1793880000,
+          "speedKmh": 4,
+          "gustKmh": 9.7
+        },
+        {
+          "at": 1793883600,
+          "speedKmh": 5.4,
+          "gustKmh": 10.4
+        },
+        {
+          "at": 1793887200,
+          "speedKmh": 5.9,
+          "gustKmh": 11.9
+        }
+      ],
+      "warning": null
+    },
+    {
+      "areaId": "fujisawa",
+      "evidenceId": "weather:fujisawa",
+      "weather": {
+        "placeId": "fujisawa",
+        "hours": [
+          {
+            "at": 1793804400,
+            "rainProbability": 49,
+            "temperatureC": 12.4,
+            "cloudCover": 81
+          },
+          {
+            "at": 1793808000,
+            "rainProbability": 62,
+            "temperatureC": 12.9,
+            "cloudCover": 76
+          },
+          {
+            "at": 1793811600,
+            "rainProbability": 77,
+            "temperatureC": 13.2,
+            "cloudCover": 52
+          },
+          {
+            "at": 1793815200,
+            "rainProbability": 88,
+            "temperatureC": 13.3,
+            "cloudCover": 53
+          },
+          {
+            "at": 1793818800,
+            "rainProbability": 92,
+            "temperatureC": 13.5,
+            "cloudCover": 55
+          },
+          {
+            "at": 1793822400,
+            "rainProbability": 93,
+            "temperatureC": 13.7,
+            "cloudCover": 49
+          },
+          {
+            "at": 1793826000,
+            "rainProbability": 92,
+            "temperatureC": 13.8,
+            "cloudCover": 43
+          },
+          {
+            "at": 1793829600,
+            "rainProbability": 91,
+            "temperatureC": 14.3,
+            "cloudCover": 51
+          },
+          {
+            "at": 1793833200,
+            "rainProbability": 89,
+            "temperatureC": 15.1,
+            "cloudCover": 35
+          },
+          {
+            "at": 1793836800,
+            "rainProbability": 86,
+            "temperatureC": 16.6,
+            "cloudCover": 36
+          },
+          {
+            "at": 1793840400,
+            "rainProbability": 82,
+            "temperatureC": 17.8,
+            "cloudCover": 33
+          },
+          {
+            "at": 1793844000,
+            "rainProbability": 77,
+            "temperatureC": 17.8,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793847600,
+            "rainProbability": 73,
+            "temperatureC": 17.1,
+            "cloudCover": 82
+          },
+          {
+            "at": 1793851200,
+            "rainProbability": 72,
+            "temperatureC": 17.2,
+            "cloudCover": 82
+          },
+          {
+            "at": 1793854800,
+            "rainProbability": 71,
+            "temperatureC": 18.1,
+            "cloudCover": 55
+          },
+          {
+            "at": 1793858400,
+            "rainProbability": 69,
+            "temperatureC": 19,
+            "cloudCover": 51
+          },
+          {
+            "at": 1793862000,
+            "rainProbability": 65,
+            "temperatureC": 19.3,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793865600,
+            "rainProbability": 58,
+            "temperatureC": 17.7,
+            "cloudCover": 98
+          },
+          {
+            "at": 1793869200,
+            "rainProbability": 51,
+            "temperatureC": 18.1,
+            "cloudCover": 75
+          },
+          {
+            "at": 1793872800,
+            "rainProbability": 41,
+            "temperatureC": 17.3,
+            "cloudCover": 99
+          },
+          {
+            "at": 1793876400,
+            "rainProbability": 30,
+            "temperatureC": 17.5,
+            "cloudCover": 41
+          },
+          {
+            "at": 1793880000,
+            "rainProbability": 20,
+            "temperatureC": 16.5,
+            "cloudCover": 24
+          },
+          {
+            "at": 1793883600,
+            "rainProbability": 12,
+            "temperatureC": 16.1,
+            "cloudCover": 28
+          },
+          {
+            "at": 1793887200,
+            "rainProbability": 5,
+            "temperatureC": 15.7,
+            "cloudCover": 41
+          }
+        ],
+        "sunrise": 1793826414,
+        "sunset": 1793864637,
+        "evidenceId": "weather:fujisawa"
+      },
+      "wind": [
+        {
+          "at": 1793804400,
+          "speedKmh": 14.6,
+          "gustKmh": 42.1
+        },
+        {
+          "at": 1793808000,
+          "speedKmh": 13.4,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793811600,
+          "speedKmh": 13.8,
+          "gustKmh": 38.9
+        },
+        {
+          "at": 1793815200,
+          "speedKmh": 13,
+          "gustKmh": 44.3
+        },
+        {
+          "at": 1793818800,
+          "speedKmh": 13,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793822400,
+          "speedKmh": 13.4,
+          "gustKmh": 44.3
+        },
+        {
+          "at": 1793826000,
+          "speedKmh": 13.8,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793829600,
+          "speedKmh": 12,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793833200,
+          "speedKmh": 13.7,
+          "gustKmh": 45
+        },
+        {
+          "at": 1793836800,
+          "speedKmh": 12.4,
+          "gustKmh": 46.1
+        },
+        {
+          "at": 1793840400,
+          "speedKmh": 11.8,
+          "gustKmh": 43.9
+        },
+        {
+          "at": 1793844000,
+          "speedKmh": 10,
+          "gustKmh": 43.6
+        },
+        {
+          "at": 1793847600,
+          "speedKmh": 5.1,
+          "gustKmh": 42.1
+        },
+        {
+          "at": 1793851200,
+          "speedKmh": 9.9,
+          "gustKmh": 42.8
+        },
+        {
+          "at": 1793854800,
+          "speedKmh": 10.5,
+          "gustKmh": 41.8
+        },
+        {
+          "at": 1793858400,
+          "speedKmh": 8,
+          "gustKmh": 32
+        },
+        {
+          "at": 1793862000,
+          "speedKmh": 5.2,
+          "gustKmh": 20.2
+        },
+        {
+          "at": 1793865600,
+          "speedKmh": 1.8,
+          "gustKmh": 10.8
+        },
+        {
+          "at": 1793869200,
+          "speedKmh": 0.2,
+          "gustKmh": 2.2
+        },
+        {
+          "at": 1793872800,
+          "speedKmh": 3.2,
+          "gustKmh": 5.8
+        },
+        {
+          "at": 1793876400,
+          "speedKmh": 5.2,
+          "gustKmh": 15.5
+        },
+        {
+          "at": 1793880000,
+          "speedKmh": 4,
+          "gustKmh": 9.7
+        },
+        {
+          "at": 1793883600,
+          "speedKmh": 5.4,
+          "gustKmh": 10.4
+        },
+        {
+          "at": 1793887200,
+          "speedKmh": 5.9,
+          "gustKmh": 11.9
+        }
+      ],
+      "warning": null
+    }
+  ],
+  "findings": [
+    {
+      "id": "check:L01",
+      "severity": "unknown",
+      "eventIds": [
+        "E01",
+        "E02"
+      ],
+      "evidenceIds": [
+        "route:L01"
+      ],
+      "message": "L01: Exact apartment/restaurant location was not supplied; no route was invented. Original 15-minute allocation is unverified."
+    },
+    {
+      "id": "check:L02",
+      "severity": "unknown",
+      "eventIds": [
+        "E02",
+        "E03"
+      ],
+      "evidenceIds": [
+        "route:L02"
+      ],
+      "message": "L02: Provider returned no route. This is not evidence that the real journey is impossible. Original 90-minute allocation is unverified."
+    },
+    {
+      "id": "check:L03",
+      "severity": "note",
+      "eventIds": [
+        "E03",
+        "E04"
+      ],
+      "evidenceIds": [
+        "route:L03"
+      ],
+      "message": "L03: 49.1 minutes remain for the activity within this shared activity-and-travel slot, before queues/breaks."
+    },
+    {
+      "id": "check:L04",
+      "severity": "unknown",
+      "eventIds": [
+        "E04",
+        "E05"
+      ],
+      "evidenceIds": [
+        "route:L04"
+      ],
+      "message": "L04: Exact apartment/restaurant location was not supplied; no route was invented. Original 60-minute allocation is unverified."
+    },
+    {
+      "id": "check:L05",
+      "severity": "unknown",
+      "eventIds": [
+        "E05",
+        "E06"
+      ],
+      "evidenceIds": [
+        "route:L05"
+      ],
+      "message": "L05: Exact apartment/restaurant location was not supplied; no route was invented. Original 60-minute allocation is unverified."
+    },
+    {
+      "id": "check:L06",
+      "severity": "unknown",
+      "eventIds": [
+        "E06",
+        "E07"
+      ],
+      "evidenceIds": [
+        "route:L06"
+      ],
+      "message": "L06: Provider returned no route. This is not evidence that the real journey is impossible. Original 15-minute allocation is unverified."
+    },
+    {
+      "id": "check:L07",
+      "severity": "note",
+      "eventIds": [
+        "E07",
+        "E08"
+      ],
+      "evidenceIds": [
+        "route:L07"
+      ],
+      "message": "L07: 40.1 minutes remain for the activity within this shared activity-and-travel slot, before queues/breaks."
+    },
+    {
+      "id": "check:L08",
+      "severity": "unknown",
+      "eventIds": [
+        "E08",
+        "E09"
+      ],
+      "evidenceIds": [
+        "route:L08"
+      ],
+      "message": "L08: Provider returned no route. This is not evidence that the real journey is impossible. Original 15-minute allocation is unverified."
+    },
+    {
+      "id": "check:L10",
+      "severity": "conflict",
+      "eventIds": [
+        "E10",
+        "E11"
+      ],
+      "evidenceIds": [
+        "route:L10"
+      ],
+      "message": "L10: provider travel estimate 17.6 minutes exceeds the 15-minute slot by 2.6 minutes."
+    },
+    {
+      "id": "check:L12",
+      "severity": "unknown",
+      "eventIds": [
+        "E12",
+        "E13"
+      ],
+      "evidenceIds": [
+        "route:L12"
+      ],
+      "message": "L12: Provider returned no route. This is not evidence that the real journey is impossible. Original 5-minute allocation is unverified."
+    },
+    {
+      "id": "check:L15",
+      "severity": "note",
+      "eventIds": [
+        "E15",
+        "E16"
+      ],
+      "evidenceIds": [
+        "route:L15"
+      ],
+      "message": "L15: 25.0 minutes remain for the activity within this shared activity-and-travel slot, before queues/breaks."
+    },
+    {
+      "id": "check:L16",
+      "severity": "note",
+      "eventIds": [
+        "E16",
+        "E17"
+      ],
+      "evidenceIds": [
+        "route:L16"
+      ],
+      "message": "L16: 30.2 minutes remain for the activity within this shared activity-and-travel slot, before queues/breaks."
+    },
+    {
+      "id": "check:L17",
+      "severity": "note",
+      "eventIds": [
+        "E17",
+        "E18"
+      ],
+      "evidenceIds": [
+        "route:L17"
+      ],
+      "message": "L17: 22.4 minutes remain for the activity within this shared activity-and-travel slot, before queues/breaks."
+    },
+    {
+      "id": "check:L19",
+      "severity": "unknown",
+      "eventIds": [
+        "E19",
+        "E20"
+      ],
+      "evidenceIds": [
+        "route:L19"
+      ],
+      "message": "L19: Exact apartment/restaurant location was not supplied; no route was invented. Original 60-minute allocation is unverified."
+    },
+    {
+      "id": "check:L20",
+      "severity": "unknown",
+      "eventIds": [
+        "E20",
+        "E21"
+      ],
+      "evidenceIds": [
+        "route:L20"
+      ],
+      "message": "L20: Exact apartment/restaurant location was not supplied; no route was invented. Original 60-minute allocation is unverified."
+    },
+    {
+      "id": "check:L21",
+      "severity": "unknown",
+      "eventIds": [
+        "E21",
+        "E22"
+      ],
+      "evidenceIds": [
+        "route:L21"
+      ],
+      "message": "L21: Provider returned no route. This is not evidence that the real journey is impossible. Original 15-minute allocation is unverified."
+    },
+    {
+      "id": "check:L23",
+      "severity": "unknown",
+      "eventIds": [
+        "E23",
+        "E24"
+      ],
+      "evidenceIds": [
+        "route:L23"
+      ],
+      "message": "L23: Provider returned no route. This is not evidence that the real journey is impossible. Original 90-minute allocation is unverified."
+    },
+    {
+      "id": "check:home",
+      "severity": "unknown",
+      "eventIds": [
+        "E23",
+        "E24"
+      ],
+      "evidenceIds": [
+        "route:L23",
+        "input:E24"
+      ],
+      "message": "Final route ends at Funabashi Station, while 22:00 refers to the apartment. Apartment transfer time is unknown and has not been included."
+    },
+    {
+      "id": "check:official:hoseki-2026",
+      "severity": "conflict",
+      "eventIds": [
+        "E19"
+      ],
+      "evidenceIds": [
+        "official:hoseki-2026"
+      ],
+      "message": "If illumination means Shonan no Hoseki 2026–2027, it is outside the published 2026-12-01 to 2027-02-28 season. The user's intended illumination is unspecified; ordinary lighting availability remains unknown."
+    },
+    {
+      "id": "check:official:candle-2026",
+      "severity": "conflict",
+      "eventIds": [
+        "E19"
+      ],
+      "evidenceIds": [
+        "official:candle-2026"
+      ],
+      "message": "If illumination means Shonan Candle 2026, it is outside the published 2026-10-10 to 2026-11-03 season. The user's intended illumination is unspecified; ordinary lighting availability remains unknown."
+    },
+    {
+      "id": "check:official:tourist-center",
+      "severity": "note",
+      "eventIds": [
+        "E15"
+      ],
+      "evidenceIds": [
+        "official:tourist-center",
+        "input:E15"
+      ],
+      "message": "Fujisawa City Tourist Center, Katase Kaigan: planned 15:15 JST; published general hours 08:30–17:00. Date-specific closures have not been independently confirmed."
+    },
+    {
+      "id": "check:rain:E03",
+      "severity": "note",
+      "eventIds": [
+        "E03"
+      ],
+      "evidenceIds": [
+        "input:E03",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 86.8%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E04",
+      "severity": "note",
+      "eventIds": [
+        "E04"
+      ],
+      "evidenceIds": [
+        "input:E04",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 83.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E07",
+      "severity": "note",
+      "eventIds": [
+        "E07"
+      ],
+      "evidenceIds": [
+        "input:E07",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 73.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E09",
+      "severity": "note",
+      "eventIds": [
+        "E09"
+      ],
+      "evidenceIds": [
+        "input:E09",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 72.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E10",
+      "severity": "note",
+      "eventIds": [
+        "E10"
+      ],
+      "evidenceIds": [
+        "input:E10",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 72.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E11",
+      "severity": "note",
+      "eventIds": [
+        "E11"
+      ],
+      "evidenceIds": [
+        "input:E11",
+        "weather:kamakura"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 71.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E14",
+      "severity": "note",
+      "eventIds": [
+        "E14"
+      ],
+      "evidenceIds": [
+        "input:E14",
+        "weather:enoshima"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 69.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E16",
+      "severity": "note",
+      "eventIds": [
+        "E16"
+      ],
+      "evidenceIds": [
+        "input:E16",
+        "weather:enoshima"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 66.3%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:rain:E17",
+      "severity": "note",
+      "eventIds": [
+        "E17"
+      ],
+      "evidenceIds": [
+        "input:E17",
+        "weather:enoshima"
+      ],
+      "message": "Regional mean forecast rain probability during this slot is 65.0%. This is a regional forecast, not a guarantee or predicted rain duration."
+    },
+    {
+      "id": "check:sea-candle-sunset",
+      "severity": "note",
+      "eventIds": [
+        "E18"
+      ],
+      "evidenceIds": [
+        "input:E18",
+        "weather:enoshima"
+      ],
+      "message": "Sea Candle arrival 2026-11-05T17:00:00.000+09:00 is after the supplied sunset 2026-11-05T16:44:02.000+09:00; this does not rule out night views or establish a seasonal event."
+    }
+  ],
+  "httpCalls": {
+    "Google audit route": 13,
+    "Open-Meteo audit": 4
+  }
+}

@@ -1,0 +1,29 @@
+# Itinerary native PoC C67
+Draf tersedia · periksa data bersyarat
+Berangkat: Nov 5, 2026 at 7:00 (Asia/Jakarta)
+AI: tidak digunakan
+MapKit transit: estimasi ETA, bukan jadwal atau detail jalur kereta.
+Baseline geografis
+
+Input 1: Grand Indonesia · 30 menit
+   Jam operasional: belum diisi
+
+Kandidat: E32284F7-2A9E-4739-9991-4A086BB990DF
+Lengkap: true; layak terhadap batas yang diketahui: true
+Perjalanan: 30.9 menit; menunggu buka: 0.0 menit; singgah: 30 menit.
+1. Stasiun sudirman → Grand Indonesia | berangkat Nov 5, 2026 at 7:00 | tiba Nov 5, 2026 at 7:15 | singgah 30 menit (default)
+   Mulai singgah: Nov 5, 2026 at 7:15
+   Lanjut: Nov 5, 2026 at 7:45
+   Jalan kaki: 15.3 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.
+2. Grand Indonesia → Stasiun sudirman | berangkat Nov 5, 2026 at 7:45 | tiba Nov 5, 2026 at 8:00 | singgah 0 menit (transfer)
+   Mulai singgah: Nov 5, 2026 at 8:00
+   Lanjut: Nov 5, 2026 at 8:00
+   Jalan kaki: 15.6 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.
+Bersyarat: Jam operasional Grand Indonesia belum diisi.
+
+Rekomendasi cuaca ditunda: prakiraan, paparan transit, atau kandidat layak belum lengkap. Prakiraan per tempat yang tersedia tetap dapat dilihat.
+Cuaca origin: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Cuaca E32284F7-2A9E-4739-9991-4A086BB990DF: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Data cuaca: Open-Meteo (https://open-meteo.com/), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Peluang presipitasi dikonversi ke 0–1 dan interval satu jam sebelumnya untuk perhitungan paparan.
+Pencarian terbatas: seed geografis dibandingkan menggunakan ETA aktual MapKit. Tidak menjamin optimum global.
+Permintaan arah/ETA MapKit: 2. Laporan ini bukan bukti uji perangkat atau jaminan layanan transportasi.

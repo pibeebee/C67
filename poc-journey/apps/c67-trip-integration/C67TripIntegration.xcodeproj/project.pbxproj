@@ -1,0 +1,494 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		521E0101E862A96A6ADF2DDD /* PreferenceQuality in Frameworks */ = {isa = PBXBuildFile; productRef = BCB841AE6608AF519F1E54A1 /* PreferenceQuality */; };
+		74E2CFDA864F39F95BD093AC /* IntegrationHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126A267DE4ECFCF0539B6F9 /* IntegrationHome.swift */; };
+		7F3AE5E40836E1935E0EB625 /* IntegrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C0C16269928F27BC8459AB /* IntegrationUITests.swift */; };
+		A5C30F71BDA8A33C9B4E913C /* IntegrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D7D7F419D1957278A3B7F /* IntegrationModel.swift */; };
+		ABD088A65C703DD354D753FA /* C67TripIntegrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA47C41144BEA6F68B91B57 /* C67TripIntegrationApp.swift */; };
+		B15954AAA0CEE2586EBF213C /* VisitTiming in Frameworks */ = {isa = PBXBuildFile; productRef = 4E4E1D9A46CC02A337BB65F0 /* VisitTiming */; };
+		CCBA9A9BBADE66A684087B17 /* TripIntegration in Frameworks */ = {isa = PBXBuildFile; productRef = 20DAE42C9BAA573A58FC3CD5 /* TripIntegration */; };
+		EC0ECD4EAF71E14E7C53C85C /* LiveEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D0D194AD12BE4653D244A /* LiveEvaluation.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F6AE542360C970F6190D660 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9504D9E901763E3AE422FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4484710142E9FE5F23DC488;
+			remoteInfo = C67TripIntegration;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1126A267DE4ECFCF0539B6F9 /* IntegrationHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationHome.swift; sourceTree = "<group>"; };
+		20A1AE2A41A1FB30ED288144 /* PreferenceQuality */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PreferenceQuality; path = "../c67-foundation-lab/Packages/PreferenceQuality"; sourceTree = SOURCE_ROOT; };
+		373D7D7F419D1957278A3B7F /* IntegrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationModel.swift; sourceTree = "<group>"; };
+		39CAD94707D5C4386B261556 /* C67TripIntegration.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = C67TripIntegration.entitlements; sourceTree = "<group>"; };
+		4EFF39BB04ACB968A2F10F2F /* TripIntegration */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TripIntegration; path = Packages/TripIntegration; sourceTree = SOURCE_ROOT; };
+		7CB2600C5F08843646CA4BB0 /* C67TripIntegration.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = C67TripIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85C0C16269928F27BC8459AB /* IntegrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationUITests.swift; sourceTree = "<group>"; };
+		8BA47C41144BEA6F68B91B57 /* C67TripIntegrationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C67TripIntegrationApp.swift; sourceTree = "<group>"; };
+		A6153B0C0E2A9A8C1BD9D1BE /* VisitTiming */ = {isa = PBXFileReference; lastKnownFileType = folder; name = VisitTiming; path = "../c67-foundation-lab/Packages/VisitTiming"; sourceTree = SOURCE_ROOT; };
+		AC0D0D194AD12BE4653D244A /* LiveEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveEvaluation.swift; sourceTree = "<group>"; };
+		DA080F366F8D8F10D02AFFF6 /* C67TripIntegrationUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = C67TripIntegrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8045DD17B13D67EF74DD9C35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCBA9A9BBADE66A684087B17 /* TripIntegration in Frameworks */,
+				521E0101E862A96A6ADF2DDD /* PreferenceQuality in Frameworks */,
+				B15954AAA0CEE2586EBF213C /* VisitTiming in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10CC52BA4DD616E94B0FE06F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				20A1AE2A41A1FB30ED288144 /* PreferenceQuality */,
+				4EFF39BB04ACB968A2F10F2F /* TripIntegration */,
+				A6153B0C0E2A9A8C1BD9D1BE /* VisitTiming */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		274F04EDF96C6763D69D559C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CB2600C5F08843646CA4BB0 /* C67TripIntegration.app */,
+				DA080F366F8D8F10D02AFFF6 /* C67TripIntegrationUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8371E1CE3CAB4FAE231B86C3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				39CAD94707D5C4386B261556 /* C67TripIntegration.entitlements */,
+				8BA47C41144BEA6F68B91B57 /* C67TripIntegrationApp.swift */,
+				1126A267DE4ECFCF0539B6F9 /* IntegrationHome.swift */,
+				373D7D7F419D1957278A3B7F /* IntegrationModel.swift */,
+				AC0D0D194AD12BE4653D244A /* LiveEvaluation.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C8988AC374E9DA49947049A3 = {
+			isa = PBXGroup;
+			children = (
+				8371E1CE3CAB4FAE231B86C3 /* App */,
+				10CC52BA4DD616E94B0FE06F /* Packages */,
+				CA219B047035A28D9AD8EC54 /* UITests */,
+				274F04EDF96C6763D69D559C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA219B047035A28D9AD8EC54 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				85C0C16269928F27BC8459AB /* IntegrationUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A59755559AC38DF70A187E6D /* C67TripIntegrationUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFE4385A58045E239E9B3B47 /* Build configuration list for PBXNativeTarget "C67TripIntegrationUITests" */;
+			buildPhases = (
+				ECC5284E313372526EDA2C11 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8845341F95BFD4198721629B /* PBXTargetDependency */,
+			);
+			name = C67TripIntegrationUITests;
+			packageProductDependencies = (
+			);
+			productName = C67TripIntegrationUITests;
+			productReference = DA080F366F8D8F10D02AFFF6 /* C67TripIntegrationUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D4484710142E9FE5F23DC488 /* C67TripIntegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95BBB486F3A5ED2230B819C1 /* Build configuration list for PBXNativeTarget "C67TripIntegration" */;
+			buildPhases = (
+				6D52A5D03D93DA93094DABE1 /* Sources */,
+				8045DD17B13D67EF74DD9C35 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = C67TripIntegration;
+			packageProductDependencies = (
+				20DAE42C9BAA573A58FC3CD5 /* TripIntegration */,
+				BCB841AE6608AF519F1E54A1 /* PreferenceQuality */,
+				4E4E1D9A46CC02A337BB65F0 /* VisitTiming */,
+			);
+			productName = C67TripIntegration;
+			productReference = 7CB2600C5F08843646CA4BB0 /* C67TripIntegration.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD9504D9E901763E3AE422FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A59755559AC38DF70A187E6D = {
+						DevelopmentTeam = DP5XP7C2AM;
+						TestTargetID = D4484710142E9FE5F23DC488;
+					};
+					D4484710142E9FE5F23DC488 = {
+						SystemCapabilities = {
+							com.apple.WeatherKit = {
+								enabled = 1;
+							};
+						};
+						DevelopmentTeam = DP5XP7C2AM;
+					};
+				};
+			};
+			buildConfigurationList = 762E7F8D226998620A6F71D0 /* Build configuration list for PBXProject "C67TripIntegration" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C8988AC374E9DA49947049A3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BD0BFDACD9DDF8DFFF740D68 /* XCLocalSwiftPackageReference "../c67-foundation-lab/Packages/PreferenceQuality" */,
+				4F4706190B1E38BD0709C0EF /* XCLocalSwiftPackageReference "Packages/TripIntegration" */,
+				36122EA67134EB1F142ECAA5 /* XCLocalSwiftPackageReference "../c67-foundation-lab/Packages/VisitTiming" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 274F04EDF96C6763D69D559C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4484710142E9FE5F23DC488 /* C67TripIntegration */,
+				A59755559AC38DF70A187E6D /* C67TripIntegrationUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D52A5D03D93DA93094DABE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABD088A65C703DD354D753FA /* C67TripIntegrationApp.swift in Sources */,
+				74E2CFDA864F39F95BD093AC /* IntegrationHome.swift in Sources */,
+				A5C30F71BDA8A33C9B4E913C /* IntegrationModel.swift in Sources */,
+				EC0ECD4EAF71E14E7C53C85C /* LiveEvaluation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECC5284E313372526EDA2C11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3AE5E40836E1935E0EB625 /* IntegrationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8845341F95BFD4198721629B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4484710142E9FE5F23DC488 /* C67TripIntegration */;
+			targetProxy = 7F6AE542360C970F6190D660 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6240D0E8D2A45BA4D7B4B513 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A7B81D2F496014BCADCEA419 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/C67TripIntegration.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "C67 Trip Integration";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.c67-trip-integration";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B1F33629772B1F41AB6E32F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = giovanchristoffel.C67TripIntegrationUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = C67TripIntegration;
+			};
+			name = Debug;
+		};
+		C7495E1EF6A143B310F1EF2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/C67TripIntegration.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "C67 Trip Integration";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.c67-trip-integration";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DBE5C48893BF4A6DC338E36F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = giovanchristoffel.C67TripIntegrationUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = C67TripIntegration;
+			};
+			name = Release;
+		};
+		E9FAD9849534FD112CD2879E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		762E7F8D226998620A6F71D0 /* Build configuration list for PBXProject "C67TripIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9FAD9849534FD112CD2879E /* Debug */,
+				6240D0E8D2A45BA4D7B4B513 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		95BBB486F3A5ED2230B819C1 /* Build configuration list for PBXNativeTarget "C67TripIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7495E1EF6A143B310F1EF2D /* Debug */,
+				A7B81D2F496014BCADCEA419 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BFE4385A58045E239E9B3B47 /* Build configuration list for PBXNativeTarget "C67TripIntegrationUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1F33629772B1F41AB6E32F2 /* Debug */,
+				DBE5C48893BF4A6DC338E36F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		36122EA67134EB1F142ECAA5 /* XCLocalSwiftPackageReference "../c67-foundation-lab/Packages/VisitTiming" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../c67-foundation-lab/Packages/VisitTiming";
+		};
+		4F4706190B1E38BD0709C0EF /* XCLocalSwiftPackageReference "Packages/TripIntegration" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/TripIntegration;
+		};
+		BD0BFDACD9DDF8DFFF740D68 /* XCLocalSwiftPackageReference "../c67-foundation-lab/Packages/PreferenceQuality" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../c67-foundation-lab/Packages/PreferenceQuality";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20DAE42C9BAA573A58FC3CD5 /* TripIntegration */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TripIntegration;
+		};
+		4E4E1D9A46CC02A337BB65F0 /* VisitTiming */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VisitTiming;
+		};
+		BCB841AE6608AF519F1E54A1 /* PreferenceQuality */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PreferenceQuality;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CD9504D9E901763E3AE422FC /* Project object */;
+}

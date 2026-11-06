@@ -1,0 +1,255 @@
+{
+  "build": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 6425,
+      "target": "simulator"
+    },
+    "artifacts": {
+      "appPath": "/tmp/c67-recommendation-ios/Build/Products/Debug-iphonesimulator/C67FoundationLab.app",
+      "bundleId": "giovanchristoffel.c67-foundation-lab",
+      "processId": 99197,
+      "simulatorId": "0F32DA7F-20C4-481E-8A0E-01FB5F153CBE",
+      "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-04T15-21-03-325Z_pid72339_27bc4c17.log",
+      "runtimeLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.c67-foundation-lab_2026-11-04T15-21-07-969Z_helperpid99154_ownerpid72339_4c48d7e8.log",
+      "osLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.c67-foundation-lab_oslog_2026-11-04T15-21-09-691Z_helperpid99330_ownerpid72339_b8e6dcc3.log"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": []
+    }
+  },
+  "shots": {
+    "root": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_380553e7-afee-4a39-ba68-24f2b1912ed7.jpg",
+    "preferences": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_4b038571-71d8-4520-b8cb-97932f4eb75d.jpg",
+    "result": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_8111305a-82b2-47d7-9db1-01af73e0354c.jpg"
+  },
+  "snapshots": {
+    "root": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "10v6ppw",
+      "seq": 45,
+      "count": 77,
+      "targets": [
+        "e49|tap|button|Belum · pilihkan untuk saya||has-places",
+        "e60|tap|button|Lanjut · Preferensi Anda||onboarding-next",
+        "e54|tap|button|Sudah punya tempat||has-places",
+        "e67|tap|button|Eksperimen dan riwayat||recommendation-experiments"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e3|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e8|swipe|other|||",
+        "e9|swipe|other|||",
+        "e10|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||"
+      ],
+      "text": [
+        "e20|text|text|Tempat yang cocok untuk Anda||",
+        "e24|text|text|Pilih minat Anda. Aplikasi mencari tempat dan menyarankan waktu berkunjung.||",
+        "e30|text|text|Jakarta · rekomendasi tempat dan waktu||",
+        "e35|text|text|Mode fixture · data sintetis, tanpa inferensi model||",
+        "e61|text|text|Lanjut · Preferensi Anda||",
+        "e68|text|text|Eksperimen dan riwayat||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "preferences": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "04vmq33",
+      "seq": 47,
+      "count": 90,
+      "targets": [
+        "e46|tap|button|Arsitektur dan fotografi||experience-photography",
+        "e76|tap|button|Preferensi tambahan · opsional||",
+        "e83|tap|button|Simpan pilihan sebagai profil awal||",
+        "e9|tap|button|Foundation Lab||BackButton",
+        "e28|tap|button|Kopi||experience-coffee",
+        "e31|tap|button|Membaca||experience-reading",
+        "e34|tap|button|Alam dan outdoor||experience-nature",
+        "e37|tap|button|Kuliner||experience-food",
+        "e40|tap|button|Budaya dan sejarah||experience-culture",
+        "e43|tap|button|Belanja dan lifestyle||experience-shopping",
+        "e49|tap|button|Hiburan||experience-entertainment",
+        "e52|tap|button|Seni dan kreativitas||experience-art",
+        "e68|tap|tab|||recommendation-pace",
+        "e69|tap|tab|Santai|0|",
+        "e70|tap|tab|Seimbang|1|",
+        "e71|tap|tab|Padat|0|",
+        "e78|tap|button|||"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e3|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||",
+        "e13|swipe|other|||",
+        "e14|swipe|other|||",
+        "e15|swipe|other|||"
+      ],
+      "text": [
+        "e29|text|text|Kopi||",
+        "e32|text|text|Membaca||",
+        "e35|text|text|Alam dan outdoor||",
+        "e38|text|text|Kuliner||",
+        "e41|text|text|Budaya dan sejarah||",
+        "e44|text|text|Belanja dan lifestyle||",
+        "e47|text|text|Arsitektur dan fotografi||",
+        "e50|text|text|Hiburan||",
+        "e53|text|text|Seni dan kreativitas||",
+        "e58|text|text|Boleh dilewati. Tidak ada minat yang ditambahkan diam-diam.||",
+        "e77|text|text|Preferensi tambahan · opsional||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "result": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "11ljrjn",
+      "seq": 52,
+      "count": 80,
+      "targets": [
+        "e9|tap|button|Preferensi Anda||BackButton",
+        "e53|tap|button|Sumber informasi||",
+        "e55|tap|button|||"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e23|text|text|Rekomendasi tempat dan waktu||",
+        "e27|text|text|2026-11-05 · Jakarta/WIB||",
+        "e32|text|text|Urutan kartu bukan urutan perjalanan. Tidak ada rute, ETA atau jadwal baru yang dihitung.||",
+        "e37|text|text|Belum ada pilihan model yang cukup untuk dijadikan rekomendasi. Kandidat hasil pencarian tetap dapat ditinjau; waktu yang cocok belum dipastikan.||",
+        "e43|text|text|Example Reading Cafe (fictional)||",
+        "e44|text|text|cafe||",
+        "e45|text|text|Kandidat untuk ditinjau||",
+        "e46|text|text|Template: this is a retrieved place; model-based personal fit is unavailable.||",
+        "e47|text|text|Waktu yang cocok belum diketahui||",
+        "e49|text|text|Suitable visiting time is not established from available information.||",
+        "e50|text|text|Informasi waktu belum mencukupi||",
+        "e51|text|text|Template · model tidak memberikan hasil yang dapat digunakan||",
+        "e52|text|text|Belum diketahui: opening hours, price, crowds, accessibility, travel access||",
+        "e54|text|text|Sumber informasi||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "alternatives-empty": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1bjljfy",
+      "seq": 60,
+      "count": 65,
+      "targets": [
+        "e9|tap|button|Preferensi Anda||BackButton"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e3|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||",
+        "e13|swipe|other|||",
+        "e14|swipe|other|||",
+        "e15|swipe|other|||"
+      ],
+      "text": [
+        "e23|text|text|Rekomendasi tempat dan waktu||",
+        "e27|text|text|2026-11-05 · Jakarta/WIB||",
+        "e32|text|text|Urutan kartu bukan urutan perjalanan. Tidak ada rute, ETA atau jadwal baru yang dihitung.||",
+        "e37|text|text|Belum ada pilihan model yang cukup untuk dijadikan rekomendasi. Kandidat hasil pencarian tetap dapat ditinjau; waktu yang cocok belum dipastikan.||",
+        "e43|text|text|Belum ada kandidat||",
+        "e45|text|text|Ubah minat atau coba kembali. Tidak ada tempat yang dibuat-buat.||",
+        "e54|text|text|Jam operasional, harga, keramaian, aksesibilitas, dan status populer/lokal hanya diketahui jika ada sumbernya.||",
+        "e58|text|text|0 kandidat dinilai dari 0 hasil. Maksimal tiga rekomendasi baru ditandai.||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "diagnostics": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0xsrr4o",
+      "seq": 64,
+      "count": 95,
+      "targets": [
+        "e31|tap|switch|Mode fixture · tanpa model|1|",
+        "e38|tap|button|Muat contoh sintetis untuk pengujian||recommendation-example",
+        "e43|tap|button|Jalankan pembanding tanpa model||",
+        "e48|tap|button|Lab lama · impor itinerary dan pengujian awal||",
+        "e9|tap|button|Rekomendasi||BackButton",
+        "e33|tap|switch||1|",
+        "e74|tap|button|Siapkan ekspor||export-recommendations"
+      ],
+      "scroll": [
+        "e1|swipe|application|C67 Foundation Lab||"
+      ],
+      "text": [
+        "e27|text|text|available||",
+        "e32|text|text|Mode fixture · tanpa model||",
+        "e49|text|text|Lab lama · impor itinerary dan pengujian awal||",
+        "e60|text|text|09C0CD66-9F23-4C79-96E3-091FD362279C||",
+        "e64|text|text|0.03 detik · input 2 · koreksi 1||",
+        "e69|text|text|Synthetic fixture search; not MapKit||",
+        "e84|text|text|deterministic · blocked · 0.00 detik||",
+        "e88|text|text|Fixture mode; live model disabled||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    },
+    "export": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "0nyrr48",
+      "seq": 66,
+      "count": 95,
+      "targets": [
+        "e31|tap|switch|Mode fixture · tanpa model|1|",
+        "e38|tap|button|Muat contoh sintetis untuk pengujian||recommendation-example",
+        "e43|tap|button|Jalankan pembanding tanpa model||",
+        "e48|tap|button|Lab lama · impor itinerary dan pengujian awal||",
+        "e9|tap|button|Rekomendasi||BackButton",
+        "e33|tap|switch||1|",
+        "e74|tap|button|Siapkan ekspor||export-recommendations",
+        "e79|tap|button|Bagikan JSON||",
+        "e86|tap|button|Bagikan Markdown||"
+      ],
+      "scroll": [
+        "e2|swipe|other|||",
+        "e3|swipe|other|||",
+        "e4|swipe|other|||",
+        "e5|swipe|other|||",
+        "e6|swipe|other|||",
+        "e7|swipe|other|||",
+        "e11|swipe|other|||",
+        "e12|swipe|other|||",
+        "e13|swipe|other|||",
+        "e14|swipe|other|||",
+        "e15|swipe|other|||"
+      ],
+      "text": [
+        "e27|text|text|available||",
+        "e32|text|text|Mode fixture · tanpa model||",
+        "e49|text|text|Lab lama · impor itinerary dan pengujian awal||",
+        "e60|text|text|09C0CD66-9F23-4C79-96E3-091FD362279C||",
+        "e64|text|text|0.03 detik · input 2 · koreksi 1||",
+        "e69|text|text|Synthetic fixture search; not MapKit||",
+        "e81|text|text|Bagikan JSON||",
+        "e88|text|text|Bagikan Markdown||"
+      ],
+      "udid": "<REDACTED_DEVICE_METADATA>"
+    }
+  }
+}

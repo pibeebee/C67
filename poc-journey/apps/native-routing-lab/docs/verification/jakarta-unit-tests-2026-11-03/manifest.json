@@ -1,0 +1,26 @@
+{
+  "gitCommit": "712f036b222839173d7ea82bb736dd57aaeed6f5",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "framework": "XCTest, SwiftPM host macOS",
+  "network": false,
+  "weatherData": false,
+  "adapter": "Existing frozen replay adapter; actual production planner/core/model/engine compiled unchanged.",
+  "configuration": "Debug, Swift 5 language mode, macOS 14 target, serial XCTest; pipeline request cap 96 unless overridden.",
+  "sources": {
+    "checks/jakarta/NativeTripJakartaTests.swift": "a03a2ad16a36f2c465ef01f074e538e3920b4b204bd63dcec013abf06b81a002",
+    "checks/jakarta/Package.swift.template": "fbb6a9a4196981d94f2ff41378b07de18e00333db66e4c9f5c9ea16083db2803",
+    "checks/jakarta/README.md": "1dc13f64de6b716c40bc0d5b8d33d2a665de454f72a31b1ceb287d9f44d22e3b",
+    "checks/jakarta/JakartaFixture.swift": "8a210b95725cdedfb7d0bb2c9a3646b3a68f4efd0cf06b8559e563eb30f75220",
+    "checks/jakarta/Fixtures/jakarta-recorded-static.json": "fea3a1c20f78bb0a9ee98d52a44bda2b0572086b1484fb71dc9e5ad4817955ad",
+    "checks/routing/NativeTripPipelineReplay.swift": "382b0d6e654b98691f131a94395060ae779d18e31a89fafbef9a53fcb1f9547b",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "45020b178665cf0b58ae6a6c891e7bf215cdf233768b1239479357b22bb82f05",
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "4a5c974c63ef5261c9f16a57424f9d8e02326e2bfa22189187311ae87f7579ad",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "7f37c7622d7e89e3d0e0bf156e60619dbb787ff6271d0431e342f2f7201b1f91",
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": "f9156d2fb5edb594043379c581b61bd5905754a522c5e9e697c81d43615a073e",
+    "scripts/test-native-trip-jakarta.sh": "b37dd52ed181beaac575be1466697122564012e81c59353da52dbf93665feaa5",
+    "scripts/report-native-trip-jakarta.py": "49616bb312e9532010a48381fd65d42b203b55ff8bd1fa05ea4fc072bd0cd882"
+  }
+}

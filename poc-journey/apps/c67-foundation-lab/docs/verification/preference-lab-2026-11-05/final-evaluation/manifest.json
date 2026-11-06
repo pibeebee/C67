@@ -1,0 +1,47 @@
+{
+  "binarySHA256": "7f04d8561cdcf1ba46f24d3ee5480eafdb72d77260f8395bf82823bfd1368d4e",
+  "sourceSHA256": {
+    "Packages/PreferenceLearning/Package.swift": "7359aae506880eb89dc43729e791c52ca767ac468176bfdd644a57aeb61307dd",
+    "Packages/PreferenceLearning/Sources/PreferenceLearning/E5Embedding.swift": "3c6048d40b0f4321ec918b83a7b16d756c3da77acdf813be2b327ae40e619f97",
+    "Packages/PreferenceLearning/Sources/PreferenceLearning/Contracts.swift": "68f619c4c9dcba070f2536d60a92e13780c8434ac6e0ae2e40737426b6683745",
+    "Packages/PreferenceLearning/Sources/PreferenceLearning/Ranking.swift": "12f6bafab784a91ff01283f8c7455c725504a1a66fc69f7509c863f4f1a59b8a",
+    "Packages/PreferenceLearning/Sources/PreferenceEval/main.swift": "80e0d2648f53ee280f44f8289e743d78ec905550bac10a514f6a7f3fb0f503d9",
+    "Packages/PreferenceLearning/Tests/PreferenceLearningTests/PreferenceTests.swift": "0a635c85f6d0f28337df13e1889568cbc1d99f07482628c84be332fbb2ebe78e",
+    "App/PreferenceLabModel.swift": "b98a293a01488193f6686b70cee58865382ca53d4506cbf69ec9ba95ce853f4f",
+    "App/LabModel.swift": "05506702cfa6dc14e9f73cacd81c97e66aa346a7a1e6d714aa712362b98275ba",
+    "App/RecommendationViews.swift": "342658b67b642de89d85b681099fcfa9631c6b80e2a3775dd882076ea3d18423",
+    "App/RecommendationModel.swift": "280983734ca58c6d10794df564bc58ccc30682321921340d14a75eabc28da9c0",
+    "App/LabViews.swift": "d135fec8daecc2b033ad3c58ee4ff4e53f8a4a0f5e2ee1c59253bddcf749934f",
+    "App/PreferenceLabViews.swift": "65b1dfb56bd45afea7553509d6b4991c99ed7144a74005ee09a0c26ee18c4c38",
+    "App/C67FoundationLabApp.swift": "1f5a085a4fd94fd59b5a87c23562bd04462eeadfd7f30a0128084b1716b20269"
+  },
+  "model": {
+    "model": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "artifact": "onnx/model_qint8_avx512_vnni.onnx",
+    "license": "MIT",
+    "files": {
+      "model.onnx": {
+        "sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88",
+        "bytes": 118346824,
+        "source": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/onnx/model_qint8_avx512_vnni.onnx"
+      },
+      "tokenizer.json": {
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "bytes": 17082730,
+        "source": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer.json"
+      },
+      "tokenizer_config.json": {
+        "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+        "bytes": 443,
+        "source": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json"
+      },
+      "config.json": {
+        "sha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "bytes": 655,
+        "source": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json"
+      }
+    }
+  },
+  "scope": "Twelve authored development cases, one trial each. Tag coverage is fixture-only and not human preference accuracy."
+}

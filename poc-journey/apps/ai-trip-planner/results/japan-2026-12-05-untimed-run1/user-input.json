@@ -1,0 +1,104 @@
+{
+  "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+  "date": "2026-12-05",
+  "timeZone": "Asia/Tokyo",
+  "tripDays": 1,
+  "origin": "funabashi_station",
+  "returnTo": "funabashi_station",
+  "activities": [
+    {
+      "id": "E03",
+      "locationId": "komachi",
+      "label": "Stasiun Kamakura & Komachi Street",
+      "optional": false
+    },
+    {
+      "id": "E04",
+      "locationId": "hachimangu",
+      "label": "Tsurugaoka Hachimangu & Perempatan",
+      "optional": false
+    },
+    {
+      "id": "E05",
+      "locationId": "kamakura_meal",
+      "label": "Makan Siang Pagi (Area Kamakura)",
+      "optional": false
+    },
+    {
+      "id": "E07",
+      "locationId": "inamura_park",
+      "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "optional": false
+    },
+    {
+      "id": "E09",
+      "locationId": "shichiri_beach",
+      "label": "Shichirigahama Beach (Depan Sekolah)",
+      "optional": false
+    },
+    {
+      "id": "E11",
+      "locationId": "kokomae",
+      "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+      "optional": false
+    },
+    {
+      "id": "E13",
+      "locationId": "enoshima_station",
+      "label": "Toko Suvenir Enoshima Station",
+      "optional": false
+    },
+    {
+      "id": "E15",
+      "locationId": "tourist_center",
+      "label": "Fujisawa City Tourist Center",
+      "optional": false
+    },
+    {
+      "id": "E16",
+      "locationId": "bridge",
+      "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+      "optional": false
+    },
+    {
+      "id": "E17",
+      "locationId": "oiwayamichi",
+      "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+      "optional": true
+    },
+    {
+      "id": "E18",
+      "locationId": "sea_candle",
+      "label": "Tiba di Area Enoshima Sea Candle",
+      "optional": false
+    },
+    {
+      "id": "E19",
+      "locationId": "sea_candle",
+      "label": "Menyaksikan Illumination",
+      "optional": false
+    },
+    {
+      "id": "E20",
+      "locationId": "enoshima_dinner",
+      "label": "Turun dari Pulau & Makan Malam di Enoshima",
+      "optional": false
+    },
+    {
+      "id": "E22",
+      "locationId": "fujisawa_station",
+      "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+      "optional": false
+    }
+  ],
+  "requiredWalk": {
+    "from": "shichiri_beach",
+    "to": "kokomae",
+    "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+  },
+  "transportContext": [
+    "Kereta dan jalan kaki, mengikuti daftar semula.",
+    "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+  ],
+  "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan."
+}

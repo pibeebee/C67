@@ -1,0 +1,70 @@
+{
+  "evaluatedAt": "2026-11-03T00:15:55.135Z",
+  "input": {
+    "date": "2026-12-01",
+    "startTime": "07:00",
+    "timeZone": "Asia/Tokyo",
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "selectedPlaces": 15
+  },
+  "status": "no_feasible_candidate",
+  "aiCalls": 0,
+  "compile": "passed",
+  "tests": {
+    "passed": 55,
+    "failed": 0,
+    "newTests": 14,
+    "scope": "automated tests use synthetic fixtures/HTTP stubs, not live providers"
+  },
+  "providerCalls": {
+    "Google Places Details": 3,
+    "Google Places Search": 12,
+    "Google Routes Matrix": 4,
+    "Google Routes Leg": 18
+  },
+  "liveResult": {
+    "candidates": 4,
+    "allDestinationsPreserved": true,
+    "returnIncluded": true,
+    "dwellMinutes": 330,
+    "travelMinutes": 2363.2999999999993,
+    "finishesAt": "3 Dec 2026, 03:53:18",
+    "conflicts": [
+      "OPENING_WINDOW:P05",
+      "OPENING_WINDOW:P04",
+      "OPENING_WINDOW:P01",
+      "OPENING_WINDOW:P07",
+      "FINISH_LIMIT: lewat 1675 menit"
+    ],
+    "walkMatrixLowerBoundMinutes": 2329.2,
+    "availableDayMinutes": 1019,
+    "lowerBoundScope": "Based on recorded directed WALK matrix only; minimum outbound + inbound + dwell, omitting all internal travel. Does not describe actual rail availability.",
+    "weatherStatuses": [
+      "outside_forecast_horizon"
+    ],
+    "referenceIds": [
+      "P03",
+      "P10",
+      "P12"
+    ],
+    "unknownHours": [
+      "P03",
+      "P06",
+      "P08",
+      "P09",
+      "P10",
+      "P12",
+      "P14"
+    ]
+  },
+  "previous": {
+    "version": 3,
+    "status": "no_valid_proposal",
+    "stopReason": "planner_stalled",
+    "modelCalls": 21,
+    "tokens": 618904,
+    "validProposal": false
+  },
+  "sourceChangedSinceRun2Launch": []
+}

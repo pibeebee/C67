@@ -1,0 +1,2520 @@
+{
+  "schemaVersion": 3,
+  "input": {
+    "title": "Uji daftar acak pengguna — 15 lokasi, tanpa jam atau urutan rute",
+    "date": "2026-12-01",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "P01",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "P02",
+        "locationId": "inamura_station",
+        "label": "Stasiun Inamuragasaki",
+        "optional": false
+      },
+      {
+        "id": "P03",
+        "locationId": "enoshima_souvenir",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "P04",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge",
+        "optional": false
+      },
+      {
+        "id": "P05",
+        "locationId": "sea_candle",
+        "label": "Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "P06",
+        "locationId": "kokomae",
+        "label": "Stasiun Kamakurakokomae",
+        "optional": false
+      },
+      {
+        "id": "P07",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu",
+        "optional": false
+      },
+      {
+        "id": "P08",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach",
+        "optional": false
+      },
+      {
+        "id": "P09",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "P10",
+        "locationId": "fujisawa_station",
+        "label": "Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      },
+      {
+        "id": "P11",
+        "locationId": "enoshima_station",
+        "label": "Stasiun Enoshima",
+        "optional": false
+      },
+      {
+        "id": "P12",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street",
+        "optional": false
+      },
+      {
+        "id": "P13",
+        "locationId": "katase_station",
+        "label": "Stasiun Katase-Enoshima",
+        "optional": false
+      },
+      {
+        "id": "P14",
+        "locationId": "komachi",
+        "label": "Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "P15",
+        "locationId": "kamakura_station",
+        "label": "Stasiun Kamakura",
+        "optional": false
+      }
+    ],
+    "requiredWalk": null,
+    "requiredTransit": [],
+    "transportContext": [
+      "Kereta dan jalan kaki tersedia. Sistem harus menentukan urutan dan pasangan perpindahan berdasarkan evidence.",
+      "Stasiun dalam daftar dapat berperan sebagai titik transfer/dwell, bukan otomatis tempat wisata."
+    ],
+    "inputNote": "Urutan array persis urutan acak pengguna setelah apartment dihapus. Tidak ada waktu/durasi, coastal walk wajib, pasangan kereta, makan atau illumination yang ditambahkan dari cerita sebelumnya. Titik awal/akhir Stasiun Funabashi mengikuti konteks pengujian sebelum apartment; tanggal mengikuti koreksi pengguna: 1 Desember 2026."
+  },
+  "context": {
+    "checkedAt": "2026-11-02",
+    "locations": {
+      "funabashi_station": {
+        "name": "JR Funabashi Station",
+        "address": "JR船橋駅 千葉県船橋市",
+        "area": "funabashi",
+        "precision": "named_place"
+      },
+      "inamura_park": {
+        "name": "Kamakura Seaside Park, Inamuragasaki",
+        "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "area": "kamakura",
+        "precision": "park_area"
+      },
+      "inamura_station": {
+        "name": "Inamuragasaki Station",
+        "address": "稲村ヶ崎駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "bridge": {
+        "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+        "address": "江の島大橋 藤沢市",
+        "area": "enoshima",
+        "precision": "bridge_area"
+      },
+      "sea_candle": {
+        "name": "Enoshima Sea Candle",
+        "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "kokomae": {
+        "name": "Kamakurakokomae Station",
+        "address": "鎌倉高校前駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "hachimangu": {
+        "name": "Tsurugaoka Hachimangu",
+        "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "shichiri_beach": {
+        "name": "Shichirigahama Beach",
+        "address": "七里ヶ浜海岸 鎌倉市",
+        "area": "kamakura",
+        "precision": "beach_area"
+      },
+      "tourist_center": {
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "fujisawa_station": {
+        "name": "Fujisawa Station; clock tower belum dipatok",
+        "address": "藤沢駅 神奈川県藤沢市",
+        "area": "fujisawa",
+        "precision": "station_area"
+      },
+      "enoshima_station": {
+        "name": "Enoden Enoshima Station",
+        "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "oiwayamichi": {
+        "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+        "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "area": "enoshima",
+        "precision": "street_reference_point"
+      },
+      "katase_station": {
+        "name": "Katase-Enoshima Station",
+        "address": "片瀬江ノ島駅 藤沢市",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "komachi": {
+        "name": "Komachi Street",
+        "address": "小町通り 鎌倉市",
+        "area": "kamakura",
+        "precision": "street_area"
+      },
+      "kamakura_station": {
+        "name": "Kamakura Station",
+        "address": "鎌倉駅 神奈川県鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "enoshima_souvenir": {
+        "name": "Toko suvenir dekat Stasiun Enoshima, toko spesifik belum dipilih",
+        "address": null,
+        "area": "enoshima",
+        "precision": "unknown"
+      }
+    },
+    "areas": [
+      {
+        "id": "funabashi",
+        "name": "Funabashi",
+        "latitude": 35.702,
+        "longitude": 139.985
+      },
+      {
+        "id": "kamakura",
+        "name": "Kamakura dan pesisir",
+        "latitude": 35.319,
+        "longitude": 139.55
+      },
+      {
+        "id": "enoshima",
+        "name": "Enoshima dan Katase",
+        "latitude": 35.3,
+        "longitude": 139.48
+      },
+      {
+        "id": "fujisawa",
+        "name": "Fujisawa Station area",
+        "latitude": 35.339,
+        "longitude": 139.487
+      }
+    ],
+    "facts": [
+      {
+        "id": "official:tourist-center",
+        "kind": "opening_hours",
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "opensAt": "08:30",
+        "closesAt": "17:00",
+        "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "checkedDate": "2026-11-02",
+        "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan.",
+        "activityIds": [
+          "P09"
+        ]
+      },
+      {
+        "id": "official:oiwayamichi",
+        "kind": "place_identity",
+        "name": "Oiwayamichi Street / 御岩屋道通り",
+        "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+        "checkedDate": "2026-11-02",
+        "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan.",
+        "activityIds": [
+          "P12"
+        ]
+      },
+      {
+        "id": "official:sea-candle-hours",
+        "kind": "opening_hours",
+        "activityIds": [
+          "P05"
+        ],
+        "name": "Sea Candle, jam umum",
+        "opensAt": "09:00",
+        "closesAt": "20:00",
+        "url": "https://enoshima-seacandle.com/opening-hours/",
+        "checkedDate": "2026-11-02",
+        "note": "Jam umum; last entry 30 menit sebelum tutup. Acara dapat memperpanjang jam, tetapi jam acara tidak otomatis menjadi jam semua fasilitas."
+      }
+    ],
+    "walkingPairs": [],
+    "limitations": [
+      "Daftar hanya memberi nama toko suvenir; toko spesifik belum dipilih, jangan menebak alamat.",
+      "Menara jam Fujisawa belum memiliki titik yang diverifikasi; stasiun hanya menjadi referensi area.",
+      "Jam sumber awal berasal dari konteks tersimpan, bukan hasil browser baru.",
+      "Tidak ada pasangan rute atau urutan yang diberikan; penentuan urutan merupakan tugas sistem."
+    ],
+    "research": {
+      "allowedHosts": [
+        "enoshima-seacandle.com",
+        "fujisawa-kanko.jp",
+        "enoden.co.jp",
+        "jreast.co.jp",
+        "odakyu.jp",
+        "hachimangu.or.jp"
+      ],
+      "seedUrls": [
+        "https://enoshima-seacandle.com/opening-hours/",
+        "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "https://www.enoden.co.jp/",
+        "https://www.jreast.co.jp/",
+        "https://www.odakyu.jp/"
+      ],
+      "queries": [],
+      "maxPages": 32,
+      "maxSearches": 16,
+      "maxRounds": 24,
+      "timeoutMs": 600000,
+      "maxPageChars": 128000
+    }
+  },
+  "pages": [
+    {
+      "id": "page:1",
+      "requestedUrl": "https://enoshima-seacandle.com/opening-hours/",
+      "url": "https://enoshima-seacandle.com/opening-hours/",
+      "title": "",
+      "retrievedAt": "2026-11-02T23:04:06.593Z",
+      "status": "unavailable",
+      "httpStatus": 200,
+      "text": "",
+      "textHash": null,
+      "truncated": false,
+      "links": [],
+      "error": "Navigation/render/extraction failed within the bounded browser session; HTTP status is recorded separately."
+    },
+    {
+      "id": "page:2",
+      "requestedUrl": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "title": "藤沢市観光案内所 | インフォメーション | 藤沢市観光公式ホームページ",
+      "retrievedAt": "2026-11-02T23:04:13.132Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": " \n藤沢市観光案内所\n観光に関するお問い合わせ窓口のご案内です。\n藤沢市へ観光や出張などでお越しになられましたら、是非案内窓口をご利用ください。\n\n・藤沢市観光センター\n　　・片瀬江の島観光案内所　\n　\n藤沢市観光センター（片瀬海岸）\n住所\t〒251-0035　\n神奈川県藤沢市片瀬海岸2-20-13\n\n営業時間\t8:30〜17:00\n電話番号\t0466-22-4141\n片瀬江の島観光案内所（片瀬海岸）\n住所\t〒251-0035 \n神奈川県藤沢市片瀬海岸1-14-8\n\n営業時間\t8:30〜17:00\n電話番号\t0466-24-4141\n江の島観光案内所（江の島島内）\n住所\t〒251-0036\n神奈川県藤沢市江の島1丁目3-2\n\n営業時間\t9:00〜17:00",
+      "textHash": "f4caf39918a672f5f60144d09ab51c6eae6ccf889bac21d995607fc9c73d7f05",
+      "truncated": false,
+      "links": [
+        {
+          "title": "藤沢市観光公式ホームページ",
+          "url": "https://www.fujisawa-kanko.jp/"
+        },
+        {
+          "title": "Navigation",
+          "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html"
+        },
+        {
+          "title": "イベント",
+          "url": "https://www.fujisawa-kanko.jp/index.html"
+        },
+        {
+          "title": "観光スポット",
+          "url": "https://www.fujisawa-kanko.jp/spot/"
+        },
+        {
+          "title": "観光施設",
+          "url": "https://www.fujisawa-kanko.jp/spot/tourist-facility.html"
+        },
+        {
+          "title": "体験",
+          "url": "https://www.fujisawa-kanko.jp/spot/experience.html"
+        },
+        {
+          "title": "名所・旧跡",
+          "url": "https://www.fujisawa-kanko.jp/spot/historic.html"
+        },
+        {
+          "title": "公園・自然",
+          "url": "https://www.fujisawa-kanko.jp/spot/park-nature.html"
+        },
+        {
+          "title": "社寺・仏閣",
+          "url": "https://www.fujisawa-kanko.jp/spot/temples.html"
+        },
+        {
+          "title": "景観フォトスポット",
+          "url": "https://www.fujisawa-kanko.jp/spot/landscape.html"
+        },
+        {
+          "title": "フリーWi-Fi",
+          "url": "https://www.fujisawa-kanko.jp/global-data/20250828101023928.pdf"
+        },
+        {
+          "title": "荷物あずかりコインロッカー",
+          "url": "https://www.fujisawa-kanko.jp/access/tebura.html"
+        },
+        {
+          "title": "観光スポット一覧へ",
+          "url": "https://www.fujisawa-kanko.jp/spot/"
+        },
+        {
+          "title": "モデルコース",
+          "url": "https://www.fujisawa-kanko.jp/model_course/"
+        },
+        {
+          "title": "買い物",
+          "url": "https://www.fujisawa-kanko.jp/shopping/"
+        },
+        {
+          "title": "宿泊施設",
+          "url": "https://www.fujisawa-kanko.jp/stay/"
+        },
+        {
+          "title": "アクセス",
+          "url": "https://www.fujisawa-kanko.jp/access/"
+        },
+        {
+          "title": "ページトップ",
+          "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html"
+        },
+        {
+          "title": "お知らせ",
+          "url": "https://www.fujisawa-kanko.jp/news/"
+        },
+        {
+          "title": "サイトマップ",
+          "url": "https://www.fujisawa-kanko.jp/info/sitemap.html"
+        },
+        {
+          "title": "リンク",
+          "url": "https://www.fujisawa-kanko.jp/info/link.html"
+        },
+        {
+          "title": "お問い合わせ",
+          "url": "https://www.fujisawa-kanko.jp/info/info.html"
+        },
+        {
+          "title": "プライバシーポリシー",
+          "url": "https://www.fujisawa-kanko.jp/info/privacy.html"
+        },
+        {
+          "title": "観光統計",
+          "url": "https://www.fujisawa-kanko.jp/info/stat.html"
+        },
+        {
+          "title": "藤沢市観光公式ホームページ「いつでもおいでよ!藤沢市、湘南江の島」",
+          "url": "https://www.fujisawa-kanko.jp/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:3",
+      "requestedUrl": "https://www.enoden.co.jp/",
+      "url": "https://www.enoden.co.jp/en/",
+      "title": "Enoshima Electric Railway",
+      "retrievedAt": "2026-11-02T23:04:18.388Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "TOP\nTRAIN\nBUS\nOUTING\nINFORMATION\nCOMPANY\nINFORMATION\nACCESS SIGHTSEEING INFORMATION SERVICES TOURIST ATTRACTIONS DISCOUNT TICKETS \nLANGUAGE\n \nTrain Status Information \n\nCurrently the train is running on schedule.\n\n1\n2\n3\nACCESS\n \nSIGHTSEEING INFORMATION SERVICES\n \nTOURIST ATTRACTIONS\n \nDISCOUNT TICKETS\nMEANS OF TRANSPORTATION IN THE ENODEN AREA\nHow to buy tickets\nHow to buy tickets\nAIRPORT BUS INFORMATION\nTOURIST ATTRACTIONS ALONG ENODEN LINE\nENOSHIMA\nAREA\n\nEnjoy visiting an aquarium with views of Mount Fuji and walking on the bridge that crosses the island of Enoshima.\n\nFor details, click here\nHASE\nAREA\n\nHighlights include Hasedera Temple, popular for its views of hydrangeas and the sea, and the Daibutsu, or Great Buddha, which is a national treasure.\n\nFor details, click here\nKAMAKURA\nAREA\n\nThe Kamakura area has many historical temples and shrines such as Tsurugaoka Hachimangu Shrine with its beautiful vermilion color and Kenchoji Temple with a giant gate.\n\nFor details, click here\nBaggage service\nSightseeing unencumbered by baggage!\nBaggage storage service\n9:00-17:00\nBag :¥300\nLuggage :¥600~¥800\nCoin locker information\nCurrency exchange and ATM information\nCurrency exchange / ATM\nTourist Information Center\nKamakura City Tourist Information Center\n9:00～17:00\nFujisawa City Tourist Information Center\n8:30～17:00\nShopping\nKOTO-NO-ICHI Kamakura\n10:00～19:00\nEnoden Kamakura Station premises\nPAGETOP\nRelated Links\nPrivacy Policy\n \n\nEnoshima Electric Railway Co., Ltd.\n\nCopyright © Enoshima Electric Railway Co. Ltd. All Rights Reserved.\n\nThis website uses cookies to provide better service to our customers. By using the service, you consent to the use of cookies.\n\nPrivacy Policy.\n\nAccept",
+      "textHash": "4d3e1a2a3a30cd180c3599417cb2b1bce422773db391662f51da59cd859d7e17",
+      "truncated": false,
+      "links": [
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "Menu",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "STATION INFORMATION",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "FARE",
+          "url": "https://www.enoden.co.jp/en/train/fare/"
+        },
+        {
+          "title": "TIMETABLES",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/train/ticket/"
+        },
+        {
+          "title": "PLEASE NOTE",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/train/faq/"
+        },
+        {
+          "title": "LOCAL BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/regular/"
+        },
+        {
+          "title": "NIGHT HIGHWAY BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/highway/"
+        },
+        {
+          "title": "AIRPORT BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/airport"
+        },
+        {
+          "title": "REGULAR SIGHTSEEING BUS",
+          "url": "https://www.enoden.co.jp/en/bus/tour/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/bus/ticket/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/bus/faq/"
+        },
+        {
+          "title": "GUIDE",
+          "url": "https://www.enoden.co.jp/en/bus/guide/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "FACILITIES",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY INFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TRAIN",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "BUS",
+          "url": "https://www.enoden.co.jp/en/bus/"
+        },
+        {
+          "title": "OUTING\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "How to buy tickets",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "How to buy tickets",
+          "url": "https://www.enoden.co.jp/en/bus/guide"
+        },
+        {
+          "title": "AIRPORT BUS INFORMATION",
+          "url": "https://www.enoden.co.jp/en/bus/airport/"
+        },
+        {
+          "title": "For details, click here",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "For details, click here",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "For details, click here",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "Sightseeing unencumbered by baggage!\nBaggage storage service\n9:00-17:00\nBag :¥300\nLuggage :¥600~¥800",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "Coin locker information",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "Currency exchange / ATM",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "Kamakura City Tourist Information Center\n9:00～17:00",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "Fujisawa City Tourist Information Center\n8:30～17:00",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "KOTO-NO-ICHI Kamakura\n10:00～19:00\nEnoden Kamakura Station premises",
+          "url": "https://www.enoden.co.jp/en/tourism/spot/kotonoichi-kamakura/"
+        },
+        {
+          "title": "PAGETOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "Privacy Policy",
+          "url": "https://www.enoden.co.jp/en/corporate/privacy/"
+        },
+        {
+          "title": "Privacy Policy.",
+          "url": "https://www.enoden.co.jp/corporate/privacy/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:4",
+      "requestedUrl": "https://www.jreast.co.jp/",
+      "url": "https://www.jreast.co.jp/",
+      "title": "",
+      "retrievedAt": "2026-11-02T23:04:21.032Z",
+      "status": "unavailable",
+      "httpStatus": 403,
+      "text": "",
+      "textHash": null,
+      "truncated": false,
+      "links": [],
+      "error": "Official page returned an error."
+    },
+    {
+      "id": "page:5",
+      "requestedUrl": "https://www.odakyu.jp/",
+      "url": "https://www.odakyu.jp/",
+      "title": "小田急電鉄",
+      "retrievedAt": "2026-11-02T23:04:21.290Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "小田急電鉄\n前へ\n次へ\n1\n\t\n2\n\t\n3\n\t\n4\n\t\n5\n\nこのたびの令和8年熊本地震により、被災された方や関係者の皆さまに心よりお見舞い申しあげます。\n被災地の皆さまの安全とともに、一日も早い復旧と復興をお祈り申しあげます。\n\n時刻表\n空席照会・予約・購入\n\n利用頻度が高い方はロマンスカー＠Club (要会員登録) へ はじめてのロマンスカーならロマンスカーナビへ\n\nみなさまのご利用に合わせて\n\n通勤・通学でご利用\n\n小さなお子さまと一緒\n\nバリアフリー設備をご利用\n\n小田急沿線に住む\n\n小田急線で旅行・おでかけ\n前へ\n\n江の島・鎌倉ナビ\n\n朝・昼・夜で変わる魅力をお届け。\n\n丹沢・大山エリアナビ\n\n丹沢・大山エリアの登山や観光情報をお届けします\n\nIzu Letters\n\n自分だけの伊豆に出会う「Izu Letters [イズレターズ]」\n\n小田急トラベル\n\nロマンスカーと宿泊をお得に予約！\n\n箱根ナビ\n\n箱根フリーパスでどれだけおトクに？ 特設サイトでチェック！\n\nODAKYU VOICE home\n\n独自のスタイルで こだわり抜いたスイーツを楽しむ\n\n箱根ナビ\n\n箱根を周る楽しさがここに\n\n江の島・鎌倉ナビ\n\n朝・昼・夜で変わる魅力をお届け。\n\n丹沢・大山エリアナビ\n\n丹沢・大山エリアの登山や観光情報をお届けします\n\nIzu Letters\n\n自分だけの伊豆に出会う「Izu Letters [イズレターズ]」\n\n小田急トラベル\n\nロマンスカーと宿泊をお得に予約！\n\n箱根ナビ\n\n箱根フリーパスでどれだけおトクに？ 特設サイトでチェック！\n\nODAKYU VOICE home\n\n独自のスタイルで こだわり抜いたスイーツを楽しむ\n\n箱根ナビ\n\n箱根を周る楽しさがここに\n\n江の島・鎌倉ナビ\n\n朝・昼・夜で変わる魅力をお届け。\n\n丹沢・大山エリアナビ\n\n丹沢・大山エリアの登山や観光情報をお届けします\n\nIzu Letters\n\n自分だけの伊豆に出会う「Izu Letters [イズレターズ]」\n\n次へ\n1\n\t\n2\n\t\n3\n\t\n4\n\t\n5\n\t\n6\n\t\n7\nプランを探す\n\n箱根ベストパック\n\nロマンスカー＆宿泊\n\n旅館・ホテル\n\n観光・体験・チケット\n\n趣味・学び・鉄道ツアー\n\n箱根ベストパック（セット型）\n乗車券または箱根フリーパス付きのおすすめプラン\n\n旅行・おでかけ情報\n\nニュースリリース\n2026年10月22日\n「やめましょう、歩きスマホ。」キャンペーンの実施について\n2026年10月16日\n「新宿ミナミルミ」２０２６－２０２７開催のお知らせ\n2026年10月15日\n登山道管理ソリューション「PATRAIL」が２０２６年度グッドデザイン賞を受賞\n2026年10月14日\n無担保社債発行に関するお知らせ\n2026年10月9日\n小田急線開業１００周年を迎える節目の一年をロマンスカーと共に １０月１５日「小田急ロマンスカーカレンダー ２０２７」を発売\n\nニュースリリース一覧\n\nインフォメーション\n2026年11月2日\n臨時特急ロマンスカーの運転について（新宿駅～本厚木駅）\n2026年10月30日\n小田急線のオフピーク利用についてのお願い\n2026年10月13日\n喜多見駅ホームエレベーター更新工事のお知らせ\n2026年10月1日\n鉄道４社が新たなパートナーと協業にチャレンジします\n2026年9月17日\n一部の特急ロマンスカーにおける車型変更の終了について\n\nインフォメーション一覧\n\n小田急のおすすめ情報\n\nおすすめ情報一覧\n小田急について\n\n小田急グループは、お客さまの「かけがえのない 時間 とき 」と\n「ゆたかなくらし」の実現に貢献します。\n\n小田急グループは、お客さまの期待に応え、\nお客さまに満足していただける価値ある時間や空間《かけがえのない時間 (とき) 》を創造・提供していくことで、\nお客さまの大切な時間を快適で心地よいものにするお手伝いをし、\n良きパートナーとして明るくしあわせな社会《ゆたかなくらし》の実現に貢献します。\n\n企業・サステナビリティ・IR\n\n企業情報、ニュースリリース、\nサステナビリティ、IR情報、IRニュース\n\n採用情報\n\n新卒、社会人、パート・アルバイト、\n小田急グループの採用\n\n小田急グループ\n\nグループ一覧、グループリリース、\nグループインフォメーション",
+      "textHash": "853d016c18778fbf4ae91bb0de7440fe157e753ebd9b9b8d402c4e14c628ef4e",
+      "truncated": false,
+      "links": [
+        {
+          "title": "駅・時刻表・路線図",
+          "url": "https://www.odakyu.jp/station/"
+        },
+        {
+          "title": "定期券・乗車券",
+          "url": "https://www.odakyu.jp/ticket/"
+        },
+        {
+          "title": "乗換・運賃検索",
+          "url": "https://www.odakyu.jp/change/"
+        },
+        {
+          "title": "ロマンスカー",
+          "url": "https://www.odakyu.jp/romancecar/"
+        },
+        {
+          "title": "暮らし",
+          "url": "https://www.odakyu.jp/town-life/"
+        },
+        {
+          "title": "旅行・おでかけ",
+          "url": "https://www.odakyu.jp/guide/"
+        },
+        {
+          "title": "安全と安心",
+          "url": "https://www.odakyu.jp/safety/"
+        },
+        {
+          "title": "駅・時刻表・路線図",
+          "url": "https://www.odakyu.jp/station/"
+        },
+        {
+          "title": "定期券・乗車券",
+          "url": "https://www.odakyu.jp/ticket/"
+        },
+        {
+          "title": "ロマンスカー",
+          "url": "https://www.odakyu.jp/romancecar/"
+        },
+        {
+          "title": "旅行・おでかけ",
+          "url": "https://www.odakyu.jp/guide/"
+        },
+        {
+          "title": "乗換・運賃検索",
+          "url": "https://www.odakyu.jp/change/"
+        },
+        {
+          "title": "暮らし",
+          "url": "https://www.odakyu.jp/town-life/"
+        },
+        {
+          "title": "安全と安心",
+          "url": "https://www.odakyu.jp/safety/"
+        },
+        {
+          "title": "お問い合わせ",
+          "url": "https://www.odakyu.jp/help/"
+        },
+        {
+          "title": "チャットボット･お問い合わせ",
+          "url": "https://www.odakyu.jp/help/"
+        },
+        {
+          "title": "企業・サステナビリティ・IR",
+          "url": "https://www.odakyu.jp/company_information/"
+        },
+        {
+          "title": "採用",
+          "url": "https://www.odakyu.jp/recruit/"
+        },
+        {
+          "title": "小田急グループ",
+          "url": "https://www.odakyu.jp/company/group/"
+        },
+        {
+          "title": "時刻表",
+          "url": "https://www.odakyu.jp/romancecar/timetable/weekday/up/"
+        },
+        {
+          "title": "はじめてのロマンスカーならロマンスカーナビへ",
+          "url": "https://www.odakyu.jp/romancecar/navi/"
+        },
+        {
+          "title": "通勤・通学でご利用",
+          "url": "https://www.odakyu.jp/personal/commute/"
+        },
+        {
+          "title": "小さなお子さまと一緒",
+          "url": "https://www.odakyu.jp/personal/child/"
+        },
+        {
+          "title": "バリアフリー設備をご利用",
+          "url": "https://www.odakyu.jp/personal/handicapped/"
+        },
+        {
+          "title": "小田急沿線に住む",
+          "url": "https://www.odakyu.jp/town-life/"
+        },
+        {
+          "title": "旅行・おでかけ情報",
+          "url": "https://www.odakyu.jp/guide/"
+        },
+        {
+          "title": "「やめましょう、歩きスマホ。」キャンペーンの実施について",
+          "url": "https://www.odakyu.jp/news/makhce0000002iv6-att/makhce0000002ivd.pdf"
+        },
+        {
+          "title": "「新宿ミナミルミ」２０２６－２０２７開催のお知らせ",
+          "url": "https://www.odakyu.jp/news/makhce00000028ul-att/makhce00000028us.pdf"
+        },
+        {
+          "title": "登山道管理ソリューション「PATRAIL」が２０２６年度グッドデザイン賞を受賞",
+          "url": "https://www.odakyu.jp/news/makhce00000028q4-att/makhce00000028qb.pdf"
+        },
+        {
+          "title": "無担保社債発行に関するお知らせ",
+          "url": "https://www.odakyu.jp/news/makhce000000272l-att/makhce000000272s.pdf"
+        },
+        {
+          "title": "小田急線開業１００周年を迎える節目の一年をロマンスカーと共に １０月１５日「小田急ロマンスカーカレンダー ２０２７」を発売",
+          "url": "https://www.odakyu.jp/news/makhce00000025dm-att/makhce00000025dt.pdf"
+        },
+        {
+          "title": "ニュースリリース一覧",
+          "url": "https://www.odakyu.jp/company/about/news/"
+        },
+        {
+          "title": "臨時特急ロマンスカーの運転について（新宿駅～本厚木駅）",
+          "url": "https://www.odakyu.jp/support/makhce0000002w3i-att/romancecar-rinji261102.pdf"
+        },
+        {
+          "title": "小田急線のオフピーク利用についてのお願い",
+          "url": "https://www.odakyu.jp/support/makhce0000002rb7-att/off-peak261030.pdf"
+        },
+        {
+          "title": "喜多見駅ホームエレベーター更新工事のお知らせ",
+          "url": "https://www.odakyu.jp/support/makhce00000025ec-att/kitami-elevator261013.pdf"
+        },
+        {
+          "title": "鉄道４社が新たなパートナーと協業にチャレンジします",
+          "url": "https://www.odakyu.jp/support/makhce0000001l7a-att/JTOS261001.pdf"
+        },
+        {
+          "title": "一部の特急ロマンスカーにおける車型変更の終了について",
+          "url": "https://www.odakyu.jp/support/makhce00000016k7-att/romancecar-change260917.pdf"
+        },
+        {
+          "title": "インフォメーション一覧",
+          "url": "https://www.odakyu.jp/company/about/information/"
+        },
+        {
+          "title": "おすすめ情報一覧",
+          "url": "https://www.odakyu.jp/recommend/"
+        },
+        {
+          "title": "企業・サステナビリティ・IR\n\n企業情報、ニュースリリース、\nサステナビリティ、IR情報、IRニュース",
+          "url": "https://www.odakyu.jp/company_information/"
+        },
+        {
+          "title": "採用情報\n\n新卒、社会人、パート・アルバイト、\n小田急グループの採用",
+          "url": "https://www.odakyu.jp/recruit/"
+        },
+        {
+          "title": "小田急グループ\n\nグループ一覧、グループリリース、\nグループインフォメーション",
+          "url": "https://www.odakyu.jp/company/group/"
+        },
+        {
+          "title": "こちら",
+          "url": "https://www.odakyu.jp/odakyuapp/index.html"
+        },
+        {
+          "title": "公式アカウント一覧",
+          "url": "https://www.odakyu.jp/social/"
+        },
+        {
+          "title": "サイトマップ",
+          "url": "https://www.odakyu.jp/sitemap/"
+        },
+        {
+          "title": "ご利用にあたって",
+          "url": "https://www.odakyu.jp/policy/"
+        },
+        {
+          "title": "個人情報保護方針",
+          "url": "https://www.odakyu.jp/privacy/"
+        },
+        {
+          "title": "個人情報の取り扱いについて",
+          "url": "https://www.odakyu.jp/privacy_statement/"
+        },
+        {
+          "title": "ソーシャルメディアポリシー",
+          "url": "https://www.odakyu.jp/social/"
+        },
+        {
+          "title": "利用者情報の外部送信について",
+          "url": "https://www.odakyu.jp/user_information/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:6",
+      "requestedUrl": "https://enoshima-seacandle.com/opening-hours/",
+      "url": "https://enoshima-seacandle.com/opening-hours/",
+      "title": "",
+      "retrievedAt": "2026-11-02T23:04:32.053Z",
+      "status": "unavailable",
+      "httpStatus": 200,
+      "text": "",
+      "textHash": null,
+      "truncated": false,
+      "links": [],
+      "error": "Navigation/render/extraction failed within the bounded browser session; HTTP status is recorded separately."
+    },
+    {
+      "id": "page:7",
+      "requestedUrl": "https://www.hachimangu.or.jp/",
+      "url": "https://www.hachimangu.or.jp/",
+      "title": "鶴岡八幡宮 | TSURUGAOKAHACHIMANGU",
+      "retrievedAt": "2026-11-02T23:04:43.196Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "プロカメラマンによる出張撮影について（令和8年10月31日一部改訂）\n【『逃げ上手の若君』サイン色紙展示場所変更のお知らせ】\n【　お正月助勤者（アルバイト）募集のお知らせ　】女性キャンセル待ち\n\n閉じる\n\n\nオンライン申込受付所\n\n閉じる\n\n\nプロカメラマンの方へ\nご鎮座八百年余、鎌倉と共に\n\n武家社会が誕生した鎌倉時代。\nかつて、鎌倉の地は国の中心でした。\nその当時、「鎌倉の守り神」、「武士の守り神」として人々の精神のよりどころとなっていたのが鶴岡八幡宮です。この場所を起点に、鎌倉では今に残る多くの歴史や文化が生まれ、武士の都が栄えていきました。\nご鎮座８００年余、鎌倉の文化の起点として、鎌倉と共に歩みを進めてまいります。\n\n知る\n\n鎌倉幕府との深い繋がりや、今日に受け継がれる伝統文化。神社の由緒を通して見える、歴史や文化、鎌倉をご案内いたします。\n\n武家社会の起点\n鎌倉文化の起点\n都市鎌倉の起点\n鎌倉巡りの起点\n詳しく見る\n観る\n\n悠久の時を経て残る、美しい鎌倉の姿。鶴岡八幡宮境内や鎌倉の見所、神社に伝わる宝物をご覧いただけます。\n\n境内巡り\n鎌倉巡り\n宝物\n神社の風景\n詳しく見る\n鶴岡八幡宮を訪れる\n祭り\n\n1年を通じて多くの祭りをとり行います。800年余、継承されてきた伝統祭事をご覧ください。\n\n詳しく見る\n\nご祈祷・お守り\n\n国指定重要文化財のご社殿にて皆様の願い事の成就をお祈り申し上げます。お守りの授与も行なっております。\n\n詳しく見る\n\n結婚式\n\n四季折々の自然に囲まれ、歴史情緒豊かな御社殿でとり行われる特別な挙式です。\n\n詳しく見る\n\nミュージアム\n\n文化的価値ある美しい建築のミュージアム。鎌倉の新たな文化発信拠点です。\n\n詳しく見る\n\n活動\nお知らせ\n\nご案内\n\n2026年10月31日\n\nプロカメラマンによる出張撮影について（令和8年10月31日一部改訂）\n\nInformation\n\n2026年10月17日\n\n【『逃げ上手の若君』サイン色紙展示場所変更のお知らせ】\n\nご案内\n\n2026年10月10日\n\n【　お正月助勤者（アルバイト）募集のお知らせ　】女性キャンセル待ち\n\nご案内\n\n2026年04月05日\n\n鶴岡文庫主催・令和８年度教養講座募集\n\nご案内\n\n2026年03月04日\n\n令和９年度　奉職職員募集\n\nお知らせ一覧へ\n地域活動\n\n明るい社会が築かれることを目指し、\n子供達の育成活動や地域保全活動等に取り組んでおります。\n\n詳しく見る\nアクセス\n\n「JR鎌倉駅」東口から徒歩10分\n「江ノ電鎌倉駅」から徒歩10分\n「横浜横須賀道路・朝比奈I.C.」から5km\n\n詳しく見る",
+      "textHash": "55f6760590d6bb5d3895d03109adf8a0d62e3a1f3fc12224c132352bc805a28a",
+      "truncated": false,
+      "links": [
+        {
+          "title": "結婚式",
+          "url": "https://www.hachimangu.or.jp/wedding/"
+        },
+        {
+          "title": "ミュージアム",
+          "url": "https://www.hachimangu.or.jp/museum/"
+        },
+        {
+          "title": "参拝案内",
+          "url": "https://www.hachimangu.or.jp/access/"
+        },
+        {
+          "title": "English",
+          "url": "https://www.hachimangu.or.jp/en/"
+        },
+        {
+          "title": "中文",
+          "url": "https://www.hachimangu.or.jp/ch/"
+        },
+        {
+          "title": "English",
+          "url": "https://www.hachimangu.or.jp/en/"
+        },
+        {
+          "title": "中文",
+          "url": "https://www.hachimangu.or.jp/ch/"
+        },
+        {
+          "title": "知るTOP",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "武家社会の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉文化の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "都市鎌倉の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉巡りの起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "観るTOP",
+          "url": "https://www.hachimangu.or.jp/sightseeing/"
+        },
+        {
+          "title": "境内巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/keidai/"
+        },
+        {
+          "title": "鎌倉巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/precious/"
+        },
+        {
+          "title": "宝物",
+          "url": "https://www.hachimangu.or.jp/sightseeing/homotsu/"
+        },
+        {
+          "title": "神社の風景",
+          "url": "https://www.hachimangu.or.jp/sightseeing/omiya/"
+        },
+        {
+          "title": "1月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "2月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "3月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "4月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "5月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "6月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "7月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "8月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "9月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "10月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "11月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "12月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "ご祈祷・お守りTOP",
+          "url": "https://www.hachimangu.or.jp/pray/"
+        },
+        {
+          "title": "ご祈祷",
+          "url": "https://www.hachimangu.or.jp/pray/kito.html"
+        },
+        {
+          "title": "人生儀礼",
+          "url": "https://www.hachimangu.or.jp/pray/jinseigirei.html"
+        },
+        {
+          "title": "お守り",
+          "url": "https://www.hachimangu.or.jp/pray/omamori.html"
+        },
+        {
+          "title": "活動TOP",
+          "url": "https://www.hachimangu.or.jp/activity/"
+        },
+        {
+          "title": "お知らせ",
+          "url": "https://www.hachimangu.or.jp/activity/news/"
+        },
+        {
+          "title": "地域への活動",
+          "url": "https://www.hachimangu.or.jp/activity/community/"
+        },
+        {
+          "title": "団体・講座のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/organization/"
+        },
+        {
+          "title": "関連施設のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/facility/"
+        },
+        {
+          "title": "季刊誌・書籍",
+          "url": "https://www.hachimangu.or.jp/activity/publish/"
+        },
+        {
+          "title": "プロカメラマンによる出張撮影について（令和8年10月31日一部改訂）",
+          "url": "https://www.hachimangu.or.jp/activity/news/1498"
+        },
+        {
+          "title": "【『逃げ上手の若君』サイン色紙展示場所変更のお知らせ】",
+          "url": "https://www.hachimangu.or.jp/activity/news/1493"
+        },
+        {
+          "title": "【　お正月助勤者（アルバイト）募集のお知らせ　】女性キャンセル待ち",
+          "url": "https://www.hachimangu.or.jp/activity/news/1190"
+        },
+        {
+          "title": "プロカメラマンの方へ",
+          "url": "https://www.hachimangu.or.jp/activity/news/1243"
+        },
+        {
+          "title": "武家社会の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉文化の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "都市鎌倉の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉巡りの起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "詳しく見る",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "境内巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/keidai/"
+        },
+        {
+          "title": "鎌倉巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/precious/"
+        },
+        {
+          "title": "宝物",
+          "url": "https://www.hachimangu.or.jp/sightseeing/homotsu/"
+        },
+        {
+          "title": "神社の風景",
+          "url": "https://www.hachimangu.or.jp/sightseeing/omiya/"
+        },
+        {
+          "title": "詳しく見る",
+          "url": "https://www.hachimangu.or.jp/sightseeing/"
+        },
+        {
+          "title": "祭り\n\n1年を通じて多くの祭りをとり行います。800年余、継承されてきた伝統祭事をご覧ください。\n\n詳しく見る",
+          "url": "https://www.hachimangu.or.jp/matsuri/"
+        },
+        {
+          "title": "ご祈祷・お守り\n\n国指定重要文化財のご社殿にて皆様の願い事の成就をお祈り申し上げます。お守りの授与も行なっております。\n\n詳しく見る",
+          "url": "https://www.hachimangu.or.jp/pray/"
+        },
+        {
+          "title": "結婚式\n\n四季折々の自然に囲まれ、歴史情緒豊かな御社殿でとり行われる特別な挙式です。\n\n詳しく見る",
+          "url": "https://www.hachimangu.or.jp/wedding/"
+        },
+        {
+          "title": "ミュージアム\n\n文化的価値ある美しい建築のミュージアム。鎌倉の新たな文化発信拠点です。\n\n詳しく見る",
+          "url": "https://www.hachimangu.or.jp/museum/"
+        },
+        {
+          "title": "ご案内\n\n2026年10月31日\n\nプロカメラマンによる出張撮影について（令和8年10月31日一部改訂）",
+          "url": "https://www.hachimangu.or.jp/activity/news/1498"
+        },
+        {
+          "title": "Information\n\n2026年10月17日\n\n【『逃げ上手の若君』サイン色紙展示場所変更のお知らせ】",
+          "url": "https://www.hachimangu.or.jp/activity/news/1493"
+        },
+        {
+          "title": "ご案内\n\n2026年10月10日\n\n【　お正月助勤者（アルバイト）募集のお知らせ　】女性キャンセル待ち",
+          "url": "https://www.hachimangu.or.jp/activity/news/1190"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:8",
+      "requestedUrl": "https://www.hachimangu.or.jp/access/",
+      "url": "https://www.hachimangu.or.jp/access/",
+      "title": "参拝案内｜鶴岡八幡宮 TSURUGAOKAHACHIMANGU",
+      "retrievedAt": "2026-11-02T23:04:48.282Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "参拝案内\n\n〒248-8588　神奈川県鎌倉市雪ノ下2-1-31\n\n電車をご利用の方\nJR横須賀線\nJR湘南新宿ライン\n「JR鎌倉駅」東口から徒歩10分\n江ノ島電鉄\n「江ノ電鎌倉駅」から徒歩10分\n車をご利用の方\n\n横浜横須賀道路（旭横須賀道路）の朝日奈ICから、県道204号線を鎌倉方面から約5km。\n\n駐車場のご案内\n\t利用時間\t料金\t駐車場台数\n普通車\t9:00〜19:30\t1時間まで600円\n以降30分毎300円\t普通車40台\n大型車10台\n大型バス\t9:00〜17:00\t1時間まで2,000円\n以降30分毎1,000円\n鶴岡八幡宮 参拝者専用駐車場\n鶴岡八幡宮 第二駐車場\n大型バスご利用の方へ\n\n大型バスのご利用に限り、ホームページからのご予約を受け付けております。ご予約が可能な期間は、当月および向こう3ヶ月先までとなります。\n\nご予約の流れ\nご予約をいただくための事前登録として、「利用者仮登録」をお願いします。\n\n利用者仮登録へ\n\n「利用者仮登録」時に登録を行ったメールアドレス先に確認メールが送信されます。メール本文に記載されているＵＲＬをクリックすることにより、正式登録となります。\n仮登録後、１ヶ月以内に本登録（登録承認）を行ってください。\n本登録以降はホームページから直接ご予約いただけます。\n\n大型バス駐車場予約へ\n\nご注意\n※土日祝日のご予約は承っておりません。\nまた神社の祭事等のため予約を承れない日もございますので、ご了承ください。\n※普通車の方のご予約は承っておりません、予めご了承ください。\n※利用者仮登録の有効期間は仮登録お申し込み日から１ヶ月間となります。\n（初回ご予約が無いまま１ヶ月間を過ぎますと利用者仮登録は無効となります。）\n※ご登録並びにご予約に関する手数料は一切不要です。\n※電話・FAXでのご予約は原則、受付しておりません。\n\nよくあるご質問はこちらから\n\n参拝時間のご案内\n開門・閉門時間\n通　年：\n6時～20時\n施設の利用時間\n鎌倉文華館 鶴岡ミュージアム\n10：00～16：30\n定休日：月曜日（祝日の場合は開館）、展示替期間、年末年始\n鶴岡ミュージアム　カフェ＆ショップ\n10：00～17：00（16：30ラストオーダー）\n定休日：月曜日（祝日の場合は翌日）\n茶寮　風の杜\n10：30～17：00\n定休日：なし\n鶴岡文庫\n9：00～12：00 / 13：00～16：30\n定休日：月曜日、年末年始（ほか臨時休館あり）\n宝物殿\n9：00〜16：00\n定休日：なし（展示替え等による休館あり）\n鶴岡八幡宮墓苑\n9：00〜17：00\n定休日：なし※毎水曜日　管理棟休棟",
+      "textHash": "8e8094f56d318636487f9a67c4b99c579a784c2f0e5593240c88b9f34786e631",
+      "truncated": false,
+      "links": [
+        {
+          "title": "結婚式",
+          "url": "https://www.hachimangu.or.jp/wedding/"
+        },
+        {
+          "title": "ミュージアム",
+          "url": "https://www.hachimangu.or.jp/museum/"
+        },
+        {
+          "title": "参拝案内",
+          "url": "https://www.hachimangu.or.jp/access/"
+        },
+        {
+          "title": "English",
+          "url": "https://www.hachimangu.or.jp/en/"
+        },
+        {
+          "title": "中文",
+          "url": "https://www.hachimangu.or.jp/ch/"
+        },
+        {
+          "title": "English",
+          "url": "https://www.hachimangu.or.jp/en/"
+        },
+        {
+          "title": "中文",
+          "url": "https://www.hachimangu.or.jp/ch/"
+        },
+        {
+          "title": "知るTOP",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "武家社会の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉文化の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "都市鎌倉の起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "鎌倉巡りの起点",
+          "url": "https://www.hachimangu.or.jp/knowledge/"
+        },
+        {
+          "title": "観るTOP",
+          "url": "https://www.hachimangu.or.jp/sightseeing/"
+        },
+        {
+          "title": "境内巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/keidai/"
+        },
+        {
+          "title": "鎌倉巡り",
+          "url": "https://www.hachimangu.or.jp/sightseeing/precious/"
+        },
+        {
+          "title": "宝物",
+          "url": "https://www.hachimangu.or.jp/sightseeing/homotsu/"
+        },
+        {
+          "title": "神社の風景",
+          "url": "https://www.hachimangu.or.jp/sightseeing/omiya/"
+        },
+        {
+          "title": "1月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "2月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "3月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "4月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "5月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "6月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "7月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "8月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "9月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "10月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "11月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "12月",
+          "url": "https://www.hachimangu.or.jp/matsuri/index.html"
+        },
+        {
+          "title": "ご祈祷・お守りTOP",
+          "url": "https://www.hachimangu.or.jp/pray/"
+        },
+        {
+          "title": "ご祈祷",
+          "url": "https://www.hachimangu.or.jp/pray/kito.html"
+        },
+        {
+          "title": "人生儀礼",
+          "url": "https://www.hachimangu.or.jp/pray/jinseigirei.html"
+        },
+        {
+          "title": "お守り",
+          "url": "https://www.hachimangu.or.jp/pray/omamori.html"
+        },
+        {
+          "title": "活動TOP",
+          "url": "https://www.hachimangu.or.jp/activity/"
+        },
+        {
+          "title": "お知らせ",
+          "url": "https://www.hachimangu.or.jp/activity/news/"
+        },
+        {
+          "title": "地域への活動",
+          "url": "https://www.hachimangu.or.jp/activity/community/"
+        },
+        {
+          "title": "団体・講座のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/organization/"
+        },
+        {
+          "title": "関連施設のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/facility/"
+        },
+        {
+          "title": "季刊誌・書籍",
+          "url": "https://www.hachimangu.or.jp/activity/publish/"
+        },
+        {
+          "title": "利用者仮登録へ",
+          "url": "https://app.hachimangu.or.jp/carpark/newUserInput.asp"
+        },
+        {
+          "title": "大型バス駐車場予約へ",
+          "url": "https://app.hachimangu.or.jp/carpark/login.asp"
+        },
+        {
+          "title": "よくあるご質問はこちらから",
+          "url": "https://www.hachimangu.or.jp/access/faq-parking.html"
+        },
+        {
+          "title": "境内を巡る",
+          "url": "https://www.hachimangu.or.jp/sightseeing/keidai/"
+        },
+        {
+          "title": "アクセス",
+          "url": "https://www.hachimangu.or.jp/access/"
+        },
+        {
+          "title": "お知らせ",
+          "url": "https://www.hachimangu.or.jp/activity/news/"
+        },
+        {
+          "title": "関連施設のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/facility/"
+        },
+        {
+          "title": "宝物殿",
+          "url": "https://www.hachimangu.or.jp/activity/facility/"
+        },
+        {
+          "title": "鶴岡文庫",
+          "url": "https://www.hachimangu.or.jp/activity/facility/"
+        },
+        {
+          "title": "鶴岡ミュージアム\nカフェ&ショップ",
+          "url": "https://www.hachimangu.or.jp/activity/facility/shop.html"
+        },
+        {
+          "title": "鶴岡八幡宮墓苑",
+          "url": "https://www.hachimangu.or.jp/activity/facility/boen.html"
+        },
+        {
+          "title": "鶴岡幼稚園",
+          "url": "https://www.hachimangu.or.jp/activity/facility/kindergarten.html"
+        },
+        {
+          "title": "鶯吟亭",
+          "url": "https://www.hachimangu.or.jp/activity/facility/ougintei.html"
+        },
+        {
+          "title": "団体・講座のご案内",
+          "url": "https://www.hachimangu.or.jp/activity/organization/"
+        },
+        {
+          "title": "槐の会",
+          "url": "https://www.hachimangu.or.jp/activity/organization/enjunokai.html"
+        },
+        {
+          "title": "祖霊社維持会",
+          "url": "https://www.hachimangu.or.jp/activity/organization/mitamaya.html"
+        },
+        {
+          "title": "御日供献饌講",
+          "url": "https://www.hachimangu.or.jp/activity/organization/onikkukennsennko.html"
+        },
+        {
+          "title": "鶴の子会",
+          "url": "https://www.hachimangu.or.jp/activity/organization/tsurunokokai.html"
+        },
+        {
+          "title": "鶴岡八幡宮研修道場",
+          "url": "https://www.hachimangu.or.jp/activity/organization/budokeiko.html"
+        },
+        {
+          "title": "鶴岡文庫教養講座",
+          "url": "https://www.hachimangu.or.jp/activity/organization/bunkokyoyokoza.html"
+        },
+        {
+          "title": "お問い合わせ",
+          "url": "https://www.hachimangu.or.jp/contact/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:9",
+      "requestedUrl": "https://www.enoden.co.jp/en/train/station/",
+      "url": "https://www.enoden.co.jp/en/train/station/",
+      "title": "STATION INFORMATION｜TRAIN | Enoshima Electric Railway",
+      "retrievedAt": "2026-11-02T23:04:54.500Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "TOP\nTRAIN\nBUS\nOUTING\nINFORMATION\nCOMPANY\nINFORMATION\nACCESS SIGHTSEEING INFORMATION SERVICES TOURIST ATTRACTIONS DISCOUNT TICKETS \nLANGUAGE\n \nENODEN（TRAIN）\nSTATION INFORMATION\n \nFARE\n \nTIMETABLES\n \nDISCOUNT TICKETS\n \nPLEASE NOTE\n \nFAQ\nTOPTRAINSTATION INFORMATION\nSTATION INFORMATION\nSTATION INFORMATION\nEN\nFUJISAWA\nISHIGAMI\nYANAGIKOJI\nKUGENUMA\nSHONAN-KAIGAN-KOEN\nENOSHIMA\nKOSHIGOE\nKAMAKURA-KOKO-MAE\nSHICHIRIGAHAMA\nINAMURAGASAKI\nGOKURAKUJI\nHASE\nYUIGAHAMA\nWADAZUKA\nKAMAKURA\nPAGETOP\nRelated Links\nPrivacy Policy\n \n\nEnoshima Electric Railway Co., Ltd.\n\nCopyright © Enoshima Electric Railway Co. Ltd. All Rights Reserved.\n\nThis website uses cookies to provide better service to our customers. By using the service, you consent to the use of cookies.\n\nPrivacy Policy.\n\nAccept",
+      "textHash": "ff0eb2ee3ed03d29447904c49aa8a8acd7d5ffbdb65fa0f728e4fbcc50ca5bcd",
+      "truncated": false,
+      "links": [
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "Menu",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "STATION INFORMATION",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "FARE",
+          "url": "https://www.enoden.co.jp/en/train/fare/"
+        },
+        {
+          "title": "TIMETABLES",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/train/ticket/"
+        },
+        {
+          "title": "PLEASE NOTE",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/train/faq/"
+        },
+        {
+          "title": "LOCAL BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/regular/"
+        },
+        {
+          "title": "NIGHT HIGHWAY BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/highway/"
+        },
+        {
+          "title": "AIRPORT BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/airport"
+        },
+        {
+          "title": "REGULAR SIGHTSEEING BUS",
+          "url": "https://www.enoden.co.jp/en/bus/tour/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/bus/ticket/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/bus/faq/"
+        },
+        {
+          "title": "GUIDE",
+          "url": "https://www.enoden.co.jp/en/bus/guide/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "FACILITIES",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY INFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TRAIN",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "BUS",
+          "url": "https://www.enoden.co.jp/en/bus/"
+        },
+        {
+          "title": "OUTING\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "ENODEN（TRAIN）",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "TRAIN MENU",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "STATION INFORMATION",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "FARE",
+          "url": "https://www.enoden.co.jp/en/train/fare/"
+        },
+        {
+          "title": "TIMETABLES",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/train/ticket/"
+        },
+        {
+          "title": "PLEASE NOTE",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/train/faq/"
+        },
+        {
+          "title": "CLOSE",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TRAIN",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "FUJISAWA",
+          "url": "https://www.enoden.co.jp/en/train/station/fujisawa/"
+        },
+        {
+          "title": "ISHIGAMI",
+          "url": "https://www.enoden.co.jp/en/train/station/ishigami/"
+        },
+        {
+          "title": "YANAGIKOJI",
+          "url": "https://www.enoden.co.jp/en/train/station/yanagikoji/"
+        },
+        {
+          "title": "KUGENUMA",
+          "url": "https://www.enoden.co.jp/en/train/station/kugenuma/"
+        },
+        {
+          "title": "SHONAN-KAIGAN-KOEN",
+          "url": "https://www.enoden.co.jp/en/train/station/shonankaigankoen/"
+        },
+        {
+          "title": "ENOSHIMA",
+          "url": "https://www.enoden.co.jp/en/train/station/enoshima/"
+        },
+        {
+          "title": "KOSHIGOE",
+          "url": "https://www.enoden.co.jp/en/train/station/koshigoe/"
+        },
+        {
+          "title": "KAMAKURA-KOKO-MAE",
+          "url": "https://www.enoden.co.jp/en/train/station/kamakurakokomae/"
+        },
+        {
+          "title": "SHICHIRIGAHAMA",
+          "url": "https://www.enoden.co.jp/en/train/station/shichirigahama/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "page:10",
+      "requestedUrl": "https://www.enoden.co.jp/en/train/time-table/",
+      "url": "https://www.enoden.co.jp/en/train/time-table/",
+      "title": "TIMETABLES｜TRAIN | Enoshima Electric Railway",
+      "retrievedAt": "2026-11-02T23:04:56.857Z",
+      "status": "ok",
+      "httpStatus": 200,
+      "text": "TOP\nTRAIN\nBUS\nOUTING\nINFORMATION\nCOMPANY\nINFORMATION\nACCESS SIGHTSEEING INFORMATION SERVICES TOURIST ATTRACTIONS DISCOUNT TICKETS \nLANGUAGE\n \nENODEN（TRAIN）\nSTATION INFORMATION\n \nFARE\n \nTIMETABLES\n \nDISCOUNT TICKETS\n \nPLEASE NOTE\n \nFAQ\nTOPTRAINTIMETABLES\nTIMETABLES\nTimetables of each station\nEN\nFUJISAWA\nISHIGAMI\nYANAGIKOJI\nKUGENUMA\nSHONAN-KAIGAN-KOEN\nENOSHIMA\nKOSHIGOE\nKAMAKURA-KOKO-MAE\nSHICHIRIGAHAMA\nINAMURAGASAKI\nGOKURAKUJI\nHASE\nYUIGAHAMA\nWADAZUKA\nKAMAKURA\nPAGETOP\nRelated Links\nPrivacy Policy\n \n\nEnoshima Electric Railway Co., Ltd.\n\nCopyright © Enoshima Electric Railway Co. Ltd. All Rights Reserved.\n\nThis website uses cookies to provide better service to our customers. By using the service, you consent to the use of cookies.\n\nPrivacy Policy.\n\nAccept",
+      "textHash": "b222bfe96d1e13bddcefa79e0c24abdf61b1bd49043841b799eb0d77cf6d6031",
+      "truncated": false,
+      "links": [
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "Menu",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "STATION INFORMATION",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "FARE",
+          "url": "https://www.enoden.co.jp/en/train/fare/"
+        },
+        {
+          "title": "TIMETABLES",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/train/ticket/"
+        },
+        {
+          "title": "PLEASE NOTE",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/train/faq/"
+        },
+        {
+          "title": "LOCAL BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/regular/"
+        },
+        {
+          "title": "NIGHT HIGHWAY BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/highway/"
+        },
+        {
+          "title": "AIRPORT BUSES",
+          "url": "https://www.enoden.co.jp/en/bus/airport"
+        },
+        {
+          "title": "REGULAR SIGHTSEEING BUS",
+          "url": "https://www.enoden.co.jp/en/bus/tour/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/bus/ticket/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/bus/faq/"
+        },
+        {
+          "title": "GUIDE",
+          "url": "https://www.enoden.co.jp/en/bus/guide/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "FACILITIES",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY INFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "日本語",
+          "url": "https://www.enoden.co.jp/"
+        },
+        {
+          "title": "簡体中文",
+          "url": "https://www.enoden.co.jp/sc/"
+        },
+        {
+          "title": "繁體中文",
+          "url": "https://www.enoden.co.jp/tc/"
+        },
+        {
+          "title": "한국어",
+          "url": "https://www.enoden.co.jp/kr/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TRAIN",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "BUS",
+          "url": "https://www.enoden.co.jp/en/bus/"
+        },
+        {
+          "title": "OUTING\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "COMPANY\nINFORMATION",
+          "url": "https://www.enoden.co.jp/en/corporate/"
+        },
+        {
+          "title": "ACCESS",
+          "url": "https://www.enoden.co.jp/en/tourism/access/"
+        },
+        {
+          "title": "SIGHTSEEING INFORMATION SERVICES",
+          "url": "https://www.enoden.co.jp/en/tourism/service/"
+        },
+        {
+          "title": "TOURIST ATTRACTIONS",
+          "url": "https://www.enoden.co.jp/en/tourism/attraction/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/tourism/"
+        },
+        {
+          "title": "LANGUAGE",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "ENODEN（TRAIN）",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "TRAIN MENU",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "STATION INFORMATION",
+          "url": "https://www.enoden.co.jp/en/train/station/"
+        },
+        {
+          "title": "FARE",
+          "url": "https://www.enoden.co.jp/en/train/fare/"
+        },
+        {
+          "title": "TIMETABLES",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "DISCOUNT TICKETS",
+          "url": "https://www.enoden.co.jp/en/train/ticket/"
+        },
+        {
+          "title": "PLEASE NOTE",
+          "url": "https://www.enoden.co.jp/en/train/please/"
+        },
+        {
+          "title": "FAQ",
+          "url": "https://www.enoden.co.jp/en/train/faq/"
+        },
+        {
+          "title": "CLOSE",
+          "url": "https://www.enoden.co.jp/en/train/time-table/"
+        },
+        {
+          "title": "TOP",
+          "url": "https://www.enoden.co.jp/en/"
+        },
+        {
+          "title": "TRAIN",
+          "url": "https://www.enoden.co.jp/en/train/"
+        },
+        {
+          "title": "FUJISAWA",
+          "url": "https://www.enoden.co.jp/en/train/station/fujisawa/time-table/"
+        },
+        {
+          "title": "ISHIGAMI",
+          "url": "https://www.enoden.co.jp/en/train/station/ishigami/time-table/"
+        },
+        {
+          "title": "YANAGIKOJI",
+          "url": "https://www.enoden.co.jp/en/train/station/yanagikoji/time-table/"
+        },
+        {
+          "title": "KUGENUMA",
+          "url": "https://www.enoden.co.jp/en/train/station/kugenuma/time-table/"
+        },
+        {
+          "title": "SHONAN-KAIGAN-KOEN",
+          "url": "https://www.enoden.co.jp/en/train/station/shonankaigankoen/time-table/"
+        },
+        {
+          "title": "ENOSHIMA",
+          "url": "https://www.enoden.co.jp/en/train/station/enoshima/time-table/"
+        },
+        {
+          "title": "KOSHIGOE",
+          "url": "https://www.enoden.co.jp/en/train/station/koshigoe/time-table/"
+        },
+        {
+          "title": "KAMAKURA-KOKO-MAE",
+          "url": "https://www.enoden.co.jp/en/train/station/kamakurakokomae/time-table/"
+        },
+        {
+          "title": "SHICHIRIGAHAMA",
+          "url": "https://www.enoden.co.jp/en/train/station/shichirigahama/time-table/"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "searches": [
+    {
+      "query": "Enoshima Sea Candle opening hours enoshima-seacandle.com",
+      "retrievedAt": "2026-11-02T23:04:30.220Z",
+      "status": "unavailable",
+      "results": [],
+      "error": "Search produced no readable official results; CAPTCHA/consent/layout changes are not bypassed."
+    },
+    {
+      "query": "Tsurugaoka Hachimangu opening hours hachimangu.or.jp",
+      "retrievedAt": "2026-11-02T23:04:41.465Z",
+      "status": "unavailable",
+      "results": [],
+      "error": "Search produced no readable official results; CAPTCHA/consent/layout changes are not bypassed."
+    }
+  ],
+  "ledger": {
+    "requirements": [
+      {
+        "id": "identity:P01",
+        "kind": "identity",
+        "subject": "P01",
+        "critical": false,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P01"
+        ],
+        "message": "Input location precision: park_area; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P01",
+        "kind": "hours",
+        "subject": "P01",
+        "critical": false,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P02",
+        "kind": "identity",
+        "subject": "P02",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P02"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P02",
+        "kind": "hours",
+        "subject": "P02",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P03",
+        "kind": "identity",
+        "subject": "P03",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [
+          "input:P03"
+        ],
+        "message": "Input location precision: unknown; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P03",
+        "kind": "hours",
+        "subject": "P03",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P04",
+        "kind": "identity",
+        "subject": "P04",
+        "critical": false,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P04"
+        ],
+        "message": "Input location precision: bridge_area; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P04",
+        "kind": "hours",
+        "subject": "P04",
+        "critical": false,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P05",
+        "kind": "identity",
+        "subject": "P05",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P05"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P05",
+        "kind": "hours",
+        "subject": "P05",
+        "critical": true,
+        "status": "conditional",
+        "evidenceIds": [
+          "official:sea-candle-hours"
+        ],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P06",
+        "kind": "identity",
+        "subject": "P06",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P06"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P06",
+        "kind": "hours",
+        "subject": "P06",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P07",
+        "kind": "identity",
+        "subject": "P07",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P07"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P07",
+        "kind": "hours",
+        "subject": "P07",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P08",
+        "kind": "identity",
+        "subject": "P08",
+        "critical": true,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P08"
+        ],
+        "message": "Input location precision: beach_area; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P08",
+        "kind": "hours",
+        "subject": "P08",
+        "critical": false,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P09",
+        "kind": "identity",
+        "subject": "P09",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P09"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P09",
+        "kind": "hours",
+        "subject": "P09",
+        "critical": true,
+        "status": "conditional",
+        "evidenceIds": [
+          "official:tourist-center"
+        ],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P10",
+        "kind": "identity",
+        "subject": "P10",
+        "critical": true,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P10"
+        ],
+        "message": "Input location precision: station_area; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P10",
+        "kind": "hours",
+        "subject": "P10",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P11",
+        "kind": "identity",
+        "subject": "P11",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P11"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P11",
+        "kind": "hours",
+        "subject": "P11",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P12",
+        "kind": "identity",
+        "subject": "P12",
+        "critical": true,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P12"
+        ],
+        "message": "Input location precision: street_reference_point; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P12",
+        "kind": "hours",
+        "subject": "P12",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P13",
+        "kind": "identity",
+        "subject": "P13",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P13"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P13",
+        "kind": "hours",
+        "subject": "P13",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P14",
+        "kind": "identity",
+        "subject": "P14",
+        "critical": false,
+        "status": "conditional",
+        "evidenceIds": [
+          "input:P14"
+        ],
+        "message": "Input location precision: street_area; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P14",
+        "kind": "hours",
+        "subject": "P14",
+        "critical": false,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "identity:P15",
+        "kind": "identity",
+        "subject": "P15",
+        "critical": false,
+        "status": "provided",
+        "evidenceIds": [
+          "input:P15"
+        ],
+        "message": "Input location precision: named_place; no automatic replacement of the selected place."
+      },
+      {
+        "id": "hours:P15",
+        "kind": "hours",
+        "subject": "P15",
+        "critical": true,
+        "status": "missing",
+        "evidenceIds": [],
+        "message": "General hours may inform planning; date-specific closures, shop/restaurant identity and exceptions still require confirmation."
+      },
+      {
+        "id": "forecast:funabashi",
+        "kind": "forecast",
+        "subject": "funabashi",
+        "critical": false,
+        "status": "deferred",
+        "evidenceIds": [
+          "weather:funabashi"
+        ],
+        "message": "Future forecast is not obtainable now; do not repeatedly search for invented weather."
+      },
+      {
+        "id": "forecast:kamakura",
+        "kind": "forecast",
+        "subject": "kamakura",
+        "critical": false,
+        "status": "deferred",
+        "evidenceIds": [
+          "weather:kamakura"
+        ],
+        "message": "Future forecast is not obtainable now; do not repeatedly search for invented weather."
+      },
+      {
+        "id": "forecast:enoshima",
+        "kind": "forecast",
+        "subject": "enoshima",
+        "critical": false,
+        "status": "deferred",
+        "evidenceIds": [
+          "weather:enoshima"
+        ],
+        "message": "Future forecast is not obtainable now; do not repeatedly search for invented weather."
+      },
+      {
+        "id": "forecast:fujisawa",
+        "kind": "forecast",
+        "subject": "fujisawa",
+        "critical": false,
+        "status": "deferred",
+        "evidenceIds": [
+          "weather:fujisawa"
+        ],
+        "message": "Future forecast is not obtainable now; do not repeatedly search for invented weather."
+      }
+    ],
+    "claims": [],
+    "rejected": [
+      {
+        "message": "Claim quotation does not match the saved page text.",
+        "sourceId": "page:2"
+      },
+      {
+        "message": "Claim quotation does not match the saved page text.",
+        "sourceId": "page:2"
+      },
+      {
+        "message": "Claim quotation does not match the saved page text.",
+        "sourceId": "page:2"
+      }
+    ],
+    "unavailable": []
+  },
+  "routes": [
+    {
+      "id": "route:ae82dfc9471285ea",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T07:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:05:01.550Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:62de26a2757a27aa",
+      "from": "funabashi_station",
+      "to": "fujisawa_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T07:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:05:03.687Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:cb44f68bbc4f28fb",
+      "from": "funabashi_station",
+      "to": "fujisawa_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T08:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:05:05.108Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:0b7caa737ddcffb4",
+      "from": "kamakura_station",
+      "to": "enoshima_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T09:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:05:06.790Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:43f4c29f633f0309",
+      "from": "kamakura_station",
+      "to": "komachi",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T23:05:07.993Z",
+      "status": "ok",
+      "estimatedMinutes": 5.666666666666667,
+      "distanceMeters": 410,
+      "partialAddressMatch": true,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:f2bd73c551fb089c",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T06:30:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:06:27.101Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:41ff76a91aac4b87",
+      "from": "funabashi_station",
+      "to": "fujisawa_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T06:30:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:06:27.180Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:16555539ff86a18c",
+      "from": "inamura_station",
+      "to": "enoshima_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T11:20:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:06:27.213Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:cbb1c8d8e5b073cd",
+      "from": "katase_station",
+      "to": "fujisawa_station",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T23:06:27.317Z",
+      "status": "ok",
+      "estimatedMinutes": 49.36666666666667,
+      "distanceMeters": 3519,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:26d4957beaa9373b",
+      "from": "fujisawa_station",
+      "to": "funabashi_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-01T16:30:00.000+09:00",
+      "fetchedAt": "2026-11-02T23:06:27.431Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    }
+  ],
+  "forecasts": [
+    {
+      "id": "weather:funabashi",
+      "areaId": "funabashi",
+      "fetchedAt": "2026-11-02T23:04:06.429Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:kamakura",
+      "areaId": "kamakura",
+      "fetchedAt": "2026-11-02T23:04:06.429Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:enoshima",
+      "areaId": "enoshima",
+      "fetchedAt": "2026-11-02T23:04:06.429Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:fujisawa",
+      "areaId": "fujisawa",
+      "fetchedAt": "2026-11-02T23:04:06.429Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    }
+  ],
+  "unknownTransferFloors": {}
+}

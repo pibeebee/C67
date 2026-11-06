@@ -1,0 +1,588 @@
+{
+  "generatedAt": "2026-11-02T15:23:52.377Z",
+  "inputIdentical": true,
+  "codeUnchanged": true,
+  "baseline": "results/japan-2026-12-05-untimed-run2",
+  "defaultRun": "results/japan-2026-12-05-researched-run1",
+  "expandedRun": "results/japan-2026-12-05-researched-run2-32k",
+  "coverage": {
+    "visits": 14,
+    "required": 14,
+    "transitPairs": 6,
+    "coastalWalk": true
+  },
+  "issueCounts": {
+    "ROUTE_UNVERIFIED": 6,
+    "PARTIAL_PLACE_MATCH": 2,
+    "OPENING_HOURS_UNCONFIRMED": 11,
+    "MISSING_LOCATION": 4,
+    "FORECAST_UNAVAILABLE": 4
+  },
+  "previous": {
+    "start": "07:00",
+    "end": "22:00",
+    "knownMoves": 11,
+    "totalMoves": 21,
+    "tightMovesUnderOneMinute": 8
+  },
+  "current": {
+    "start": "2026-12-05T04:30:00.000+09:00",
+    "end": "2026-12-05T23:26:00.000+09:00",
+    "knownMoves": 10,
+    "totalMoves": 20,
+    "tightMovesUnderOneMinute": 0,
+    "explicitWaitMinutes": 125,
+    "status": "needs_information",
+    "conflicts": 0,
+    "sourceClaims": 0
+  },
+  "ai": {
+    "defaultCalls": 5,
+    "expandedCalls": 2,
+    "defaultTokens": 94765,
+    "expandedTokens": 68292,
+    "totalTokens": 163057
+  },
+  "rows": [
+    {
+      "id": "E03",
+      "label": "Stasiun Kamakura & Komachi Street",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E03",
+        "from": "komachi",
+        "to": "komachi",
+        "start": "08:25",
+        "end": "09:00",
+        "mode": "NONE",
+        "note": "Stasiun Kamakura & Komachi Street"
+      },
+      "after": {
+        "rowIndex": 4,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E03",
+          "from": "komachi",
+          "to": "komachi",
+          "start": "06:21",
+          "end": "07:01",
+          "mode": "NONE",
+          "note": "Stasiun Kamakura & Komachi Street (asumsi 40 menit)."
+        },
+        "startsAt": "2026-12-05T06:21:00.000+09:00",
+        "endsAt": "2026-12-05T07:01:00.000+09:00",
+        "allocatedMinutes": 40,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E04",
+      "label": "Tsurugaoka Hachimangu & Perempatan",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E04",
+        "from": "hachimangu",
+        "to": "hachimangu",
+        "start": "09:10",
+        "end": "10:00",
+        "mode": "NONE",
+        "note": "Tsurugaoka Hachimangu & Perempatan"
+      },
+      "after": {
+        "rowIndex": 7,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E04",
+          "from": "hachimangu",
+          "to": "hachimangu",
+          "start": "07:17",
+          "end": "08:07",
+          "mode": "NONE",
+          "note": "Tsurugaoka Hachimangu & perempatan (asumsi 50 menit)."
+        },
+        "startsAt": "2026-12-05T07:17:00.000+09:00",
+        "endsAt": "2026-12-05T08:07:00.000+09:00",
+        "allocatedMinutes": 50,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E05",
+      "label": "Makan Siang Pagi (Area Kamakura)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E05",
+        "from": "kamakura_meal",
+        "to": "kamakura_meal",
+        "start": "10:10",
+        "end": "11:00",
+        "mode": "NONE",
+        "note": "Makan Siang Pagi (Area Kamakura)"
+      },
+      "after": {
+        "rowIndex": 10,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E05",
+          "from": "kamakura_meal",
+          "to": "kamakura_meal",
+          "start": "08:22",
+          "end": "09:22",
+          "mode": "NONE",
+          "note": "Makan siang pagi area Kamakura (asumsi 60 menit). Lokasi tidak diketahui."
+        },
+        "startsAt": "2026-12-05T08:22:00.000+09:00",
+        "endsAt": "2026-12-05T09:22:00.000+09:00",
+        "allocatedMinutes": 60,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E07",
+      "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E07",
+        "from": "inamura_park",
+        "to": "inamura_park",
+        "start": "11:30",
+        "end": "12:00",
+        "mode": "NONE",
+        "note": "Kamakura Seaside Park (Cape Inamuragasaki)"
+      },
+      "after": {
+        "rowIndex": 17,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E07",
+          "from": "inamura_park",
+          "to": "inamura_park",
+          "start": "11:02",
+          "end": "11:42",
+          "mode": "NONE",
+          "note": "Kamakura Seaside Park, Inamuragasaki (asumsi 40 menit)."
+        },
+        "startsAt": "2026-12-05T11:02:00.000+09:00",
+        "endsAt": "2026-12-05T11:42:00.000+09:00",
+        "allocatedMinutes": 40,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E09",
+      "label": "Shichirigahama Beach (Depan Sekolah)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E09",
+        "from": "shichiri_beach",
+        "to": "shichiri_beach",
+        "start": "12:25",
+        "end": "13:05",
+        "mode": "NONE",
+        "note": "Shichirigahama Beach (Depan Sekolah)"
+      },
+      "after": {
+        "rowIndex": 24,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E09",
+          "from": "shichiri_beach",
+          "to": "shichiri_beach",
+          "start": "13:15",
+          "end": "13:55",
+          "mode": "NONE",
+          "note": "Pantai Shichirigahama, depan sekolah (asumsi 40 menit). Cuaca/jam matahari tidak diketahui."
+        },
+        "startsAt": "2026-12-05T13:15:00.000+09:00",
+        "endsAt": "2026-12-05T13:55:00.000+09:00",
+        "allocatedMinutes": 40,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E11",
+      "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E11",
+        "from": "kokomae",
+        "to": "kokomae",
+        "start": "13:23",
+        "end": "13:50",
+        "mode": "NONE",
+        "note": "Kamakurakokomae Station (Foto Area Stasiun — waktu foto terpisah)"
+      },
+      "after": {
+        "rowIndex": 27,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E11",
+          "from": "kokomae",
+          "to": "kokomae",
+          "start": "14:23",
+          "end": "14:53",
+          "mode": "NONE",
+          "note": "Kamakurakokomae, foto area stasiun (asumsi 30 menit); dipisahkan dari jalan kaki pantai."
+        },
+        "startsAt": "2026-12-05T14:23:00.000+09:00",
+        "endsAt": "2026-12-05T14:53:00.000+09:00",
+        "allocatedMinutes": 30,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E13",
+      "label": "Toko Suvenir Enoshima Station",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E13",
+        "from": "enoshima_station",
+        "to": "enoshima_station",
+        "start": "14:10",
+        "end": "14:30",
+        "mode": "NONE",
+        "note": "Toko Suvenir Enoshima Station"
+      },
+      "after": {
+        "rowIndex": 30,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E13",
+          "from": "enoshima_station",
+          "to": "enoshima_station",
+          "start": "15:28",
+          "end": "15:48",
+          "mode": "NONE",
+          "note": "Toko suvenir Enoshima Station (asumsi 20 menit). Toko belum dipilih."
+        },
+        "startsAt": "2026-12-05T15:28:00.000+09:00",
+        "endsAt": "2026-12-05T15:48:00.000+09:00",
+        "allocatedMinutes": 20,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E15",
+      "label": "Fujisawa City Tourist Center",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E15",
+        "from": "tourist_center",
+        "to": "tourist_center",
+        "start": "14:40",
+        "end": "15:30",
+        "mode": "NONE",
+        "note": "Fujisawa City Tourist Center (selesai dalam jam operasional 08:30–17:00)"
+      },
+      "after": {
+        "rowIndex": 33,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E15",
+          "from": "tourist_center",
+          "to": "tourist_center",
+          "start": "16:08",
+          "end": "16:38",
+          "mode": "NONE",
+          "note": "Fujisawa City Tourist Center, Katase Kaigan (asumsi 30 menit). Selesai 16:38, dalam jam buka 08:30–17:00."
+        },
+        "startsAt": "2026-12-05T16:08:00.000+09:00",
+        "endsAt": "2026-12-05T16:38:00.000+09:00",
+        "allocatedMinutes": 30,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E16",
+      "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E16",
+        "from": "bridge",
+        "to": "bridge",
+        "start": "15:35",
+        "end": "16:00",
+        "mode": "NONE",
+        "note": "Enoshima Ohashi Bridge (Video & Jalan Santai)"
+      },
+      "after": {
+        "rowIndex": 36,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E16",
+          "from": "bridge",
+          "to": "bridge",
+          "start": "16:53",
+          "end": "17:23",
+          "mode": "NONE",
+          "note": "Enoshima Ohashi Bridge, video & jalan santai (asumsi 30 menit)."
+        },
+        "startsAt": "2026-12-05T16:53:00.000+09:00",
+        "endsAt": "2026-12-05T17:23:00.000+09:00",
+        "allocatedMinutes": 30,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E17",
+      "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E17",
+        "from": "oiwayamichi",
+        "to": "oiwayamichi",
+        "start": "16:15",
+        "end": "16:45",
+        "mode": "NONE",
+        "note": "Oiwayamichi Street (Opsional) & Naik ke Atas"
+      },
+      "after": {
+        "rowIndex": 39,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E17",
+          "from": "oiwayamichi",
+          "to": "oiwayamichi",
+          "start": "17:48",
+          "end": "18:18",
+          "mode": "NONE",
+          "note": "Oiwayamichi Street (opsional) & naik ke atas (asumsi 30 menit)."
+        },
+        "startsAt": "2026-12-05T17:48:00.000+09:00",
+        "endsAt": "2026-12-05T18:18:00.000+09:00",
+        "allocatedMinutes": 30,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E18",
+      "label": "Tiba di Area Enoshima Sea Candle",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E18",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "16:53",
+        "end": "17:25",
+        "mode": "NONE",
+        "note": "Tiba di Area Enoshima Sea Candle (jam umum 09:00–20:00, terpisah dari jam acara)"
+      },
+      "after": {
+        "rowIndex": 42,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E18",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "18:36",
+          "end": "18:56",
+          "mode": "NONE",
+          "note": "Tiba di area Enoshima Sea Candle (asumsi 20 menit). Jam umum 09:00–20:00 dipisahkan dari jam acara."
+        },
+        "startsAt": "2026-12-05T18:36:00.000+09:00",
+        "endsAt": "2026-12-05T18:56:00.000+09:00",
+        "allocatedMinutes": 20,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E19",
+      "label": "Menyaksikan Illumination",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E19",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "17:35",
+        "end": "18:20",
+        "mode": "NONE",
+        "note": "Menyaksikan Illumination (interpretasi: Shonan no Hoseki)"
+      },
+      "after": {
+        "rowIndex": 43,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E19",
+          "from": "sea_candle",
+          "to": "sea_candle",
+          "start": "18:56",
+          "end": "19:56",
+          "mode": "NONE",
+          "note": "Menyaksikan Illumination. Interpretasi: Shonan no Hoseki, acara Sabtu 17:00–21:00; mulai 18:56 dalam rentang acara. Perlu konfirmasi."
+        },
+        "startsAt": "2026-12-05T18:56:00.000+09:00",
+        "endsAt": "2026-12-05T19:56:00.000+09:00",
+        "allocatedMinutes": 60,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E20",
+      "label": "Turun dari Pulau & Makan Malam di Enoshima",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E20",
+        "from": "enoshima_dinner",
+        "to": "enoshima_dinner",
+        "start": "18:54",
+        "end": "19:50",
+        "mode": "NONE",
+        "note": "Turun dari Pulau & Makan Malam di Enoshima"
+      },
+      "after": {
+        "rowIndex": 46,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E20",
+          "from": "enoshima_dinner",
+          "to": "enoshima_dinner",
+          "start": "20:11",
+          "end": "21:11",
+          "mode": "NONE",
+          "note": "Makan malam di Enoshima (asumsi 60 menit). Lokasi tidak diketahui."
+        },
+        "startsAt": "2026-12-05T20:11:00.000+09:00",
+        "endsAt": "2026-12-05T21:11:00.000+09:00",
+        "allocatedMinutes": 60,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    },
+    {
+      "id": "E22",
+      "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+      "inputTime": null,
+      "before": {
+        "kind": "visit",
+        "activityId": "E22",
+        "from": "fujisawa_station",
+        "to": "fujisawa_station",
+        "start": "20:10",
+        "end": "20:40",
+        "mode": "NONE",
+        "note": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)"
+      },
+      "after": {
+        "rowIndex": 51,
+        "proposed": {
+          "kind": "visit",
+          "activityId": "E22",
+          "from": "fujisawa_station",
+          "to": "fujisawa_station",
+          "start": "21:56",
+          "end": "22:26",
+          "mode": "NONE",
+          "note": "Seichi junrei malam Stasiun Fujisawa & menara jam (asumsi 30 menit)."
+        },
+        "startsAt": "2026-12-05T21:56:00.000+09:00",
+        "endsAt": "2026-12-05T22:26:00.000+09:00",
+        "allocatedMinutes": 30,
+        "durationSource": "ai_visit_proposal",
+        "routeId": null,
+        "routeStatus": null,
+        "providerTravelMinutes": null,
+        "systemBufferMinutes": 0,
+        "note": "Durasi kunjungan diusulkan AI; jam di tabel dihitung kode."
+      }
+    }
+  ],
+  "sourceHashesAtRunStart": {
+    "ai.ts": "ab7df53189bc5d66df96bdaa7cf9099644385c508b92c497776d4ddf88c44292",
+    "audit-itinerary.ts": "627b1837d4149c6180859d4651abc72f651fa33aaf7c994847ed3ed558d931ad",
+    "audit-model.ts": "0dc24f59c341ef91fa057996b7ea7e0b4f4ff5f93ffc09d869808c1c4e3b169a",
+    "audit.ts": "1346b9de90d2948b9b1bca8437b8895c3c58a84e4fa36b93efa78ea128bbf54d",
+    "cli.ts": "7db11a60b82dd20930725d039e036bf99f41d29a0a34d61596d04a08777bc974",
+    "compare-reasoning.ts": "6258c2109eda384fbab10e951d58ede43950901bdb2792926f542bd1f4cc24a1",
+    "context.ts": "ca561ba3b72e0f2682c6e9f274bd61f345badaa6dd1b069cabdff1a17f01598e",
+    "data.ts": "ee43c7b105cfc21df5b98815f204259b460f9fb93b08da7e3fc0f4411db5929b",
+    "domain.ts": "55f6cf3e735eef5c394de1013737981807491c3fa2c6e1c20c8308f371721035",
+    "http.ts": "4a06461d24c2674970360972575daee9bec05e22430cc08dc2888b717ea844b7",
+    "model-session.ts": "56a9b48856e9fd9ee905c510dad3567bb169fc40425f2c8472fa2694b94f8df5",
+    "plan-researched.ts": "cfb21530c82c85805f2f69958dc83e7f610bd81bb20ad061ae652535759f7efc",
+    "plan-untimed.ts": "c1549be3c6f2f509f883ed8fdd5ca3338f2399230d7eb1a1eee0155f83a4b92f",
+    "planning-data.ts": "bae7a6923c20441dfe9b48b16bd372f2f81b0507662e22e025326afc3109520b",
+    "planning-simulation.ts": "df16597f1a0a3c61b28e89c6934fe1c5a09b7eb627c53448f6b27ea3902044b8",
+    "report.ts": "5219194802dca68c0fe518b43fc9ca286a8cb46e290ab2ac5b7c0a9f01d8d1a5",
+    "research-agent.ts": "f3b7e6b05bd5cebd5ae7197b247d7d5d0f817059f2409696fe24adcfcd15d0f3",
+    "research-browser.ts": "d063b5ff9a08acf39517772ee2eb9da1d9e2be8ca02a753afc87f92c54e1342a",
+    "scheduler.ts": "12aa98ad389c4bd7c05b4420016400a19bd5f0240027b09a8478f93645b9f8a3",
+    "untimed.ts": "29ae3a3e00b7eff10d9dfcd27320695738cf5be30e41aef64d2c4c202594f4cc"
+  }
+}

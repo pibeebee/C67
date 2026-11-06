@@ -1,0 +1,32 @@
+{
+  "network": false,
+  "cases": 24,
+  "seeds": [
+    11,
+    67,
+    101
+  ],
+  "arms": [
+    "baseline",
+    "adaptive"
+  ],
+  "budget": {
+    "requests": 96,
+    "evaluations": 12000,
+    "CPUSeconds": 3
+  },
+  "sourceSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "de390991dcfd3005882d36d1e131d184cb32a5da3579fc9dedc7085ca7d9b227",
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": "23c4c3d59ad5f989e13f3a5fefd075b57d75bfb8a5c5e4cbc438604f28ed4109",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "114a87c1f88b069e5b446c23f1cba1d621c6af70eaf2ef6c51c3d908e822a59c",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "95ace9177427ff0b23548614c74e96784ed6dc65b39ff4c1cb21928239a3c750",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "1545e840c3cc926af1c98c34977cd2743d6d11910bbc6e43ef419cb4ca0cc0ec",
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18",
+    "poc-c67/Features/NativePlanner/NativeTripLocalStore.swift": "1f9c60ff57ec89b842ea3e2e85590ce4165da8d170eab3ad0323cc137deaf04a",
+    "poc-c67/Features/NativePlanner/NativeTripActiveTrip.swift": "92eabe08cc748a21f8f36529ff92333d8198fde97d264d1d7cc199c751544183",
+    "poc-c67/Features/NativePlanner/NativeTripActivePlanner.swift": "d5f68c3f9556123a8a8d9a8773ba92249e074587addb1c6a8e96ffa92a0853ba",
+    "checks/routing/NativeTripPipelineReplay.swift": "382b0d6e654b98691f131a94395060ae779d18e31a89fafbef9a53fcb1f9547b",
+    "checks/active/NativeTripActiveReplay.swift": "02f03da6dd609c345f46a97f9e3134f9774b3dd2f272864c00c81b07c6af22cc"
+  }
+}

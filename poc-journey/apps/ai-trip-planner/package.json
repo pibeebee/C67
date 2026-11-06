@@ -1,0 +1,37 @@
+{
+  "name": "c67-trip-planner-poc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "plan": "node --env-file-if-exists=.env src/plan-routes.ts",
+    "demo": "node src/cli.ts --mode fixture --input examples/johan.json",
+    "config": "node --env-file-if-exists=.env src/plan-routes.ts --check-config",
+    "compare:reasoning": "node --env-file-if-exists=.env src/compare-reasoning.ts",
+    "audit:itinerary": "node --env-file-if-exists=.env src/audit-itinerary.ts",
+    "check": "tsc --noEmit",
+    "test": "node --test test/*.test.ts",
+    "format": "prettier --write src test examples fixtures package.json tsconfig.json",
+    "format:check": "prettier --check src test examples fixtures package.json tsconfig.json",
+    "plan:untimed": "node --env-file-if-exists=.env src/plan-untimed.ts",
+    "plan:research": "node --env-file-if-exists=.env src/plan-quality.ts",
+    "plan:untimed:legacy": "node --env-file-if-exists=.env src/plan-untimed.ts",
+    "browser:install": "playwright install chromium",
+    "plan:research:v2": "node --env-file-if-exists=.env src/plan-researched.ts",
+    "plan:quality": "node --env-file-if-exists=.env src/plan-quality.ts",
+    "plan:ai:legacy": "node --env-file-if-exists=.env src/cli.ts",
+    "config:legacy": "node --env-file-if-exists=.env src/cli.ts --check-config",
+    "plan:routes": "node --env-file-if-exists=.env src/plan-routes.ts"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "prettier": "3.9.10",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "playwright": "1.64.1"
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "id": "C01",
+  "capability": "candidates",
+  "context": {
+    "complete": true,
+    "conflicts": [],
+    "deadline": "2026-11-05T18:00:00+07:00",
+    "departure": "2026-11-05T08:00:00+07:00",
+    "elapsedMinutes": 255,
+    "endpoint": {
+      "address": "",
+      "category": "unknown",
+      "id": "O",
+      "latitude": -6.2,
+      "longitude": 106.82,
+      "name": "Example start"
+    },
+    "evidence": [
+      {
+        "id": "place-A",
+        "key": "identity",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "A",
+        "synthetic": true,
+        "value": "Example Museum (fictional)"
+      },
+      {
+        "id": "place-B",
+        "key": "identity",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "B",
+        "synthetic": true,
+        "value": "Example Reading Cafe (fictional)"
+      },
+      {
+        "id": "place-C",
+        "key": "identity",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "C",
+        "synthetic": true,
+        "value": "Example Garden (fictional)"
+      },
+      {
+        "id": "hours-A-open",
+        "key": "opensMinute",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "A",
+        "synthetic": true,
+        "value": "09:00"
+      },
+      {
+        "id": "hours-A-close",
+        "key": "closesMinute",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "A",
+        "synthetic": true,
+        "value": "16:00"
+      },
+      {
+        "id": "experience-C",
+        "key": "experienceWindow",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "C",
+        "synthetic": true,
+        "value": "afternoon is a soft photography preference; no measured golden hour or weather"
+      },
+      {
+        "id": "reading-B",
+        "key": "reading",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "B",
+        "synthetic": true,
+        "value": "Reading seating is provided in this synthetic fixture; noise and price unknown"
+      },
+      {
+        "id": "baseline",
+        "key": "schedule",
+        "observedAt": "2026-11-04T08:00:00+07:00",
+        "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+        "subjectID": "trip",
+        "synthetic": true,
+        "value": "O → A → B → C → O; museum waits 40 minutes to open at 09:00; imported finish 12:15, deadline 18:00; feasible against supplied bounds; garden afternoon preference is not fulfilled"
+      }
+    ],
+    "finish": "2026-11-05T12:15:00+07:00",
+    "generatedAt": "2026-11-04T08:00:00+07:00",
+    "id": "synthetic-jakarta-v1",
+    "legs": [
+      {
+        "arrival": "2026-11-05T08:20:00+07:00",
+        "departure": "2026-11-05T08:00:00+07:00",
+        "fromID": "O",
+        "id": "OA",
+        "isReturn": false,
+        "leave": "2026-11-05T10:00:00+07:00",
+        "toID": "A",
+        "travelMinutes": 20,
+        "visit": "2026-11-05T09:00:00+07:00"
+      },
+      {
+        "arrival": "2026-11-05T10:20:00+07:00",
+        "departure": "2026-11-05T10:00:00+07:00",
+        "fromID": "A",
+        "id": "AB",
+        "isReturn": false,
+        "leave": "2026-11-05T11:05:00+07:00",
+        "toID": "B",
+        "travelMinutes": 20,
+        "visit": "2026-11-05T10:20:00+07:00"
+      },
+      {
+        "arrival": "2026-11-05T11:25:00+07:00",
+        "departure": "2026-11-05T11:05:00+07:00",
+        "fromID": "B",
+        "id": "BC",
+        "isReturn": false,
+        "leave": "2026-11-05T11:55:00+07:00",
+        "toID": "C",
+        "travelMinutes": 20,
+        "visit": "2026-11-05T11:25:00+07:00"
+      },
+      {
+        "arrival": "2026-11-05T12:15:00+07:00",
+        "departure": "2026-11-05T11:55:00+07:00",
+        "fromID": "C",
+        "id": "CO",
+        "isReturn": true,
+        "toID": "O",
+        "travelMinutes": 20
+      }
+    ],
+    "origin": {
+      "address": "",
+      "category": "unknown",
+      "id": "O",
+      "latitude": -6.2,
+      "longitude": 106.82,
+      "name": "Example start"
+    },
+    "revision": 1,
+    "schemaVersion": 1,
+    "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+    "stops": [
+      {
+        "dwellMinutes": 60,
+        "exposure": "indoor",
+        "place": {
+          "address": "",
+          "category": "museum",
+          "id": "A",
+          "latitude": -6.1754,
+          "longitude": 106.8272,
+          "name": "Example Museum (fictional)"
+        }
+      },
+      {
+        "dwellMinutes": 45,
+        "exposure": "indoor",
+        "place": {
+          "address": "",
+          "category": "cafe",
+          "id": "B",
+          "latitude": -6.25,
+          "longitude": 106.81,
+          "name": "Example Reading Cafe (fictional)"
+        }
+      },
+      {
+        "dwellMinutes": 30,
+        "exposure": "outdoor",
+        "place": {
+          "address": "",
+          "category": "park",
+          "id": "C",
+          "latitude": -6.22,
+          "longitude": 106.84,
+          "name": "Example Garden (fictional)"
+        }
+      }
+    ],
+    "synthetic": true,
+    "timeZoneID": "Asia/Jakarta",
+    "uncertainties": [
+      "Prices and crowd levels unknown",
+      "Garden afternoon preference has not been inserted into a new timetable"
+    ]
+  },
+  "direction": {
+    "text": "",
+    "persistent": {
+      "interests": [],
+      "avoids": [],
+      "pace": "balanced",
+      "clarification": ""
+    },
+    "trip": {
+      "interests": [],
+      "avoids": [],
+      "pace": "balanced",
+      "clarification": ""
+    }
+  },
+  "profile": {
+    "interests": [
+      "coffee",
+      "reading"
+    ],
+    "avoids": [],
+    "pace": "balanced",
+    "clarification": ""
+  },
+  "candidates": [
+    {
+      "evidence": [
+        {
+          "id": "P1-info",
+          "key": "attributes",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic candidate fixture, not MapKit results",
+          "subjectID": "P1",
+          "synthetic": true,
+          "value": "Cafe with reading seating; price, quietness, accessibility and hours unknown"
+        }
+      ],
+      "place": {
+        "address": "",
+        "category": "cafe",
+        "id": "P1",
+        "latitude": -6.24,
+        "longitude": 106.81,
+        "name": "Example Book Cafe (fictional)"
+      }
+    },
+    {
+      "evidence": [
+        {
+          "id": "P2-info",
+          "key": "attributes",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic candidate fixture, not MapKit results",
+          "subjectID": "P2",
+          "synthetic": true,
+          "value": "Indoor art gallery; price, accessibility and hours unknown"
+        }
+      ],
+      "place": {
+        "address": "",
+        "category": "museum",
+        "id": "P2",
+        "latitude": -6.19,
+        "longitude": 106.83,
+        "name": "Example Gallery (fictional)"
+      }
+    }
+  ]
+}

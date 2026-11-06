@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Jakarta",
+  "project": "<LOCAL_HOME>/Programming/software/ios/poc-c67",
+  "scope": "Minimal native itinerary UI and automatic persistent local logging",
+  "build": {
+    "destination": "generic/platform=iOS",
+    "signing": false,
+    "result": "BUILD SUCCEEDED",
+    "log": "/private/tmp/c67-minimal-ui-logs-20261103/build-ios-final.log",
+    "sha256": "1c27779d37588793fba5f161f4abc7bedbcf998acd07775bd66b2586eb759f6e"
+  },
+  "checks": {
+    "log-checks-final.log": {
+      "passed": 9,
+      "runtime": "local macOS, no network",
+      "path": "/private/tmp/c67-minimal-ui-logs-20261103/log-checks-final.log",
+      "sha256": "8e60f141be7c09c2b7356e34098e72b8c9bd532349ae3e7560e6e02f3ec1778e"
+    },
+    "input-checks.log": {
+      "passed": 8,
+      "runtime": "local macOS, no network",
+      "path": "/private/tmp/c67-minimal-ui-logs-20261103/input-checks.log",
+      "sha256": "2f87a52395d1f50022dab42ce4d1bfc3681eb017a0c0ab1c522576f07ff27ffc"
+    },
+    "search-checks.log": {
+      "passed": 7,
+      "runtime": "local macOS, no network",
+      "path": "/private/tmp/c67-minimal-ui-logs-20261103/search-checks.log",
+      "sha256": "0827be0f9798e32528df2e5bf070c78849b353dd35d7f64ee7a687490743d03e"
+    }
+  },
+  "totalLocalChecksPassed": 24,
+  "format": "swift-format lint --strict passed",
+  "whitespace": "git diff --check passed",
+  "shellSyntax": "bash -n passed",
+  "iosTestsRun": false,
+  "simulatorRun": false,
+  "iphoneInstalledOrLaunched": false,
+  "appleServicesRequested": false,
+  "persistentLog": {
+    "location": "Application Support/NativeTripLogs",
+    "format": "JSON Lines v1",
+    "maximumFiles": 10,
+    "maximumFileBytes": 2000000,
+    "export": "Log → Ekspor log (.txt)",
+    "crossProcessPersistence": "macOS write process exited, read process recovered fixture"
+  },
+  "notVerified": [
+    "iPhone UI interaction and Files export",
+    "iOS suspension/forced termination tail events",
+    "MapKit timeout resolution or live ETA/WeatherKit"
+  ],
+  "sourceSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "1a9f18a72f3605618038121891c8319335938f550937990507ca7a9200ac99ca",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "71f4cec1b6b38776da533ed00f3e449d9f25844025ca97dc952fdf0ec959219e",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "97e219b0f2a632fd53c8c0bf449df9e8cb70bdf34474d3383aeb196ecc28ce4a",
+    "poc-c67/Features/NativePlanner/NativeTripInputViews.swift": "6cbc5bc3a1e790c02b1223efb17df9bd283c1873c2b5f34112f4f6d28a5d01ad",
+    "poc-c67/Features/NativePlanner/NativeTripLogStore.swift": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27",
+    "poc-c67/Features/NativePlanner/NativeTripLogView.swift": "067a3c8187737d0197d68dd0f2c6714fc8693c55b7be4e4eb4efb3b2cf3dab1c",
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "5c99eecd99383f3db032a10851685f71584d38310e7a92263da19ba6dfb58b73",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "c1db403f36d3b26921c920e6b56cdfb9114b25359967677a9db80897838942f4",
+    "poc-c67/Features/NativePlanner/NativeTripPinPicker.swift": "f1d0988c50e125af5b4965eabb1fdedc0a465c8dbc64a3b0d0601a5d84425340",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "a6125b57d01f51d1d9ee5d72e6f3b141bb97354200b5053398f7231727bc1d0e",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "28ec85e81d16f321cb9c79814ec18a8988ebb922e9b6c62e022e029b30900839",
+    "poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+    "poc-c67/ContentView.swift": "8e93de0659846eac58ed6c3e3f6bc69de8287c2e8cff54ef490119963204bf54",
+    "checks/logs/NativeTripLogChecks.swift": "a6b4e2612ff0228ee3cb981cf48a2db72a1f3ad087cd2b81a63ba738e99e04c7",
+    "scripts/check-native-trip-logs.sh": "ca939bbad7a19011ac6c593f2b3bc5864862f011babfd40c52f29ae94df63191",
+    "README.md": "4a5eb2bd90c72c5c92865565e5778df642e3721fc09e88cc2b11d6de060ab4fb",
+    "docs/NATIVE_ITINERARY.md": "3285b552444173b73e770af655ebd968c4518476c6b86fe8d254a6743d1f148d",
+    "docs/NATIVE_FLEXIBLE_INPUT.md": "b157c53c6018780349e547752d4954fba91b017beaf92654390efdc60eb79339",
+    "docs/NATIVE_LOGGING.md": "dde60d8f29ac46df55837795d51afff2cb0cbe13db305627e59f90fd39ed4881"
+  },
+  "backups": "/private/tmp/c67-minimal-ui-logs-20261103/originals"
+}

@@ -1,0 +1,65 @@
+warning: '--skip-update' option is deprecated and will be removed in a future release
+Building for debugging...
+[Computing dependencies]
+[6 / 24] PreferenceQuality
+[9 / 27] PreferenceQuality
+[14 / 29] preference-quality-eval-product
+[16 / 31] PreferenceQuality
+[23 / 28] PreferenceQualityTests-product
+[25 / 30] PreferenceQualityTests-product
+[30 / 33] preference-quality-eval-product
+[30 / 33] PreferenceQualityTests-product
+[32 / 33] PreferenceQualityTests-product
+[34 / 34] PreferenceQualityTests-product
+Build complete! (3.24 sec)
+Test Suite 'All tests' started at 2026-11-05 13:29:49.347.
+Test Suite 'All tests' passed at 2026-11-05 13:29:49.349.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite QualityTests started.
+􀟈  Test permutationDoesNotChangeRankTies() started.
+􀟈  Test unknownAvoidCannotBeCalledSatisfied() started.
+􀟈  Test emptyProfileIsExplicitlyGeneral() started.
+􀟈  Test unsupportedLikedFacetIsNotClaimedAsPersonalizedMatch() started.
+􀟈  Test unlinkedOrDuplicateClaimsRejected() started.
+􀟈  Test staleFactsLeaveNoVerifiedRanking() started.
+􀟈  Test cancellationPropagatesInsteadOfReturningFallback() started.
+􀟈  Test likingOneFacetDoesNotLearnAllVenueAttributes() started.
+􀟈  Test unknownAndConflictingFactsNeverSatisfyMust() started.
+􀟈  Test coffeeAndReadingNeverMergeSeparateRooms() started.
+􀟈  Test allMethodsUseExactlyTheSameEligibleCandidateSet() started.
+􀟈  Test expiredProgramAndSuspendedVenueCannotReenterViaEmbedding() started.
+􀟈  Test allTwentyFourAuthoredGatesMatchExpectedIDs() started.
+􀟈  Test unavailableModelRetainsExplicitCategoryFallback() started.
+􀟈  Test storageRecoversNeighborsAndPreservesInvalidFile() started.
+􀟈  Test explicitCorrectionOverridesEarlierLikedFacet() started.
+􀟈  Test jakartaDoesNotAccidentallyMatchArt() started.
+􀟈  Test textNegationIsNotSilentlyAccepted() started.
+􀟈  Test boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􀟈  Test contradictedControlsAndUnsupportedLikeAreRejected() started.
+􀟈  Test case passing 1 argument text → "Saya mau ngopi sambil membaca" to boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􀟈  Test case passing 1 argument text → "Coffee while reading books" to boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􁁛  Test likingOneFacetDoesNotLearnAllVenueAttributes() passed after 0.010 seconds.
+􁁛  Test unknownAndConflictingFactsNeverSatisfyMust() passed after 0.010 seconds.
+􁁛  Test unlinkedOrDuplicateClaimsRejected() passed after 0.010 seconds.
+􁁛  Test staleFactsLeaveNoVerifiedRanking() passed after 0.010 seconds.
+􁁛  Test coffeeAndReadingNeverMergeSeparateRooms() passed after 0.010 seconds.
+􁁛  Test unsupportedLikedFacetIsNotClaimedAsPersonalizedMatch() passed after 0.010 seconds.
+􁁛  Test emptyProfileIsExplicitlyGeneral() passed after 0.010 seconds.
+􁁛  Test explicitCorrectionOverridesEarlierLikedFacet() passed after 0.010 seconds.
+􁁛  Test jakartaDoesNotAccidentallyMatchArt() passed after 0.010 seconds.
+􁁛  Test unknownAvoidCannotBeCalledSatisfied() passed after 0.010 seconds.
+􁁛  Test expiredProgramAndSuspendedVenueCannotReenterViaEmbedding() passed after 0.010 seconds.
+􁁛  Test textNegationIsNotSilentlyAccepted() passed after 0.010 seconds.
+􁁛  Test contradictedControlsAndUnsupportedLikeAreRejected() passed after 0.010 seconds.
+􁁛  Test boundedPositiveProposalRequiresExplicitAcceptance(_:) with 2 test cases passed after 0.010 seconds.
+􁁛  Test allMethodsUseExactlyTheSameEligibleCandidateSet() passed after 0.010 seconds.
+􁁛  Test unavailableModelRetainsExplicitCategoryFallback() passed after 0.011 seconds.
+􁁛  Test cancellationPropagatesInsteadOfReturningFallback() passed after 0.011 seconds.
+􁁛  Test permutationDoesNotChangeRankTies() passed after 0.011 seconds.
+􁁛  Test allTwentyFourAuthoredGatesMatchExpectedIDs() passed after 0.021 seconds.
+􁁛  Test storageRecoversNeighborsAndPreservesInvalidFile() passed after 0.021 seconds.
+􁁛  Suite QualityTests passed after 0.021 seconds.
+􁁛  Test run with 20 tests in 1 suite passed after 0.022 seconds.

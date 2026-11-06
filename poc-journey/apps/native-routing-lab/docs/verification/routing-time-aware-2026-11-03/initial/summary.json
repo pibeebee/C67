@@ -1,0 +1,197 @@
+{
+  "cases": 22,
+  "runs": 264,
+  "auditErrors": 0,
+  "totalSeconds": 5.452921624993905,
+  "aggregate": {
+    "old-default": {
+      "runs": 66,
+      "feasible": 51,
+      "medianRequests": 22.0,
+      "medianWallSeconds": 0.0007359981536865234,
+      "maxWallSeconds": 0.009418010711669922,
+      "medianSolverSeconds": 0.0,
+      "evaluationBudgetExceeded": 0
+    },
+    "old-local": {
+      "runs": 66,
+      "feasible": 63,
+      "medianRequests": 88.0,
+      "medianWallSeconds": 0.009342491626739502,
+      "maxWallSeconds": 0.08252191543579102,
+      "medianSolverSeconds": 0.005389511585235596,
+      "evaluationBudgetExceeded": 0
+    },
+    "new-baseline": {
+      "runs": 66,
+      "feasible": 51,
+      "medianRequests": 22.0,
+      "medianWallSeconds": 0.0008379817008972168,
+      "maxWallSeconds": 0.08045303821563721,
+      "medianSolverSeconds": 0.0,
+      "evaluationBudgetExceeded": 0
+    },
+    "new-hybrid": {
+      "runs": 66,
+      "feasible": 54,
+      "medianRequests": 92.5,
+      "medianWallSeconds": 0.017211556434631348,
+      "maxWallSeconds": 0.3150320053100586,
+      "medianSolverSeconds": 0.01164853572845459,
+      "evaluationBudgetExceeded": 0
+    }
+  },
+  "vsOldDefault": {
+    "pairs": 66,
+    "bothFeasible": 51,
+    "oldFeasible": 51,
+    "newFeasible": 54,
+    "wins": 33,
+    "ties": 18,
+    "regressions": 0,
+    "medianDeltaMinutes": -47.41666666666674,
+    "minDeltaMinutes": -132.9666666666667,
+    "maxDeltaMinutes": 0.0,
+    "medianImprovementPercent": 11.447266349623932
+  },
+  "vsOldLocal": {
+    "pairs": 66,
+    "bothFeasible": 54,
+    "oldFeasible": 63,
+    "newFeasible": 54,
+    "wins": 36,
+    "ties": 18,
+    "regressions": 0,
+    "medianDeltaMinutes": -37.30833333333334,
+    "minDeltaMinutes": -146.65000000000003,
+    "maxDeltaMinutes": 0.0,
+    "medianImprovementPercent": 8.583863739431468
+  },
+  "vsNewBaseline": {
+    "pairs": 66,
+    "bothFeasible": 51,
+    "oldFeasible": 51,
+    "newFeasible": 54,
+    "wins": 30,
+    "ties": 21,
+    "regressions": 0,
+    "medianDeltaMinutes": -40.94999999999999,
+    "minDeltaMinutes": -101.0333333333333,
+    "maxDeltaMinutes": 0.0,
+    "medianImprovementPercent": 8.097338835918611
+  },
+  "byKind": {
+    "recorded_static": {
+      "old-default": {
+        "pairs": 3,
+        "bothFeasible": 3,
+        "oldFeasible": 3,
+        "newFeasible": 3,
+        "wins": 3,
+        "ties": 0,
+        "regressions": 0,
+        "medianDeltaMinutes": -117.59999999999997,
+        "minDeltaMinutes": -117.59999999999997,
+        "maxDeltaMinutes": -117.59999999999997,
+        "medianImprovementPercent": 31.327975846912036
+      },
+      "old-local": {
+        "pairs": 3,
+        "bothFeasible": 3,
+        "oldFeasible": 3,
+        "newFeasible": 3,
+        "wins": 3,
+        "ties": 0,
+        "regressions": 0,
+        "medianDeltaMinutes": -117.59999999999997,
+        "minDeltaMinutes": -117.59999999999997,
+        "maxDeltaMinutes": -117.59999999999997,
+        "medianImprovementPercent": 31.327975846912036
+      }
+    },
+    "synthetic_static": {
+      "old-default": {
+        "pairs": 24,
+        "bothFeasible": 24,
+        "oldFeasible": 24,
+        "newFeasible": 24,
+        "wins": 15,
+        "ties": 9,
+        "regressions": 0,
+        "medianDeltaMinutes": -47.20833333333336,
+        "minDeltaMinutes": -132.9666666666667,
+        "maxDeltaMinutes": 0.0,
+        "medianImprovementPercent": 13.55301457500046
+      },
+      "old-local": {
+        "pairs": 24,
+        "bothFeasible": 24,
+        "oldFeasible": 24,
+        "newFeasible": 24,
+        "wins": 15,
+        "ties": 9,
+        "regressions": 0,
+        "medianDeltaMinutes": -34.8416666666667,
+        "minDeltaMinutes": -135.05,
+        "maxDeltaMinutes": 0.0,
+        "medianImprovementPercent": 8.14072526529154
+      }
+    },
+    "synthetic_timed": {
+      "old-default": {
+        "pairs": 36,
+        "bothFeasible": 24,
+        "oldFeasible": 24,
+        "newFeasible": 27,
+        "wins": 15,
+        "ties": 9,
+        "regressions": 0,
+        "medianDeltaMinutes": -44.183333333333366,
+        "minDeltaMinutes": -107.44999999999999,
+        "maxDeltaMinutes": 0.0,
+        "medianImprovementPercent": 9.772302592771272
+      },
+      "old-local": {
+        "pairs": 36,
+        "bothFeasible": 27,
+        "oldFeasible": 36,
+        "newFeasible": 27,
+        "wins": 18,
+        "ties": 9,
+        "regressions": 0,
+        "medianDeltaMinutes": -37.31666666666666,
+        "minDeltaMinutes": -146.65000000000003,
+        "maxDeltaMinutes": 0.0,
+        "medianImprovementPercent": 8.097338835918611
+      }
+    },
+    "synthetic_infeasible": {
+      "old-default": {
+        "pairs": 3,
+        "bothFeasible": 0,
+        "oldFeasible": 0,
+        "newFeasible": 0,
+        "wins": 0,
+        "ties": 0,
+        "regressions": 0,
+        "medianDeltaMinutes": null,
+        "minDeltaMinutes": null,
+        "maxDeltaMinutes": null,
+        "medianImprovementPercent": null
+      },
+      "old-local": {
+        "pairs": 3,
+        "bothFeasible": 0,
+        "oldFeasible": 0,
+        "newFeasible": 0,
+        "wins": 0,
+        "ties": 0,
+        "regressions": 0,
+        "medianDeltaMinutes": null,
+        "minDeltaMinutes": null,
+        "maxDeltaMinutes": null,
+        "medianImprovementPercent": null
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: c92e481d25c31719d37388b244e7bbf7258062b85ab4b4d8b6980fa13e3c88c8
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:43:29: warning: 'placemark' was deprecated in iOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+    |                             `- warning: 'placemark' was deprecated in iOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:53:27: warning: 'placemark' was deprecated in iOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+    |                           `- warning: 'placemark' was deprecated in iOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+2026-11-05 09:24:45.931 appintentsmetadataprocessor[11258:34947133] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'All tests' started at 2026-11-05 09:24:51.392.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 09:24:51.392.
+Test Suite 'LivePreferenceUITests' started at 2026-11-05 09:24:51.392.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' started.
+objc[11260]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106ed8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x106f0c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' passed (12.176 seconds).
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' passed (22.312 seconds).
+Test Suite 'LivePreferenceUITests' passed at 2026-11-05 09:25:25.883.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 34.487 (34.491) seconds
+Test Suite 'VisitTimingUITests' started at 2026-11-05 09:25:25.888.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' passed (25.095 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' passed (31.928 seconds).
+Test Suite 'VisitTimingUITests' passed at 2026-11-05 09:26:22.912.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 57.023 (57.024) seconds
+Test Suite 'C67FoundationLabUITests.xctest' passed at 2026-11-05 09:26:22.914.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 91.510 (91.522) seconds
+Test Suite 'All tests' passed at 2026-11-05 09:26:22.915.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 91.510 (91.523) seconds
+Test session results, code coverage, and logs:
+** TEST SUCCEEDED **

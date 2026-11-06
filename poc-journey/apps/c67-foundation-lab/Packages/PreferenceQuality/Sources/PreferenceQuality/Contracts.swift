@@ -1,0 +1,217 @@
+import Foundation
+import PreferenceLearning
+
+public enum QualityFeature: String, Codable, CaseIterable, Sendable, Identifiable {
+    case coffee, reading, quietPolicy, outdoor, nature, art, culture, wifi, smokingArea
+    public var id: String { rawValue }
+    public var label: String {
+        switch self {
+        case .coffee: "Boleh minum kopi"
+        case .reading: "Membaca di tempat"
+        case .quietPolicy: "Zona dengan aturan hening"
+        case .outdoor: "Area luar ruang"
+        case .nature: "Alam / taman"
+        case .art: "Seni"
+        case .culture: "Budaya"
+        case .wifi: "Wi-Fi"
+        case .smokingArea: "Area merokok"
+        }
+    }
+    public var english: String {
+        switch self {
+        case .coffee: "drinking coffee allowed"
+        case .reading: "reading books on site"
+        case .quietPolicy: "a designated silent reading area"
+        case .outdoor: "outdoor area"
+        case .nature: "nature and park"
+        case .art: "visual art"
+        case .culture: "culture and learning"
+        case .wifi: "Wi-Fi"
+        case .smokingArea: "smoking area"
+        }
+    }
+}
+public enum FactValue: String, Codable, Sendable { case yes, no, conflict, unknown }
+public struct QualitySource: Codable, Identifiable, Sendable {
+    public var id: String
+    public var title: String
+    public var url: URL
+    public var checkedAt: Date
+    public var publishedDate: String?
+    public var sha256: String
+    public var relation: String
+}
+public struct QualityClaim: Codable, Sendable {
+    public var feature: QualityFeature
+    public var value: FactValue
+    public var sourceIDs: [String]
+    public var statement: String
+}
+public struct QualityCandidate: Codable, Identifiable, Sendable {
+    public var id: String
+    public var venueID: String
+    public var name: String
+    public var scope: String
+    public var address: String
+    public var mapQuery: String
+    public var matchWords: [String]
+    public var claims: [QualityClaim]
+    public var sourceIDs: [String]
+    public var blockedReason: String?
+    public var validThrough: String?
+    public func value(_ feature: QualityFeature) -> FactValue {
+        claims.first { $0.feature == feature }?.value ?? .unknown
+    }
+    public var passage: String {
+        let facts = claims.map { "\($0.feature.english): \($0.value.rawValue). \($0.statement)" }
+        return "\(name). Area: \(scope). " + facts.joined(separator: " ")
+    }
+}
+public struct QualityCatalog: Codable, Sendable {
+    public var schemaVersion: Int
+    public var id: String
+    public var sources: [QualitySource]
+    public var candidates: [QualityCandidate]
+    public static func load() throws -> Self {
+        let url = Bundle.module.url(forResource: "quality-jakarta-2026-11-05", withExtension: "json")!
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let value = try decoder.decode(Self.self, from: Data(contentsOf: url))
+        try value.validate()
+        return value
+    }
+    public func validate() throws {
+        let ids = Set(sources.map(\.id))
+        guard schemaVersion == 1, !id.isEmpty, !candidates.isEmpty, candidates.count <= 30,
+              ids.count == sources.count, Set(candidates.map(\.id)).count == candidates.count,
+              sources.allSatisfy({
+                  !$0.id.isEmpty && $0.url.scheme == "https" && $0.url.host != nil
+                      && $0.sha256.count == 64 && $0.checkedAt.timeIntervalSince1970.isFinite
+              })
+        else { throw PreferenceError.invalid("Kontrak katalog mutu tidak valid.") }
+        for candidate in candidates {
+            guard !candidate.id.isEmpty, !candidate.scope.isEmpty, !candidate.venueID.isEmpty,
+                  !candidate.sourceIDs.isEmpty, Set(candidate.sourceIDs).isSubset(of: ids),
+                  Set(candidate.claims.map(\.feature)).count == candidate.claims.count,
+                  candidate.claims.allSatisfy({
+                      !$0.statement.isEmpty && !$0.sourceIDs.isEmpty
+                          && Set($0.sourceIDs).isSubset(of: Set(candidate.sourceIDs))
+                  })
+            else { throw PreferenceError.invalid("Fakta/area kandidat tidak valid: \(candidate.id)") }
+        }
+    }
+}
+
+public struct QualityProfile: Codable, Equatable, Sendable {
+    public var schemaVersion = 1
+    public var must: Set<QualityFeature> = []
+    public var prefer: Set<QualityFeature> = []
+    public var avoid: Set<QualityFeature> = []
+    public var direction = ""
+    public var directionConfirmed = false
+    public var likedID: String?
+    public var likedFeature: QualityFeature?
+    public var excludedIDs: Set<String> = []
+    public init() {}
+    public func validate(catalog: QualityCatalog) throws {
+        guard schemaVersion == 1, direction.count <= 400,
+              must.isDisjoint(with: avoid), prefer.isDisjoint(with: avoid),
+              excludedIDs.isSubset(of: Set(catalog.candidates.map(\.id))),
+              (likedID == nil) == (likedFeature == nil)
+        else { throw PreferenceError.invalid("Preferensi bertentangan atau tidak valid.") }
+        if let likedID, let likedFeature {
+            guard let candidate = catalog.candidates.first(where: { $0.id == likedID }),
+                  candidate.value(likedFeature) == .yes
+            else { throw PreferenceError.invalid("Sinyal like belum mempunyai fakta pendukung.") }
+        }
+    }
+    public var softFeatures: Set<QualityFeature> {
+        prefer.union(likedFeature.map { [$0] } ?? []).subtracting(must).subtracting(avoid)
+    }
+    public var query: String {
+        let desired = must.union(softFeatures).sorted { $0.rawValue < $1.rawValue }.map(\.english)
+        // Avoids are enforced by evidence gates. Negation is not delegated to embeddings.
+        return (desired.isEmpty ? "General Jakarta activities" : desired.joined(separator: "; "))
+            + (direction.isEmpty ? "" : ". Additional direction: " + direction)
+    }
+    public var hasSignal: Bool {
+        !must.isEmpty || !softFeatures.isEmpty || !avoid.isEmpty || !direction.isEmpty
+    }
+}
+public struct QualityDecision: Codable, Identifiable, Sendable {
+    public var id: String { candidate.id }
+    public var candidate: QualityCandidate
+    public var state: String
+    public var reasons: [String]
+    public var unknown: [QualityFeature]
+}
+public struct QualityRow: Codable, Identifiable, Sendable {
+    public var id: String { candidateID }
+    public var candidateID: String
+    public var categoryScore: Double
+    public var semanticScore: Double?
+    public var combinedScore: Double?
+    public var supportedPreferences: [QualityFeature]
+}
+public struct QualityRun: Codable, Identifiable, Sendable {
+    public var schemaVersion = 1
+    public var id = UUID()
+    public var createdAt = Date()
+    public var policy = "quality-v2-category0.6-semantic0.4"
+    public var catalog: QualityCatalog
+    public var profile: QualityProfile
+    public var decisions: [QualityDecision]
+    public var category: [QualityRow]
+    public var semantic: [QualityRow]
+    public var combined: [QualityRow]
+    public var embedding: EmbeddingMetadata?
+    public var status: String
+    public var warnings: [String]
+    public var elapsedSeconds: Double
+    public var inputChanges = 0
+    public var userCorrections = 0
+    public var followupQuestions = 0
+    public var mapChecks: [QualityMapCheck] = []
+}
+
+public struct QualityCase: Codable, Identifiable, Sendable {
+    public var id: String
+    public var purpose: String
+    public var profile: QualityProfile
+    public var expectedEligible: [String]
+    public var desirable: [String]
+    public var expectedReview: Bool
+    public static func load() throws -> [Self] {
+        let url = Bundle.module.url(forResource: "quality-cases-v1", withExtension: "json")!
+        return try JSONDecoder().decode([Self].self, from: Data(contentsOf: url))
+    }
+}
+
+public enum DirectionReview {
+    /// Deliberately bounded vocabulary. A proposal is never silently accepted as logical intent.
+    public static func propose(_ text: String, current: QualityProfile) -> QualityProfile? {
+        let words = text.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber }).map(
+            String.init)
+        let normalized = " " + words.joined(separator: " ") + " "
+        func containsPhrase(_ phrase: String) -> Bool { normalized.contains(" " + phrase + " ") }
+        guard
+            ![
+                "tidak", "jangan", "bukan", "tanpa", "not", "without", "avoid", "no",
+                "ganti", "instead", "batal", "kecuali",
+            ].contains(where: containsPhrase)
+        else { return nil }
+        let vocabulary: [(QualityFeature, [String])] = [
+            (.coffee, ["kopi", "ngopi", "coffee"]),
+            (.reading, ["baca", "membaca", "reading", "read books"]),
+            (.quietPolicy, ["hening", "silent"]), (.outdoor, ["outdoor", "luar ruang"]),
+            (.nature, ["taman", "nature", "park"]), (.art, ["seni", "art"]),
+            (.wifi, ["wifi", "wi-fi"]),
+        ]
+        let detected = Set(vocabulary.filter { $0.1.contains(where: containsPhrase) }.map(\.0))
+        guard !detected.isEmpty, detected.isDisjoint(with: current.avoid) else { return nil }
+        var proposal = current
+        proposal.must.formUnion(detected)
+        proposal.directionConfirmed = true
+        return proposal
+    }
+}

@@ -1,0 +1,334 @@
+{
+  "date": "2026-10-15",
+  "version": "0.3",
+  "build": 3,
+  "uniqueTests": 49,
+  "passed": 49,
+  "failed": 0,
+  "skipped": 0,
+  "note": "Latest result per unique case. Full run had 48 pass and 1 UI interaction failure; only the XCTest switch tap target was corrected, then the affected test passed. App source did not change between runs.",
+  "runs": [
+    {
+      "resultBundle": "/private/tmp/c67-qr-v3-final.xcresult",
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 194921,
+        "counts": {
+          "passed": 48,
+          "failed": 1,
+          "skipped": 0
+        },
+        "target": "simulator"
+      }
+    },
+    {
+      "resultBundle": "/private/tmp/c67-qr-v3-consent-final.xcresult",
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 28914,
+        "counts": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "target": "simulator"
+      }
+    }
+  ],
+  "testCases": [
+    {
+      "suite": "DemoTests",
+      "test": "testAllDemoScenariosAreConsistentAndResetLocalSession",
+      "status": "passed",
+      "durationMs": 24
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testDemoCannotOverwriteBoundRealRun",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testDemoLoadDoesNotModifyStateWhenSaveFails",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testDemoStaleLocationIsSimulatedAndDoesNotVerifyP01",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testFilteringDoesNotChangeSummaryAndDuplicateNameSearchWorks",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testRegroupHasExpectedUnresolvedAndOpenCase",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DemoTests",
+      "test": "testReviewedScenarioUsesExplicitEventsAndRequiresClosure",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testAllExcludedRequiresNotedClosure",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testClockSkewAndInvalidSamplesDoNotBecomeFresh",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testClosingWithUnresolvedNeedsNoteAndPreservesThem",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testCommittedStateReloadsIncludingClosureAndHistory",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testExcludedParticipantCaseStillCounts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testExclusionAndRejoinNeedNewVerification",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testFailedSaveRollsBackEventAndStateAndRetryCommitsOnce",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testFollowUpIsIndependentAndNotDuplicated",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testFreshnessNeverChangesByRepeatedReads",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testLocalSensorRejectedInSimulationAndResetProtectsOwnedShare",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testNamedParticipantsRemainDistinct",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testNextSessionCannotOverlapAndResetsState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testNormalCloseRequiresCasesResolvedEvenIfVerified",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testProximityExpressesUncertaintyAndNeverVerifies",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testSequenceEpochAndRunGuards",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testSimulationIsExplicitAndCannotChangeAttendance",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testStartWithoutConsentDoesNotStartSensorOrCreateCloudOwner",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testUndoRequiresReasonAndDoesNotTouchOtherAyu",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testUploadRejectsExpiredStoppedOldAndSimulatedData",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "DomainTests",
+      "test": "testVerificationIsIdempotentAndRecordedOnce",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testActualQRCodeImageCanBeDecoded",
+      "status": "passed",
+      "durationMs": 170
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testCreateQRJourneyRejectsLiveShareAndJoinDoesNotStartGPS",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testInviteRoundTripAndExpiry",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testLegacySnapshotStillLoadsAndPreservesManualBinding",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testPairedRosterReferencesReloadWithSeparateAccounts",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testReceiptCannotStartDifferentParticipantOrChallenge",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testRegistrationSaveFailureCannotExposePartialRoster",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testRejoiningSameAccountKeepsIDAndDoesNotDuplicateOrResetCheck",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testRosterCapAndNextSessionCarryNamesWithoutVerification",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testTwoPeopleWithSameNameHaveSeparateBindingsAndNoAttendance",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testUnsupportedOrMalformedInviteCannotBeUsed",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testWelcomeMustMatchQRKeyAccountRunAndChallenge",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "QRPairingTests",
+      "test": "testWrongRunClosedSessionOrIDCollisionCannotRegister",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testDemoScenarioRequiresConfirmationAndShowsCorrectCounts",
+      "status": "passed",
+      "durationMs": 10640
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testInvalidQRDoesNotAllowJoining",
+      "status": "passed",
+      "durationMs": 11915
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testManualCheckAtAccessibilityTextSize",
+      "status": "passed",
+      "durationMs": 36780
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testNotedClosureAndNextSessionReset",
+      "status": "passed",
+      "durationMs": 27837
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testParticipantActionSheetKeepsFollowUpIndependent",
+      "status": "passed",
+      "durationMs": 26639
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testParticipantGuideDoesNotAllowUnconsentedStart",
+      "status": "passed",
+      "durationMs": 10069
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testQRJoinShowsDestinationAndRequiresConsent",
+      "status": "passed",
+      "durationMs": 23757
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testQRJourneyCreationIsExplicitAndRosterStartsEmpty",
+      "status": "passed",
+      "durationMs": 13227
+    },
+    {
+      "suite": "POCFlowTests",
+      "test": "testSimulationDoesNotVerifyAndManualCheckWorks",
+      "status": "passed",
+      "durationMs": 28003
+    }
+  ]
+}

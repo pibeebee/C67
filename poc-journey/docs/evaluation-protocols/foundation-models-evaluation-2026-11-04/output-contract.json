@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "C67ModelSuggestion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "basedOnRevision",
+    "actions",
+    "preferences",
+    "candidateIDs",
+    "evidenceIDs",
+    "message",
+    "question",
+    "requiresConfirmation"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "propose",
+        "clarify",
+        "explain",
+        "recommend",
+        "cannot_complete"
+      ]
+    },
+    "basedOnRevision": {
+      "type": "integer"
+    },
+    "actions": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "targetID",
+          "minutes",
+          "localTime",
+          "proposalID",
+          "query"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "extend_current_visit",
+              "set_leave_time",
+              "skip_stop",
+              "set_deadline",
+              "mark_arrived",
+              "begin_visit",
+              "depart_visit",
+              "request_replan",
+              "apply_proposal",
+              "reject_proposal"
+            ]
+          },
+          "targetID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "minutes": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "localTime": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "proposalID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "query": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "value",
+          "strength"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "coffee",
+              "reading_friendly",
+              "quiet",
+              "indoor",
+              "outdoor",
+              "golden_hour",
+              "popular",
+              "walking_effort"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "enum": [
+              "prefer",
+              "avoid",
+              "not_important"
+            ]
+          },
+          "strength": {
+            "type": "string",
+            "enum": [
+              "soft",
+              "hard"
+            ]
+          }
+        }
+      }
+    },
+    "candidateIDs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidenceIDs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "message": {
+      "type": "string"
+    },
+    "question": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requiresConfirmation": {
+      "type": "boolean"
+    }
+  }
+}

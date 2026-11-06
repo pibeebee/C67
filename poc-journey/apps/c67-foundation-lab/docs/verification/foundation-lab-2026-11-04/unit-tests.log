@@ -1,0 +1,98 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'tripintelligence': failed storing manifest for 'tripintelligence' in cache: attempt to write a readonly database
+Building for debugging...
+[2 / 15] TripIntelligence
+[4 / 17] TripIntelligence
+[7 / 20] TripIntelligence
+[12 / 18] TripIntelligenceTests-product
+[14 / 20] fm-trip-eval-product
+[18 / 22] TripIntelligenceTests-product
+[20 / 22] TripIntelligenceTests-product
+Build complete! (1.98 sec)
+Test Suite 'All tests' started at 2026-11-04 16:39:26.111.
+Test Suite 'TripIntelligenceTests.xctest' started at 2026-11-04 16:39:26.112.
+Test Suite 'LabTests' started at 2026-11-04 16:39:26.112.
+Test Case '-[TripIntelligenceTests.LabTests testCancellationPropagates]' started.
+Test Case '-[TripIntelligenceTests.LabTests testCancellationPropagates]' passed (0.001 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testCandidateIDOutsideSearchRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testCandidateIDOutsideSearchRejected]' passed (0.024 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testCandidatesDeduplicatedAndFiltered]' started.
+Test Case '-[TripIntelligenceTests.LabTests testCandidatesDeduplicatedAndFiltered]' passed (0.001 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testCompactCandidatePromptRetainsEveryFactAndCandidate]' started.
+Test Case '-[TripIntelligenceTests.LabTests testCompactCandidatePromptRetainsEveryFactAndCandidate]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testContradictoryOpeningWindowRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testContradictoryOpeningWindowRejected]' passed (0.020 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testContradictoryPreferencesRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testContradictoryPreferencesRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testDeadlineDoesNotWaitForUncooperativeTask]' started.
+Test Case '-[TripIntelligenceTests.LabTests testDeadlineDoesNotWaitForUncooperativeTask]' passed (0.025 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testDeadlineNextDayRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testDeadlineNextDayRejected]' passed (0.022 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testDuplicateStopIDRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testDuplicateStopIDRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testEmptyTextCannotAddModelPreferencesToStructuredChoices]' started.
+Test Case '-[TripIntelligenceTests.LabTests testEmptyTextCannotAddModelPreferencesToStructuredChoices]' passed (0.031 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testExplicitBalancedPaceOverridesModelAndPersistentPace]' started.
+Test Case '-[TripIntelligenceTests.LabTests testExplicitBalancedPaceOverridesModelAndPersistentPace]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testExtraActionFieldRejectedBeforeDecode]' started.
+Test Case '-[TripIntelligenceTests.LabTests testExtraActionFieldRejectedBeforeDecode]' passed (0.020 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testFallbackPipelinePreservesContextAndLabelsSources]' started.
+Test Case '-[TripIntelligenceTests.LabTests testFallbackPipelinePreservesContextAndLabelsSources]' passed (0.031 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testFalseCompleteRouteRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testFalseCompleteRouteRejected]' passed (0.027 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testInvalidModelOutputStoredRawButNotDisplayed]' started.
+Test Case '-[TripIntelligenceTests.LabTests testInvalidModelOutputStoredRawButNotDisplayed]' passed (0.031 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testInvalidZoneRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testInvalidZoneRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testMalformedFileDoesNotDecode]' started.
+Test Case '-[TripIntelligenceTests.LabTests testMalformedFileDoesNotDecode]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testMismatchedEvidenceRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testMismatchedEvidenceRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testMissingCandidateRemainsIncomplete]' started.
+Test Case '-[TripIntelligenceTests.LabTests testMissingCandidateRemainsIncomplete]' passed (0.002 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testMissingWindowStopRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testMissingWindowStopRejected]' passed (0.042 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testMoreThanSixStopsRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testMoreThanSixStopsRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testNeutralContractRoundTrip]' started.
+Test Case '-[TripIntelligenceTests.LabTests testNeutralContractRoundTrip]' passed (0.029 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testNonFiniteCoordinateRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testNonFiniteCoordinateRejected]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testOriginCollisionRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testOriginCollisionRejected]' passed (0.022 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testOutsideJakartaRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testOutsideJakartaRejected]' passed (0.022 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testPublicImportPreservesOriginalDateAndFiveStops]' started.
+Test Case '-[TripIntelligenceTests.LabTests testPublicImportPreservesOriginalDateAndFiveStops]' passed (0.013 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testReversedLegTimesRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testReversedLegTimesRejected]' passed (0.025 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testRunAndMarkdownExportRoundTrip]' started.
+Test Case '-[TripIntelligenceTests.LabTests testRunAndMarkdownExportRoundTrip]' passed (0.031 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testSpecificWindowWithoutTimeEvidenceRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testSpecificWindowWithoutTimeEvidenceRejected]' passed (0.021 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testStaleRevisionRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testStaleRevisionRejected]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testStoreRestoresRunAndSeparateProfile]' started.
+Test Case '-[TripIntelligenceTests.LabTests testStoreRestoresRunAndSeparateProfile]' passed (0.035 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testTripOverridesPersistentInterest]' started.
+Test Case '-[TripIntelligenceTests.LabTests testTripOverridesPersistentInterest]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testTwoQueriesMaximumRespectAvoids]' started.
+Test Case '-[TripIntelligenceTests.LabTests testTwoQueriesMaximumRespectAvoids]' passed (0.000 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testUnknownEvidenceSubjectRejected]' started.
+Test Case '-[TripIntelligenceTests.LabTests testUnknownEvidenceSubjectRejected]' passed (0.022 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testWindowAnyDoesNotClaimBestTime]' started.
+Test Case '-[TripIntelligenceTests.LabTests testWindowAnyDoesNotClaimBestTime]' passed (0.020 seconds).
+Test Case '-[TripIntelligenceTests.LabTests testWrappedAcceptedReportImports]' started.
+Test Case '-[TripIntelligenceTests.LabTests testWrappedAcceptedReportImports]' passed (0.014 seconds).
+Test Suite 'LabTests' passed at 2026-11-04 16:39:26.771.
+	 Executed 36 tests, with 0 failures (0 unexpected) in 0.657 (0.659) seconds
+Test Suite 'TripIntelligenceTests.xctest' passed at 2026-11-04 16:39:26.771.
+	 Executed 36 tests, with 0 failures (0 unexpected) in 0.657 (0.659) seconds
+Test Suite 'All tests' passed at 2026-11-04 16:39:26.771.
+	 Executed 36 tests, with 0 failures (0 unexpected) in 0.657 (0.661) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

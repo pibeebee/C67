@@ -1,0 +1,88 @@
+Building for debugging...
+[Computing dependencies]
+[2 / 4] TripIntegrationTests-product
+[4 / 6] TripIntegrationTests-product
+[9 / 10] TripIntegrationTests-product
+[11 / 11] TripIntegrationTests-product
+Build complete! (2.45 sec)
+Test Suite 'All tests' started at 2026-11-05 16:51:38.893.
+Test Suite 'All tests' passed at 2026-11-05 16:51:38.894.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "P3 location and interval weather" started.
+􀟈  Suite "P3 complete replay and failure paths" started.
+􀟈  Suite "P3 contracts and sourced time rules" started.
+􀟈  Suite "P3 weather cache and isolated persistence" started.
+􀟈  Test staleFactsAndSuspendedMuseumBlock() started.
+􀟈  Test supersededOperationCannotPublish() started.
+􀟈  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() started.
+􀟈  Test wrongDayAndDuplicateAreasRejected() started.
+􀟈  Test WIBDateAndRoundingNeverRoundBackward() started.
+􀟈  Test groupingBoundsEveryMemberAgainstRepresentative() started.
+􀟈  Test crossingAnHourlyBoundaryUsesBothIntervals() started.
+􀟈  Test limitsAndNegationConflictRejected() started.
+􀟈  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() started.
+􀟈  Test wrongBranchNotAutomaticallyAccepted() started.
+􀟈  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() started.
+􀟈  Test duplicateOrInvalidWeatherNeverBecomesZero() started.
+􀟈  Test publishedGBKSessionGapRequiresFullStay() started.
+􀟈  Test publishedFridayEntryPause() started.
+􀟈  Test fullReplayPreservesPlacesAndExactArithmetic() started.
+􀟈  Test ambiguousBranchNeedsExplicitSelection() started.
+􁁛  Test groupingBoundsEveryMemberAgainstRepresentative() passed after 0.002 seconds.
+􁁛  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() passed after 0.002 seconds.
+􁁛  Test wrongBranchNotAutomaticallyAccepted() passed after 0.002 seconds.
+􁁛  Test crossingAnHourlyBoundaryUsesBothIntervals() passed after 0.002 seconds.
+􁁛  Test supersededOperationCannotPublish() passed after 0.002 seconds.
+􁁛  Test duplicateOrInvalidWeatherNeverBecomesZero() passed after 0.002 seconds.
+􁁛  Test WIBDateAndRoundingNeverRoundBackward() passed after 0.003 seconds.
+􁁛  Test ambiguousBranchNeedsExplicitSelection() passed after 0.003 seconds.
+􁁛  Suite "P3 location and interval weather" passed after 0.003 seconds.
+􁁛  Test wrongDayAndDuplicateAreasRejected() passed after 0.008 seconds.
+􁁛  Test limitsAndNegationConflictRejected() passed after 0.008 seconds.
+􁁛  Test staleFactsAndSuspendedMuseumBlock() passed after 0.008 seconds.
+􁁛  Test publishedGBKSessionGapRequiresFullStay() passed after 0.009 seconds.
+􁁛  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() passed after 0.009 seconds.
+􁁛  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() passed after 0.009 seconds.
+􀟈  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() started.
+􁁛  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() passed after 0.001 seconds.
+􀟈  Test cooperativeTimeoutProducesUnknownWeather() started.
+􁁛  Test publishedFridayEntryPause() passed after 0.010 seconds.
+􁁛  Suite "P3 contracts and sourced time rules" passed after 0.010 seconds.
+􁁛  Test cooperativeTimeoutProducesUnknownWeather() passed after 0.010 seconds.
+􀟈  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() started.
+􁁛  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() passed after 0.001 seconds.
+􀟈  Test weatherFailureStillAllowsRouteWithExplicitUnknown() started.
+􁁛  Test fullReplayPreservesPlacesAndExactArithmetic() passed after 0.033 seconds.
+􀟈  Test emptyProfileIsGeneralRatherThanPersonalized() started.
+􁁛  Test weatherFailureStillAllowsRouteWithExplicitUnknown() passed after 0.013 seconds.
+􀟈  Test corruptFileWithoutBackupDoesNotResetToEmpty() started.
+􁁛  Test emptyProfileIsGeneralRatherThanPersonalized() passed after 0.003 seconds.
+􀟈  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() started.
+􁁛  Test corruptFileWithoutBackupDoesNotResetToEmpty() passed after 0.002 seconds.
+􁁛  Suite "P3 weather cache and isolated persistence" passed after 0.037 seconds.
+􁁛  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() passed after 0.003 seconds.
+􀟈  Test unknownSourceReferenceRejectedByFinalAudit() started.
+􁁛  Test unknownSourceReferenceRejectedByFinalAudit() passed after 0.009 seconds.
+􀟈  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() started.
+􁁛  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() passed after 0.014 seconds.
+􀟈  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() started.
+􁁛  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() passed after 0.008 seconds.
+􀟈  Test unsupportedRequiredPlaceIsKeptForCorrection() started.
+􁁛  Test unsupportedRequiredPlaceIsKeptForCorrection() passed after 0.003 seconds.
+􀟈  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() started.
+􁁛  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() passed after 0.002 seconds.
+􀟈  Test unavailableETAProducesConflictInsteadOfInventedDuration() started.
+􁁛  Test unavailableETAProducesConflictInsteadOfInventedDuration() passed after 3.163 seconds.
+􀟈  Test cancellationNeverBecomesSuccess() started.
+􁁛  Test cancellationNeverBecomesSuccess() passed after 0.003 seconds.
+􀟈  Test changedRevisionAndForgedPinRejectedBeforeRouting() started.
+􁁛  Test changedRevisionAndForgedPinRejectedBeforeRouting() passed after 0.007 seconds.
+􀟈  Test applyRejectAndStaleBaseGuard() started.
+􁁛  Test applyRejectAndStaleBaseGuard() passed after 0.017 seconds.
+􀟈  Test storageRoundTripBackupRecoveryAndExport() started.
+􁁛  Test storageRoundTripBackupRecoveryAndExport() passed after 0.026 seconds.
+􁁛  Suite "P3 complete replay and failure paths" passed after 3.298 seconds.
+􁁛  Test run with 33 tests in 4 suites passed after 3.298 seconds.

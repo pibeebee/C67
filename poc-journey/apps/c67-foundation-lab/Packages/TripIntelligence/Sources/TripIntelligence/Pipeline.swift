@@ -1,0 +1,251 @@
+import Foundation
+
+public struct StageRecord: Codable, Identifiable, Sendable {
+    public var id = UUID().uuidString
+    public var capability: Capability
+    public var source: String
+    public var status: String
+    public var instructions: String
+    public var prompt: String
+    public var rawOutput: String
+    public var displayedOutput: String
+    public var error: String
+    public var durationSeconds: Double
+    public var inputTokens: Int?
+}
+public struct ExperimentRunV1: Codable, Identifiable, Sendable {
+    public var schemaVersion = 1
+    public var id = UUID().uuidString
+    public var createdAt = Date().ISO8601Format()
+    public var promptVersion = LabPrompts.version
+    public var context: TripContextV1
+    public var direction: UserDirection
+    public var runtime: ModelRuntime
+    public var stages: [StageRecord] = []
+    public var search: SearchBatch
+    public var profile: PreferenceExtraction
+    public var candidates: CandidateAssessment
+    public var windows: VisitWindowProposal
+    public var explanation: ItineraryExplanation
+    public var inputSubmissions = 0
+    public var corrections = 0
+    public var clarificationQuestions = 0
+    public var elapsedSeconds: Double = 0
+    public var validatedScheduleChanges = false
+    public var deterministicBaseline: String
+
+    public var markdown: String {
+        let rows = stages.map {
+            "| \($0.capability.rawValue) | \($0.source) | \($0.status) | \(String(format: "%.3f", $0.durationSeconds)) |"
+        }.joined(separator: "\n")
+        return """
+        # C67 Foundation Lab run \(id)
+        Date: \(createdAt). Prompt: \(promptVersion).
+        Runtime: \(runtime.model), \(runtime.os), \(runtime.availability).
+        English supported: \(runtime.englishSupported). Indonesian supported: \(runtime.indonesianSupported).
+        Context: \(context.id), revision \(context.revision), source \(context.source).
+        Synthetic context: \(context.synthetic). Search: \(search.source).
+
+        | Capability | Display source | Status | Seconds |
+        | --- | --- | --- | ---: |
+        \(rows)
+
+        \(explanation.summary)
+
+        ## Deterministic comparison
+        \(deterministicBaseline)
+
+        Input submissions: \(inputSubmissions); corrections: \(corrections); questions: \(clarificationQuestions).
+        Total processing: \(String(format: "%.3f", elapsedSeconds)) seconds.
+        New schedule validated: false. All additions and time windows remain unvalidated suggestions.
+        Counts describe this UI session or runner input, not a user study. Semantic model quality requires human review.
+        """
+    }
+}
+public enum Baseline {
+    public static func merge(
+        persistent: PreferenceExtraction, trip: PreferenceExtraction,
+        extracted: PreferenceExtraction, paceOverride: Pace? = nil
+    ) -> PreferenceExtraction {
+        let avoids = Set(persistent.avoids + extracted.avoids + trip.avoids).subtracting(trip.interests)
+        let interests = Set(persistent.interests + extracted.interests + trip.interests).subtracting(
+            avoids)
+        return .init(
+            interests: interests.sorted { $0.rawValue < $1.rawValue },
+            avoids: avoids.sorted { $0.rawValue < $1.rawValue },
+            pace: paceOverride
+                ?? (trip.pace != .balanced
+                    ? trip.pace : extracted.pace != .balanced ? extracted.pace : persistent.pace),
+            clarification: extracted.clarification)
+    }
+    public static func windows(_ context: TripContextV1) -> VisitWindowProposal {
+        .init(
+            suggestions: context.stops.map { stop in
+                let evidence = context.evidence.first { $0.subjectID == stop.id && $0.key == "identity" }
+                return .init(
+                    stopID: stop.id, window: .any,
+                    reason:
+                    "Template: keep the imported visit. A better window has not been established; routing validation is still required.",
+                    evidenceIDs: evidence.map { [$0.id] } ?? [])
+            }, note: "Deterministic template; no new timetable calculated.")
+    }
+    public static func candidates(_ candidates: [CandidateV1]) -> CandidateAssessment {
+        .init(
+            choices: candidates.prefix(3).map {
+                .init(
+                    candidateID: $0.id,
+                    reason:
+                    "Template shortlist from search results; personal fit and route feasibility are not established.",
+                    evidenceIDs: $0.evidence.map(\.id),
+                    unknowns: ["price", "quietness", "opening hours", "detour", "schedule feasibility"])
+            },
+            note: "Deterministic search-order comparison, not a model recommendation.")
+    }
+}
+
+public struct IntelligencePipeline: Sendable {
+    public let model: any ModelGenerating
+    public let search: any PlaceSearching
+    public init(model: any ModelGenerating, search: any PlaceSearching) {
+        self.model = model
+        self.search = search
+    }
+    public func run(context: TripContextV1, direction: UserDirection, useModel: Bool = true)
+        async throws -> ExperimentRunV1
+    {
+        try context.validate()
+        let start = Date()
+        let runtime = await model.runtime()
+        var records: [StageRecord] = []
+        func stage<T: Codable & Sendable>(
+            _ capability: Capability, profile: PreferenceExtraction,
+            candidates: [CandidateV1], fallback: T
+        ) async throws -> (T, StageRecord) {
+            try Task.checkCancellation()
+            let request = try LabPrompts.make(
+                capability, context: context, direction: direction, profile: profile, candidates: candidates
+            )
+            var record = StageRecord(
+                capability: capability, source: "deterministic", status: "fallback",
+                instructions: LabPrompts.instructions(capability), prompt: request.prompt, rawOutput: "",
+                displayedOutput: try Codec.text(fallback), error: "", durationSeconds: 0, inputTokens: nil)
+            if capability == .preferences
+                && direction.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            {
+                record.status = "baseline_no_free_text"
+                record.error = "No free text supplied; only explicit structured choices are used."
+                return (fallback, record)
+            }
+            guard useModel, runtime.available, runtime.englishSupported else {
+                record.status = useModel ? "blocked" : "baseline"
+                record.error =
+                    useModel
+                        ? "\(runtime.availability); English supported: \(runtime.englishSupported)"
+                        : "Model disabled for deterministic comparison"
+                return (fallback, record)
+            }
+            let began = Date()
+            do {
+                let response = try await model.generate(request)
+                record.rawOutput = response.raw
+                record.inputTokens = response.inputTokens
+                try OutputValidation.validate(
+                    response.raw, capability: capability, context: context, candidates: candidates)
+                let output = try JSONDecoder().decode(T.self, from: Data(response.raw.utf8))
+                record.displayedOutput = response.raw
+                record.source = "Foundation Models"
+                record.status = "validated_shape_and_references"
+                record.durationSeconds = Date().timeIntervalSince(began)
+                return (output, record)
+            } catch is CancellationError { throw CancellationError() } catch {
+                record.error = String(describing: error)
+                if case LabError.timeout = error {
+                    record.status = "timeout"
+                } else {
+                    record.status = "rejected_or_error"
+                }
+                record.durationSeconds = Date().timeIntervalSince(began)
+                return (fallback, record)
+            }
+        }
+        // Extracted text is trip-local and never silently overwrites the stored profile.
+        let (extracted, prefRecord) = try await stage(
+            .preferences, profile: .init(), candidates: [], fallback: PreferenceExtraction())
+        records.append(prefRecord)
+        let profile = Baseline.merge(
+            persistent: direction.persistent, trip: direction.trip, extracted: extracted,
+            paceOverride: direction.paceOverride)
+        var searchResult: SearchBatch
+        do {
+            searchResult = try await search.search(profile: profile, context: context)
+        } catch is CancellationError { throw CancellationError() } catch {
+            searchResult = .init(
+                errors: [String(describing: error)], source: "Search failed; no candidates invented")
+        }
+        searchResult.candidates = CandidateFilter.clean(
+            searchResult.candidates, excluding: Set(context.stops.map(\.id)))
+        let (candidateResult, candidateRecord) = try await stage(
+            .candidates, profile: profile, candidates: searchResult.candidates,
+            fallback: Baseline.candidates(searchResult.candidates))
+        records.append(candidateRecord)
+        let (windows, windowRecord) = try await stage(
+            .windows, profile: profile, candidates: [], fallback: Baseline.windows(context))
+        records.append(windowRecord)
+        let (explanation, explanationRecord) = try await stage(
+            .explanation, profile: profile, candidates: [],
+            fallback: ItineraryExplanation(
+                summary: context.baselineText, evidenceIDs: ["baseline"], unknowns: context.uncertainties))
+        records.append(explanationRecord)
+        try Task.checkCancellation()
+        return ExperimentRunV1(
+            context: context, direction: direction, runtime: runtime, stages: records,
+            search: searchResult, profile: profile, candidates: candidateResult, windows: windows,
+            explanation: explanation,
+            clarificationQuestions: extracted.clarification.isEmpty ? 0 : 1,
+            elapsedSeconds: Date().timeIntervalSince(start), deterministicBaseline: context.baselineText)
+    }
+}
+
+public actor LabStore {
+    public let directory: URL
+    public init(directory: URL) { self.directory = directory }
+    public static func defaultDirectory(testing: Bool = false) -> URL {
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent(
+                testing ? "C67FoundationLab-UITests" : "C67FoundationLab", isDirectory: true)
+    }
+    public func save(_ run: ExperimentRunV1) throws {
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        try Codec.encode(run).write(
+            to: directory.appendingPathComponent("\(run.id).json"), options: .atomic)
+    }
+    public func runs() throws -> [ExperimentRunV1] {
+        guard FileManager.default.fileExists(atPath: directory.path) else { return [] }
+        return try FileManager.default.contentsOfDirectory(
+            at: directory, includingPropertiesForKeys: nil
+        )
+        .filter { $0.pathExtension == "json" && $0.lastPathComponent != "profile.json" }
+        .map { try JSONDecoder().decode(ExperimentRunV1.self, from: Data(contentsOf: $0)) }
+        .sorted { $0.createdAt > $1.createdAt }
+    }
+    public func saveProfile(_ profile: PreferenceExtraction) throws {
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        try Codec.encode(profile).write(
+            to: directory.appendingPathComponent("profile.json"), options: .atomic)
+    }
+    public func profile() throws -> PreferenceExtraction {
+        let url = directory.appendingPathComponent("profile.json")
+        guard FileManager.default.fileExists(atPath: url.path) else { return .init() }
+        return try JSONDecoder().decode(PreferenceExtraction.self, from: Data(contentsOf: url))
+    }
+}
+
+@MainActor public final class RunRevision {
+    public private(set) var value = 0
+    public init() {}
+    @discardableResult public func advance() -> Int {
+        value += 1
+        return value
+    }
+    public func accepts(_ revision: Int) -> Bool { revision == value }
+}

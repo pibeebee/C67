@@ -1,0 +1,56 @@
+name: C67TripIntegration
+options:
+  bundleIdPrefix: giovanchristoffel
+  postGenCommand: python3 scripts/configure-capability.py
+  deploymentTarget:
+    iOS: '26.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    DEVELOPMENT_TEAM: DP5XP7C2AM
+    MARKETING_VERSION: '0.1'
+    CURRENT_PROJECT_VERSION: '3'
+packages:
+  TripIntegration:
+    path: Packages/TripIntegration
+  PreferenceQuality:
+    path: ../c67-foundation-lab/Packages/PreferenceQuality
+  VisitTiming:
+    path: ../c67-foundation-lab/Packages/VisitTiming
+targets:
+  C67TripIntegration:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: TripIntegration
+      - package: PreferenceQuality
+      - package: VisitTiming
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: giovanchristoffel.c67-trip-integration
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: C67 Trip Integration
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
+        TARGETED_DEVICE_FAMILY: '1,2'
+        SUPPORTS_MACCATALYST: NO
+        CODE_SIGN_ENTITLEMENTS: App/C67TripIntegration.entitlements
+  C67TripIntegrationUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: C67TripIntegration
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: C67TripIntegration
+schemes:
+  C67TripIntegration:
+    build:
+      targets:
+        C67TripIntegration: all
+    test:
+      targets: [C67TripIntegrationUITests]

@@ -1,0 +1,28 @@
+{
+  "phase": "post-primary diagnostic on the same cases; not independent confirmation",
+  "independentBM25MaxError": 1.7763568394002505e-15,
+  "independentMetricMaxError": 0,
+  "variants": {
+    "original-reproduction": {
+      "meanNDCGAt3": 0.8298997944446951,
+      "e5MeanDelta": 0.1471492428572894,
+      "wins": 7,
+      "ties": 16,
+      "losses": 1
+    },
+    "direction-only": {
+      "meanNDCGAt3": 0.842314788552903,
+      "e5MeanDelta": 0.1347342487490814,
+      "wins": 7,
+      "ties": 15,
+      "losses": 2
+    },
+    "direction-description-only": {
+      "meanNDCGAt3": 0.842314788552903,
+      "e5MeanDelta": 0.1347342487490814,
+      "wins": 7,
+      "ties": 15,
+      "losses": 2
+    }
+  }
+}

@@ -1,0 +1,997 @@
+{
+  "schemaVersion": 4,
+  "engine": "deterministic",
+  "aiCalls": 0,
+  "input": {
+    "title": "Daftar acak pengguna — Funabashi 1 Desember 2026, 07.00 JST",
+    "date": "2026-12-01",
+    "timeZone": "Asia/Tokyo",
+    "startTime": "07:00",
+    "finishBy": "23:59",
+    "finishSource": "end_of_day",
+    "startsAt": 1796076000,
+    "endsAt": 1796137140,
+    "regionCode": "JP",
+    "origin": {
+      "id": "funabashi_station",
+      "name": "Stasiun Funabashi",
+      "query": "JR船橋駅 千葉県船橋市",
+      "acceptedNames": [
+        "Funabashi Station",
+        "JR Funabashi Station",
+        "船橋駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    },
+    "returnTo": {
+      "id": "funabashi_station",
+      "name": "Stasiun Funabashi",
+      "query": "JR船橋駅 千葉県船橋市",
+      "acceptedNames": [
+        "Funabashi Station",
+        "JR Funabashi Station",
+        "船橋駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    },
+    "places": [
+      {
+        "id": "P01",
+        "name": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "query": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "acceptedNames": [
+          "Inamuragasaki Park",
+          "Kamakura Seaside Park Inamuragasaki",
+          "稲村ヶ崎公園"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P02",
+        "name": "Stasiun Inamuragasaki",
+        "query": "稲村ヶ崎駅 鎌倉市",
+        "acceptedNames": [
+          "Inamuragasaki Station",
+          "稲村ヶ崎駅"
+        ],
+        "role": "transfer",
+        "exposure": "outdoor",
+        "dwellMinutes": 0,
+        "dwellSource": "transfer",
+        "referenceNote": null
+      },
+      {
+        "id": "P03",
+        "name": "Toko Suvenir Enoshima Station",
+        "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "acceptedNames": [
+          "Enoshima Station",
+          "江ノ島駅"
+        ],
+        "role": "visit",
+        "exposure": "mixed",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": "Toko belum spesifik. Area Stasiun Enoshima dipakai hanya sebagai titik pendekatan untuk pengujian; identitas dan jam toko belum diketahui."
+      },
+      {
+        "id": "P04",
+        "name": "Enoshima Ohashi Bridge",
+        "query": "江の島大橋 藤沢市",
+        "acceptedNames": [
+          "Enoshima Bridge",
+          "Enoshima Ohashi Bridge",
+          "江の島大橋",
+          "江の島弁天橋"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P05",
+        "name": "Enoshima Sea Candle",
+        "query": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "acceptedNames": [
+          "Enoshima Sea Candle",
+          "江の島シーキャンドル"
+        ],
+        "role": "visit",
+        "exposure": "mixed",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P06",
+        "name": "Stasiun Kamakurakokomae",
+        "query": "鎌倉高校前駅 鎌倉市",
+        "acceptedNames": [
+          "Kamakurakokomae Station",
+          "鎌倉高校前駅"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P07",
+        "name": "Tsurugaoka Hachimangu",
+        "query": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "acceptedNames": [
+          "Tsurugaoka Hachimangu",
+          "Tsurugaoka Hachimangu Shrine",
+          "鶴岡八幡宮"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P08",
+        "name": "Shichirigahama Beach",
+        "query": "七里ヶ浜海岸 鎌倉市",
+        "acceptedNames": [
+          "Shichirigahama Beach",
+          "七里ヶ浜海岸"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P09",
+        "name": "Fujisawa City Tourist Center",
+        "query": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "acceptedNames": [
+          "Fujisawa City Tourist Center",
+          "藤沢市観光センター"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P10",
+        "name": "Stasiun Fujisawa (Menara Jam)",
+        "query": "藤沢駅 神奈川県藤沢市",
+        "acceptedNames": [
+          "Fujisawa Station",
+          "藤沢駅"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": "Titik menara jam belum dikonfirmasi; Stasiun Fujisawa menjadi pendekatan area."
+      },
+      {
+        "id": "P11",
+        "name": "Stasiun Enoshima",
+        "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "acceptedNames": [
+          "Enoshima Station",
+          "江ノ島駅"
+        ],
+        "role": "transfer",
+        "exposure": "outdoor",
+        "dwellMinutes": 0,
+        "dwellSource": "transfer",
+        "referenceNote": null
+      },
+      {
+        "id": "P12",
+        "name": "Oiwayamichi Street",
+        "query": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "acceptedNames": [
+          "Nakamuraya",
+          "中村屋羊羹店",
+          "中村屋"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": "Alamat Nakamuraya menjadi titik pendekatan jalan dari konteks lama; bukan penggantian aktivitas menjadi kunjungan toko."
+      },
+      {
+        "id": "P13",
+        "name": "Stasiun Katase-Enoshima",
+        "query": "片瀬江ノ島駅 藤沢市",
+        "acceptedNames": [
+          "Katase-Enoshima Station",
+          "片瀬江ノ島駅"
+        ],
+        "role": "transfer",
+        "exposure": "outdoor",
+        "dwellMinutes": 0,
+        "dwellSource": "transfer",
+        "referenceNote": null
+      },
+      {
+        "id": "P14",
+        "name": "Komachi Street",
+        "query": "小町通り 鎌倉市",
+        "acceptedNames": [
+          "Komachi-dori Street",
+          "Komachi Street",
+          "小町通り"
+        ],
+        "role": "visit",
+        "exposure": "outdoor",
+        "dwellMinutes": 30,
+        "dwellSource": "default",
+        "referenceNote": null
+      },
+      {
+        "id": "P15",
+        "name": "Stasiun Kamakura",
+        "query": "鎌倉駅 神奈川県鎌倉市",
+        "acceptedNames": [
+          "Kamakura Station",
+          "鎌倉駅"
+        ],
+        "role": "transfer",
+        "exposure": "outdoor",
+        "dwellMinutes": 0,
+        "dwellSource": "transfer",
+        "referenceNote": null
+      }
+    ],
+    "modes": [
+      "WALK",
+      "TRANSIT"
+    ],
+    "defaultDwellMinutes": 30,
+    "weatherPolicy": {
+      "rainWeight": 2,
+      "maxExtraMinutes": 15
+    },
+    "search": {
+      "beamWidth": 128,
+      "shortlist": 4
+    }
+  },
+  "locations": [
+    {
+      "id": "funabashi_station",
+      "name": "Stasiun Funabashi",
+      "query": "JR船橋駅 千葉県船橋市",
+      "acceptedNames": [
+        "Funabashi Station",
+        "JR Funabashi Station",
+        "船橋駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null,
+      "status": "ambiguous",
+      "match": null,
+      "alternatives": [
+        {
+          "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE",
+          "name": "Funabashi Station",
+          "address": "7 Chome-1 Honcho, Funabashi, Chiba 273-0005",
+          "latitude": 35.7017357,
+          "longitude": 139.9853815
+        },
+        {
+          "placeId": "ChIJH7s59niAGGARwCpv5YeUV6o",
+          "name": "Funabashi Station",
+          "address": "Honcho, Funabashi, Chiba 273-0005, Japan",
+          "latitude": 35.701558600000006,
+          "longitude": 139.9853417
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:funabashi_station",
+      "error": "Beberapa tempat cocok; pilih placeId. Tidak memilih kandidat pertama secara diam-diam."
+    },
+    {
+      "id": "P01",
+      "name": "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "query": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+      "acceptedNames": [
+        "Inamuragasaki Park",
+        "Kamakura Seaside Park Inamuragasaki",
+        "稲村ヶ崎公園"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk",
+        "name": "Kamakura Seaside Park",
+        "address": "1 Chome-19 Inamuragasaki, Kamakura, Kanagawa 248-0024",
+        "latitude": 35.3026605,
+        "longitude": 139.5248028
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJLYesE1dPGGARvS8NpfHv0Lk",
+          "name": "Kamakura Seaside Park",
+          "address": "1 Chome-19 Inamuragasaki, Kamakura, Kanagawa 248-0024",
+          "latitude": 35.3026605,
+          "longitude": 139.5248028
+        }
+      ],
+      "hours": {
+        "status": "regular",
+        "windows": [
+          {
+            "start": 1796050800,
+            "end": 1796137200
+          }
+        ],
+        "note": "Jadwal reguler; pengecualian tanggal trip belum dikonfirmasi."
+      },
+      "evidenceId": "place:P01",
+      "error": null
+    },
+    {
+      "id": "P02",
+      "name": "Stasiun Inamuragasaki",
+      "query": "稲村ヶ崎駅 鎌倉市",
+      "acceptedNames": [
+        "Inamuragasaki Station",
+        "稲村ヶ崎駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE",
+        "name": "Inamuragasaki Station",
+        "address": "2 Chome-8 Inamuragasaki, Kamakura, Kanagawa 248-0024, Japan",
+        "latitude": 35.3043597,
+        "longitude": 139.5219085
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJdyCtIlpPGGARyc2ymvhKonE",
+          "name": "Inamuragasaki Station",
+          "address": "2 Chome-8 Inamuragasaki, Kamakura, Kanagawa 248-0024, Japan",
+          "latitude": 35.3043597,
+          "longitude": 139.5219085
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P02",
+      "error": null
+    },
+    {
+      "id": "P03",
+      "name": "Toko Suvenir Enoshima Station",
+      "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "acceptedNames": [
+        "Enoshima Station",
+        "江ノ島駅"
+      ],
+      "role": "visit",
+      "exposure": "mixed",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Toko belum spesifik. Area Stasiun Enoshima dipakai hanya sebagai titik pendekatan untuk pengujian; identitas dan jam toko belum diketahui.",
+      "status": "reference",
+      "match": {
+        "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+        "name": "Enoshima Station",
+        "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+        "latitude": 35.311047699999996,
+        "longitude": 139.4873844
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJw2VZvH9PGGAR54FMNYe5V70",
+          "name": "Enoshima Electric Railway Fujisawa Station",
+          "address": "〒251-0055 Kanagawa, Fujisawa, Kugenumaishigami, 1-chōme−1−１ 江ノ電第2ビル",
+          "latitude": 35.337064999999996,
+          "longitude": 139.4872234
+        },
+        {
+          "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+          "name": "Enoshima Station",
+          "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+          "latitude": 35.311047699999996,
+          "longitude": 139.4873844
+        },
+        {
+          "placeId": "ChIJvWFucAJPGGARmQ9tbMTbWWE",
+          "name": "Enoshima Railway Headquarters",
+          "address": "1-chōme-8-16 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "latitude": 35.3105456,
+          "longitude": 139.4885701
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam tempat referensi tidak otomatis berlaku untuk aktivitas yang belum spesifik."
+      },
+      "evidenceId": "place:P03",
+      "error": null
+    },
+    {
+      "id": "P04",
+      "name": "Enoshima Ohashi Bridge",
+      "query": "江の島大橋 藤沢市",
+      "acceptedNames": [
+        "Enoshima Bridge",
+        "Enoshima Ohashi Bridge",
+        "江の島大橋",
+        "江の島弁天橋"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU",
+        "name": "Enoshima-ohashi Bridge",
+        "address": "1-chōme-14-5 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+        "latitude": 35.304615,
+        "longitude": 139.48242299999998
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJETfaTyxPGGARzgy4Uqoq9uU",
+          "name": "Enoshima-ohashi Bridge",
+          "address": "1-chōme-14-5 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "latitude": 35.304615,
+          "longitude": 139.48242299999998
+        },
+        {
+          "placeId": "ChIJIQPxryFPGGARGOG1_Jtfldg",
+          "name": "Enoshima Benten Bridge",
+          "address": "2 Chome Enoshima, Fujisawa, Kanagawa 251-0036",
+          "latitude": 35.303965399999996,
+          "longitude": 139.4819516
+        }
+      ],
+      "hours": {
+        "status": "regular",
+        "windows": [
+          {
+            "start": 1796068800,
+            "end": 1796130000
+          }
+        ],
+        "note": "Jadwal reguler; pengecualian tanggal trip belum dikonfirmasi."
+      },
+      "evidenceId": "place:P04",
+      "error": null
+    },
+    {
+      "id": "P05",
+      "name": "Enoshima Sea Candle",
+      "query": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+      "acceptedNames": [
+        "Enoshima Sea Candle",
+        "江の島シーキャンドル"
+      ],
+      "role": "visit",
+      "exposure": "mixed",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJvVsEzuVOGGARs99YuxNfbDU",
+        "name": "Enoshima Sea Candle",
+        "address": "2-chōme-3-28 Enoshima, Fujisawa, Kanagawa 251-0036",
+        "latitude": 35.2997417,
+        "longitude": 139.478425
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJvVsEzuVOGGARs99YuxNfbDU",
+          "name": "Enoshima Sea Candle",
+          "address": "2-chōme-3-28 Enoshima, Fujisawa, Kanagawa 251-0036",
+          "latitude": 35.2997417,
+          "longitude": 139.478425
+        }
+      ],
+      "hours": {
+        "status": "regular",
+        "windows": [
+          {
+            "start": 1796083200,
+            "end": 1796122800
+          }
+        ],
+        "note": "Jadwal reguler; pengecualian tanggal trip belum dikonfirmasi."
+      },
+      "evidenceId": "place:P05",
+      "error": null
+    },
+    {
+      "id": "P06",
+      "name": "Stasiun Kamakurakokomae",
+      "query": "鎌倉高校前駅 鎌倉市",
+      "acceptedNames": [
+        "Kamakurakokomae Station",
+        "鎌倉高校前駅"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk",
+        "name": "Kamakurakōkō-Mae Station",
+        "address": "1 Chome-1 Koshigoe, Kamakura, Kanagawa 248-0033, Japan",
+        "latitude": 35.3067242,
+        "longitude": 139.5005569
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJIRZ85hZPGGARffzavFo4QRk",
+          "name": "Kamakurakōkō-Mae Station",
+          "address": "1 Chome-1 Koshigoe, Kamakura, Kanagawa 248-0033, Japan",
+          "latitude": 35.3067242,
+          "longitude": 139.5005569
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P06",
+      "error": null
+    },
+    {
+      "id": "P07",
+      "name": "Tsurugaoka Hachimangu",
+      "query": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+      "acceptedNames": [
+        "Tsurugaoka Hachimangu",
+        "Tsurugaoka Hachimangu Shrine",
+        "鶴岡八幡宮"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJiaqQeLhFGGARtTZQEBCtZ6g",
+        "name": "Tsurugaoka Hachiman-gu",
+        "address": "2-chōme-1-31 Yukinoshita, Kamakura, Kanagawa 248-8588",
+        "latitude": 35.325985599999996,
+        "longitude": 139.5563462
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJiaqQeLhFGGARtTZQEBCtZ6g",
+          "name": "Tsurugaoka Hachiman-gu",
+          "address": "2-chōme-1-31 Yukinoshita, Kamakura, Kanagawa 248-8588",
+          "latitude": 35.325985599999996,
+          "longitude": 139.5563462
+        },
+        {
+          "placeId": "ChIJFQ3QoMdFGGARNMgA5c0tE1Y",
+          "name": "Hongu (Jogu)",
+          "address": "2-chōme-1-31 Yukinoshita, Kamakura, Kanagawa 248-0005",
+          "latitude": 35.326149199999996,
+          "longitude": 139.55644479999998
+        },
+        {
+          "placeId": "ChIJrUsQn8dFGGARJ4zHUXO_rU4",
+          "name": "Tsurugaoka Hachimangu Parking Lot",
+          "address": "2-chōme-18-18 Yukinoshita, Kamakura, Kanagawa 248-0005",
+          "latitude": 35.327021099999996,
+          "longitude": 139.5561661
+        }
+      ],
+      "hours": {
+        "status": "regular",
+        "windows": [
+          {
+            "start": 1796072400,
+            "end": 1796122800
+          }
+        ],
+        "note": "Jadwal reguler; pengecualian tanggal trip belum dikonfirmasi."
+      },
+      "evidenceId": "place:P07",
+      "error": null
+    },
+    {
+      "id": "P08",
+      "name": "Shichirigahama Beach",
+      "query": "七里ヶ浜海岸 鎌倉市",
+      "acceptedNames": [
+        "Shichirigahama Beach",
+        "七里ヶ浜海岸"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJtQ46c0RPGGARoL-K9wNTcZ0",
+        "name": "Shichirigahama Beach",
+        "address": "〒248-0026 Kanagawa, Kamakura, Shichirigahamahigashi, 2-chōme−1, 七里ガ浜",
+        "latitude": 35.3043891,
+        "longitude": 139.513901
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJJVoJcURPGGARDdQBeLN5FOo",
+          "name": "Shichirihama Beach",
+          "address": "Shichirihama Beach, 2-chōme-1-12 Shichirigahamahigashi, Kamakura, Kanagawa 248-0025",
+          "latitude": 35.3039166,
+          "longitude": 139.51433079999998
+        },
+        {
+          "placeId": "ChIJtQ46c0RPGGARoL-K9wNTcZ0",
+          "name": "Shichirigahama Beach",
+          "address": "〒248-0026 Kanagawa, Kamakura, Shichirigahamahigashi, 2-chōme−1, 七里ガ浜",
+          "latitude": 35.3043891,
+          "longitude": 139.513901
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P08",
+      "error": null
+    },
+    {
+      "id": "P09",
+      "name": "Fujisawa City Tourist Center",
+      "query": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+      "acceptedNames": [
+        "Fujisawa City Tourist Center",
+        "藤沢市観光センター"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY",
+        "name": "藤沢市観光センター",
+        "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 2-chōme−20−１３ 藤沢市観光センター",
+        "latitude": 35.3078288,
+        "longitude": 139.4824408
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJHWIWfvxOGGARMBUsDhy5xUY",
+          "name": "藤沢市観光センター",
+          "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 2-chōme−20−１３ 藤沢市観光センター",
+          "latitude": 35.3078288,
+          "longitude": 139.4824408
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P09",
+      "error": null
+    },
+    {
+      "id": "P10",
+      "name": "Stasiun Fujisawa (Menara Jam)",
+      "query": "藤沢駅 神奈川県藤沢市",
+      "acceptedNames": [
+        "Fujisawa Station",
+        "藤沢駅"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Titik menara jam belum dikonfirmasi; Stasiun Fujisawa menjadi pendekatan area.",
+      "status": "ambiguous",
+      "match": null,
+      "alternatives": [
+        {
+          "placeId": "ChIJLZQy1cpPGGARLSXIdXeEvYM",
+          "name": "Fujisawa Station",
+          "address": "〒251-0052 Kanagawa, Fujisawa, 神奈川県藤沢市",
+          "latitude": 35.338916399999995,
+          "longitude": 139.4874922
+        },
+        {
+          "placeId": "ChIJC0kMNstPGGARmu_dZscfvjI",
+          "name": "Fujisawa Station",
+          "address": "Fujisawa, Kanagawa, Japan",
+          "latitude": 35.3388984,
+          "longitude": 139.4874695
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P10",
+      "error": "Beberapa tempat cocok; pilih placeId. Tidak memilih kandidat pertama secara diam-diam."
+    },
+    {
+      "id": "P11",
+      "name": "Stasiun Enoshima",
+      "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "acceptedNames": [
+        "Enoshima Station",
+        "江ノ島駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+        "name": "Enoshima Station",
+        "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+        "latitude": 35.311047699999996,
+        "longitude": 139.4873844
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJw2VZvH9PGGAR54FMNYe5V70",
+          "name": "Enoshima Electric Railway Fujisawa Station",
+          "address": "〒251-0055 Kanagawa, Fujisawa, Kugenumaishigami, 1-chōme−1−１ 江ノ電第2ビル",
+          "latitude": 35.337064999999996,
+          "longitude": 139.4872234
+        },
+        {
+          "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+          "name": "Enoshima Station",
+          "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+          "latitude": 35.311047699999996,
+          "longitude": 139.4873844
+        },
+        {
+          "placeId": "ChIJvWFucAJPGGARmQ9tbMTbWWE",
+          "name": "Enoshima Railway Headquarters",
+          "address": "1-chōme-8-16 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "latitude": 35.3105456,
+          "longitude": 139.4885701
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P11",
+      "error": null
+    },
+    {
+      "id": "P12",
+      "name": "Oiwayamichi Street",
+      "query": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+      "acceptedNames": [
+        "Nakamuraya",
+        "中村屋羊羹店",
+        "中村屋"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Alamat Nakamuraya menjadi titik pendekatan jalan dari konteks lama; bukan penggantian aktivitas menjadi kunjungan toko.",
+      "status": "reference",
+      "match": {
+        "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w",
+        "name": "Nakamuraya",
+        "address": "2-chōme-5-25 Enoshima, Fujisawa, Kanagawa 251-0036",
+        "latitude": 35.2995053,
+        "longitude": 139.4776781
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJJ1-f-uVOGGARpMDRUIVea3w",
+          "name": "Nakamuraya",
+          "address": "2-chōme-5-25 Enoshima, Fujisawa, Kanagawa 251-0036",
+          "latitude": 35.2995053,
+          "longitude": 139.4776781
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam tempat referensi tidak otomatis berlaku untuk aktivitas yang belum spesifik."
+      },
+      "evidenceId": "place:P12",
+      "error": null
+    },
+    {
+      "id": "P13",
+      "name": "Stasiun Katase-Enoshima",
+      "query": "片瀬江ノ島駅 藤沢市",
+      "acceptedNames": [
+        "Katase-Enoshima Station",
+        "片瀬江ノ島駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJSdyjbPxOGGARohA5GYPzeuA",
+        "name": "Katase-Enoshima Station",
+        "address": "2 Chome-15 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+        "latitude": 35.3087721,
+        "longitude": 139.4834867
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJSdyjbPxOGGARohA5GYPzeuA",
+          "name": "Katase-Enoshima Station",
+          "address": "2 Chome-15 Katasekaigan, Fujisawa, Kanagawa 251-0035",
+          "latitude": 35.3087721,
+          "longitude": 139.4834867
+        },
+        {
+          "placeId": "ChIJcThjCwJPGGARzaHpyW8OBR4",
+          "name": "Enoshima Station",
+          "address": "〒251-0035 Kanagawa, Fujisawa, Katasekaigan, 1-chōme−8, 藤沢市 片瀬海岸1-4-7",
+          "latitude": 35.311047699999996,
+          "longitude": 139.4873844
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P13",
+      "error": null
+    },
+    {
+      "id": "P14",
+      "name": "Komachi Street",
+      "query": "小町通り 鎌倉市",
+      "acceptedNames": [
+        "Komachi-dori Street",
+        "Komachi Street",
+        "小町通り"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null,
+      "status": "resolved",
+      "match": {
+        "placeId": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8",
+        "name": "Komachi Street",
+        "address": "Komachi St, Kamakura, Kanagawa",
+        "latitude": 35.3222668,
+        "longitude": 139.5526999
+      },
+      "alternatives": [
+        {
+          "placeId": "ChIJ-xbzrcNFGGAR2D9QXwfa0j8",
+          "name": "Komachi Street",
+          "address": "Komachi St, Kamakura, Kanagawa",
+          "latitude": 35.3222668,
+          "longitude": 139.5526999
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P14",
+      "error": null
+    },
+    {
+      "id": "P15",
+      "name": "Stasiun Kamakura",
+      "query": "鎌倉駅 神奈川県鎌倉市",
+      "acceptedNames": [
+        "Kamakura Station",
+        "鎌倉駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null,
+      "status": "ambiguous",
+      "match": null,
+      "alternatives": [
+        {
+          "placeId": "ChIJ33NPKsJFGGARDg77hD466cc",
+          "name": "Kamakura Station",
+          "address": "1-chōme-1-15 Onarimachi, Kamakura, Kanagawa 248-0012",
+          "latitude": 35.3190125,
+          "longitude": 139.5506805
+        },
+        {
+          "placeId": "ChIJwX2sK8JFGGARG8fO9m2xiYw",
+          "name": "Kamakura Station",
+          "address": "Kamakura, Kanagawa, Japan",
+          "latitude": 35.3190647,
+          "longitude": 139.5504119
+        }
+      ],
+      "hours": {
+        "status": "unknown",
+        "windows": [],
+        "note": "Jam operasional tidak tersedia; tidak dianggap buka 24 jam."
+      },
+      "evidenceId": "place:P15",
+      "error": "Beberapa tempat cocok; pilih placeId. Tidak memilih kandidat pertama secara diam-diam."
+    }
+  ],
+  "forecasts": [],
+  "matrix": [],
+  "search": null,
+  "candidates": [],
+  "fastest": null,
+  "weatherAdjusted": null,
+  "weatherReason": "Belum dievaluasi.",
+  "status": "needs_location_selection",
+  "unresolvedIds": [
+    "funabashi_station",
+    "P10",
+    "P15"
+  ],
+  "generatedAt": "2026-11-03T00:11:51.166Z",
+  "providerCalls": {
+    "Google Places Search": 15
+  }
+}

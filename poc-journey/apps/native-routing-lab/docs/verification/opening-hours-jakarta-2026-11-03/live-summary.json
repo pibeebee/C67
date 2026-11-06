@@ -1,0 +1,154 @@
+{
+  "baseline": {
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "order": [
+      "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    ],
+    "legs": [
+      {
+        "from": "Stasiun sudirman",
+        "to": "Grand Indonesia",
+        "mode": "automobile",
+        "departure": 0,
+        "arrival": 237.0,
+        "visit": 237.0,
+        "leave": 2037.0,
+        "travelSeconds": 237.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "Grand Indonesia",
+        "to": "National Monument",
+        "mode": "automobile",
+        "departure": 2037.0,
+        "arrival": 3297.0,
+        "visit": 3297.0,
+        "leave": 5097.0,
+        "travelSeconds": 1260.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "National Monument",
+        "to": "Kota Tua",
+        "mode": "automobile",
+        "departure": 5097.0,
+        "arrival": 6185.0,
+        "visit": 6185.0,
+        "leave": 7985.0,
+        "travelSeconds": 1088.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "Kota Tua",
+        "to": "Summarecon Mall Kelapa Gading",
+        "mode": "automobile",
+        "departure": 7985.0,
+        "arrival": 10121.0,
+        "visit": 10800,
+        "leave": 12600,
+        "travelSeconds": 2136.0,
+        "waitingSeconds": 679.0
+      },
+      {
+        "from": "Summarecon Mall Kelapa Gading",
+        "to": "Stasiun sudirman",
+        "mode": "automobile",
+        "departure": 12600,
+        "arrival": 15220.0,
+        "visit": 15220.0,
+        "leave": 15220.0,
+        "travelSeconds": 2620.0,
+        "waitingSeconds": 0.0
+      }
+    ],
+    "travelSeconds": 7341.0,
+    "waitingSeconds": 679.0,
+    "dwellSeconds": 7200,
+    "finishSecondsSinceDeparture": 15220.0,
+    "finishWIB": "11:13:40",
+    "providerRequests": 30,
+    "cachedETAResponses": 0,
+    "retryCount": 0,
+    "startedAt": "2026-11-03T07:23:21Z",
+    "completedAt": "2026-11-03T07:23:57Z"
+  },
+  "exact": {
+    "operationID": "910D3EC0-AF77-4383-82E4-F5EA286EB6D9",
+    "order": [
+      "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    ],
+    "legs": [
+      {
+        "from": "Stasiun sudirman",
+        "to": "Summarecon Mall Kelapa Gading",
+        "mode": "automobile",
+        "departure": 0,
+        "arrival": 1919.0,
+        "visit": 10800,
+        "leave": 12600,
+        "travelSeconds": 1919.0,
+        "waitingSeconds": 8881.0
+      },
+      {
+        "from": "Summarecon Mall Kelapa Gading",
+        "to": "Kota Tua",
+        "mode": "automobile",
+        "departure": 12600,
+        "arrival": 14868.0,
+        "visit": 14868.0,
+        "leave": 16668.0,
+        "travelSeconds": 2268.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "Kota Tua",
+        "to": "National Monument",
+        "mode": "automobile",
+        "departure": 16668.0,
+        "arrival": 18868.0,
+        "visit": 18868.0,
+        "leave": 20668.0,
+        "travelSeconds": 2200.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "National Monument",
+        "to": "Grand Indonesia",
+        "mode": "automobile",
+        "departure": 20668.0,
+        "arrival": 21330.0,
+        "visit": 21330.0,
+        "leave": 23130.0,
+        "travelSeconds": 662.0,
+        "waitingSeconds": 0.0
+      },
+      {
+        "from": "Grand Indonesia",
+        "to": "Stasiun sudirman",
+        "mode": "automobile",
+        "departure": 23130.0,
+        "arrival": 23620.0,
+        "visit": 23620.0,
+        "leave": 23620.0,
+        "travelSeconds": 490.0,
+        "waitingSeconds": 0.0
+      }
+    ],
+    "travelSeconds": 7539.0,
+    "waitingSeconds": 8881.0,
+    "dwellSeconds": 7200,
+    "finishSecondsSinceDeparture": 23620.0,
+    "finishWIB": "13:33:40",
+    "providerRequests": 75,
+    "cachedETAResponses": 18,
+    "retryCount": 1,
+    "startedAt": "2026-11-03T07:26:12Z",
+    "completedAt": "2026-11-03T07:27:45Z"
+  }
+}

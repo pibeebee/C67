@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-11-05",
+  "scope": "public-safe historical evidence; distinct from relocation checks",
+  "stages": [
+    {
+      "id": "hosted-ai-and-cli",
+      "entry": "../apps/ai-trip-planner/EVALUATION.md",
+      "additional": [
+        "../apps/ai-trip-planner/DETERMINISTIC_EVALUATION.md",
+        "../apps/ai-trip-planner/SHUFFLED_INPUT_EVALUATION.md"
+      ]
+    },
+    {
+      "id": "native-routing-and-lifecycle",
+      "entry": "../apps/native-routing-lab/docs/verification/ADAPTIVE_ROUTING_REPORT_2026-11-03.md",
+      "additional": [
+        "../apps/native-routing-lab/docs/verification/NATIVE_TRIP_REPLANNING_P2_2026-11-04.md",
+        "../apps/native-routing-lab/docs/verification/WEATHER_LAB_2026-11-04.md"
+      ]
+    },
+    {
+      "id": "foundation-models",
+      "entry": "../apps/c67-foundation-lab/docs/verification/RECOMMENDATIONS_REPORT_2026-11-04.md",
+      "additional": [
+        "../docs/source-records/foundation-models-teammate-report.md"
+      ]
+    },
+    {
+      "id": "time-and-preference-quality",
+      "entry": "../apps/c67-foundation-lab/docs/verification/VISIT_TIMING_EXTREME_REPORT_2026-11-05.md",
+      "additional": [
+        "../apps/c67-foundation-lab/docs/verification/PREFERENCE_QUALITY_REPORT_2026-11-05.md",
+        "../apps/c67-foundation-lab/docs/verification/EMBEDDING_BENEFIT_REPORT_2026-11-05.md"
+      ]
+    },
+    {
+      "id": "p3-integration",
+      "entry": "../apps/c67-trip-integration/docs/VERIFICATION_REPORT_2026-11-05.md",
+      "additional": [
+        "../apps/c67-trip-integration/artifacts/verification-summary.json",
+        "../apps/c67-trip-integration/artifacts/iphone-build3-final/status.json"
+      ]
+    },
+    {
+      "id": "relocated-checkout",
+      "entry": "relocation-verification.md",
+      "additional": []
+    }
+  ]
+}

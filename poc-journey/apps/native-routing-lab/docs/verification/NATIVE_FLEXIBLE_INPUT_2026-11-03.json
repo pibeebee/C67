@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Jakarta",
+  "project": "<LOCAL_HOME>/Programming/software/ios/poc-c67",
+  "change": "Free-form user itinerary lists; empty initial draft; optional Japan fixture",
+  "build": {
+    "destination": "generic/platform=iOS",
+    "codeSigningAllowed": false,
+    "result": "BUILD SUCCEEDED",
+    "log": "/private/tmp/c67-flexible-input-20261103/build-ios-verified.log",
+    "logSHA256": "64c0196010014fe6164c33227505f98223c3361822128c33e1b4ca05578c6ea4"
+  },
+  "checks": {
+    "command": "./scripts/check-native-trip-input.sh",
+    "runtime": "macOS, no network",
+    "passed": 8,
+    "resultLog": "/private/tmp/c67-flexible-input-20261103/input-checks-final.log",
+    "resultLogSHA256": "2f87a52395d1f50022dab42ce4d1bfc3681eb017a0c0ab1c522576f07ff27ffc"
+  },
+  "format": "swift-format lint --strict passed for all NativePlanner Swift and input checks",
+  "shellSyntax": "bash -n passed",
+  "whitespace": "git diff --check passed",
+  "iosTestsRun": false,
+  "simulatorRun": false,
+  "iphoneInstallOrLaunch": false,
+  "notVerified": [
+    "iPhone UI and map gesture behavior",
+    "MapKit search timeout resolution",
+    "real place matches and ETA",
+    "WeatherKit live authentication/data"
+  ],
+  "sourceSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "a6e3a353cffe8e110d448d4c9e7935cb3a10f045389379e06c6a899644701f4b",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "9a07fe5048742e51b5f43f7e775b1d52f768be9039703236a760384abc00f5f7",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "97e219b0f2a632fd53c8c0bf449df9e8cb70bdf34474d3383aeb196ecc28ce4a",
+    "poc-c67/Features/NativePlanner/NativeTripInputViews.swift": "6cbc5bc3a1e790c02b1223efb17df9bd283c1873c2b5f34112f4f6d28a5d01ad",
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "6a1bca43f63c785feafe8557750407290000940f5d6ee88f61e92c35ad5fac1e",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "11c4e36efe270a6abef4b984d7c5bef6aaedb79e787a22f6c2818e3889a56cbe",
+    "poc-c67/Features/NativePlanner/NativeTripPinPicker.swift": "f1d0988c50e125af5b4965eabb1fdedc0a465c8dbc64a3b0d0601a5d84425340",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "87876224df4429f640991feaf5aa5643cfbee18034379a3481a6940e46dd18d3",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "5fd1d5e6047f6e1a3c28d8ce543c3d05be643ef7039bbe2caa069a43c3b4c64a",
+    "poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+    "checks/input/NativeTripInputChecks.swift": "71df81ce45f14ccbae66c83f7751d729162e9f665e56563ab52e0792a4654dea",
+    "scripts/check-native-trip-input.sh": "0d02b84bdd50356970dece762933d3736f76bc9ff4db7e0df464a1886b645721",
+    "README.md": "3804ffc3e27244201798e8c679290753cd2a83a41a88991c4e0cef9ece06dfc6",
+    "docs/NATIVE_ITINERARY.md": "9822e67b7d446da8f75d07fcf258da252585bd80b3c6e97d75a569f0bac7a37f",
+    "docs/NATIVE_PLACE_SEARCH_FIX.md": "843a366ae6a35f39f46ac84eaac22bdaad82fdb606cd88865e99735963bf4dea",
+    "docs/NATIVE_FLEXIBLE_INPUT.md": "78ba769beda1baa0fdd52ba13e2aa25438b4c4afd8bfb0106fad87b4eedf5d56"
+  },
+  "backups": "/private/tmp/c67-flexible-input-20261103/originals"
+}

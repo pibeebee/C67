@@ -1,0 +1,159 @@
+diff --git a/src/evidence-ledger.ts b/src/evidence-ledger.ts
+index 7b3d518..6d950d6 100644
+--- a/src/evidence-ledger.ts
++++ b/src/evidence-ledger.ts
+@@ -59,6 +59,10 @@ export class EvidenceLedger {
+     this.input = input;
+     this.originalContext = context;
+   }
++  private proposedTransit: { from: string; to: string }[] = [];
++  setProposedTransit(pairs: { from: string; to: string }[]) {
++    this.proposedTransit = pairs;
++  }
+   readonly input: UntimedInput;
+   readonly originalContext: PlaceContext;
+   register(raw: unknown, pages: BrowserPage[]) {
+@@ -294,7 +298,14 @@ export class EvidenceLedger {
+           "Check the event's exact identity and published season. Mapping generic illumination to a named event is a system interpretation until confirmed.",
+       });
+     }
+-    for (const pair of this.input.requiredTransit) {
++    for (const pair of [
++      ...new Map(
++        [...this.input.requiredTransit, ...this.proposedTransit].map((p) => [
++          `${p.from}->${p.to}`,
++          p,
++        ]),
++      ).values(),
++    ]) {
+       const matching = routes.filter(
+         (r) => r.from === pair.from && r.to === pair.to && r.mode === "TRANSIT",
+       );
+diff --git a/src/evidence-workflow.ts b/src/evidence-workflow.ts
+index e3029b9..a7d8451 100644
+--- a/src/evidence-workflow.ts
++++ b/src/evidence-workflow.ts
+@@ -251,7 +251,17 @@ export async function evidenceWorkflow(
+           a.mode !== "TRANSIT" ||
+             input.requiredTransit.some(
+               (p) => p.from === a.from && p.to === a.to,
+-            ),
++            ) ||
++            (input.requiredTransit.length === 0 &&
++              [a.from, a.to].every(
++                (id) =>
++                  input.activities.some(
++                    (activity) => activity.locationId === id,
++                  ) &&
++                  /station|stasiun|駅/i.test(
++                    context.locations[String(id)]!.name,
++                  ),
++              )),
+           "Transit query must preserve a requested directed station pair.",
+         );
+         const clock = text(a.departureTime, "departure clock", 5);
+@@ -379,6 +389,11 @@ export async function evidenceWorkflow(
+       schema: proposalSchema(context),
+       execute: async (raw: unknown) => {
+         proposal = validateV3(raw);
++        ledger.setProposedTransit(
++          proposal.rows
++            .filter((r) => r.kind === "move" && r.mode === "TRANSIT")
++            .map((r) => ({ from: r.from, to: r.to })),
++        );
+         review = null;
+         await refresh();
+         await persist();
+@@ -529,7 +544,7 @@ export async function evidenceWorkflow(
+           previousSimulation: simulation,
+           independentReview: review,
+         },
+-        "Create a complete one-day itinerary, preserving every activity, optional activity, coastal WALK and requested directed TRANSIT pair. Source hours, end date and provider times are constraints. Unknown allocations are provisional and cannot be reduced below the locked floor without provider evidence. For timing questions request route/simulation tools. Transfer buffer belongs to the movement; an explicit transfer_buffer wait is credited against that buffer, not added twice. If a shop or lunch activity is early, obtain evidence or mark the experience conditional; do not certify it. Ask for relevant evidence through tools whenever needed. Submit a complete proposal, even if unavoidable conflicts remain explicitly reported.",
++        "Create a complete one-day itinerary, preserving every listed location/activity. Required WALK/TRANSIT edges constrain the plan only when present in input; when absent, discover the order and transport legs yourself from geography and evidence. Classify stations as transfer/dwell points rather than sightseeing by default. The original list order is deliberately shuffled and is not a route. Source hours, end date and provider times are constraints. Unknown allocations are provisional and cannot be reduced below the locked floor without provider evidence. For timing questions request route/simulation tools. Transfer buffer belongs to the movement; an explicit transfer_buffer wait is credited against that buffer, not added twice. If a shop or lunch activity is early, obtain evidence or mark the experience conditional; do not certify it. Ask for relevant evidence through tools whenever needed. Submit a complete proposal, even if unavoidable conflicts remain explicitly reported.",
+       );
+       if (planned.status !== "submitted") {
+         stopReason = `planner_${planned.status}`;
+diff --git a/src/untimed.ts b/src/untimed.ts
+index 4541f87..6a4f928 100644
+--- a/src/untimed.ts
++++ b/src/untimed.ts
+@@ -24,7 +24,7 @@ export type UntimedInput = {
+     label: string;
+     optional: boolean;
+   }[];
+-  requiredWalk: { from: string; to: string; label: string };
++  requiredWalk: { from: string; to: string; label: string } | null;
+   requiredTransit: { from: string; to: string }[];
+   transportContext: string[];
+   inputNote: string;
+@@ -135,14 +135,16 @@ export function parseUntimed(
+       "Unexpected activity field; input durations/times are not permitted here.",
+     );
+   }
+-  const walk = object(v.requiredWalk, "required walk");
+-  ensure(
+-    typeof walk.from === "string" &&
+-      Object.hasOwn(context.locations, walk.from) &&
+-      typeof walk.to === "string" &&
+-      Object.hasOwn(context.locations, walk.to),
+-    "Unknown coastal walk endpoint.",
+-  );
++  if (v.requiredWalk !== null) {
++    const walk = object(v.requiredWalk, "required walk");
++    ensure(
++      typeof walk.from === "string" &&
++        Object.hasOwn(context.locations, walk.from) &&
++        typeof walk.to === "string" &&
++        Object.hasOwn(context.locations, walk.to),
++      "Unknown coastal walk endpoint.",
++    );
++  }
+   ensure(
+     Array.isArray(v.requiredTransit) && v.requiredTransit.length <= 12,
+     "Required transit pairs must be supplied without times.",
+@@ -230,18 +232,19 @@ export function validateDayProposal(
+     seen.size === input.activities.length,
+     "Every requested activity, including optional ones, must remain visible.",
+   );
+-  ensure(
+-    v.rows.some((r) => {
+-      const x = r as DayRow;
+-      return (
+-        x.kind === "move" &&
+-        x.from === input.requiredWalk.from &&
+-        x.to === input.requiredWalk.to &&
+-        x.mode === "WALK"
+-      );
+-    }),
+-    "Requested coastal walk is missing.",
+-  );
++  if (input.requiredWalk)
++    ensure(
++      v.rows.some((r) => {
++        const x = r as DayRow;
++        return (
++          x.kind === "move" &&
++          x.from === input.requiredWalk?.from &&
++          x.to === input.requiredWalk?.to &&
++          x.mode === "WALK"
++        );
++      }),
++      "Requested coastal walk is missing.",
++    );
+   for (const pair of input.requiredTransit)
+     ensure(
+       v.rows.some((r) => {
+diff --git a/test/untimed.test.ts b/test/untimed.test.ts
+index 3bef27e..82193b1 100644
+--- a/test/untimed.test.ts
++++ b/test/untimed.test.ts
+@@ -153,7 +153,8 @@ test("optional Oiwayamichi remains visible and the coastal WALK cannot become tr
+   );
+   const changed = timeline();
+   changed.rows.find(
+-    (r) => r.from === input.requiredWalk.from && r.to === input.requiredWalk.to,
++    (r) =>
++      r.from === input.requiredWalk!.from && r.to === input.requiredWalk!.to,
+   )!.mode = "TRANSIT";
+   assert.throws(
+     () => validateDayProposal(changed, input, context),

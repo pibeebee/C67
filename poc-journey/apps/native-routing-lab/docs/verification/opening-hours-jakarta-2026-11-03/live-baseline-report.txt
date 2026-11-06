@@ -1,0 +1,67 @@
+# Itinerary native PoC C67
+Draf tersedia · periksa data bersyarat
+Berangkat: Nov 5, 2026 at 7:00 (Asia/Jakarta)
+AI: tidak digunakan
+MapKit transit: estimasi ETA, bukan jadwal atau detail jalur kereta.
+Baseline geografis
+
+Input 1: National Monument · 30 menit
+   Jam operasional: belum diisi
+Input 2: Grand Indonesia · 30 menit
+   Jam operasional: belum diisi
+Input 3: Summarecon Mall Kelapa Gading · 30 menit
+   Jam operasional: Buka 10.00 · jam tutup belum diisi
+   Input manual · tanggal 2026-11-05 · Asia/Jakarta
+   Catatan sumber: Jam buka 10.00 berdasarkan informasi pengguna pada 3 November 2026; jam tutup belum diketahui. Tidak diverifikasi ke sumber eksternal.
+Input 4: Kota Tua · 30 menit
+   Jam operasional: belum diisi
+
+Kandidat: E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94
+Lengkap: true; layak terhadap batas yang diketahui: true
+Perjalanan: 122.3 menit; menunggu buka: 11.3 menit; singgah: 120 menit.
+1. Stasiun sudirman → Grand Indonesia | berangkat Nov 5, 2026 at 7:00 | tiba Nov 5, 2026 at 7:03 | singgah 30 menit (default)
+   Mulai singgah: Nov 5, 2026 at 7:03
+   Lanjut: Nov 5, 2026 at 7:33
+   Jalan kaki: 15.3 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.
+   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available
+   Mobil · ETA: 4.0 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.
+2. Grand Indonesia → National Monument | berangkat Nov 5, 2026 at 7:33 | tiba Nov 5, 2026 at 7:54 | singgah 30 menit (default)
+   Mulai singgah: Nov 5, 2026 at 7:54
+   Lanjut: Nov 5, 2026 at 8:24
+   Jalan kaki: 41.2 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.
+   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available
+   Mobil · ETA: 21.0 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.
+3. National Monument → Kota Tua | berangkat Nov 5, 2026 at 8:24 | tiba Nov 5, 2026 at 8:43 | singgah 30 menit (default)
+   Mulai singgah: Nov 5, 2026 at 8:43
+   Lanjut: Nov 5, 2026 at 9:13
+   Jalan kaki: 77.8 menit [excluded_by_walking_limit] · ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.
+   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available
+   Mobil · ETA: 18.1 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.
+4. Kota Tua → Summarecon Mall Kelapa Gading | berangkat Nov 5, 2026 at 9:13 | tiba Nov 5, 2026 at 9:48 | singgah 30 menit (default)
+   Mulai singgah: Nov 5, 2026 at 10:00
+   Lanjut: Nov 5, 2026 at 10:30
+   Menunggu buka: 11.3 menit
+   Jalan kaki: 229.6 menit [excluded_by_walking_limit] · ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.
+   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available
+   Mobil · ETA: 35.6 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.
+5. Summarecon Mall Kelapa Gading → Stasiun sudirman | berangkat Nov 5, 2026 at 10:30 | tiba Nov 5, 2026 at 11:13 | singgah 0 menit (transfer)
+   Mulai singgah: Nov 5, 2026 at 11:13
+   Lanjut: Nov 5, 2026 at 11:13
+   Jalan kaki: 215.6 menit [excluded_by_walking_limit] · ETA berjalan 216 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.
+   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available
+   Mobil · ETA: 43.7 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.
+Bersyarat: Jam operasional Grand Indonesia belum diisi.
+Bersyarat: Jam operasional Kota Tua belum diisi.
+Bersyarat: Jam operasional National Monument belum diisi.
+Bersyarat: Jam tutup Summarecon Mall Kelapa Gading belum diisi.
+Bersyarat: Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.
+
+Rekomendasi cuaca ditunda: prakiraan, paparan transit, atau kandidat layak belum lengkap. Prakiraan per tempat yang tersedia tetap dapat dilihat.
+Cuaca origin: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Cuaca 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Cuaca E32284F7-2A9E-4739-9991-4A086BB990DF: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Cuaca 106E65CA-64AA-4292-9D96-DED708AF9D94: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Cuaca BF2C3EFA-9309-4E4D-A550-2DE23C235AFC: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.
+Data cuaca: Open-Meteo (https://open-meteo.com/), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Peluang presipitasi dikonversi ke 0–1 dan interval satu jam sebelumnya untuk perhitungan paparan.
+Pencarian terbatas: seed geografis dibandingkan menggunakan ETA aktual MapKit. Tidak menjamin optimum global.
+Permintaan arah/ETA MapKit: 30. Laporan ini bukan bukti uji perangkat atau jaminan layanan transportasi.

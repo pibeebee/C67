@@ -1,0 +1,11 @@
+PASS 1: empty trip contains no Japan fixture or implicit location
+PASS 2: numbered/bulleted input preserves addresses, Unicode, order and repeats
+PASS 3: append retains existing stops; repeated visits have independent stable IDs
+PASS 4: empty/over-capacity input rejected atomically, without truncation
+PASS 5: city context supplements real queries without creating searches from blank names
+PASS 6: arbitrary valid time zone preserves local date/time; invalid zone rejected
+PASS 7: original Japan example remains an explicit optional fixture
+PASS 8: arbitrary manual pins accepted; explicit distinct endpoint must also be resolved
+PASS 9: matching names need geographic context; distant Sumatra pin flagged without banning long trips
+PASS 10: old drafts remain decodable; automobile is enabled only explicitly
+10 local macOS input-policy checks passed. No network, Simulator, or iOS tests.

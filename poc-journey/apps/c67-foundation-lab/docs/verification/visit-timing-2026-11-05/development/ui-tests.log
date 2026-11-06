@@ -1,0 +1,30 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: e8315bd3754f38d212419d651aac5b15487cdd96dfd0fd115cbe032d9ea0d9ea
+2026-11-05 08:42:18.558 appintentsmetadataprocessor[99292:34863262] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'All tests' started at 2026-11-05 08:42:25.911.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 08:42:25.913.
+Test Suite 'LivePreferenceUITests' started at 2026-11-05 08:42:25.913.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' started.
+objc[99301]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1029fc310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x102a50398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' passed (14.507 seconds).
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' passed (23.323 seconds).
+Test Suite 'LivePreferenceUITests' passed at 2026-11-05 08:43:03.746.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 37.830 (37.833) seconds
+Test Suite 'VisitTimingUITests' started at 2026-11-05 08:43:03.752.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+    t =    19.92s Collecting debug information to assist test failure triage
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/VisitTimingUITests.swift:9: error: -[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' failed (20.438 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+    t =    19.90s Collecting debug information to assist test failure triage
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/VisitTimingUITests.swift:9: error: -[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' failed (20.211 seconds).
+Test Suite 'VisitTimingUITests' failed at 2026-11-05 08:43:44.403.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 40.649 (40.651) seconds
+Test Suite 'C67FoundationLabUITests.xctest' failed at 2026-11-05 08:43:44.404.
+	 Executed 4 tests, with 2 failures (0 unexpected) in 78.480 (78.491) seconds
+Test Suite 'All tests' failed at 2026-11-05 08:43:44.405.
+	 Executed 4 tests, with 2 failures (0 unexpected) in 78.480 (78.494) seconds
+Test session results, code coverage, and logs:
+** TEST FAILED **

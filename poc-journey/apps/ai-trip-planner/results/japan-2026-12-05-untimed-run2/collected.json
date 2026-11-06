@@ -1,0 +1,461 @@
+{
+  "collectedAt": "2026-11-02T14:05:39.090Z",
+  "input": {
+    "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+    "date": "2026-12-05",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "E03",
+        "locationId": "komachi",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "E04",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "optional": false
+      },
+      {
+        "id": "E05",
+        "locationId": "kamakura_meal",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "optional": false
+      },
+      {
+        "id": "E07",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "E09",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "optional": false
+      },
+      {
+        "id": "E11",
+        "locationId": "kokomae",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "optional": false
+      },
+      {
+        "id": "E13",
+        "locationId": "enoshima_station",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "E15",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "E16",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "optional": false
+      },
+      {
+        "id": "E17",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "locationId": "sea_candle",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "E19",
+        "locationId": "sea_candle",
+        "label": "Menyaksikan Illumination",
+        "optional": false
+      },
+      {
+        "id": "E20",
+        "locationId": "enoshima_dinner",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "optional": false
+      },
+      {
+        "id": "E22",
+        "locationId": "fujisawa_station",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      }
+    ],
+    "requiredWalk": {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+    },
+    "transportContext": [
+      "Kereta dan jalan kaki, mengikuti daftar semula.",
+      "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+    ],
+    "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan.",
+    "requiredTransit": [
+      {
+        "from": "funabashi_station",
+        "to": "kamakura_station"
+      },
+      {
+        "from": "kamakura_station",
+        "to": "inamura_station"
+      },
+      {
+        "from": "inamura_station",
+        "to": "shichiri_station"
+      },
+      {
+        "from": "kokomae",
+        "to": "enoshima_station"
+      },
+      {
+        "from": "katase_station",
+        "to": "fujisawa_station"
+      },
+      {
+        "from": "fujisawa_station",
+        "to": "funabashi_station"
+      }
+    ]
+  },
+  "context": {
+    "checkedAt": "2026-11-02",
+    "locations": {
+      "funabashi_station": {
+        "name": "JR Funabashi Station",
+        "address": "JR船橋駅 千葉県船橋市",
+        "area": "funabashi",
+        "precision": "named_place"
+      },
+      "kamakura_station": {
+        "name": "Kamakura Station",
+        "address": "鎌倉駅 神奈川県鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "komachi": {
+        "name": "Komachi Street",
+        "address": "小町通り 鎌倉市",
+        "area": "kamakura",
+        "precision": "street_area"
+      },
+      "hachimangu": {
+        "name": "Tsurugaoka Hachimangu",
+        "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "kamakura_meal": {
+        "name": "Makan siang di area Kamakura",
+        "address": null,
+        "area": "kamakura",
+        "precision": "unknown"
+      },
+      "inamura_station": {
+        "name": "Inamuragasaki Station",
+        "address": "稲村ヶ崎駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "inamura_park": {
+        "name": "Kamakura Seaside Park, Inamuragasaki",
+        "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+        "area": "kamakura",
+        "precision": "park_area"
+      },
+      "shichiri_beach": {
+        "name": "Shichirigahama Beach, area depan sekolah belum dipatok",
+        "address": "七里ヶ浜海岸 鎌倉市",
+        "area": "kamakura",
+        "precision": "beach_area"
+      },
+      "kokomae": {
+        "name": "Kamakurakokomae Station",
+        "address": "鎌倉高校前駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      },
+      "enoshima_station": {
+        "name": "Enoden Enoshima Station; toko suvenir belum dipilih",
+        "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+        "area": "enoshima",
+        "precision": "station_area"
+      },
+      "tourist_center": {
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "bridge": {
+        "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+        "address": "江の島大橋 藤沢市",
+        "area": "enoshima",
+        "precision": "bridge_area"
+      },
+      "oiwayamichi": {
+        "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+        "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+        "area": "enoshima",
+        "precision": "street_reference_point"
+      },
+      "sea_candle": {
+        "name": "Enoshima Sea Candle",
+        "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "enoshima_dinner": {
+        "name": "Turun pulau dan makan malam di Enoshima",
+        "address": null,
+        "area": "enoshima",
+        "precision": "unknown"
+      },
+      "katase_station": {
+        "name": "Katase-Enoshima Station",
+        "address": "片瀬江ノ島駅 藤沢市",
+        "area": "enoshima",
+        "precision": "named_place"
+      },
+      "fujisawa_station": {
+        "name": "Fujisawa Station; clock tower belum dipatok",
+        "address": "藤沢駅 神奈川県藤沢市",
+        "area": "fujisawa",
+        "precision": "station_area"
+      },
+      "shichiri_station": {
+        "name": "Shichirigahama Station",
+        "address": "七里ヶ浜駅 鎌倉市",
+        "area": "kamakura",
+        "precision": "named_place"
+      }
+    },
+    "areas": [
+      {
+        "id": "funabashi",
+        "name": "Funabashi",
+        "latitude": 35.702,
+        "longitude": 139.985
+      },
+      {
+        "id": "kamakura",
+        "name": "Kamakura dan pesisir",
+        "latitude": 35.319,
+        "longitude": 139.55
+      },
+      {
+        "id": "enoshima",
+        "name": "Enoshima dan Katase",
+        "latitude": 35.3,
+        "longitude": 139.48
+      },
+      {
+        "id": "fujisawa",
+        "name": "Fujisawa Station area",
+        "latitude": 35.339,
+        "longitude": 139.487
+      }
+    ],
+    "facts": [
+      {
+        "id": "official:hoseki-2026",
+        "kind": "seasonal_event",
+        "name": "Shonan no Hoseki 2026–2027",
+        "startDate": "2026-12-01",
+        "endDate": "2027-02-28",
+        "url": "https://enoshima-seacandle.com/information/post-4136/",
+        "publishedDate": "2026-10-23",
+        "checkedDate": "2026-11-02",
+        "note": "Diperiksa ulang 2 November 2026. Untuk Sabtu 5 Desember: periode acara mencakup tanggal trip, jadwal penyalaan yang diumumkan 17:00–21:00. Rekomendasi identitas illumination ini adalah interpretasi sistem atas aktivitas pengguna, perlu persetujuan. Penutupan khusus/cuaca tetap perlu dicek mendekati hari H.",
+        "activityIds": [
+          "E19"
+        ]
+      },
+      {
+        "id": "official:tourist-center",
+        "kind": "opening_hours",
+        "name": "Fujisawa City Tourist Center, Katase Kaigan",
+        "opensAt": "08:30",
+        "closesAt": "17:00",
+        "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+        "checkedDate": "2026-11-02",
+        "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan.",
+        "activityIds": [
+          "E15"
+        ]
+      },
+      {
+        "id": "official:oiwayamichi",
+        "kind": "place_identity",
+        "name": "Oiwayamichi Street / 御岩屋道通り",
+        "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+        "checkedDate": "2026-11-02",
+        "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan.",
+        "activityIds": [
+          "E17"
+        ]
+      },
+      {
+        "id": "official:hoseki-saturday-hours",
+        "kind": "opening_hours",
+        "activityIds": [
+          "E19"
+        ],
+        "name": "Shonan no Hoseki, jadwal Sabtu sebelum 16 Januari",
+        "opensAt": "17:00",
+        "closesAt": "21:00",
+        "url": "https://enoshima-seacandle.com/information/post-4136/",
+        "checkedDate": "2026-11-02",
+        "note": "Jam acara pada Sabtu, bukan jaminan setiap fasilitas/toko buka sampai 21:00."
+      },
+      {
+        "id": "official:sea-candle-hours",
+        "kind": "opening_hours",
+        "activityIds": [
+          "E18"
+        ],
+        "name": "Sea Candle, jam umum",
+        "opensAt": "09:00",
+        "closesAt": "20:00",
+        "url": "https://enoshima-seacandle.com/opening-hours/",
+        "checkedDate": "2026-11-02",
+        "note": "Jam umum; last entry 30 menit sebelum tutup. Acara dapat memperpanjang jam, tetapi jam acara tidak otomatis menjadi jam semua fasilitas."
+      }
+    ],
+    "walkingPairs": [
+      [
+        "kamakura_station",
+        "komachi"
+      ],
+      [
+        "komachi",
+        "hachimangu"
+      ],
+      [
+        "inamura_station",
+        "inamura_park"
+      ],
+      [
+        "shichiri_station",
+        "shichiri_beach"
+      ],
+      [
+        "shichiri_beach",
+        "kokomae"
+      ],
+      [
+        "enoshima_station",
+        "tourist_center"
+      ],
+      [
+        "tourist_center",
+        "bridge"
+      ],
+      [
+        "bridge",
+        "oiwayamichi"
+      ],
+      [
+        "oiwayamichi",
+        "sea_candle"
+      ],
+      [
+        "sea_candle",
+        "katase_station"
+      ]
+    ],
+    "limitations": [
+      "Jam toko di Komachi, restoran, dan toko suvenir belum dipilih/diverifikasi.",
+      "Perempatan di Hachimangu, depan sekolah di pantai, dan menara jam Fujisawa belum punya titik tepat.",
+      "Lokasi makan siang dan malam tetap belum diketahui; jangan menggantinya diam-diam dengan restoran atau stasiun.",
+      "Rute ke titik referensi Oiwayamichi tidak mewakili seluruh panjang jalan atau antrean."
+    ]
+  },
+  "walkingHints": [
+    {
+      "from": "kamakura_station",
+      "to": "komachi",
+      "minutes": 5.666666666666667,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "komachi",
+      "to": "hachimangu",
+      "minutes": 5.216666666666667,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "inamura_station",
+      "to": "inamura_park",
+      "minutes": 4.816666666666666,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "shichiri_station",
+      "to": "shichiri_beach",
+      "minutes": 7.233333333333333,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "minutes": 17.583333333333332,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "enoshima_station",
+      "to": "tourist_center",
+      "minutes": 10,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "tourist_center",
+      "to": "bridge",
+      "minutes": 5,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "bridge",
+      "to": "oiwayamichi",
+      "minutes": 14.833333333333334,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "oiwayamichi",
+      "to": "sea_candle",
+      "minutes": 7.566666666666666,
+      "status": "provider_estimate_named_or_area_points"
+    },
+    {
+      "from": "sea_candle",
+      "to": "katase_station",
+      "minutes": 23.1,
+      "status": "provider_estimate_named_or_area_points"
+    }
+  ],
+  "weather": {
+    "status": "outside_forecast_horizon",
+    "daysAhead": 33,
+    "checkedAt": "2026-11-02T14:05:39.090Z",
+    "rainProbability": null,
+    "sunrise": null,
+    "sunset": null,
+    "note": "No date-specific forecast or sunset is supplied. Never invent clear weather, rain probability or a sunset clock time. Open-Meteo forecast horizon is up to 16 days.",
+    "source": "https://open-meteo.com/en/docs"
+  },
+  "httpCalls": {
+    "Google untimed walking hint": 10
+  }
+}

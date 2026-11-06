@@ -1,0 +1,276 @@
+{
+  "title": "Daftar acak pengguna — Funabashi 1 Desember 2026, 07.00 JST",
+  "date": "2026-12-01",
+  "timeZone": "Asia/Tokyo",
+  "startTime": "07:00",
+  "finishBy": "23:59",
+  "finishSource": "end_of_day",
+  "startsAt": 1796076000,
+  "endsAt": 1796137140,
+  "regionCode": "JP",
+  "origin": {
+    "id": "funabashi_station",
+    "name": "Stasiun Funabashi",
+    "query": "JR船橋駅 千葉県船橋市",
+    "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE",
+    "acceptedNames": [
+      "Funabashi Station",
+      "JR Funabashi Station",
+      "船橋駅"
+    ],
+    "role": "transfer",
+    "exposure": "outdoor",
+    "dwellMinutes": 0,
+    "dwellSource": "transfer",
+    "referenceNote": null
+  },
+  "returnTo": {
+    "id": "funabashi_station",
+    "name": "Stasiun Funabashi",
+    "query": "JR船橋駅 千葉県船橋市",
+    "placeId": "ChIJQcvP-XiAGGARjUivo7Jf4kE",
+    "acceptedNames": [
+      "Funabashi Station",
+      "JR Funabashi Station",
+      "船橋駅"
+    ],
+    "role": "transfer",
+    "exposure": "outdoor",
+    "dwellMinutes": 0,
+    "dwellSource": "transfer",
+    "referenceNote": null
+  },
+  "places": [
+    {
+      "id": "P01",
+      "name": "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "query": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+      "acceptedNames": [
+        "Inamuragasaki Park",
+        "Kamakura Seaside Park Inamuragasaki",
+        "稲村ヶ崎公園"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P02",
+      "name": "Stasiun Inamuragasaki",
+      "query": "稲村ヶ崎駅 鎌倉市",
+      "acceptedNames": [
+        "Inamuragasaki Station",
+        "稲村ヶ崎駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    },
+    {
+      "id": "P03",
+      "name": "Toko Suvenir Enoshima Station",
+      "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "acceptedNames": [
+        "Enoshima Station",
+        "江ノ島駅"
+      ],
+      "role": "visit",
+      "exposure": "mixed",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Toko belum spesifik. Area Stasiun Enoshima dipakai hanya sebagai titik pendekatan untuk pengujian; identitas dan jam toko belum diketahui."
+    },
+    {
+      "id": "P04",
+      "name": "Enoshima Ohashi Bridge",
+      "query": "江の島大橋 藤沢市",
+      "acceptedNames": [
+        "Enoshima Bridge",
+        "Enoshima Ohashi Bridge",
+        "江の島大橋",
+        "江の島弁天橋"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P05",
+      "name": "Enoshima Sea Candle",
+      "query": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+      "acceptedNames": [
+        "Enoshima Sea Candle",
+        "江の島シーキャンドル"
+      ],
+      "role": "visit",
+      "exposure": "mixed",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P06",
+      "name": "Stasiun Kamakurakokomae",
+      "query": "鎌倉高校前駅 鎌倉市",
+      "acceptedNames": [
+        "Kamakurakokomae Station",
+        "鎌倉高校前駅"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P07",
+      "name": "Tsurugaoka Hachimangu",
+      "query": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+      "acceptedNames": [
+        "Tsurugaoka Hachimangu",
+        "Tsurugaoka Hachimangu Shrine",
+        "鶴岡八幡宮"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P08",
+      "name": "Shichirigahama Beach",
+      "query": "七里ヶ浜海岸 鎌倉市",
+      "acceptedNames": [
+        "Shichirigahama Beach",
+        "七里ヶ浜海岸"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P09",
+      "name": "Fujisawa City Tourist Center",
+      "query": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+      "acceptedNames": [
+        "Fujisawa City Tourist Center",
+        "藤沢市観光センター"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P10",
+      "name": "Stasiun Fujisawa (Menara Jam)",
+      "query": "藤沢駅 神奈川県藤沢市",
+      "placeId": "ChIJLZQy1cpPGGARLSXIdXeEvYM",
+      "acceptedNames": [
+        "Fujisawa Station",
+        "藤沢駅"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Titik menara jam belum dikonfirmasi; Stasiun Fujisawa menjadi pendekatan area."
+    },
+    {
+      "id": "P11",
+      "name": "Stasiun Enoshima",
+      "query": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "acceptedNames": [
+        "Enoshima Station",
+        "江ノ島駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    },
+    {
+      "id": "P12",
+      "name": "Oiwayamichi Street",
+      "query": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+      "acceptedNames": [
+        "Nakamuraya",
+        "中村屋羊羹店",
+        "中村屋"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": "Alamat Nakamuraya menjadi titik pendekatan jalan dari konteks lama; bukan penggantian aktivitas menjadi kunjungan toko."
+    },
+    {
+      "id": "P13",
+      "name": "Stasiun Katase-Enoshima",
+      "query": "片瀬江ノ島駅 藤沢市",
+      "acceptedNames": [
+        "Katase-Enoshima Station",
+        "片瀬江ノ島駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    },
+    {
+      "id": "P14",
+      "name": "Komachi Street",
+      "query": "小町通り 鎌倉市",
+      "acceptedNames": [
+        "Komachi-dori Street",
+        "Komachi Street",
+        "小町通り"
+      ],
+      "role": "visit",
+      "exposure": "outdoor",
+      "dwellMinutes": 30,
+      "dwellSource": "default",
+      "referenceNote": null
+    },
+    {
+      "id": "P15",
+      "name": "Stasiun Kamakura",
+      "query": "鎌倉駅 神奈川県鎌倉市",
+      "placeId": "ChIJ33NPKsJFGGARDg77hD466cc",
+      "acceptedNames": [
+        "Kamakura Station",
+        "鎌倉駅"
+      ],
+      "role": "transfer",
+      "exposure": "outdoor",
+      "dwellMinutes": 0,
+      "dwellSource": "transfer",
+      "referenceNote": null
+    }
+  ],
+  "modes": [
+    "WALK",
+    "TRANSIT"
+  ],
+  "defaultDwellMinutes": 30,
+  "weatherPolicy": {
+    "rainWeight": 2,
+    "maxExtraMinutes": 15
+  },
+  "search": {
+    "beamWidth": 128,
+    "shortlist": 4
+  }
+}

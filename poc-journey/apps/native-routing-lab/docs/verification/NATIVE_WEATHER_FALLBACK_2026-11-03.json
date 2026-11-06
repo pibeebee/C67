@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Jakarta",
+  "project": "<LOCAL_HOME>/Programming/software/ios/poc-c67",
+  "feature": "WeatherKit primary with per-area Open-Meteo fallback",
+  "build": {
+    "status": "passed",
+    "destination": "generic/platform=iOS",
+    "signed": false,
+    "command": [
+      "xcodebuild",
+      "-project",
+      "poc-c67.xcodeproj",
+      "-scheme",
+      "poc-c67",
+      "-destination",
+      "generic/platform=iOS",
+      "-derivedDataPath",
+      "/private/tmp/poc-c67-native-itinerary-build",
+      "CODE_SIGNING_ALLOWED=NO",
+      "build"
+    ],
+    "log": "/private/tmp/c67-weather-fallback-20261103/build-ios-final.log",
+    "sha256": "e848806ed1bfe788d012b77f6cb9faa9917d6d8c0a3216e0638fd6112908ac37",
+    "warnings": [
+      "App Intents metadata extraction skipped: no AppIntents.framework dependency"
+    ]
+  },
+  "local_checks": {
+    "weather": {
+      "status": "passed",
+      "groups": 8,
+      "log": "/private/tmp/c67-weather-fallback-20261103/weather-checks-final.log",
+      "sha256": "3c55c21729bedbdfd3b7164c09aeda597e74fc8fa66729290fef3554fc2316d6"
+    },
+    "routing": {
+      "status": "passed",
+      "groups": 14,
+      "log": "/private/tmp/c67-weather-fallback-20261103/routing-checks.log",
+      "sha256": "b4eab861c4c965ff9607f0a1e1535a030e6d5ff39afd657091a21291d81e8462"
+    },
+    "input": {
+      "status": "passed",
+      "groups": 8,
+      "log": "/private/tmp/c67-weather-fallback-20261103/input-checks.log",
+      "sha256": "2f87a52395d1f50022dab42ce4d1bfc3681eb017a0c0ab1c522576f07ff27ffc"
+    }
+  },
+  "check_groups_total": 30,
+  "format": {
+    "swift_format_strict": "passed",
+    "bash_syntax": "passed",
+    "git_diff_check": "passed",
+    "staged_hashes_and_whitespace": "passed"
+  },
+  "source_sha256": {
+    "README.md": "3d3dff48cc246af724f336c795bfe3404c0295021885caeb382bc74aefbad315",
+    "checks/weather/NativeTripWeatherChecks.swift": "4905ba4a7088d832b03a2f3770740b7dccc94f39b3f12379d42e0e4ac6b4bdd7",
+    "docs/NATIVE_ITINERARY.md": "e5b564a63e6181fa171a07f1517b4bfd48d6529cad8f8d1fd9e38f038a34616c",
+    "docs/NATIVE_LOGGING.md": "138da27a1261e4fb4f0769f6d18ab5e070e16f9e48c0e5bca9db8696a49db3b0",
+    "docs/NATIVE_ROUTING_LAB.md": "260166317f46d860a935dc65c36e3e0b8ce973b43dd8400862112e9b13ed143d",
+    "docs/NATIVE_WEATHER_FALLBACK.md": "1ad920dcecfe8087f99bad317b7d6811e0e097711fb08617297a1b95f85dd2ae",
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "fd7f262b0da03e0b07823b4f17877f0f022995f29ba930b2aa73aec7f7a17367",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "e03316cfb3505629f9e2d92611f609cb37e5acae2ffe81e65c3c2c2e75794cb2",
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "a62d1586227195124e8c37af037c6a4e55ed1eb1cb18af572d6eee3a9f51e934",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "f2e80ec89102426a4cc27a8908f02d18ab129019f755154deb719c751513824e",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "1783f24deb65c69d238bc0f56ebc1ea8f9840e3edafc24e1e65d197ffaf3913f",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "348e703fba05638d922cb0eda7d3d51018ce0a99c86367ee4ed2e6c62f623254",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": "fd080b04408cdcc66a325559531dafcd4ca680f87ab20454b1bae41eaf8f00a4",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingLab.swift": "bfdb0e517f8d4c28f150bd5cf5094a93ad389f22f5fedf329cf6321a8129cb11",
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1",
+    "scripts/check-native-trip-input.sh": "c4d022d612162363fd69cf0fee8e9c50d2a53cd77b7a01c0067e7bed280e5f6e",
+    "scripts/check-native-trip-weather.sh": "1e0c723a0d4f5ab9ad04d3c6976291a4b24f38a6b74a3a484950d535a0dd29e6"
+  },
+  "backups": "/private/tmp/c67-weather-fallback-20261103/originals",
+  "not_performed": [
+    "iOS tests",
+    "Simulator",
+    "iPhone install/launch",
+    "WeatherKit live requests",
+    "Open-Meteo live requests"
+  ],
+  "limitations": [
+    "Compilation and local HTTP stubs do not prove provider availability on iPhone.",
+    "Forecast horizons and partial/null data remain explicitly unknown.",
+    "Open-Meteo free endpoint is for the noncommercial PoC; no subscription or credentials configured."
+  ],
+  "sources": [
+    "https://open-meteo.com/en/docs",
+    "https://open-meteo.com/en/licence",
+    "https://open-meteo.com/en/terms"
+  ]
+}

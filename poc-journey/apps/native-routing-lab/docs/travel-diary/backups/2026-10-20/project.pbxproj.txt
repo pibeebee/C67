@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		C6700000000000000000006E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFBFF40330809BD50046493E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFBFF40A30809BD50046493E;
+			remoteInfo = "poc-c67";
+		};
+		C67000000000000000000079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFBFF40330809BD50046493E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFBFF40A30809BD50046493E;
+			remoteInfo = "poc-c67";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AFBFF40B30809BD50046493E /* poc-c67.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "poc-c67.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67000000000000000000065 /* poc-c67Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "poc-c67Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67000000000000000000070 /* poc-c67UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "poc-c67UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AFBFF40D30809BD50046493E /* poc-c67 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "poc-c67";
+			sourceTree = "<group>";
+		};
+		C67000000000000000000066 /* poc-c67Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "poc-c67Tests";
+			sourceTree = "<group>";
+		};
+		C67000000000000000000071 /* poc-c67UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "poc-c67UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFBFF40830809BD50046493E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		C67000000000000000000069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		C67000000000000000000074 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFBFF40230809BD50046493E = {
+			isa = PBXGroup;
+			children = (
+				C67000000000000000000066 /* poc-c67Tests */,
+				C67000000000000000000071 /* poc-c67UITests */,
+				AFBFF40D30809BD50046493E /* poc-c67 */,
+				AFBFF40C30809BD50046493E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AFBFF40C30809BD50046493E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C67000000000000000000065 /* poc-c67Tests.xctest */,
+				C67000000000000000000070 /* poc-c67UITests.xctest */,
+				AFBFF40B30809BD50046493E /* poc-c67.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFBFF40A30809BD50046493E /* poc-c67 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFBFF41630809BD60046493E /* Build configuration list for PBXNativeTarget "poc-c67" */;
+			buildPhases = (
+				AFBFF40730809BD50046493E /* Sources */,
+				AFBFF40830809BD50046493E /* Frameworks */,
+				AFBFF40930809BD50046493E /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				AFBFF40D30809BD50046493E /* poc-c67 */,
+			);
+			name = "poc-c67";
+			productName = "poc-c67";
+			productReference = AFBFF40B30809BD50046493E /* poc-c67.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C67000000000000000000067 /* poc-c67Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6700000000000000000006D /* Build configuration list for PBXNativeTarget "poc-c67Tests" */;
+			buildPhases = (
+				C67000000000000000000068 /* Sources */,
+				C67000000000000000000069 /* Frameworks */,
+				C6700000000000000000006A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6700000000000000000006F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C67000000000000000000066 /* poc-c67Tests */,
+			);
+			name = "poc-c67Tests";
+			productName = "poc-c67Tests";
+			productReference = C67000000000000000000065 /* poc-c67Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C67000000000000000000072 /* poc-c67UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C67000000000000000000078 /* Build configuration list for PBXNativeTarget "poc-c67UITests" */;
+			buildPhases = (
+				C67000000000000000000073 /* Sources */,
+				C67000000000000000000074 /* Frameworks */,
+				C67000000000000000000075 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6700000000000000000007A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C67000000000000000000071 /* poc-c67UITests */,
+			);
+			name = "poc-c67UITests";
+			productName = "poc-c67UITests";
+			productReference = C67000000000000000000070 /* poc-c67UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFBFF40330809BD50046493E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					AFBFF40A30809BD50046493E = {
+						CreatedOnToolsVersion = 27.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+					C67000000000000000000067 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AFBFF40A30809BD50046493E;
+					};
+					C67000000000000000000072 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AFBFF40A30809BD50046493E;
+					};
+				};
+			};
+			buildConfigurationList = AFBFF40630809BD50046493E /* Build configuration list for PBXProject "poc-c67" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFBFF40230809BD50046493E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AFBFF40C30809BD50046493E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C67000000000000000000072 /* poc-c67UITests */,
+				C67000000000000000000067 /* poc-c67Tests */,
+				AFBFF40A30809BD50046493E /* poc-c67 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFBFF40930809BD50046493E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		C6700000000000000000006A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		C67000000000000000000075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFBFF40730809BD50046493E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		C67000000000000000000068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		C67000000000000000000073 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6700000000000000000006F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFBFF40A30809BD50046493E /* poc-c67 */;
+			targetProxy = C6700000000000000000006E /* PBXContainerItemProxy */;
+		};
+		C6700000000000000000007A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFBFF40A30809BD50046493E /* poc-c67 */;
+			targetProxy = C67000000000000000000079 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AFBFF41430809BD60046493E /* Debug configuration for PBXProject "poc-c67" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AFBFF41530809BD60046493E /* Release configuration for PBXProject "poc-c67" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFBFF41730809BD60046493E /* Debug configuration for PBXNativeTarget "poc-c67" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				C67_CLOUDKIT_ENVIRONMENT = Development;
+				CODE_SIGN_ENTITLEMENTS = "Configuration/poc-c67.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Configuration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "C67 POC";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Kamera digunakan untuk memindai QR undangan perjalanan dari tour leader.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Hubungkan iPhone peserta dan tour leader untuk pairing QR, atau membagikan lokasi terenkripsi dalam eksperimen DDS lokal setelah pairing.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lokasi Anda ditampilkan di peta pada iPhone ini saat peta terbuka. Pengiriman ke tour leader atau peserta hanya dimulai setelah Anda menyetujui sesi berbagi lokasi. Anda memilih durasi dan dapat berhenti kapan saja.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AFBFF41830809BD60046493E /* Release configuration for PBXNativeTarget "poc-c67" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				C67_CLOUDKIT_ENVIRONMENT = Production;
+				CODE_SIGN_ENTITLEMENTS = "Configuration/poc-c67.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Configuration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "C67 POC";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Kamera digunakan untuk memindai QR undangan perjalanan dari tour leader.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Hubungkan iPhone peserta dan tour leader untuk pairing QR, atau membagikan lokasi terenkripsi dalam eksperimen DDS lokal setelah pairing.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lokasi Anda ditampilkan di peta pada iPhone ini saat peta terbuka. Pengiriman ke tour leader atau peserta hanya dimulai setelah Anda menyetujui sesi berbagi lokasi. Anda memilih durasi dan dapat berhenti kapan saja.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C6700000000000000000006B /* Debug configuration for PBXNativeTarget "poc-c67Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/poc-c67.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/poc-c67";
+			};
+			name = Debug;
+		};
+		C6700000000000000000006C /* Release configuration for PBXNativeTarget "poc-c67Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/poc-c67.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/poc-c67";
+			};
+			name = Release;
+		};
+		C67000000000000000000076 /* Debug configuration for PBXNativeTarget "poc-c67UITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "poc-c67";
+			};
+			name = Debug;
+		};
+		C67000000000000000000077 /* Release configuration for PBXNativeTarget "poc-c67UITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DP5XP7C2AM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "giovanchristoffel.poc-c67UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "poc-c67";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFBFF40630809BD50046493E /* Build configuration list for PBXProject "poc-c67" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBFF41430809BD60046493E /* Debug configuration for PBXProject "poc-c67" */,
+				AFBFF41530809BD60046493E /* Release configuration for PBXProject "poc-c67" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AFBFF41630809BD60046493E /* Build configuration list for PBXNativeTarget "poc-c67" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFBFF41730809BD60046493E /* Debug configuration for PBXNativeTarget "poc-c67" */,
+				AFBFF41830809BD60046493E /* Release configuration for PBXNativeTarget "poc-c67" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		C6700000000000000000006D /* Build configuration list for PBXNativeTarget "poc-c67Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6700000000000000000006B /* Debug configuration for PBXNativeTarget "poc-c67Tests" */,
+				C6700000000000000000006C /* Release configuration for PBXNativeTarget "poc-c67Tests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		C67000000000000000000078 /* Build configuration list for PBXNativeTarget "poc-c67UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C67000000000000000000076 /* Debug configuration for PBXNativeTarget "poc-c67UITests" */,
+				C67000000000000000000077 /* Release configuration for PBXNativeTarget "poc-c67UITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFBFF40330809BD50046493E /* Project object */;
+	validationLevel = 1;
+}

@@ -1,0 +1,26 @@
+Building for debugging...
+[1 / 1]
+[2 / 9] VisitTiming
+[4 / 11] VisitTiming
+[9 / 15] visit-time-eval-product
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:43:29: warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+ 41 |     let matching = response.mapItems.filter { item in
+ 42 |       let name = (item.name ?? "").lowercased()
+ 43 |       let coordinate = item.placemark.coordinate
+    |                             `- warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+ 44 |       return expected.allSatisfy { name.contains($0) }
+ 45 |         && (-6.45 ... -6.05).contains(coordinate.latitude)
+
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/VisitTiming/Sources/VisitTiming/LiveEnvironment.swift:53:27: warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+ 51 |       )
+ 52 |     }
+ 53 |     let coordinate = item.placemark.coordinate
+    |                           `- warning: 'placemark' was deprecated in macOS 26.0: Use location, address and addressRepresentations instead [#DeprecatedDeclaration]
+ 54 |     var components = URLComponents(string: "https://api.open-meteo.com/v1/forecast")!
+ 55 |     components.queryItems = [
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[16 / 17] visit-time-eval-product
+Build complete! (1.44 sec)
+status=context_ranked options=3 seconds=1.415071964263916
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/docs/verification/visit-timing-2026-11-05/mac-live-final/Exports/B00D8EF1-EB56-4AD8-92AF-4AA3FF70F558

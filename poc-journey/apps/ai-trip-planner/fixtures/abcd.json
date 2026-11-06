@@ -1,0 +1,20 @@
+{
+  "label": "Synthetic A/B/C/D illustration from the user; not measured routing data",
+  "minutes": {
+    "A": { "B": 20, "C": 15, "D": 8 },
+    "B": { "A": 20, "C": 30, "D": 45 },
+    "C": { "A": 15, "B": 30, "D": 10 },
+    "D": { "A": 8, "B": 45, "C": 10 }
+  },
+  "kilometers": {
+    "A": { "B": 10, "C": 5, "D": 2 },
+    "B": { "A": 10, "C": 12, "D": 18 },
+    "C": { "A": 5, "B": 12, "D": 1 },
+    "D": { "A": 2, "B": 18, "C": 1 }
+  },
+  "sunrise": "05:30",
+  "sunset": "18:00",
+  "rain": [
+    { "placeId": "C", "startHour": 14, "endHour": 16, "probability": 90 }
+  ]
+}

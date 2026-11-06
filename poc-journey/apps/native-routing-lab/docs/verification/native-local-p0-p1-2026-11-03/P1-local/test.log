@@ -1,0 +1,84 @@
+Building for debugging...
+[Planning deferred tasks]
+[46 / 77]
+[47 / 78] C67LocalHarness
+[59 / 129]
+[65 / 129]
+[67 / 129]
+[72 / 129]
+[77 / 129]
+[81 / 129]
+[83 / 129]
+[84 / 129]
+[98 / 129] C67LocalHarness
+[109 / 130] C67LocalHarness
+[109 / 130] StorageProbe-product
+[120 / 133] LocalTests-product
+[120 / 133] StorageProbe-product
+[122 / 133] LocalTests-product
+[138 / 168]
+[143 / 168]
+[146 / 168]
+[149 / 168]
+[152 / 168]
+[153 / 168]
+[162 / 168] LocalTests-product
+[164 / 168] LocalTests-product
+Build complete! (6.48 sec)
+Test Suite 'All tests' started at 2026-11-03 22:56:04.883.
+Test Suite 'LocalTests.xctest' started at 2026-11-03 22:56:04.884.
+Test Suite 'LocalTripTests' started at 2026-11-03 22:56:04.884.
+Test Case '-[LocalTests.LocalTripTests testAcceptedEndpointCannotBeChangedSilently]' started.
+Test Case '-[LocalTests.LocalTripTests testAcceptedEndpointCannotBeChangedSilently]' passed (0.003 seconds).
+Test Case '-[LocalTests.LocalTripTests testAcceptedReportRoundTripPreservesScheduleAndUnknowns]' started.
+Test Case '-[LocalTests.LocalTripTests testAcceptedReportRoundTripPreservesScheduleAndUnknowns]' passed (0.004 seconds).
+Test Case '-[LocalTests.LocalTripTests testAdaptiveCannotSkipDeadlineConflict]' started.
+Test Case '-[LocalTests.LocalTripTests testAdaptiveCannotSkipDeadlineConflict]' passed (0.025 seconds).
+Test Case '-[LocalTests.LocalTripTests testBothCorruptRemainUntouchedAndBlockSaving]' started.
+Test Case '-[LocalTests.LocalTripTests testBothCorruptRemainUntouchedAndBlockSaving]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testCorruptPrimaryRecoversValidatedBackup]' started.
+Test Case '-[LocalTests.LocalTripTests testCorruptPrimaryRecoversValidatedBackup]' passed (0.002 seconds).
+Test Case '-[LocalTests.LocalTripTests testDeadlineReachesBothPipelineAndSnapshot]' started.
+Test Case '-[LocalTests.LocalTripTests testDeadlineReachesBothPipelineAndSnapshot]' passed (0.021 seconds).
+Test Case '-[LocalTests.LocalTripTests testDefaultNativeLaunchDoesNotRequireLegacyBootstrap]' started.
+Test Case '-[LocalTests.LocalTripTests testDefaultNativeLaunchDoesNotRequireLegacyBootstrap]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testDeviceZoneDoesNotChangeDeadlineOrOperationalDate]' started.
+Test Case '-[LocalTests.LocalTripTests testDeviceZoneDoesNotChangeDeadlineOrOperationalDate]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testDraftEditsDoNotEraseAcceptedChoice]' started.
+Test Case '-[LocalTests.LocalTripTests testDraftEditsDoNotEraseAcceptedChoice]' passed (0.008 seconds).
+Test Case '-[LocalTests.LocalTripTests testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider]' started.
+Test Case '-[LocalTests.LocalTripTests testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testExplicitTimeZoneChangePreservesBothWallClocks]' started.
+Test Case '-[LocalTests.LocalTripTests testExplicitTimeZoneChangePreservesBothWallClocks]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks]' started.
+Test Case '-[LocalTests.LocalTripTests testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks]' passed (0.003 seconds).
+Test Case '-[LocalTests.LocalTripTests testFutureVersionBlocksEvenWithValidBackup]' started.
+Test Case '-[LocalTests.LocalTripTests testFutureVersionBlocksEvenWithValidBackup]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testInfeasibleAcceptedPlanCannotCommit]' started.
+Test Case '-[LocalTests.LocalTripTests testInfeasibleAcceptedPlanCannotCommit]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testInvalidAcceptedArithmeticCannotCommit]' started.
+Test Case '-[LocalTests.LocalTripTests testInvalidAcceptedArithmeticCannotCommit]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testLegacyDraftRetainsEndOfDayAndCarPolicy]' started.
+Test Case '-[LocalTests.LocalTripTests testLegacyDraftRetainsEndOfDayAndCarPolicy]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testLocalDemoUsesValidSyntheticScheduleWithoutServices]' started.
+Test Case '-[LocalTests.LocalTripTests testLocalDemoUsesValidSyntheticScheduleWithoutServices]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testMissingPrimaryUsesBackupWithVisibleNotice]' started.
+Test Case '-[LocalTests.LocalTripTests testMissingPrimaryUsesBackupWithVisibleNotice]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testOversizedPrimaryIsNotDecodedOrOverwritten]' started.
+Test Case '-[LocalTests.LocalTripTests testOversizedPrimaryIsNotDecodedOrOverwritten]' passed (0.014 seconds).
+Test Case '-[LocalTests.LocalTripTests testRejectsDeadlineBeforeStartAndBeyondDay]' started.
+Test Case '-[LocalTests.LocalTripTests testRejectsDeadlineBeforeStartAndBeyondDay]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testRestorationDoesNotClearReportOnObservationEcho]' started.
+Test Case '-[LocalTests.LocalTripTests testRestorationDoesNotClearReportOnObservationEcho]' passed (0.006 seconds).
+Test Case '-[LocalTests.LocalTripTests testSaveFailurePreservesDiskAndPublishedRevision]' started.
+Test Case '-[LocalTests.LocalTripTests testSaveFailurePreservesDiskAndPublishedRevision]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testStaleWriterCannotOverwriteNewerSavedDraft]' started.
+Test Case '-[LocalTests.LocalTripTests testStaleWriterCannotOverwriteNewerSavedDraft]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testWeatherMetadataAndCreditSurviveRestore]' started.
+Test Case '-[LocalTests.LocalTripTests testWeatherMetadataAndCreditSurviveRestore]' passed (0.003 seconds).
+Test Suite 'LocalTripTests' passed at 2026-11-03 22:56:04.984.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.098 (0.099) seconds
+Test Suite 'LocalTests.xctest' passed at 2026-11-03 22:56:04.984.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.098 (0.100) seconds
+Test Suite 'All tests' passed at 2026-11-03 22:56:04.984.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.098 (0.100) seconds

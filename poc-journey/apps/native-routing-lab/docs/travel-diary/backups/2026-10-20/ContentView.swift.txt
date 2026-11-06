@@ -1,0 +1,43 @@
+import SwiftUI
+
+struct ContentView: View {
+    let app: POCController
+    @Environment(\.scenePhase) private var phase
+    @State private var tab = 0
+    var body: some View {
+        TabView(selection: $tab) {
+            LeaderSessionView(app: app).tabItem { Label("Rombongan", systemImage: "person.3") }.tag(0)
+            ParticipantLabView(app: app).tabItem { Label("Peserta", systemImage: "location") }.tag(1)
+            RunDiagnosticsView(app: app).tabItem { Label("Lab", systemImage: "waveform.path.ecg") }.tag(2)
+        }
+        .tint(TourStyle.accent)
+        .onAppear { updateMonitoring(); consumeInbox() }
+        .task(id: "\(app.store.state.runID)|\(app.store.state.effectivePlan.revision)|\(app.store.state.leaderShares?.count ?? 0)|\(phase == .active)") {
+            if phase == .active { await app.planSync.publish() }
+        }
+        .onChange(of: tab) { _, _ in updateMonitoring() }
+        .onChange(of: phase) { _, phase in if phase == .background { app.pairing.stop() }; updateMonitoring() }
+        .onChange(of: ShareInbox.shared.pending.count) { _, _ in consumeInbox() }
+        .onChange(of: app.busy) { _, busy in if busy == nil { consumeInbox() } }
+        .onChange(of: app.store.state.runID) { _, _ in updateMonitoring() }
+    }
+    private func updateMonitoring() { app.setLeaderVisible(tab == 0 && phase == .active); app.setParticipantVisible(tab == 1 && phase == .active) }
+    private func consumeInbox() {
+        guard !ShareInbox.shared.pending.isEmpty, app.busy == nil else { return }
+        let metadata = ShareInbox.shared.pending.removeFirst(); tab = 0
+        Task { await app.accept(metadata) }
+    }
+}
+
+struct ErrorNotice: View {
+    let app: POCController
+    var body: some View {
+        if let error = app.error {
+            Section("Operasi belum berhasil") {
+                Label(error, systemImage: "exclamationmark.triangle").foregroundStyle(.red).accessibilityIdentifier("operation-error")
+                Button("Tutup pesan") { app.error = nil }
+            }
+        }
+        if let busy = app.busy { Section { ProgressView(busy) } }
+    }
+}

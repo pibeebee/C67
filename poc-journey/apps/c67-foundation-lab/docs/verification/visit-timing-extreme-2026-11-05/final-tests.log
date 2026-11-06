@@ -1,0 +1,222 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'visittiming': failed storing manifest for 'visittiming' in cache: attempt to write a readonly database
+Building for debugging...
+[2 / 15] VisitTiming
+[4 / 17] VisitTiming
+[7 / 18] VisitTiming
+[12 / 18] VisitTimingTests-product
+[16 / 21] VisitTimingTests-product
+[20 / 23] VisitTimingTests-product
+[22 / 26] VisitTimingTests-product
+Build complete! (1.88 sec)
+Test Suite 'All tests' started at 2026-11-05 09:24:40.138.
+Test Suite 'All tests' passed at 2026-11-05 09:24:40.139.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite ExtremeDateAndSourceTests started.
+􀟈  Suite AcquiredForecastReplay started.
+􀟈  Suite ExtremeStorageTests started.
+􀟈  Suite ExtremeForecastTests started.
+􀟈  Suite TimingInvariantTests started.
+􀟈  Test actualGbkDaylightEndsBeforeSunset() started.
+􀟈  Suite PublishedJakartaCases started.
+􀟈  Test sourceExpiryBoundaryIsExact() started.
+􀟈  Test malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Suite EnvironmentContractChecks started.
+􀟈  Test oneMillisecondAfterStartCannotOfferPastSlot() started.
+􀟈  Test sessionOrderCannotChangeAllowedStartRanges() started.
+􀟈  Test invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test malformedAvailabilityRejected(_:) started.
+􀟈  Test nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test actualRagunanSunsetCannotFitBeforeSixteen() started.
+􀟈  Test actualGbkSunsetPreferenceFitsClosingTime() started.
+􀟈  Test identityCollisionCannotOverwriteEarlierExperiment() started.
+􀟈  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test actualGbkRainOptionsStayInPublishedSessions() started.
+􀟈  Test twoHundredConcurrentSavesAndReadsLoseNoRuns() started.
+􀟈  Test wrongVenueExpiredAndMissingDataAreNotReused() started.
+􀟈  Test alternateDateCannotBypassPastTimeGuard() started.
+􀟈  Test case passing 1 argument duration → 1 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 16 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → -15 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 0 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 14 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → -9223372036854775808 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 359 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 361 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument duration → 9223372036854775807 to malformedDurationsRejectedWithoutOverflow(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: -1, end: 900) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: -9223372036854775808, end: 1440) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "unlinked-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026--11-5" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test nonFiniteMeasurementsRemainSerializableAndUnknown() started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 0, end: 9223372036854775807) to malformedAvailabilityRejected(_:) started.
+􀟈  Test coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "missing-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test expiryIsExclusiveAndApplicationLifetimeIsCapped() started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 900, end: 900) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-11-+5" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test permutationOfUnambiguousHoursPreservesResults() started.
+􀟈  Test case passing 1 argument kind → "schema" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􀟈  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() started.
+􀟈  Test case passing 1 argument kind → "policy" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 901, end: 900) to malformedAvailabilityRejected(_:) started.
+􀟈  Test contradictoryForecastChronologyIsRejected() started.
+􀟈  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() started.
+􀟈  Test case passing 1 argument kind → "unlinked-notice" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "reference" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test crossingMidnightCannotReviveYesterdaysSlots() started.
+􀟈  Test case passing 1 argument range → MinuteRange(start: 0, end: 1441) to malformedAvailabilityRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-1-005" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test solarContradictionDoesNotEraseIndependentHourlyRain() started.
+􀟈  Test gbkHasTwoSeparateStartRanges() started.
+􀟈  Test case passing 1 argument kind → "option" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test advancingTodayClockOnlyRemovesPossibleStarts() started.
+􀟈  Test finiteButUnencodableEvaluationClockIsRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "empty-notice" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test increasingDurationAndNarrowingAvailabilityNeverIntroduceNewStarts() started.
+􀟈  Test case passing 1 argument text → "2026-11-05
+" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "identity" to syntacticallyValidButCorruptHistoryIsNotTrusted(_:) started.
+􀟈  Test corruptExtremeOrMillisecondTimestampCannotPoisonHistory(_:) started.
+􀟈  Test unknownVenueAndSourceRejected() started.
+􀟈  Test case passing 1 argument kind → "closed-with-admission" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "２０２６-１１-０５" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test ragunanMondayIsExplicitlyClosed() started.
+􀟈  Test missingMiddleHourCannotBeInterpolatedAsDry() started.
+􀟈  Test invalidGregorianBoundariesAreRejected(_:) started.
+􀟈  Test nonFiniteEvaluationClockIsRejected(_:) started.
+􀟈  Test completePublishedRuleMatrixAgainstBruteForceDomain() started.
+􀟈  Test jakartaDateIsIndependentOfDeviceTimeZone() started.
+􀟈  Test macanClosureNoticeOverridesRegularTable() started.
+􀟈  Test case passing 1 argument kind → "empty-id" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-02-29" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test gbkWholeVisitCannotCrossMiddayClosure() started.
+􀟈  Test partialHourGapNullAndInvalidRainAreUnknown() started.
+􀟈  Test fridayCheckinResumesAtThirteen() started.
+􀟈  Test fridayCikiniNewEntryIsPaused() started.
+􀟈  Test actualCatalogProvenance() started.
+􀟈  Test staleFactsBlockCurrentSuggestions() started.
+􀟈  Test case passing 1 argument text → "2026-04-31" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "invalid-url" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test fridayPauseIsNotVenueClosure() started.
+􀟈  Test missingForecastDoesNotMeanZeroRain() started.
+􀟈  Test invalidCalendarDateRejected() started.
+􀟈  Test noOutdoorContextInventedForLibrary() started.
+􀟈  Test case passing 1 argument text → "2026-00-05" to nonCanonicalOrImpossibleDatesRejected(_:) started.
+􀟈  Test historicalDayIsNotReconstructedFromNewSnapshot() started.
+􀟈  Test gbkMiddayIsOutsidePublishedSessions() started.
+􀟈  Test case passing 1 argument kind → "unknown-exposure" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􀟈  Test ragunanCannotStayAfterSixteen() started.
+􀟈  Test unpublishedBestTimeRemainsUnknown() started.
+􀟈  Test omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test storageKeepsUnreadableFileAndRestoresValidRuns() started.
+􀟈  Test jatiWeekendClosesAtFourteenThirty() started.
+􀟈  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() started.
+􀟈  Test case passing 1 argument kind → "foreign-time-zone" to invalidProvenanceAndContradictoryRulesRejected(_:) started.
+􁁛  Test malformedDurationsRejectedWithoutOverflow(_:) with 9 test cases passed after 0.022 seconds.
+􁁛  Test sourceExpiryBoundaryIsExact() passed after 0.023 seconds.
+􁁛  Test nonCanonicalOrImpossibleDatesRejected(_:) with 8 test cases passed after 0.023 seconds.
+􁁛  Test sessionOrderCannotChangeAllowedStartRanges() passed after 0.023 seconds.
+􁁛  Test malformedAvailabilityRejected(_:) with 6 test cases passed after 0.023 seconds.
+􀟈  Test case passing 1 argument coordinate → (0.0, 0.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test case passing 1 argument coordinate → (91.0, 106.8) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test case passing 1 argument coordinate → (-6.2, 181.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test case passing 1 argument coordinate → (-6.2, -73.0) to coordinatesOutsideJakartaAreRejected(_:) started.
+􀟈  Test case passing 1 argument kind → "duplicate" to ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􀟈  Test case passing 1 argument kind → "overlap" to ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) started.
+􁁛  Test oneMillisecondAfterStartCannotOfferPastSlot() passed after 0.028 seconds.
+􀟈  Test case passing 1 argument interval → 1.7976931348623157e+308 to finiteButUnencodableEvaluationClockIsRejected(_:) started.
+􀟈  Test case passing 1 argument interval → -1.7976931348623157e+308 to finiteButUnencodableEvaluationClockIsRejected(_:) started.
+􁁛  Test actualGbkRainOptionsStayInPublishedSessions() passed after 0.031 seconds.
+􁁛  Test identityCollisionCannotOverwriteEarlierExperiment() passed after 0.031 seconds.
+􁁛  Test syntacticallyValidButCorruptHistoryIsNotTrusted(_:) with 5 test cases passed after 0.031 seconds.
+􀟈  Test case passing 1 argument interval → 1.7976931348623157e+308 to corruptExtremeOrMillisecondTimestampCannotPoisonHistory(_:) started.
+􀟈  Test case passing 1 argument interval → 1793838600000.0 to corruptExtremeOrMillisecondTimestampCannotPoisonHistory(_:) started.
+􀟈  Test case passing 1 argument text → "2024-02-29" to validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "2000-02-29" to validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "2028-02-29" to validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "2026-12-31" to validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "2027-01-01" to validLeapAndYearBoundaryDatesRoundTrip(_:) started.
+􀟈  Test case passing 1 argument text → "2100-02-29" to invalidGregorianBoundariesAreRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-13-01" to invalidGregorianBoundariesAreRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-01-00" to invalidGregorianBoundariesAreRejected(_:) started.
+􀟈  Test case passing 1 argument text → "2026-12-32" to invalidGregorianBoundariesAreRejected(_:) started.
+􀟈  Test case passing 1 argument interval → nan to nonFiniteEvaluationClockIsRejected(_:) started.
+􀟈  Test case passing 1 argument interval → inf to nonFiniteEvaluationClockIsRejected(_:) started.
+􀟈  Test case passing 1 argument interval → -inf to nonFiniteEvaluationClockIsRejected(_:) started.
+􀟈  Test case passing 1 argument rain → nan to invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test case passing 1 argument rain → inf to invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test case passing 1 argument rain → -inf to invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test case passing 1 argument rain → -0.01 to invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test case passing 1 argument rain → 1.01 to invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) started.
+􀟈  Test case passing 1 argument venue → "tanjung-duren" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument venue → "gandaria" to omittedWeekendHoursRemainUnknown(_:) started.
+􀟈  Test case passing 1 argument venue → "koja" to omittedWeekendHoursRemainUnknown(_:) started.
+􁁛  Test alternateDateCannotBypassPastTimeGuard() passed after 0.063 seconds.
+􁁛  Test invalidProvenanceAndContradictoryRulesRejected(_:) with 9 test cases passed after 0.063 seconds.
+􁁛  Test actualGbkSunsetPreferenceFitsClosingTime() passed after 0.063 seconds.
+􁁛  Test coordinatesOutsideJakartaAreRejected(_:) with 4 test cases passed after 0.054 seconds.
+􁁛  Test nonFiniteMeasurementsRemainSerializableAndUnknown() passed after 0.054 seconds.
+􁁛  Test actualRagunanSunsetCannotFitBeforeSixteen() passed after 0.063 seconds.
+􁁛  Test wrongVenueExpiredAndMissingDataAreNotReused() passed after 0.063 seconds.
+􁁛  Test staleWeatherIsRemovedEvenWhenVenueReturnsEarly() passed after 0.053 seconds.
+􁁛  Test contradictoryForecastChronologyIsRejected() passed after 0.053 seconds.
+􁁛  Test crossingMidnightCannotReviveYesterdaysSlots() passed after 0.051 seconds.
+􁁛  Test expiryIsExclusiveAndApplicationLifetimeIsCapped() passed after 0.054 seconds.
+􁁛  Test actualGbkDaylightEndsBeforeSunset() passed after 0.063 seconds.
+􁁛  Test finiteButUnencodableEvaluationClockIsRejected(_:) with 2 test cases passed after 0.047 seconds.
+􁁛  Test gbkHasTwoSeparateStartRanges() passed after 0.050 seconds.
+􁁛  Test permutationOfUnambiguousHoursPreservesResults() passed after 0.053 seconds.
+􁁛  Test validLeapAndYearBoundaryDatesRoundTrip(_:) with 5 test cases passed after 0.043 seconds.
+􁁛  Test unknownVenueAndSourceRejected() passed after 0.043 seconds.
+􁁛  Test corruptExtremeOrMillisecondTimestampCannotPoisonHistory(_:) with 2 test cases passed after 0.043 seconds.
+􁁛  Test solarContradictionDoesNotEraseIndependentHourlyRain() passed after 0.050 seconds.
+􁁛  Test invalidGregorianBoundariesAreRejected(_:) with 4 test cases passed after 0.042 seconds.
+􁁛  Test nonFiniteEvaluationClockIsRejected(_:) with 3 test cases passed after 0.043 seconds.
+􁁛  Test ragunanMondayIsExplicitlyClosed() passed after 0.043 seconds.
+􁁛  Test ambiguousHourlyIntervalsDoNotProduceRainRanking(_:) with 2 test cases passed after 0.054 seconds.
+􁁛  Test macanClosureNoticeOverridesRegularTable() passed after 0.043 seconds.
+􁁛  Test jakartaDateIsIndependentOfDeviceTimeZone() passed after 0.043 seconds.
+􁁛  Test gbkWholeVisitCannotCrossMiddayClosure() passed after 0.043 seconds.
+􁁛  Test partialHourGapNullAndInvalidRainAreUnknown() passed after 0.042 seconds.
+􁁛  Test fridayCheckinResumesAtThirteen() passed after 0.042 seconds.
+􁁛  Test lowerRainIsOrderedBeforeEarlierTimeEvenForTinyDifferences() passed after 0.054 seconds.
+􁁛  Test actualCatalogProvenance() passed after 0.042 seconds.
+􁁛  Test fridayCikiniNewEntryIsPaused() passed after 0.042 seconds.
+􁁛  Test staleFactsBlockCurrentSuggestions() passed after 0.042 seconds.
+􁁛  Test fridayPauseIsNotVenueClosure() passed after 0.042 seconds.
+􁁛  Test missingForecastDoesNotMeanZeroRain() passed after 0.042 seconds.
+􁁛  Test invalidCalendarDateRejected() passed after 0.042 seconds.
+􁁛  Test noOutdoorContextInventedForLibrary() passed after 0.042 seconds.
+􁁛  Test historicalDayIsNotReconstructedFromNewSnapshot() passed after 0.042 seconds.
+􁁛  Test missingMiddleHourCannotBeInterpolatedAsDry() passed after 0.043 seconds.
+􁁛  Test ragunanCannotStayAfterSixteen() passed after 0.042 seconds.
+􁁛  Test gbkMiddayIsOutsidePublishedSessions() passed after 0.042 seconds.
+􁁛  Test omittedWeekendHoursRemainUnknown(_:) with 3 test cases passed after 0.042 seconds.
+􁁛  Test unpublishedBestTimeRemainsUnknown() passed after 0.042 seconds.
+􁁛  Suite AcquiredForecastReplay passed after 0.064 seconds.
+􁁛  Suite ExtremeDateAndSourceTests passed after 0.066 seconds.
+􁁛  Suite ExtremeForecastTests passed after 0.066 seconds.
+􁁛  Suite EnvironmentContractChecks passed after 0.066 seconds.
+􁁛  Test petojoFridayHasEntryPauseButJatinegaraDoesNotClaimOne() passed after 0.045 seconds.
+􁁛  Test invalidRainCannotBecomeDryWeatherOrEraseValidSolarData(_:) with 5 test cases passed after 0.046 seconds.
+􁁛  Test jatiWeekendClosesAtFourteenThirty() passed after 0.045 seconds.
+􁁛  Test storageKeepsUnreadableFileAndRestoresValidRuns() passed after 0.048 seconds.
+􁁛  Suite PublishedJakartaCases passed after 0.070 seconds.
+􁁛  Test advancingTodayClockOnlyRemovesPossibleStarts() passed after 0.068 seconds.
+EXTREME_MONOTONIC_COMPARISONS=308
+􁁛  Test increasingDurationAndNarrowingAvailabilityNeverIntroduceNewStarts() passed after 0.146 seconds.
+EXTREME_PUBLISHED_MATRIX_CASES=1155
+􁁛  Test completePublishedRuleMatrixAgainstBruteForceDomain() passed after 0.390 seconds.
+􁁛  Suite TimingInvariantTests passed after 0.410 seconds.
+􁁛  Test twoHundredConcurrentSavesAndReadsLoseNoRuns() passed after 0.610 seconds.
+􁁛  Suite ExtremeStorageTests passed after 0.610 seconds.
+􁁛  Test run with 59 tests in 7 suites passed after 0.610 seconds.

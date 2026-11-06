@@ -1,0 +1,11 @@
+ERROR: The application failed to launch. (com.apple.dt.CoreDeviceError error 10002 (0x2712))
+       BundleIdentifier = giovanchristoffel.c67-foundation-lab
+       ----------------------------------------
+           The request to open "giovanchristoffel.c67-foundation-lab" failed. (FBSOpenApplicationServiceErrorDomain error 1 (0x01))
+           NSLocalizedFailureReason = The request was denied by service delegate (SBMainWorkspace) for reason: Locked ("Unable to launch giovanchristoffel.c67-foundation-lab because the device was not, or could not be, unlocked").
+           FBSOpenApplicationRequestID = 0xecca
+           BSErrorCodeDescription = RequestDenied
+       ----------------------------------------
+               The operation couldn’t be completed. Unable to launch giovanchristoffel.c67-foundation-lab because the device was not, or could not be, unlocked. (FBSOpenApplicationErrorDomain error 7 (0x07))
+               BSErrorCodeDescription = Locked
+               NSLocalizedFailureReason = Unable to launch giovanchristoffel.c67-foundation-lab because the device was not, or could not be, unlocked.

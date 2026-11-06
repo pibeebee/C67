@@ -1,0 +1,129 @@
+{
+  "startedAt": "2026-11-02T23:04:06.428Z",
+  "workflowVersion": 3,
+  "input": {
+    "title": "Uji daftar acak pengguna — 15 lokasi, tanpa jam atau urutan rute",
+    "date": "2026-12-01",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "P01",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "P02",
+        "locationId": "inamura_station",
+        "label": "Stasiun Inamuragasaki",
+        "optional": false
+      },
+      {
+        "id": "P03",
+        "locationId": "enoshima_souvenir",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "P04",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge",
+        "optional": false
+      },
+      {
+        "id": "P05",
+        "locationId": "sea_candle",
+        "label": "Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "P06",
+        "locationId": "kokomae",
+        "label": "Stasiun Kamakurakokomae",
+        "optional": false
+      },
+      {
+        "id": "P07",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu",
+        "optional": false
+      },
+      {
+        "id": "P08",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach",
+        "optional": false
+      },
+      {
+        "id": "P09",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "P10",
+        "locationId": "fujisawa_station",
+        "label": "Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      },
+      {
+        "id": "P11",
+        "locationId": "enoshima_station",
+        "label": "Stasiun Enoshima",
+        "optional": false
+      },
+      {
+        "id": "P12",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street",
+        "optional": false
+      },
+      {
+        "id": "P13",
+        "locationId": "katase_station",
+        "label": "Stasiun Katase-Enoshima",
+        "optional": false
+      },
+      {
+        "id": "P14",
+        "locationId": "komachi",
+        "label": "Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "P15",
+        "locationId": "kamakura_station",
+        "label": "Stasiun Kamakura",
+        "optional": false
+      }
+    ],
+    "requiredWalk": null,
+    "requiredTransit": [],
+    "transportContext": [
+      "Kereta dan jalan kaki tersedia. Sistem harus menentukan urutan dan pasangan perpindahan berdasarkan evidence.",
+      "Stasiun dalam daftar dapat berperan sebagai titik transfer/dwell, bukan otomatis tempat wisata."
+    ],
+    "inputNote": "Urutan array persis urutan acak pengguna setelah apartment dihapus. Tidak ada waktu/durasi, coastal walk wajib, pasangan kereta, makan atau illumination yang ditambahkan dari cerita sebelumnya. Titik awal/akhir Stasiun Funabashi mengikuti konteks pengujian sebelum apartment; tanggal mengikuti koreksi pengguna: 1 Desember 2026."
+  },
+  "roleModels": {
+    "researcher": {
+      "model": "nvidia/nemotron-3.5-super-vl:free",
+      "maxCompletionTokens": 32768,
+      "timeoutMs": 300000
+    },
+    "planner": {
+      "model": "nvidia/nemotron-3.5-super-vl:free",
+      "maxCompletionTokens": 32768,
+      "timeoutMs": 300000
+    },
+    "reviewer": {
+      "model": "nvidia/nemotron-3.5-super-vl:free",
+      "maxCompletionTokens": 32768,
+      "timeoutMs": 300000
+    }
+  },
+  "constraints": "No change to user destinations; reviewer agreement does not replace evidence."
+}

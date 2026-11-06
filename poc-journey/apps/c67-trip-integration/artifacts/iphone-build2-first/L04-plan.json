@@ -1,0 +1,2442 @@
+{
+  "conflicts" : [
+
+  ],
+  "createdAt" : "2026-11-05T09:57:36Z",
+  "evidenceMode" : "live",
+  "finish" : "2026-11-06T03:55:55Z",
+  "id" : "C562E2D2-E657-4DCC-BA90-A72BCBD31FFE",
+  "legs" : [
+    {
+      "arrival" : "2026-11-06T00:21:13Z",
+      "departure" : "2026-11-06T00:00:00Z",
+      "from" : "Bundaran HI Bank Jakarta",
+      "id" : "gbk/ragunan:0",
+      "providerStatus" : "available",
+      "seconds" : 1273,
+      "to" : "Hutan Kota GBK"
+    },
+    {
+      "arrival" : "2026-11-06T02:12:13Z",
+      "departure" : "2026-11-06T01:30:00Z",
+      "from" : "Hutan Kota GBK",
+      "id" : "gbk/ragunan:1",
+      "providerStatus" : "available",
+      "seconds" : 2533,
+      "to" : "Ragunan Zoo"
+    },
+    {
+      "arrival" : "2026-11-06T03:55:55Z",
+      "departure" : "2026-11-06T03:15:00Z",
+      "from" : "Ragunan Zoo",
+      "id" : "gbk/ragunan:2",
+      "providerStatus" : "available",
+      "seconds" : 2455,
+      "to" : "Bundaran HI Bank Jakarta"
+    }
+  ],
+  "metrics" : [
+    {
+      "requests" : 0,
+      "seconds" : 0.0008420944213867188,
+      "stage" : "preferences"
+    },
+    {
+      "requests" : 3,
+      "seconds" : 0.9122170209884644,
+      "stage" : "mapkit_search"
+    },
+    {
+      "requests" : 3,
+      "seconds" : 0.5411070585250854,
+      "stage" : "weather_groups"
+    },
+    {
+      "requests" : 6,
+      "seconds" : 6.156487941741943,
+      "stage" : "mapkit_eta"
+    },
+    {
+      "requests" : 0,
+      "seconds" : 6.709295034408569,
+      "stage" : "plan_total_excluding_review_search"
+    }
+  ],
+  "prepared" : {
+    "locations" : [
+      {
+        "candidates" : [
+          {
+            "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+            "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+            "latitude" : -6.1912059,
+            "longitude" : 106.8226755,
+            "name" : "Bundaran HI Bank Jakarta",
+            "source" : "MapKit search"
+          }
+        ],
+        "id" : "origin",
+        "manualConfirmation" : false,
+        "query" : "Bundaran HI Jakarta",
+        "selected" : {
+          "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+          "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+          "latitude" : -6.1912059,
+          "longitude" : 106.8226755,
+          "name" : "Bundaran HI Bank Jakarta",
+          "source" : "MapKit search"
+        }
+      },
+      {
+        "candidates" : [
+          {
+            "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+            "id" : "Hutan Kota GBK:-6.219204:106.804564",
+            "latitude" : -6.219204,
+            "longitude" : 106.804564,
+            "name" : "Hutan Kota GBK",
+            "source" : "MapKit search"
+          }
+        ],
+        "id" : "gbk",
+        "manualConfirmation" : false,
+        "query" : "Hutan Kota GBK Jakarta",
+        "selected" : {
+          "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+          "id" : "Hutan Kota GBK:-6.219204:106.804564",
+          "latitude" : -6.219204,
+          "longitude" : 106.804564,
+          "name" : "Hutan Kota GBK",
+          "source" : "MapKit search"
+        }
+      },
+      {
+        "candidates" : [
+          {
+            "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+            "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+            "latitude" : -6.3115769,
+            "longitude" : 106.8210661,
+            "name" : "Ragunan Zoo",
+            "source" : "MapKit search"
+          }
+        ],
+        "id" : "ragunan",
+        "manualConfirmation" : false,
+        "query" : "Ragunan Zoo Jakarta",
+        "selected" : {
+          "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+          "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+          "latitude" : -6.3115769,
+          "longitude" : 106.8210661,
+          "name" : "Ragunan Zoo",
+          "source" : "MapKit search"
+        }
+      }
+    ],
+    "request" : {
+      "allowOpenMeteo" : false,
+      "deadline" : "2026-11-06T12:00:00Z",
+      "defaultDuration" : 60,
+      "departure" : "2026-11-06T00:00:00Z",
+      "desiredCount" : 3,
+      "durationByVenue" : {
+
+      },
+      "goal" : "lowerRain",
+      "id" : "4B683613-A198-4BDC-ABDF-E07E4A4BA7E8",
+      "originQuery" : "Bundaran HI Jakarta",
+      "profile" : {
+        "avoid" : [
+
+        ],
+        "direction" : "",
+        "directionConfirmed" : false,
+        "excludedIDs" : [
+
+        ],
+        "must" : [
+
+        ],
+        "prefer" : [
+          "nature",
+          "outdoor"
+        ],
+        "schemaVersion" : 1
+      },
+      "requiredCandidateIDs" : [
+        "gbk",
+        "ragunan"
+      ],
+      "revision" : 0,
+      "useEmbedding" : false
+    },
+    "searchRequests" : 3,
+    "searchSeconds" : 0.9122170209884644,
+    "selectedIDs" : [
+      "gbk",
+      "ragunan"
+    ]
+  },
+  "providerLog" : "eyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzRaIiwiY2F0ZWdvcnkiOiJhcHAiLCJldmVudCI6InNlc3Npb24uc3RhcnRlZCIsImZpZWxkcyI6eyJhcHBWZXJzaW9uIjoiMC4xIiwiYnVpbGQiOiIyIiwiYnVuZGxlSUQiOiJnaW92YW5jaHJpc3RvZmZlbC5jNjctdHJpcC1pbnRlZ3JhdGlvbiIsImZvcm1hdCI6IkM2Ny1uYXRpdmUtbG9nLXYxOyBKU09OIExpbmVzIiwib3MiOiJWZXJzaW9uIDI3LjAuMSAoQnVpbGQgMjRBNDQ2KSIsInJldGVudGlvbiI6IjMgZmlsZXMsIDUwMDAwMCBieXRlcy9maWxlOyBsb2NhbCBvbmx5In0sImlkIjoiOEU0N0NGNzAtOTAwNC00OEFFLUFEMzAtRkFDNTE2MTVBMTIxIiwibGV2ZWwiOiJpbmZvIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjEsInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM0WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVxdWVzdGVkIiwiZmllbGRzIjp7ImRlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwiZnJvbSI6IkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIsImZyb21Db29yZGluYXRlIjoiLTYuMTkxMjA1OSwxMDYuODIyNjc1NSIsIm1vZGUiOiJhdXRvbW9iaWxlIiwicmVxdWVzdElEIjoiNjY3RUVBNTMtMENBNC00NTFBLUJFNUQtRjA4N0I5NEZGQjVEIiwidGltZW91dFNlY29uZHMiOiIyNSIsInRvIjoiQmFjYSBEaSBUZWJldCBQZXJwdXN0YWthYW4gZGFuIFJ1YW5nIFRlbXUiLCJ0b0Nvb3JkaW5hdGUiOiItNi4yMzYyMzcsMTA2Ljg0Njk3NCJ9LCJpZCI6IjQ0QjAxOTMwLTRBRjMtNDhBNi1BRDIxLTIyRTQ2NzhCQTg4RiIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjIsInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM0WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucHJvdmlkZXJfcmVzcG9uc2UiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiIxMjAyMS4wIiwiZXhwZWN0ZWRBcnJpdmFsIjoiMjAyNi0xMS0wNlQwMjoyNjo0OVoiLCJleHBlY3RlZERlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwiZXhwZWN0ZWRUcmF2ZWxTZWNvbmRzIjoiMTYwOS4wIiwicmVxdWVzdElEIjoiNjY3RUVBNTMtMENBNC00NTFBLUJFNUQtRjA4N0I5NEZGQjVEIiwidHJhbnNwb3J0VHlwZSI6IjEifSwiaWQiOiI2NzI1N0ZFRC0xMzZDLTRCNzktQjcwMi02MkM5MjE3NDg2MUYiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkIzQjE4NDI2LTVCOTEtNEQxNy1BNjAwLURGMzBDNjVEOUE0QSIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjozLCJzZXNzaW9uSUQiOiI4QTFGNUQyNC0zM0U5LTRBNTAtQTdCRS1DMjBBQUJDNzNBNTYifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozNFoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnJlc3VsdCIsImZpZWxkcyI6eyJkaXN0YW5jZSI6IjEyMDIxLjAiLCJlbGFwc2VkU2Vjb25kcyI6IjAuMTkzMDI1OTQ2NjE3MTI2NDYiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDAyOjI2OjQ5WiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMjowMDowMFoiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwicmVxdWVzdElEIjoiNjY3RUVBNTMtMENBNC00NTFBLUJFNUQtRjA4N0I5NEZGQjVEIiwic2Vjb25kcyI6IjE2MDkuMCIsInNvdXJjZSI6InByb3ZpZGVyIiwic3RhdHVzIjoiYXZhaWxhYmxlIn0sImlkIjoiNDFGQUIwMTMtQzgxNC00QjRDLTlFNTQtNjUxQUY0RTE1MTRDIiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJCM0IxODQyNi01QjkxLTREMTctQTYwMC1ERjMwQzY1RDlBNEEiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6NCwic2Vzc2lvbklEIjoiOEExRjVEMjQtMzNFOS00QTUwLUE3QkUtQzIwQUFCQzczQTU2In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzRaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6InJvdXRlLm9wdGlvbiIsImZpZWxkcyI6eyJmcm9tIjoib3JpZ2luIiwibW9kZSI6ImF1dG9tb2JpbGUiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwic3RhdHVzIjoiYXZhaWxhYmxlIiwidG8iOiJiZHQtcmJiaiJ9LCJpZCI6IkMyMDY3QjBELURBMTUtNEIyOS04NzcwLTc5MDQyMkY0M0M2MyIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjUsInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM0WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVxdWVzdGVkIiwiZmllbGRzIjp7ImRlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDY6MzA6MDBaIiwiZnJvbSI6IkJhY2EgRGkgVGViZXQgUGVycHVzdGFrYWFuIGRhbiBSdWFuZyBUZW11IiwiZnJvbUNvb3JkaW5hdGUiOiItNi4yMzYyMzcsMTA2Ljg0Njk3NCIsIm1vZGUiOiJhdXRvbW9iaWxlIiwicmVxdWVzdElEIjoiMjA4OUFGODAtMkZBOS00NzNGLThDN0EtMUZDREJCRDBBMDMzIiwidGltZW91dFNlY29uZHMiOiIyNSIsInRvIjoiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwidG9Db29yZGluYXRlIjoiLTYuMTkxMjA1OSwxMDYuODIyNjc1NSJ9LCJpZCI6IjRCNEVGNTEzLThFMUYtNERFNC04NjZELTZBQ0M5NzU0NDM2NSIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjYsInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM1WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucHJvdmlkZXJfcmVzcG9uc2UiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiI4MTc2LjAiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDA2OjU1OjIxWiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwNjozMDowMFoiLCJleHBlY3RlZFRyYXZlbFNlY29uZHMiOiIxNTIxLjAiLCJyZXF1ZXN0SUQiOiIyMDg5QUY4MC0yRkE5LTQ3M0YtOEM3QS0xRkNEQkJEMEEwMzMiLCJ0cmFuc3BvcnRUeXBlIjoiMSJ9LCJpZCI6IjBDNkJFRTE0LTQ4NkEtNDc1Ni05REMwLUVERjZEMjU1RDZFRCIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjcsInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM1WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVzdWx0IiwiZmllbGRzIjp7ImRpc3RhbmNlIjoiODE3Ni4wIiwiZWxhcHNlZFNlY29uZHMiOiIxLjI0MjM2MTkwMzE5MDYxMjgiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDA2OjU1OjIxWiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwNjozMDowMFoiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwicmVxdWVzdElEIjoiMjA4OUFGODAtMkZBOS00NzNGLThDN0EtMUZDREJCRDBBMDMzIiwic2Vjb25kcyI6IjE1MjEuMCIsInNvdXJjZSI6InByb3ZpZGVyIiwic3RhdHVzIjoiYXZhaWxhYmxlIn0sImlkIjoiQUMxNkI3NzktM0M2NS00MzJDLTlCMzktMUYwM0IzRDEzMkI3IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJCM0IxODQyNi01QjkxLTREMTctQTYwMC1ERjMwQzY1RDlBNEEiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6OCwic2Vzc2lvbklEIjoiOEExRjVEMjQtMzNFOS00QTUwLUE3QkUtQzIwQUFCQzczQTU2In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzVaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6InJvdXRlLm9wdGlvbiIsImZpZWxkcyI6eyJmcm9tIjoiYmR0LXJiYmoiLCJtb2RlIjoiYXV0b21vYmlsZSIsIm5vdGUiOiJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLCJzdGF0dXMiOiJhdmFpbGFibGUiLCJ0byI6Im9yaWdpbiJ9LCJpZCI6IkE3NkYxNDI3LUE3MDMtNDFFRi1BMDIwLUUwOEM0OUVDRjE0QyIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjksInNlc3Npb25JRCI6IjhBMUY1RDI0LTMzRTktNEE1MC1BN0JFLUMyMEFBQkM3M0E1NiJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM1WiIsImNhdGVnb3J5Ijoib3B0aW1pemVyIiwiZXZlbnQiOiJyb3V0aW5nLmxpdmVfY2FuZGlkYXRlIiwiZmllbGRzIjp7ImNvbXBsZXRlIjoidHJ1ZSIsImNvbmZsaWN0cyI6IiIsImVsYXBzZWRNaW51dGVzIjoiMjk1LjM1IiwiZmVhc2libGUiOiJ0cnVlIiwib3JkZXIiOiJiZHQtcmJiaiIsInNvdXJjZSI6ImJhc2VsaW5lX2xpdmUiLCJ0cmF2ZWxNaW51dGVzIjoiNTIuMTY2NjY2NjY2NjY2NjciLCJ3YWl0aW5nTWludXRlcyI6IjE4My4xODMzMzMzMzMzMzMzNCJ9LCJpZCI6IjRCMkM3QzM2LUM3OTYtNDJEMy04QjE4LUJDNEJBMzI1RDU0RSIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQjNCMTg0MjYtNUI5MS00RDE3LUE2MDAtREYzMEM2NUQ5QTRBIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjEwLCJzZXNzaW9uSUQiOiI4QTFGNUQyNC0zM0U5LTRBNTAtQTdCRS1DMjBBQUJDNzNBNTYifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozNVoiLCJjYXRlZ29yeSI6Im9wdGltaXplciIsImV2ZW50Ijoicm91dGluZy5hZGFwdGl2ZV9kZWNpc2lvbiIsImZpZWxkcyI6eyJiYXNlbGluZVJlcXVlc3RzIjoiMiIsImVzdGltYXRlZFNhdmluZ01pbnV0ZXMiOiIwLjAiLCJsYXJnZVdhaXRNaW51dGVzIjoiMjAuMCIsIm1pbmltdW1TYXZpbmdGcmFjdGlvbiI6IjAuMDMiLCJtaW5pbXVtU2F2aW5nTWludXRlcyI6IjUuMCIsIm9wdGltaXplIjoiZmFsc2UiLCJyZWFzb24iOiJhbGxfc21hbGxfb3JkZXJzX3ZhbGlkYXRlZCIsInNjcmVlbmluZ0V2YWx1YXRpb25zIjoiMCIsInNjcmVlbmluZ1NlY29uZHMiOiIwLjAwMDIzMTk4MTI3NzQ2NTgyMDMifSwiaWQiOiIyNUE5MzdBQS1CMjBELTQ0NTctQjA3Qy1BOUM3M0FGRjRCRkIiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkIzQjE4NDI2LTVCOTEtNEQxNy1BNjAwLURGMzBDNjVEOUE0QSIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxMSwic2Vzc2lvbklEIjoiOEExRjVEMjQtMzNFOS00QTUwLUE3QkUtQzIwQUFCQzczQTU2In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzVaIiwiY2F0ZWdvcnkiOiJvcHRpbWl6ZXIiLCJldmVudCI6InJvdXRpbmcucGlwZWxpbmVfY29tcGxldGVkIiwiZmllbGRzIjp7ImJhc2VsaW5lRWxhcHNlZE1pbnV0ZXMiOiIyOTUuMzUiLCJjYW5kaWRhdGVDb3VudCI6IjEiLCJjYXJVc2UiOiJvbkRlbWFuZCIsImVsYXBzZWRTZWNvbmRzIjoiMS40NDY3NDY5NDUzODExNjQ2Iiwib2JqZWN0aXZlIjoiZWxhcHNlZF92MiIsInJlcXVlc3RzIjoiMiIsInNlbGVjdGVkRWxhcHNlZE1pbnV0ZXMiOiIyOTUuMzUifSwiaWQiOiJBQUYwRkY3MS04MTFGLTQ3MjQtQjIxMi1CQzYzNUFCRkYzRkIiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkIzQjE4NDI2LTVCOTEtNEQxNy1BNjAwLURGMzBDNjVEOUE0QSIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxMiwic2Vzc2lvbklEIjoiOEExRjVEMjQtMzNFOS00QTUwLUE3QkUtQzIwQUFCQzczQTU2In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzdaIiwiY2F0ZWdvcnkiOiJhcHAiLCJldmVudCI6InNlc3Npb24uc3RhcnRlZCIsImZpZWxkcyI6eyJhcHBWZXJzaW9uIjoiMC4xIiwiYnVpbGQiOiIyIiwiYnVuZGxlSUQiOiJnaW92YW5jaHJpc3RvZmZlbC5jNjctdHJpcC1pbnRlZ3JhdGlvbiIsImZvcm1hdCI6IkM2Ny1uYXRpdmUtbG9nLXYxOyBKU09OIExpbmVzIiwib3MiOiJWZXJzaW9uIDI3LjAuMSAoQnVpbGQgMjRBNDQ2KSIsInJldGVudGlvbiI6IjMgZmlsZXMsIDUwMDAwMCBieXRlcy9maWxlOyBsb2NhbCBvbmx5In0sImlkIjoiOTlEOEE0MDktMTlCRi00OURCLUJBODctMDkyRjNEMTI4NzE0IiwibGV2ZWwiOiJpbmZvIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjEsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM3WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVxdWVzdGVkIiwiZmllbGRzIjp7ImRlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDA6MDA6MDBaIiwiZnJvbSI6IkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIsImZyb21Db29yZGluYXRlIjoiLTYuMTkxMjA1OSwxMDYuODIyNjc1NSIsIm1vZGUiOiJhdXRvbW9iaWxlIiwicmVxdWVzdElEIjoiNjkxRDU3QzktQkE3OS00ODE3LUE1MkEtOTQ1MTk1MjkyNjcyIiwidGltZW91dFNlY29uZHMiOiIyNSIsInRvIjoiSHV0YW4gS290YSBHQksiLCJ0b0Nvb3JkaW5hdGUiOiItNi4yMTkyMDQsMTA2LjgwNDU2NCJ9LCJpZCI6IjNFNDYyNUEyLTk5RUEtNEQwMC1CRjNDLTk1QzExN0Y4NDEyMyIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjIsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM3WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucHJvdmlkZXJfcmVzcG9uc2UiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiI4NjA5LjAiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDAwOjIxOjEzWiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMDowMDowMFoiLCJleHBlY3RlZFRyYXZlbFNlY29uZHMiOiIxMjczLjAiLCJyZXF1ZXN0SUQiOiI2OTFENTdDOS1CQTc5LTQ4MTctQTUyQS05NDUxOTUyOTI2NzIiLCJ0cmFuc3BvcnRUeXBlIjoiMSJ9LCJpZCI6IjI5OEUxM0YzLTc2QTYtNDQxNS1CMTg0LThDRDE0N0E4RjE3NCIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjMsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM3WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVzdWx0IiwiZmllbGRzIjp7ImRpc3RhbmNlIjoiODYwOS4wIiwiZWxhcHNlZFNlY29uZHMiOiIwLjE3OTQ3NjAyMjcyMDMzNjkxIiwiZXhwZWN0ZWRBcnJpdmFsIjoiMjAyNi0xMS0wNlQwMDoyMToxM1oiLCJleHBlY3RlZERlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDA6MDA6MDBaIiwibm90ZSI6IkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsInJlcXVlc3RJRCI6IjY5MUQ1N0M5LUJBNzktNDgxNy1BNTJBLTk0NTE5NTI5MjY3MiIsInNlY29uZHMiOiIxMjczLjAiLCJzb3VyY2UiOiJwcm92aWRlciIsInN0YXR1cyI6ImF2YWlsYWJsZSJ9LCJpZCI6IjlDRUREQkVCLTM2NTctNDU2Mi1CNjUyLURBNThBQjY1NEE0QSIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjQsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM3WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJyb3V0ZS5vcHRpb24iLCJmaWVsZHMiOnsiZnJvbSI6Im9yaWdpbiIsIm1vZGUiOiJhdXRvbW9iaWxlIiwibm90ZSI6IkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsInN0YXR1cyI6ImF2YWlsYWJsZSIsInRvIjoiZ2JrIn0sImlkIjoiRjIyREY4QzgtNjgyNi00QTk5LTkxOUQtREYwRTI2RUE0OEM0IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6NSwic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzdaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5yZXF1ZXN0ZWQiLCJmaWVsZHMiOnsiZGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMTozMDowMFoiLCJmcm9tIjoiSHV0YW4gS290YSBHQksiLCJmcm9tQ29vcmRpbmF0ZSI6Ii02LjIxOTIwNCwxMDYuODA0NTY0IiwibW9kZSI6ImF1dG9tb2JpbGUiLCJyZXF1ZXN0SUQiOiJEMjdEMTk5OC0zOEMzLTQ3OEUtQUE3Qi0yQTdCRTA2RjQ1ODIiLCJ0aW1lb3V0U2Vjb25kcyI6IjI1IiwidG8iOiJSYWd1bmFuIFpvbyIsInRvQ29vcmRpbmF0ZSI6Ii02LjMxMTU3NjksMTA2LjgyMTA2NjEifSwiaWQiOiIzQzFFRTU0Ni05MUIwLTQ0M0ItODMyNy1FNjYyQUM2MDdBNkQiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjo2LCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozOFoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnByb3ZpZGVyX3Jlc3BvbnNlIiwiZmllbGRzIjp7ImRpc3RhbmNlIjoiMjcwODMuMCIsImV4cGVjdGVkQXJyaXZhbCI6IjIwMjYtMTEtMDZUMDI6MTI6MTNaIiwiZXhwZWN0ZWREZXBhcnR1cmUiOiIyMDI2LTExLTA2VDAxOjMwOjAwWiIsImV4cGVjdGVkVHJhdmVsU2Vjb25kcyI6IjI1MzMuMCIsInJlcXVlc3RJRCI6IkQyN0QxOTk4LTM4QzMtNDc4RS1BQTdCLTJBN0JFMDZGNDU4MiIsInRyYW5zcG9ydFR5cGUiOiIxIn0sImlkIjoiODAzOUEzRjctRTJDMS00ODRELTlFQzgtRkE5Q0E3NDRDOTdBIiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6Nywic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzhaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5yZXN1bHQiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiIyNzA4My4wIiwiZWxhcHNlZFNlY29uZHMiOiIxLjQzNzE0MjAxNDUwMzQ3OSIsImV4cGVjdGVkQXJyaXZhbCI6IjIwMjYtMTEtMDZUMDI6MTI6MTNaIiwiZXhwZWN0ZWREZXBhcnR1cmUiOiIyMDI2LTExLTA2VDAxOjMwOjAwWiIsIm5vdGUiOiJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLCJyZXF1ZXN0SUQiOiJEMjdEMTk5OC0zOEMzLTQ3OEUtQUE3Qi0yQTdCRTA2RjQ1ODIiLCJzZWNvbmRzIjoiMjUzMy4wIiwic291cmNlIjoicHJvdmlkZXIiLCJzdGF0dXMiOiJhdmFpbGFibGUifSwiaWQiOiI1N0M1RTI0OC01ODdELTRGOUMtOTJCQy0yQTNBMTY5MUI4RUYiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjo4LCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozOFoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50Ijoicm91dGUub3B0aW9uIiwiZmllbGRzIjp7ImZyb20iOiJnYmsiLCJtb2RlIjoiYXV0b21vYmlsZSIsIm5vdGUiOiJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLCJzdGF0dXMiOiJhdmFpbGFibGUiLCJ0byI6InJhZ3VuYW4ifSwiaWQiOiJERTA0OUVENC02RThGLTRFQUEtQUEzOC03MEREQTRGQTIxRjIiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjo5LCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozOFoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnJlcXVlc3RlZCIsImZpZWxkcyI6eyJkZXBhcnR1cmUiOiIyMDI2LTExLTA2VDAzOjE1OjAwWiIsImZyb20iOiJSYWd1bmFuIFpvbyIsImZyb21Db29yZGluYXRlIjoiLTYuMzExNTc2OSwxMDYuODIxMDY2MSIsIm1vZGUiOiJhdXRvbW9iaWxlIiwicmVxdWVzdElEIjoiRTZBQzEwQTAtRjNEOS00RjdGLUJERTAtMzc1Qjc2QTgzMEZBIiwidGltZW91dFNlY29uZHMiOiIyNSIsInRvIjoiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwidG9Db29yZGluYXRlIjoiLTYuMTkxMjA1OSwxMDYuODIyNjc1NSJ9LCJpZCI6IjhBMzFDQ0Q2LUVFMjktNEQ5MC1CRDZDLTVDRDczREUwQkY1MyIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjEwLCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozOVoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnByb3ZpZGVyX3Jlc3BvbnNlIiwiZmllbGRzIjp7ImRpc3RhbmNlIjoiMTQ1ODguMCIsImV4cGVjdGVkQXJyaXZhbCI6IjIwMjYtMTEtMDZUMDM6NTU6NTVaIiwiZXhwZWN0ZWREZXBhcnR1cmUiOiIyMDI2LTExLTA2VDAzOjE1OjAwWiIsImV4cGVjdGVkVHJhdmVsU2Vjb25kcyI6IjI0NTUuMCIsInJlcXVlc3RJRCI6IkU2QUMxMEEwLUYzRDktNEY3Ri1CREUwLTM3NUI3NkE4MzBGQSIsInRyYW5zcG9ydFR5cGUiOiIxIn0sImlkIjoiRjdEODA5MEUtQkU1NS00NDEzLTlFRjctOUEzOUY1NUM0NjM4IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MTEsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjM5WiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVzdWx0IiwiZmllbGRzIjp7ImRpc3RhbmNlIjoiMTQ1ODguMCIsImVsYXBzZWRTZWNvbmRzIjoiMS4wNDU4OTcwMDY5ODg1MjU0IiwiZXhwZWN0ZWRBcnJpdmFsIjoiMjAyNi0xMS0wNlQwMzo1NTo1NVoiLCJleHBlY3RlZERlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDM6MTU6MDBaIiwibm90ZSI6IkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsInJlcXVlc3RJRCI6IkU2QUMxMEEwLUYzRDktNEY3Ri1CREUwLTM3NUI3NkE4MzBGQSIsInNlY29uZHMiOiIyNDU1LjAiLCJzb3VyY2UiOiJwcm92aWRlciIsInN0YXR1cyI6ImF2YWlsYWJsZSJ9LCJpZCI6IjExNjcyNDdFLTcyQjQtNDkzQS1CQzE4LUU2RjM1NTE5MzFCQiIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjEyLCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1NzozOVoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50Ijoicm91dGUub3B0aW9uIiwiZmllbGRzIjp7ImZyb20iOiJyYWd1bmFuIiwibW9kZSI6ImF1dG9tb2JpbGUiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwic3RhdHVzIjoiYXZhaWxhYmxlIiwidG8iOiJvcmlnaW4ifSwiaWQiOiI5NUEzNTYyRi0yMzMxLTQ4MUMtOEJFRi1CQzExOTk4Qjg4OEUiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxMywic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzlaIiwiY2F0ZWdvcnkiOiJvcHRpbWl6ZXIiLCJldmVudCI6InJvdXRpbmcubGl2ZV9jYW5kaWRhdGUiLCJmaWVsZHMiOnsiY29tcGxldGUiOiJ0cnVlIiwiY29uZmxpY3RzIjoiIiwiZWxhcHNlZE1pbnV0ZXMiOiIyMzUuOTE2NjY2NjY2NjY2NjYiLCJmZWFzaWJsZSI6InRydWUiLCJvcmRlciI6ImdiayDihpIgcmFndW5hbiIsInNvdXJjZSI6ImJhc2VsaW5lX2xpdmUiLCJ0cmF2ZWxNaW51dGVzIjoiMTA0LjM1Iiwid2FpdGluZ01pbnV0ZXMiOiIxMS41NjY2NjY2NjY2NjY2NjYifSwiaWQiOiJGNjNEOTQyNi0wRjkwLTQ1MUItOEUxRC1FNzE0MTE0MjY3M0EiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxNCwic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6MzlaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5yZXF1ZXN0ZWQiLCJmaWVsZHMiOnsiZGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMDowMDowMFoiLCJmcm9tIjoiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwiZnJvbUNvb3JkaW5hdGUiOiItNi4xOTEyMDU5LDEwNi44MjI2NzU1IiwibW9kZSI6ImF1dG9tb2JpbGUiLCJyZXF1ZXN0SUQiOiI4MkM2NTM1NS00ODk5LTQ0MzQtQjUzOC1EQ0M3QTg1NURDM0YiLCJ0aW1lb3V0U2Vjb25kcyI6IjI1IiwidG8iOiJSYWd1bmFuIFpvbyIsInRvQ29vcmRpbmF0ZSI6Ii02LjMxMTU3NjksMTA2LjgyMTA2NjEifSwiaWQiOiJBRjAzNDlCQy0yQzdGLTQ1QjMtQUMyRS1FMjlCOUY1QUYzOUYiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxNSwic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6NDFaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5wcm92aWRlcl9yZXNwb25zZSIsImZpZWxkcyI6eyJkaXN0YW5jZSI6IjMyODI1LjAiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDAwOjUwOjQ0WiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMDowMDowMFoiLCJleHBlY3RlZFRyYXZlbFNlY29uZHMiOiIzMDQ0LjAiLCJyZXF1ZXN0SUQiOiI4MkM2NTM1NS00ODk5LTQ0MzQtQjUzOC1EQ0M3QTg1NURDM0YiLCJ0cmFuc3BvcnRUeXBlIjoiMSJ9LCJpZCI6IjUyRDk2NjE0LTEyMjktNEEwRi04MDcyLTg2RUM3N0VGN0IyOCIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjE2LCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1Nzo0MVoiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnJlc3VsdCIsImZpZWxkcyI6eyJkaXN0YW5jZSI6IjMyODI1LjAiLCJlbGFwc2VkU2Vjb25kcyI6IjEuMjI2Mzg4MDk2ODA5Mzg3MiIsImV4cGVjdGVkQXJyaXZhbCI6IjIwMjYtMTEtMDZUMDA6NTA6NDRaIiwiZXhwZWN0ZWREZXBhcnR1cmUiOiIyMDI2LTExLTA2VDAwOjAwOjAwWiIsIm5vdGUiOiJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLCJyZXF1ZXN0SUQiOiI4MkM2NTM1NS00ODk5LTQ0MzQtQjUzOC1EQ0M3QTg1NURDM0YiLCJzZWNvbmRzIjoiMzA0NC4wIiwic291cmNlIjoicHJvdmlkZXIiLCJzdGF0dXMiOiJhdmFpbGFibGUifSwiaWQiOiJFRUE1NzAyRC1DMUNFLTRCRDgtOEQxNi0wNzhGQTJENzUyOTMiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoxNywic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6NDFaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6InJvdXRlLm9wdGlvbiIsImZpZWxkcyI6eyJmcm9tIjoib3JpZ2luIiwibW9kZSI6ImF1dG9tb2JpbGUiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwic3RhdHVzIjoiYXZhaWxhYmxlIiwidG8iOiJyYWd1bmFuIn0sImlkIjoiNkFDQTQ2RUItM0U5Ny00QjQ4LUIyMDctRDlFOEMyNzRDRkM5IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MTgsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQxWiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucmVxdWVzdGVkIiwiZmllbGRzIjp7ImRlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwiZnJvbSI6IlJhZ3VuYW4gWm9vIiwiZnJvbUNvb3JkaW5hdGUiOiItNi4zMTE1NzY5LDEwNi44MjEwNjYxIiwibW9kZSI6ImF1dG9tb2JpbGUiLCJyZXF1ZXN0SUQiOiJBNjcwMTcyMy1DRjU1LTQ1QjYtQkM3OC0xNkFBMTM4ODYxQkEiLCJ0aW1lb3V0U2Vjb25kcyI6IjI1IiwidG8iOiJIdXRhbiBLb3RhIEdCSyIsInRvQ29vcmRpbmF0ZSI6Ii02LjIxOTIwNCwxMDYuODA0NTY0In0sImlkIjoiNDJBMTBCMDMtQTgxMC00MEVCLTkxNjQtREJCRkZFRkNDMDQ4IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MTksInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQyWiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJldGEucHJvdmlkZXJfcmVzcG9uc2UiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiIxMzcwNC4wIiwiZXhwZWN0ZWRBcnJpdmFsIjoiMjAyNi0xMS0wNlQwMjozNjo0NloiLCJleHBlY3RlZERlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwiZXhwZWN0ZWRUcmF2ZWxTZWNvbmRzIjoiMjIwNi4wIiwicmVxdWVzdElEIjoiQTY3MDE3MjMtQ0Y1NS00NUI2LUJDNzgtMTZBQTEzODg2MUJBIiwidHJhbnNwb3J0VHlwZSI6IjEifSwiaWQiOiIxQjRBMzQ3QS03OUM3LTQyMTQtOTg2My0wNTE5N0Q2NEZEMDUiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoyMCwic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6NDJaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5yZXN1bHQiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiIxMzcwNC4wIiwiZWxhcHNlZFNlY29uZHMiOiIxLjE2MzgwNjA4MDgxODE3NjMiLCJleHBlY3RlZEFycml2YWwiOiIyMDI2LTExLTA2VDAyOjM2OjQ2WiIsImV4cGVjdGVkRGVwYXJ0dXJlIjoiMjAyNi0xMS0wNlQwMjowMDowMFoiLCJub3RlIjoiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwicmVxdWVzdElEIjoiQTY3MDE3MjMtQ0Y1NS00NUI2LUJDNzgtMTZBQTEzODg2MUJBIiwic2Vjb25kcyI6IjIyMDYuMCIsInNvdXJjZSI6InByb3ZpZGVyIiwic3RhdHVzIjoiYXZhaWxhYmxlIn0sImlkIjoiQTkxNDkxOTUtNEUwMy00NzY2LUJFOEYtOEI5RTIzOTdEQ0VCIiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MjEsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQyWiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJyb3V0ZS5vcHRpb24iLCJmaWVsZHMiOnsiZnJvbSI6InJhZ3VuYW4iLCJtb2RlIjoiYXV0b21vYmlsZSIsIm5vdGUiOiJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLCJzdGF0dXMiOiJhdmFpbGFibGUiLCJ0byI6ImdiayJ9LCJpZCI6IkY5RjRERUZELTIyRDItNDRDMS04NTQ5LTkwQUM4MTcyNEQwOSIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjIyLCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1Nzo0MloiLCJjYXRlZ29yeSI6Im1hcGtpdCIsImV2ZW50IjoiZXRhLnJlcXVlc3RlZCIsImZpZWxkcyI6eyJkZXBhcnR1cmUiOiIyMDI2LTExLTA2VDA5OjAwOjAwWiIsImZyb20iOiJIdXRhbiBLb3RhIEdCSyIsImZyb21Db29yZGluYXRlIjoiLTYuMjE5MjA0LDEwNi44MDQ1NjQiLCJtb2RlIjoiYXV0b21vYmlsZSIsInJlcXVlc3RJRCI6IjNFNzBDQkNELUREREEtNEU0Qi05OTUzLUFFRTJDRkFBNzBCQiIsInRpbWVvdXRTZWNvbmRzIjoiMjUiLCJ0byI6IkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIsInRvQ29vcmRpbmF0ZSI6Ii02LjE5MTIwNTksMTA2LjgyMjY3NTUifSwiaWQiOiJGMjFDRjc3Qy0yMEIyLTRFMTYtODJDQS1CMkNCM0NFRDIzREIiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoyMywic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6NDNaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5wcm92aWRlcl9yZXNwb25zZSIsImZpZWxkcyI6eyJkaXN0YW5jZSI6IjUwNDguMCIsImV4cGVjdGVkQXJyaXZhbCI6IjIwMjYtMTEtMDZUMDk6MTA6NDlaIiwiZXhwZWN0ZWREZXBhcnR1cmUiOiIyMDI2LTExLTA2VDA5OjAwOjAwWiIsImV4cGVjdGVkVHJhdmVsU2Vjb25kcyI6IjY0OS4wIiwicmVxdWVzdElEIjoiM0U3MENCQ0QtREREQS00RTRCLTk5NTMtQUVFMkNGQUE3MEJCIiwidHJhbnNwb3J0VHlwZSI6IjEifSwiaWQiOiI0NTlCODYwMi1BQzlDLTQzMEMtOEQyNC1DRTc5N0M1OUVEMkEiLCJsZXZlbCI6ImluZm8iLCJvcGVyYXRpb25JRCI6IkNDMDhBMDZELTMxM0EtNDQyNC04MDBBLTE4M0JBNDM2NkEyRiIsInNjaGVtYVZlcnNpb24iOjEsInNlcXVlbmNlIjoyNCwic2Vzc2lvbklEIjoiQ0IzODA2NTMtOERBOS00NjU2LThCMDMtQkM5ODI1MUZDQTY3In0KeyJhdCI6IjIwMjYtMTEtMDVUMDk6NTc6NDNaIiwiY2F0ZWdvcnkiOiJtYXBraXQiLCJldmVudCI6ImV0YS5yZXN1bHQiLCJmaWVsZHMiOnsiZGlzdGFuY2UiOiI1MDQ4LjAiLCJlbGFwc2VkU2Vjb25kcyI6IjEuMDcxNzU1MDUxNjEyODU0IiwiZXhwZWN0ZWRBcnJpdmFsIjoiMjAyNi0xMS0wNlQwOToxMDo0OVoiLCJleHBlY3RlZERlcGFydHVyZSI6IjIwMjYtMTEtMDZUMDk6MDA6MDBaIiwibm90ZSI6IkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsInJlcXVlc3RJRCI6IjNFNzBDQkNELUREREEtNEU0Qi05OTUzLUFFRTJDRkFBNzBCQiIsInNlY29uZHMiOiI2NDkuMCIsInNvdXJjZSI6InByb3ZpZGVyIiwic3RhdHVzIjoiYXZhaWxhYmxlIn0sImlkIjoiQ0JBNkIyOEItNUQ0Qi00M0QyLUEwMzYtQzMyMzVGQzUxREQ0IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MjUsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQzWiIsImNhdGVnb3J5IjoibWFwa2l0IiwiZXZlbnQiOiJyb3V0ZS5vcHRpb24iLCJmaWVsZHMiOnsiZnJvbSI6ImdiayIsIm1vZGUiOiJhdXRvbW9iaWxlIiwibm90ZSI6IkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsInN0YXR1cyI6ImF2YWlsYWJsZSIsInRvIjoib3JpZ2luIn0sImlkIjoiQzZCRjE5MEItOTIzOC00RkNGLTkyRDItQUU0ODUyQkMxQTRCIiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MjYsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQzWiIsImNhdGVnb3J5Ijoib3B0aW1pemVyIiwiZXZlbnQiOiJyb3V0aW5nLmxpdmVfY2FuZGlkYXRlIiwiZmllbGRzIjp7ImNvbXBsZXRlIjoidHJ1ZSIsImNvbmZsaWN0cyI6IiIsImVsYXBzZWRNaW51dGVzIjoiNTUwLjgxNjY2NjY2NjY2NjYiLCJmZWFzaWJsZSI6InRydWUiLCJvcmRlciI6InJhZ3VuYW4g4oaSIGdiayIsInNvdXJjZSI6ImJhc2VsaW5lX2xpdmUiLCJ0cmF2ZWxNaW51dGVzIjoiOTguMzE2NjY2NjY2NjY2NjYiLCJ3YWl0aW5nTWludXRlcyI6IjMzMi41In0sImlkIjoiOTMwNTFEMkYtNDZDMC00QUU0LTlGRDktMzc3ODM3OEI4NDE3IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MjcsInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9CnsiYXQiOiIyMDI2LTExLTA1VDA5OjU3OjQzWiIsImNhdGVnb3J5Ijoib3B0aW1pemVyIiwiZXZlbnQiOiJyb3V0aW5nLmFkYXB0aXZlX2RlY2lzaW9uIiwiZmllbGRzIjp7ImJhc2VsaW5lUmVxdWVzdHMiOiI2IiwiZXN0aW1hdGVkU2F2aW5nTWludXRlcyI6IjAuMCIsImxhcmdlV2FpdE1pbnV0ZXMiOiIyMC4wIiwibWluaW11bVNhdmluZ0ZyYWN0aW9uIjoiMC4wMyIsIm1pbmltdW1TYXZpbmdNaW51dGVzIjoiNS4wIiwib3B0aW1pemUiOiJmYWxzZSIsInJlYXNvbiI6ImFsbF9zbWFsbF9vcmRlcnNfdmFsaWRhdGVkIiwic2NyZWVuaW5nRXZhbHVhdGlvbnMiOiIwIiwic2NyZWVuaW5nU2Vjb25kcyI6IjMuNTA0NzUzMTEyNzkyOTY5ZS0wNSJ9LCJpZCI6IjY4Q0NFMThGLTFBNzctNEIzNC04RUQ2LUFGOUVGNUQwNTU0OSIsImxldmVsIjoiaW5mbyIsIm9wZXJhdGlvbklEIjoiQ0MwOEEwNkQtMzEzQS00NDI0LTgwMEEtMTgzQkE0MzY2QTJGIiwic2NoZW1hVmVyc2lvbiI6MSwic2VxdWVuY2UiOjI4LCJzZXNzaW9uSUQiOiJDQjM4MDY1My04REE5LTQ2NTYtOEIwMy1CQzk4MjUxRkNBNjcifQp7ImF0IjoiMjAyNi0xMS0wNVQwOTo1Nzo0M1oiLCJjYXRlZ29yeSI6Im9wdGltaXplciIsImV2ZW50Ijoicm91dGluZy5waXBlbGluZV9jb21wbGV0ZWQiLCJmaWVsZHMiOnsiYmFzZWxpbmVFbGFwc2VkTWludXRlcyI6IjIzNS45MTY2NjY2NjY2NjY2NiIsImNhbmRpZGF0ZUNvdW50IjoiMiIsImNhclVzZSI6Im9uRGVtYW5kIiwiZWxhcHNlZFNlY29uZHMiOiI2LjE1NTcyNTk1NTk2MzEzNSIsIm9iamVjdGl2ZSI6ImVsYXBzZWRfdjIiLCJyZXF1ZXN0cyI6IjYiLCJzZWxlY3RlZEVsYXBzZWRNaW51dGVzIjoiMjM1LjkxNjY2NjY2NjY2NjY2In0sImlkIjoiRDBEQzRFMkUtNEEzRi00OEQ0LUEwOEItQTU0NTU0NjVCQkU4IiwibGV2ZWwiOiJpbmZvIiwib3BlcmF0aW9uSUQiOiJDQzA4QTA2RC0zMTNBLTQ0MjQtODAwQS0xODNCQTQzNjZBMkYiLCJzY2hlbWFWZXJzaW9uIjoxLCJzZXF1ZW5jZSI6MjksInNlc3Npb25JRCI6IkNCMzgwNjUzLThEQTktNDY1Ni04QjAzLUJDOTgyNTFGQ0E2NyJ9Cg==",
+  "quality" : {
+    "catalog" : {
+      "candidates" : [
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-faq"
+              ],
+              "statement" : "On-site reading is described for this room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-rbbj",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Temu RBBJ",
+          "sourceIDs" : [
+            "q-bdt-faq",
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Dedicated reading room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+              "value" : "no"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Interior reading room.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-silent",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Baca Hening",
+          "sourceIDs" : [
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Coffee is listed for the cafe.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bdt-cafe",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Kafe Makan Di Tebet",
+          "sourceIDs" : [
+            "q-bdt-home"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "COMO Park, Kemang Timur Raya 998",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Coffee service is described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Wi-Fi is listed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Indoor is listed.",
+              "value" : "no"
+            },
+            {
+              "feature" : "smokingArea",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "newsroom",
+          "mapQuery" : "The Newsroom COMO Park Jakarta",
+          "matchWords" : [
+            "newsroom"
+          ],
+          "name" : "The Newsroom",
+          "scope" : "Published cafe / community space",
+          "sourceIDs" : [
+            "q-newsroom"
+          ],
+          "venueID" : "newsroom"
+        },
+        {
+          "address" : "Cikini Raya 25",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bakoel"
+              ],
+              "statement" : "Coffee consumption at the Cikini cafe is described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bakoel-cikini",
+          "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+          "matchWords" : [
+            "bakoel",
+            "cikini"
+          ],
+          "name" : "Bakoel Koffie Cikini",
+          "scope" : "Cikini cafe only",
+          "sourceIDs" : [
+            "q-bakoel"
+          ],
+          "venueID" : "bakoel"
+        },
+        {
+          "address" : "Kemang, Jakarta Selatan",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Public art and design exhibitions are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Art, design and cultural programs are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "dialogue",
+          "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+          "matchWords" : [
+            "gue"
+          ],
+          "name" : "Dia.Lo.Gue",
+          "scope" : "Art space",
+          "sourceIDs" : [
+            "q-dialogue"
+          ],
+          "venueID" : "dialogue"
+        },
+        {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Museum gallery area.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Food and drinks are prohibited in the gallery.",
+              "value" : "no"
+            }
+          ],
+          "id" : "macan-gallery",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Gallery",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "macan-cafe",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Common Grounds cafe listed within facility",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        {
+          "address" : "Pintu 7 Senayan, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Public urban park.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Urban forest/park listing.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "gbk",
+          "mapQuery" : "Hutan Kota GBK Jakarta",
+          "matchWords" : [
+            "hutan",
+            "kota"
+          ],
+          "name" : "Hutan Kota GBK",
+          "scope" : "Public park",
+          "sourceIDs" : [
+            "q-gbk"
+          ],
+          "venueID" : "gbk"
+        },
+        {
+          "address" : "Harsono RM 1, Ragunan",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Trees, wildlife and park grounds are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ragunan",
+          "mapQuery" : "Ragunan Zoo Jakarta",
+          "matchWords" : [
+            "ragunan"
+          ],
+          "name" : "Taman Margasatwa Ragunan",
+          "scope" : "Park grounds",
+          "sourceIDs" : [
+            "q-ragunan"
+          ],
+          "venueID" : "ragunan"
+        },
+        {
+          "address" : "Upper Marketplace L2, ASHTA",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "Reading in the program area was described for its published period.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "The program requested low voices, not measured crowd levels.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ashta-reading",
+          "mapQuery" : "ASHTA District 8 Jakarta",
+          "matchWords" : [
+            "ashta"
+          ],
+          "name" : "ASHTA Bookhive",
+          "scope" : "2025 reading-space program",
+          "sourceIDs" : [
+            "q-ashta"
+          ],
+          "validThrough" : "2025-12-31",
+          "venueID" : "ashta"
+        },
+        {
+          "address" : "Kuningan, Jakarta",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The library welcomes on-site readers.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "Literature and cultural learning are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The named library interior, not external grounds.",
+              "value" : "no"
+            }
+          ],
+          "id" : "erasmus",
+          "mapQuery" : "Erasmus Huis Jakarta",
+          "matchWords" : [
+            "erasmus"
+          ],
+          "name" : "Erasmus Huis Library",
+          "scope" : "Library",
+          "sourceIDs" : [
+            "q-erasmus"
+          ],
+          "venueID" : "erasmus"
+        },
+        {
+          "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-jaklitera-import"
+              ],
+              "statement" : "Published library reading service at the Cikini branch.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "cikini",
+          "mapQuery" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "matchWords" : [
+            "perpustakaan",
+            "jakarta"
+          ],
+          "name" : "Perpustakaan Jakarta — Cikini",
+          "scope" : "Library reading service, Cikini branch",
+          "sourceIDs" : [
+            "q-jaklitera-import"
+          ],
+          "venueID" : "cikini"
+        }
+      ],
+      "id" : "p3-quality-2026-11-05",
+      "schemaVersion" : 1,
+      "sources" : [
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-home",
+          "relation" : "venue_operator",
+          "sha256" : "b22a44ddba4706bf3b4fe7dc9cf80f6deeb56a8bfc9184459bf6d8ba09cf0576",
+          "title" : "Baca Di Tebet — fasilitas",
+          "url" : "https://bacaditebet.id/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-faq",
+          "relation" : "venue_operator",
+          "sha256" : "09953ad15179558e64390b4ec8f4c401b580ef2011c6aa518619c28e7e008eb9",
+          "title" : "Baca Di Tebet — FAQ",
+          "url" : "https://bacaditebet.id/faq/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-terms",
+          "relation" : "venue_operator",
+          "sha256" : "fbad078565c25d48ad76a77a73286bcb98938b443fe76633e64328f029f058ed",
+          "title" : "Baca Di Tebet — tata tertib",
+          "url" : "https://bacaditebet.id/terms/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:54Z",
+          "id" : "q-newsroom",
+          "publishedDate" : "2023-06-29",
+          "relation" : "venue_operator",
+          "sha256" : "dcc8ad2ed6fbf5214d7770289d5ae533c607e01895c28a209c3e37a97b4578de",
+          "title" : "MANUAL — The Newsroom (operator publication)",
+          "url" : "https://manual.co.id/directory/the-newsroom/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bakoel",
+          "relation" : "venue_operator",
+          "sha256" : "609406c6b17c334830a171f737c28015ebd878f6dc594a37eee1c3ac48be2c92",
+          "title" : "Bakoel Koffie — Cikini",
+          "url" : "https://www.bakoelkoffie.com/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-dialogue",
+          "relation" : "venue_operator",
+          "sha256" : "8f9425d22e523521bff272fcf2426c8db32b154835661d59cf3291f9dc7f85d6",
+          "title" : "Dia.Lo.Gue — about",
+          "url" : "https://dialogue-artspace.com/profile/about/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-ashta",
+          "relation" : "venue_operator",
+          "sha256" : "918af4bfda6e4992c8ab3268ffd74298980c4bdc8b0dc828873c8a2466357332",
+          "title" : "ASHTA — program reading space",
+          "url" : "https://ashta.co.id/program/free-reading-space/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-macan",
+          "relation" : "venue_operator",
+          "sha256" : "bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+          "title" : "Museum MACAN — visit",
+          "url" : "https://www.museummacan.org/visit"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:56Z",
+          "id" : "q-ragunan",
+          "relation" : "venue_operator",
+          "sha256" : "25988dc7a3350878e75c67899143509a82f2fec26e93f0468f1cb2f17c5c82b0",
+          "title" : "Ragunan — official",
+          "url" : "https://ragunanzoo.jakarta.go.id/language/en/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-gbk",
+          "relation" : "local_government",
+          "sha256" : "31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+          "title" : "Jakarta Pusat — Hutan Kota GBK",
+          "url" : "https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:14:25Z",
+          "id" : "q-erasmus",
+          "relation" : "venue_operator",
+          "sha256" : "f622968f1427d5d3589b8da426e1db09b938c1f7e57ee0f7c4410526a6a74a91",
+          "title" : "Erasmus Huis — library",
+          "url" : "https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library"
+        },
+        {
+          "checkedAt" : "2026-11-05T01:34:16Z",
+          "id" : "q-jaklitera-import",
+          "relation" : "Imported P1 structured fixture; SHA256 identifies that fixture, not the remote HTML. Reading is the published library service; other attributes unknown.",
+          "sha256" : "e1bf4f568dd45e64b5e272f5bf14e3071586c2d60f1cc28ce0857b376a22f28f",
+          "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+          "url" : "https://perpustakaan.jakarta.go.id/supports/about-us"
+        }
+      ]
+    },
+    "category" : [
+      {
+        "candidateID" : "gbk",
+        "categoryScore" : 1,
+        "supportedPreferences" : [
+          "nature",
+          "outdoor"
+        ]
+      },
+      {
+        "candidateID" : "ragunan",
+        "categoryScore" : 1,
+        "supportedPreferences" : [
+          "nature",
+          "outdoor"
+        ]
+      },
+      {
+        "candidateID" : "bakoel-cikini",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-cafe",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-rbbj",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-silent",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "cikini",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "dialogue",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "erasmus",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "newsroom",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      }
+    ],
+    "combined" : [
+
+    ],
+    "createdAt" : "2026-11-05T09:57:35Z",
+    "decisions" : [
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-faq"
+              ],
+              "statement" : "On-site reading is described for this room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-rbbj",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Temu RBBJ",
+          "sourceIDs" : [
+            "q-bdt-faq",
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Dedicated reading room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+              "value" : "no"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Interior reading room.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-silent",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Baca Hening",
+          "sourceIDs" : [
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Coffee is listed for the cafe.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bdt-cafe",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Kafe Makan Di Tebet",
+          "sourceIDs" : [
+            "q-bdt-home"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "COMO Park, Kemang Timur Raya 998",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Coffee service is described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Wi-Fi is listed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Indoor is listed.",
+              "value" : "no"
+            },
+            {
+              "feature" : "smokingArea",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "newsroom",
+          "mapQuery" : "The Newsroom COMO Park Jakarta",
+          "matchWords" : [
+            "newsroom"
+          ],
+          "name" : "The Newsroom",
+          "scope" : "Published cafe / community space",
+          "sourceIDs" : [
+            "q-newsroom"
+          ],
+          "venueID" : "newsroom"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Cikini Raya 25",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bakoel"
+              ],
+              "statement" : "Coffee consumption at the Cikini cafe is described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bakoel-cikini",
+          "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+          "matchWords" : [
+            "bakoel",
+            "cikini"
+          ],
+          "name" : "Bakoel Koffie Cikini",
+          "scope" : "Cikini cafe only",
+          "sourceIDs" : [
+            "q-bakoel"
+          ],
+          "venueID" : "bakoel"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Kemang, Jakarta Selatan",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Public art and design exhibitions are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Art, design and cultural programs are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "dialogue",
+          "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+          "matchWords" : [
+            "gue"
+          ],
+          "name" : "Dia.Lo.Gue",
+          "scope" : "Art space",
+          "sourceIDs" : [
+            "q-dialogue"
+          ],
+          "venueID" : "dialogue"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Museum gallery area.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Food and drinks are prohibited in the gallery.",
+              "value" : "no"
+            }
+          ],
+          "id" : "macan-gallery",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Gallery",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        "reasons" : [
+          "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "macan-cafe",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Common Grounds cafe listed within facility",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        "reasons" : [
+          "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Pintu 7 Senayan, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Public urban park.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Urban forest/park listing.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "gbk",
+          "mapQuery" : "Hutan Kota GBK Jakarta",
+          "matchWords" : [
+            "hutan",
+            "kota"
+          ],
+          "name" : "Hutan Kota GBK",
+          "scope" : "Public park",
+          "sourceIDs" : [
+            "q-gbk"
+          ],
+          "venueID" : "gbk"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Harsono RM 1, Ragunan",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Trees, wildlife and park grounds are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ragunan",
+          "mapQuery" : "Ragunan Zoo Jakarta",
+          "matchWords" : [
+            "ragunan"
+          ],
+          "name" : "Taman Margasatwa Ragunan",
+          "scope" : "Park grounds",
+          "sourceIDs" : [
+            "q-ragunan"
+          ],
+          "venueID" : "ragunan"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Upper Marketplace L2, ASHTA",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "Reading in the program area was described for its published period.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "The program requested low voices, not measured crowd levels.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ashta-reading",
+          "mapQuery" : "ASHTA District 8 Jakarta",
+          "matchWords" : [
+            "ashta"
+          ],
+          "name" : "ASHTA Bookhive",
+          "scope" : "2025 reading-space program",
+          "sourceIDs" : [
+            "q-ashta"
+          ],
+          "validThrough" : "2025-12-31",
+          "venueID" : "ashta"
+        },
+        "reasons" : [
+          "Sumber program berakhir 2025-12-31; keberlanjutan belum diverifikasi."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Kuningan, Jakarta",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The library welcomes on-site readers.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "Literature and cultural learning are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The named library interior, not external grounds.",
+              "value" : "no"
+            }
+          ],
+          "id" : "erasmus",
+          "mapQuery" : "Erasmus Huis Jakarta",
+          "matchWords" : [
+            "erasmus"
+          ],
+          "name" : "Erasmus Huis Library",
+          "scope" : "Library",
+          "sourceIDs" : [
+            "q-erasmus"
+          ],
+          "venueID" : "erasmus"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-jaklitera-import"
+              ],
+              "statement" : "Published library reading service at the Cikini branch.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "cikini",
+          "mapQuery" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "matchWords" : [
+            "perpustakaan",
+            "jakarta"
+          ],
+          "name" : "Perpustakaan Jakarta — Cikini",
+          "scope" : "Library reading service, Cikini branch",
+          "sourceIDs" : [
+            "q-jaklitera-import"
+          ],
+          "venueID" : "cikini"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      }
+    ],
+    "elapsedSeconds" : 0.0008420944213867188,
+    "followupQuestions" : 0,
+    "id" : "B307EF1B-A9C2-4B80-AE8E-BD3AFB84CC47",
+    "inputChanges" : 0,
+    "mapChecks" : [
+
+    ],
+    "policy" : "quality-v2-category0.6-semantic0.4",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+        "nature",
+        "outdoor"
+      ],
+      "schemaVersion" : 1
+    },
+    "schemaVersion" : 1,
+    "semantic" : [
+
+    ],
+    "status" : "category_only",
+    "userCorrections" : 0,
+    "warnings" : [
+      "Fakta merupakan publikasi bersumber, belum inspeksi lokasi atau jaminan kapasitas.",
+      "Kebutuhan wajib/avoid memakai area yang sama; unknown tidak dianggap cocok.",
+      "Skor adalah urutan relatif, bukan probabilitas kepuasan pribadi."
+    ]
+  },
+  "rawRoutingReport" : "ewogICJjYW5kaWRhdGVzIiA6IFsKICAgIHsKICAgICAgImNvbXBsZXRlIiA6IHRydWUsCiAgICAgICJjb25mbGljdHMiIDogWwoKICAgICAgXSwKICAgICAgImR3ZWxsTWludXRlcyIgOiAxMjAsCiAgICAgICJmaW5pc2giIDogIjIwMjYtMTEtMDZUMDM6NTU6NTVaIiwKICAgICAgImlkIiA6ICJnYmsvcmFndW5hbiIsCiAgICAgICJsZWdzIiA6IFsKICAgICAgICB7CiAgICAgICAgICAiYXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMDoyMToxM1oiLAogICAgICAgICAgImNob3NlbiIgOiB7CiAgICAgICAgICAgICJkaXN0YW5jZSIgOiA4NjA5LAogICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAwOjIxOjEzWiIsCiAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgICAiaWQiIDogIm9yaWdpbj5nYms6YXV0b21vYmlsZToxNzkzOTIzMjAwLjAiLAogICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAic2Vjb25kcyIgOiAxMjczLAogICAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgICB9LAogICAgICAgICAgImRlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgImR3ZWxsTWludXRlcyIgOiA2MCwKICAgICAgICAgICJkd2VsbFNvdXJjZSIgOiAicGVuZ2d1bmEiLAogICAgICAgICAgImZyb20iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTW9oYW1tYWQgSHVzbmkgVGhhbXJpbiBLYXYuIDE3LTEzNlxuR29uZGFuZ2RpYSwgTWVudGVuZywgQ2VudHJhbCBKYWthcnRhXG5KYWthcnRhIDEwMzUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgICAiaWQiIDogIm9yaWdpbiIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4xOTEyMDU5LAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MjI2NzU1LAogICAgICAgICAgICAicXVlcnkiIDogIkJ1bmRhcmFuIEhJIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiLAogICAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICAgInRpdGxlIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiCiAgICAgICAgICB9LAogICAgICAgICAgImlkIiA6ICJnYmsvcmFndW5hbjowIiwKICAgICAgICAgICJpc1JldHVybiIgOiBmYWxzZSwKICAgICAgICAgICJsZWF2ZSIgOiAiMjAyNi0xMS0wNlQwMTozMDowMFoiLAogICAgICAgICAgIm5vdGVzIiA6IFsKICAgICAgICAgICAgIkJ1a2EgMDYuMDAgwrcgdHV0dXAgMTguMDAuIEphZHdhbCBwdWJsaWsgYmVyc3VtYmVyIHVudHVrIHRhbmdnYWwgdHJpcCwgem9uYSBBc2lhL0pha2FydGEuIiwKICAgICAgICAgICAgIkNhdGF0YW4gc3VtYmVyIGphbSBvcGVyYXNpb25hbDogdC1nYms6IGh0dHBzOi8vcHVzYXQuamFrYXJ0YS5nby5pZC9rZWx1cmFoYW4va2VsdXJhaGFuLWdlbG9yYS9mYXNpbGl0YXMvZmFzaWxpdGFzLXRhbWFuLWh1dGFuLWtvdGEvdGFtYW4taHV0YW4ta290YSIsCiAgICAgICAgICAgICJQMzogdmFsaWRhdGVkIHNvdXJjZWQgZnVsbC1zdGF5L3Nlc3Npb24vZW50cnkgcnVsZXMgYXQgdGhlIGFjdHVhbCBhcnJpdmFsLiIsCiAgICAgICAgICAgICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iCiAgICAgICAgICBdLAogICAgICAgICAgIm9wdGlvbnMiIDogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgImRpc3RhbmNlIiA6IDg2MDksCiAgICAgICAgICAgICAgImV4cGVjdGVkQXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMDoyMToxM1oiLAogICAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgICAgICJpZCIgOiAib3JpZ2luPmdiazphdXRvbW9iaWxlOjE3OTM5MjMyMDAuMCIsCiAgICAgICAgICAgICAgIm1vZGUiIDogImF1dG9tb2JpbGUiLAogICAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAgICJzZWNvbmRzIiA6IDEyNzMsCiAgICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMCwKICAgICAgICAgICJ0byIgOiB7CiAgICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBMaW5na2FyIFN0YWRpb24sIENlbnRyYWwgSmFrYXJ0YSwgSmFrYXJ0YSwgSW5kb25lc2lhIiwKICAgICAgICAgICAgImlkIiA6ICJnYmsiLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMjE5MjA0LAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MDQ1NjQsCiAgICAgICAgICAgICJxdWVyeSIgOiAiSHV0YW4gS290YSBHQksgSmFrYXJ0YSIsCiAgICAgICAgICAgICJyZXNvbHZlZE5hbWUiIDogIkh1dGFuIEtvdGEgR0JLIiwKICAgICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAgICJ0aXRsZSIgOiAiSHV0YW4gS290YSBHQksiCiAgICAgICAgICB9LAogICAgICAgICAgInZpc2l0IiA6ICIyMDI2LTExLTA2VDAwOjMwOjAwWiIsCiAgICAgICAgICAid2VhdGhlclByb3ZpZGVyIiA6ICJ3ZWF0aGVya2l0IgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImFycml2YWwiIDogIjIwMjYtMTEtMDZUMDI6MTI6MTNaIiwKICAgICAgICAgICJjaG9zZW4iIDogewogICAgICAgICAgICAiZGlzdGFuY2UiIDogMjcwODMsCiAgICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDI6MTI6MTNaIiwKICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAxOjMwOjAwWiIsCiAgICAgICAgICAgICJpZCIgOiAiZ2JrPnJhZ3VuYW46YXV0b21vYmlsZToxNzkzOTI4NjAwLjAiLAogICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAic2Vjb25kcyIgOiAyNTMzLAogICAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgICB9LAogICAgICAgICAgImRlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMTozMDowMFoiLAogICAgICAgICAgImR3ZWxsTWludXRlcyIgOiA2MCwKICAgICAgICAgICJkd2VsbFNvdXJjZSIgOiAicGVuZ2d1bmEiLAogICAgICAgICAgImZyb20iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTGluZ2thciBTdGFkaW9uLCBDZW50cmFsIEpha2FydGEsIEpha2FydGEsIEluZG9uZXNpYSIsCiAgICAgICAgICAgICJpZCIgOiAiZ2JrIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIxOTIwNCwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODA0NTY0LAogICAgICAgICAgICAicXVlcnkiIDogIkh1dGFuIEtvdGEgR0JLIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJIdXRhbiBLb3RhIEdCSyIsCiAgICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgICB9LAogICAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgICAidGl0bGUiIDogIkh1dGFuIEtvdGEgR0JLIgogICAgICAgICAgfSwKICAgICAgICAgICJpZCIgOiAiZ2JrL3JhZ3VuYW46MSIsCiAgICAgICAgICAiaXNSZXR1cm4iIDogZmFsc2UsCiAgICAgICAgICAibGVhdmUiIDogIjIwMjYtMTEtMDZUMDM6MTU6MDBaIiwKICAgICAgICAgICJub3RlcyIgOiBbCiAgICAgICAgICAgICJCdWthIDA3LjAwIMK3IHR1dHVwIDE2LjAwLiBKYWR3YWwgcHVibGlrIGJlcnN1bWJlciB1bnR1ayB0YW5nZ2FsIHRyaXAsIHpvbmEgQXNpYS9KYWthcnRhLiIsCiAgICAgICAgICAgICJDYXRhdGFuIHN1bWJlciBqYW0gb3BlcmFzaW9uYWw6IHQtcmFndW5hbjogaHR0cHM6Ly9yYWd1bmFuem9vLmpha2FydGEuZ28uaWQvbGFuZ3VhZ2UvZW4vIiwKICAgICAgICAgICAgIlAzOiB2YWxpZGF0ZWQgc291cmNlZCBmdWxsLXN0YXkvc2Vzc2lvbi9lbnRyeSBydWxlcyBhdCB0aGUgYWN0dWFsIGFycml2YWwuIiwKICAgICAgICAgICAgIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIKICAgICAgICAgIF0sCiAgICAgICAgICAib3B0aW9ucyIgOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiZGlzdGFuY2UiIDogMjcwODMsCiAgICAgICAgICAgICAgImV4cGVjdGVkQXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjoxMjoxM1oiLAogICAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMTozMDowMFoiLAogICAgICAgICAgICAgICJpZCIgOiAiZ2JrPnJhZ3VuYW46YXV0b21vYmlsZToxNzkzOTI4NjAwLjAiLAogICAgICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICAgICAibm90ZSIgOiAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwKICAgICAgICAgICAgICAic2Vjb25kcyIgOiAyNTMzLAogICAgICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICAgICAgfQogICAgICAgICAgXSwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDA0Nzc4MzM4MjAwMTU5Mjc4LAogICAgICAgICAgInRvIiA6IHsKICAgICAgICAgICAgImFkZHJlc3MiIDogIkphbGFuIEhhcnNvbm8gUk0uIE5vLiAxXG5SYWd1bmFuLCBQYXNhciBNaW5nZ3UsIFNvdXRoIEpha2FydGFcbkpha2FydGEgMTI1NTBcbkluZG9uZXNpYSIsCiAgICAgICAgICAgICJpZCIgOiAicmFndW5hbiIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4zMTE1NzY5LAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MjEwNjYxLAogICAgICAgICAgICAicXVlcnkiIDogIlJhZ3VuYW4gWm9vIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJSYWd1bmFuIFpvbyIsCiAgICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgICB9LAogICAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgICAidGl0bGUiIDogIlJhZ3VuYW4gWm9vIgogICAgICAgICAgfSwKICAgICAgICAgICJ2aXNpdCIgOiAiMjAyNi0xMS0wNlQwMjoxNTowMFoiLAogICAgICAgICAgIndlYXRoZXJQcm92aWRlciIgOiAid2VhdGhlcmtpdCIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAzOjU1OjU1WiIsCiAgICAgICAgICAiY2hvc2VuIiA6IHsKICAgICAgICAgICAgImRpc3RhbmNlIiA6IDE0NTg4LAogICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAzOjU1OjU1WiIsCiAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMzoxNTowMFoiLAogICAgICAgICAgICAiaWQiIDogInJhZ3VuYW4+b3JpZ2luOmF1dG9tb2JpbGU6MTc5MzkzNDkwMC4wIiwKICAgICAgICAgICAgIm1vZGUiIDogImF1dG9tb2JpbGUiLAogICAgICAgICAgICAibm90ZSIgOiAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwKICAgICAgICAgICAgInNlY29uZHMiIDogMjQ1NSwKICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgfSwKICAgICAgICAgICJkZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDM6MTU6MDBaIiwKICAgICAgICAgICJkd2VsbE1pbnV0ZXMiIDogMCwKICAgICAgICAgICJkd2VsbFNvdXJjZSIgOiAidHJhbnNmZXIiLAogICAgICAgICAgImZyb20iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gSGFyc29ubyBSTS4gTm8uIDFcblJhZ3VuYW4sIFBhc2FyIE1pbmdndSwgU291dGggSmFrYXJ0YVxuSmFrYXJ0YSAxMjU1MFxuSW5kb25lc2lhIiwKICAgICAgICAgICAgImlkIiA6ICJyYWd1bmFuIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjMxMTU3NjksCiAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgyMTA2NjEsCiAgICAgICAgICAgICJxdWVyeSIgOiAiUmFndW5hbiBab28gSmFrYXJ0YSIsCiAgICAgICAgICAgICJyZXNvbHZlZE5hbWUiIDogIlJhZ3VuYW4gWm9vIiwKICAgICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAgICJ0aXRsZSIgOiAiUmFndW5hbiBab28iCiAgICAgICAgICB9LAogICAgICAgICAgImlkIiA6ICJnYmsvcmFndW5hbjoyIiwKICAgICAgICAgICJpc1JldHVybiIgOiB0cnVlLAogICAgICAgICAgImxlYXZlIiA6ICIyMDI2LTExLTA2VDAzOjU1OjU1WiIsCiAgICAgICAgICAibm90ZXMiIDogWwogICAgICAgICAgICAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIgogICAgICAgICAgXSwKICAgICAgICAgICJvcHRpb25zIiA6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJkaXN0YW5jZSIgOiAxNDU4OCwKICAgICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAzOjU1OjU1WiIsCiAgICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAzOjE1OjAwWiIsCiAgICAgICAgICAgICAgImlkIiA6ICJyYWd1bmFuPm9yaWdpbjphdXRvbW9iaWxlOjE3OTM5MzQ5MDAuMCIsCiAgICAgICAgICAgICAgIm1vZGUiIDogImF1dG9tb2JpbGUiLAogICAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAgICJzZWNvbmRzIiA6IDI0NTUsCiAgICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInRvIiA6IHsKICAgICAgICAgICAgImFkZHJlc3MiIDogIkphbGFuIE1vaGFtbWFkIEh1c25pIFRoYW1yaW4gS2F2LiAxNy0xMzZcbkdvbmRhbmdkaWEsIE1lbnRlbmcsIENlbnRyYWwgSmFrYXJ0YVxuSmFrYXJ0YSAxMDM1MFxuSW5kb25lc2lhIiwKICAgICAgICAgICAgImlkIiA6ICJvcmlnaW4iLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMTkxMjA1OSwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIyNjc1NSwKICAgICAgICAgICAgInF1ZXJ5IiA6ICJCdW5kYXJhbiBISSBKYWthcnRhIiwKICAgICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwKICAgICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAgICJ0aXRsZSIgOiAiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIgogICAgICAgICAgfSwKICAgICAgICAgICJ2aXNpdCIgOiAiMjAyNi0xMS0wNlQwMzo1NTo1NVoiLAogICAgICAgICAgIndlYXRoZXJQcm92aWRlciIgOiAid2VhdGhlcmtpdCIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJvcmRlciIgOiBbCiAgICAgICAgImdiayIsCiAgICAgICAgInJhZ3VuYW4iCiAgICAgIF0sCiAgICAgICJyYWluRXhwb3N1cmVNaW51dGVzIiA6IDAuMywKICAgICAgInRyYXZlbE1pbnV0ZXMiIDogMTA0LjM1LAogICAgICAidW5jZXJ0YWludGllcyIgOiBbCiAgICAgICAgIldha3R1IHBhcmtpciwgYWtzZXMga2VuZGFyYWFuIGRhbiBwYXBhcmFuIGRpIGx1YXIgbW9iaWwgYmVsdW0gZGlrZXRhaHVpLiIsCiAgICAgICAgIldha3R1IHBhcmtpciwgYWtzZXMga2VuZGFyYWFuIGRhbiBwYXBhcmFuIGRpIGx1YXIgbW9iaWwgYmVsdW0gZGlrZXRhaHVpLiIsCiAgICAgICAgIldha3R1IHBhcmtpciwgYWtzZXMga2VuZGFyYWFuIGRhbiBwYXBhcmFuIGRpIGx1YXIgbW9iaWwgYmVsdW0gZGlrZXRhaHVpLiIKICAgICAgXSwKICAgICAgInVua25vd25XZWF0aGVyTWludXRlcyIgOiAxMDQuMzUsCiAgICAgICJ3YWl0aW5nTWludXRlcyIgOiAxMS41NjY2NjY2NjY2NjY2NjYKICAgIH0sCiAgICB7CiAgICAgICJjb21wbGV0ZSIgOiB0cnVlLAogICAgICAiY29uZmxpY3RzIiA6IFsKCiAgICAgIF0sCiAgICAgICJkd2VsbE1pbnV0ZXMiIDogMTIwLAogICAgICAiZmluaXNoIiA6ICIyMDI2LTExLTA2VDA5OjEwOjQ5WiIsCiAgICAgICJpZCIgOiAicmFndW5hbi9nYmsiLAogICAgICAibGVncyIgOiBbCiAgICAgICAgewogICAgICAgICAgImFycml2YWwiIDogIjIwMjYtMTEtMDZUMDA6NTA6NDRaIiwKICAgICAgICAgICJjaG9zZW4iIDogewogICAgICAgICAgICAiZGlzdGFuY2UiIDogMzI4MjUsCiAgICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDA6NTA6NDRaIiwKICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAwOjAwOjAwWiIsCiAgICAgICAgICAgICJpZCIgOiAib3JpZ2luPnJhZ3VuYW46YXV0b21vYmlsZToxNzkzOTIzMjAwLjAiLAogICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAic2Vjb25kcyIgOiAzMDQ0LAogICAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgICB9LAogICAgICAgICAgImRlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgImR3ZWxsTWludXRlcyIgOiA2MCwKICAgICAgICAgICJkd2VsbFNvdXJjZSIgOiAicGVuZ2d1bmEiLAogICAgICAgICAgImZyb20iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTW9oYW1tYWQgSHVzbmkgVGhhbXJpbiBLYXYuIDE3LTEzNlxuR29uZGFuZ2RpYSwgTWVudGVuZywgQ2VudHJhbCBKYWthcnRhXG5KYWthcnRhIDEwMzUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgICAiaWQiIDogIm9yaWdpbiIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4xOTEyMDU5LAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MjI2NzU1LAogICAgICAgICAgICAicXVlcnkiIDogIkJ1bmRhcmFuIEhJIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiLAogICAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICAgInRpdGxlIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiCiAgICAgICAgICB9LAogICAgICAgICAgImlkIiA6ICJyYWd1bmFuL2diazowIiwKICAgICAgICAgICJpc1JldHVybiIgOiBmYWxzZSwKICAgICAgICAgICJsZWF2ZSIgOiAiMjAyNi0xMS0wNlQwMjowMDowMFoiLAogICAgICAgICAgIm5vdGVzIiA6IFsKICAgICAgICAgICAgIkJ1a2EgMDcuMDAgwrcgdHV0dXAgMTYuMDAuIEphZHdhbCBwdWJsaWsgYmVyc3VtYmVyIHVudHVrIHRhbmdnYWwgdHJpcCwgem9uYSBBc2lhL0pha2FydGEuIiwKICAgICAgICAgICAgIkNhdGF0YW4gc3VtYmVyIGphbSBvcGVyYXNpb25hbDogdC1yYWd1bmFuOiBodHRwczovL3JhZ3VuYW56b28uamFrYXJ0YS5nby5pZC9sYW5ndWFnZS9lbi8iLAogICAgICAgICAgICAiUDM6IHZhbGlkYXRlZCBzb3VyY2VkIGZ1bGwtc3RheS9zZXNzaW9uL2VudHJ5IHJ1bGVzIGF0IHRoZSBhY3R1YWwgYXJyaXZhbC4iLAogICAgICAgICAgICAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIgogICAgICAgICAgXSwKICAgICAgICAgICJvcHRpb25zIiA6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJkaXN0YW5jZSIgOiAzMjgyNSwKICAgICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAwOjUwOjQ0WiIsCiAgICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAwOjAwOjAwWiIsCiAgICAgICAgICAgICAgImlkIiA6ICJvcmlnaW4+cmFndW5hbjphdXRvbW9iaWxlOjE3OTM5MjMyMDAuMCIsCiAgICAgICAgICAgICAgIm1vZGUiIDogImF1dG9tb2JpbGUiLAogICAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAgICJzZWNvbmRzIiA6IDMwNDQsCiAgICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMCwKICAgICAgICAgICJ0byIgOiB7CiAgICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBIYXJzb25vIFJNLiBOby4gMVxuUmFndW5hbiwgUGFzYXIgTWluZ2d1LCBTb3V0aCBKYWthcnRhXG5KYWthcnRhIDEyNTUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgICAiaWQiIDogInJhZ3VuYW4iLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMzExNTc2OSwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIxMDY2MSwKICAgICAgICAgICAgInF1ZXJ5IiA6ICJSYWd1bmFuIFpvbyBKYWthcnRhIiwKICAgICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiUmFndW5hbiBab28iLAogICAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICAgInRpdGxlIiA6ICJSYWd1bmFuIFpvbyIKICAgICAgICAgIH0sCiAgICAgICAgICAidmlzaXQiIDogIjIwMjYtMTEtMDZUMDE6MDA6MDBaIiwKICAgICAgICAgICJ3ZWF0aGVyUHJvdmlkZXIiIDogIndlYXRoZXJraXQiCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiYXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjozNjo0NloiLAogICAgICAgICAgImNob3NlbiIgOiB7CiAgICAgICAgICAgICJkaXN0YW5jZSIgOiAxMzcwNCwKICAgICAgICAgICAgImV4cGVjdGVkQXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjozNjo0NloiLAogICAgICAgICAgICAiZXhwZWN0ZWREZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwKICAgICAgICAgICAgImlkIiA6ICJyYWd1bmFuPmdiazphdXRvbW9iaWxlOjE3OTM5MzA0MDAuMCIsCiAgICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICAgIm5vdGUiIDogIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsCiAgICAgICAgICAgICJzZWNvbmRzIiA6IDIyMDYsCiAgICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICAgIH0sCiAgICAgICAgICAiZGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAyOjAwOjAwWiIsCiAgICAgICAgICAiZHdlbGxNaW51dGVzIiA6IDYwLAogICAgICAgICAgImR3ZWxsU291cmNlIiA6ICJwZW5nZ3VuYSIsCiAgICAgICAgICAiZnJvbSIgOiB7CiAgICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBIYXJzb25vIFJNLiBOby4gMVxuUmFndW5hbiwgUGFzYXIgTWluZ2d1LCBTb3V0aCBKYWthcnRhXG5KYWthcnRhIDEyNTUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgICAiaWQiIDogInJhZ3VuYW4iLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMzExNTc2OSwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIxMDY2MSwKICAgICAgICAgICAgInF1ZXJ5IiA6ICJSYWd1bmFuIFpvbyBKYWthcnRhIiwKICAgICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiUmFndW5hbiBab28iLAogICAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICAgInRpdGxlIiA6ICJSYWd1bmFuIFpvbyIKICAgICAgICAgIH0sCiAgICAgICAgICAiaWQiIDogInJhZ3VuYW4vZ2JrOjEiLAogICAgICAgICAgImlzUmV0dXJuIiA6IGZhbHNlLAogICAgICAgICAgImxlYXZlIiA6ICIyMDI2LTExLTA2VDA5OjAwOjAwWiIsCiAgICAgICAgICAibm90ZXMiIDogWwogICAgICAgICAgICAiQnVrYSAwNi4wMCDCtyB0dXR1cCAxOC4wMC4gSmFkd2FsIHB1YmxpayBiZXJzdW1iZXIgdW50dWsgdGFuZ2dhbCB0cmlwLCB6b25hIEFzaWEvSmFrYXJ0YS4iLAogICAgICAgICAgICAiQ2F0YXRhbiBzdW1iZXIgamFtIG9wZXJhc2lvbmFsOiB0LWdiazogaHR0cHM6Ly9wdXNhdC5qYWthcnRhLmdvLmlkL2tlbHVyYWhhbi9rZWx1cmFoYW4tZ2Vsb3JhL2Zhc2lsaXRhcy9mYXNpbGl0YXMtdGFtYW4taHV0YW4ta290YS90YW1hbi1odXRhbi1rb3RhIiwKICAgICAgICAgICAgIlAzOiB2YWxpZGF0ZWQgc291cmNlZCBmdWxsLXN0YXkvc2Vzc2lvbi9lbnRyeSBydWxlcyBhdCB0aGUgYWN0dWFsIGFycml2YWwuIiwKICAgICAgICAgICAgIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIKICAgICAgICAgIF0sCiAgICAgICAgICAib3B0aW9ucyIgOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiZGlzdGFuY2UiIDogMTM3MDQsCiAgICAgICAgICAgICAgImV4cGVjdGVkQXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjozNjo0NloiLAogICAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMjowMDowMFoiLAogICAgICAgICAgICAgICJpZCIgOiAicmFndW5hbj5nYms6YXV0b21vYmlsZToxNzkzOTMwNDAwLjAiLAogICAgICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICAgICAibm90ZSIgOiAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwKICAgICAgICAgICAgICAic2Vjb25kcyIgOiAyMjA2LAogICAgICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICAgICAgfQogICAgICAgICAgXSwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDQzNDg0Mzg3MjMxNDUxNjksCiAgICAgICAgICAidG8iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTGluZ2thciBTdGFkaW9uLCBDZW50cmFsIEpha2FydGEsIEpha2FydGEsIEluZG9uZXNpYSIsCiAgICAgICAgICAgICJpZCIgOiAiZ2JrIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIxOTIwNCwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODA0NTY0LAogICAgICAgICAgICAicXVlcnkiIDogIkh1dGFuIEtvdGEgR0JLIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJIdXRhbiBLb3RhIEdCSyIsCiAgICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgICB9LAogICAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgICAidGl0bGUiIDogIkh1dGFuIEtvdGEgR0JLIgogICAgICAgICAgfSwKICAgICAgICAgICJ2aXNpdCIgOiAiMjAyNi0xMS0wNlQwODowMDowMFoiLAogICAgICAgICAgIndlYXRoZXJQcm92aWRlciIgOiAid2VhdGhlcmtpdCIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcnJpdmFsIiA6ICIyMDI2LTExLTA2VDA5OjEwOjQ5WiIsCiAgICAgICAgICAiY2hvc2VuIiA6IHsKICAgICAgICAgICAgImRpc3RhbmNlIiA6IDUwNDgsCiAgICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDk6MTA6NDlaIiwKICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDA5OjAwOjAwWiIsCiAgICAgICAgICAgICJpZCIgOiAiZ2JrPm9yaWdpbjphdXRvbW9iaWxlOjE3OTM5NTU2MDAuMCIsCiAgICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICAgIm5vdGUiIDogIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsCiAgICAgICAgICAgICJzZWNvbmRzIiA6IDY0OSwKICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgfSwKICAgICAgICAgICJkZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDk6MDA6MDBaIiwKICAgICAgICAgICJkd2VsbE1pbnV0ZXMiIDogMCwKICAgICAgICAgICJkd2VsbFNvdXJjZSIgOiAidHJhbnNmZXIiLAogICAgICAgICAgImZyb20iIDogewogICAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTGluZ2thciBTdGFkaW9uLCBDZW50cmFsIEpha2FydGEsIEpha2FydGEsIEluZG9uZXNpYSIsCiAgICAgICAgICAgICJpZCIgOiAiZ2JrIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIxOTIwNCwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODA0NTY0LAogICAgICAgICAgICAicXVlcnkiIDogIkh1dGFuIEtvdGEgR0JLIEpha2FydGEiLAogICAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJIdXRhbiBLb3RhIEdCSyIsCiAgICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgICB9LAogICAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgICAidGl0bGUiIDogIkh1dGFuIEtvdGEgR0JLIgogICAgICAgICAgfSwKICAgICAgICAgICJpZCIgOiAicmFndW5hbi9nYms6MiIsCiAgICAgICAgICAiaXNSZXR1cm4iIDogdHJ1ZSwKICAgICAgICAgICJsZWF2ZSIgOiAiMjAyNi0xMS0wNlQwOToxMDo0OVoiLAogICAgICAgICAgIm5vdGVzIiA6IFsKICAgICAgICAgICAgIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIKICAgICAgICAgIF0sCiAgICAgICAgICAib3B0aW9ucyIgOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiZGlzdGFuY2UiIDogNTA0OCwKICAgICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDA5OjEwOjQ5WiIsCiAgICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDA5OjAwOjAwWiIsCiAgICAgICAgICAgICAgImlkIiA6ICJnYms+b3JpZ2luOmF1dG9tb2JpbGU6MTc5Mzk1NTYwMC4wIiwKICAgICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICAgIm5vdGUiIDogIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIsCiAgICAgICAgICAgICAgInNlY29uZHMiIDogNjQ5LAogICAgICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICAgICAgfQogICAgICAgICAgXSwKICAgICAgICAgICJ0byIgOiB7CiAgICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBNb2hhbW1hZCBIdXNuaSBUaGFtcmluIEthdi4gMTctMTM2XG5Hb25kYW5nZGlhLCBNZW50ZW5nLCBDZW50cmFsIEpha2FydGFcbkpha2FydGEgMTAzNTBcbkluZG9uZXNpYSIsCiAgICAgICAgICAgICJpZCIgOiAib3JpZ2luIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjE5MTIwNTksCiAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgyMjY3NTUsCiAgICAgICAgICAgICJxdWVyeSIgOiAiQnVuZGFyYW4gSEkgSmFrYXJ0YSIsCiAgICAgICAgICAgICJyZXNvbHZlZE5hbWUiIDogIkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIsCiAgICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgICB9LAogICAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgICAidGl0bGUiIDogIkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIKICAgICAgICAgIH0sCiAgICAgICAgICAidmlzaXQiIDogIjIwMjYtMTEtMDZUMDk6MTA6NDlaIiwKICAgICAgICAgICJ3ZWF0aGVyUHJvdmlkZXIiIDogIndlYXRoZXJraXQiCiAgICAgICAgfQogICAgICBdLAogICAgICAib3JkZXIiIDogWwogICAgICAgICJyYWd1bmFuIiwKICAgICAgICAiZ2JrIgogICAgICBdLAogICAgICAicmFpbkV4cG9zdXJlTWludXRlcyIgOiAxNi42NjQ2NjY2NjY2NjY2NywKICAgICAgInRyYXZlbE1pbnV0ZXMiIDogOTguMzE2NjY2NjY2NjY2NjYsCiAgICAgICJ1bmNlcnRhaW50aWVzIiA6IFsKICAgICAgICAiV2FrdHUgcGFya2lyLCBha3NlcyBrZW5kYXJhYW4gZGFuIHBhcGFyYW4gZGkgbHVhciBtb2JpbCBiZWx1bSBkaWtldGFodWkuIiwKICAgICAgICAiV2FrdHUgcGFya2lyLCBha3NlcyBrZW5kYXJhYW4gZGFuIHBhcGFyYW4gZGkgbHVhciBtb2JpbCBiZWx1bSBkaWtldGFodWkuIiwKICAgICAgICAiV2FrdHUgcGFya2lyLCBha3NlcyBrZW5kYXJhYW4gZGFuIHBhcGFyYW4gZGkgbHVhciBtb2JpbCBiZWx1bSBkaWtldGFodWkuIgogICAgICBdLAogICAgICAidW5rbm93bldlYXRoZXJNaW51dGVzIiA6IDk4LjMxNjY2NjY2NjY2NjY2LAogICAgICAid2FpdGluZ01pbnV0ZXMiIDogMzMyLjUKICAgIH0KICBdLAogICJkcmFmdCIgOiB7CiAgICAiYXV0b21vYmlsZSIgOiB0cnVlLAogICAgImNhclVzZSIgOiAib25EZW1hbmQiLAogICAgImRlZmF1bHREd2VsbCIgOiA2MCwKICAgICJkZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDA6MDA6MDBaIiwKICAgICJlbmQiIDogewogICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTW9oYW1tYWQgSHVzbmkgVGhhbXJpbiBLYXYuIDE3LTEzNlxuR29uZGFuZ2RpYSwgTWVudGVuZywgQ2VudHJhbCBKYWthcnRhXG5KYWthcnRhIDEwMzUwXG5JbmRvbmVzaWEiLAogICAgICAiaWQiIDogIm9yaWdpbiIsCiAgICAgICJsYXRpdHVkZSIgOiAtNi4xOTEyMDU5LAogICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MjI2NzU1LAogICAgICAicXVlcnkiIDogIkJ1bmRhcmFuIEhJIEpha2FydGEiLAogICAgICAicmVzb2x2ZWROYW1lIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiLAogICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgfSwKICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgInRpdGxlIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiCiAgICB9LAogICAgImV4dHJhV2VhdGhlck1pbnV0ZXMiIDogMTUsCiAgICAiZmluaXNoQnkiIDogIjIwMjYtMTEtMDZUMTI6MDA6MDBaIiwKICAgICJtYXhpbXVtV2Fsa2luZ01pbnV0ZXMiIDogNDUsCiAgICAib3JpZ2luIiA6IHsKICAgICAgImFkZHJlc3MiIDogIkphbGFuIE1vaGFtbWFkIEh1c25pIFRoYW1yaW4gS2F2LiAxNy0xMzZcbkdvbmRhbmdkaWEsIE1lbnRlbmcsIENlbnRyYWwgSmFrYXJ0YVxuSmFrYXJ0YSAxMDM1MFxuSW5kb25lc2lhIiwKICAgICAgImlkIiA6ICJvcmlnaW4iLAogICAgICAibGF0aXR1ZGUiIDogLTYuMTkxMjA1OSwKICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIyNjc1NSwKICAgICAgInF1ZXJ5IiA6ICJCdW5kYXJhbiBISSBKYWthcnRhIiwKICAgICAgInJlc29sdmVkTmFtZSIgOiAiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwKICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgIH0sCiAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICJ0aXRsZSIgOiAiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIgogICAgfSwKICAgICJwbGFubmluZ0FyZWEiIDogImpha2FydGEiLAogICAgInJhaW5XZWlnaHQiIDogMiwKICAgICJyZXR1cm5zVG9PcmlnaW4iIDogdHJ1ZSwKICAgICJyb3V0aW5nQWRhcHRpdmUiIDogdHJ1ZSwKICAgICJyb3V0aW5nQWxnb3JpdGhtIiA6ICJoeWJyaWQiLAogICAgInJvdXRpbmdSZXF1ZXN0TGltaXQiIDogNTEyLAogICAgInNlYXJjaENvbnRleHQiIDogIkpha2FydGEiLAogICAgInN0b3BzIiA6IFsKICAgICAgewogICAgICAgICJkd2VsbE92ZXJyaWRlIiA6IDYwLAogICAgICAgICJleHBvc3VyZSIgOiAib3V0ZG9vciIsCiAgICAgICAgIm9wZW5pbmciIDogewogICAgICAgICAgImNsb3Nlc01pbnV0ZSIgOiAxMDgwLAogICAgICAgICAgIm9wZW5zTWludXRlIiA6IDM2MCwKICAgICAgICAgICJzZXJ2aWNlRGF0ZSIgOiAiMjAyNi0xMS0wNiIsCiAgICAgICAgICAic291cmNlTm90ZSIgOiAidC1nYms6IGh0dHBzOi8vcHVzYXQuamFrYXJ0YS5nby5pZC9rZWx1cmFoYW4va2VsdXJhaGFuLWdlbG9yYS9mYXNpbGl0YXMvZmFzaWxpdGFzLXRhbWFuLWh1dGFuLWtvdGEvdGFtYW4taHV0YW4ta290YSIsCiAgICAgICAgICAidGltZVpvbmVJRCIgOiAiQXNpYS9KYWthcnRhIgogICAgICAgIH0sCiAgICAgICAgInBvaW50IiA6IHsKICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBMaW5na2FyIFN0YWRpb24sIENlbnRyYWwgSmFrYXJ0YSwgSmFrYXJ0YSwgSW5kb25lc2lhIiwKICAgICAgICAgICJpZCIgOiAiZ2JrIiwKICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yMTkyMDQsCiAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MDQ1NjQsCiAgICAgICAgICAicXVlcnkiIDogIkh1dGFuIEtvdGEgR0JLIEpha2FydGEiLAogICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiSHV0YW4gS290YSBHQksiLAogICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgfSwKICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAidGl0bGUiIDogIkh1dGFuIEtvdGEgR0JLIgogICAgICAgIH0sCiAgICAgICAgInJvbGUiIDogInZpc2l0IgogICAgICB9LAogICAgICB7CiAgICAgICAgImR3ZWxsT3ZlcnJpZGUiIDogNjAsCiAgICAgICAgImV4cG9zdXJlIiA6ICJvdXRkb29yIiwKICAgICAgICAib3BlbmluZyIgOiB7CiAgICAgICAgICAiY2xvc2VzTWludXRlIiA6IDk2MCwKICAgICAgICAgICJvcGVuc01pbnV0ZSIgOiA0MjAsCiAgICAgICAgICAic2VydmljZURhdGUiIDogIjIwMjYtMTEtMDYiLAogICAgICAgICAgInNvdXJjZU5vdGUiIDogInQtcmFndW5hbjogaHR0cHM6Ly9yYWd1bmFuem9vLmpha2FydGEuZ28uaWQvbGFuZ3VhZ2UvZW4vIiwKICAgICAgICAgICJ0aW1lWm9uZUlEIiA6ICJBc2lhL0pha2FydGEiCiAgICAgICAgfSwKICAgICAgICAicG9pbnQiIDogewogICAgICAgICAgImFkZHJlc3MiIDogIkphbGFuIEhhcnNvbm8gUk0uIE5vLiAxXG5SYWd1bmFuLCBQYXNhciBNaW5nZ3UsIFNvdXRoIEpha2FydGFcbkpha2FydGEgMTI1NTBcbkluZG9uZXNpYSIsCiAgICAgICAgICAiaWQiIDogInJhZ3VuYW4iLAogICAgICAgICAgImxhdGl0dWRlIiA6IC02LjMxMTU3NjksCiAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MjEwNjYxLAogICAgICAgICAgInF1ZXJ5IiA6ICJSYWd1bmFuIFpvbyBKYWthcnRhIiwKICAgICAgICAgICJyZXNvbHZlZE5hbWUiIDogIlJhZ3VuYW4gWm9vIiwKICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgIH0sCiAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgInRpdGxlIiA6ICJSYWd1bmFuIFpvbyIKICAgICAgICB9LAogICAgICAgICJyb2xlIiA6ICJ2aXNpdCIKICAgICAgfQogICAgXSwKICAgICJ0aW1lWm9uZUlEIiA6ICJBc2lhL0pha2FydGEiLAogICAgInRyYW5zaXQiIDogZmFsc2UsCiAgICAid2Fsa2luZyIgOiBmYWxzZQogIH0sCiAgImZhc3Rlc3QiIDogewogICAgImNvbXBsZXRlIiA6IHRydWUsCiAgICAiY29uZmxpY3RzIiA6IFsKCiAgICBdLAogICAgImR3ZWxsTWludXRlcyIgOiAxMjAsCiAgICAiZmluaXNoIiA6ICIyMDI2LTExLTA2VDAzOjU1OjU1WiIsCiAgICAiaWQiIDogImdiay9yYWd1bmFuIiwKICAgICJsZWdzIiA6IFsKICAgICAgewogICAgICAgICJhcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAwOjIxOjEzWiIsCiAgICAgICAgImNob3NlbiIgOiB7CiAgICAgICAgICAiZGlzdGFuY2UiIDogODYwOSwKICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDA6MjE6MTNaIiwKICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgImlkIiA6ICJvcmlnaW4+Z2JrOmF1dG9tb2JpbGU6MTc5MzkyMzIwMC4wIiwKICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgInNlY29uZHMiIDogMTI3MywKICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICB9LAogICAgICAgICJkZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDA6MDA6MDBaIiwKICAgICAgICAiZHdlbGxNaW51dGVzIiA6IDYwLAogICAgICAgICJkd2VsbFNvdXJjZSIgOiAicGVuZ2d1bmEiLAogICAgICAgICJmcm9tIiA6IHsKICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBNb2hhbW1hZCBIdXNuaSBUaGFtcmluIEthdi4gMTctMTM2XG5Hb25kYW5nZGlhLCBNZW50ZW5nLCBDZW50cmFsIEpha2FydGFcbkpha2FydGEgMTAzNTBcbkluZG9uZXNpYSIsCiAgICAgICAgICAiaWQiIDogIm9yaWdpbiIsCiAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMTkxMjA1OSwKICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgyMjY3NTUsCiAgICAgICAgICAicXVlcnkiIDogIkJ1bmRhcmFuIEhJIEpha2FydGEiLAogICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiQnVuZGFyYW4gSEkgQmFuayBKYWthcnRhIiwKICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgIH0sCiAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgInRpdGxlIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiCiAgICAgICAgfSwKICAgICAgICAiaWQiIDogImdiay9yYWd1bmFuOjAiLAogICAgICAgICJpc1JldHVybiIgOiBmYWxzZSwKICAgICAgICAibGVhdmUiIDogIjIwMjYtMTEtMDZUMDE6MzA6MDBaIiwKICAgICAgICAibm90ZXMiIDogWwogICAgICAgICAgIkJ1a2EgMDYuMDAgwrcgdHV0dXAgMTguMDAuIEphZHdhbCBwdWJsaWsgYmVyc3VtYmVyIHVudHVrIHRhbmdnYWwgdHJpcCwgem9uYSBBc2lhL0pha2FydGEuIiwKICAgICAgICAgICJDYXRhdGFuIHN1bWJlciBqYW0gb3BlcmFzaW9uYWw6IHQtZ2JrOiBodHRwczovL3B1c2F0Lmpha2FydGEuZ28uaWQva2VsdXJhaGFuL2tlbHVyYWhhbi1nZWxvcmEvZmFzaWxpdGFzL2Zhc2lsaXRhcy10YW1hbi1odXRhbi1rb3RhL3RhbWFuLWh1dGFuLWtvdGEiLAogICAgICAgICAgIlAzOiB2YWxpZGF0ZWQgc291cmNlZCBmdWxsLXN0YXkvc2Vzc2lvbi9lbnRyeSBydWxlcyBhdCB0aGUgYWN0dWFsIGFycml2YWwuIiwKICAgICAgICAgICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iCiAgICAgICAgXSwKICAgICAgICAib3B0aW9ucyIgOiBbCiAgICAgICAgICB7CiAgICAgICAgICAgICJkaXN0YW5jZSIgOiA4NjA5LAogICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAwOjIxOjEzWiIsCiAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMDowMDowMFoiLAogICAgICAgICAgICAiaWQiIDogIm9yaWdpbj5nYms6YXV0b21vYmlsZToxNzkzOTIzMjAwLjAiLAogICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAic2Vjb25kcyIgOiAxMjczLAogICAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgICB9CiAgICAgICAgXSwKICAgICAgICAicmFpbkNoYW5jZSIgOiAwLAogICAgICAgICJ0byIgOiB7CiAgICAgICAgICAiYWRkcmVzcyIgOiAiSmFsYW4gTGluZ2thciBTdGFkaW9uLCBDZW50cmFsIEpha2FydGEsIEpha2FydGEsIEluZG9uZXNpYSIsCiAgICAgICAgICAiaWQiIDogImdiayIsCiAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMjE5MjA0LAogICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODA0NTY0LAogICAgICAgICAgInF1ZXJ5IiA6ICJIdXRhbiBLb3RhIEdCSyBKYWthcnRhIiwKICAgICAgICAgICJyZXNvbHZlZE5hbWUiIDogIkh1dGFuIEtvdGEgR0JLIiwKICAgICAgICAgICJzZWFyY2hSZWdpb24iIDogewogICAgICAgICAgICAibGFiZWwiIDogIkpha2FydGEiLAogICAgICAgICAgICAibGF0aXR1ZGUiIDogLTYuMiwKICAgICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODMsCiAgICAgICAgICAgICJyYWRpdXNNZXRlcnMiIDogMzUwMDAKICAgICAgICAgIH0sCiAgICAgICAgICAic2VsZWN0aW9uU291cmNlIiA6ICJNYXBLaXQgwrcgc2F0dSBrZWNvY29rYW4gbmFtYS9jYWJhbmciLAogICAgICAgICAgInRpdGxlIiA6ICJIdXRhbiBLb3RhIEdCSyIKICAgICAgICB9LAogICAgICAgICJ2aXNpdCIgOiAiMjAyNi0xMS0wNlQwMDozMDowMFoiLAogICAgICAgICJ3ZWF0aGVyUHJvdmlkZXIiIDogIndlYXRoZXJraXQiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiYXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjoxMjoxM1oiLAogICAgICAgICJjaG9zZW4iIDogewogICAgICAgICAgImRpc3RhbmNlIiA6IDI3MDgzLAogICAgICAgICAgImV4cGVjdGVkQXJyaXZhbCIgOiAiMjAyNi0xMS0wNlQwMjoxMjoxM1oiLAogICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAxOjMwOjAwWiIsCiAgICAgICAgICAiaWQiIDogImdiaz5yYWd1bmFuOmF1dG9tb2JpbGU6MTc5MzkyODYwMC4wIiwKICAgICAgICAgICJtb2RlIiA6ICJhdXRvbW9iaWxlIiwKICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgInNlY29uZHMiIDogMjUzMywKICAgICAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgICAgICB9LAogICAgICAgICJkZXBhcnR1cmUiIDogIjIwMjYtMTEtMDZUMDE6MzA6MDBaIiwKICAgICAgICAiZHdlbGxNaW51dGVzIiA6IDYwLAogICAgICAgICJkd2VsbFNvdXJjZSIgOiAicGVuZ2d1bmEiLAogICAgICAgICJmcm9tIiA6IHsKICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBMaW5na2FyIFN0YWRpb24sIENlbnRyYWwgSmFrYXJ0YSwgSmFrYXJ0YSwgSW5kb25lc2lhIiwKICAgICAgICAgICJpZCIgOiAiZ2JrIiwKICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yMTkyMDQsCiAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MDQ1NjQsCiAgICAgICAgICAicXVlcnkiIDogIkh1dGFuIEtvdGEgR0JLIEpha2FydGEiLAogICAgICAgICAgInJlc29sdmVkTmFtZSIgOiAiSHV0YW4gS290YSBHQksiLAogICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgfSwKICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAidGl0bGUiIDogIkh1dGFuIEtvdGEgR0JLIgogICAgICAgIH0sCiAgICAgICAgImlkIiA6ICJnYmsvcmFndW5hbjoxIiwKICAgICAgICAiaXNSZXR1cm4iIDogZmFsc2UsCiAgICAgICAgImxlYXZlIiA6ICIyMDI2LTExLTA2VDAzOjE1OjAwWiIsCiAgICAgICAgIm5vdGVzIiA6IFsKICAgICAgICAgICJCdWthIDA3LjAwIMK3IHR1dHVwIDE2LjAwLiBKYWR3YWwgcHVibGlrIGJlcnN1bWJlciB1bnR1ayB0YW5nZ2FsIHRyaXAsIHpvbmEgQXNpYS9KYWthcnRhLiIsCiAgICAgICAgICAiQ2F0YXRhbiBzdW1iZXIgamFtIG9wZXJhc2lvbmFsOiB0LXJhZ3VuYW46IGh0dHBzOi8vcmFndW5hbnpvby5qYWthcnRhLmdvLmlkL2xhbmd1YWdlL2VuLyIsCiAgICAgICAgICAiUDM6IHZhbGlkYXRlZCBzb3VyY2VkIGZ1bGwtc3RheS9zZXNzaW9uL2VudHJ5IHJ1bGVzIGF0IHRoZSBhY3R1YWwgYXJyaXZhbC4iLAogICAgICAgICAgIkVzdGltYXNpIG1vYmlsIE1hcEtpdCBwYWRhIHdha3R1IHlhbmcgZGltaW50YS4gQmVsdW0gdGVybWFzdWsgbWVuY2FyaSBrZW5kYXJhYW4sIHBhcmtpciBhdGF1IGJlcmphbGFuIGRhcmkgcGFya2lyOyBidWthbiBFVEEgbW90b3IgYXRhdSB0cmFuc2l0LiIKICAgICAgICBdLAogICAgICAgICJvcHRpb25zIiA6IFsKICAgICAgICAgIHsKICAgICAgICAgICAgImRpc3RhbmNlIiA6IDI3MDgzLAogICAgICAgICAgICAiZXhwZWN0ZWRBcnJpdmFsIiA6ICIyMDI2LTExLTA2VDAyOjEyOjEzWiIsCiAgICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMTozMDowMFoiLAogICAgICAgICAgICAiaWQiIDogImdiaz5yYWd1bmFuOmF1dG9tb2JpbGU6MTc5MzkyODYwMC4wIiwKICAgICAgICAgICAgIm1vZGUiIDogImF1dG9tb2JpbGUiLAogICAgICAgICAgICAibm90ZSIgOiAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwKICAgICAgICAgICAgInNlY29uZHMiIDogMjUzMywKICAgICAgICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgICAgICAgfQogICAgICAgIF0sCiAgICAgICAgInJhaW5DaGFuY2UiIDogMC4wMDQ3NzgzMzgyMDAxNTkyNzgsCiAgICAgICAgInRvIiA6IHsKICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBIYXJzb25vIFJNLiBOby4gMVxuUmFndW5hbiwgUGFzYXIgTWluZ2d1LCBTb3V0aCBKYWthcnRhXG5KYWthcnRhIDEyNTUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgImlkIiA6ICJyYWd1bmFuIiwKICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4zMTE1NzY5LAogICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIxMDY2MSwKICAgICAgICAgICJxdWVyeSIgOiAiUmFndW5hbiBab28gSmFrYXJ0YSIsCiAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJSYWd1bmFuIFpvbyIsCiAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgICAgICB9LAogICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICJ0aXRsZSIgOiAiUmFndW5hbiBab28iCiAgICAgICAgfSwKICAgICAgICAidmlzaXQiIDogIjIwMjYtMTEtMDZUMDI6MTU6MDBaIiwKICAgICAgICAid2VhdGhlclByb3ZpZGVyIiA6ICJ3ZWF0aGVya2l0IgogICAgICB9LAogICAgICB7CiAgICAgICAgImFycml2YWwiIDogIjIwMjYtMTEtMDZUMDM6NTU6NTVaIiwKICAgICAgICAiY2hvc2VuIiA6IHsKICAgICAgICAgICJkaXN0YW5jZSIgOiAxNDU4OCwKICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDM6NTU6NTVaIiwKICAgICAgICAgICJleHBlY3RlZERlcGFydHVyZSIgOiAiMjAyNi0xMS0wNlQwMzoxNTowMFoiLAogICAgICAgICAgImlkIiA6ICJyYWd1bmFuPm9yaWdpbjphdXRvbW9iaWxlOjE3OTM5MzQ5MDAuMCIsCiAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAibm90ZSIgOiAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIiwKICAgICAgICAgICJzZWNvbmRzIiA6IDI0NTUsCiAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgfSwKICAgICAgICAiZGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAzOjE1OjAwWiIsCiAgICAgICAgImR3ZWxsTWludXRlcyIgOiAwLAogICAgICAgICJkd2VsbFNvdXJjZSIgOiAidHJhbnNmZXIiLAogICAgICAgICJmcm9tIiA6IHsKICAgICAgICAgICJhZGRyZXNzIiA6ICJKYWxhbiBIYXJzb25vIFJNLiBOby4gMVxuUmFndW5hbiwgUGFzYXIgTWluZ2d1LCBTb3V0aCBKYWthcnRhXG5KYWthcnRhIDEyNTUwXG5JbmRvbmVzaWEiLAogICAgICAgICAgImlkIiA6ICJyYWd1bmFuIiwKICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4zMTE1NzY5LAogICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIxMDY2MSwKICAgICAgICAgICJxdWVyeSIgOiAiUmFndW5hbiBab28gSmFrYXJ0YSIsCiAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJSYWd1bmFuIFpvbyIsCiAgICAgICAgICAic2VhcmNoUmVnaW9uIiA6IHsKICAgICAgICAgICAgImxhYmVsIiA6ICJKYWthcnRhIiwKICAgICAgICAgICAgImxhdGl0dWRlIiA6IC02LjIsCiAgICAgICAgICAgICJsb25naXR1ZGUiIDogMTA2LjgzLAogICAgICAgICAgICAicmFkaXVzTWV0ZXJzIiA6IDM1MDAwCiAgICAgICAgICB9LAogICAgICAgICAgInNlbGVjdGlvblNvdXJjZSIgOiAiTWFwS2l0IMK3IHNhdHUga2Vjb2Nva2FuIG5hbWEvY2FiYW5nIiwKICAgICAgICAgICJ0aXRsZSIgOiAiUmFndW5hbiBab28iCiAgICAgICAgfSwKICAgICAgICAiaWQiIDogImdiay9yYWd1bmFuOjIiLAogICAgICAgICJpc1JldHVybiIgOiB0cnVlLAogICAgICAgICJsZWF2ZSIgOiAiMjAyNi0xMS0wNlQwMzo1NTo1NVoiLAogICAgICAgICJub3RlcyIgOiBbCiAgICAgICAgICAiRXN0aW1hc2kgbW9iaWwgTWFwS2l0IHBhZGEgd2FrdHUgeWFuZyBkaW1pbnRhLiBCZWx1bSB0ZXJtYXN1ayBtZW5jYXJpIGtlbmRhcmFhbiwgcGFya2lyIGF0YXUgYmVyamFsYW4gZGFyaSBwYXJraXI7IGJ1a2FuIEVUQSBtb3RvciBhdGF1IHRyYW5zaXQuIgogICAgICAgIF0sCiAgICAgICAgIm9wdGlvbnMiIDogWwogICAgICAgICAgewogICAgICAgICAgICAiZGlzdGFuY2UiIDogMTQ1ODgsCiAgICAgICAgICAgICJleHBlY3RlZEFycml2YWwiIDogIjIwMjYtMTEtMDZUMDM6NTU6NTVaIiwKICAgICAgICAgICAgImV4cGVjdGVkRGVwYXJ0dXJlIiA6ICIyMDI2LTExLTA2VDAzOjE1OjAwWiIsCiAgICAgICAgICAgICJpZCIgOiAicmFndW5hbj5vcmlnaW46YXV0b21vYmlsZToxNzkzOTM0OTAwLjAiLAogICAgICAgICAgICAibW9kZSIgOiAiYXV0b21vYmlsZSIsCiAgICAgICAgICAgICJub3RlIiA6ICJFc3RpbWFzaSBtb2JpbCBNYXBLaXQgcGFkYSB3YWt0dSB5YW5nIGRpbWludGEuIEJlbHVtIHRlcm1hc3VrIG1lbmNhcmkga2VuZGFyYWFuLCBwYXJraXIgYXRhdSBiZXJqYWxhbiBkYXJpIHBhcmtpcjsgYnVrYW4gRVRBIG1vdG9yIGF0YXUgdHJhbnNpdC4iLAogICAgICAgICAgICAic2Vjb25kcyIgOiAyNDU1LAogICAgICAgICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICAgICAgICB9CiAgICAgICAgXSwKICAgICAgICAidG8iIDogewogICAgICAgICAgImFkZHJlc3MiIDogIkphbGFuIE1vaGFtbWFkIEh1c25pIFRoYW1yaW4gS2F2LiAxNy0xMzZcbkdvbmRhbmdkaWEsIE1lbnRlbmcsIENlbnRyYWwgSmFrYXJ0YVxuSmFrYXJ0YSAxMDM1MFxuSW5kb25lc2lhIiwKICAgICAgICAgICJpZCIgOiAib3JpZ2luIiwKICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4xOTEyMDU5LAogICAgICAgICAgImxvbmdpdHVkZSIgOiAxMDYuODIyNjc1NSwKICAgICAgICAgICJxdWVyeSIgOiAiQnVuZGFyYW4gSEkgSmFrYXJ0YSIsCiAgICAgICAgICAicmVzb2x2ZWROYW1lIiA6ICJCdW5kYXJhbiBISSBCYW5rIEpha2FydGEiLAogICAgICAgICAgInNlYXJjaFJlZ2lvbiIgOiB7CiAgICAgICAgICAgICJsYWJlbCIgOiAiSmFrYXJ0YSIsCiAgICAgICAgICAgICJsYXRpdHVkZSIgOiAtNi4yLAogICAgICAgICAgICAibG9uZ2l0dWRlIiA6IDEwNi44MywKICAgICAgICAgICAgInJhZGl1c01ldGVycyIgOiAzNTAwMAogICAgICAgICAgfSwKICAgICAgICAgICJzZWxlY3Rpb25Tb3VyY2UiIDogIk1hcEtpdCDCtyBzYXR1IGtlY29jb2thbiBuYW1hL2NhYmFuZyIsCiAgICAgICAgICAidGl0bGUiIDogIkJ1bmRhcmFuIEhJIEJhbmsgSmFrYXJ0YSIKICAgICAgICB9LAogICAgICAgICJ2aXNpdCIgOiAiMjAyNi0xMS0wNlQwMzo1NTo1NVoiLAogICAgICAgICJ3ZWF0aGVyUHJvdmlkZXIiIDogIndlYXRoZXJraXQiCiAgICAgIH0KICAgIF0sCiAgICAib3JkZXIiIDogWwogICAgICAiZ2JrIiwKICAgICAgInJhZ3VuYW4iCiAgICBdLAogICAgInJhaW5FeHBvc3VyZU1pbnV0ZXMiIDogMC4zLAogICAgInRyYXZlbE1pbnV0ZXMiIDogMTA0LjM1LAogICAgInVuY2VydGFpbnRpZXMiIDogWwogICAgICAiV2FrdHUgcGFya2lyLCBha3NlcyBrZW5kYXJhYW4gZGFuIHBhcGFyYW4gZGkgbHVhciBtb2JpbCBiZWx1bSBkaWtldGFodWkuIiwKICAgICAgIldha3R1IHBhcmtpciwgYWtzZXMga2VuZGFyYWFuIGRhbiBwYXBhcmFuIGRpIGx1YXIgbW9iaWwgYmVsdW0gZGlrZXRhaHVpLiIsCiAgICAgICJXYWt0dSBwYXJraXIsIGFrc2VzIGtlbmRhcmFhbiBkYW4gcGFwYXJhbiBkaSBsdWFyIG1vYmlsIGJlbHVtIGRpa2V0YWh1aS4iCiAgICBdLAogICAgInVua25vd25XZWF0aGVyTWludXRlcyIgOiAxMDQuMzUsCiAgICAid2FpdGluZ01pbnV0ZXMiIDogMTEuNTY2NjY2NjY2NjY2NjY2CiAgfSwKICAiZm9yZWNhc3RzIiA6IFsKICAgIHsKICAgICAgImZldGNoZWRBdCIgOiAiMjAyNi0xMS0wNVQwOTo1NzozNloiLAogICAgICAiaG91cnMiIDogWwogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAwOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyNy4xOTAwMDA1MzQwNTc2MTcKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAxOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyOC43MDAwMDA3NjI5Mzk0NTMKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAyOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjAyLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMC4yNjAwMDAyMjg4ODE4MzYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAzOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjAyLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMS40MzAwMDAzMDUxNzU3OAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDQ6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDMsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMyLjMxOTk5OTY5NDgyNDIyCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiZGF0ZSIgOiAiMjAyNi0xMS0wNlQwNTowMDowMFoiLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMC4wNCwKICAgICAgICAgICJ0ZW1wZXJhdHVyZUMiIDogMzIuNzQwMDAxNjc4NDY2OAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDY6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDQsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMyLjUyOTk5ODc3OTI5Njg3NQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDc6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDcsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjc5MDAwMDkxNTUyNzM0NAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDg6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDksCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjc5MDAwMDkxNTUyNzM0NAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDk6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjExMDAwMDYxMDM1MTU2MgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTA6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMwLjI3MDAwMDQ1Nzc2MzY3MgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTE6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTUsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI4LjY3MDAwMDA3NjI5Mzk0NQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTI6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTUsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI3Ljc1CiAgICAgICAgfQogICAgICBdLAogICAgICAibm90ZSIgOiAiIiwKICAgICAgInBvaW50SUQiIDogIm9yaWdpbiIsCiAgICAgICJwcm92aWRlciIgOiAid2VhdGhlcmtpdCIsCiAgICAgICJyZXRyaWV2ZWRBdCIgOiAiMjAyNi0xMS0wNVQwOTo1NzozNloiLAogICAgICAic3RhdHVzIiA6ICJhdmFpbGFibGUiCiAgICB9LAogICAgewogICAgICAiZmV0Y2hlZEF0IiA6ICIyMDI2LTExLTA1VDA5OjU3OjM2WiIsCiAgICAgICJob3VycyIgOiBbCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDA6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI3LjEwMDAwMDM4MTQ2OTcyNwogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDE6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI4LjYxMDAwMDYxMDM1MTU2MgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDI6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMwLjAzMDAwMDY4NjY0NTUwOAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDM6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjI1CiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiZGF0ZSIgOiAiMjAyNi0xMS0wNlQwNDowMDowMFoiLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMC4wMywKICAgICAgICAgICJ0ZW1wZXJhdHVyZUMiIDogMzIuMjk5OTk5MjM3MDYwNTUKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDA1OjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjAzLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMi44MTk5OTk2OTQ4MjQyMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDY6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDQsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMyLjY1MDAwMTUyNTg3ODkwNgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDc6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDcsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjc4MDAwMDY4NjY0NTUwOAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDg6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDgsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjc2MDAwMDIyODg4MTgzNgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDk6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMxLjExMDAwMDYxMDM1MTU2MgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTA6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTMsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMwLjEwMDAwMDM4MTQ2OTcyNwogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTE6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTUsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI4LjQ4OTk5OTc3MTExODE2NAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTI6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTYsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI3LjUzMDAwMDY4NjY0NTUwOAogICAgICAgIH0KICAgICAgXSwKICAgICAgIm5vdGUiIDogIiIsCiAgICAgICJwb2ludElEIiA6ICJnYmsiLAogICAgICAicHJvdmlkZXIiIDogIndlYXRoZXJraXQiLAogICAgICAicmV0cmlldmVkQXQiIDogIjIwMjYtMTEtMDVUMDk6NTc6MzZaIiwKICAgICAgInN0YXR1cyIgOiAiYXZhaWxhYmxlIgogICAgfSwKICAgIHsKICAgICAgImZldGNoZWRBdCIgOiAiMjAyNi0xMS0wNVQwOTo1NzozN1oiLAogICAgICAiaG91cnMiIDogWwogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAwOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyNi44ODk5OTkzODk2NDg0MzgKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAxOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyOC4zNzk5OTkxNjA3NjY2CiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiZGF0ZSIgOiAiMjAyNi0xMS0wNlQwMjowMDowMFoiLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMCwKICAgICAgICAgICJ0ZW1wZXJhdHVyZUMiIDogMjkuOTA5OTk5ODQ3NDEyMTEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDAzOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjAyLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMS4xODAwMDAzMDUxNzU3OAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMDQ6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMDIsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDMyLjI1CiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiZGF0ZSIgOiAiMjAyNi0xMS0wNlQwNTowMDowMFoiLAogICAgICAgICAgInJhaW5DaGFuY2UiIDogMC4wMywKICAgICAgICAgICJ0ZW1wZXJhdHVyZUMiIDogMzIuOTc5OTk5NTQyMjM2MzMKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDA2OjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjA0LAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMy4wNDAwMDA5MTU1MjczNDQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDA3OjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjA3LAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMS45ODk5OTk3NzExMTgxNjQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDA4OjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjA5LAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMS42Mzk5OTkzODk2NDg0MzgKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDA5OjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjEyLAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAzMC45Njk5OTkzMTMzNTQ0OTIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDEwOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjE1LAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyOS43ODAwMDA2ODY2NDU1MDgKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJkYXRlIiA6ICIyMDI2LTExLTA2VDExOjAwOjAwWiIsCiAgICAgICAgICAicmFpbkNoYW5jZSIgOiAwLjE2LAogICAgICAgICAgInRlbXBlcmF0dXJlQyIgOiAyOC4yNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImRhdGUiIDogIjIwMjYtMTEtMDZUMTI6MDA6MDBaIiwKICAgICAgICAgICJyYWluQ2hhbmNlIiA6IDAuMTgsCiAgICAgICAgICAidGVtcGVyYXR1cmVDIiA6IDI3LjUzMDAwMDY4NjY0NTUwOAogICAgICAgIH0KICAgICAgXSwKICAgICAgIm5vdGUiIDogIiIsCiAgICAgICJwb2ludElEIiA6ICJyYWd1bmFuIiwKICAgICAgInByb3ZpZGVyIiA6ICJ3ZWF0aGVya2l0IiwKICAgICAgInJldHJpZXZlZEF0IiA6ICIyMDI2LTExLTA1VDA5OjU3OjM3WiIsCiAgICAgICJzdGF0dXMiIDogImF2YWlsYWJsZSIKICAgIH0KICBdLAogICJnZW5lcmF0ZWRBdCIgOiAiMjAyNi0xMS0wNVQwOTo1Nzo0M1oiLAogICJvcHRpbWl6ZXJOb3RlIiA6ICJIeWJyaWQgYWRhcHRpZiDCtyBiYXNlbGluZSB0ZXJ2YWxpZGFzaSBkaXBlcnRhaGFua2FuLiBTZWx1cnVoIHVydXRhbiBrdW5qdW5nYW4gc3VkYWggZGl2YWxpZGFzaS4gVGlkYWsgYWRhIHJlcXVlc3Qgb3B0aW1hc2kgdGFtYmFoYW47IGhhc2lsIGJlbHVtIHRlcmJ1a3RpIG9wdGltdW0uIiwKICAicmVxdWVzdHMiIDogNiwKICAic3RvcmVkV2VhdGhlckNyZWRpdCIgOiB7CiAgICAiY29tYmluZWRNYXJrRGFya1VSTCIgOiAiaHR0cHM6Ly93ZWF0aGVya2l0LmFwcGxlLmNvbS9hc3NldHMvYnJhbmRpbmcvZW4vQXBwbGVfV2VhdGhlcl93aHRfZW5fM1hfMDkwMTIyLnBuZyIsCiAgICAiY29tYmluZWRNYXJrTGlnaHRVUkwiIDogImh0dHBzOi8vd2VhdGhlcmtpdC5hcHBsZS5jb20vYXNzZXRzL2JyYW5kaW5nL2VuL0FwcGxlX1dlYXRoZXJfYmxrX2VuXzNYXzA5MDEyMi5wbmciLAogICAgImxlZ2FsUGFnZVVSTCIgOiAiaHR0cHM6Ly93ZWF0aGVya2l0LmFwcGxlLmNvbS9sZWdhbC1hdHRyaWJ1dGlvbi5odG1sIiwKICAgICJzZXJ2aWNlTmFtZSIgOiAiQXBwbGUgV2VhdGhlciIKICB9LAogICJ3ZWF0aGVyTm90ZSIgOiAiQWx0ZXJuYXRpZiBjdWFjYSBkaXR1bmRhIHNhbXBhaSBkYXRhIHBhcGFyYW4gY3VrdXA7IGphbSBidWthIGRhbiBiYXRhcyBzZWxlc2FpIHRldGFwIGRpcGVyaWtzYS4iCn0=",
+  "request" : {
+    "allowOpenMeteo" : false,
+    "deadline" : "2026-11-06T12:00:00Z",
+    "defaultDuration" : 60,
+    "departure" : "2026-11-06T00:00:00Z",
+    "desiredCount" : 3,
+    "durationByVenue" : {
+
+    },
+    "goal" : "lowerRain",
+    "id" : "4B683613-A198-4BDC-ABDF-E07E4A4BA7E8",
+    "originQuery" : "Bundaran HI Jakarta",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+        "nature",
+        "outdoor"
+      ],
+      "schemaVersion" : 1
+    },
+    "requiredCandidateIDs" : [
+      "gbk",
+      "ragunan"
+    ],
+    "revision" : 0,
+    "useEmbedding" : false
+  },
+  "schemaVersion" : 1,
+  "status" : "ready",
+  "stops" : [
+    {
+      "area" : "Public park",
+      "arrival" : "2026-11-06T00:21:13Z",
+      "duration" : 60,
+      "id" : "gbk",
+      "leave" : "2026-11-06T01:30:00Z",
+      "name" : "Hutan Kota GBK",
+      "notes" : [
+        "Buka 06.00 · tutup 18.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+        "Catatan sumber jam operasional: t-gbk: https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota",
+        "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+        "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Prakiraan adalah perkiraan titik MapKit, bukan pengukuran mikrocuaca di venue."
+      ],
+      "pin" : {
+        "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+        "id" : "Hutan Kota GBK:-6.219204:106.804564",
+        "latitude" : -6.219204,
+        "longitude" : 106.804564,
+        "name" : "Hutan Kota GBK",
+        "source" : "MapKit search"
+      },
+      "rainChance" : 0,
+      "recommendedWindows" : [
+        {
+          "end" : "2026-11-06T01:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 27.100000381469727,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T00:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T02:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 28.610000610351562,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T01:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T03:00:00Z",
+          "maxRainChance" : 0.02,
+          "maxTemperatureC" : 30.030000686645508,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T02:00:00Z"
+        }
+      ],
+      "sourceIDs" : [
+        "q-gbk",
+        "t-gbk"
+      ],
+      "venueID" : "gbk",
+      "visit" : "2026-11-06T00:30:00Z",
+      "weatherProvider" : "weatherkit"
+    },
+    {
+      "area" : "Park grounds",
+      "arrival" : "2026-11-06T02:12:13Z",
+      "duration" : 60,
+      "id" : "ragunan",
+      "leave" : "2026-11-06T03:15:00Z",
+      "name" : "Taman Margasatwa Ragunan",
+      "notes" : [
+        "Buka 07.00 · tutup 16.00. Jadwal publik bersumber untuk tanggal trip, zona Asia/Jakarta.",
+        "Catatan sumber jam operasional: t-ragunan: https://ragunanzoo.jakarta.go.id/language/en/",
+        "P3: validated sourced full-stay/session/entry rules at the actual arrival.",
+        "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Prakiraan adalah perkiraan titik MapKit, bukan pengukuran mikrocuaca di venue."
+      ],
+      "pin" : {
+        "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+        "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+        "latitude" : -6.3115769,
+        "longitude" : 106.8210661,
+        "name" : "Ragunan Zoo",
+        "source" : "MapKit search"
+      },
+      "rainChance" : 0.02,
+      "recommendedWindows" : [
+        {
+          "end" : "2026-11-06T01:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 26.889999389648438,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T00:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T02:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 28.3799991607666,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T01:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T03:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 29.90999984741211,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T02:00:00Z"
+        }
+      ],
+      "sourceIDs" : [
+        "q-ragunan",
+        "t-ragunan"
+      ],
+      "venueID" : "ragunan",
+      "visit" : "2026-11-06T02:15:00Z",
+      "weatherProvider" : "weatherkit"
+    }
+  ],
+  "summary" : "Reviewable draft: Hutan Kota GBK → Taman Margasatwa Ragunan. Travel 104.3 min; waiting 11.6 min. Return to Bundaran HI: Nov 6, 2026 at 10:55 WIB. Deadline: Nov 6, 2026 at 19:00 WIB. All 2 selected places have equal priority. 0 conflicts; 4 uncertainty notes. Weather source: weatherkit. Published visiting windows are suggestions, not a claim that this route achieves every preferred window.",
+  "timing" : [
+    {
+      "catalogID" : "p3-timing-2026-11-05",
+      "createdAt" : "2026-11-05T09:57:36Z",
+      "elapsedSeconds" : 0,
+      "environment" : {
+        "attribution" : "Apple Weather",
+        "attributionURL" : "https://weatherkit.apple.com/legal-attribution.html",
+        "date" : "2026-11-06",
+        "errors" : [
+
+        ],
+        "fetchedAt" : "2026-11-05T09:57:36Z",
+        "hours" : [
+          {
+            "rainChance" : 0,
+            "start" : "2026-11-06T00:00:00Z",
+            "temperatureC" : 27.100000381469727
+          },
+          {
+            "rainChance" : 0,
+            "start" : "2026-11-06T01:00:00Z",
+            "temperatureC" : 28.610000610351562
+          },
+          {
+            "rainChance" : 0.02,
+            "start" : "2026-11-06T02:00:00Z",
+            "temperatureC" : 30.030000686645508
+          },
+          {
+            "rainChance" : 0.02,
+            "start" : "2026-11-06T03:00:00Z",
+            "temperatureC" : 31.25
+          },
+          {
+            "rainChance" : 0.03,
+            "start" : "2026-11-06T04:00:00Z",
+            "temperatureC" : 32.29999923706055
+          },
+          {
+            "rainChance" : 0.03,
+            "start" : "2026-11-06T05:00:00Z",
+            "temperatureC" : 32.81999969482422
+          },
+          {
+            "rainChance" : 0.04,
+            "start" : "2026-11-06T06:00:00Z",
+            "temperatureC" : 32.650001525878906
+          },
+          {
+            "rainChance" : 0.07,
+            "start" : "2026-11-06T07:00:00Z",
+            "temperatureC" : 31.780000686645508
+          },
+          {
+            "rainChance" : 0.08,
+            "start" : "2026-11-06T08:00:00Z",
+            "temperatureC" : 31.760000228881836
+          },
+          {
+            "rainChance" : 0.12,
+            "start" : "2026-11-06T09:00:00Z",
+            "temperatureC" : 31.110000610351562
+          },
+          {
+            "rainChance" : 0.13,
+            "start" : "2026-11-06T10:00:00Z",
+            "temperatureC" : 30.100000381469727
+          },
+          {
+            "rainChance" : 0.15,
+            "start" : "2026-11-06T11:00:00Z",
+            "temperatureC" : 28.489999771118164
+          },
+          {
+            "rainChance" : 0.16,
+            "start" : "2026-11-06T12:00:00Z",
+            "temperatureC" : 27.530000686645508
+          }
+        ],
+        "latitude" : -6.219204,
+        "locationName" : "Hutan Kota GBK",
+        "locationSource" : "MapKit representative, maximum group radius 3 km; not exact venue weather",
+        "longitude" : 106.804564,
+        "provider" : "weatherkit",
+        "sunrise" : "2026-11-05T22:25:50Z",
+        "sunset" : "2026-11-06T10:47:09Z",
+        "validUntil" : "2026-11-05T10:12:36Z",
+        "venueID" : "gbk"
+      },
+      "id" : "EB4260EF-275E-461E-A42F-3038D7A43D98",
+      "options" : [
+        {
+          "end" : "2026-11-06T01:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 27.100000381469727,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T00:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T02:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 28.610000610351562,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T01:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T03:00:00Z",
+          "maxRainChance" : 0.02,
+          "maxTemperatureC" : 30.030000686645508,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T02:00:00Z"
+        }
+      ],
+      "policyVersion" : "visit-time-v2",
+      "request" : {
+        "available" : {
+          "end" : 1140,
+          "start" : 420
+        },
+        "date" : "2026-11-06",
+        "durationMinutes" : 60,
+        "goal" : "lowerRain",
+        "venueID" : "gbk"
+      },
+      "routingPerformed" : false,
+      "schemaVersion" : 1,
+      "sources" : [
+        {
+          "checkedAt" : "2026-11-05T01:34:16Z",
+          "id" : "t-gbk",
+          "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+          "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+          "title" : "Pemkot Jakarta Pusat — Hutan Kota GBK",
+          "url" : "https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota"
+        }
+      ],
+      "status" : "context_ranked",
+      "validStartRanges" : [
+        {
+          "end" : 540,
+          "start" : 420
+        },
+        {
+          "end" : 1020,
+          "start" : 900
+        }
+      ],
+      "venue" : {
+        "address" : "Pintu 7 Senayan, Gelora, Jakarta Pusat",
+        "exposure" : "outdoor",
+        "exposureSourceID" : "t-gbk",
+        "id" : "gbk",
+        "name" : "Hutan Kota GBK",
+        "query" : "Hutan Kota GBK, Jakarta",
+        "schedule" : [
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+
+            ],
+            "weekday" : 1
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 2
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 3
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 4
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 5
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 6
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 600,
+                "start" : 360
+              },
+              {
+                "end" : 1080,
+                "start" : 900
+              }
+            ],
+            "weekday" : 7
+          }
+        ],
+        "sourceIDs" : [
+          "t-gbk"
+        ],
+        "suspended" : false,
+        "timeZone" : "Asia/Jakarta",
+        "unknowns" : [
+          "perubahan khusus tanggal dan hari libur",
+          "kapasitas/slot tersedia",
+          "durasi kunjungan yang cocok",
+          "keramaian",
+          "fasilitas dan izin aktivitas spesifik"
+        ]
+      },
+      "warnings" : [
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Prakiraan adalah perkiraan titik MapKit, bukan pengukuran mikrocuaca di venue."
+      ]
+    },
+    {
+      "catalogID" : "p3-timing-2026-11-05",
+      "createdAt" : "2026-11-05T09:57:36Z",
+      "elapsedSeconds" : 0,
+      "environment" : {
+        "attribution" : "Apple Weather",
+        "attributionURL" : "https://weatherkit.apple.com/legal-attribution.html",
+        "date" : "2026-11-06",
+        "errors" : [
+
+        ],
+        "fetchedAt" : "2026-11-05T09:57:37Z",
+        "hours" : [
+          {
+            "rainChance" : 0,
+            "start" : "2026-11-06T00:00:00Z",
+            "temperatureC" : 26.889999389648438
+          },
+          {
+            "rainChance" : 0,
+            "start" : "2026-11-06T01:00:00Z",
+            "temperatureC" : 28.3799991607666
+          },
+          {
+            "rainChance" : 0,
+            "start" : "2026-11-06T02:00:00Z",
+            "temperatureC" : 29.90999984741211
+          },
+          {
+            "rainChance" : 0.02,
+            "start" : "2026-11-06T03:00:00Z",
+            "temperatureC" : 31.18000030517578
+          },
+          {
+            "rainChance" : 0.02,
+            "start" : "2026-11-06T04:00:00Z",
+            "temperatureC" : 32.25
+          },
+          {
+            "rainChance" : 0.03,
+            "start" : "2026-11-06T05:00:00Z",
+            "temperatureC" : 32.97999954223633
+          },
+          {
+            "rainChance" : 0.04,
+            "start" : "2026-11-06T06:00:00Z",
+            "temperatureC" : 33.040000915527344
+          },
+          {
+            "rainChance" : 0.07,
+            "start" : "2026-11-06T07:00:00Z",
+            "temperatureC" : 31.989999771118164
+          },
+          {
+            "rainChance" : 0.09,
+            "start" : "2026-11-06T08:00:00Z",
+            "temperatureC" : 31.639999389648438
+          },
+          {
+            "rainChance" : 0.12,
+            "start" : "2026-11-06T09:00:00Z",
+            "temperatureC" : 30.969999313354492
+          },
+          {
+            "rainChance" : 0.15,
+            "start" : "2026-11-06T10:00:00Z",
+            "temperatureC" : 29.780000686645508
+          },
+          {
+            "rainChance" : 0.16,
+            "start" : "2026-11-06T11:00:00Z",
+            "temperatureC" : 28.25
+          },
+          {
+            "rainChance" : 0.18,
+            "start" : "2026-11-06T12:00:00Z",
+            "temperatureC" : 27.530000686645508
+          }
+        ],
+        "latitude" : -6.3115769,
+        "locationName" : "Ragunan Zoo",
+        "locationSource" : "MapKit representative, maximum group radius 3 km; not exact venue weather",
+        "longitude" : 106.8210661,
+        "provider" : "weatherkit",
+        "sunrise" : "2026-11-05T22:25:44Z",
+        "sunset" : "2026-11-06T10:47:16Z",
+        "validUntil" : "2026-11-05T10:12:37Z",
+        "venueID" : "ragunan"
+      },
+      "id" : "4D701A02-8C57-4F18-8DD5-71A6DC0A7AB8",
+      "options" : [
+        {
+          "end" : "2026-11-06T01:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 26.889999389648438,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T00:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T02:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 28.3799991607666,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T01:00:00Z"
+        },
+        {
+          "end" : "2026-11-06T03:00:00Z",
+          "maxRainChance" : 0,
+          "maxTemperatureC" : 29.90999984741211,
+          "reason" : "Diurutkan menurut peluang hujan maksimum sepanjang kunjungan; tanpa jaminan bebas hujan.",
+          "start" : "2026-11-06T02:00:00Z"
+        }
+      ],
+      "policyVersion" : "visit-time-v2",
+      "request" : {
+        "available" : {
+          "end" : 1140,
+          "start" : 420
+        },
+        "date" : "2026-11-06",
+        "durationMinutes" : 60,
+        "goal" : "lowerRain",
+        "venueID" : "ragunan"
+      },
+      "routingPerformed" : false,
+      "schemaVersion" : 1,
+      "sources" : [
+        {
+          "checkedAt" : "2026-11-05T01:34:17Z",
+          "id" : "t-ragunan",
+          "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+          "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 50228e1027b423003448fb822eb00ab89d1d7b7ba728838d3eff07033ae8e8eb",
+          "title" : "Taman Margasatwa Ragunan — layanan publik",
+          "url" : "https://ragunanzoo.jakarta.go.id/language/en/"
+        }
+      ],
+      "status" : "context_ranked",
+      "validStartRanges" : [
+        {
+          "end" : 900,
+          "start" : 420
+        }
+      ],
+      "venue" : {
+        "address" : "Harsono RM 1, Ragunan, Jakarta Selatan",
+        "exposure" : "outdoor",
+        "exposureSourceID" : "t-ragunan",
+        "id" : "ragunan",
+        "name" : "Taman Margasatwa Ragunan",
+        "query" : "Taman Margasatwa Ragunan, Jakarta",
+        "schedule" : [
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+
+            ],
+            "weekday" : 1
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 2
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 3
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 4
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 5
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 6
+          },
+          {
+            "entryPauses" : [
+
+            ],
+            "sessions" : [
+              {
+                "end" : 960,
+                "start" : 420
+              }
+            ],
+            "weekday" : 7
+          }
+        ],
+        "sourceIDs" : [
+          "t-ragunan"
+        ],
+        "suspended" : false,
+        "timeZone" : "Asia/Jakarta",
+        "unknowns" : [
+          "perubahan khusus tanggal dan hari libur",
+          "kapasitas/slot tersedia",
+          "durasi kunjungan yang cocok",
+          "keramaian",
+          "fasilitas dan izin aktivitas spesifik"
+        ]
+      },
+      "warnings" : [
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Prakiraan adalah perkiraan titik MapKit, bukan pengukuran mikrocuaca di venue."
+      ]
+    }
+  ],
+  "travelMinutes" : 104.35,
+  "uncertainties" : [
+    "Parkir, antrean, kapasitas, tiket, hari libur dan penutupan mendadak belum dijamin.",
+    "Pencarian dibatasi; hasil hybrid adaptif bukan bukti optimum global.",
+    "Perubahan durasi +30 menit menghitung ulang seluruh draf sebelum perjalanan, bukan pelacakan trip aktif.",
+    "Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui."
+  ],
+  "waitingMinutes" : 11.566666666666666,
+  "weather" : [
+    {
+      "cached" : false,
+      "credit" : {
+        "legalURL" : "https://weatherkit.apple.com/legal-attribution.html",
+        "markDarkURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_wht_en_3X_090122.png",
+        "markLightURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_blk_en_3X_090122.png",
+        "name" : "Apple Weather"
+      },
+      "errors" : [
+
+      ],
+      "expiresAt" : "2026-11-05T10:12:36Z",
+      "fetchedAt" : "2026-11-05T09:57:36Z",
+      "hours" : [
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T00:00:00Z",
+          "temperatureC" : 27.100000381469727
+        },
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T01:00:00Z",
+          "temperatureC" : 28.610000610351562
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T02:00:00Z",
+          "temperatureC" : 30.030000686645508
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T03:00:00Z",
+          "temperatureC" : 31.25
+        },
+        {
+          "rainChance" : 0.03,
+          "start" : "2026-11-06T04:00:00Z",
+          "temperatureC" : 32.29999923706055
+        },
+        {
+          "rainChance" : 0.03,
+          "start" : "2026-11-06T05:00:00Z",
+          "temperatureC" : 32.81999969482422
+        },
+        {
+          "rainChance" : 0.04,
+          "start" : "2026-11-06T06:00:00Z",
+          "temperatureC" : 32.650001525878906
+        },
+        {
+          "rainChance" : 0.07,
+          "start" : "2026-11-06T07:00:00Z",
+          "temperatureC" : 31.780000686645508
+        },
+        {
+          "rainChance" : 0.08,
+          "start" : "2026-11-06T08:00:00Z",
+          "temperatureC" : 31.760000228881836
+        },
+        {
+          "rainChance" : 0.12,
+          "start" : "2026-11-06T09:00:00Z",
+          "temperatureC" : 31.110000610351562
+        },
+        {
+          "rainChance" : 0.13,
+          "start" : "2026-11-06T10:00:00Z",
+          "temperatureC" : 30.100000381469727
+        },
+        {
+          "rainChance" : 0.15,
+          "start" : "2026-11-06T11:00:00Z",
+          "temperatureC" : 28.489999771118164
+        },
+        {
+          "rainChance" : 0.16,
+          "start" : "2026-11-06T12:00:00Z",
+          "temperatureC" : 27.530000686645508
+        }
+      ],
+      "id" : "20CC4E68-39D5-4F01-A9FC-1CB30888DAF6",
+      "memberIDs" : [
+        "gbk"
+      ],
+      "provider" : "weatherkit",
+      "representative" : {
+        "address" : "Jalan Lingkar Stadion, Central Jakarta, Jakarta, Indonesia",
+        "id" : "Hutan Kota GBK:-6.219204:106.804564",
+        "latitude" : -6.219204,
+        "longitude" : 106.804564,
+        "name" : "Hutan Kota GBK",
+        "source" : "MapKit search"
+      },
+      "retrievedAt" : "2026-11-05T09:57:36Z",
+      "status" : "available",
+      "sunrise" : "2026-11-05T22:25:50Z",
+      "sunset" : "2026-11-06T10:47:09Z",
+      "windowEnd" : "2026-11-06T13:00:00Z",
+      "windowStart" : "2026-11-06T00:00:00Z"
+    },
+    {
+      "cached" : false,
+      "credit" : {
+        "legalURL" : "https://weatherkit.apple.com/legal-attribution.html",
+        "markDarkURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_wht_en_3X_090122.png",
+        "markLightURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_blk_en_3X_090122.png",
+        "name" : "Apple Weather"
+      },
+      "errors" : [
+
+      ],
+      "expiresAt" : "2026-11-05T10:12:36Z",
+      "fetchedAt" : "2026-11-05T09:57:36Z",
+      "hours" : [
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T00:00:00Z",
+          "temperatureC" : 27.190000534057617
+        },
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T01:00:00Z",
+          "temperatureC" : 28.700000762939453
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T02:00:00Z",
+          "temperatureC" : 30.260000228881836
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T03:00:00Z",
+          "temperatureC" : 31.43000030517578
+        },
+        {
+          "rainChance" : 0.03,
+          "start" : "2026-11-06T04:00:00Z",
+          "temperatureC" : 32.31999969482422
+        },
+        {
+          "rainChance" : 0.04,
+          "start" : "2026-11-06T05:00:00Z",
+          "temperatureC" : 32.7400016784668
+        },
+        {
+          "rainChance" : 0.04,
+          "start" : "2026-11-06T06:00:00Z",
+          "temperatureC" : 32.529998779296875
+        },
+        {
+          "rainChance" : 0.07,
+          "start" : "2026-11-06T07:00:00Z",
+          "temperatureC" : 31.790000915527344
+        },
+        {
+          "rainChance" : 0.09,
+          "start" : "2026-11-06T08:00:00Z",
+          "temperatureC" : 31.790000915527344
+        },
+        {
+          "rainChance" : 0.12,
+          "start" : "2026-11-06T09:00:00Z",
+          "temperatureC" : 31.110000610351562
+        },
+        {
+          "rainChance" : 0.12,
+          "start" : "2026-11-06T10:00:00Z",
+          "temperatureC" : 30.270000457763672
+        },
+        {
+          "rainChance" : 0.15,
+          "start" : "2026-11-06T11:00:00Z",
+          "temperatureC" : 28.670000076293945
+        },
+        {
+          "rainChance" : 0.15,
+          "start" : "2026-11-06T12:00:00Z",
+          "temperatureC" : 27.75
+        }
+      ],
+      "id" : "B4A2A3E0-395D-49E1-8260-A8692F1136A8",
+      "memberIDs" : [
+        "origin"
+      ],
+      "provider" : "weatherkit",
+      "representative" : {
+        "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+        "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+        "latitude" : -6.1912059,
+        "longitude" : 106.8226755,
+        "name" : "Bundaran HI Bank Jakarta",
+        "source" : "MapKit search"
+      },
+      "retrievedAt" : "2026-11-05T09:57:36Z",
+      "status" : "available",
+      "sunrise" : "2026-11-05T22:25:50Z",
+      "sunset" : "2026-11-06T10:47:09Z",
+      "windowEnd" : "2026-11-06T13:00:00Z",
+      "windowStart" : "2026-11-06T00:00:00Z"
+    },
+    {
+      "cached" : false,
+      "credit" : {
+        "legalURL" : "https://weatherkit.apple.com/legal-attribution.html",
+        "markDarkURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_wht_en_3X_090122.png",
+        "markLightURL" : "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_blk_en_3X_090122.png",
+        "name" : "Apple Weather"
+      },
+      "errors" : [
+
+      ],
+      "expiresAt" : "2026-11-05T10:12:37Z",
+      "fetchedAt" : "2026-11-05T09:57:37Z",
+      "hours" : [
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T00:00:00Z",
+          "temperatureC" : 26.889999389648438
+        },
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T01:00:00Z",
+          "temperatureC" : 28.3799991607666
+        },
+        {
+          "rainChance" : 0,
+          "start" : "2026-11-06T02:00:00Z",
+          "temperatureC" : 29.90999984741211
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T03:00:00Z",
+          "temperatureC" : 31.18000030517578
+        },
+        {
+          "rainChance" : 0.02,
+          "start" : "2026-11-06T04:00:00Z",
+          "temperatureC" : 32.25
+        },
+        {
+          "rainChance" : 0.03,
+          "start" : "2026-11-06T05:00:00Z",
+          "temperatureC" : 32.97999954223633
+        },
+        {
+          "rainChance" : 0.04,
+          "start" : "2026-11-06T06:00:00Z",
+          "temperatureC" : 33.040000915527344
+        },
+        {
+          "rainChance" : 0.07,
+          "start" : "2026-11-06T07:00:00Z",
+          "temperatureC" : 31.989999771118164
+        },
+        {
+          "rainChance" : 0.09,
+          "start" : "2026-11-06T08:00:00Z",
+          "temperatureC" : 31.639999389648438
+        },
+        {
+          "rainChance" : 0.12,
+          "start" : "2026-11-06T09:00:00Z",
+          "temperatureC" : 30.969999313354492
+        },
+        {
+          "rainChance" : 0.15,
+          "start" : "2026-11-06T10:00:00Z",
+          "temperatureC" : 29.780000686645508
+        },
+        {
+          "rainChance" : 0.16,
+          "start" : "2026-11-06T11:00:00Z",
+          "temperatureC" : 28.25
+        },
+        {
+          "rainChance" : 0.18,
+          "start" : "2026-11-06T12:00:00Z",
+          "temperatureC" : 27.530000686645508
+        }
+      ],
+      "id" : "412A547B-54F3-46E2-8C09-515E9D979648",
+      "memberIDs" : [
+        "ragunan"
+      ],
+      "provider" : "weatherkit",
+      "representative" : {
+        "address" : "Jalan Harsono RM. No. 1\nRagunan, Pasar Minggu, South Jakarta\nJakarta 12550\nIndonesia",
+        "id" : "Ragunan Zoo:-6.3115769:106.8210661",
+        "latitude" : -6.3115769,
+        "longitude" : 106.8210661,
+        "name" : "Ragunan Zoo",
+        "source" : "MapKit search"
+      },
+      "retrievedAt" : "2026-11-05T09:57:37Z",
+      "status" : "available",
+      "sunrise" : "2026-11-05T22:25:44Z",
+      "sunset" : "2026-11-06T10:47:16Z",
+      "windowEnd" : "2026-11-06T13:00:00Z",
+      "windowStart" : "2026-11-06T00:00:00Z"
+    }
+  ]
+}

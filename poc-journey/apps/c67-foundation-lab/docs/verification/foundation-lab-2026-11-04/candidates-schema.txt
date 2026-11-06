@@ -1,0 +1,67 @@
+{
+  "$defs" : {
+    "CandidateFit" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "candidateID" : {
+          "type" : "string"
+        },
+        "evidenceIDs" : {
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 4,
+          "type" : "array"
+        },
+        "reason" : {
+          "description" : "One short reason using supplied facts only.",
+          "type" : "string"
+        },
+        "unknowns" : {
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 4,
+          "type" : "array"
+        }
+      },
+      "required" : [
+        "candidateID",
+        "reason",
+        "evidenceIDs",
+        "unknowns"
+      ],
+      "title" : "CandidateFit",
+      "type" : "object",
+      "x-order" : [
+        "candidateID",
+        "reason",
+        "evidenceIDs",
+        "unknowns"
+      ]
+    }
+  },
+  "additionalProperties" : false,
+  "properties" : {
+    "choices" : {
+      "items" : {
+        "$ref" : "#/$defs/CandidateFit"
+      },
+      "maxItems" : 3,
+      "type" : "array"
+    },
+    "note" : {
+      "type" : "string"
+    }
+  },
+  "required" : [
+    "choices",
+    "note"
+  ],
+  "title" : "CandidateAssessment",
+  "type" : "object",
+  "x-order" : [
+    "choices",
+    "note"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "attempts": 72,
+  "groups": {
+    "preferences": {
+      "attempts": 18,
+      "statusCounts": {
+        "response": 18
+      },
+      "shapeAndReferencesValid": 18,
+      "objectiveChecksClear": 15,
+      "processLatencySeconds": {
+        "p50": 1.0563465831801295,
+        "p90": 2.0730033749714494,
+        "max": 3.4381109171081334
+      },
+      "responseOnlyLatencySeconds": {
+        "p50": 1.0104390382766724,
+        "p90": 1.9935439825057983,
+        "max": 3.3257288932800293
+      },
+      "humanReview": "pending for every response"
+    },
+    "candidates": {
+      "attempts": 18,
+      "statusCounts": {
+        "response": 12,
+        "validation_failed": 6
+      },
+      "shapeAndReferencesValid": 12,
+      "objectiveChecksClear": 3,
+      "processLatencySeconds": {
+        "p50": 3.5423870000522584,
+        "p90": 5.248563083121553,
+        "max": 5.736189999850467
+      },
+      "responseOnlyLatencySeconds": {
+        "p50": 3.499477982521057,
+        "p90": 5.210350036621094,
+        "max": 5.642574071884155
+      },
+      "humanReview": "pending for every response"
+    },
+    "windows": {
+      "attempts": 18,
+      "statusCounts": {
+        "response": 15,
+        "validation_failed": 3
+      },
+      "shapeAndReferencesValid": 15,
+      "objectiveChecksClear": 15,
+      "processLatencySeconds": {
+        "p50": 3.93288958305493,
+        "p90": 5.357926040887833,
+        "max": 8.927920749876648
+      },
+      "responseOnlyLatencySeconds": {
+        "p50": 3.877606987953186,
+        "p90": 5.262830018997192,
+        "max": 8.82509994506836
+      },
+      "humanReview": "pending for every response"
+    },
+    "explanation": {
+      "attempts": 18,
+      "statusCounts": {
+        "response": 15,
+        "validation_failed": 3
+      },
+      "shapeAndReferencesValid": 15,
+      "objectiveChecksClear": 15,
+      "processLatencySeconds": {
+        "p50": 3.2859295001253486,
+        "p90": 4.635225999867544,
+        "max": 4.814041791949421
+      },
+      "responseOnlyLatencySeconds": {
+        "p50": 3.248579978942871,
+        "p90": 4.5592650175094604,
+        "max": 4.769381999969482
+      },
+      "humanReview": "pending for every response"
+    }
+  },
+  "sourceChangedSinceFreeze": [],
+  "factualAccuracy": "not established; independent human review pending",
+  "userBenefit": "not measured",
+  "repetitions": "Correlated greedy observations, not independent samples"
+}

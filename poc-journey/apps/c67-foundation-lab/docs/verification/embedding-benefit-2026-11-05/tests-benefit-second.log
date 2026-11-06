@@ -1,0 +1,84 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'preferencequality': failed storing manifest for 'preferencequality' in cache: attempt to write a readonly database
+warning: 'preferencelearning': failed storing manifest for 'preferencelearning' in cache: attempt to write a readonly database
+warning: 'swift-transformers': failed storing manifest for 'swift-transformers' in cache: attempt to write a readonly database
+warning: 'tripintelligence': failed storing manifest for 'tripintelligence' in cache: attempt to write a readonly database
+warning: 'onnxruntime-swift-package-manager': failed storing manifest for 'onnxruntime-swift-package-manager' in cache: attempt to write a readonly database
+warning: 'yyjson': failed storing manifest for 'yyjson' in cache: attempt to write a readonly database
+warning: 'swift-huggingface': failed storing manifest for 'swift-huggingface' in cache: attempt to write a readonly database
+warning: 'swift-collections': failed storing manifest for 'swift-collections' in cache: attempt to write a readonly database
+warning: 'swift-jinja': failed storing manifest for 'swift-jinja' in cache: attempt to write a readonly database
+warning: 'swift-crypto': failed storing manifest for 'swift-crypto' in cache: attempt to write a readonly database
+warning: 'swift-asn1': failed storing manifest for 'swift-asn1' in cache: attempt to write a readonly database
+warning: 'eventsource': failed storing manifest for 'eventsource' in cache: attempt to write a readonly database
+Building for debugging...
+[Computing dependencies]
+[2 / 6] PreferenceQuality
+[3 / 7] PreferenceQuality
+[7 / 9] embedding-benefit-eval-product
+[9 / 11] embedding-benefit-eval-product
+[11 / 14] PreferenceQuality
+[14 / 14] embedding-benefit-eval-product
+[20 / 30] PreferenceQualityTests-product
+[22 / 32] preference-quality-eval-product
+[27 / 33] PreferenceQualityTests-product
+[29 / 33] PreferenceQualityTests-product
+[31 / 33] PreferenceQualityTests-product
+Build complete! (3.56 sec)
+error: Process '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec/swift/pm/swiftpm-testing-helper --test-bundle-path /tmp/c67-preference-build/out/Products/Debug/PreferenceQualityTests.xctest/Contents/MacOS/PreferenceQualityTests --disable-sandbox --package-path <LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/Packages/PreferenceQuality --scratch-path /tmp/c67-preference-build /tmp/c67-preference-build/out/Products/Debug/PreferenceQualityTests.xctest/Contents/MacOS/PreferenceQualityTests --testing-library swift-testing' exited with unexpected signal code 5
+Test Suite 'All tests' started at 2026-11-05 14:08:40.687.
+Test Suite 'All tests' passed at 2026-11-05 14:08:40.688.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite BenefitTests started.
+􀟈  Suite QualityTests started.
+􀟈  Test allAuthoredGatesAndStatesAreIndependentOfMockSimilarity() started.
+􀟈  Test bm25RewardsMatchedTermsAndNormalizesLength() started.
+􀟈  Test cancellationDoesNotBecomeModelFailure() started.
+􀟈  Test persistedMetricsAndStatesMustMatchActualRun() started.
+􀟈  Test historyRecoversAndConflictingIDsCannotOverwrite() started.
+􀟈  Test datasetContainsProspectivePairedIntentsAndSafetyCases() started.
+􀟈  Test closuresExpiredProgramsAndUnknownsCannotBeRescuedByText() started.
+􀟈  Test unconfirmedNegationNeverCallsEmbedding() started.
+􀟈  Test persistedRankingsCannotSmuggleUnverifiedIdentity() started.
+􀟈  Test boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􀟈  Test unknownAvoidCannotBeCalledSatisfied() started.
+􀟈  Test allTwentyFourAuthoredGatesMatchExpectedIDs() started.
+􀟈  Test allMethodsUseExactlyTheSameEligibleCandidateSet() started.
+􀟈  Test emptyProfileIsExplicitlyGeneral() started.
+􀟈  Test unsupportedLikedFacetIsNotClaimedAsPersonalizedMatch() started.
+􀟈  Test cutoffTiesIncludeCandidatesBeyondDisplayedTopThree() started.
+􀟈  Test categoryAndLexicalDoNotRequireEmbedding() started.
+􀟈  Test tieExpectationMatchesExhaustivePermutations() started.
+􀟈  Test identityOrderingCannotChangeExpectedTieMetric() started.
+􀟈  Test failedModelKeepsCompetentLexicalFallback() started.
+􀟈  Test permutationDoesNotChangeRankTies() started.
+􀟈  Test expiredProgramAndSuspendedVenueCannotReenterViaEmbedding() started.
+􀟈  Test namesAndAddressesAreAbsentFromPrimaryPassages() started.
+􀟈  Test explicitCorrectionOverridesEarlierLikedFacet() started.
+􀟈  Test judgmentsMustCiteTheRelevantVenueSource() started.
+􀟈  Test unknownAndConflictingFactsNeverSatisfyMust() started.
+􀟈  Test jakartaDoesNotAccidentallyMatchArt() started.
+􀟈  Test coffeeAndReadingNeverMergeSeparateRooms() started.
+􀟈  Test cancellationPropagatesInsteadOfReturningFallback() started.
+􀟈  Test missingOrForeignDescriptionProvenanceRejected() started.
+􀟈  Test staleDataProducesNoFreshVerifiedMatches() started.
+􀟈  Test unlinkedOrDuplicateClaimsRejected() started.
+􀟈  Test lexicalNormalizationIsFixedAndNoSynonymExpansion() started.
+􀟈  Test staleFactsLeaveNoVerifiedRanking() started.
+􀟈  Test storageRecoversNeighborsAndPreservesInvalidFile() started.
+􀟈  Test likingOneFacetDoesNotLearnAllVenueAttributes() started.
+􀟈  Test contradictedControlsAndUnsupportedLikeAreRejected() started.
+􀟈  Test textNegationIsNotSilentlyAccepted() started.
+􀟈  Test categorySignalIsRetainedByCategoryFirstTextMethods() started.
+􀟈  Test unavailableModelRetainsExplicitCategoryFallback() started.
+􀟈  Test case passing 1 argument text → "Saya mau ngopi sambil membaca" to boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+PreferenceQualityTests/BenefitTests.swift:8: Fatal error: 'try!' expression unexpectedly raised an error: PreferenceLearning.PreferenceError.invalid("Relevansi/sumber kasus tidak valid: drink-and-read-literal")
+PreferenceQualityTests/BenefitTests.swift:8: Fatal error: 'try!' expression unexpectedly raised an error: PreferenceLearning.PreferenceError.invalid("Relevansi/sumber kasus tidak valid: drink-and-read-literal")
+PreferenceQualityTests/BenefitTests.swift:8: Fatal error: 'try!' expression unexpectedly raised an error: PreferenceLearning.PreferenceError.invalid("Relevansi/sumber kasus tidak valid: drink-and-read-literal")
+Note: Some test targets reported failures:
+  - PreferenceQualityTests (Swift Testing)

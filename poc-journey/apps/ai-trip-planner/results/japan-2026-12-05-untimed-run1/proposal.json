@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "requestedModel": "nvidia/nemotron-3.5-super-vl:free",
+    "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+    "reasoning": "on",
+    "maxCompletionTokens": 16384,
+    "contextBudget": {
+      "limitTokens": 1000000,
+      "reservedOutputTokens": 16384,
+      "estimatedInputTokens": 22801,
+      "estimatedTotalTokens": 39185,
+      "estimateMethod": "UTF-8 request bytes + 8192 overhead reserve; conservative estimate, not exact model tokenization."
+    },
+    "reportedUsageCheck": {
+      "inputTokens": 3614,
+      "completionTokens": 15175,
+      "totalTokens": 18789,
+      "withinLimit": true
+    },
+    "usage": {
+      "prompt_tokens": 3614,
+      "completion_tokens": 15175,
+      "total_tokens": 18789,
+      "cost": 0,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 12140,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "stop",
+    "latencyMs": 150777,
+    "internalReasoningTextStored": false
+  },
+  "proposal": {
+    "status": "proposal_needs_verification",
+    "summary": "One-day itinerary for 2026-12-05 from Funabashi Station and back. All times are proposed by the assistant and must be verified. Train allocations are unverified AI assumptions, not actual schedules/lines/fares.",
+    "rows": [
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "start": "07:00",
+        "end": "08:15",
+        "mode": "TRANSIT",
+        "note": "Perjalanan ke Kamakura (asumsi AI, belum diverifikasi)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kamakura_station",
+        "to": "komachi",
+        "start": "08:15",
+        "end": "08:25",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Komachi Street + buffer"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E03",
+        "from": "komachi",
+        "to": "komachi",
+        "start": "08:25",
+        "end": "09:00",
+        "mode": "NONE",
+        "note": "Stasiun Kamakura & Komachi Street"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "komachi",
+        "to": "hachimangu",
+        "start": "09:00",
+        "end": "09:10",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Tsurugaoka Hachimangu"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E04",
+        "from": "hachimangu",
+        "to": "hachimangu",
+        "start": "09:10",
+        "end": "10:00",
+        "mode": "NONE",
+        "note": "Tsurugaoka Hachimangu & Perempatan"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "hachimangu",
+        "to": "kamakura_meal",
+        "start": "10:00",
+        "end": "10:10",
+        "mode": "WALK",
+        "note": "Pindah ke lokasi makan siang (area Kamakura, lokasi tidak diketahui)"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E05",
+        "from": "kamakura_meal",
+        "to": "kamakura_meal",
+        "start": "10:10",
+        "end": "11:00",
+        "mode": "NONE",
+        "note": "Makan Siang Pagi (Area Kamakura)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kamakura_meal",
+        "to": "inamura_station",
+        "start": "11:00",
+        "end": "11:15",
+        "mode": "WALK",
+        "note": "Pindah ke Stasiun Inamuragasaki (jarak tidak diketahui, buffer)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "inamura_park",
+        "start": "11:15",
+        "end": "11:20",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Kamakura Seaside Park"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E07",
+        "from": "inamura_park",
+        "to": "inamura_park",
+        "start": "11:20",
+        "end": "12:00",
+        "mode": "NONE",
+        "note": "Kamakura Seaside Park (Cape Inamuragasaki)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_park",
+        "to": "inamura_station",
+        "start": "12:00",
+        "end": "12:05",
+        "mode": "WALK",
+        "note": "Kaki kaki kembali ke stasiun"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "shichiri_station",
+        "start": "12:05",
+        "end": "12:15",
+        "mode": "TRANSIT",
+        "note": "Perjalanan ke Shichirigahama (asumsi AI, belum diverifikasi)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "shichiri_station",
+        "to": "shichiri_beach",
+        "start": "12:15",
+        "end": "12:25",
+        "mode": "WALK",
+        "note": "Kaki kaki ke pantai"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E09",
+        "from": "shichiri_beach",
+        "to": "shichiri_beach",
+        "start": "12:25",
+        "end": "13:05",
+        "mode": "NONE",
+        "note": "Shichirigahama Beach (Depan Sekolah)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "shichiri_beach",
+        "to": "kokomae",
+        "start": "13:05",
+        "end": "13:23",
+        "mode": "WALK",
+        "note": "Jalan kaki langsung: Pantai Shichirigahama → Kamakurakokomae"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E11",
+        "from": "kokomae",
+        "to": "kokomae",
+        "start": "13:23",
+        "end": "13:50",
+        "mode": "NONE",
+        "note": "Kamakurakokomae Station (Foto Area Stasiun — waktu foto terpisah)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kokomae",
+        "to": "enoshima_station",
+        "start": "13:50",
+        "end": "14:10",
+        "mode": "TRANSIT",
+        "note": "Perjalanan ke Enoshima (asumsi AI, belum diverifikasi)"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E13",
+        "from": "enoshima_station",
+        "to": "enoshima_station",
+        "start": "14:10",
+        "end": "14:30",
+        "mode": "NONE",
+        "note": "Toko Suvenir Enoshima Station"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "enoshima_station",
+        "to": "tourist_center",
+        "start": "14:30",
+        "end": "14:40",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Fujisawa City Tourist Center"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E15",
+        "from": "tourist_center",
+        "to": "tourist_center",
+        "start": "14:40",
+        "end": "15:30",
+        "mode": "NONE",
+        "note": "Fujisawa City Tourist Center (selesai dalam jam operasional 08:30–17:00)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "tourist_center",
+        "to": "bridge",
+        "start": "15:30",
+        "end": "15:35",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Enoshima Ohashi Bridge"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E16",
+        "from": "bridge",
+        "to": "bridge",
+        "start": "15:35",
+        "end": "16:00",
+        "mode": "NONE",
+        "note": "Enoshima Ohashi Bridge (Video & Jalan Santai)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "bridge",
+        "to": "oiwayamichi",
+        "start": "16:00",
+        "end": "16:15",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Oiwayamichi Street"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E17",
+        "from": "oiwayamichi",
+        "to": "oiwayamichi",
+        "start": "16:15",
+        "end": "16:45",
+        "mode": "NONE",
+        "note": "Oiwayamichi Street (Opsional) & Naik ke Atas"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "oiwayamichi",
+        "to": "sea_candle",
+        "start": "16:45",
+        "end": "16:53",
+        "mode": "WALK",
+        "note": "Kaki kaki ke area Enoshima Sea Candle"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E18",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "16:53",
+        "end": "17:25",
+        "mode": "NONE",
+        "note": "Tiba di Area Enoshima Sea Candle (jam umum 09:00–20:00, terpisah dari jam acara)"
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "17:25",
+        "end": "17:35",
+        "mode": "NONE",
+        "note": "Tunggu penyaluran iluminasi (acara 17:00–21:00)"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E19",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "17:35",
+        "end": "18:20",
+        "mode": "NONE",
+        "note": "Menyaksikan Illumination (interpretasi: Shonan no Hoseki)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "sea_candle",
+        "to": "katase_station",
+        "start": "18:20",
+        "end": "18:44",
+        "mode": "WALK",
+        "note": "Kaki kaki ke Stasiun Katase-Enoshima"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "katase_station",
+        "to": "enoshima_dinner",
+        "start": "18:44",
+        "end": "18:54",
+        "mode": "WALK",
+        "note": "Pindah ke lokasi makan malam (area Enoshima, lokasi tidak diketahui)"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E20",
+        "from": "enoshima_dinner",
+        "to": "enoshima_dinner",
+        "start": "18:54",
+        "end": "19:50",
+        "mode": "NONE",
+        "note": "Turun dari Pulau & Makan Malam di Enoshima"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "enoshima_dinner",
+        "to": "fujisawa_station",
+        "start": "19:50",
+        "end": "20:05",
+        "mode": "TRANSIT",
+        "note": "Perjalanan ke Stasiun Fujisawa (asumsi AI, belum diverifikasi)"
+      },
+      {
+        "kind": "visit",
+        "activityId": "E22",
+        "from": "fujisawa_station",
+        "to": "fujisawa_station",
+        "start": "20:05",
+        "end": "20:40",
+        "mode": "NONE",
+        "note": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)"
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "start": "20:40",
+        "end": "22:00",
+        "mode": "TRANSIT",
+        "note": "Pulang ke Stasiun Funabashi (asumsi AI, belum diverifikasi)"
+      }
+    ],
+    "assumptions": [
+      "Semua perjalanan kereta adalah alokasi sementara AI, bukan jadwal, rute, atau tarif aktual.",
+      "Estimasi jalan kaki dari daftar ditambah buffer; jarak ke lokasi makan tidak diketahui.",
+      "Illumination ditafsirkan sebagai \"Shonan no Hoseki\" (periode 2026-12-01–2027-02-28; penyaluran Sabtu 17:00–21:00) — perlu konfirmasi.",
+      "Jam umum Sea Candle (09:00–20:00) dipisahkan dari jam acara iluminasi.",
+      "Lokasi makan siang dan malam tidak dipilih/digantikan restoran tertentu."
+    ],
+    "uncertainties": [
+      "Tidak ada jadwal kereta, cuaca, atau waktu matahari terbenam yang tersedia.",
+      "Jam toko Komachi, toko suvenir, dan restoran tidak diverifikasi.",
+      "Titik tepat perempatan Hachimangu, depan sekolah pantai, dan menara jam Fujisawa tidak diketahui."
+    ]
+  },
+  "rawFinal": null,
+  "error": null
+}

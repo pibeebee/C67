@@ -1,0 +1,309 @@
+import Foundation
+import XCTest
+
+@testable import TripIntelligence
+
+final class LabTests: XCTestCase {
+  func testPublicImportPreservesOriginalDateAndFiveStops() throws {
+    let c = try LabFixtures.jakarta()
+    XCTAssertEqual(c.stops.count, 5)
+    XCTAssertEqual(c.timeZoneID, "Asia/Jakarta")
+    XCTAssertTrue(c.departure.contains("2026-11-05"))
+    XCTAssertTrue(c.complete)
+    XCTAssertEqual(c.legs.count, 6)
+    XCTAssertEqual(c.elapsedMinutes!, 260.1666666667, accuracy: 0.01)
+  }
+  func testWrappedAcceptedReportImports() throws {
+    let url = try XCTUnwrap(Bundle.module.url(forResource: "jakarta-report", withExtension: "json"))
+    let native = try JSONSerialization.jsonObject(with: Data(contentsOf: url))
+    let wrapped: [String: Any] = ["acceptedReport": native, "revision": 9]
+    let c = try TripImporter.load(JSONSerialization.data(withJSONObject: wrapped))
+    XCTAssertEqual(c.revision, 9)
+    XCTAssertEqual(c.stops.count, 5)
+  }
+  func testMissingCandidateRemainsIncomplete() throws {
+    let c = try TripImporter.load(JSONSerialization.data(withJSONObject: minimalNative()))
+    XCTAssertFalse(c.complete)
+    XCTAssertNil(c.finish)
+    XCTAssertNil(c.elapsedMinutes)
+  }
+  func testNeutralContractRoundTrip() throws {
+    let c = try LabFixtures.synthetic()
+    let restored = try TripImporter.load(Codec.encode(c))
+    XCTAssertEqual(restored.id, c.id)
+    XCTAssertEqual(restored.legs, c.legs)
+  }
+  func testInvalidZoneRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.timeZoneID = "nonsense"
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testOutsideJakartaRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.stops[0].place.latitude = -7.8
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testDuplicateStopIDRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.stops[1].place.id = c.stops[0].id
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testOriginCollisionRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.stops[0].place.id = c.origin.id
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testMoreThanSixStopsRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.stops += c.stops + c.stops
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testDeadlineNextDayRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.deadline = "2026-11-06T10:00:00+07:00"
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testUnknownEvidenceSubjectRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.evidence[0].subjectID = "NOT-A-STOP"
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testNonFiniteCoordinateRejected() {
+    XCTAssertFalse(JakartaBoundary.contains(latitude: .nan, longitude: 106.8))
+    XCTAssertFalse(JakartaBoundary.contains(latitude: -6.2, longitude: .infinity))
+    XCTAssertTrue(JakartaBoundary.contains(latitude: -6.1754, longitude: 106.8272))
+    XCTAssertFalse(JakartaBoundary.contains(latitude: 35.7, longitude: 139.7))
+  }
+  func testCandidatesDeduplicatedAndFiltered() {
+    var candidates = LabFixtures.candidates()
+    candidates += candidates
+    candidates.append(
+      .init(place: .init(id: "X", name: "Outside", latitude: 0, longitude: 0), evidence: []))
+    XCTAssertEqual(CandidateFilter.clean(candidates).count, 2)
+    XCTAssertEqual(CandidateFilter.clean(candidates, excluding: ["P1"]).map(\.id), ["P2"])
+  }
+  func testCompactCandidatePromptRetainsEveryFactAndCandidate() throws {
+    let candidates = LabFixtures.candidates()
+    let request = try LabPrompts.make(
+      .candidates, context: LabFixtures.synthetic(), direction: .init(),
+      profile: .init(interests: [.coffee]), candidates: candidates)
+    let object = try XCTUnwrap(
+      JSONSerialization.jsonObject(with: Data(request.prompt.utf8)) as? [String: Any])
+    let options = try XCTUnwrap(object["candidates"] as? [[String: Any]])
+    XCTAssertEqual(options.count, candidates.count)
+    for candidate in candidates {
+      let option = try XCTUnwrap(options.first { $0["id"] as? String == candidate.id })
+      let facts = try XCTUnwrap(option["evidence"] as? [[String: Any]])
+      XCTAssertEqual(facts.count, candidate.evidence.count)
+      for evidence in candidate.evidence {
+        let fact = try XCTUnwrap(facts.first { $0["id"] as? String == evidence.id })
+        XCTAssertEqual(fact["value"] as? String, evidence.value)
+        XCTAssertEqual(fact["source"] as? String, evidence.source)
+        XCTAssertEqual(fact["observedAt"] as? String, evidence.observedAt)
+      }
+    }
+  }
+  func testTwoQueriesMaximumRespectAvoids() {
+    let p = PreferenceExtraction(
+      interests: [.coffee, .culture, .outdoor, .reading], avoids: [.coffee])
+    let queries = CandidateFilter.queries(p)
+    XCTAssertEqual(queries.count, 2)
+    XCTAssertFalse(queries.contains { $0.contains("coffee") })
+    XCTAssertTrue(CandidateFilter.queries(.init()).isEmpty)
+  }
+  func testCandidateIDOutsideSearchRejected() throws {
+    let value = CandidateAssessment(choices: [
+      .init(candidateID: "invented", reason: "Good", evidenceIDs: ["P1-info"], unknowns: [])
+    ])
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(value), capability: .candidates, context: LabFixtures.synthetic(),
+        candidates: LabFixtures.candidates()))
+  }
+  func testMismatchedEvidenceRejected() throws {
+    let value = CandidateAssessment(choices: [
+      .init(candidateID: "P1", reason: "Good", evidenceIDs: ["P2-info"], unknowns: [])
+    ])
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(value), capability: .candidates, context: LabFixtures.synthetic(),
+        candidates: LabFixtures.candidates()))
+  }
+  func testMissingWindowStopRejected() throws {
+    var value = Baseline.windows(try LabFixtures.synthetic())
+    value.suggestions.removeLast()
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(value), capability: .windows, context: LabFixtures.synthetic(), candidates: []))
+  }
+  func testSpecificWindowWithoutTimeEvidenceRejected() throws {
+    let c = try LabFixtures.synthetic()
+    var value = Baseline.windows(c)
+    value.suggestions[1].window = .evening
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(value), capability: .windows, context: c, candidates: []))
+  }
+  func testWindowAnyDoesNotClaimBestTime() throws {
+    let c = try LabFixtures.synthetic()
+    let value = Baseline.windows(c)
+    XCTAssertNoThrow(
+      try OutputValidation.validate(
+        Codec.text(value), capability: .windows, context: c, candidates: []))
+    XCTAssertTrue(value.suggestions.allSatisfy { $0.window == .any })
+  }
+  func testExtraActionFieldRejectedBeforeDecode() throws {
+    let object: [String: Any] = [
+      "interests": [], "avoids": [], "pace": "balanced", "clarification": "", "actions": ["skip"],
+    ]
+    let raw = String(decoding: try JSONSerialization.data(withJSONObject: object), as: UTF8.self)
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        raw, capability: .preferences, context: LabFixtures.synthetic(), candidates: []))
+  }
+  func testContradictoryPreferencesRejected() throws {
+    let p = PreferenceExtraction(interests: [.coffee], avoids: [.coffee])
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(p), capability: .preferences, context: LabFixtures.synthetic(), candidates: []))
+  }
+  func testExplicitBalancedPaceOverridesModelAndPersistentPace() {
+    let result = Baseline.merge(
+      persistent: .init(pace: .packed), trip: .init(),
+      extracted: .init(pace: .relaxed), paceOverride: .balanced)
+    XCTAssertEqual(result.pace, .balanced)
+  }
+  func testTripOverridesPersistentInterest() {
+    let result = Baseline.merge(
+      persistent: .init(interests: [.coffee, .culture]), trip: .init(avoids: [.coffee]),
+      extracted: .init())
+    XCTAssertEqual(result.interests, [.culture])
+    XCTAssertEqual(result.avoids, [.coffee])
+  }
+  func testFallbackPipelinePreservesContextAndLabelsSources() async throws {
+    let c = try LabFixtures.synthetic()
+    let before = try Codec.encode(c)
+    let run = try await IntelligencePipeline(
+      model: FixtureModelEngine(), search: FixturePlaceSearch()
+    ).run(
+      context: c, direction: .init(trip: .init(interests: [.coffee])))
+    XCTAssertEqual(try Codec.encode(run.context), before)
+    XCTAssertTrue(
+      run.stages.allSatisfy {
+        $0.source == "deterministic" && $0.status == "blocked" && $0.rawOutput.isEmpty
+      })
+    XCTAssertFalse(run.validatedScheduleChanges)
+  }
+  func testInvalidModelOutputStoredRawButNotDisplayed() async throws {
+    let model = InvalidModel()
+    let run = try await IntelligencePipeline(model: model, search: FixturePlaceSearch()).run(
+      context: LabFixtures.synthetic(), direction: .init())
+    XCTAssertTrue(
+      run.stages.allSatisfy {
+        $0.rawOutput == "{\"invented\":true}" && $0.source == "deterministic"
+      })
+    XCTAssertTrue(run.stages.allSatisfy { $0.rawOutput != $0.displayedOutput })
+  }
+  func testDeadlineDoesNotWaitForUncooperativeTask() async throws {
+    let start = Date()
+    do {
+      _ = try await AsyncDeadline.run(seconds: 0.02) {
+        try? await Task.sleep(for: .milliseconds(300))
+        return "late"
+      }
+      XCTFail("Expected timeout")
+    } catch LabError.timeout { XCTAssertLessThan(Date().timeIntervalSince(start), 0.2) }
+  }
+  func testCancellationPropagates() async throws {
+    let task = Task {
+      try await AsyncDeadline.run(seconds: 20) {
+        try await Task.sleep(for: .seconds(10))
+        return 1
+      }
+    }
+    task.cancel()
+    do {
+      _ = try await task.value
+      XCTFail("Expected cancellation")
+    } catch is CancellationError {}
+  }
+  @MainActor func testStaleRevisionRejected() {
+    let revisions = RunRevision()
+    let first = revisions.advance()
+    revisions.advance()
+    XCTAssertFalse(revisions.accepts(first))
+    XCTAssertTrue(revisions.accepts(revisions.value))
+  }
+  func testStoreRestoresRunAndSeparateProfile() async throws {
+    let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: url) }
+    let store = LabStore(directory: url)
+    let run = try await IntelligencePipeline(
+      model: FixtureModelEngine(), search: FixturePlaceSearch()
+    ).run(context: LabFixtures.synthetic(), direction: .init())
+    try await store.save(run)
+    try await store.saveProfile(.init(interests: [.reading]))
+    let otherProcessInstance = LabStore(directory: url)
+    let runs = try await otherProcessInstance.runs()
+    let profile = try await otherProcessInstance.profile()
+    XCTAssertEqual(runs.first?.id, run.id)
+    XCTAssertEqual(profile.interests, [.reading])
+    XCTAssertTrue(runs.first?.profile.interests.isEmpty == true)
+  }
+  func testMalformedFileDoesNotDecode() {
+    XCTAssertThrowsError(try TripImporter.load(Data("[]".utf8)))
+    XCTAssertThrowsError(try TripImporter.load(Data("not json".utf8)))
+  }
+  func testRunAndMarkdownExportRoundTrip() async throws {
+    let run = try await IntelligencePipeline(
+      model: FixtureModelEngine(), search: FixturePlaceSearch()
+    ).run(context: LabFixtures.synthetic(), direction: .init())
+    let decoded = try JSONDecoder().decode(ExperimentRunV1.self, from: Codec.encode(run))
+    XCTAssertEqual(decoded.id, run.id)
+    XCTAssertTrue(run.markdown.contains("New schedule validated: false"))
+  }
+  func testContradictoryOpeningWindowRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.evidence.append(
+      .init(
+        id: "C-close", subjectID: "C", key: "closesMinute", value: "10:00", source: "Synthetic",
+        observedAt: c.generatedAt, synthetic: true))
+    var output = Baseline.windows(c)
+    output.suggestions[2] = .init(
+      stopID: "C", window: .afternoon, reason: "Photo preference", evidenceIDs: ["experience-C"])
+    XCTAssertThrowsError(
+      try OutputValidation.validate(
+        Codec.text(output), capability: .windows, context: c, candidates: []))
+  }
+  func testReversedLegTimesRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.legs[0].arrival = "2026-11-05T07:00:00+07:00"
+    XCTAssertThrowsError(try c.validate())
+  }
+  func testFalseCompleteRouteRejected() throws {
+    var c = try LabFixtures.synthetic()
+    c.legs.removeLast()
+    XCTAssertThrowsError(try c.validate())
+  }
+  private func minimalNative() -> [String: Any] {
+    let p: [String: Any] = ["id": "O", "title": "Origin", "latitude": -6.2, "longitude": 106.82]
+    let q: [String: Any] = ["id": "A", "title": "Stop", "latitude": -6.1754, "longitude": 106.8272]
+    return [
+      "generatedAt": "2026-11-04T08:00:00+07:00",
+      "draft": [
+        "departure": "2026-11-05T08:00:00+07:00", "timeZoneID": "Asia/Jakarta", "origin": p,
+        "stops": [["point": q]], "returnsToOrigin": true,
+      ],
+    ]
+  }
+}
+private struct InvalidModel: ModelGenerating {
+  func runtime() async -> ModelRuntime {
+    .init(
+      available: true, englishSupported: true, indonesianSupported: false,
+      availability: "Injected test model", contextSize: 8192, model: "Test double")
+  }
+  func generate(_ request: GenerationRequest) async throws -> RawGeneration {
+    .init(raw: "{\"invented\":true}", duration: 0)
+  }
+}

@@ -1,0 +1,9 @@
+# Historical outputs and attributed source records retain their original whitespace.
+# Maintained source and newly authored handoff documentation keep the root rules.
+apps/**/docs/verification/** -whitespace
+apps/**/artifacts/** -whitespace
+apps/**/results/** -whitespace
+docs/context/** -whitespace
+docs/source-records/** -whitespace
+docs/evaluation-protocols/** -whitespace
+apps/c67-foundation-lab/Packages/PreferenceLearning/Sources/PreferenceLearning/Resources/Model/E5-LICENSE.txt -whitespace

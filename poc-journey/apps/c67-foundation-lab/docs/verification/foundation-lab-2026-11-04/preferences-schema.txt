@@ -1,0 +1,67 @@
+{
+  "additionalProperties" : false,
+  "properties" : {
+    "avoids" : {
+      "description" : "Only interests explicitly avoided in the current user's text.",
+      "items" : {
+        "enum" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "indoor",
+          "outdoor",
+          "culture",
+          "food",
+          "photography"
+        ],
+        "type" : "string"
+      },
+      "maxItems" : 8,
+      "type" : "array"
+    },
+    "clarification" : {
+      "description" : "At most one needed clarification, empty if unnecessary.",
+      "type" : "string"
+    },
+    "interests" : {
+      "description" : "Only interests explicitly preferred in the current user's text.",
+      "items" : {
+        "enum" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "indoor",
+          "outdoor",
+          "culture",
+          "food",
+          "photography"
+        ],
+        "type" : "string"
+      },
+      "maxItems" : 8,
+      "type" : "array"
+    },
+    "pace" : {
+      "enum" : [
+        "relaxed",
+        "balanced",
+        "packed"
+      ],
+      "type" : "string"
+    }
+  },
+  "required" : [
+    "interests",
+    "avoids",
+    "pace",
+    "clarification"
+  ],
+  "title" : "PreferenceExtraction",
+  "type" : "object",
+  "x-order" : [
+    "interests",
+    "avoids",
+    "pace",
+    "clarification"
+  ]
+}

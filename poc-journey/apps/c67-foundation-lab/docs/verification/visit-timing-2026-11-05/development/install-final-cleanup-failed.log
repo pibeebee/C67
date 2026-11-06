@@ -1,0 +1,11 @@
+ERROR: Failed to install the app on the device. (com.apple.dt.CoreDeviceError error 3002 (0xBBA))
+       NSURL = file:///tmp/c67-preference-device/Build/Products/Debug-iphoneos/C67FoundationLab.app/
+       ----------------------------------------
+           Failed to get remote_device_t from AMDeviceRef using AMDeviceCopyRemoteDeviceWithError() : kAMDRemoteConnectError (IXRemoteErrorDomain error 5 (0x05))
+           NSLocalizedFailureReason = Unhandled error domain IXRemoteErrorDomain, code 5
+           SourceFileLine = 68
+           FunctionName = _DiscoverRemoteDevice
+       ----------------------------------------
+               Failed to connect to remote device with UUID: <CFUUID 0x7cb09a3ec0> 1CA8D66B-97E5-4F87-A0B0-F96AC47F3A7A (com.apple.mobiledevice error -402652910 (0xE8000112))
+               LineNumber = 710
+               FunctionName = _AMDeviceCopyRemoteDeviceWithError

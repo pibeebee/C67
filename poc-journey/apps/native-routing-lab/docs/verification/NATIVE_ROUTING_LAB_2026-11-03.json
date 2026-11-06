@@ -1,0 +1,285 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Jakarta",
+  "project": "<LOCAL_HOME>/Programming/software/ios/poc-c67",
+  "scope": "Six native routing strategies, shared evaluator, comparison UI, live ETA revalidation, offline OR-Tools exchange helper",
+  "nativeAlgorithms": [
+    "baseline",
+    "local",
+    "insertion",
+    "beam",
+    "alns",
+    "exact"
+  ],
+  "externalAlgorithm": "OR-Tools cheapest insertion + guided local search on Mac, import and independent Swift evaluation",
+  "exactMaxStops": 8,
+  "heuristicMaxStops": 20,
+  "build": {
+    "destination": "generic/platform=iOS",
+    "minimumIOS": "18.0",
+    "signingAllowed": false,
+    "result": "BUILD SUCCEEDED",
+    "path": "/private/tmp/c67-routing-lab-20261103/build-ios-verified.log",
+    "sha256": "210f57f16c4bd7a049e88987de1810ce311a1220cda29897e842413f6f1ccbaf"
+  },
+  "checks": {
+    "routing-checks-verified.log": {
+      "passed": 14,
+      "runtime": "macOS",
+      "path": "/private/tmp/c67-routing-lab-20261103/routing-checks-verified.log",
+      "sha256": "73bae3e9ff3111a0205268547f9651c99a04701d5991a564fd75b0353f91b49d"
+    },
+    "input-checks.log": {
+      "passed": 8,
+      "runtime": "macOS",
+      "path": "/private/tmp/c67-routing-lab-20261103/input-checks.log",
+      "sha256": "2f87a52395d1f50022dab42ce4d1bfc3681eb017a0c0ab1c522576f07ff27ffc"
+    },
+    "search-checks.log": {
+      "passed": 7,
+      "runtime": "macOS",
+      "path": "/private/tmp/c67-routing-lab-20261103/search-checks.log",
+      "sha256": "0827be0f9798e32528df2e5bf070c78849b353dd35d7f64ee7a687490743d03e"
+    },
+    "log-checks.log": {
+      "passed": 9,
+      "runtime": "macOS",
+      "path": "/private/tmp/c67-routing-lab-20261103/log-checks.log",
+      "sha256": "8e60f141be7c09c2b7356e34098e72b8c9bd532349ae3e7560e6e02f3ec1778e"
+    }
+  },
+  "additionalORToolsRoundTripPassed": true,
+  "totalLocalCheckGroupsPassed": 39,
+  "ortools": {
+    "version": "9.15.6755",
+    "environment": "isolated temporary virtualenv",
+    "python": "3.14.6",
+    "source": "https://pypi.org/project/ortools/9.15.6755/",
+    "smokeInput": {
+      "arcs": [
+        {
+          "end": 172800,
+          "from": 0,
+          "mode": "walking",
+          "seconds": 1,
+          "start": 0,
+          "status": "available",
+          "to": 1
+        },
+        {
+          "end": 172800,
+          "from": 0,
+          "mode": "walking",
+          "seconds": 100,
+          "start": 0,
+          "status": "available",
+          "to": 2
+        },
+        {
+          "end": 172800,
+          "from": 0,
+          "mode": "walking",
+          "seconds": 2,
+          "start": 0,
+          "status": "available",
+          "to": 3
+        },
+        {
+          "end": 172800,
+          "from": 1,
+          "mode": "walking",
+          "seconds": 2,
+          "start": 0,
+          "status": "available",
+          "to": 0
+        },
+        {
+          "end": 172800,
+          "from": 1,
+          "mode": "walking",
+          "seconds": 1,
+          "start": 0,
+          "status": "available",
+          "to": 2
+        },
+        {
+          "end": 172800,
+          "from": 1,
+          "mode": "walking",
+          "seconds": 100,
+          "start": 0,
+          "status": "available",
+          "to": 3
+        },
+        {
+          "end": 172800,
+          "from": 2,
+          "mode": "walking",
+          "seconds": 100,
+          "start": 0,
+          "status": "available",
+          "to": 0
+        },
+        {
+          "end": 172800,
+          "from": 2,
+          "mode": "walking",
+          "seconds": 1,
+          "start": 0,
+          "status": "available",
+          "to": 1
+        },
+        {
+          "end": 172800,
+          "from": 2,
+          "mode": "walking",
+          "seconds": 100,
+          "start": 0,
+          "status": "available",
+          "to": 3
+        },
+        {
+          "end": 172800,
+          "from": 3,
+          "mode": "walking",
+          "seconds": 1,
+          "start": 0,
+          "status": "available",
+          "to": 0
+        },
+        {
+          "end": 172800,
+          "from": 3,
+          "mode": "walking",
+          "seconds": 100,
+          "start": 0,
+          "status": "available",
+          "to": 1
+        },
+        {
+          "end": 172800,
+          "from": 3,
+          "mode": "walking",
+          "seconds": 1,
+          "start": 0,
+          "status": "available",
+          "to": 2
+        }
+      ],
+      "baselineOrders": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "deadline": 1000,
+      "end": 0,
+      "extraWeatherSeconds": 900,
+      "id": "D2596740-8252-461C-B6B8-AC5783F57AFB",
+      "kind": "synthetic_static",
+      "label": "Golden directed case",
+      "nodes": [
+        {
+          "dwell": 0,
+          "exposure": 1,
+          "id": "N0",
+          "name": "Node 0",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "dwell": 10,
+          "exposure": 1,
+          "id": "N1",
+          "name": "Node 1",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "dwell": 10,
+          "exposure": 1,
+          "id": "N2",
+          "name": "Node 2",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "dwell": 10,
+          "exposure": 1,
+          "id": "N3",
+          "name": "Node 3",
+          "x": 3,
+          "y": 0
+        }
+      ],
+      "origin": 0,
+      "rainWeight": 2,
+      "schemaVersion": 1,
+      "targets": [
+        1,
+        2,
+        3
+      ],
+      "weather": []
+    },
+    "smokeOutput": {
+      "schemaVersion": 1,
+      "problemID": "D2596740-8252-461C-B6B8-AC5783F57AFB",
+      "algorithm": "ortools_gls",
+      "order": [
+        3,
+        2,
+        1
+      ],
+      "elapsed": 1.0039552908856422,
+      "status": "solution",
+      "version": "9.15.6755",
+      "timeLimitSeconds": 1.0,
+      "note": "Integer-second static projection at t=0. Re-evaluate in iOS. No global optimality claim; no solution is not proof of infeasibility."
+    },
+    "expectedTravelSeconds": 6,
+    "interpretation": "Synthetic three-visit smoke; not a real-world itinerary benchmark"
+  },
+  "format": "swift-format lint --strict passed",
+  "shellSyntax": "bash -n passed",
+  "pythonSyntax": "ast.parse passed",
+  "whitespace": "git diff --check passed",
+  "iosTestsRun": false,
+  "simulatorRun": false,
+  "iphoneInstalledOrLaunched": false,
+  "mapkitOrWeatherkitRequestsRun": false,
+  "limitations": [
+    "OR-Tools is not bundled on iPhone; uses Mac file exchange",
+    "Live acquisition is a static directed ETA snapshot, final candidates revalidated by departure time",
+    "Exact proof covers order permutations under fixed greedy mode/no intentional waiting evaluator only",
+    "Missing data and budget exhaustion do not prove infeasibility",
+    "Files dialogs/UI and live route quality not device validated"
+  ],
+  "sourceSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "75acfb764c087d04eb031d0567028b368b88c3ec2f754ac4d52fd24fb727703c",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "bb898a732a0474bf828e6991077f5460c2e83cd694b9aa946a9aff2c00856a48",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "97e219b0f2a632fd53c8c0bf449df9e8cb70bdf34474d3383aeb196ecc28ce4a",
+    "poc-c67/Features/NativePlanner/NativeTripInputViews.swift": "6cbc5bc3a1e790c02b1223efb17df9bd283c1873c2b5f34112f4f6d28a5d01ad",
+    "poc-c67/Features/NativePlanner/NativeTripLogStore.swift": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27",
+    "poc-c67/Features/NativePlanner/NativeTripLogView.swift": "067a3c8187737d0197d68dd0f2c6714fc8693c55b7be4e4eb4efb3b2cf3dab1c",
+    "poc-c67/Features/NativePlanner/NativeTripModel.swift": "bcb3f5e9ccaf623bf43aea72f20da78bd8da4f7730cb9c47dca78895294e8d54",
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "f5d5e858b5be29153bc368b009a795fb8fda6d17137f22ca98e2fa88cf566ebe",
+    "poc-c67/Features/NativePlanner/NativeTripPinPicker.swift": "f1d0988c50e125af5b4965eabb1fdedc0a465c8dbc64a3b0d0601a5d84425340",
+    "poc-c67/Features/NativePlanner/NativeTripPlannerView.swift": "203fc53215c8235f0b88f96cb18b78813dd17bd02d7973d6c1a5831f581a9f88",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "2e4f8f6479fa44ce7cd373f312659d1814fbdac1a5d3b3de5bb4079b9116063c",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "aa8bf11c40f24ea6f47a865354375c8c106986e33bc23825bee0e186833ef1d5",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": "f92ba9e2abf94d77cb4b8c643b51d21fb14a17ba6684c2e4ed16c430cc114adc",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingFixtures.swift": "9a10a72bf9bc75c4be66083a8e14eb3b0187072da7ff9c8931e09562b35c4255",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingLab.swift": "51844919f844cd57e407bfc9c96dd09a1cab44e0f1b20fd2ea47d6a68887da1b",
+    "poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+    "checks/routing/NativeTripRoutingChecks.swift": "9c3968206125145857ba755b8d1cdcaa3d6b79611d97681b9d8f2b7f8daf283d",
+    "scripts/check-native-trip-routing.sh": "cdff69cd0252de641a5e9d307c0434b21e645782174b871add7d9671378b2df7",
+    "scripts/solve-routing-ortools.py": "ab9be987ae67158487148b0ab406ff7b986bb46e5fadd8f099ccd2d6448e4ec5",
+    "scripts/requirements-routing-ortools.txt": "672c02ea3f723bea4a8e39643caab8c57c513418c812767096ebed55224240cf",
+    "README.md": "3e26bd9f1429a102236919fef19dd9deab982145861b73f21b33e7753c8d88c5",
+    "docs/NATIVE_ITINERARY.md": "0e800d887f670a406544a8452a9cc3692fdc72129dc16d7fb140e6fd07ffea09",
+    "docs/NATIVE_ROUTING_LAB.md": "491d0b03a9ec1de42596e9410f8bd3746c9255d89abd28415749f69c2c299c8e"
+  },
+  "backups": "/private/tmp/c67-routing-lab-20261103/originals"
+}

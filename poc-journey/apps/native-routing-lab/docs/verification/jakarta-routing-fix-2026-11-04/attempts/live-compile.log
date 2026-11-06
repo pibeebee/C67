@@ -1,0 +1,35 @@
+/tmp/c67-jakarta-fix/LiveJakartaProbe.swift:59:25: error: operator function '==' requires that 'NativeTripVisitState' conform to 'Equatable'
+ 57 |     active.proposal = proposal
+ 58 |     try perform(.apply(proposal.id), at: asOf)
+ 59 |     guard active.visits == before.visits, active.actualLegs == before.actualLegs,
+    |                         `- error: operator function '==' requires that 'NativeTripVisitState' conform to 'Equatable'
+ 60 |       active.acceptedRemaining?.draft.endPoint == draft.origin else {
+ 61 |       fatalError("Actual history or endpoint changed")
+
+Swift.Array:1:11: note: requirement from conditional conformance of '[NativeTripVisitState]' to 'Equatable'
+1 | extension Array : Equatable where Element : Equatable {
+  |           `- note: requirement from conditional conformance of '[NativeTripVisitState]' to 'Equatable'
+2 |     @inlinable public static func == (lhs: [Element], rhs: [Element]) -> Bool
+3 | }
+
+/tmp/c67-jakarta-fix/LiveJakartaProbe.swift:59:61: error: operator function '==' requires that 'NativeTripActualLeg' conform to 'Equatable'
+ 57 |     active.proposal = proposal
+ 58 |     try perform(.apply(proposal.id), at: asOf)
+ 59 |     guard active.visits == before.visits, active.actualLegs == before.actualLegs,
+    |                                                             `- error: operator function '==' requires that 'NativeTripActualLeg' conform to 'Equatable'
+ 60 |       active.acceptedRemaining?.draft.endPoint == draft.origin else {
+ 61 |       fatalError("Actual history or endpoint changed")
+
+Swift.Array:1:11: note: requirement from conditional conformance of '[NativeTripActualLeg]' to 'Equatable'
+1 | extension Array : Equatable where Element : Equatable {
+  |           `- note: requirement from conditional conformance of '[NativeTripActualLeg]' to 'Equatable'
+2 |     @inlinable public static func == (lhs: [Element], rhs: [Element]) -> Bool
+3 | }
+
+/tmp/c67-jakarta-fix/LiveJakartaProbe.swift:64:37: error: binary operator '==' cannot be applied to operands of type '[NativeTripVisitState]?' and '[NativeTripVisitState]'
+ 62 |     }
+ 63 |     let loaded = try store.load().session!
+ 64 |     guard loaded.activeTrip?.visits == active.visits,
+    |                                     `- error: binary operator '==' cannot be applied to operands of type '[NativeTripVisitState]?' and '[NativeTripVisitState]'
+ 65 |       loaded.activeTrip?.acceptedRemaining?.fastest?.order == active.acceptedRemaining?.fastest?.order else {
+ 66 |       fatalError("Active restore mismatch")

@@ -1,0 +1,19 @@
+PASS 1: directed cost, fixed dwell, final return and asymmetric golden optimum
+PASS 2: all seven native methods preserve visits; exhaustive reference finds known optimum
+PASS 3: opening wait, complete dwell before closing and day deadline enforced
+PASS 4: distinct endpoint retained; dropped/duplicate visit rejected
+PASS 5: piecewise ETA uses propagated departure after travel/dwell
+PASS 6: unknown arcs never become zero duration or a false optimum/infeasibility proof
+PASS 7: evaluation budget and unsupported exact size are explicitly distinguished
+PASS 8: seeded ALNS is repeatable when time limit does not bind
+PASS 9: rain scoring respects coverage; transit exposure stays unknown
+PASS 10: external import verifies case and visits, recomputes metrics, never trusts optimality
+PASS 11: cancellation propagates from solver actor
+PASS 12: malformed graph/seed rejected before search
+PASS 13: bounded native searches preserve all 20 stops
+PASS 14: repeated-run statistics exclude incomplete tours from quality metrics
+PASS 15: coverage separates unavailable, excluded and unrequested; all solvers use real eligible car arcs
+PASS 16: elapsed objective includes opening wait; hard feasibility remains first
+PASS 17: private car cannot teleport between walking legs; elapsed statistics exclude partial tours
+PASS 18: weather tolerance uses elapsed trip budget even when driving duration increases
+18 routing checks passed on macOS; no network or iOS runtime.

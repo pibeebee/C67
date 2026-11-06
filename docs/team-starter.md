@@ -1,5 +1,7 @@
 # Team handoff
 
+For the separate recommendation/routing experiments, start with the [PoC handoff](../poc-journey/HANDOFF.md) and [capability/evidence status](../poc-journey/STATUS.md). Those experiments do not replace this production onboarding or its contracts.
+
 Updated 30 October 2026. Start with [product context](product-context.md), [planning semantics](ai-trip-planning.md), [ADR-0009](decisions/0009-personal-planning-implementation.md), [architecture](architecture.md) and [implementation evidence](tasks/ai-trip-planning-implementation.md).
 
 The default native experience now collects user places/preferences/time, presents optional suggestions and a plan proposal, saves a personal trip and supports manual start/arrival/extension/completion plus reviewed remaining-trip recalculation. Mock output is explicitly synthetic. The repository includes the live HTTP/provider adapters and additive SQL; neither the new service nor migration is shared-deployed by this work.

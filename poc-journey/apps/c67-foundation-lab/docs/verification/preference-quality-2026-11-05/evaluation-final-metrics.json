@@ -1,0 +1,715 @@
+{
+  "scope": "Diagnostic source-attribute coverage, not satisfaction, holdout accuracy or preference ground truth",
+  "modelCases": 24,
+  "semanticComparisons": 17,
+  "gatePassed": 24,
+  "unsupportedTop3IDs": [],
+  "softPreferenceComparisons": 6,
+  "coverageComparison": {
+    "combined_over_category": 0,
+    "category_over_combined": 0,
+    "ties": 6
+  },
+  "meanSupportedSoftFraction": {
+    "category": 0.38888888888888884,
+    "semantic": 0.38888888888888884,
+    "combined": 0.38888888888888884
+  },
+  "cases": [
+    {
+      "case": "coffee",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bakoel-cikini",
+            "bdt-cafe",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-cafe",
+            "bakoel-cikini",
+            "newsroom"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-cafe",
+            "bakoel-cikini",
+            "newsroom"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj",
+            "bdt-silent",
+            "erasmus"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "coffee-reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "silent-reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "coffee-silent-reading",
+      "status": "no_verified_match",
+      "scores": {
+        "category": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "outdoor-nature",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "gbk",
+            "ragunan"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "gbk",
+            "ragunan"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "gbk",
+            "ragunan"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "art-culture",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "dialogue"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "dialogue"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "dialogue"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "reading-avoid-coffee",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "reading-avoid-outdoor",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj",
+            "bdt-silent",
+            "erasmus"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 3,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "coffee-wifi",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj",
+            "newsroom"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "newsroom",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "newsroom",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "coffee-avoid-smoking",
+      "status": "no_verified_match",
+      "scores": {
+        "category": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "negation-needs-review",
+      "status": "preference_review_required",
+      "scores": {
+        "category": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "correction-to-reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "coffee-soft-reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj",
+            "bakoel-cikini",
+            "bdt-cafe"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "semantic": {
+          "top3": [
+            "bdt-rbbj",
+            "bdt-cafe",
+            "newsroom"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "combined": {
+          "top3": [
+            "bdt-rbbj",
+            "bdt-cafe",
+            "newsroom"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "reading-soft-silent",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-silent",
+            "bdt-rbbj",
+            "erasmus"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "semantic": {
+          "top3": [
+            "bdt-silent",
+            "erasmus",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "combined": {
+          "top3": [
+            "bdt-silent",
+            "erasmus",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "reading-soft-culture",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "erasmus",
+            "bdt-rbbj",
+            "bdt-silent"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "semantic": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        },
+        "combined": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": 0.3333333333333333
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "coffee-soft-wifi",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj",
+            "newsroom",
+            "bakoel-cikini"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        },
+        "semantic": {
+          "top3": [
+            "newsroom",
+            "bdt-rbbj",
+            "bdt-cafe"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        },
+        "combined": {
+          "top3": [
+            "newsroom",
+            "bdt-rbbj",
+            "bdt-cafe"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "like-reading-facet",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-silent",
+            "erasmus",
+            "bakoel-cikini"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        },
+        "semantic": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-cafe"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        },
+        "combined": {
+          "top3": [
+            "erasmus",
+            "bdt-silent",
+            "bdt-cafe"
+          ],
+          "desirableHitCount": 2,
+          "supportedSoftFraction": 0.6666666666666666
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "like-art-facet",
+      "status": "no_supported_preference",
+      "scores": {
+        "category": {
+          "top3": [
+            "bakoel-cikini",
+            "bdt-cafe",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": 0.0
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "coffee-reading-dismissed",
+      "status": "no_verified_match",
+      "scores": {
+        "category": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "general-empty",
+      "status": "general_not_personalized",
+      "scores": {
+        "category": {
+          "top3": [
+            "bakoel-cikini",
+            "bdt-cafe",
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "outdoor-soft-reading",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "gbk",
+            "ragunan"
+          ],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": 0.0
+        },
+        "semantic": {
+          "top3": [
+            "ragunan",
+            "gbk"
+          ],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": 0.0
+        },
+        "combined": {
+          "top3": [
+            "ragunan",
+            "gbk"
+          ],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": 0.0
+        }
+      },
+      "softCount": 1
+    },
+    {
+      "case": "english-combo-confirmed",
+      "status": "comparison_completed",
+      "scores": {
+        "category": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [
+            "bdt-rbbj"
+          ],
+          "desirableHitCount": 1,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    },
+    {
+      "case": "free-quiet-unknown",
+      "status": "preference_review_required",
+      "scores": {
+        "category": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "semantic": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        },
+        "combined": {
+          "top3": [],
+          "desirableHitCount": 0,
+          "supportedSoftFraction": null
+        }
+      },
+      "softCount": 0
+    }
+  ]
+}

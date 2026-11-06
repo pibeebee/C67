@@ -1,0 +1,2751 @@
+{
+  "quality" : {
+    "catalog" : {
+      "candidates" : [
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-faq"
+              ],
+              "statement" : "On-site reading is described for this room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-rbbj",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Temu RBBJ",
+          "sourceIDs" : [
+            "q-bdt-faq",
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Dedicated reading room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+              "value" : "no"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Interior reading room.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-silent",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Baca Hening",
+          "sourceIDs" : [
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Coffee is listed for the cafe.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bdt-cafe",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Kafe Makan Di Tebet",
+          "sourceIDs" : [
+            "q-bdt-home"
+          ],
+          "venueID" : "bdt"
+        },
+        {
+          "address" : "COMO Park, Kemang Timur Raya 998",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Coffee service is described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Wi-Fi is listed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Indoor is listed.",
+              "value" : "no"
+            },
+            {
+              "feature" : "smokingArea",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "newsroom",
+          "mapQuery" : "The Newsroom COMO Park Jakarta",
+          "matchWords" : [
+            "newsroom"
+          ],
+          "name" : "The Newsroom",
+          "scope" : "Published cafe / community space",
+          "sourceIDs" : [
+            "q-newsroom"
+          ],
+          "venueID" : "newsroom"
+        },
+        {
+          "address" : "Cikini Raya 25",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bakoel"
+              ],
+              "statement" : "Coffee consumption at the Cikini cafe is described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bakoel-cikini",
+          "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+          "matchWords" : [
+            "bakoel",
+            "cikini"
+          ],
+          "name" : "Bakoel Koffie Cikini",
+          "scope" : "Cikini cafe only",
+          "sourceIDs" : [
+            "q-bakoel"
+          ],
+          "venueID" : "bakoel"
+        },
+        {
+          "address" : "Kemang, Jakarta Selatan",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Public art and design exhibitions are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Art, design and cultural programs are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "dialogue",
+          "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+          "matchWords" : [
+            "gue"
+          ],
+          "name" : "Dia.Lo.Gue",
+          "scope" : "Art space",
+          "sourceIDs" : [
+            "q-dialogue"
+          ],
+          "venueID" : "dialogue"
+        },
+        {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Museum gallery area.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Food and drinks are prohibited in the gallery.",
+              "value" : "no"
+            }
+          ],
+          "id" : "macan-gallery",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Gallery",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "macan-cafe",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Common Grounds cafe listed within facility",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        {
+          "address" : "Pintu 7 Senayan, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Public urban park.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Urban forest/park listing.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "gbk",
+          "mapQuery" : "Hutan Kota GBK Jakarta",
+          "matchWords" : [
+            "hutan",
+            "kota"
+          ],
+          "name" : "Hutan Kota GBK",
+          "scope" : "Public park",
+          "sourceIDs" : [
+            "q-gbk"
+          ],
+          "venueID" : "gbk"
+        },
+        {
+          "address" : "Harsono RM 1, Ragunan",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Trees, wildlife and park grounds are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ragunan",
+          "mapQuery" : "Ragunan Zoo Jakarta",
+          "matchWords" : [
+            "ragunan"
+          ],
+          "name" : "Taman Margasatwa Ragunan",
+          "scope" : "Park grounds",
+          "sourceIDs" : [
+            "q-ragunan"
+          ],
+          "venueID" : "ragunan"
+        },
+        {
+          "address" : "Upper Marketplace L2, ASHTA",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "Reading in the program area was described for its published period.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "The program requested low voices, not measured crowd levels.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ashta-reading",
+          "mapQuery" : "ASHTA District 8 Jakarta",
+          "matchWords" : [
+            "ashta"
+          ],
+          "name" : "ASHTA Bookhive",
+          "scope" : "2025 reading-space program",
+          "sourceIDs" : [
+            "q-ashta"
+          ],
+          "validThrough" : "2025-12-31",
+          "venueID" : "ashta"
+        },
+        {
+          "address" : "Kuningan, Jakarta",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The library welcomes on-site readers.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "Literature and cultural learning are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The named library interior, not external grounds.",
+              "value" : "no"
+            }
+          ],
+          "id" : "erasmus",
+          "mapQuery" : "Erasmus Huis Jakarta",
+          "matchWords" : [
+            "erasmus"
+          ],
+          "name" : "Erasmus Huis Library",
+          "scope" : "Library",
+          "sourceIDs" : [
+            "q-erasmus"
+          ],
+          "venueID" : "erasmus"
+        },
+        {
+          "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-jaklitera-import"
+              ],
+              "statement" : "Published library reading service at the Cikini branch.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "cikini",
+          "mapQuery" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "matchWords" : [
+            "perpustakaan",
+            "jakarta"
+          ],
+          "name" : "Perpustakaan Jakarta — Cikini",
+          "scope" : "Library reading service, Cikini branch",
+          "sourceIDs" : [
+            "q-jaklitera-import"
+          ],
+          "venueID" : "cikini"
+        }
+      ],
+      "id" : "p3-quality-2026-11-05",
+      "schemaVersion" : 1,
+      "sources" : [
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-home",
+          "relation" : "venue_operator",
+          "sha256" : "b22a44ddba4706bf3b4fe7dc9cf80f6deeb56a8bfc9184459bf6d8ba09cf0576",
+          "title" : "Baca Di Tebet — fasilitas",
+          "url" : "https://bacaditebet.id/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-faq",
+          "relation" : "venue_operator",
+          "sha256" : "09953ad15179558e64390b4ec8f4c401b580ef2011c6aa518619c28e7e008eb9",
+          "title" : "Baca Di Tebet — FAQ",
+          "url" : "https://bacaditebet.id/faq/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bdt-terms",
+          "relation" : "venue_operator",
+          "sha256" : "fbad078565c25d48ad76a77a73286bcb98938b443fe76633e64328f029f058ed",
+          "title" : "Baca Di Tebet — tata tertib",
+          "url" : "https://bacaditebet.id/terms/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:54Z",
+          "id" : "q-newsroom",
+          "publishedDate" : "2023-06-29",
+          "relation" : "venue_operator",
+          "sha256" : "dcc8ad2ed6fbf5214d7770289d5ae533c607e01895c28a209c3e37a97b4578de",
+          "title" : "MANUAL — The Newsroom (operator publication)",
+          "url" : "https://manual.co.id/directory/the-newsroom/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-bakoel",
+          "relation" : "venue_operator",
+          "sha256" : "609406c6b17c334830a171f737c28015ebd878f6dc594a37eee1c3ac48be2c92",
+          "title" : "Bakoel Koffie — Cikini",
+          "url" : "https://www.bakoelkoffie.com/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-dialogue",
+          "relation" : "venue_operator",
+          "sha256" : "8f9425d22e523521bff272fcf2426c8db32b154835661d59cf3291f9dc7f85d6",
+          "title" : "Dia.Lo.Gue — about",
+          "url" : "https://dialogue-artspace.com/profile/about/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-ashta",
+          "relation" : "venue_operator",
+          "sha256" : "918af4bfda6e4992c8ab3268ffd74298980c4bdc8b0dc828873c8a2466357332",
+          "title" : "ASHTA — program reading space",
+          "url" : "https://ashta.co.id/program/free-reading-space/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-macan",
+          "relation" : "venue_operator",
+          "sha256" : "bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+          "title" : "Museum MACAN — visit",
+          "url" : "https://www.museummacan.org/visit"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:56Z",
+          "id" : "q-ragunan",
+          "relation" : "venue_operator",
+          "sha256" : "25988dc7a3350878e75c67899143509a82f2fec26e93f0468f1cb2f17c5c82b0",
+          "title" : "Ragunan — official",
+          "url" : "https://ragunanzoo.jakarta.go.id/language/en/"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:10:55Z",
+          "id" : "q-gbk",
+          "relation" : "local_government",
+          "sha256" : "31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+          "title" : "Jakarta Pusat — Hutan Kota GBK",
+          "url" : "https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota"
+        },
+        {
+          "checkedAt" : "2026-11-05T06:14:25Z",
+          "id" : "q-erasmus",
+          "relation" : "venue_operator",
+          "sha256" : "f622968f1427d5d3589b8da426e1db09b938c1f7e57ee0f7c4410526a6a74a91",
+          "title" : "Erasmus Huis — library",
+          "url" : "https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library"
+        },
+        {
+          "checkedAt" : "2026-11-05T01:34:16Z",
+          "id" : "q-jaklitera-import",
+          "relation" : "Imported P1 structured fixture; SHA256 identifies that fixture, not the remote HTML. Reading is the published library service; other attributes unknown.",
+          "sha256" : "e1bf4f568dd45e64b5e272f5bf14e3071586c2d60f1cc28ce0857b376a22f28f",
+          "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+          "url" : "https://perpustakaan.jakarta.go.id/supports/about-us"
+        }
+      ]
+    },
+    "category" : [
+      {
+        "candidateID" : "bakoel-cikini",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-cafe",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-rbbj",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "bdt-silent",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "cikini",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "dialogue",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "erasmus",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "gbk",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "newsroom",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      },
+      {
+        "candidateID" : "ragunan",
+        "categoryScore" : 0,
+        "supportedPreferences" : [
+
+        ]
+      }
+    ],
+    "combined" : [
+
+    ],
+    "createdAt" : "2026-11-05T09:57:44Z",
+    "decisions" : [
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-faq"
+              ],
+              "statement" : "On-site reading is described for this room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Beverages are allowed in RBBJ; coffee availability or seating at arrival is not guaranteed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "This candidate is the named interior room, not the outdoor surroundings.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-rbbj",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Temu RBBJ",
+          "sourceIDs" : [
+            "q-bdt-faq",
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Dedicated reading room.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "A silent-zone policy applies; actual noise has not been measured.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-terms"
+              ],
+              "statement" : "Drinks other than closed-bottle water are prohibited in the reading room.",
+              "value" : "no"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Wi-Fi is listed for the facility rooms.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Interior reading room.",
+              "value" : "no"
+            }
+          ],
+          "id" : "bdt-silent",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Ruang Baca Hening",
+          "sourceIDs" : [
+            "q-bdt-home",
+            "q-bdt-terms"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bdt-home"
+              ],
+              "statement" : "Coffee is listed for the cafe.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bdt-cafe",
+          "mapQuery" : "Baca Di Tebet Jakarta",
+          "matchWords" : [
+            "baca",
+            "tebet"
+          ],
+          "name" : "Baca Di Tebet",
+          "scope" : "Kafe Makan Di Tebet",
+          "sourceIDs" : [
+            "q-bdt-home"
+          ],
+          "venueID" : "bdt"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "COMO Park, Kemang Timur Raya 998",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Coffee service is described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "wifi",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Wi-Fi is listed.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "Indoor is listed.",
+              "value" : "no"
+            },
+            {
+              "feature" : "smokingArea",
+              "sourceIDs" : [
+                "q-newsroom"
+              ],
+              "statement" : "A smoking area is listed; exposure in each seat is unknown.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "newsroom",
+          "mapQuery" : "The Newsroom COMO Park Jakarta",
+          "matchWords" : [
+            "newsroom"
+          ],
+          "name" : "The Newsroom",
+          "scope" : "Published cafe / community space",
+          "sourceIDs" : [
+            "q-newsroom"
+          ],
+          "venueID" : "newsroom"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Cikini Raya 25",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-bakoel"
+              ],
+              "statement" : "Coffee consumption at the Cikini cafe is described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "bakoel-cikini",
+          "mapQuery" : "Bakoel Koffie Cikini Jakarta",
+          "matchWords" : [
+            "bakoel",
+            "cikini"
+          ],
+          "name" : "Bakoel Koffie Cikini",
+          "scope" : "Cikini cafe only",
+          "sourceIDs" : [
+            "q-bakoel"
+          ],
+          "venueID" : "bakoel"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Kemang, Jakarta Selatan",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Public art and design exhibitions are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-dialogue"
+              ],
+              "statement" : "Art, design and cultural programs are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "dialogue",
+          "mapQuery" : "Dia Lo Gue Kemang Jakarta",
+          "matchWords" : [
+            "gue"
+          ],
+          "name" : "Dia.Lo.Gue",
+          "scope" : "Art space",
+          "sourceIDs" : [
+            "q-dialogue"
+          ],
+          "venueID" : "dialogue"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "art",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Museum gallery area.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Food and drinks are prohibited in the gallery.",
+              "value" : "no"
+            }
+          ],
+          "id" : "macan-gallery",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Gallery",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        "reasons" : [
+          "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "AKR Tower, Kebon Jeruk",
+          "blockedReason" : "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+          "claims" : [
+            {
+              "feature" : "coffee",
+              "sourceIDs" : [
+                "q-macan"
+              ],
+              "statement" : "Coffee cafe is listed; gallery permissions do not transfer here.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "macan-cafe",
+          "mapQuery" : "Museum MACAN Jakarta",
+          "matchWords" : [
+            "macan"
+          ],
+          "name" : "Museum MACAN",
+          "scope" : "Common Grounds cafe listed within facility",
+          "sourceIDs" : [
+            "q-macan"
+          ],
+          "venueID" : "macan"
+        },
+        "reasons" : [
+          "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Pintu 7 Senayan, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Public urban park.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-gbk"
+              ],
+              "statement" : "Urban forest/park listing.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "gbk",
+          "mapQuery" : "Hutan Kota GBK Jakarta",
+          "matchWords" : [
+            "hutan",
+            "kota"
+          ],
+          "name" : "Hutan Kota GBK",
+          "scope" : "Public park",
+          "sourceIDs" : [
+            "q-gbk"
+          ],
+          "venueID" : "gbk"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Harsono RM 1, Ragunan",
+          "claims" : [
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Park grounds are the candidate, not each enclosed exhibit.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "nature",
+              "sourceIDs" : [
+                "q-ragunan"
+              ],
+              "statement" : "Trees, wildlife and park grounds are described.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ragunan",
+          "mapQuery" : "Ragunan Zoo Jakarta",
+          "matchWords" : [
+            "ragunan"
+          ],
+          "name" : "Taman Margasatwa Ragunan",
+          "scope" : "Park grounds",
+          "sourceIDs" : [
+            "q-ragunan"
+          ],
+          "venueID" : "ragunan"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Upper Marketplace L2, ASHTA",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "Reading in the program area was described for its published period.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "quietPolicy",
+              "sourceIDs" : [
+                "q-ashta"
+              ],
+              "statement" : "The program requested low voices, not measured crowd levels.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "ashta-reading",
+          "mapQuery" : "ASHTA District 8 Jakarta",
+          "matchWords" : [
+            "ashta"
+          ],
+          "name" : "ASHTA Bookhive",
+          "scope" : "2025 reading-space program",
+          "sourceIDs" : [
+            "q-ashta"
+          ],
+          "validThrough" : "2025-12-31",
+          "venueID" : "ashta"
+        },
+        "reasons" : [
+          "Sumber program berakhir 2025-12-31; keberlanjutan belum diverifikasi."
+        ],
+        "state" : "blocked",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Kuningan, Jakarta",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The library welcomes on-site readers.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "culture",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "Literature and cultural learning are described.",
+              "value" : "yes"
+            },
+            {
+              "feature" : "outdoor",
+              "sourceIDs" : [
+                "q-erasmus"
+              ],
+              "statement" : "The named library interior, not external grounds.",
+              "value" : "no"
+            }
+          ],
+          "id" : "erasmus",
+          "mapQuery" : "Erasmus Huis Jakarta",
+          "matchWords" : [
+            "erasmus"
+          ],
+          "name" : "Erasmus Huis Library",
+          "scope" : "Library",
+          "sourceIDs" : [
+            "q-erasmus"
+          ],
+          "venueID" : "erasmus"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      },
+      {
+        "candidate" : {
+          "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+          "claims" : [
+            {
+              "feature" : "reading",
+              "sourceIDs" : [
+                "q-jaklitera-import"
+              ],
+              "statement" : "Published library reading service at the Cikini branch.",
+              "value" : "yes"
+            }
+          ],
+          "id" : "cikini",
+          "mapQuery" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "matchWords" : [
+            "perpustakaan",
+            "jakarta"
+          ],
+          "name" : "Perpustakaan Jakarta — Cikini",
+          "scope" : "Library reading service, Cikini branch",
+          "sourceIDs" : [
+            "q-jaklitera-import"
+          ],
+          "venueID" : "cikini"
+        },
+        "reasons" : [
+
+        ],
+        "state" : "eligible",
+        "unknown" : [
+
+        ]
+      }
+    ],
+    "elapsedSeconds" : 0.00041604042053222656,
+    "followupQuestions" : 0,
+    "id" : "BB68CFAF-786B-4E5F-ACC6-3E97CB3F3C21",
+    "inputChanges" : 0,
+    "mapChecks" : [
+
+    ],
+    "policy" : "quality-v2-category0.6-semantic0.4",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+
+      ],
+      "schemaVersion" : 1
+    },
+    "schemaVersion" : 1,
+    "semantic" : [
+
+    ],
+    "status" : "general_not_personalized",
+    "userCorrections" : 0,
+    "warnings" : [
+      "Fakta merupakan publikasi bersumber, belum inspeksi lokasi atau jaminan kapasitas.",
+      "Kebutuhan wajib/avoid memakai area yang sama; unknown tidak dianggap cocok.",
+      "Skor adalah urutan relatif, bukan probabilitas kepuasan pribadi."
+    ]
+  },
+  "request" : {
+    "allowOpenMeteo" : false,
+    "deadline" : "2026-11-06T03:00:00Z",
+    "defaultDuration" : 60,
+    "departure" : "2026-11-06T02:00:00Z",
+    "desiredCount" : 3,
+    "durationByVenue" : {
+
+    },
+    "goal" : "openingOnly",
+    "id" : "95414BCC-581C-4358-9B05-3C85BB5FCA85",
+    "originQuery" : "Bundaran HI Jakarta",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+
+      ],
+      "schemaVersion" : 1
+    },
+    "requiredCandidateIDs" : [
+      "cikini"
+    ],
+    "revision" : 0,
+    "useEmbedding" : false
+  },
+  "suggestions" : [
+    {
+      "area" : "Library reading service, Cikini branch",
+      "id" : "cikini",
+      "issues" : [
+
+      ],
+      "name" : "Perpustakaan Jakarta — Cikini",
+      "reasons" : [
+
+      ],
+      "recommended" : true,
+      "required" : true,
+      "sourceIDs" : [
+        "q-jaklitera-import"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "B0BEA80C-7E84-47F4-B6B8-CE18300B3AA5",
+        "options" : [
+          {
+            "end" : "2026-11-06T03:00:00Z",
+            "reason" : "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.",
+            "start" : "2026-11-06T02:00:00Z"
+          }
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "cikini"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T01:34:16Z",
+            "id" : "t-jaklitera",
+            "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+            "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 1208aebe34ef56832f601795d33c9eb2e897c6c4e36fc244789fb65f3d672f17",
+            "title" : "Dinas Perpustakaan Jakarta — direktori layanan",
+            "url" : "https://perpustakaan.jakarta.go.id/supports/about-us"
+          }
+        ],
+        "status" : "regular_hours_options",
+        "validStartRanges" : [
+          {
+            "end" : 540,
+            "start" : 540
+          }
+        ],
+        "venue" : {
+          "address" : "Cikini Raya 73, TIM, Jakarta Pusat",
+          "exposure" : "unknown",
+          "id" : "cikini",
+          "name" : "Perpustakaan Jakarta — Cikini",
+          "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+                {
+                  "end" : 780,
+                  "start" : 690
+                }
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 540
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-jaklitera"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "perubahan khusus tanggal dan hari libur",
+            "kapasitas/slot tersedia",
+            "durasi kunjungan yang cocok",
+            "keramaian",
+            "fasilitas dan izin aktivitas spesifik"
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak."
+        ]
+      },
+      "venueID" : "cikini"
+    },
+    {
+      "area" : "Cikini cafe only",
+      "id" : "bakoel-cikini",
+      "issues" : [
+        "Jam layanan bersumber belum tersedia untuk venue ini."
+      ],
+      "name" : "Bakoel Koffie Cikini",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-bakoel"
+      ],
+      "venueID" : "bakoel"
+    },
+    {
+      "area" : "Kafe Makan Di Tebet",
+      "id" : "bdt-cafe",
+      "issues" : [
+        "Jam layanan bersumber belum tersedia untuk venue ini."
+      ],
+      "name" : "Baca Di Tebet",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-bdt-home"
+      ],
+      "venueID" : "bdt"
+    },
+    {
+      "area" : "Ruang Temu RBBJ",
+      "id" : "bdt-rbbj",
+      "issues" : [
+        "Waktu kunjung belum layak: no_window.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+      ],
+      "name" : "Baca Di Tebet",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-bdt-faq",
+        "q-bdt-home",
+        "q-bdt-terms"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "B518E274-3EB6-4EFE-861B-DC2DC3603067",
+        "options" : [
+
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "bdt"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T06:10:55Z",
+            "id" : "t-bdt-home",
+            "method" : "Official published opening hours, read 2026-11-05. Existing snapshot timestamps preserved.",
+            "note" : "Special holidays, capacity and private bookings require confirmation.",
+            "title" : "Baca Di Tebet — fasilitas",
+            "url" : "https://bacaditebet.id/"
+          }
+        ],
+        "status" : "no_window",
+        "validStartRanges" : [
+
+        ],
+        "venue" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "exposure" : "indoor",
+          "exposureSourceID" : "t-bdt-home",
+          "id" : "bdt",
+          "name" : "Baca Di Tebet",
+          "query" : "Baca Di Tebet Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1260,
+                  "start" : 750
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-bdt-home"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "Holiday exceptions, bookings and live capacity unknown.",
+            "Published hours are venue-wide; individual rooms may be reserved."
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+          "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+        ]
+      },
+      "venueID" : "bdt"
+    },
+    {
+      "area" : "Ruang Baca Hening",
+      "id" : "bdt-silent",
+      "issues" : [
+        "Waktu kunjung belum layak: no_window.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+      ],
+      "name" : "Baca Di Tebet",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-bdt-home",
+        "q-bdt-terms"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "2139CEC8-0C81-41DF-8F34-7D531FB89B80",
+        "options" : [
+
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "bdt"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T06:10:55Z",
+            "id" : "t-bdt-home",
+            "method" : "Official published opening hours, read 2026-11-05. Existing snapshot timestamps preserved.",
+            "note" : "Special holidays, capacity and private bookings require confirmation.",
+            "title" : "Baca Di Tebet — fasilitas",
+            "url" : "https://bacaditebet.id/"
+          }
+        ],
+        "status" : "no_window",
+        "validStartRanges" : [
+
+        ],
+        "venue" : {
+          "address" : "Tebet Barat Dalam Raya 29",
+          "exposure" : "indoor",
+          "exposureSourceID" : "t-bdt-home",
+          "id" : "bdt",
+          "name" : "Baca Di Tebet",
+          "query" : "Baca Di Tebet Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1260,
+                  "start" : 750
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1320,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-bdt-home"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "Holiday exceptions, bookings and live capacity unknown.",
+            "Published hours are venue-wide; individual rooms may be reserved."
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+          "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+        ]
+      },
+      "venueID" : "bdt"
+    },
+    {
+      "area" : "Art space",
+      "id" : "dialogue",
+      "issues" : [
+        "Jam layanan bersumber belum tersedia untuk venue ini."
+      ],
+      "name" : "Dia.Lo.Gue",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-dialogue"
+      ],
+      "venueID" : "dialogue"
+    },
+    {
+      "area" : "Library",
+      "id" : "erasmus",
+      "issues" : [
+        "Waktu kunjung belum layak: no_window.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+      ],
+      "name" : "Erasmus Huis Library",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-erasmus"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "DF5CEAE1-49E4-471D-9E91-FCA2BAA88DD2",
+        "options" : [
+
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "erasmus"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T06:14:25Z",
+            "id" : "t-erasmus",
+            "method" : "Official published opening hours, read 2026-11-05. Existing snapshot timestamps preserved.",
+            "note" : "Special holidays, capacity and private bookings require confirmation.",
+            "title" : "Erasmus Huis — library",
+            "url" : "https://www.netherlandsandyou.nl/web/indonesia/erasmushuis/library"
+          }
+        ],
+        "status" : "no_window",
+        "validStartRanges" : [
+
+        ],
+        "venue" : {
+          "address" : "Kuningan, Jakarta",
+          "exposure" : "indoor",
+          "exposureSourceID" : "t-erasmus",
+          "id" : "erasmus",
+          "name" : "Erasmus Huis Library",
+          "query" : "Erasmus Huis Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-erasmus"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "Holiday exceptions, bookings and live capacity unknown.",
+            "Published hours are venue-wide; individual rooms may be reserved."
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+          "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+        ]
+      },
+      "venueID" : "erasmus"
+    },
+    {
+      "area" : "Public park",
+      "id" : "gbk",
+      "issues" : [
+
+      ],
+      "name" : "Hutan Kota GBK",
+      "reasons" : [
+
+      ],
+      "recommended" : true,
+      "required" : false,
+      "sourceIDs" : [
+        "q-gbk"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "F08B7D8A-53F9-475D-B177-7896528D6707",
+        "options" : [
+          {
+            "end" : "2026-11-06T03:00:00Z",
+            "reason" : "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.",
+            "start" : "2026-11-06T02:00:00Z"
+          }
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "gbk"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T01:34:16Z",
+            "id" : "t-gbk",
+            "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+            "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+            "title" : "Pemkot Jakarta Pusat — Hutan Kota GBK",
+            "url" : "https://pusat.jakarta.go.id/kelurahan/kelurahan-gelora/fasilitas/fasilitas-taman-hutan-kota/taman-hutan-kota"
+          }
+        ],
+        "status" : "regular_hours_options",
+        "validStartRanges" : [
+          {
+            "end" : 540,
+            "start" : 540
+          }
+        ],
+        "venue" : {
+          "address" : "Pintu 7 Senayan, Gelora, Jakarta Pusat",
+          "exposure" : "outdoor",
+          "exposureSourceID" : "t-gbk",
+          "id" : "gbk",
+          "name" : "Hutan Kota GBK",
+          "query" : "Hutan Kota GBK, Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 600,
+                  "start" : 360
+                },
+                {
+                  "end" : 1080,
+                  "start" : 900
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-gbk"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "perubahan khusus tanggal dan hari libur",
+            "kapasitas/slot tersedia",
+            "durasi kunjungan yang cocok",
+            "keramaian",
+            "fasilitas dan izin aktivitas spesifik"
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak."
+        ]
+      },
+      "venueID" : "gbk"
+    },
+    {
+      "area" : "Published cafe / community space",
+      "id" : "newsroom",
+      "issues" : [
+        "Jam layanan bersumber belum tersedia untuk venue ini."
+      ],
+      "name" : "The Newsroom",
+      "reasons" : [
+
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-newsroom"
+      ],
+      "venueID" : "newsroom"
+    },
+    {
+      "area" : "Park grounds",
+      "id" : "ragunan",
+      "issues" : [
+
+      ],
+      "name" : "Taman Margasatwa Ragunan",
+      "reasons" : [
+
+      ],
+      "recommended" : true,
+      "required" : false,
+      "sourceIDs" : [
+        "q-ragunan"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "555FDDA3-85B8-4807-8D4C-8FF5C973BC43",
+        "options" : [
+          {
+            "end" : "2026-11-06T03:00:00Z",
+            "reason" : "Memenuhi jadwal reguler dan aturan masuk; belum ada dasar untuk menyebutnya waktu terbaik.",
+            "start" : "2026-11-06T02:00:00Z"
+          }
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "ragunan"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T01:34:17Z",
+            "id" : "t-ragunan",
+            "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+            "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 50228e1027b423003448fb822eb00ab89d1d7b7ba728838d3eff07033ae8e8eb",
+            "title" : "Taman Margasatwa Ragunan — layanan publik",
+            "url" : "https://ragunanzoo.jakarta.go.id/language/en/"
+          }
+        ],
+        "status" : "regular_hours_options",
+        "validStartRanges" : [
+          {
+            "end" : 540,
+            "start" : 540
+          }
+        ],
+        "venue" : {
+          "address" : "Harsono RM 1, Ragunan, Jakarta Selatan",
+          "exposure" : "outdoor",
+          "exposureSourceID" : "t-ragunan",
+          "id" : "ragunan",
+          "name" : "Taman Margasatwa Ragunan",
+          "query" : "Taman Margasatwa Ragunan, Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+                {
+                  "end" : 960,
+                  "start" : 420
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-ragunan"
+          ],
+          "suspended" : false,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "perubahan khusus tanggal dan hari libur",
+            "kapasitas/slot tersedia",
+            "durasi kunjungan yang cocok",
+            "keramaian",
+            "fasilitas dan izin aktivitas spesifik"
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak."
+        ]
+      },
+      "venueID" : "ragunan"
+    },
+    {
+      "area" : "Gallery",
+      "id" : "macan-gallery",
+      "issues" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "Status fakta: blocked.",
+        "Waktu kunjung belum layak: suspended.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang."
+      ],
+      "name" : "Museum MACAN",
+      "reasons" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-macan"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "2583C235-F216-42FD-B2BE-E6773B475861",
+        "options" : [
+
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "macan"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T01:34:16Z",
+            "id" : "t-macan",
+            "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+            "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+            "title" : "Museum MACAN — informasi kunjungan",
+            "url" : "https://www.museummacan.org/visit"
+          }
+        ],
+        "status" : "suspended",
+        "validStartRanges" : [
+
+        ],
+        "venue" : {
+          "address" : "AKR Tower lantai M, Panjang 5, Kebon Jeruk",
+          "exposure" : "unknown",
+          "id" : "macan",
+          "name" : "Museum MACAN",
+          "notice" : "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang.",
+          "noticeSourceID" : "t-macan",
+          "query" : "Museum MACAN, Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-macan"
+          ],
+          "suspended" : true,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "perubahan khusus tanggal dan hari libur",
+            "kapasitas/slot tersedia",
+            "durasi kunjungan yang cocok",
+            "keramaian",
+            "fasilitas dan izin aktivitas spesifik"
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+          "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang."
+        ]
+      },
+      "venueID" : "macan"
+    },
+    {
+      "area" : "Common Grounds cafe listed within facility",
+      "id" : "macan-cafe",
+      "issues" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck.",
+        "Status fakta: blocked.",
+        "Waktu kunjung belum layak: suspended.",
+        "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+        "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+        "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang."
+      ],
+      "name" : "Museum MACAN",
+      "reasons" : [
+        "The official page shows a temporary-closure notice. Reopening and area-specific access need recheck."
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-macan"
+      ],
+      "timing" : {
+        "catalogID" : "p3-timing-2026-11-05",
+        "createdAt" : "2026-11-05T09:57:44Z",
+        "elapsedSeconds" : 0,
+        "id" : "78AC3AD3-8D20-4B2F-AC09-46F36374A1B8",
+        "options" : [
+
+        ],
+        "policyVersion" : "visit-time-v2",
+        "request" : {
+          "available" : {
+            "end" : 600,
+            "start" : 540
+          },
+          "date" : "2026-11-06",
+          "durationMinutes" : 60,
+          "goal" : "openingOnly",
+          "venueID" : "macan"
+        },
+        "routingPerformed" : false,
+        "schemaVersion" : 1,
+        "sources" : [
+          {
+            "checkedAt" : "2026-11-05T01:34:16Z",
+            "id" : "t-macan",
+            "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+            "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: bf281f9b63a850b563eb02ed5356720ef5aa7c090ca6fc955e3df0af01819c6c",
+            "title" : "Museum MACAN — informasi kunjungan",
+            "url" : "https://www.museummacan.org/visit"
+          }
+        ],
+        "status" : "suspended",
+        "validStartRanges" : [
+
+        ],
+        "venue" : {
+          "address" : "AKR Tower lantai M, Panjang 5, Kebon Jeruk",
+          "exposure" : "unknown",
+          "id" : "macan",
+          "name" : "Museum MACAN",
+          "notice" : "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang.",
+          "noticeSourceID" : "t-macan",
+          "query" : "Museum MACAN, Jakarta",
+          "schedule" : [
+            {
+              "entryPauses" : [
+
+              ],
+              "sessions" : [
+
+              ],
+              "weekday" : 1
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 2
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 3
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 4
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 5
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 6
+            },
+            {
+              "entryPauses" : [
+
+              ],
+              "lastEntry" : 1050,
+              "sessions" : [
+                {
+                  "end" : 1080,
+                  "start" : 600
+                }
+              ],
+              "weekday" : 7
+            }
+          ],
+          "sourceIDs" : [
+            "t-macan"
+          ],
+          "suspended" : true,
+          "timeZone" : "Asia/Jakarta",
+          "unknowns" : [
+            "perubahan khusus tanggal dan hari libur",
+            "kapasitas/slot tersedia",
+            "durasi kunjungan yang cocok",
+            "keramaian",
+            "fasilitas dan izin aktivitas spesifik"
+          ]
+        },
+        "warnings" : [
+          "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+          "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+          "Halaman resmi menampilkan pengumuman tutup sementara tanpa tanggal buka kembali. Tabel reguler tetap dicatat, tetapi usulan ditahan sampai diperiksa ulang."
+        ]
+      },
+      "venueID" : "macan"
+    },
+    {
+      "area" : "2025 reading-space program",
+      "id" : "ashta-reading",
+      "issues" : [
+        "Sumber program berakhir 2025-12-31; keberlanjutan belum diverifikasi.",
+        "Status fakta: blocked.",
+        "Jam layanan bersumber belum tersedia untuk venue ini."
+      ],
+      "name" : "ASHTA Bookhive",
+      "reasons" : [
+        "Sumber program berakhir 2025-12-31; keberlanjutan belum diverifikasi."
+      ],
+      "recommended" : false,
+      "required" : false,
+      "sourceIDs" : [
+        "q-ashta"
+      ],
+      "venueID" : "ashta"
+    }
+  ],
+  "warnings" : [
+    "Fakta merupakan publikasi bersumber, belum inspeksi lokasi atau jaminan kapasitas.",
+    "Kebutuhan wajib/avoid memakai area yang sama; unknown tidak dianggap cocok.",
+    "Skor adalah urutan relatif, bukan probabilitas kepuasan pribadi.",
+    "Katalog lokal terbatas; MapKit memverifikasi lokasi, bukan sumber preferensi/jam layanan.",
+    "Tanpa tujuan utama, semua tempat yang Anda pilih tetap setara dan dipertahankan.",
+    "Waktu pilihan P1 adalah saran per tempat; optimasi rute tidak menjamin seluruh saran tercapai."
+  ]
+}

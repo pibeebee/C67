@@ -1,0 +1,7 @@
+PASS 1: default hybrid retains validated baseline and obeys shared provider cap
+PASS 2: observed departure samples split intervals without all-day extrapolation or overlap
+PASS 3: low-budget planning keeps a complete fallback instead of consuming all requests on a matrix
+PASS 4: missing provider data never becomes a zero-duration route or a fabricated complete trip
+PASS 5: live private-car policy matches model; legacy automobile drafts use conservative policy
+PASS 6: cancellation exits the full planning pipeline
+6 full-pipeline checks passed on macOS with deterministic adapter; no network or iPhone validation.

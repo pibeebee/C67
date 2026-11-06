@@ -1,0 +1,264 @@
+{
+  "note": "Final executed result inventory. Provider/device cases are recorded separately.",
+  "cases": [
+    {
+      "name": "publishedFridayEntryPause",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "publishedGBKSessionGapRequiresFullStay",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "mondayClosuresAndUnknownHoursDoNotTurnIntoOpen",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "staleFactsAndSuspendedMuseumBlock",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "wrongDayAndDuplicateAreasRejected",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "limitsAndNegationConflictRejected",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "WIBDateAndRoundingNeverRoundBackward",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "supersededOperationCannotPublish",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "duplicateSearchResultsCollapseAndOutsideJakartaExcluded",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "ambiguousBranchNeedsExplicitSelection",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "wrongBranchNotAutomaticallyAccepted",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "observedEnglishCikiniNameRequiresMatchingBranchAddress",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "englishAliasCannotTransferCikiniFactsToAnotherBranch",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "crossingAnHourlyBoundaryUsesBothIntervals",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "duplicateOrInvalidWeatherNeverBecomesZero",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "groupingBoundsEveryMemberAgainstRepresentative",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "fullReplayPreservesPlacesAndExactArithmetic",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "emptyProfileIsGeneralRatherThanPersonalized",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "unknownSourceReferenceRejectedByFinalAudit",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "deadlineFailureCannotBeAppliedAndDoesNotDropPlace",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "unsupportedRequiredPlaceIsKeptForCorrection",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "intentMustBeConfirmedAndMandatorySelectionsCannotDisappear",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "unavailableETAProducesConflictInsteadOfInventedDuration",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "cancellationNeverBecomesSuccess",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "changedRevisionAndForgedPinRejectedBeforeRouting",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "applyRejectAndStaleBaseGuard",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "storageRoundTripBackupRecoveryAndExport",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/IntegrationTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "fallbackCacheCannotMaskWeatherKitOnlyDiagnosis",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "cooperativeTimeoutProducesUnknownWeather",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "authenticationFailureSkipsRemainingGroupsAndIsNotCached",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "weatherFailureStillAllowsRouteWithExplicitUnknown",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "corruptFileWithoutBackupDoesNotResetToEmpty",
+      "source": "Packages/TripIntegration/Tests/TripIntegrationTests/WeatherStorageTests.swift",
+      "kind": "package",
+      "status": "passed",
+      "evidence": "artifacts/unit-final.log"
+    },
+    {
+      "name": "testReplayJourneyCanBeReviewedAndAccepted",
+      "source": "UITests/IntegrationUITests.swift",
+      "kind": "ui",
+      "status": "passed",
+      "evidence": "artifacts/ui-final-summary.json"
+    },
+    {
+      "name": "testReplayCannotBeMistakenForWeatherKitDiagnosis",
+      "source": "UITests/IntegrationUITests.swift",
+      "kind": "ui",
+      "status": "passed",
+      "evidence": "artifacts/ui-final-summary.json"
+    }
+  ]
+}

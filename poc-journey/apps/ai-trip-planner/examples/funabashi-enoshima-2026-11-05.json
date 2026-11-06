@@ -1,0 +1,542 @@
+{
+  "title": "Funabashi – Kamakura – Enoshima: audit jadwal pengguna",
+  "date": "2026-11-05",
+  "timeZone": "Asia/Tokyo",
+  "source": "24 baris dari pengguna, tanggal ditentukan tiga hari setelah 2 November 2026. Jam merupakan baseline, bukan jadwal provider yang terverifikasi.",
+  "areas": [
+    {
+      "id": "funabashi",
+      "name": "Funabashi",
+      "latitude": 35.702,
+      "longitude": 139.985
+    },
+    {
+      "id": "kamakura",
+      "name": "Kamakura dan pesisir",
+      "latitude": 35.319,
+      "longitude": 139.55
+    },
+    {
+      "id": "enoshima",
+      "name": "Enoshima dan Katase",
+      "latitude": 35.3,
+      "longitude": 139.48
+    },
+    {
+      "id": "fujisawa",
+      "name": "Fujisawa Station area",
+      "latitude": 35.339,
+      "longitude": 139.487
+    }
+  ],
+  "locations": {
+    "apartment": {
+      "name": "Apartment di Funabashi",
+      "address": null,
+      "area": "funabashi",
+      "precision": "unknown"
+    },
+    "funabashi_station": {
+      "name": "JR Funabashi Station",
+      "address": "JR船橋駅 千葉県船橋市",
+      "area": "funabashi",
+      "precision": "named_place"
+    },
+    "kamakura_station": {
+      "name": "Kamakura Station",
+      "address": "鎌倉駅 神奈川県鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "komachi": {
+      "name": "Komachi Street",
+      "address": "小町通り 鎌倉市",
+      "area": "kamakura",
+      "precision": "street_area"
+    },
+    "hachimangu": {
+      "name": "Tsurugaoka Hachimangu",
+      "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "kamakura_meal": {
+      "name": "Makan siang di area Kamakura",
+      "address": null,
+      "area": "kamakura",
+      "precision": "unknown"
+    },
+    "inamura_station": {
+      "name": "Inamuragasaki Station",
+      "address": "稲村ヶ崎駅 鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "inamura_park": {
+      "name": "Kamakura Seaside Park, Inamuragasaki",
+      "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+      "area": "kamakura",
+      "precision": "park_area"
+    },
+    "shichiri_beach": {
+      "name": "Shichirigahama Beach, area depan sekolah belum dipatok",
+      "address": "七里ヶ浜海岸 鎌倉市",
+      "area": "kamakura",
+      "precision": "beach_area"
+    },
+    "kokomae": {
+      "name": "Kamakurakokomae Station",
+      "address": "鎌倉高校前駅 鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "enoshima_station": {
+      "name": "Enoden Enoshima Station; toko suvenir belum dipilih",
+      "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "area": "enoshima",
+      "precision": "station_area"
+    },
+    "tourist_center": {
+      "name": "Fujisawa City Tourist Center, Katase Kaigan",
+      "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "bridge": {
+      "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+      "address": "江の島大橋 藤沢市",
+      "area": "enoshima",
+      "precision": "bridge_area"
+    },
+    "oiwayamichi": {
+      "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+      "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+      "area": "enoshima",
+      "precision": "street_reference_point"
+    },
+    "sea_candle": {
+      "name": "Enoshima Sea Candle",
+      "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "enoshima_dinner": {
+      "name": "Turun pulau dan makan malam di Enoshima",
+      "address": null,
+      "area": "enoshima",
+      "precision": "unknown"
+    },
+    "katase_station": {
+      "name": "Katase-Enoshima Station",
+      "address": "片瀬江ノ島駅 藤沢市",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "fujisawa_station": {
+      "name": "Fujisawa Station; clock tower belum dipatok",
+      "address": "藤沢駅 神奈川県藤沢市",
+      "area": "fujisawa",
+      "precision": "station_area"
+    }
+  },
+  "events": [
+    {
+      "id": "E01",
+      "time": "07:00",
+      "label": "Berangkat dari Apartment (Funabashi)",
+      "location": "apartment",
+      "exposure": "unknown"
+    },
+    {
+      "id": "E02",
+      "time": "07:15",
+      "label": "Stasiun Funabashi ➔ Stasiun Kamakura",
+      "location": "funabashi_station",
+      "exposure": "transit"
+    },
+    {
+      "id": "E03",
+      "time": "08:45",
+      "label": "Stasiun Kamakura & Komachi Street",
+      "location": "komachi",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E04",
+      "time": "09:45",
+      "label": "Tsurugaoka Hachimangu & Perempatan",
+      "location": "hachimangu",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E05",
+      "time": "10:45",
+      "label": "Makan Siang Pagi (Area Kamakura)",
+      "location": "kamakura_meal",
+      "exposure": "unknown"
+    },
+    {
+      "id": "E06",
+      "time": "11:45",
+      "label": "Stasiun Kamakura ➔ Stasiun Inamuragasaki",
+      "location": "kamakura_station",
+      "exposure": "transit"
+    },
+    {
+      "id": "E07",
+      "time": "12:00",
+      "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "location": "inamura_park",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E08",
+      "time": "12:45",
+      "label": "Stasiun Inamuragasaki ➔ Stasiun Shichirigahama",
+      "location": "inamura_station",
+      "exposure": "transit"
+    },
+    {
+      "id": "E09",
+      "time": "13:00",
+      "label": "Shichirigahama Beach (Depan Sekolah)",
+      "location": "shichiri_beach",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E10",
+      "time": "13:45",
+      "label": "Coastal Walk: Shichirigahama ➔ Kamakurakokomae",
+      "location": "shichiri_beach",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E11",
+      "time": "14:00",
+      "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+      "location": "kokomae",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E12",
+      "time": "14:30",
+      "label": "Stasiun Kamakurakokomae ➔ Stasiun Enoshima",
+      "location": "kokomae",
+      "exposure": "transit"
+    },
+    {
+      "id": "E13",
+      "time": "14:35",
+      "label": "Toko Suvenir Enoshima Station",
+      "location": "enoshima_station",
+      "exposure": "mixed"
+    },
+    {
+      "id": "E14",
+      "time": "15:00",
+      "label": "Menuju Area Jembatan & Tourist Center",
+      "location": "enoshima_station",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E15",
+      "time": "15:15",
+      "label": "Fujisawa City Tourist Center",
+      "location": "tourist_center",
+      "exposure": "indoor"
+    },
+    {
+      "id": "E16",
+      "time": "15:45",
+      "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+      "location": "bridge",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E17",
+      "time": "16:30",
+      "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+      "location": "oiwayamichi",
+      "exposure": "outdoor",
+      "optional": true
+    },
+    {
+      "id": "E18",
+      "time": "17:00",
+      "label": "Tiba di Area Enoshima Sea Candle",
+      "location": "sea_candle",
+      "exposure": "mixed"
+    },
+    {
+      "id": "E19",
+      "time": "17:30",
+      "label": "Menyaksikan Illumination",
+      "location": "sea_candle",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E20",
+      "time": "18:30",
+      "label": "Turun dari Pulau & Makan Malam di Enoshima",
+      "location": "enoshima_dinner",
+      "exposure": "unknown"
+    },
+    {
+      "id": "E21",
+      "time": "19:30",
+      "label": "Stasiun Katase-Enoshima ➔ Stasiun Fujisawa",
+      "location": "katase_station",
+      "exposure": "transit"
+    },
+    {
+      "id": "E22",
+      "time": "19:45",
+      "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+      "location": "fujisawa_station",
+      "exposure": "outdoor"
+    },
+    {
+      "id": "E23",
+      "time": "20:30",
+      "label": "Perjalanan Pulang ke Funabashi",
+      "location": "fujisawa_station",
+      "exposure": "transit"
+    },
+    {
+      "id": "E24",
+      "time": "22:00",
+      "label": "Tiba di Apartment",
+      "location": "apartment",
+      "exposure": "unknown"
+    }
+  ],
+  "legs": [
+    {
+      "id": "L01",
+      "from": "apartment",
+      "to": "funabashi_station",
+      "depart": "07:00",
+      "arriveBy": "07:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": ["E01", "E02"]
+    },
+    {
+      "id": "L02",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "depart": "07:15",
+      "arriveBy": "08:45",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": ["E02", "E03"]
+    },
+    {
+      "id": "L03",
+      "from": "kamakura_station",
+      "via": ["komachi"],
+      "to": "hachimangu",
+      "depart": "08:45",
+      "arriveBy": "09:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E03", "E04"]
+    },
+    {
+      "id": "L04",
+      "from": "hachimangu",
+      "to": "kamakura_meal",
+      "depart": "09:45",
+      "arriveBy": "10:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E04", "E05"]
+    },
+    {
+      "id": "L05",
+      "from": "kamakura_meal",
+      "to": "kamakura_station",
+      "depart": "10:45",
+      "arriveBy": "11:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E05", "E06"]
+    },
+    {
+      "id": "L06",
+      "from": "kamakura_station",
+      "to": "inamura_park",
+      "depart": "11:45",
+      "arriveBy": "12:00",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": ["E06", "E07"]
+    },
+    {
+      "id": "L07",
+      "from": "inamura_park",
+      "to": "inamura_station",
+      "depart": "12:00",
+      "arriveBy": "12:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E07", "E08"]
+    },
+    {
+      "id": "L08",
+      "from": "inamura_station",
+      "to": "shichiri_beach",
+      "depart": "12:45",
+      "arriveBy": "13:00",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": ["E08", "E09"]
+    },
+    {
+      "id": "L10",
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "depart": "13:45",
+      "arriveBy": "14:00",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": ["E10", "E11"]
+    },
+    {
+      "id": "L12",
+      "from": "kokomae",
+      "to": "enoshima_station",
+      "depart": "14:30",
+      "arriveBy": "14:35",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": ["E12", "E13"]
+    },
+    {
+      "id": "L14",
+      "from": "enoshima_station",
+      "to": "tourist_center",
+      "depart": "15:00",
+      "arriveBy": "15:15",
+      "mode": "WALK",
+      "meaning": "travel_only",
+      "eventIds": ["E14", "E15"]
+    },
+    {
+      "id": "L15",
+      "from": "tourist_center",
+      "to": "bridge",
+      "depart": "15:15",
+      "arriveBy": "15:45",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E15", "E16"]
+    },
+    {
+      "id": "L16",
+      "from": "bridge",
+      "to": "oiwayamichi",
+      "depart": "15:45",
+      "arriveBy": "16:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E16", "E17"]
+    },
+    {
+      "id": "L17",
+      "from": "oiwayamichi",
+      "to": "sea_candle",
+      "depart": "16:30",
+      "arriveBy": "17:00",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E17", "E18"]
+    },
+    {
+      "id": "L19",
+      "from": "sea_candle",
+      "to": "enoshima_dinner",
+      "depart": "17:30",
+      "arriveBy": "18:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E19", "E20"]
+    },
+    {
+      "id": "L20",
+      "from": "enoshima_dinner",
+      "to": "katase_station",
+      "depart": "18:30",
+      "arriveBy": "19:30",
+      "mode": "WALK",
+      "meaning": "activity_and_travel",
+      "eventIds": ["E20", "E21"]
+    },
+    {
+      "id": "L21",
+      "from": "katase_station",
+      "to": "fujisawa_station",
+      "depart": "19:30",
+      "arriveBy": "19:45",
+      "mode": "TRANSIT",
+      "meaning": "travel_only",
+      "eventIds": ["E21", "E22"]
+    },
+    {
+      "id": "L23",
+      "from": "fujisawa_station",
+      "to": "funabashi_station",
+      "depart": "20:30",
+      "arriveBy": "22:00",
+      "mode": "TRANSIT",
+      "meaning": "station_to_station_proxy_for_home_arrival",
+      "eventIds": ["E23", "E24"]
+    }
+  ],
+  "facts": [
+    {
+      "id": "official:hoseki-2026",
+      "kind": "seasonal_event",
+      "eventIds": ["E19"],
+      "name": "Shonan no Hoseki 2026–2027",
+      "startDate": "2026-12-01",
+      "endDate": "2027-02-28",
+      "url": "https://enoshima-seacandle.com/information/post-4136/",
+      "publishedDate": "2026-10-23",
+      "checkedDate": "2026-11-02",
+      "note": "Tanggal dari pengumuman operator musim 2026–2027. Halaman event umum masih memuat tanggal musim sebelumnya. Nama illumination yang dimaksud pengguna belum dikonfirmasi."
+    },
+    {
+      "id": "official:candle-2026",
+      "kind": "seasonal_event",
+      "eventIds": ["E19"],
+      "name": "Shonan Candle 2026",
+      "startDate": "2026-10-10",
+      "endDate": "2026-11-03",
+      "url": "https://enoshima-seacandle.com/information/post-4039/",
+      "publishedDate": "2026-09-01",
+      "checkedDate": "2026-11-02",
+      "note": "Acara candle musiman berakhir sebelum tanggal uji. Tidak membuktikan seluruh pencahayaan biasa Sea Candle tidak tersedia."
+    },
+    {
+      "id": "official:tourist-center",
+      "kind": "opening_hours",
+      "eventIds": ["E15"],
+      "name": "Fujisawa City Tourist Center, Katase Kaigan",
+      "opensAt": "08:30",
+      "closesAt": "17:00",
+      "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "checkedDate": "2026-11-02",
+      "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan."
+    },
+    {
+      "id": "official:oiwayamichi",
+      "kind": "place_identity",
+      "eventIds": ["E17"],
+      "name": "Oiwayamichi Street / 御岩屋道通り",
+      "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+      "checkedDate": "2026-11-02",
+      "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan."
+    }
+  ]
+}

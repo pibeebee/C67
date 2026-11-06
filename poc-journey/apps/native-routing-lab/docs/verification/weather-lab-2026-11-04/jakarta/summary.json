@@ -1,0 +1,769 @@
+{
+  "generatedAt": "2026-11-04T09:59:32.787354+00:00",
+  "framework": "XCTest, SwiftPM host macOS",
+  "tests": 26,
+  "passed": 26,
+  "failed": 0,
+  "skipped": 0,
+  "exitCode": 0,
+  "allPassed": true,
+  "junitSource": "Converted from actual XCTest console events; case count/failure count cross-checked against suite summary",
+  "network": false,
+  "liveProviderLatencyMeasured": false,
+  "testExecutionSeconds": 0.232,
+  "cases": [
+    {
+      "name": "testAdaptiveEstimatedGainTriggersValidatedOptimization",
+      "status": "passed",
+      "seconds": 0.04,
+      "detail": "Skenario sintetis dengan peluang penghematan memicu optimizer; hasil nyata divalidasi dan membaik.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveJakartaSkipsExtraRequestsWithoutChangingSchedule",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Adaptif memakai 30 request; jadwal tetap sama dan perkiraan tidak menjadi data provider.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveLargeWaitingTriggersOptimization",
+      "status": "passed",
+      "seconds": 0.024,
+      "detail": "Waktu tunggu besar tetap memicu pencarian tambahan.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveNoWaitingDoesNotHideUnknownRoadShortcuts",
+      "status": "passed",
+      "seconds": 0.019,
+      "detail": "Biaya ruas yang belum diketahui tetap memicu pencarian ketika tidak ada waktu tunggu penyangga.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveOneAndTwoDestinationsCoverAllOrdersWithoutSnapshot",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Satu/dua tujuan selesai setelah semua urutan sudah divalidasi.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveScreeningPreservesWeatherAndPrivateCarSearch",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Cuaca/mobil pribadi tetap dicari; screening tidak mengambil ETA baru.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveTightClosingMarginStillRunsOptimization",
+      "status": "passed",
+      "seconds": 0.019,
+      "detail": "Margin jam tutup sempit tetap menjalankan optimizer.",
+      "errors": []
+    },
+    {
+      "name": "testAdaptiveTinyScreeningBudgetFallsBackToSearch",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Budget screening yang tidak cukup tidak dianggap bukti baseline memadai.",
+      "errors": []
+    },
+    {
+      "name": "testAllSevenNativeMethodsPreserveStopsAndReachTheKnownFourStopReference",
+      "status": "passed",
+      "seconds": 0.028,
+      "detail": "Tujuh algoritme mempertahankan semua tujuan dan mencapai acuan empat tujuan ini.",
+      "errors": []
+    },
+    {
+      "name": "testCentralJakartaSubsetReturnsToSudirman",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Subset Monas–Grand Indonesia kembali ke Sudirman.",
+      "errors": []
+    },
+    {
+      "name": "testChangedDateRejectsStaleOpeningHoursBeforeAnyETARequest",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Perubahan tanggal menolak jam operasional lama sebelum request ETA.",
+      "errors": []
+    },
+    {
+      "name": "testCompleteDwellAtClosingBoundaryIsAcceptedButOneMinuteEarlierIsNot",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Akhir singgah tepat saat tutup diterima; melewati satu menit ditolak.",
+      "errors": []
+    },
+    {
+      "name": "testCurrentBaselinePipelineUsesElapsedObjective",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Baseline versi sekarang menggunakan tujuan elapsed.",
+      "errors": []
+    },
+    {
+      "name": "testForcedFullHybridRemainsAvailableForComparison",
+      "status": "passed",
+      "seconds": 0.024,
+      "detail": "Override hybrid penuh tetap memakai 88 request dengan itinerary acuan yang sama.",
+      "errors": []
+    },
+    {
+      "name": "testHybridPipelineKeepsValidatedBaselineAndRequestBudget",
+      "status": "passed",
+      "seconds": 0.002,
+      "detail": "Hybrid mempertahankan baseline, membatasi request dan tidak mengarang rekomendasi cuaca.",
+      "errors": []
+    },
+    {
+      "name": "testImpossibleOpeningWindowDoesNotProduceAFeasibleItinerary",
+      "status": "passed",
+      "seconds": 0.018,
+      "detail": "Singgah 30 menit dalam jendela buka 15 menit tidak dinyatakan layak.",
+      "errors": []
+    },
+    {
+      "name": "testLessTravelDoesNotBeatAnEarlierTripFinish",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Perjalanan lebih pendek tidak mengalahkan total trip lebih singkat.",
+      "errors": []
+    },
+    {
+      "name": "testLongerDwellPropagatesAndCanReplaceOpeningWait",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Durasi singgah 60 menit menggantikan sebagian waktu menunggu buka.",
+      "errors": []
+    },
+    {
+      "name": "testMissingAllRoutesIntoKelapaGadingRemainsUnknown",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "ETA hilang tetap unknown, tanpa durasi nol atau klaim optimum.",
+      "errors": []
+    },
+    {
+      "name": "testNorthJakartaSubsetWaitsUntilKelapaGadingOpens",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Subset Kota Tua–Kelapa Gading menunggu sampai 10.00.",
+      "errors": []
+    },
+    {
+      "name": "testRecordedFourStopScheduleHasExpectedTravelWaitAndReturn",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Empat tujuan: ETA, tunggu buka, singgah dan ruas kembali cocok dengan acuan tetap.",
+      "errors": []
+    },
+    {
+      "name": "testShuffledInputStillVisitsEveryPlaceAndRespectsOpening",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Input acak tetap menghasilkan urutan yang layak pada fixture.",
+      "errors": []
+    },
+    {
+      "name": "testSyntheticHoursForEveryStopAreAllRespected",
+      "status": "passed",
+      "seconds": 0.018,
+      "detail": "Semua jam buka/tutup asumsi sintetis diterapkan pada empat tujuan.",
+      "errors": []
+    },
+    {
+      "name": "testSyntheticPeakETAUsesActualDepartureAfterDwell",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "ETA sintetis naik setelah +120 menit; waktu keberangkatan aktual digunakan.",
+      "errors": []
+    },
+    {
+      "name": "testTripCrossingMidnightIsNotSilentlyShortened",
+      "status": "passed",
+      "seconds": 0.024,
+      "detail": "Trip melewati tengah malam ditandai tidak lengkap tanpa membuang input.",
+      "errors": []
+    },
+    {
+      "name": "testUnavailableTransitAndWalkingLimitDoNotInventTransport",
+      "status": "passed",
+      "seconds": 0.001,
+      "detail": "Tanpa mobil, transit tidak tersedia dan batas berjalan tidak dilewati diam-diam.",
+      "errors": []
+    }
+  ],
+  "itineraries": [
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 2,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_baseline",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 2.396106719970703e-05
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 497,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_hybrid",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.005566954612731934
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 476,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_local",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.005460023880004883
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 71,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_insertion",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.0007309913635253906
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 50,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_beam",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.00034606456756591797
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 1653,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "not_proven",
+      "requests": 0,
+      "scenario": "model_alns",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.013638019561767578
+    },
+    {
+      "complete": true,
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15467,
+      "evaluations": 26,
+      "feasible": true,
+      "kind": "model",
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "proof": "exhaustive_fixed_evaluator",
+      "requests": 0,
+      "scenario": "model_exact",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.00033402442932128906
+    },
+    {
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 3600,
+      "elapsedSeconds": 5571,
+      "feasible": true,
+      "finish": "2026-11-05T01:32:51Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:17:40Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T00:47:40Z",
+          "mode": "automobile",
+          "seconds": 1060,
+          "to": "National Monument",
+          "visit": "2026-11-05T00:17:40Z"
+        },
+        {
+          "arrival": "2026-11-05T00:55:47Z",
+          "departure": "2026-11-05T00:47:40Z",
+          "from": "National Monument",
+          "leave": "2026-11-05T01:25:47Z",
+          "mode": "automobile",
+          "seconds": 487,
+          "to": "Grand Indonesia",
+          "visit": "2026-11-05T00:55:47Z"
+        },
+        {
+          "arrival": "2026-11-05T01:32:51Z",
+          "departure": "2026-11-05T01:25:47Z",
+          "from": "Grand Indonesia",
+          "leave": "2026-11-05T01:32:51Z",
+          "mode": "automobile",
+          "seconds": 424,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T01:32:51Z"
+        }
+      ],
+      "order": [
+        "National Monument",
+        "Grand Indonesia"
+      ],
+      "orderIDs": [
+        "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "E32284F7-2A9E-4739-9991-4A086BB990DF"
+      ],
+      "requests": 18,
+      "scenario": "central_two_stops",
+      "source": "recorded_static",
+      "travelSeconds": 1971,
+      "waitingSeconds": 0,
+      "wallSeconds": 0.00019693374633789062
+    },
+    {
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15466.999999999998,
+      "feasible": true,
+      "finish": "2026-11-05T04:17:47Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:03:57Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T00:33:57Z",
+          "mode": "automobile",
+          "seconds": 237,
+          "to": "Grand Indonesia",
+          "visit": "2026-11-05T00:03:57Z"
+        },
+        {
+          "arrival": "2026-11-05T00:53:13Z",
+          "departure": "2026-11-05T00:33:57Z",
+          "from": "Grand Indonesia",
+          "leave": "2026-11-05T01:23:13Z",
+          "mode": "automobile",
+          "seconds": 1156,
+          "to": "National Monument",
+          "visit": "2026-11-05T00:53:13Z"
+        },
+        {
+          "arrival": "2026-11-05T01:40:12Z",
+          "departure": "2026-11-05T01:23:13Z",
+          "from": "National Monument",
+          "leave": "2026-11-05T02:10:12Z",
+          "mode": "automobile",
+          "seconds": 1019,
+          "to": "Kota Tua",
+          "visit": "2026-11-05T01:40:12Z"
+        },
+        {
+          "arrival": "2026-11-05T02:43:14Z",
+          "departure": "2026-11-05T02:10:12Z",
+          "from": "Kota Tua",
+          "leave": "2026-11-05T03:30:00Z",
+          "mode": "automobile",
+          "seconds": 1982,
+          "to": "Summarecon Mall Kelapa Gading",
+          "visit": "2026-11-05T03:00:00Z"
+        },
+        {
+          "arrival": "2026-11-05T04:17:47Z",
+          "departure": "2026-11-05T03:30:00Z",
+          "from": "Summarecon Mall Kelapa Gading",
+          "leave": "2026-11-05T04:17:47Z",
+          "mode": "automobile",
+          "seconds": 2867,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T04:17:47Z"
+        }
+      ],
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "orderIDs": [
+        "E32284F7-2A9E-4739-9991-4A086BB990DF",
+        "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "106E65CA-64AA-4292-9D96-DED708AF9D94"
+      ],
+      "requests": 30,
+      "scenario": "baseline_four_stops",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.0004140138626098633
+    },
+    {
+      "baselineCount": 2,
+      "candidateCount": 2,
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 15466.999999999998,
+      "feasible": true,
+      "finish": "2026-11-05T04:17:47Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:03:57Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T00:33:57Z",
+          "mode": "automobile",
+          "seconds": 237,
+          "to": "Grand Indonesia",
+          "visit": "2026-11-05T00:03:57Z"
+        },
+        {
+          "arrival": "2026-11-05T00:53:13Z",
+          "departure": "2026-11-05T00:33:57Z",
+          "from": "Grand Indonesia",
+          "leave": "2026-11-05T01:23:13Z",
+          "mode": "automobile",
+          "seconds": 1156,
+          "to": "National Monument",
+          "visit": "2026-11-05T00:53:13Z"
+        },
+        {
+          "arrival": "2026-11-05T01:40:12Z",
+          "departure": "2026-11-05T01:23:13Z",
+          "from": "National Monument",
+          "leave": "2026-11-05T02:10:12Z",
+          "mode": "automobile",
+          "seconds": 1019,
+          "to": "Kota Tua",
+          "visit": "2026-11-05T01:40:12Z"
+        },
+        {
+          "arrival": "2026-11-05T02:43:14Z",
+          "departure": "2026-11-05T02:10:12Z",
+          "from": "Kota Tua",
+          "leave": "2026-11-05T03:30:00Z",
+          "mode": "automobile",
+          "seconds": 1982,
+          "to": "Summarecon Mall Kelapa Gading",
+          "visit": "2026-11-05T03:00:00Z"
+        },
+        {
+          "arrival": "2026-11-05T04:17:47Z",
+          "departure": "2026-11-05T03:30:00Z",
+          "from": "Summarecon Mall Kelapa Gading",
+          "leave": "2026-11-05T04:17:47Z",
+          "mode": "automobile",
+          "seconds": 2867,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T04:17:47Z"
+        }
+      ],
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "orderIDs": [
+        "E32284F7-2A9E-4739-9991-4A086BB990DF",
+        "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "106E65CA-64AA-4292-9D96-DED708AF9D94"
+      ],
+      "requests": 30,
+      "scenario": "hybrid_four_stops",
+      "source": "recorded_static",
+      "travelSeconds": 7261,
+      "waitingSeconds": 1006,
+      "wallSeconds": 0.0007530450820922852
+    },
+    {
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 3600,
+      "elapsedSeconds": 15466.999999999998,
+      "feasible": true,
+      "finish": "2026-11-05T04:17:47Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:26:23Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T00:56:23Z",
+          "mode": "automobile",
+          "seconds": 1583,
+          "to": "Kota Tua",
+          "visit": "2026-11-05T00:26:23Z"
+        },
+        {
+          "arrival": "2026-11-05T01:29:25Z",
+          "departure": "2026-11-05T00:56:23Z",
+          "from": "Kota Tua",
+          "leave": "2026-11-05T03:30:00Z",
+          "mode": "automobile",
+          "seconds": 1982,
+          "to": "Summarecon Mall Kelapa Gading",
+          "visit": "2026-11-05T03:00:00Z"
+        },
+        {
+          "arrival": "2026-11-05T04:17:47Z",
+          "departure": "2026-11-05T03:30:00Z",
+          "from": "Summarecon Mall Kelapa Gading",
+          "leave": "2026-11-05T04:17:47Z",
+          "mode": "automobile",
+          "seconds": 2867,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T04:17:47Z"
+        }
+      ],
+      "order": [
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "orderIDs": [
+        "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "106E65CA-64AA-4292-9D96-DED708AF9D94"
+      ],
+      "requests": 18,
+      "scenario": "north_two_stops",
+      "source": "recorded_static",
+      "travelSeconds": 6431.999999999999,
+      "waitingSeconds": 5435,
+      "wallSeconds": 0.0001900196075439453
+    },
+    {
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 17768,
+      "feasible": true,
+      "finish": "2026-11-05T04:56:08Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:17:40Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T01:30:00Z",
+          "mode": "automobile",
+          "seconds": 1060,
+          "to": "National Monument",
+          "visit": "2026-11-05T01:00:00Z"
+        },
+        {
+          "arrival": "2026-11-05T01:46:59Z",
+          "departure": "2026-11-05T01:30:00Z",
+          "from": "National Monument",
+          "leave": "2026-11-05T02:16:59Z",
+          "mode": "automobile",
+          "seconds": 1019,
+          "to": "Kota Tua",
+          "visit": "2026-11-05T01:46:59Z"
+        },
+        {
+          "arrival": "2026-11-05T02:50:01Z",
+          "departure": "2026-11-05T02:16:59Z",
+          "from": "Kota Tua",
+          "leave": "2026-11-05T03:30:00Z",
+          "mode": "automobile",
+          "seconds": 1982,
+          "to": "Summarecon Mall Kelapa Gading",
+          "visit": "2026-11-05T03:00:00Z"
+        },
+        {
+          "arrival": "2026-11-05T04:19:04Z",
+          "departure": "2026-11-05T03:30:00Z",
+          "from": "Summarecon Mall Kelapa Gading",
+          "leave": "2026-11-05T04:49:04Z",
+          "mode": "automobile",
+          "seconds": 2944,
+          "to": "Grand Indonesia",
+          "visit": "2026-11-05T04:19:04Z"
+        },
+        {
+          "arrival": "2026-11-05T04:56:08Z",
+          "departure": "2026-11-05T04:49:04Z",
+          "from": "Grand Indonesia",
+          "leave": "2026-11-05T04:56:08Z",
+          "mode": "automobile",
+          "seconds": 424,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T04:56:08Z"
+        }
+      ],
+      "order": [
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading",
+        "Grand Indonesia"
+      ],
+      "orderIDs": [
+        "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "106E65CA-64AA-4292-9D96-DED708AF9D94",
+        "E32284F7-2A9E-4739-9991-4A086BB990DF"
+      ],
+      "requests": 84,
+      "scenario": "synthetic_all_hours_four_stops",
+      "source": "synthetic_hours_on_recorded_matrix",
+      "travelSeconds": 7429,
+      "waitingSeconds": 3139,
+      "wallSeconds": 0.017086029052734375
+    },
+    {
+      "complete": true,
+      "conflicts": [],
+      "dwellSeconds": 7200,
+      "elapsedSeconds": 19310,
+      "feasible": true,
+      "finish": "2026-11-05T05:21:50Z",
+      "legs": [
+        {
+          "arrival": "2026-11-05T00:03:57Z",
+          "departure": "2026-11-05T00:00:00Z",
+          "from": "Stasiun sudirman",
+          "leave": "2026-11-05T00:33:57Z",
+          "mode": "automobile",
+          "seconds": 237,
+          "to": "Grand Indonesia",
+          "visit": "2026-11-05T00:03:57Z"
+        },
+        {
+          "arrival": "2026-11-05T00:53:13Z",
+          "departure": "2026-11-05T00:33:57Z",
+          "from": "Grand Indonesia",
+          "leave": "2026-11-05T01:23:13Z",
+          "mode": "automobile",
+          "seconds": 1156,
+          "to": "National Monument",
+          "visit": "2026-11-05T00:53:13Z"
+        },
+        {
+          "arrival": "2026-11-05T01:40:12Z",
+          "departure": "2026-11-05T01:23:13Z",
+          "from": "National Monument",
+          "leave": "2026-11-05T02:10:12Z",
+          "mode": "automobile",
+          "seconds": 1019,
+          "to": "Kota Tua",
+          "visit": "2026-11-05T01:40:12Z"
+        },
+        {
+          "arrival": "2026-11-05T03:16:16Z",
+          "departure": "2026-11-05T02:10:12Z",
+          "from": "Kota Tua",
+          "leave": "2026-11-05T03:46:16Z",
+          "mode": "automobile",
+          "seconds": 3964,
+          "to": "Summarecon Mall Kelapa Gading",
+          "visit": "2026-11-05T03:16:16Z"
+        },
+        {
+          "arrival": "2026-11-05T05:21:50Z",
+          "departure": "2026-11-05T03:46:16Z",
+          "from": "Summarecon Mall Kelapa Gading",
+          "leave": "2026-11-05T05:21:50Z",
+          "mode": "automobile",
+          "seconds": 5734,
+          "to": "Stasiun sudirman",
+          "visit": "2026-11-05T05:21:50Z"
+        }
+      ],
+      "order": [
+        "Grand Indonesia",
+        "National Monument",
+        "Kota Tua",
+        "Summarecon Mall Kelapa Gading"
+      ],
+      "orderIDs": [
+        "E32284F7-2A9E-4739-9991-4A086BB990DF",
+        "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+        "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+        "106E65CA-64AA-4292-9D96-DED708AF9D94"
+      ],
+      "requests": 5,
+      "scenario": "synthetic_peak_four_stops",
+      "source": "synthetic_time_change_on_recorded_matrix",
+      "travelSeconds": 12109.999999999998,
+      "waitingSeconds": 0,
+      "wallSeconds": 6.80685043334961e-05
+    }
+  ]
+}
