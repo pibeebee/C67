@@ -1,0 +1,53 @@
+{
+  "readWeather": {
+    "arguments": {
+      "stopID": "C",
+      "at": "2026-11-05T09:30:00+07:00"
+    },
+    "result": {
+      "id": "TW-C",
+      "source": "synthetic_local_fixture",
+      "issuedAt": "2026-11-05T08:55:00+07:00",
+      "validFrom": "2026-11-05T09:00:00+07:00",
+      "validTo": "2026-11-05T10:00:00+07:00",
+      "precipitationProbability": 0.7
+    }
+  },
+  "searchPlaces": {
+    "argumentsContract": {
+      "area": "Cipete",
+      "query": "Semantic intent coffee and reading;accept equivalent Indonesian/English keywords."
+    },
+    "result": {
+      "candidates": [
+        {
+          "id": "TP1",
+          "name": "Kafe Baca Tool (fiktif)",
+          "coffee": true,
+          "reading_friendly": true,
+          "noise": "unknown",
+          "evidenceID": "TP-SRC"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "TP-SRC",
+          "source": "synthetic_local_catalogue",
+          "text": "TP1 menyediakan coffee dan tempat membaca;noise,jam buka,ETA dan biaya unknown."
+        }
+      ]
+    }
+  },
+  "readOpeningHours": {
+    "arguments": {
+      "stopID": "C",
+      "serviceDate": "2026-11-05"
+    },
+    "result": {
+      "id": "TH-ERR",
+      "status": "unavailable",
+      "reason": "fixture simulates source timeout",
+      "hours": null
+    }
+  }
+}

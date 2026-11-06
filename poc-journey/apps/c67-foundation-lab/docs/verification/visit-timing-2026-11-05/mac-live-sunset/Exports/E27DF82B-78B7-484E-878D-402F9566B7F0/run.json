@@ -1,0 +1,322 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:51:25Z",
+  "elapsedSeconds" : 1.3774869441986084,
+  "environment" : {
+    "attribution" : "Weather data by Open-Meteo (CC BY 4.0); https:\/\/open-meteo.com\/",
+    "attributionURL" : "https:\/\/api.open-meteo.com\/v1\/forecast?latitude=-6.219204&longitude=106.804564&hourly=temperature_2m,precipitation_probability&daily=sunrise,sunset&start_date=2026-11-05&end_date=2026-11-05&timezone=Asia\/Jakarta&timeformat=unixtime&temperature_unit=celsius",
+    "date" : "2026-11-05",
+    "errors" : [
+
+    ],
+    "fetchedAt" : "2026-11-05T01:51:25Z",
+    "hours" : [
+      {
+        "rainChance" : 0.08,
+        "start" : "2026-11-04T17:00:00Z",
+        "temperatureC" : 26.7
+      },
+      {
+        "rainChance" : 0.1,
+        "start" : "2026-11-04T18:00:00Z",
+        "temperatureC" : 26.9
+      },
+      {
+        "rainChance" : 0.07,
+        "start" : "2026-11-04T19:00:00Z",
+        "temperatureC" : 26.7
+      },
+      {
+        "rainChance" : 0.03,
+        "start" : "2026-11-04T20:00:00Z",
+        "temperatureC" : 26.6
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-04T21:00:00Z",
+        "temperatureC" : 26.4
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-04T22:00:00Z",
+        "temperatureC" : 26.2
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-04T23:00:00Z",
+        "temperatureC" : 26.6
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-05T00:00:00Z",
+        "temperatureC" : 28.2
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-05T01:00:00Z",
+        "temperatureC" : 30.5
+      },
+      {
+        "rainChance" : 0,
+        "start" : "2026-11-05T02:00:00Z",
+        "temperatureC" : 32.6
+      },
+      {
+        "rainChance" : 0.02,
+        "start" : "2026-11-05T03:00:00Z",
+        "temperatureC" : 34.4
+      },
+      {
+        "rainChance" : 0.28,
+        "start" : "2026-11-05T04:00:00Z",
+        "temperatureC" : 35.9
+      },
+      {
+        "rainChance" : 0.64,
+        "start" : "2026-11-05T05:00:00Z",
+        "temperatureC" : 34.5
+      },
+      {
+        "rainChance" : 0.9,
+        "start" : "2026-11-05T06:00:00Z",
+        "temperatureC" : 33
+      },
+      {
+        "rainChance" : 0.99,
+        "start" : "2026-11-05T07:00:00Z",
+        "temperatureC" : 33.6
+      },
+      {
+        "rainChance" : 0.98,
+        "start" : "2026-11-05T08:00:00Z",
+        "temperatureC" : 33.6
+      },
+      {
+        "rainChance" : 0.94,
+        "start" : "2026-11-05T09:00:00Z",
+        "temperatureC" : 32
+      },
+      {
+        "rainChance" : 0.88,
+        "start" : "2026-11-05T10:00:00Z",
+        "temperatureC" : 31.4
+      },
+      {
+        "rainChance" : 0.79,
+        "start" : "2026-11-05T11:00:00Z",
+        "temperatureC" : 30.2
+      },
+      {
+        "rainChance" : 0.67,
+        "start" : "2026-11-05T12:00:00Z",
+        "temperatureC" : 30
+      },
+      {
+        "rainChance" : 0.49,
+        "start" : "2026-11-05T13:00:00Z",
+        "temperatureC" : 30
+      },
+      {
+        "rainChance" : 0.28,
+        "start" : "2026-11-05T14:00:00Z",
+        "temperatureC" : 29.6
+      },
+      {
+        "rainChance" : 0.14,
+        "start" : "2026-11-05T15:00:00Z",
+        "temperatureC" : 29.1
+      },
+      {
+        "rainChance" : 0.13,
+        "start" : "2026-11-05T16:00:00Z",
+        "temperatureC" : 28.7
+      }
+    ],
+    "latitude" : -6.219204,
+    "locationName" : "Hutan Kota GBK",
+    "locationSource" : "MapKit MKLocalSearch; Hutan Kota GBK, Jakarta; IA80E94FBE8D054CB; unique name match, not on-site verification",
+    "longitude" : 106.804564,
+    "provider" : "Open-Meteo live",
+    "sunrise" : "2026-11-04T22:26:03Z",
+    "sunset" : "2026-11-05T10:47:02Z",
+    "validUntil" : "2026-11-05T02:06:25Z",
+    "venueID" : "gbk"
+  },
+  "id" : "E27DF82B-78B7-484E-878D-402F9566B7F0",
+  "options" : [
+    {
+      "end" : "2026-11-05T11:00:00Z",
+      "maxRainChance" : 0.88,
+      "maxTemperatureC" : 31.4,
+      "reason" : "Mulai dalam satu jam menjelang sunset; kedekatan akhir kunjungan dengan sunset adalah aturan aplikasi.",
+      "start" : "2026-11-05T10:00:00Z"
+    }
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 1320,
+      "start" : 360
+    },
+    "date" : "2026-11-05",
+    "durationMinutes" : 60,
+    "goal" : "nearSunset",
+    "venueID" : "gbk"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:16Z",
+      "id" : "gbk",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 31ee592373337b4f4cc75b26da67aa30824b68789b8a2f869627b2ef27978ed3",
+      "title" : "Pemkot Jakarta Pusat — Hutan Kota GBK",
+      "url" : "https:\/\/pusat.jakarta.go.id\/kelurahan\/kelurahan-gelora\/fasilitas\/fasilitas-taman-hutan-kota\/taman-hutan-kota"
+    }
+  ],
+  "status" : "context_ranked",
+  "validStartRanges" : [
+    {
+      "end" : 540,
+      "start" : 540
+    },
+    {
+      "end" : 1020,
+      "start" : 900
+    }
+  ],
+  "venue" : {
+    "address" : "Pintu 7 Senayan, Gelora, Jakarta Pusat",
+    "exposure" : "outdoor",
+    "exposureSourceID" : "gbk",
+    "id" : "gbk",
+    "name" : "Hutan Kota GBK",
+    "query" : "Hutan Kota GBK, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 600,
+            "start" : 360
+          },
+          {
+            "end" : 1080,
+            "start" : 900
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "gbk"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+    "Sunset bukan jaminan golden hour, pandangan matahari atau izin fotografi; belum ada fakta tersebut.",
+    "Prakiraan adalah perkiraan titik MapKit, bukan pengukuran mikrocuaca di venue."
+  ]
+}

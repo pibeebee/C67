@@ -1,0 +1,830 @@
+{
+  "version": "0.5",
+  "build": 7,
+  "latestPerCase": {
+    "passed": 102
+  },
+  "totalUniqueCases": 102,
+  "aggregation": "Full regression plus final focused run; not one all-green 102-case run.",
+  "runs": [
+    {
+      "log": "/private/tmp/c67-v5-regression.log",
+      "resultBundle": "/private/tmp/c67-v5-regression.xcresult",
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "<REDACTED_DEVICE_METADATA>",
+              "deviceName": "iPhone 18 Pro",
+              "modelName": "iPhone 18 Pro",
+              "osBuildNumber": "24A434",
+              "osVersion": "27.0",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 1,
+            "passedTests": 100,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "poc-c67 · Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "finishTime": 1792077443.821,
+        "passedTests": 100,
+        "result": "Failed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1792077043.412,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertEqual failed: (\"Optional(\"c67://join/eyJqb3VybmV5IjoiS2VsaWxpbmcgSmFrYXJ0YSIsInB1YmxpY0tleSI6ImdQZnkyclFkWXV6NkpDZUgrYXNSTnhcL0dCUHBYeCtLc01lUkY5V0szd01VPSIsImxlYWRlciI6IkJ1ZGkiLCJ2ZXJzaW9uIjozLCJsZWFkZXJSZWNvcmQiOiJfbGVhZGVyQWNjb3VudCIsImV4cGlyZXNBdCI6ODIxNjkzMTAwLCJpZCI6IjJDMzdFNzZBLTkxMUMtNEQ0My1CMTEzLTc0MjI4MkFGNkRFMyIsInJ1bklEIjoiOUQ5M0Q1OTctOTA4OC00ODdELTkzNUUtQThBNUIxOTNDNDgwIiwidG9rZW4iOiJhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhIn0=\")\") is not equal to (\"Optional(\"c67://join/eyJleHBpcmVzQXQiOjgyMTY5MzEwMCwiam91cm5leSI6IktlbGlsaW5nIEpha2FydGEiLCJwdWJsaWNLZXkiOiJnUGZ5MnJRZFl1ejZKQ2VIK2FzUk54XC9HQlBwWHgrS3NNZVJGOVdLM3dNVT0iLCJsZWFkZXIiOiJCdWRpIiwicnVuSUQiOiI5RDkzRDU5Ny05MDg4LTQ4N0QtOTM1RS1BOEE1QjE5M0M0ODAiLCJ0b2tlbiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEiLCJ2ZXJzaW9uIjozLCJpZCI6IjJDMzdFNzZBLTkxMUMtNEQ0My1CMTEzLTc0MjI4MkFGNkRFMyIsImxlYWRlclJlY29yZCI6Il9sZWFkZXJBY2NvdW50In0=\")\")",
+            "targetName": "poc-c67Tests",
+            "testIdentifier": 64,
+            "testIdentifierString": "QRPairingTests/testActualQRCodeImageCanBeDecoded()",
+            "testIdentifierURL": "test://com.apple.xcode/poc-c67/poc-c67Tests/QRPairingTests/testActualQRCodeImageCanBeDecoded",
+            "testName": "testActualQRCodeImageCanBeDecoded()"
+          }
+        ],
+        "title": "Test - poc-c67",
+        "topInsights": [
+          {
+            "category": "Longest Test Runs",
+            "impact": "53% of duration",
+            "text": "1 longest test run with outlier durations exceeding 0.16s (three standard deviations)"
+          }
+        ],
+        "totalTestCount": 101
+      }
+    },
+    {
+      "log": "/private/tmp/c67-v5-final.log",
+      "resultBundle": "/private/tmp/c67-v5-final.xcresult",
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "<REDACTED_DEVICE_METADATA>",
+              "deviceName": "iPhone 18 Pro",
+              "modelName": "iPhone 18 Pro",
+              "osBuildNumber": "24A434",
+              "osVersion": "27.0",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 86,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "poc-c67 · Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792077653.961,
+        "passedTests": 86,
+        "result": "Passed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1792077472.249,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - poc-c67",
+        "topInsights": [
+          {
+            "category": "Longest Test Runs",
+            "impact": "47% of duration",
+            "text": "1 longest test run with outlier durations exceeding 0.11s (three standard deviations)"
+          }
+        ],
+        "totalTestCount": 86
+      }
+    }
+  ],
+  "cases": [
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testAllDemoScenariosAreConsistentAndResetLocalSession",
+      "result": "passed",
+      "durationSeconds": 0.038,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoCannotOverwriteBoundRealRun",
+      "result": "passed",
+      "durationSeconds": 0.01,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoLoadDoesNotModifyStateWhenSaveFails",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testDemoStaleLocationIsSimulatedAndDoesNotVerifyP01",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testFilteringDoesNotChangeSummaryAndDuplicateNameSearchWorks",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testRegroupHasExpectedUnresolvedAndOpenCase",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DemoTests",
+      "test": "testReviewedScenarioUsesExplicitEventsAndRequiresClosure",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testAllExcludedRequiresNotedClosure",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testClockSkewAndInvalidSamplesDoNotBecomeFresh",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testClosingWithUnresolvedNeedsNoteAndPreservesThem",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testCommittedStateReloadsIncludingClosureAndHistory",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testExcludedParticipantCaseStillCounts",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testExclusionAndRejoinNeedNewVerification",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFailedSaveRollsBackEventAndStateAndRetryCommitsOnce",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFollowUpIsIndependentAndNotDuplicated",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testFreshnessNeverChangesByRepeatedReads",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testLocalSensorRejectedInSimulationAndResetProtectsOwnedShare",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testMeetingPointDefaultsToNilAndSurvivesReloadAfterSaveAndClear",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNamedParticipantsRemainDistinct",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNewQRJourneyAndJoinDoNotInventAMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNextSessionCannotOverlapAndResetsState",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testNormalCloseRequiresCasesResolvedEvenIfVerified",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testOldMeetingPointJSONLoadsAndMissingOrPartialCoordinatesStayNil",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testProximityExpressesUncertaintyAndNeverVerifies",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testSequenceEpochAndRunGuards",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testSimulationIsExplicitAndCannotChangeAttendance",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testStartWithoutConsentDoesNotStartSensorOrCreateCloudOwner",
+      "result": "passed",
+      "durationSeconds": 0.009,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testUndoRequiresReasonAndDoesNotTouchOtherAyu",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testUploadRejectsExpiredStoppedOldAndSimulatedData",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.DomainTests",
+      "test": "testVerificationIsIdempotentAndRecordedOnce",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testDemoShowsAllParticipantsAtOnceAndLeaderWithoutChangingAttendance",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderBindingBlocksResetAndOldSnapshotStillDecodes",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderCannotStartWithoutConsentAndNoSensorStartsOnInit",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderReferencesPersistSeparatelyAndBlockRunReplacement",
+      "result": "passed",
+      "durationSeconds": 0.009,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLeaderURLIsCoveredByWelcomeSignatureAndOldQRVersionRejected",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLocalMapLocationWorksWithoutStartingEitherSharingSession",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testLocalMapRejectsWrongRunInvalidAndFutureSamples",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMapKeepsStaleMeasurementButRejectsExpiredLeaseWrongRunAndInvalidCoordinates",
+      "result": "passed",
+      "durationSeconds": 0.002,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMeetingPointSnapshotValidatesBoundsAndIsSigned",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testMissingRealLocationsAreNotPlacedAtMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testParticipantMapDoesNotExposeOtherParticipants",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testPausedLeaderClearsCoordinatesAndNewEpochDoesNotReuseOldSample",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testRealLocalSampleDoesNotLeakIntoDemo",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testRepeatedLeaderFetchDoesNotRefreshMeasurementAgeOrAcceptOldSequence",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.GroupMapTests",
+      "test": "testWelcomeAllowsSignedAbsentMeetingPointAndRejectsTampering",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testActivationUpdatesMeetingOnlyAndEditingActiveLocationPropagates",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testActivityValidatesDatesLimitsCoordinatesAndTimezone",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testCalendarMappingPreservesTitleTimeTimezonePlaceAndNotes",
+      "result": "passed",
+      "durationSeconds": 0.027,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testCalendarReceiptDetectsChangesAndIsDeviceLocalOnly",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testCannotActivateUnlocatedOrMissingActivity",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testDeletingActiveActivityClearsMeetingAndManualPointUnlinksActivity",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testEditingDuringPublishRemainsPendingUntilNextRevisionReachesEveryChannel",
+      "result": "passed",
+      "durationSeconds": 0.01,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testFailedPersistOfReceivedPlanKeepsPreviousSnapshotAndRetryWorks",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testFailedSavePreservesPlanAndMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 0.005,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testFetchPersistsPlanWithoutGPSAndOfflinePreservesCache",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testLateFetchAfterLeavingShareCannotRestoreData",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testNewRecipientReceivesUnchangedPlanWithoutResendingOtherChannels",
+      "result": "passed",
+      "durationSeconds": 0.005,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testOptionalPlanAndReceiptsPreserveOldSnapshotAndStableFallback",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testPartialOrRevokedChannelDoesNotBlockOtherParticipants",
+      "result": "passed",
+      "durationSeconds": 0.006,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testParticipantCannotMutateScheduleOrMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 0.003,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testPlanRejectsWrongRunDuplicateIDsOversizedAndInvalidActivePoint",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testPublishFanoutAndRetryKeepsPerRecipientRevisionAcknowledgement",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testReceiveUpdatesClearAndDoesNotRollbackOrAcceptRevisionConflict",
+      "result": "passed",
+      "durationSeconds": 0.003,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.JourneyPlanTests",
+      "test": "testSaveUpdateDeleteAndReloadDoNotChangeAttendance",
+      "result": "passed",
+      "durationSeconds": 0.007,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testActualQRCodeImageCanBeDecoded",
+      "result": "passed",
+      "durationSeconds": 0.289,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testCreateQRJourneyRejectsLiveShareAndJoinDoesNotStartGPS",
+      "result": "passed",
+      "durationSeconds": 0.011,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testInviteRoundTripAndExpiry",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testLegacySnapshotStillLoadsAndPreservesManualBinding",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testPairedRosterReferencesReloadWithSeparateAccounts",
+      "result": "passed",
+      "durationSeconds": 0.008,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testReceiptCannotStartDifferentParticipantOrChallenge",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRegistrationSaveFailureCannotExposePartialRoster",
+      "result": "passed",
+      "durationSeconds": 0.004,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRejoiningSameAccountKeepsIDAndDoesNotDuplicateOrResetCheck",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testRosterCapAndNextSessionCarryNamesWithoutVerification",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testTwoPeopleWithSameNameHaveSeparateBindingsAndNoAttendance",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testUnsupportedOrMalformedInviteCannotBeUsed",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testWelcomeMustMatchQRKeyAccountRunAndChallenge",
+      "result": "passed",
+      "durationSeconds": 0.001,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67Tests.QRPairingTests",
+      "test": "testWrongRunClosedSessionOrIDCollisionCannotRegister",
+      "result": "passed",
+      "durationSeconds": 0.0,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testActivityLocationPickerCancelThenSaveDoesNotCreateImplicitMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 21.265,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testActivityPinCanBeSelectedDirectly",
+      "result": "passed",
+      "durationSeconds": 9.02,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testCalendarNativeEditorCanBeCancelledWithoutExportReceipt",
+      "result": "passed",
+      "durationSeconds": 25.146,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testDefaultMapHasNoMeetingPointAndSettingsCanSaveAndClearIt",
+      "result": "passed",
+      "durationSeconds": 22.442,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testDemoActivityMapSelectionAndExplicitActivation",
+      "result": "passed",
+      "durationSeconds": 16.461,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testDemoScenarioRequiresConfirmationAndShowsCorrectCounts",
+      "result": "passed",
+      "durationSeconds": 11.805,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testGroupMapShowsAllPinsSelectionAndCameraControls",
+      "result": "passed",
+      "durationSeconds": 16.976,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testInvalidQRDoesNotAllowJoining",
+      "result": "passed",
+      "durationSeconds": 11.306,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testItineraryCreateEditDeleteWithoutLocationAndValidation",
+      "result": "passed",
+      "durationSeconds": 15.381,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testLeaderLocationRequiresConsentAndConnectedParticipants",
+      "result": "passed",
+      "durationSeconds": 8.589,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testLeaderSettingsOnlyContainMeetingPoint",
+      "result": "passed",
+      "durationSeconds": 6.018,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testManualCheckAtAccessibilityTextSize",
+      "result": "passed",
+      "durationSeconds": 15.298,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testManualPairingLivesInLab",
+      "result": "passed",
+      "durationSeconds": 9.607,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testMapPinCanBeSelectedDirectly",
+      "result": "passed",
+      "durationSeconds": 12.119,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testMyLocationButtonSelectsOwnPinForBothRoles",
+      "result": "passed",
+      "durationSeconds": 14.477,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testNotedClosureAndNextSessionReset",
+      "result": "passed",
+      "durationSeconds": 16.505,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantActionSheetKeepsFollowUpIndependent",
+      "result": "passed",
+      "durationSeconds": 15.733,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantGuideDoesNotAllowUnconsentedStart",
+      "result": "passed",
+      "durationSeconds": 6.908,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantItineraryIsReadOnlyAndCanOpenMap",
+      "result": "passed",
+      "durationSeconds": 9.323,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testParticipantMapContainsLeaderAndSelfOnly",
+      "result": "passed",
+      "durationSeconds": 11.082,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testQRJoinShowsDestinationAndRequiresConsent",
+      "result": "passed",
+      "durationSeconds": 27.286,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testQRJourneyCreationIsExplicitAndRosterStartsEmpty",
+      "result": "passed",
+      "durationSeconds": 13.379,
+      "sourceLog": "/private/tmp/c67-v5-final.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testRealMapShowsLocalGPSWithoutStartingSharing",
+      "result": "passed",
+      "durationSeconds": 12.842,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testSimulationDoesNotVerifyAndManualCheckWorks",
+      "result": "passed",
+      "durationSeconds": 26.162,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    },
+    {
+      "suite": "poc_c67UITests.POCFlowTests",
+      "test": "testStoredParticipantShowsStopAndConsentOnlyOnResume",
+      "result": "passed",
+      "durationSeconds": 13.42,
+      "sourceLog": "/private/tmp/c67-v5-regression.log"
+    }
+  ]
+}

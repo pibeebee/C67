@@ -1,0 +1,12 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 1bfd35e86bdefd6ac0a40e63983949ba3a052a3894f634c648d08144ff65e036
+2026-11-05 16:43:44.803 xcodebuild[90346:35450070] Logging connecton invalid: <OS_xpc_error: <dictionary: 0x2002a0b60> { count = 1, transaction: 0, voucher = 0x0, contents =
+[-[SimServiceContext initWithDeveloperDir:connectionType:error:]_block_invoke:561] ERROR : Could not get list of trusted mount directories: Error Domain=com.apple.CoreSimulator.SimError Code=410 "The service used to manage runtime disk images (simdiskimaged) crashed or is not responding" UserInfo={NSLocalizedDescription=The service used to manage runtime disk images (simdiskimaged) crashed or is not responding}
+[-[SimServiceContext initWithDeveloperDir:connectionType:error:]:504] WARN  : Unable to discover any Simulator runtimes. Developer Directory is /Applications/Xcode.app/Contents/Developer.
+[-[SimServiceContext sendRequest:reply:error:]:2152] ERROR : Unable to deliver request ({
+[-[SimServiceContext sendRequest:reply:error:]:2152] ERROR : Unable to deliver request ({
+2026-11-05 16:43:44.804 xcodebuild[90346:35449999]  iOSSimulator: [SimServiceContext defaultDeviceSetWithError:] returned nil (Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedFailureReason=Failed to subscribe to notifications from CoreSimulatorService., NSLocalizedDescription=Failed to initialize simulator device set., NSUnderlyingError=0x76ffc04150 {Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedDescription=CoreSimulatorService connection became invalid.  Simulator services will no longer be available.}}}). Simulator device support disabled.
+xcodebuild: error: Could not resolve package dependencies:
+  <unknown>:0: error: error opening '<LOCAL_HOME>/.cache/clang/ModuleCache/Swift-18Y2CYADWFGX0.swiftmodule' for output: <LOCAL_HOME>/.cache/clang/ModuleCache: Operation not permitted
+<unknown>:0: error: unable to load standard library for target 'arm64-apple-macos14.0'
+<unknown>:0: error: cannot open file '<LOCAL_HOME>/Library/Caches/org.swift.swiftpm/manifests/ManifestLoading/preferencequality.dia' for diagnostics emission (Operation not permitted)

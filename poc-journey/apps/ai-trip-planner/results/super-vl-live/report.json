@@ -1,0 +1,1959 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-11-02T10:09:39.094Z",
+  "mode": "live",
+  "validationStatus": "Live provider experiment; human quality review still required.",
+  "input": {
+    "title": "Johan — illustrative Jakarta itinerary",
+    "date": "2026-11-03",
+    "timeZone": "Asia/Jakarta",
+    "startTime": "14:00",
+    "finishTime": "19:00",
+    "mode": "DRIVE",
+    "preferences": [
+      "Saya ingin ngopi sambil membaca dan menikmati tempat luar ruang menjelang sunset.",
+      "Hindari kunjungan luar ruang ketika peluang hujan tinggi, jika memungkinkan.",
+      "Semua tujuan pilihan saya tetap dikunjungi; jelaskan jika waktunya tidak cukup."
+    ],
+    "origin": {
+      "id": "A",
+      "name": "A — illustrative starting point in Cipete",
+      "latitude": -6.2728,
+      "longitude": 106.7976
+    },
+    "places": [
+      {
+        "id": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "latitude": -6.2613,
+        "longitude": 106.8106,
+        "durationMinutes": 60,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: an indoor coffee visit. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "10:00",
+          "closesAt": "20:00"
+        }
+      },
+      {
+        "id": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "latitude": -6.2601,
+        "longitude": 106.8124,
+        "durationMinutes": 45,
+        "exposure": "outdoor",
+        "context": "User-supplied scenario: an outdoor visit preferred before sunset. Visibility and suitability are unverified.",
+        "openingHours": {
+          "opensAt": "08:00",
+          "closesAt": "20:00"
+        },
+        "preferredWindow": {
+          "kind": "sunset",
+          "minutesBefore": 60
+        }
+      },
+      {
+        "id": "D",
+        "name": "D — reading stop (example coordinate)",
+        "latitude": -6.2649,
+        "longitude": 106.7984,
+        "durationMinutes": 45,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: a reading stop where Johan may want to stay longer. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "09:00",
+          "closesAt": "20:00"
+        }
+      }
+    ]
+  },
+  "progress": {
+    "visitedIds": [],
+    "originNow": {
+      "id": "A",
+      "name": "A — illustrative starting point in Cipete",
+      "latitude": -6.2728,
+      "longitude": 106.7976
+    },
+    "departureAt": "2026-11-03T07:00:00.000Z",
+    "finishBy": "2026-11-03T12:00:00.000Z"
+  },
+  "ai": {
+    "called": true,
+    "model": "nvidia/nemotron-3.5-super-vl:free",
+    "reasoningMode": "off",
+    "maxTokens": 2500,
+    "responseId": "gen-1793614170-Far4jQ9mErdYC7MoukHO",
+    "usage": {
+      "prompt_tokens": 5195,
+      "completion_tokens": 870,
+      "total_tokens": 6065,
+      "cost": 0,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "latencyMs": 8692,
+    "decision": {
+      "candidateId": "D/B/C:direct",
+      "summary": "Pilihan terbaik yang tersedia adalah D → B → C tanpa menunggu: D (membaca, dalam ruang), B (ngopi, dalam ruang), lalu C (luar ruang) tepat menjelang preferred window. Pilihan ini selesaikan semua tujuan di akhir 19:38 WIB, lebih awal dari batas 21:00 WIB dan dari candidate lain yang selesai 19:38–20:03 WIB. Kelemahannya: hujan di semua tempat cukup tinggi (80–100%) dan C luaran mendapatkan hujan selama 45 menit yang dihitung sebagai proxy, serta overlap preferred window kurang 18,5 menit. Namun, karena semua candidate luaran C sama-sama rainProbability 100 dan rainExposure 45 menit, opsi ini dipilih karena waktu total paling pendek dan selesai paling awal, sehingga memberikan fleksibilitas lebih besar jika cuaca buruk. Harap diperhatikan bahwa cuaca bukan jaminan dan kebukaannya tempat tidak diverifikasi.",
+      "rationale": [
+        {
+          "placeId": "D",
+          "reason": "Kunjungan D (reading stop, indoor) di 07:45–08:24 WIB, rainProbability 80, dalam ruang, cocok untuk membaca sambil menunggu cuaca; evidenceIds: input:D, route:A/D@1793689200, weather:D.",
+          "evidenceIds": [
+            "input:D",
+            "route:A/D@1793689200",
+            "weather:D"
+          ]
+        },
+        {
+          "placeId": "B",
+          "reason": "Kunjungan B (coffee stop, indoor) di 08:32–09:32 WIB, rainProbability 92.9, dalam ruang dan cocok untuk ngopi sebelum pindah ke C; evidenceIds: input:B, route:D/B@1793692242, weather:B.",
+          "evidenceIds": [
+            "input:B",
+            "route:D/B@1793692242",
+            "weather:B"
+          ]
+        },
+        {
+          "placeId": "C",
+          "reason": "Kunjungan C (outdoor stop) di 09:33–10:38 WIB, rainProbability 100, rainExposureMinutes 45, preferred window kurang 18,5 menit; semua tempat tetap dikunjungi meskipun risiko hujan luar ruang tinggi; evidenceIds: input:C, route:B/C@1793696365, weather:C.",
+          "evidenceIds": [
+            "input:C",
+            "route:B/C@1793696365",
+            "weather:C"
+          ]
+        }
+      ],
+      "tradeoffs": [
+        "Semua kandidat expose C pada hujan 100% dan 45 menit rainExposureMinutes, sehingga tidak ada opsi yang menghindari risiko hujan di luar ruang sepenuhnya. D/B/C:direct dipilih meski overlap window C kurang 18,5 menit karena waktu perjalanan terpendek (28,2 menit), tidak perlu menunggu, dan selesai paling awal (19:38 WIB). Alternatif 'wait' selesai 19:38–20:03 WIB dengan waktu tunggu 23–98 menit dan tidak mengubah paparan hujan C."
+      ],
+      "uncertainties": [
+        "Cuaca adalah probabilitas per jam, bukan jaminan; 100% artinya estimasi tinggi, bukan hujan pasti. Opening hours adalah asumsi pengguna, bukan fakta terverifikasi. Titik koordinat dan nama tempat bersifat contoh, bukan listing terverifikasi."
+      ]
+    },
+    "explanationValidation": "Destination IDs and evidence references checked. Prose claims are not automatically fact-checked."
+  },
+  "recommendation": {
+    "id": "D/B/C:direct",
+    "order": [
+      "D",
+      "B",
+      "C"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "D",
+          "departureAt": 1793689200,
+          "durationSeconds": 342,
+          "distanceMeters": 1237,
+          "evidenceId": "route:A/D@1793689200"
+        },
+        "arrivalAt": 1793689542,
+        "visitAt": 1793689542,
+        "leaveAt": 1793692242,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 80,
+          "temperatureC": 32.5,
+          "cloudCover": 53,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "route:A/D@1793689200",
+          "weather:D"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "D",
+          "toId": "B",
+          "departureAt": 1793692242,
+          "durationSeconds": 523,
+          "distanceMeters": 2340,
+          "evidenceId": "route:D/B@1793692242"
+        },
+        "arrivalAt": 1793692765,
+        "visitAt": 1793692765,
+        "leaveAt": 1793696365,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 92.87361111111112,
+          "temperatureC": 31.41069444444444,
+          "cloudCover": 27.25277777777778,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "route:D/B@1793692242",
+          "weather:B"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "B",
+          "toId": "C",
+          "departureAt": 1793696365,
+          "durationSeconds": 828,
+          "distanceMeters": 3165,
+          "evidenceId": "route:B/C@1793696365"
+        },
+        "arrivalAt": 1793697193,
+        "visitAt": 1793697193,
+        "leaveAt": 1793699893,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 100,
+          "temperatureC": 31.5,
+          "cloudCover": 31,
+          "rainExposureMinutes": 45,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793699203,
+          "end": 1793702803
+        },
+        "preferredWindowMissMinutes": 18.5,
+        "evidenceIds": [
+          "input:C",
+          "route:B/C@1793696365",
+          "weather:C"
+        ],
+        "warnings": [
+          "Preferred-window overlap is short by 19 minutes; destination retained."
+        ]
+      }
+    ],
+    "finishesAt": 1793699893,
+    "travelMinutes": 28.21666666666667,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 45,
+    "preferredWindowMissMinutes": 18.5,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 173.72
+  },
+  "baselineOriginal": {
+    "id": "B/C/D:direct",
+    "order": [
+      "B",
+      "C",
+      "D"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "B",
+          "departureAt": 1793689200,
+          "durationSeconds": 656,
+          "distanceMeters": 3131,
+          "evidenceId": "route:A/B@1793689200"
+        },
+        "arrivalAt": 1793689856,
+        "visitAt": 1793689856,
+        "leaveAt": 1793693456,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 82.36888888888889,
+          "temperatureC": 32.29955555555556,
+          "cloudCover": 48.26222222222222,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "route:A/B@1793689200",
+          "weather:B"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "B",
+          "toId": "C",
+          "departureAt": 1793693456,
+          "durationSeconds": 878,
+          "distanceMeters": 3165,
+          "evidenceId": "route:B/C@1793693456"
+        },
+        "arrivalAt": 1793694334,
+        "visitAt": 1793694334,
+        "leaveAt": 1793697034,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 94.6437037037037,
+          "temperatureC": 31.423481481481474,
+          "cloudCover": 27.93925925925926,
+          "rainExposureMinutes": 42.58966666666666,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793699203,
+          "end": 1793702803
+        },
+        "preferredWindowMissMinutes": 30,
+        "evidenceIds": [
+          "input:C",
+          "route:B/C@1793693456",
+          "weather:C"
+        ],
+        "warnings": [
+          "Preferred-window overlap is short by 30 minutes; destination retained."
+        ]
+      },
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "C",
+          "toId": "D",
+          "departureAt": 1793697034,
+          "durationSeconds": 1125,
+          "distanceMeters": 4975,
+          "evidenceId": "route:C/D@1793697034"
+        },
+        "arrivalAt": 1793698159,
+        "visitAt": 1793698159,
+        "leaveAt": 1793700859,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 100,
+          "temperatureC": 30.99096296296296,
+          "cloudCover": 42.135185185185186,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "route:C/D@1793697034",
+          "weather:D"
+        ],
+        "warnings": []
+      }
+    ],
+    "finishesAt": 1793700859,
+    "travelMinutes": 44.31666666666666,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 42.58966666666666,
+    "preferredWindowMissMinutes": 30,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 219.5
+  },
+  "baselineTravelOnly": {
+    "id": "D/B/C:direct",
+    "order": [
+      "D",
+      "B",
+      "C"
+    ],
+    "waitForPreferredWindow": false,
+    "stops": [
+      {
+        "placeId": "D",
+        "name": "D — reading stop (example coordinate)",
+        "leg": {
+          "fromId": "A",
+          "toId": "D",
+          "departureAt": 1793689200,
+          "durationSeconds": 342,
+          "distanceMeters": 1237,
+          "evidenceId": "route:A/D@1793689200"
+        },
+        "arrivalAt": 1793689542,
+        "visitAt": 1793689542,
+        "leaveAt": 1793692242,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 80,
+          "temperatureC": 32.5,
+          "cloudCover": 53,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:D",
+          "route:A/D@1793689200",
+          "weather:D"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "leg": {
+          "fromId": "D",
+          "toId": "B",
+          "departureAt": 1793692242,
+          "durationSeconds": 523,
+          "distanceMeters": 2340,
+          "evidenceId": "route:D/B@1793692242"
+        },
+        "arrivalAt": 1793692765,
+        "visitAt": 1793692765,
+        "leaveAt": 1793696365,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 92.87361111111112,
+          "temperatureC": 31.41069444444444,
+          "cloudCover": 27.25277777777778,
+          "rainExposureMinutes": 0,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": null,
+        "preferredWindowMissMinutes": 0,
+        "evidenceIds": [
+          "input:B",
+          "route:D/B@1793692242",
+          "weather:B"
+        ],
+        "warnings": []
+      },
+      {
+        "placeId": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "leg": {
+          "fromId": "B",
+          "toId": "C",
+          "departureAt": 1793696365,
+          "durationSeconds": 828,
+          "distanceMeters": 3165,
+          "evidenceId": "route:B/C@1793696365"
+        },
+        "arrivalAt": 1793697193,
+        "visitAt": 1793697193,
+        "leaveAt": 1793699893,
+        "waitMinutes": 0,
+        "weather": {
+          "rainProbability": 100,
+          "temperatureC": 31.5,
+          "cloudCover": 31,
+          "rainExposureMinutes": 45,
+          "unknownMinutes": 0
+        },
+        "preferredWindow": {
+          "start": 1793699203,
+          "end": 1793702803
+        },
+        "preferredWindowMissMinutes": 18.5,
+        "evidenceIds": [
+          "input:C",
+          "route:B/C@1793696365",
+          "weather:C"
+        ],
+        "warnings": [
+          "Preferred-window overlap is short by 19 minutes; destination retained."
+        ]
+      }
+    ],
+    "finishesAt": 1793699893,
+    "travelMinutes": 28.21666666666667,
+    "waitMinutes": 0,
+    "rainExposureMinutes": 45,
+    "preferredWindowMissMinutes": 18.5,
+    "unknownWeatherMinutes": 0,
+    "overtimeMinutes": 0,
+    "violations": [],
+    "feasible": true,
+    "score": 173.72
+  },
+  "alternatives": [
+    {
+      "id": "D/B/C:wait",
+      "order": [
+        "D",
+        "B",
+        "C"
+      ],
+      "waitForPreferredWindow": true,
+      "stops": [
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "D",
+            "departureAt": 1793689200,
+            "durationSeconds": 342,
+            "distanceMeters": 1237,
+            "evidenceId": "route:A/D@1793689200"
+          },
+          "arrivalAt": 1793689542,
+          "visitAt": 1793689542,
+          "leaveAt": 1793692242,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 80,
+            "temperatureC": 32.5,
+            "cloudCover": 53,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "route:A/D@1793689200",
+            "weather:D"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "D",
+            "toId": "B",
+            "departureAt": 1793692242,
+            "durationSeconds": 523,
+            "distanceMeters": 2340,
+            "evidenceId": "route:D/B@1793692242"
+          },
+          "arrivalAt": 1793692765,
+          "visitAt": 1793692765,
+          "leaveAt": 1793696365,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 92.87361111111112,
+            "temperatureC": 31.41069444444444,
+            "cloudCover": 27.25277777777778,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "route:D/B@1793692242",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "C",
+            "departureAt": 1793696365,
+            "durationSeconds": 828,
+            "distanceMeters": 3165,
+            "evidenceId": "route:B/C@1793696365"
+          },
+          "arrivalAt": 1793697193,
+          "visitAt": 1793699203,
+          "leaveAt": 1793701903,
+          "waitMinutes": 33.5,
+          "weather": {
+            "rainProbability": 100,
+            "temperatureC": 30.372296296296295,
+            "cloudCover": 55.66851851851851,
+            "rainExposureMinutes": 45,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793699203,
+            "end": 1793702803
+          },
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:C",
+            "route:B/C@1793696365",
+            "weather:C"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793701903,
+      "travelMinutes": 28.21666666666667,
+      "waitMinutes": 33.5,
+      "rainExposureMinutes": 45,
+      "preferredWindowMissMinutes": 0,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 126.59
+    },
+    {
+      "id": "B/D/C:wait",
+      "order": [
+        "B",
+        "D",
+        "C"
+      ],
+      "waitForPreferredWindow": true,
+      "stops": [
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "B",
+            "departureAt": 1793689200,
+            "durationSeconds": 656,
+            "distanceMeters": 3131,
+            "evidenceId": "route:A/B@1793689200"
+          },
+          "arrivalAt": 1793689856,
+          "visitAt": 1793689856,
+          "leaveAt": 1793693456,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 82.36888888888889,
+            "temperatureC": 32.29955555555556,
+            "cloudCover": 48.26222222222222,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "route:A/B@1793689200",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "D",
+            "departureAt": 1793693456,
+            "durationSeconds": 681,
+            "distanceMeters": 2368,
+            "evidenceId": "route:B/D@1793693456"
+          },
+          "arrivalAt": 1793694137,
+          "visitAt": 1793694137,
+          "leaveAt": 1793696837,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 94.13296296296296,
+            "temperatureC": 31.41618518518518,
+            "cloudCover": 27.64740740740741,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "route:B/D@1793693456",
+            "weather:D"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "D",
+            "toId": "C",
+            "departureAt": 1793696837,
+            "durationSeconds": 978,
+            "distanceMeters": 4377,
+            "evidenceId": "route:D/C@1793696837"
+          },
+          "arrivalAt": 1793697815,
+          "visitAt": 1793699203,
+          "leaveAt": 1793701903,
+          "waitMinutes": 23.133333333333333,
+          "weather": {
+            "rainProbability": 100,
+            "temperatureC": 30.372296296296295,
+            "cloudCover": 55.66851851851851,
+            "rainExposureMinutes": 45,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793699203,
+            "end": 1793702803
+          },
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:C",
+            "route:D/C@1793696837",
+            "weather:C"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793701903,
+      "travelMinutes": 38.58333333333333,
+      "waitMinutes": 23.133333333333333,
+      "rainExposureMinutes": 45,
+      "preferredWindowMissMinutes": 0,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 134.37
+    },
+    {
+      "id": "D/C/B:wait",
+      "order": [
+        "D",
+        "C",
+        "B"
+      ],
+      "waitForPreferredWindow": true,
+      "stops": [
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "D",
+            "departureAt": 1793689200,
+            "durationSeconds": 342,
+            "distanceMeters": 1237,
+            "evidenceId": "route:A/D@1793689200"
+          },
+          "arrivalAt": 1793689542,
+          "visitAt": 1793689542,
+          "leaveAt": 1793692242,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 80,
+            "temperatureC": 32.5,
+            "cloudCover": 53,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "route:A/D@1793689200",
+            "weather:D"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "D",
+            "toId": "C",
+            "departureAt": 1793692242,
+            "durationSeconds": 1046,
+            "distanceMeters": 4681,
+            "evidenceId": "route:D/C@1793692242"
+          },
+          "arrivalAt": 1793693288,
+          "visitAt": 1793699203,
+          "leaveAt": 1793701903,
+          "waitMinutes": 98.58333333333333,
+          "weather": {
+            "rainProbability": 100,
+            "temperatureC": 30.372296296296295,
+            "cloudCover": 55.66851851851851,
+            "rainExposureMinutes": 45,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793699203,
+            "end": 1793702803
+          },
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:C",
+            "route:D/C@1793692242",
+            "weather:C"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "C",
+            "toId": "B",
+            "departureAt": 1793701903,
+            "durationSeconds": 725,
+            "distanceMeters": 2393,
+            "evidenceId": "route:C/B@1793701903"
+          },
+          "arrivalAt": 1793702628,
+          "visitAt": 1793702628,
+          "leaveAt": 1793706228,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 97.07999999999998,
+            "temperatureC": 28.148,
+            "cloudCover": 52.13,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "route:C/B@1793701903",
+            "weather:B"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793706228,
+      "travelMinutes": 35.21666666666667,
+      "waitMinutes": 98.58333333333333,
+      "rainExposureMinutes": 45,
+      "preferredWindowMissMinutes": 0,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 149.86
+    },
+    {
+      "id": "B/C/D:direct",
+      "order": [
+        "B",
+        "C",
+        "D"
+      ],
+      "waitForPreferredWindow": false,
+      "stops": [
+        {
+          "placeId": "B",
+          "name": "B — coffee stop (example coordinate)",
+          "leg": {
+            "fromId": "A",
+            "toId": "B",
+            "departureAt": 1793689200,
+            "durationSeconds": 656,
+            "distanceMeters": 3131,
+            "evidenceId": "route:A/B@1793689200"
+          },
+          "arrivalAt": 1793689856,
+          "visitAt": 1793689856,
+          "leaveAt": 1793693456,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 82.36888888888889,
+            "temperatureC": 32.29955555555556,
+            "cloudCover": 48.26222222222222,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:B",
+            "route:A/B@1793689200",
+            "weather:B"
+          ],
+          "warnings": []
+        },
+        {
+          "placeId": "C",
+          "name": "C — outdoor stop (example coordinate)",
+          "leg": {
+            "fromId": "B",
+            "toId": "C",
+            "departureAt": 1793693456,
+            "durationSeconds": 878,
+            "distanceMeters": 3165,
+            "evidenceId": "route:B/C@1793693456"
+          },
+          "arrivalAt": 1793694334,
+          "visitAt": 1793694334,
+          "leaveAt": 1793697034,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 94.6437037037037,
+            "temperatureC": 31.423481481481474,
+            "cloudCover": 27.93925925925926,
+            "rainExposureMinutes": 42.58966666666666,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": {
+            "start": 1793699203,
+            "end": 1793702803
+          },
+          "preferredWindowMissMinutes": 30,
+          "evidenceIds": [
+            "input:C",
+            "route:B/C@1793693456",
+            "weather:C"
+          ],
+          "warnings": [
+            "Preferred-window overlap is short by 30 minutes; destination retained."
+          ]
+        },
+        {
+          "placeId": "D",
+          "name": "D — reading stop (example coordinate)",
+          "leg": {
+            "fromId": "C",
+            "toId": "D",
+            "departureAt": 1793697034,
+            "durationSeconds": 1125,
+            "distanceMeters": 4975,
+            "evidenceId": "route:C/D@1793697034"
+          },
+          "arrivalAt": 1793698159,
+          "visitAt": 1793698159,
+          "leaveAt": 1793700859,
+          "waitMinutes": 0,
+          "weather": {
+            "rainProbability": 100,
+            "temperatureC": 30.99096296296296,
+            "cloudCover": 42.135185185185186,
+            "rainExposureMinutes": 0,
+            "unknownMinutes": 0
+          },
+          "preferredWindow": null,
+          "preferredWindowMissMinutes": 0,
+          "evidenceIds": [
+            "input:D",
+            "route:C/D@1793697034",
+            "weather:D"
+          ],
+          "warnings": []
+        }
+      ],
+      "finishesAt": 1793700859,
+      "travelMinutes": 44.31666666666666,
+      "waitMinutes": 0,
+      "rainExposureMinutes": 42.58966666666666,
+      "preferredWindowMissMinutes": 30,
+      "unknownWeatherMinutes": 0,
+      "overtimeMinutes": 0,
+      "violations": [],
+      "feasible": true,
+      "score": 219.5
+    }
+  ],
+  "comparisonWithOriginal": {
+    "travelMinutesDelta": -16.099999999999994,
+    "rainExposureMinutesDelta": 2.410333333333341,
+    "preferredWindowMissMinutesDelta": -11.5,
+    "finishesMinutesDelta": -16.1
+  },
+  "checks": {
+    "destinationsPreserved": true,
+    "visitDurationsPreserved": true,
+    "timelineArithmeticChecked": true,
+    "selectedPlanFeasible": true,
+    "noSilentAIOrRouteFallback": true,
+    "aiActuallyCalled": true,
+    "allProviderDataLive": true,
+    "completeRainForecastCoverage": true
+  },
+  "search": {
+    "initialCandidateCount": 12,
+    "refinedCandidateCount": 5,
+    "globallyOptimal": false,
+    "strategy": "All permutations at initial departure, each with direct/preferred-wait variants; refine top 3 plus original-order and travel-only baselines at per-leg departures.",
+    "weights": {
+      "travel": 1,
+      "waiting": 0.25,
+      "missedPreferredWindow": 3,
+      "rainExposure": 2
+    }
+  },
+  "diagnostics": {
+    "elapsedMs": 10396,
+    "httpCalls": {
+      "Google Routes matrix": 1,
+      "Open-Meteo": 3,
+      "Google Routes leg": 10,
+      "OpenRouter": 1
+    }
+  },
+  "warnings": [
+    "Place context, exposure and opening hours are user-supplied assumptions; no web research was performed.",
+    "Finish time means the end of the final visit. No journey home is included.",
+    "Before-sunset preference does not establish golden hour, cloud visibility or venue suitability.",
+    "Rain exposure is a scoring proxy, not a forecast of how many minutes it will rain. Waiting and journey weather are not scored.",
+    "Weights, shortlist quality and AI reasoning need evaluation. No global optimality or user benefit is established.",
+    "C: Preferred-window overlap is short by 19 minutes; destination retained."
+  ],
+  "evidence": [
+    {
+      "id": "input:B",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "id": "B",
+        "name": "B — coffee stop (example coordinate)",
+        "latitude": -6.2613,
+        "longitude": 106.8106,
+        "durationMinutes": 60,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: an indoor coffee visit. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "10:00",
+          "closesAt": "20:00"
+        }
+      }
+    },
+    {
+      "id": "input:C",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "id": "C",
+        "name": "C — outdoor stop (example coordinate)",
+        "latitude": -6.2601,
+        "longitude": 106.8124,
+        "durationMinutes": 45,
+        "exposure": "outdoor",
+        "context": "User-supplied scenario: an outdoor visit preferred before sunset. Visibility and suitability are unverified.",
+        "openingHours": {
+          "opensAt": "08:00",
+          "closesAt": "20:00"
+        },
+        "preferredWindow": {
+          "kind": "sunset",
+          "minutesBefore": 60
+        }
+      }
+    },
+    {
+      "id": "input:D",
+      "source": "User-provided, unverified place context and constraints",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "id": "D",
+        "name": "D — reading stop (example coordinate)",
+        "latitude": -6.2649,
+        "longitude": 106.7984,
+        "durationMinutes": 45,
+        "exposure": "indoor",
+        "context": "User-supplied scenario: a reading stop where Johan may want to stay longer. This is not a verified venue listing.",
+        "openingHours": {
+          "opensAt": "09:00",
+          "closesAt": "20:00"
+        }
+      }
+    },
+    {
+      "id": "matrix:A/D",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "A",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 342,
+        "distanceMeters": 1237,
+        "evidenceId": "matrix:A/D",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:C/B",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "C",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 643,
+        "distanceMeters": 2393,
+        "evidenceId": "matrix:C/B",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:D/B",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "D",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 533,
+        "distanceMeters": 2340,
+        "evidenceId": "matrix:D/B",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:B/C",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "B",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 803,
+        "distanceMeters": 3165,
+        "evidenceId": "matrix:B/C",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:A/C",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "A",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 961,
+        "distanceMeters": 4260,
+        "evidenceId": "matrix:A/C",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:B/D",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "B",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 687,
+        "distanceMeters": 2368,
+        "evidenceId": "matrix:B/D",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:A/B",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "A",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 656,
+        "distanceMeters": 3131,
+        "evidenceId": "matrix:A/B",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:D/C",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793689200,
+        "durationSeconds": 922,
+        "distanceMeters": 4377,
+        "evidenceId": "matrix:D/C",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "matrix:C/D",
+      "source": "Google Routes computeRouteMatrix",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:28.853Z",
+      "data": {
+        "fromId": "C",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 961,
+        "distanceMeters": 3813,
+        "evidenceId": "matrix:C/D",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "weather:C",
+      "source": "Open-Meteo (weather model forecast)",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.652Z",
+      "data": {
+        "placeId": "C",
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 13,
+            "temperatureC": 26.8,
+            "cloudCover": 20
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 20,
+            "temperatureC": 26.2,
+            "cloudCover": 38
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 29,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 40,
+            "temperatureC": 25.4,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 43,
+            "temperatureC": 25.2,
+            "cloudCover": 61
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 33,
+            "temperatureC": 24.9,
+            "cloudCover": 52
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 16,
+            "temperatureC": 25.2,
+            "cloudCover": 33
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 4,
+            "temperatureC": 26.8,
+            "cloudCover": 22
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 0,
+            "temperatureC": 28.6,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 0,
+            "temperatureC": 30.2,
+            "cloudCover": 7
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 4,
+            "temperatureC": 31.6,
+            "cloudCover": 3
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 21,
+            "temperatureC": 32.8,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 44,
+            "temperatureC": 33.6,
+            "cloudCover": 12
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 65,
+            "temperatureC": 34.1,
+            "cloudCover": 29
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 80,
+            "temperatureC": 32.5,
+            "cloudCover": 53
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 93,
+            "temperatureC": 31.4,
+            "cloudCover": 27
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 100,
+            "temperatureC": 31.5,
+            "cloudCover": 31
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 100,
+            "temperatureC": 29.9,
+            "cloudCover": 66
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 96,
+            "temperatureC": 27.5,
+            "cloudCover": 47
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 86,
+            "temperatureC": 25.8,
+            "cloudCover": 45
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 65,
+            "temperatureC": 25.4,
+            "cloudCover": 50
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 38,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 18,
+            "temperatureC": 25.8,
+            "cloudCover": 85
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 12,
+            "temperatureC": 25.8,
+            "cloudCover": 94
+          }
+        ],
+        "sunrise": 1793658372,
+        "sunset": 1793702803,
+        "evidenceId": "weather:C",
+        "requestedDate": "2026-11-03",
+        "latitude": -6.2601,
+        "longitude": 106.8124,
+        "attribution": "https://open-meteo.com/"
+      }
+    },
+    {
+      "id": "weather:B",
+      "source": "Open-Meteo (weather model forecast)",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.656Z",
+      "data": {
+        "placeId": "B",
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 13,
+            "temperatureC": 26.8,
+            "cloudCover": 20
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 20,
+            "temperatureC": 26.2,
+            "cloudCover": 38
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 29,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 40,
+            "temperatureC": 25.4,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 43,
+            "temperatureC": 25.2,
+            "cloudCover": 61
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 33,
+            "temperatureC": 24.9,
+            "cloudCover": 52
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 16,
+            "temperatureC": 25.2,
+            "cloudCover": 33
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 4,
+            "temperatureC": 26.8,
+            "cloudCover": 22
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 0,
+            "temperatureC": 28.6,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 0,
+            "temperatureC": 30.2,
+            "cloudCover": 7
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 4,
+            "temperatureC": 31.6,
+            "cloudCover": 3
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 21,
+            "temperatureC": 32.8,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 44,
+            "temperatureC": 33.6,
+            "cloudCover": 12
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 65,
+            "temperatureC": 34.1,
+            "cloudCover": 29
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 80,
+            "temperatureC": 32.5,
+            "cloudCover": 53
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 93,
+            "temperatureC": 31.4,
+            "cloudCover": 27
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 100,
+            "temperatureC": 31.5,
+            "cloudCover": 31
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 100,
+            "temperatureC": 29.9,
+            "cloudCover": 66
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 96,
+            "temperatureC": 27.5,
+            "cloudCover": 47
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 86,
+            "temperatureC": 25.8,
+            "cloudCover": 45
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 65,
+            "temperatureC": 25.4,
+            "cloudCover": 50
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 38,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 18,
+            "temperatureC": 25.8,
+            "cloudCover": 85
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 12,
+            "temperatureC": 25.8,
+            "cloudCover": 94
+          }
+        ],
+        "sunrise": 1793658372,
+        "sunset": 1793702803,
+        "evidenceId": "weather:B",
+        "requestedDate": "2026-11-03",
+        "latitude": -6.2613,
+        "longitude": 106.8106,
+        "attribution": "https://open-meteo.com/"
+      }
+    },
+    {
+      "id": "weather:D",
+      "source": "Open-Meteo (weather model forecast)",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.658Z",
+      "data": {
+        "placeId": "D",
+        "hours": [
+          {
+            "at": 1793638800,
+            "rainProbability": 13,
+            "temperatureC": 26.8,
+            "cloudCover": 20
+          },
+          {
+            "at": 1793642400,
+            "rainProbability": 20,
+            "temperatureC": 26.2,
+            "cloudCover": 38
+          },
+          {
+            "at": 1793646000,
+            "rainProbability": 29,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793649600,
+            "rainProbability": 40,
+            "temperatureC": 25.4,
+            "cloudCover": 77
+          },
+          {
+            "at": 1793653200,
+            "rainProbability": 43,
+            "temperatureC": 25.2,
+            "cloudCover": 61
+          },
+          {
+            "at": 1793656800,
+            "rainProbability": 33,
+            "temperatureC": 24.9,
+            "cloudCover": 52
+          },
+          {
+            "at": 1793660400,
+            "rainProbability": 16,
+            "temperatureC": 25.2,
+            "cloudCover": 33
+          },
+          {
+            "at": 1793664000,
+            "rainProbability": 4,
+            "temperatureC": 26.8,
+            "cloudCover": 22
+          },
+          {
+            "at": 1793667600,
+            "rainProbability": 0,
+            "temperatureC": 28.6,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793671200,
+            "rainProbability": 0,
+            "temperatureC": 30.2,
+            "cloudCover": 7
+          },
+          {
+            "at": 1793674800,
+            "rainProbability": 4,
+            "temperatureC": 31.6,
+            "cloudCover": 3
+          },
+          {
+            "at": 1793678400,
+            "rainProbability": 21,
+            "temperatureC": 32.8,
+            "cloudCover": 9
+          },
+          {
+            "at": 1793682000,
+            "rainProbability": 44,
+            "temperatureC": 33.6,
+            "cloudCover": 12
+          },
+          {
+            "at": 1793685600,
+            "rainProbability": 65,
+            "temperatureC": 34.1,
+            "cloudCover": 29
+          },
+          {
+            "at": 1793689200,
+            "rainProbability": 80,
+            "temperatureC": 32.5,
+            "cloudCover": 53
+          },
+          {
+            "at": 1793692800,
+            "rainProbability": 93,
+            "temperatureC": 31.4,
+            "cloudCover": 27
+          },
+          {
+            "at": 1793696400,
+            "rainProbability": 100,
+            "temperatureC": 31.5,
+            "cloudCover": 31
+          },
+          {
+            "at": 1793700000,
+            "rainProbability": 100,
+            "temperatureC": 29.9,
+            "cloudCover": 66
+          },
+          {
+            "at": 1793703600,
+            "rainProbability": 96,
+            "temperatureC": 27.5,
+            "cloudCover": 47
+          },
+          {
+            "at": 1793707200,
+            "rainProbability": 86,
+            "temperatureC": 25.8,
+            "cloudCover": 45
+          },
+          {
+            "at": 1793710800,
+            "rainProbability": 65,
+            "temperatureC": 25.4,
+            "cloudCover": 50
+          },
+          {
+            "at": 1793714400,
+            "rainProbability": 38,
+            "temperatureC": 25.7,
+            "cloudCover": 63
+          },
+          {
+            "at": 1793718000,
+            "rainProbability": 18,
+            "temperatureC": 25.8,
+            "cloudCover": 85
+          },
+          {
+            "at": 1793721600,
+            "rainProbability": 12,
+            "temperatureC": 25.8,
+            "cloudCover": 94
+          }
+        ],
+        "sunrise": 1793658372,
+        "sunset": 1793702803,
+        "evidenceId": "weather:D",
+        "requestedDate": "2026-11-03",
+        "latitude": -6.2649,
+        "longitude": 106.7984,
+        "attribution": "https://open-meteo.com/"
+      }
+    },
+    {
+      "id": "route:A/D@1793689200",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.722Z",
+      "data": {
+        "fromId": "A",
+        "toId": "D",
+        "departureAt": 1793689200,
+        "durationSeconds": 342,
+        "distanceMeters": 1237,
+        "evidenceId": "route:A/D@1793689200",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:D/B@1793692242",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.796Z",
+      "data": {
+        "fromId": "D",
+        "toId": "B",
+        "departureAt": 1793692242,
+        "durationSeconds": 523,
+        "distanceMeters": 2340,
+        "evidenceId": "route:D/B@1793692242",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:B/C@1793696365",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.873Z",
+      "data": {
+        "fromId": "B",
+        "toId": "C",
+        "departureAt": 1793696365,
+        "durationSeconds": 828,
+        "distanceMeters": 3165,
+        "evidenceId": "route:B/C@1793696365",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:A/B@1793689200",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:29.940Z",
+      "data": {
+        "fromId": "A",
+        "toId": "B",
+        "departureAt": 1793689200,
+        "durationSeconds": 656,
+        "distanceMeters": 3131,
+        "evidenceId": "route:A/B@1793689200",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:B/D@1793693456",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.022Z",
+      "data": {
+        "fromId": "B",
+        "toId": "D",
+        "departureAt": 1793693456,
+        "durationSeconds": 681,
+        "distanceMeters": 2368,
+        "evidenceId": "route:B/D@1793693456",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:D/C@1793696837",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.110Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793696837,
+        "durationSeconds": 978,
+        "distanceMeters": 4377,
+        "evidenceId": "route:D/C@1793696837",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:D/C@1793692242",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.184Z",
+      "data": {
+        "fromId": "D",
+        "toId": "C",
+        "departureAt": 1793692242,
+        "durationSeconds": 1046,
+        "distanceMeters": 4681,
+        "evidenceId": "route:D/C@1793692242",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:C/B@1793701903",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.268Z",
+      "data": {
+        "fromId": "C",
+        "toId": "B",
+        "departureAt": 1793701903,
+        "durationSeconds": 725,
+        "distanceMeters": 2393,
+        "evidenceId": "route:C/B@1793701903",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:B/C@1793693456",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.324Z",
+      "data": {
+        "fromId": "B",
+        "toId": "C",
+        "departureAt": 1793693456,
+        "durationSeconds": 878,
+        "distanceMeters": 3165,
+        "evidenceId": "route:B/C@1793693456",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "route:C/D@1793697034",
+      "source": "Google Routes computeRoutes",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:30.401Z",
+      "data": {
+        "fromId": "C",
+        "toId": "D",
+        "departureAt": 1793697034,
+        "durationSeconds": 1125,
+        "distanceMeters": 4975,
+        "evidenceId": "route:C/D@1793697034",
+        "trafficRequested": true,
+        "fallbackInfo": null
+      }
+    },
+    {
+      "id": "candidate:D/B/C:wait",
+      "source": "PoC schedule calculation",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "order": [
+          "D",
+          "B",
+          "C"
+        ],
+        "score": 126.59,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:B/D/C:wait",
+      "source": "PoC schedule calculation",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "order": [
+          "B",
+          "D",
+          "C"
+        ],
+        "score": 134.37,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:D/C/B:wait",
+      "source": "PoC schedule calculation",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "order": [
+          "D",
+          "C",
+          "B"
+        ],
+        "score": 149.86,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:D/B/C:direct",
+      "source": "PoC schedule calculation",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "order": [
+          "D",
+          "B",
+          "C"
+        ],
+        "score": 173.72,
+        "feasible": true,
+        "violations": []
+      }
+    },
+    {
+      "id": "candidate:B/C/D:direct",
+      "source": "PoC schedule calculation",
+      "synthetic": false,
+      "fetchedAt": "2026-11-02T10:09:39.094Z",
+      "data": {
+        "order": [
+          "B",
+          "C",
+          "D"
+        ],
+        "score": 219.5,
+        "feasible": true,
+        "violations": []
+      }
+    }
+  ]
+}

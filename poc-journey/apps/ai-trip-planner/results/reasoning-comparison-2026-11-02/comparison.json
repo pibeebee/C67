@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-11-02T10:23:14.071Z",
+  "model": "nvidia/nemotron-3.5-super-vl:free",
+  "sourcePath": "<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/ai-trip-planner/results/super-vl-live/report.json",
+  "sourceGeneratedAt": "2026-11-02T10:09:39.094Z",
+  "promptMatches": true,
+  "schemaMatches": true,
+  "newGoogleOrWeatherCalls": 0,
+  "internalReasoningTextStored": false,
+  "variants": [
+    {
+      "mode": "off",
+      "maxTokens": 2500,
+      "timeoutMs": 30000,
+      "elapsedMs": 58230,
+      "passed": false,
+      "error": "AI must explain every remaining destination.",
+      "promptHash": "161d6dbd875ace7e78f5111a539385c727791e5fff7ef053ef22a5ef20368447",
+      "schemaHash": "a5c6eddb21a26e40d36450210171bd2007cbfd72758fcc0a49161bf1d8bd0005",
+      "observation": {
+        "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+        "finishReason": "stop",
+        "promptTokens": 6775,
+        "completionTokens": 1059,
+        "reasoningTokens": 0,
+        "visibleTokens": 1059,
+        "cachedPromptTokens": 4336,
+        "reportedCost": 0,
+        "contentCharacters": 2971
+      },
+      "decision": null,
+      "selectedFacts": null
+    },
+    {
+      "mode": "on",
+      "maxTokens": 16384,
+      "timeoutMs": 180000,
+      "elapsedMs": 39809,
+      "passed": false,
+      "error": "AI must explain every remaining destination.",
+      "promptHash": "161d6dbd875ace7e78f5111a539385c727791e5fff7ef053ef22a5ef20368447",
+      "schemaHash": "a5c6eddb21a26e40d36450210171bd2007cbfd72758fcc0a49161bf1d8bd0005",
+      "observation": {
+        "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+        "finishReason": "stop",
+        "promptTokens": 6775,
+        "completionTokens": 2821,
+        "reasoningTokens": 2102,
+        "visibleTokens": 719,
+        "cachedPromptTokens": 4336,
+        "reportedCost": 0,
+        "contentCharacters": 1920
+      },
+      "decision": null,
+      "selectedFacts": null
+    }
+  ]
+}

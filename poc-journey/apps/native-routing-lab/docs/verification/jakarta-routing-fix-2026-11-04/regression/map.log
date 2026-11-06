@@ -1,0 +1,7 @@
+PASS 1: cache survives re-entry and distinct leg IDs; geometry ETA never mutates itinerary ETA
+PASS 2: cache keys separate coordinates, departure and mode, even when leg ID is reused
+PASS 3: partial failure preserves successful geometry; explicit retry requests only missing geometry
+PASS 4: transit, same-point and incomplete input produce no provider requests or fabricated geometry
+PASS 5: retry obeys the per-report request budget and retains loaded geometry
+PASS 6: late response from cancelled load cannot overwrite a newer route or loading state
+6 local macOS map-state checks passed. Synthetic provider; no network or iOS tests.

@@ -1,0 +1,222 @@
+{
+  "phase": "post-primary diagnostic on the same cases; not independent confirmation",
+  "independentBM25MaxError": 1.7763568394002505e-15,
+  "independentMetricMaxError": 0,
+  "variants": {
+    "original-reproduction": {
+      "meanNDCGAt3": 0.8298997944446951,
+      "e5MeanDelta": 0.1471492428572894,
+      "wins": 7,
+      "ties": 16,
+      "losses": 1
+    },
+    "direction-only": {
+      "meanNDCGAt3": 0.842314788552903,
+      "e5MeanDelta": 0.1347342487490814,
+      "wins": 7,
+      "ties": 15,
+      "losses": 2
+    },
+    "direction-description-only": {
+      "meanNDCGAt3": 0.842314788552903,
+      "e5MeanDelta": 0.1347342487490814,
+      "wins": 7,
+      "ties": 15,
+      "losses": 2
+    }
+  },
+  "cases": [
+    {
+      "case": "currency-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "currency-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.0,
+      "direction-only": 0.23676997261905083,
+      "direction-description-only": 0.23676997261905083,
+      "e5": 1
+    },
+    {
+      "case": "maritime-literal",
+      "family": "literal",
+      "original-reproduction": 0.8262346571285599,
+      "direction-only": 0.8651685470110017,
+      "direction-description-only": 0.8651685470110017,
+      "e5": 1
+    },
+    {
+      "case": "maritime-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.52129602861432,
+      "direction-only": 0.15573555952976667,
+      "direction-description-only": 0.15573555952976667,
+      "e5": 0.7967075809905066
+    },
+    {
+      "case": "textiles-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "textiles-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "puppets-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "puppets-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.0,
+      "direction-only": 0.23676997261905083,
+      "direction-description-only": 0.23676997261905083,
+      "e5": 1
+    },
+    {
+      "case": "city-history-literal",
+      "family": "literal",
+      "original-reproduction": 0.9819702166583266,
+      "direction-only": 0.9819702166583266,
+      "direction-description-only": 0.9819702166583266,
+      "e5": 0.8262346571285599
+    },
+    {
+      "case": "city-history-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.8262346571285599,
+      "direction-only": 0.8651685470110017,
+      "direction-description-only": 0.8651685470110017,
+      "e5": 0.8262346571285599
+    },
+    {
+      "case": "independence-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "independence-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "dutch-reading-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "dutch-reading-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.5,
+      "direction-only": 0.7103099178571526,
+      "direction-description-only": 0.7103099178571526,
+      "e5": 1
+    },
+    {
+      "case": "focused-study-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "focused-study-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "drink-and-read-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "drink-and-read-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "colonial-coffee-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "colonial-coffee-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.6309297535714574,
+      "direction-only": 0.5327324383928643,
+      "direction-description-only": 0.5327324383928643,
+      "e5": 1
+    },
+    {
+      "case": "creative-coffee-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "creative-coffee-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 0.6309297535714574,
+      "direction-only": 0.6309297535714574,
+      "direction-description-only": 0.6309297535714574,
+      "e5": 1
+    },
+    {
+      "case": "community-art-literal",
+      "family": "literal",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    },
+    {
+      "case": "community-art-paraphrase",
+      "family": "paraphrase",
+      "original-reproduction": 1.0,
+      "direction-only": 1.0,
+      "direction-description-only": 1.0,
+      "e5": 1
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "checkedAt": "2026-11-02",
+  "locations": {
+    "funabashi_station": {
+      "name": "JR Funabashi Station",
+      "address": "JR船橋駅 千葉県船橋市",
+      "area": "funabashi",
+      "precision": "named_place"
+    },
+    "inamura_park": {
+      "name": "Kamakura Seaside Park, Inamuragasaki",
+      "address": "鎌倉海浜公園 稲村ガ崎地区 鎌倉市",
+      "area": "kamakura",
+      "precision": "park_area"
+    },
+    "inamura_station": {
+      "name": "Inamuragasaki Station",
+      "address": "稲村ヶ崎駅 鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "bridge": {
+      "name": "Enoshima Ohashi / akses jembatan pejalan kaki",
+      "address": "江の島大橋 藤沢市",
+      "area": "enoshima",
+      "precision": "bridge_area"
+    },
+    "sea_candle": {
+      "name": "Enoshima Sea Candle",
+      "address": "江の島シーキャンドル 神奈川県藤沢市江の島2丁目3-28",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "kokomae": {
+      "name": "Kamakurakokomae Station",
+      "address": "鎌倉高校前駅 鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "hachimangu": {
+      "name": "Tsurugaoka Hachimangu",
+      "address": "鶴岡八幡宮 鎌倉市雪ノ下2丁目1-31",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "shichiri_beach": {
+      "name": "Shichirigahama Beach",
+      "address": "七里ヶ浜海岸 鎌倉市",
+      "area": "kamakura",
+      "precision": "beach_area"
+    },
+    "tourist_center": {
+      "name": "Fujisawa City Tourist Center, Katase Kaigan",
+      "address": "藤沢市観光センター 神奈川県藤沢市片瀬海岸2-20-13",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "fujisawa_station": {
+      "name": "Fujisawa Station; clock tower belum dipatok",
+      "address": "藤沢駅 神奈川県藤沢市",
+      "area": "fujisawa",
+      "precision": "station_area"
+    },
+    "enoshima_station": {
+      "name": "Enoden Enoshima Station",
+      "address": "江ノ島駅 江ノ島電鉄 藤沢市",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "oiwayamichi": {
+      "name": "Oiwayamichi Street, titik pendekatan Nakamuraya",
+      "address": "神奈川県藤沢市江の島2丁目5-25 中村屋羊羹店",
+      "area": "enoshima",
+      "precision": "street_reference_point"
+    },
+    "katase_station": {
+      "name": "Katase-Enoshima Station",
+      "address": "片瀬江ノ島駅 藤沢市",
+      "area": "enoshima",
+      "precision": "named_place"
+    },
+    "komachi": {
+      "name": "Komachi Street",
+      "address": "小町通り 鎌倉市",
+      "area": "kamakura",
+      "precision": "street_area"
+    },
+    "kamakura_station": {
+      "name": "Kamakura Station",
+      "address": "鎌倉駅 神奈川県鎌倉市",
+      "area": "kamakura",
+      "precision": "named_place"
+    },
+    "enoshima_souvenir": {
+      "name": "Toko suvenir dekat Stasiun Enoshima, toko spesifik belum dipilih",
+      "address": null,
+      "area": "enoshima",
+      "precision": "unknown"
+    }
+  },
+  "areas": [
+    {
+      "id": "funabashi",
+      "name": "Funabashi",
+      "latitude": 35.702,
+      "longitude": 139.985
+    },
+    {
+      "id": "kamakura",
+      "name": "Kamakura dan pesisir",
+      "latitude": 35.319,
+      "longitude": 139.55
+    },
+    {
+      "id": "enoshima",
+      "name": "Enoshima dan Katase",
+      "latitude": 35.3,
+      "longitude": 139.48
+    },
+    {
+      "id": "fujisawa",
+      "name": "Fujisawa Station area",
+      "latitude": 35.339,
+      "longitude": 139.487
+    }
+  ],
+  "facts": [
+    {
+      "id": "official:tourist-center",
+      "kind": "opening_hours",
+      "name": "Fujisawa City Tourist Center, Katase Kaigan",
+      "opensAt": "08:30",
+      "closesAt": "17:00",
+      "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "checkedDate": "2026-11-02",
+      "note": "Alamat operator: Katase Kaigan 2-20-13. Jam umum, bukan jaminan tidak ada penutupan khusus pada tanggal kunjungan.",
+      "activityIds": ["P09"]
+    },
+    {
+      "id": "official:oiwayamichi",
+      "kind": "place_identity",
+      "name": "Oiwayamichi Street / 御岩屋道通り",
+      "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+      "checkedDate": "2026-11-02",
+      "note": "Situs pariwisata kota memakai alamat dekat Nakamuraya, Enoshima 2-5-25, sebagai titik referensi jalan. Bukan titik wajib atau panjang seluruh kunjungan.",
+      "activityIds": ["P12"]
+    },
+    {
+      "id": "official:sea-candle-hours",
+      "kind": "opening_hours",
+      "activityIds": ["P05"],
+      "name": "Sea Candle, jam umum",
+      "opensAt": "09:00",
+      "closesAt": "20:00",
+      "url": "https://enoshima-seacandle.com/opening-hours/",
+      "checkedDate": "2026-11-02",
+      "note": "Jam umum; last entry 30 menit sebelum tutup. Acara dapat memperpanjang jam, tetapi jam acara tidak otomatis menjadi jam semua fasilitas."
+    }
+  ],
+  "walkingPairs": [],
+  "limitations": [
+    "Daftar hanya memberi nama toko suvenir; toko spesifik belum dipilih, jangan menebak alamat.",
+    "Menara jam Fujisawa belum memiliki titik yang diverifikasi; stasiun hanya menjadi referensi area.",
+    "Jam sumber awal berasal dari konteks tersimpan, bukan hasil browser baru.",
+    "Tidak ada pasangan rute atau urutan yang diberikan; penentuan urutan merupakan tugas sistem."
+  ],
+  "research": {
+    "allowedHosts": [
+      "enoshima-seacandle.com",
+      "fujisawa-kanko.jp",
+      "enoden.co.jp",
+      "jreast.co.jp",
+      "odakyu.jp",
+      "hachimangu.or.jp"
+    ],
+    "seedUrls": [
+      "https://enoshima-seacandle.com/opening-hours/",
+      "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "https://www.enoden.co.jp/",
+      "https://www.jreast.co.jp/",
+      "https://www.odakyu.jp/"
+    ],
+    "queries": [],
+    "maxPages": 32,
+    "maxSearches": 16,
+    "maxRounds": 24,
+    "timeoutMs": 600000,
+    "maxPageChars": 128000
+  }
+}

@@ -1,0 +1,11 @@
+PASS 1: automatic append, synchronize, valid JSON Lines and Unicode/newline preservation
+PASS 2: queued events retain order; snapshot waits for pending writes
+PASS 3: a new store/session reopens earlier on-disk logs
+PASS 4: oversized record is bounded and explicitly marked, without invalid JSON
+PASS 5: rotation keeps latest files within count/size limits
+PASS 6: damaged lines are reported and preserved in raw export, without hiding valid events
+PASS 7: storage failures are surfaced without crashing or reporting successful writes
+PASS 8: error domain/code and underlying failure retained for debugging
+8 persistent-log checks passed on macOS; no network, iOS tests or Simulator.
+PASS 9: log written by a terminated process is readable in a separate process
+9 persistent-log checks passed on macOS; no iOS runtime or network.

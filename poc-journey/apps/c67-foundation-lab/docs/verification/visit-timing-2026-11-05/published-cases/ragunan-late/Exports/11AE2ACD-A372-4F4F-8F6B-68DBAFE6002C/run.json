@@ -1,0 +1,144 @@
+{
+  "catalogID" : "jakarta-official-2026-11-05-v1",
+  "createdAt" : "2026-11-05T01:47:56Z",
+  "elapsedSeconds" : 0.00017702579498291016,
+  "id" : "11AE2ACD-A372-4F4F-8F6B-68DBAFE6002C",
+  "options" : [
+
+  ],
+  "policyVersion" : "visit-time-v1",
+  "request" : {
+    "available" : {
+      "end" : 1080,
+      "start" : 930
+    },
+    "date" : "2026-11-07",
+    "durationMinutes" : 60,
+    "goal" : "openingOnly",
+    "venueID" : "ragunan"
+  },
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "sources" : [
+    {
+      "checkedAt" : "2026-11-05T01:34:17Z",
+      "id" : "ragunan",
+      "method" : "Halaman resmi diambil langsung melalui HTTPS dan diperiksa manual",
+      "note" : "Snapshot publikasi, bukan pemeriksaan di lokasi. SHA256 halaman: 50228e1027b423003448fb822eb00ab89d1d7b7ba728838d3eff07033ae8e8eb",
+      "title" : "Taman Margasatwa Ragunan — layanan publik",
+      "url" : "https:\/\/ragunanzoo.jakarta.go.id\/language\/en\/"
+    }
+  ],
+  "status" : "no_window",
+  "validStartRanges" : [
+
+  ],
+  "venue" : {
+    "address" : "Harsono RM 1, Ragunan, Jakarta Selatan",
+    "exposure" : "outdoor",
+    "exposureSourceID" : "ragunan",
+    "id" : "ragunan",
+    "name" : "Taman Margasatwa Ragunan",
+    "query" : "Taman Margasatwa Ragunan, Jakarta",
+    "schedule" : [
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+
+        ],
+        "weekday" : 1
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 2
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 3
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 4
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 5
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 6
+      },
+      {
+        "entryPauses" : [
+
+        ],
+        "sessions" : [
+          {
+            "end" : 960,
+            "start" : 420
+          }
+        ],
+        "weekday" : 7
+      }
+    ],
+    "sourceIDs" : [
+      "ragunan"
+    ],
+    "suspended" : false,
+    "timeZone" : "Asia\/Jakarta",
+    "unknowns" : [
+      "perubahan khusus tanggal dan hari libur",
+      "kapasitas\/slot tersedia",
+      "durasi kunjungan yang cocok",
+      "keramaian",
+      "fasilitas dan izin aktivitas spesifik"
+    ]
+  },
+  "warnings" : [
+    "Durasi 60 menit adalah asumsi perencanaan yang dapat diubah, bukan fakta durasi venue.",
+    "Jadwal reguler belum memverifikasi kapasitas, tiket, hari libur atau perubahan mendadak.",
+    "Tidak ada waktu mulai yang memenuhi rentang, durasi, aturan masuk dan sesi layanan."
+  ]
+}

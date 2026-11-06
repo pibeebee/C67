@@ -1,0 +1,84 @@
+{
+  "phase": "complete",
+  "runStartedAt": "2026-11-02T15:16:17.363Z",
+  "options": {
+    "walkingBufferMinutes": 5,
+    "transitBufferMinutes": 10,
+    "maxAttempts": 3,
+    "maxRouteRequests": 90,
+    "maxModelCalls": 8,
+    "maxRunTokens": 1000000,
+    "evidenceMaxAgeMinutes": 60
+  },
+  "reused": "results/japan-2026-12-05-researched-run1/collected.json",
+  "model": {
+    "calls": [
+      {
+        "purpose": "itinerary_proposal",
+        "elapsedMs": 164161,
+        "chargedTokens": 28028,
+        "usage": {
+          "prompt_tokens": 6145,
+          "completion_tokens": 21883,
+          "total_tokens": 28028,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 4336,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 16884,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "itinerary_proposal",
+        "elapsedMs": 113692,
+        "chargedTokens": 40264,
+        "usage": {
+          "prompt_tokens": 26029,
+          "completion_tokens": 14235,
+          "total_tokens": 40264,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 9208,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      }
+    ],
+    "maxCalls": 8,
+    "chargedTokens": 68292,
+    "totalTokenLimit": 1000000,
+    "missingUsageChargedAtConservativeReservation": true,
+    "internalReasoningStored": false
+  },
+  "stopReason": "missing_data_requires_confirmation"
+}

@@ -1,0 +1,28 @@
+{
+  "createdAtUnix": 1793805460.335051,
+  "promptVersion": "recommendations-v1",
+  "binarySHA256": "a160653a568a71ca041327d652703b19cd62e35c903967529d64a9361ec8c03b",
+  "sources": {
+    "App/LabModel.swift": "05506702cfa6dc14e9f73cacd81c97e66aa346a7a1e6d714aa712362b98275ba",
+    "App/RecommendationViews.swift": "6e8290e8f03d7ffdf6a661841dda3d3efaef364145e589d1545dc3fb701c8217",
+    "App/RecommendationModel.swift": "280983734ca58c6d10794df564bc58ccc30682321921340d14a75eabc28da9c0",
+    "App/LabViews.swift": "d135fec8daecc2b033ad3c58ee4ff4e53f8a4a0f5e2ee1c59253bddcf749934f",
+    "App/C67FoundationLabApp.swift": "7a21cb6229ccbd03dda86be59c133d84f7290acd786093ff8cdc9821778b61fb",
+    "Packages/TripIntelligence/Sources/FMTripEval/main.swift": "2309c80df1ee69475dc17493fe0c4f91675f8d50c66fb2811de610a6db3565c9",
+    "Packages/TripIntelligence/Sources/TripIntelligence/RecommendationPipeline.swift": "54ff1f95ec0a149f46050417f43d8b15d8c93d52129b5af869278c0f2c8076cf",
+    "Packages/TripIntelligence/Sources/TripIntelligence/RecommendationTypes.swift": "e7e1c69a3646d09950918412aa118fd49e9dfad60f4d9b3ca1ae00a18c38019c",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Pipeline.swift": "0720c0f899cab067fe1166bcbdd007db807e4d31d446e2fcb6fb2914e592e738",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Contracts.swift": "ea889475c684907d28be81f529bc92c0df4750b365354584c4aaef5a03a09494",
+    "Packages/TripIntelligence/Sources/TripIntelligence/ModelEngine.swift": "0042b93f6544bb24cf1ccae341af511d8d8ebad92f0ab2f7480c5d4b8a5ad85a",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Evaluation.swift": "8af01d509b0630120e5aaea953890fdc30e08a79ca4b312cde6eb599ed4a2ddd",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Fixtures.swift": "6871a5a182fac65abf795d1503f0b45a721579eef3b0a2f4f2642da16c1aa1dd",
+    "Packages/TripIntelligence/Sources/TripIntelligence/ImportAndSearch.swift": "f3e2be5bfcf3fcc496a625ba1cf4b92e5b42f2bc22ce972bc062d5ac4360a77c"
+  },
+  "inputs": {
+    "discovery-frozen-mapkit": "f5cc707f3dfc40d23321f293fb4f4a97e56c1d9c13efab5e57e49fc1f896e5cf",
+    "own-places-with-time-facts": "afa048ffa59d5bcb47e05a88f463fd6fb098c8f06b8a9e4edd084be38bc99227",
+    "english-correction": "8fdd7ade6e6fc000f5efb8d035e791495bec23300fe8f21dc90854790020b4a2"
+  },
+  "mapkitSnapshotSHA256": "d1d4807d9b2492ead7775c55964a6291d4a2e4a38b89976392ef2d41b89719dc",
+  "scope": "Three development regression cases, three correlated greedy repetitions. Not a holdout or semantic accuracy estimate."
+}

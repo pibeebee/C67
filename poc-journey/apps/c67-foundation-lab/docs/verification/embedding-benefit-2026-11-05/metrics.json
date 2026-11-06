@@ -1,0 +1,203 @@
+{
+  "protocol": "benefit-v1",
+  "rankingCases": 24,
+  "intentGroups": 12,
+  "safetyCases": 6,
+  "gatesPassed": 30,
+  "methods": {
+    "category": {
+      "meanNDCGAt3": 0.49623650739140646,
+      "meanPrecisionAt3": 0.33796296296296297,
+      "meanTopOneRelevance": 0.6574074074074074
+    },
+    "lexical": {
+      "meanNDCGAt3": 0.8298997944446951,
+      "meanPrecisionAt3": 0.4305555555555555,
+      "meanTopOneRelevance": 1.5
+    },
+    "e5": {
+      "meanNDCGAt3": 0.9770490373019844,
+      "meanPrecisionAt3": 0.4722222222222222,
+      "meanTopOneRelevance": 1.9583333333333333
+    },
+    "combined": {
+      "meanNDCGAt3": 0.9770490373019844,
+      "meanPrecisionAt3": 0.4722222222222222,
+      "meanTopOneRelevance": 1.9583333333333333
+    }
+  },
+  "families": {
+    "literal": {
+      "category": {
+        "meanNDCGAt3": 0.49623650739140646,
+        "meanPrecisionAt3": 0.33796296296296297,
+        "meanTopOneRelevance": 0.6574074074074074
+      },
+      "lexical": {
+        "meanNDCGAt3": 0.9840170728155739,
+        "meanPrecisionAt3": 0.4722222222222222,
+        "meanTopOneRelevance": 2
+      },
+      "e5": {
+        "meanNDCGAt3": 0.9855195547607133,
+        "meanPrecisionAt3": 0.4722222222222222,
+        "meanTopOneRelevance": 2
+      },
+      "combined": {
+        "meanNDCGAt3": 0.9855195547607133,
+        "meanPrecisionAt3": 0.4722222222222222,
+        "meanTopOneRelevance": 2
+      }
+    },
+    "paraphrase": {
+      "category": {
+        "meanNDCGAt3": 0.49623650739140646,
+        "meanPrecisionAt3": 0.33796296296296297,
+        "meanTopOneRelevance": 0.6574074074074074
+      },
+      "lexical": {
+        "meanNDCGAt3": 0.6757825160738162,
+        "meanPrecisionAt3": 0.3888888888888889,
+        "meanTopOneRelevance": 1
+      },
+      "e5": {
+        "meanNDCGAt3": 0.9685785198432555,
+        "meanPrecisionAt3": 0.4722222222222222,
+        "meanTopOneRelevance": 1.9166666666666667
+      },
+      "combined": {
+        "meanNDCGAt3": 0.9685785198432555,
+        "meanPrecisionAt3": 0.4722222222222222,
+        "meanTopOneRelevance": 1.9166666666666667
+      }
+    }
+  },
+  "paired": {
+    "e5": {
+      "category": {
+        "meanDelta": 0.480812529910578,
+        "clusterBootstrap95": [
+          0.31696711413690115,
+          0.6250262425360424
+        ],
+        "groups": 12,
+        "wins": 20,
+        "ties": 4,
+        "losses": 0,
+        "lossesByCase": []
+      },
+      "lexical": {
+        "meanDelta": 0.1471492428572894,
+        "clusterBootstrap95": [
+          0.04750016919568032,
+          0.2591208006949857
+        ],
+        "groups": 12,
+        "wins": 7,
+        "ties": 16,
+        "losses": 1,
+        "lossesByCase": [
+          "city-history-literal"
+        ]
+      }
+    },
+    "combined": {
+      "category": {
+        "meanDelta": 0.480812529910578,
+        "clusterBootstrap95": [
+          0.31696711413690115,
+          0.6250262425360424
+        ],
+        "groups": 12,
+        "wins": 20,
+        "ties": 4,
+        "losses": 0,
+        "lossesByCase": []
+      },
+      "lexical": {
+        "meanDelta": 0.1471492428572894,
+        "clusterBootstrap95": [
+          0.04750016919568032,
+          0.2591208006949857
+        ],
+        "groups": 12,
+        "wins": 7,
+        "ties": 16,
+        "losses": 1,
+        "lossesByCase": [
+          "city-history-literal"
+        ]
+      }
+    }
+  },
+  "consistency": [
+    {
+      "repeat": 2,
+      "changedRankings": [],
+      "unexpectedStates": 0
+    },
+    {
+      "repeat": 3,
+      "changedRankings": [],
+      "unexpectedStates": 0
+    }
+  ],
+  "unmasked": {
+    "category": {
+      "meanNDCGAt3": 0.49623650739140646,
+      "meanPrecisionAt3": 0.33796296296296297,
+      "meanTopOneRelevance": 0.6574074074074074
+    },
+    "lexical": {
+      "meanNDCGAt3": 0.8514843687505981,
+      "meanPrecisionAt3": 0.4444444444444444,
+      "meanTopOneRelevance": 1.5
+    },
+    "e5": {
+      "meanNDCGAt3": 0.9438528880940467,
+      "meanPrecisionAt3": 0.4583333333333333,
+      "meanTopOneRelevance": 1.9166666666666667
+    },
+    "combined": {
+      "meanNDCGAt3": 0.9438528880940467,
+      "meanPrecisionAt3": 0.4583333333333333,
+      "meanTopOneRelevance": 1.9166666666666667
+    }
+  },
+  "convincingBoundedIncrement": [
+    "e5",
+    "combined"
+  ],
+  "limitations": [
+    "Authored prospective cases, not independent human judgments or a blind holdout.",
+    "Queries within an intent and repeat processes are correlated.",
+    "Bootstrap is descriptive for 12 authored intent clusters.",
+    "Unknown facts, operational availability, user fit and input burden are not established."
+  ],
+  "timings": [
+    {
+      "repeat": 1,
+      "totalSeconds": 1.6896781921386719,
+      "firstCaseSeconds": 1.303421974182129,
+      "medianCaseSeconds": 0.010231554508209229,
+      "documentEncodeCalls": 167,
+      "queryEncodeCalls": 27
+    },
+    {
+      "repeat": 2,
+      "totalSeconds": 1.0721499919891357,
+      "firstCaseSeconds": 0.8180899620056152,
+      "medianCaseSeconds": 0.007332503795623779,
+      "documentEncodeCalls": 167,
+      "queryEncodeCalls": 27
+    },
+    {
+      "repeat": 3,
+      "totalSeconds": 1.7129157781600952,
+      "firstCaseSeconds": 1.297395944595337,
+      "medianCaseSeconds": 0.012286007404327393,
+      "documentEncodeCalls": 167,
+      "queryEncodeCalls": 27
+    }
+  ]
+}

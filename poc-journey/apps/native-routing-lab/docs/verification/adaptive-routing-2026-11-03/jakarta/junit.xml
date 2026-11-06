@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites>
+  <testsuite name="NativeTripJakartaTests" tests="26" failures="0" skipped="0" time="0.231">
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveEstimatedGainTriggersValidatedOptimization" time="0.041" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveJakartaSkipsExtraRequestsWithoutChangingSchedule" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveLargeWaitingTriggersOptimization" time="0.024" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveNoWaitingDoesNotHideUnknownRoadShortcuts" time="0.018" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveOneAndTwoDestinationsCoverAllOrdersWithoutSnapshot" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveScreeningPreservesWeatherAndPrivateCarSearch" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveTightClosingMarginStillRunsOptimization" time="0.018" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAdaptiveTinyScreeningBudgetFallsBackToSearch" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testAllSevenNativeMethodsPreserveStopsAndReachTheKnownFourStopReference" time="0.028" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testCentralJakartaSubsetReturnsToSudirman" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testChangedDateRejectsStaleOpeningHoursBeforeAnyETARequest" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testCompleteDwellAtClosingBoundaryIsAcceptedButOneMinuteEarlierIsNot" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testCurrentBaselinePipelineUsesElapsedObjective" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testForcedFullHybridRemainsAvailableForComparison" time="0.025" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testHybridPipelineKeepsValidatedBaselineAndRequestBudget" time="0.002" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testImpossibleOpeningWindowDoesNotProduceAFeasibleItinerary" time="0.019" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testLessTravelDoesNotBeatAnEarlierTripFinish" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testLongerDwellPropagatesAndCanReplaceOpeningWait" time="0.0" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testMissingAllRoutesIntoKelapaGadingRemainsUnknown" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testNorthJakartaSubsetWaitsUntilKelapaGadingOpens" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testRecordedFourStopScheduleHasExpectedTravelWaitAndReturn" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testShuffledInputStillVisitsEveryPlaceAndRespectsOpening" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testSyntheticHoursForEveryStopAreAllRespected" time="0.018" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testSyntheticPeakETAUsesActualDepartureAfterDwell" time="0.001" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testTripCrossingMidnightIsNotSilentlyShortened" time="0.023" />
+    <testcase classname="JakartaRoutingTests.NativeTripJakartaTests" name="testUnavailableTransitAndWalkingLimitDoNotInventTransport" time="0.001" />
+  </testsuite>
+</testsuites>

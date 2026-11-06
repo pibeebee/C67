@@ -1,0 +1,54 @@
+{
+  "complete" : true,
+  "os" : "Version 27.0.1 (Build 24A446)",
+  "progress" : "Evaluasi live selesai. 4/7 pass; lihat status.json untuk fail/blocked.",
+  "results" : [
+    {
+      "artifact" : "L01-weatherkit.json",
+      "detail" : "weatherkit/available: 3h; ",
+      "id" : "L01",
+      "seconds" : 1.0248069763183594,
+      "status" : "pass"
+    },
+    {
+      "detail" : "TripIntegration.IntegrationError [0]: Location review required: Perpustakaan Jakarta — Cikini, Jakarta: Hasil MapKit tidak cocok dengan nama/cabang bersumber. Tidak menerapkan fakta ke cabang lain.",
+      "id" : "L02",
+      "seconds" : 1.2548669576644897,
+      "status" : "fail"
+    },
+    {
+      "artifact" : "L03-plan.json",
+      "detail" : "Coffee and reading supported in the same BDT RBBJ area; real MapKit and routing.",
+      "id" : "L03",
+      "seconds" : 2.505506992340088,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L04-plan.json",
+      "detail" : "Outdoor sessions audited. Advisory statuses: context_ranked, context_ranked; unknown context remains explicit.",
+      "id" : "L04",
+      "seconds" : 7.662624001502991,
+      "status" : "pass"
+    },
+    {
+      "artifact" : "L05-e5-cold.json",
+      "detail" : "comparison_completed, category 0.0006830692291259766s; E5 cold 0.8702059984207153s, warm 0.0016820430755615234s. Same native gates.",
+      "id" : "L05",
+      "seconds" : 0.899495005607605,
+      "status" : "pass"
+    },
+    {
+      "detail" : "No accepted three-place baseline; no fabricated substitute.",
+      "id" : "L06",
+      "seconds" : 2.8014183044433594e-05,
+      "status" : "blocked"
+    },
+    {
+      "detail" : "TripIntegration.IntegrationError [0]: Location review required: Perpustakaan Jakarta — Cikini, Jakarta: Hasil MapKit tidak cocok dengan nama/cabang bersumber. Tidak menerapkan fakta ke cabang lain.",
+      "id" : "L07",
+      "seconds" : 1.4726979732513428,
+      "status" : "blocked"
+    }
+  ],
+  "updatedAt" : "2026-11-05T09:57:45Z"
+}

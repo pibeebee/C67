@@ -1,0 +1,19 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: 07870fe60ab1d1b6ea0be60f894e92d0de77d1494a37a649515d9724aa7de386
+2026-11-05 07:58:39.647 appintentsmetadataprocessor[91619:34807753] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'All tests' started at 2026-11-05 07:58:43.383.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 07:58:43.384.
+Test Suite 'LivePreferenceUITests' started at 2026-11-05 07:58:43.384.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' started.
+objc[91624]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x105b88310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105bbc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testCancellationAndLegacyTabRemainAvailable]' passed (13.215 seconds).
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' started.
+Test Case '-[C67FoundationLabUITests.LivePreferenceUITests testSearchLikeRefreshRestoreAndExport]' passed (22.479 seconds).
+Test Suite 'LivePreferenceUITests' passed at 2026-11-05 07:59:19.082.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 35.695 (35.698) seconds
+Test Suite 'C67FoundationLabUITests.xctest' passed at 2026-11-05 07:59:19.083.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 35.695 (35.700) seconds
+Test Suite 'All tests' passed at 2026-11-05 07:59:19.084.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 35.695 (35.701) seconds
+Test session results, code coverage, and logs:
+** TEST SUCCEEDED **

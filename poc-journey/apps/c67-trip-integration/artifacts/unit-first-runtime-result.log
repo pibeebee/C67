@@ -1,0 +1,94 @@
+Building for debugging...
+[Computing dependencies]
+[2 / 13] TripIntegrationTests-product
+[4 / 15] TripIntegrationTests-product
+[7 / 13] TripIntegrationTests-product
+[9 / 13] TripIntegrationTests-product
+[11 / 13] TripIntegrationTests-product
+Build complete! (2.69 sec)
+Test Suite 'All tests' started at 2026-11-05 16:49:13.570.
+Test Suite 'All tests' passed at 2026-11-05 16:49:13.571.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "P3 contracts and sourced time rules" started.
+􀟈  Suite "P3 location and interval weather" started.
+􀟈  Suite "P3 complete replay and failure paths" started.
+􀟈  Suite "P3 weather cache and isolated persistence" started.
+􀟈  Test wrongBranchNotAutomaticallyAccepted() started.
+􀟈  Test crossingAnHourlyBoundaryUsesBothIntervals() started.
+􀟈  Test staleFactsAndSuspendedMuseumBlock() started.
+􀟈  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() started.
+􀟈  Test wrongDayAndDuplicateAreasRejected() started.
+􀟈  Test supersededOperationCannotPublish() started.
+􀟈  Test WIBDateAndRoundingNeverRoundBackward() started.
+􀟈  Test publishedGBKSessionGapRequiresFullStay() started.
+􀟈  Test publishedFridayEntryPause() started.
+􀟈  Test ambiguousBranchNeedsExplicitSelection() started.
+􀟈  Test duplicateOrInvalidWeatherNeverBecomesZero() started.
+􀟈  Test limitsAndNegationConflictRejected() started.
+􀟈  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() started.
+􀟈  Test groupingBoundsEveryMemberAgainstRepresentative() started.
+􀟈  Test fullReplayPreservesPlacesAndExactArithmetic() started.
+􀟈  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() started.
+􁁛  Test ambiguousBranchNeedsExplicitSelection() passed after 0.002 seconds.
+􁁛  Test wrongBranchNotAutomaticallyAccepted() passed after 0.002 seconds.
+􁁛  Test supersededOperationCannotPublish() passed after 0.002 seconds.
+􁁛  Test crossingAnHourlyBoundaryUsesBothIntervals() passed after 0.002 seconds.
+􁁛  Test duplicateOrInvalidWeatherNeverBecomesZero() passed after 0.002 seconds.
+􁁛  Test duplicateSearchResultsCollapseAndOutsideJakartaExcluded() passed after 0.002 seconds.
+􁁛  Test groupingBoundsEveryMemberAgainstRepresentative() passed after 0.003 seconds.
+􁁛  Suite "P3 location and interval weather" passed after 0.003 seconds.
+􁁛  Test WIBDateAndRoundingNeverRoundBackward() passed after 0.003 seconds.
+􁁛  Test wrongDayAndDuplicateAreasRejected() passed after 0.007 seconds.
+􁁛  Test limitsAndNegationConflictRejected() passed after 0.007 seconds.
+􁁛  Test staleFactsAndSuspendedMuseumBlock() passed after 0.008 seconds.
+􁁛  Test publishedGBKSessionGapRequiresFullStay() passed after 0.008 seconds.
+􁁛  Test mondayClosuresAndUnknownHoursDoNotTurnIntoOpen() passed after 0.008 seconds.
+􀢄  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() recorded an issue at WeatherStorageTests.swift:47:5: Expectation failed: provider.calls == 3
+􀄵  provider.calls == 3 → false
+􀄵    provider.calls → 2
+􀢄  Test cacheReusedOnlyForCoveredFreshWindowAndProviderPolicy() failed after 0.008 seconds with 1 issue.
+􀟈  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() started.
+􁁛  Test publishedFridayEntryPause() passed after 0.009 seconds.
+􁁛  Suite "P3 contracts and sourced time rules" passed after 0.009 seconds.
+􁁛  Test fallbackCacheCannotMaskWeatherKitOnlyDiagnosis() passed after 0.002 seconds.
+􀟈  Test cooperativeTimeoutProducesUnknownWeather() started.
+􁁛  Test fullReplayPreservesPlacesAndExactArithmetic() passed after 0.023 seconds.
+􀟈  Test emptyProfileIsGeneralRatherThanPersonalized() started.
+􁁛  Test emptyProfileIsGeneralRatherThanPersonalized() passed after 0.003 seconds.
+􀟈  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() started.
+􁁛  Test cooperativeTimeoutProducesUnknownWeather() passed after 0.015 seconds.
+􀟈  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() started.
+􁁛  Test authenticationFailureSkipsRemainingGroupsAndIsNotCached() passed after 0.001 seconds.
+􀟈  Test weatherFailureStillAllowsRouteWithExplicitUnknown() started.
+􁁛  Test unknownMandatoryFeatureCannotBorrowEvidenceFromOtherVenue() passed after 0.006 seconds.
+􀟈  Test unknownSourceReferenceRejectedByFinalAudit() started.
+􁁛  Test weatherFailureStillAllowsRouteWithExplicitUnknown() passed after 0.017 seconds.
+􀟈  Test corruptFileWithoutBackupDoesNotResetToEmpty() started.
+􁁛  Test unknownSourceReferenceRejectedByFinalAudit() passed after 0.013 seconds.
+􀟈  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() started.
+􁁛  Test corruptFileWithoutBackupDoesNotResetToEmpty() passed after 0.005 seconds.
+􀢄  Suite "P3 weather cache and isolated persistence" failed after 0.050 seconds with 1 issue.
+􁁛  Test thirtyMoreMinutesPropagatesAndOriginalStaysUnchanged() passed after 0.015 seconds.
+􀟈  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() started.
+􁁛  Test deadlineFailureCannotBeAppliedAndDoesNotDropPlace() passed after 0.009 seconds.
+􀟈  Test unsupportedRequiredPlaceIsKeptForCorrection() started.
+􁁛  Test unsupportedRequiredPlaceIsKeptForCorrection() passed after 0.003 seconds.
+􀟈  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() started.
+􁁛  Test intentMustBeConfirmedAndMandatorySelectionsCannotDisappear() passed after 0.002 seconds.
+􀟈  Test unavailableETAProducesConflictInsteadOfInventedDuration() started.
+􁁛  Test unavailableETAProducesConflictInsteadOfInventedDuration() passed after 3.127 seconds.
+􀟈  Test cancellationNeverBecomesSuccess() started.
+􁁛  Test cancellationNeverBecomesSuccess() passed after 0.001 seconds.
+􀟈  Test changedRevisionAndForgedPinRejectedBeforeRouting() started.
+􁁛  Test changedRevisionAndForgedPinRejectedBeforeRouting() passed after 0.003 seconds.
+􀟈  Test applyRejectAndStaleBaseGuard() started.
+􁁛  Test applyRejectAndStaleBaseGuard() passed after 0.012 seconds.
+􀟈  Test storageRoundTripBackupRecoveryAndExport() started.
+􁁛  Test storageRoundTripBackupRecoveryAndExport() passed after 0.027 seconds.
+􁁛  Suite "P3 complete replay and failure paths" passed after 3.250 seconds.
+􀢄  Test run with 33 tests in 4 suites failed after 3.250 seconds with 1 issue.
+Note: Some test targets reported failures:
+  - TripIntegrationTests (Swift Testing)

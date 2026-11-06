@@ -1,0 +1,22 @@
+{
+  "build": "passed",
+  "allSixNativeComparisonResultsComplete": true,
+  "allMandatoryStopsRetained": true,
+  "snapshotOpeningSecondsSinceDeparture": 10800,
+  "snapshotClosingUnknown": true,
+  "comparisonArcsIdenticalToPreviousNoHoursRun": true,
+  "baselineAndExactLiveOpeningRespected": true,
+  "liveTimingArithmeticConsistent": true,
+  "uiInvalidClosingRejected": "Summarecon Mall Kelapa Gading: Jam tutup harus setelah jam buka pada hari yang sama.",
+  "uiStaleDateRejected": "Summarecon Mall Kelapa Gading: Tanggal atau zona waktu trip berubah. Periksa dan konfirmasi ulang jam operasional.",
+  "invalidImportsPreservedExistingReport": true,
+  "notExecuted": [
+    "XCTest targets",
+    "physical iPhone",
+    "OR-Tools helper",
+    "live mode for local/insertion/beam/ALNS",
+    "closing-time conflict on an actual route",
+    "weekly/holiday/multiple opening ranges"
+  ],
+  "runtimeSourceChangedDuringThisTestTurn": false
+}

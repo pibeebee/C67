@@ -1,0 +1,69 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'preferencelearning': failed storing manifest for 'preferencelearning' in cache: attempt to write a readonly database
+warning: 'swift-transformers': failed storing manifest for 'swift-transformers' in cache: attempt to write a readonly database
+warning: 'onnxruntime-swift-package-manager': failed storing manifest for 'onnxruntime-swift-package-manager' in cache: attempt to write a readonly database
+warning: 'swift-collections': failed storing manifest for 'swift-collections' in cache: attempt to write a readonly database
+warning: 'yyjson': failed storing manifest for 'yyjson' in cache: attempt to write a readonly database
+warning: 'swift-huggingface': failed storing manifest for 'swift-huggingface' in cache: attempt to write a readonly database
+warning: 'swift-jinja': failed storing manifest for 'swift-jinja' in cache: attempt to write a readonly database
+warning: 'swift-crypto': failed storing manifest for 'swift-crypto' in cache: attempt to write a readonly database
+warning: 'swift-asn1': failed storing manifest for 'swift-asn1' in cache: attempt to write a readonly database
+warning: 'eventsource': failed storing manifest for 'eventsource' in cache: attempt to write a readonly database
+Building for debugging...
+[Computing dependencies]
+[2 / 5] PreferenceLearning
+[3 / 6] PreferenceLearning
+[7 / 10] PreferenceLearning
+[10 / 14] PreferenceLearningTests-product
+[12 / 16] PreferenceLearningTests-product
+[17 / 19] PreferenceLearningTests-product
+[19 / 19] PreferenceLearningTests-product
+[21 / 25] preference-eval-product
+[23 / 27] preference-eval-product
+[26 / 27] preference-eval-product
+Build complete! (3.25 sec)
+Test Suite 'All tests' started at 2026-11-05 07:31:29.950.
+Test Suite 'PreferenceLearningTests.xctest' started at 2026-11-05 07:31:29.952.
+Test Suite 'PreferenceTests' started at 2026-11-05 07:31:29.952.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCancellationDoesNotBecomeFallback]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCancellationDoesNotBecomeFallback]' passed (0.002 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testColdStartIsNotClaimedPersonal]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testColdStartIsNotClaimedPersonal]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testCosineRejectsInvalidVectors]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCosineRejectsInvalidVectors]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testDislikeIsNotAGlobalCategoryAvoid]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testDislikeIsNotAGlobalCategoryAvoid]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testExplicitAvoidOverridesLike]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testExplicitAvoidOverridesLike]' passed (0.001 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testFeedbackDoesNotInflateOnRepeatedChoice]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testFeedbackDoesNotInflateOnRepeatedChoice]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testInputLimits]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testInputLimits]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testLikedAndDislikedPlacesAreNotRecommendedAgain]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testLikedAndDislikedPlacesAreNotRecommendedAgain]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testNonFiniteEmbeddingCannotProduceRecommendations]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testNonFiniteEmbeddingCannotProduceRecommendations]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testSemanticRankingUsesTheSameHardFilters]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testSemanticRankingUsesTheSameHardFilters]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testSnapshotHasNoInventedQuietness]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testSnapshotHasNoInventedQuietness]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testStorageRestoresAndPreservesMalformedHistory]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testStorageRestoresAndPreservesMalformedHistory]' passed (0.004 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testTextNegationRequiresExplicitControls]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testTextNegationRequiresExplicitControls]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnavailableModelIsExplicitCategoryFallback]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnavailableModelIsExplicitCategoryFallback]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnknownIDAndContradictionRejected]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnknownIDAndContradictionRejected]' passed (0.000 seconds).
+Test Suite 'PreferenceTests' passed at 2026-11-05 07:31:29.962.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.010 (0.011) seconds
+Test Suite 'PreferenceLearningTests.xctest' passed at 2026-11-05 07:31:29.962.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.010 (0.011) seconds
+Test Suite 'All tests' passed at 2026-11-05 07:31:29.962.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.010 (0.012) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,0 +1,91 @@
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: <LOCAL_HOME>/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'preferencelearning': failed storing manifest for 'preferencelearning' in cache: attempt to write a readonly database
+warning: 'swift-transformers': failed storing manifest for 'swift-transformers' in cache: attempt to write a readonly database
+warning: 'tripintelligence': failed storing manifest for 'tripintelligence' in cache: attempt to write a readonly database
+warning: 'onnxruntime-swift-package-manager': failed storing manifest for 'onnxruntime-swift-package-manager' in cache: attempt to write a readonly database
+warning: 'swift-collections': failed storing manifest for 'swift-collections' in cache: attempt to write a readonly database
+warning: 'swift-crypto': failed storing manifest for 'swift-crypto' in cache: attempt to write a readonly database
+warning: 'yyjson': failed storing manifest for 'yyjson' in cache: attempt to write a readonly database
+warning: 'swift-huggingface': failed storing manifest for 'swift-huggingface' in cache: attempt to write a readonly database
+warning: 'swift-jinja': failed storing manifest for 'swift-jinja' in cache: attempt to write a readonly database
+warning: 'swift-asn1': failed storing manifest for 'swift-asn1' in cache: attempt to write a readonly database
+warning: 'eventsource': failed storing manifest for 'eventsource' in cache: attempt to write a readonly database
+Building for debugging...
+[Computing dependencies]
+Build complete! (0.46 sec)
+Test Suite 'All tests' started at 2026-11-05 14:15:20.601.
+Test Suite 'PreferenceLearningTests.xctest' started at 2026-11-05 14:15:20.602.
+Test Suite 'LivePreferenceTests' started at 2026-11-05 14:15:20.602.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testBoundaryAndDuplicateFilteringAndNoInventedAmenities]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testBoundaryAndDuplicateFilteringAndNoInventedAmenities]' passed (0.004 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testChangingAndRemovingFeedbackKeepsOneIdentity]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testChangingAndRemovingFeedbackKeepsOneIdentity]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testEmptySearchIsDistinctFromFailure]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testEmptySearchIsDistinctFromFailure]' passed (0.001 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testExplicitAndLikedActivitiesWinAndAvoidsExclude]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testExplicitAndLikedActivitiesWinAndAvoidsExclude]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testNativeOnlyPlanningDoesNotCallEmbedding]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testNativeOnlyPlanningDoesNotCallEmbedding]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testOriginalProfileWithoutRememberedFieldDecodes]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testOriginalProfileWithoutRememberedFieldDecodes]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testPartialProviderFailureRetainsFreshCandidatesAndErrors]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testPartialProviderFailureRetainsFreshCandidatesAndErrors]' passed (0.001 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testPossibleNegationDoesNotBecomePositiveSearchIntent]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testPossibleNegationDoesNotBecomePositiveSearchIntent]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testProviderFailureIsNotSilentlyReplayed]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testProviderFailureIsNotSilentlyReplayed]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testProviderTimeoutIsRecorded]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testProviderTimeoutIsRecorded]' passed (0.013 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testRememberedLikeSurvivesCompletelyNewCandidateSetAndStorage]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testRememberedLikeSurvivesCompletelyNewCandidateSetAndStorage]' passed (0.003 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testSearchCancellationPropagatesAndDoesNotReturnFallback]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testSearchCancellationPropagatesAndDoesNotReturnFallback]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testSemanticPlanningFailureStillMakesGeneralSearch]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testSemanticPlanningFailureStillMakesGeneralSearch]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testTextBuildsBoundedEnglishMapKitQueries]' started.
+Test Case '-[PreferenceLearningTests.LivePreferenceTests testTextBuildsBoundedEnglishMapKitQueries]' passed (0.000 seconds).
+Test Suite 'LivePreferenceTests' passed at 2026-11-05 14:15:20.626.
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.023 (0.024) seconds
+Test Suite 'PreferenceTests' started at 2026-11-05 14:15:20.626.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCancellationDoesNotBecomeFallback]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCancellationDoesNotBecomeFallback]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testColdStartIsNotClaimedPersonal]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testColdStartIsNotClaimedPersonal]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testCosineRejectsInvalidVectors]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testCosineRejectsInvalidVectors]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testDislikeIsNotAGlobalCategoryAvoid]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testDislikeIsNotAGlobalCategoryAvoid]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testExplicitAvoidOverridesLike]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testExplicitAvoidOverridesLike]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testFeedbackDoesNotInflateOnRepeatedChoice]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testFeedbackDoesNotInflateOnRepeatedChoice]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testInputLimits]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testInputLimits]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testLikedAndDislikedPlacesAreNotRecommendedAgain]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testLikedAndDislikedPlacesAreNotRecommendedAgain]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testNonFiniteEmbeddingCannotProduceRecommendations]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testNonFiniteEmbeddingCannotProduceRecommendations]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testSemanticRankingUsesTheSameHardFilters]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testSemanticRankingUsesTheSameHardFilters]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testSnapshotHasNoInventedQuietness]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testSnapshotHasNoInventedQuietness]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testStorageRestoresAndPreservesMalformedHistory]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testStorageRestoresAndPreservesMalformedHistory]' passed (0.003 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testTextNegationRequiresExplicitControls]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testTextNegationRequiresExplicitControls]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnavailableModelIsExplicitCategoryFallback]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnavailableModelIsExplicitCategoryFallback]' passed (0.000 seconds).
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnknownIDAndContradictionRejected]' started.
+Test Case '-[PreferenceLearningTests.PreferenceTests testUnknownIDAndContradictionRejected]' passed (0.000 seconds).
+Test Suite 'PreferenceTests' passed at 2026-11-05 14:15:20.634.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'PreferenceLearningTests.xctest' passed at 2026-11-05 14:15:20.634.
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.030 (0.032) seconds
+Test Suite 'All tests' passed at 2026-11-05 14:15:20.634.
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.030 (0.032) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

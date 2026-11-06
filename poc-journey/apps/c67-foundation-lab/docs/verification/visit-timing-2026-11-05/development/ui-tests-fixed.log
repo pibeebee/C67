@@ -1,0 +1,24 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: ccd7db8b9d4f7817c7e533975d7ab98d36bf9ee912346eab5eea10c6240faf0b
+2026-11-05 08:45:24.339 appintentsmetadataprocessor[618:34871539] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+2026-11-05 08:45:24.473 appintentsmetadataprocessor[622:34871554] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+Test Suite 'Selected tests' started at 2026-11-05 08:45:30.164.
+Test Suite 'C67FoundationLabUITests.xctest' started at 2026-11-05 08:45:30.165.
+Test Suite 'VisitTimingUITests' started at 2026-11-05 08:45:30.165.
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' started.
+objc[629]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10a828310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.6CYomY/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a3cc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =    33.45s Collecting debug information to assist test failure triage
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/VisitTimingUITests.swift:64: error: -[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testActualWeekendScheduleHistoryAndExport]' failed (33.803 seconds).
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' started.
+    t =    33.02s Collecting debug information to assist test failure triage
+<LOCAL_HOME>/Documents/ChatGPT/C6 - Pisang Besar Balaraja/poc/c67-foundation-lab/UITests/VisitTimingUITests.swift:25: error: -[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases] : XCTAssertTrue failed
+Test Case '-[C67FoundationLabUITests.VisitTimingUITests testPublishedClosureAndUnknownCases]' failed (33.367 seconds).
+Test Suite 'VisitTimingUITests' failed at 2026-11-05 08:46:37.339.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 67.171 (67.174) seconds
+Test Suite 'C67FoundationLabUITests.xctest' failed at 2026-11-05 08:46:37.340.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 67.171 (67.175) seconds
+Test Suite 'Selected tests' failed at 2026-11-05 08:46:37.341.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 67.171 (67.176) seconds
+Test session results, code coverage, and logs:
+** TEST FAILED **

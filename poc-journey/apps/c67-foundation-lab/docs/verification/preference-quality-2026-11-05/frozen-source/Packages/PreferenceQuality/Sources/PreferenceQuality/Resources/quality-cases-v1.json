@@ -1,0 +1,644 @@
+[
+  {
+    "id": "coffee",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini"
+    ],
+    "desirable": [
+      "bdt-rbbj",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "desirable": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee",
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj"
+    ],
+    "desirable": [
+      "bdt-rbbj"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "silent-reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "quietPolicy",
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-silent"
+    ],
+    "desirable": [
+      "bdt-silent"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-silent-reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee",
+        "reading",
+        "quietPolicy"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "outdoor-nature",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "outdoor",
+        "nature"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "gbk",
+      "ragunan"
+    ],
+    "desirable": [
+      "gbk",
+      "ragunan"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "art-culture",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "art",
+        "culture"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "dialogue"
+    ],
+    "desirable": [
+      "dialogue"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "reading-avoid-coffee",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [
+        "coffee"
+      ],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-silent"
+    ],
+    "desirable": [
+      "bdt-silent"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "reading-avoid-outdoor",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [
+        "outdoor"
+      ],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "desirable": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-wifi",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee",
+        "wifi"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "newsroom"
+    ],
+    "desirable": [
+      "bdt-rbbj",
+      "newsroom"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-avoid-smoking",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee"
+      ],
+      "prefer": [],
+      "avoid": [
+        "smokingArea"
+      ],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "negation-needs-review",
+    "purpose": "Unconfirmed arbitrary negation must not produce ranked suggestions",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [],
+      "prefer": [],
+      "avoid": [],
+      "direction": "Saya mau membaca tetapi tidak ingin kopi",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini",
+      "dialogue",
+      "gbk",
+      "ragunan",
+      "erasmus"
+    ],
+    "desirable": [],
+    "expectedReview": true
+  },
+  {
+    "id": "correction-to-reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [
+        "coffee"
+      ],
+      "direction": "Correction: reading, no coffee",
+      "directionConfirmed": true,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-silent"
+    ],
+    "desirable": [
+      "bdt-silent"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-soft-reading",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee"
+      ],
+      "prefer": [
+        "reading"
+      ],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini"
+    ],
+    "desirable": [
+      "bdt-rbbj"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "reading-soft-silent",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [
+        "quietPolicy"
+      ],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "desirable": [
+      "bdt-silent"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "reading-soft-culture",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "reading"
+      ],
+      "prefer": [
+        "culture"
+      ],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "erasmus"
+    ],
+    "desirable": [
+      "erasmus"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-soft-wifi",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee"
+      ],
+      "prefer": [
+        "wifi"
+      ],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini"
+    ],
+    "desirable": [
+      "bdt-rbbj",
+      "newsroom"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "like-reading-facet",
+    "purpose": "Explicitly selected liked facet only; no copying every venue attribute",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": "bdt-rbbj",
+      "likedFeature": "reading",
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-silent",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini",
+      "dialogue",
+      "gbk",
+      "ragunan",
+      "erasmus"
+    ],
+    "desirable": [
+      "bdt-silent",
+      "erasmus"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "like-art-facet",
+    "purpose": "No second supported art match is guaranteed from one like",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": "dialogue",
+      "likedFeature": "art",
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini",
+      "gbk",
+      "ragunan",
+      "erasmus"
+    ],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "coffee-reading-dismissed",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee",
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": [
+        "bdt-rbbj"
+      ]
+    },
+    "expectedEligible": [],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "general-empty",
+    "purpose": "Cold start must remain general, not personalized",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [],
+      "prefer": [],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini",
+      "dialogue",
+      "gbk",
+      "ragunan",
+      "erasmus"
+    ],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "outdoor-soft-reading",
+    "purpose": "Unknown optional reading must not become a proven feature",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "outdoor"
+      ],
+      "prefer": [
+        "reading"
+      ],
+      "avoid": [],
+      "direction": "",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "gbk",
+      "ragunan"
+    ],
+    "desirable": [],
+    "expectedReview": false
+  },
+  {
+    "id": "english-combo-confirmed",
+    "purpose": "Published facts and strict same-area gates",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [
+        "coffee",
+        "reading"
+      ],
+      "prefer": [],
+      "avoid": [],
+      "direction": "I want coffee while reading",
+      "directionConfirmed": true,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj"
+    ],
+    "desirable": [
+      "bdt-rbbj"
+    ],
+    "expectedReview": false
+  },
+  {
+    "id": "free-quiet-unknown",
+    "purpose": "Unverified quietness and price cannot be inferred from embedding",
+    "profile": {
+      "schemaVersion": 1,
+      "must": [],
+      "prefer": [],
+      "avoid": [],
+      "direction": "Saya ingin tempat tenang dan murah",
+      "directionConfirmed": false,
+      "likedID": null,
+      "likedFeature": null,
+      "excludedIDs": []
+    },
+    "expectedEligible": [
+      "bdt-rbbj",
+      "bdt-silent",
+      "bdt-cafe",
+      "newsroom",
+      "bakoel-cikini",
+      "dialogue",
+      "gbk",
+      "ragunan",
+      "erasmus"
+    ],
+    "desirable": [],
+    "expectedReview": true
+  }
+]

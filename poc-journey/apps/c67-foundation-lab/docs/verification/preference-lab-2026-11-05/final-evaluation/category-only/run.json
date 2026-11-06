@@ -1,0 +1,725 @@
+{
+  "catalog" : {
+    "id" : "synthetic-v1",
+    "places" : [
+      {
+        "description" : "Coffee cafe with reading tables, books and a quiet indoor room. A calm place to enjoy coffee while reading.",
+        "id" : "A",
+        "latitude" : -6.1754,
+        "longitude" : 106.8272,
+        "name" : "Ruang Buku · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "Coffee in an outdoor garden. Lively social tables for meeting friends and enjoying the greenery.",
+        "id" : "B",
+        "latitude" : -6.175199999999999,
+        "longitude" : 106.82740000000001,
+        "name" : "Kopi Kebun · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "nature",
+          "outdoor",
+          "lively"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "An indoor art gallery with paintings, contemporary exhibitions and a quiet atmosphere for appreciating visual art.",
+        "id" : "C",
+        "latitude" : -6.175,
+        "longitude" : 106.8276,
+        "name" : "Galeri Warna · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "art",
+          "culture",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A peaceful outdoor park with trees, walking paths and garden photography. A nature visit away from lively activities.",
+        "id" : "D",
+        "latitude" : -6.174799999999999,
+        "longitude" : 106.82780000000001,
+        "name" : "Taman Rindang · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "nature",
+          "quiet",
+          "outdoor",
+          "photography"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A lively outdoor market with local food stalls and shopping. Busy social atmosphere for trying street food.",
+        "id" : "E",
+        "latitude" : -6.1746,
+        "longitude" : 106.828,
+        "name" : "Pasar Ceria · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "food",
+          "shopping",
+          "lively",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "Lively indoor live music performances and entertainment for a social outing with friends.",
+        "id" : "F",
+        "latitude" : -6.1743999999999994,
+        "longitude" : 106.82820000000001,
+        "name" : "Panggung Musik · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "entertainment",
+          "lively",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A quiet outdoor coffee cafe with books and tables for reading. Relax with a book and a cup of coffee.",
+        "id" : "G",
+        "latitude" : -6.1742,
+        "longitude" : 106.8284,
+        "name" : "Kedai Halaman · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A quiet indoor library with a collection of books and reading desks. Spend time reading in a calm room.",
+        "id" : "H",
+        "latitude" : -6.1739999999999995,
+        "longitude" : 106.82860000000001,
+        "name" : "Perpustakaan Sudut · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "reading",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "An indoor museum about local history and culture, with quiet exhibits and opportunities for architecture photography.",
+        "id" : "I",
+        "latitude" : -6.1738,
+        "longitude" : 106.8288,
+        "name" : "Museum Kota · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "culture",
+          "quiet",
+          "indoor",
+          "photography"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A quiet indoor restaurant serving local meals. An outing focused on food and dining.",
+        "id" : "J",
+        "latitude" : -6.1735999999999995,
+        "longitude" : 106.82900000000001,
+        "name" : "Resto Rumahan · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "food",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A lively indoor shopping centre with fashion shops and retail stores.",
+        "id" : "K",
+        "latitude" : -6.1734,
+        "longitude" : 106.8292,
+        "name" : "Pusat Belanja · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "shopping",
+          "lively",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A quiet indoor art studio with painting workshops and creative activities.",
+        "id" : "L",
+        "latitude" : -6.1732,
+        "longitude" : 106.8294,
+        "name" : "Studio Seni · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "art",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "A lively outdoor coffee bar where friends gather to chat. Coffee and a social atmosphere.",
+        "id" : "M",
+        "latitude" : -6.173,
+        "longitude" : 106.8296,
+        "name" : "Teras Kopi · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "lively",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      {
+        "description" : "An indoor bookstore selling books for readers. Browse shelves and shop for a new book.",
+        "id" : "N",
+        "latitude" : -6.1728,
+        "longitude" : 106.8298,
+        "name" : "Toko Buku · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "reading",
+          "shopping",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      }
+    ],
+    "provenance" : "Illustrative Jakarta coordinates and fictional venue attributes; authored for this experiment on 2026-11-05. Not real venue observations.",
+    "title" : "Katalog sintetis · 14 tempat"
+  },
+  "categoryRanking" : [
+    {
+      "matchingTags" : [
+        "coffee",
+        "reading"
+      ],
+      "place" : {
+        "description" : "Coffee cafe with reading tables, books and a quiet indoor room. A calm place to enjoy coffee while reading.",
+        "id" : "A",
+        "latitude" : -6.1754,
+        "longitude" : 106.8272,
+        "name" : "Ruang Buku · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 4
+    },
+    {
+      "matchingTags" : [
+        "coffee",
+        "reading"
+      ],
+      "place" : {
+        "description" : "A quiet outdoor coffee cafe with books and tables for reading. Relax with a book and a cup of coffee.",
+        "id" : "G",
+        "latitude" : -6.1742,
+        "longitude" : 106.8284,
+        "name" : "Kedai Halaman · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "reading",
+          "quiet",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 4
+    },
+    {
+      "matchingTags" : [
+        "coffee"
+      ],
+      "place" : {
+        "description" : "Coffee in an outdoor garden. Lively social tables for meeting friends and enjoying the greenery.",
+        "id" : "B",
+        "latitude" : -6.175199999999999,
+        "longitude" : 106.82740000000001,
+        "name" : "Kopi Kebun · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "nature",
+          "outdoor",
+          "lively"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 2
+    },
+    {
+      "matchingTags" : [
+        "reading"
+      ],
+      "place" : {
+        "description" : "A quiet indoor library with a collection of books and reading desks. Spend time reading in a calm room.",
+        "id" : "H",
+        "latitude" : -6.1739999999999995,
+        "longitude" : 106.82860000000001,
+        "name" : "Perpustakaan Sudut · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "reading",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 2
+    },
+    {
+      "matchingTags" : [
+        "coffee"
+      ],
+      "place" : {
+        "description" : "A lively outdoor coffee bar where friends gather to chat. Coffee and a social atmosphere.",
+        "id" : "M",
+        "latitude" : -6.173,
+        "longitude" : 106.8296,
+        "name" : "Teras Kopi · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "coffee",
+          "lively",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 2
+    },
+    {
+      "matchingTags" : [
+        "reading"
+      ],
+      "place" : {
+        "description" : "An indoor bookstore selling books for readers. Browse shelves and shop for a new book.",
+        "id" : "N",
+        "latitude" : -6.1728,
+        "longitude" : 106.8298,
+        "name" : "Toko Buku · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "reading",
+          "shopping",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 2
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "An indoor art gallery with paintings, contemporary exhibitions and a quiet atmosphere for appreciating visual art.",
+        "id" : "C",
+        "latitude" : -6.175,
+        "longitude" : 106.8276,
+        "name" : "Galeri Warna · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "art",
+          "culture",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "A peaceful outdoor park with trees, walking paths and garden photography. A nature visit away from lively activities.",
+        "id" : "D",
+        "latitude" : -6.174799999999999,
+        "longitude" : 106.82780000000001,
+        "name" : "Taman Rindang · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "nature",
+          "quiet",
+          "outdoor",
+          "photography"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "A lively outdoor market with local food stalls and shopping. Busy social atmosphere for trying street food.",
+        "id" : "E",
+        "latitude" : -6.1746,
+        "longitude" : 106.828,
+        "name" : "Pasar Ceria · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "food",
+          "shopping",
+          "lively",
+          "outdoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "Lively indoor live music performances and entertainment for a social outing with friends.",
+        "id" : "F",
+        "latitude" : -6.1743999999999994,
+        "longitude" : 106.82820000000001,
+        "name" : "Panggung Musik · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "entertainment",
+          "lively",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "An indoor museum about local history and culture, with quiet exhibits and opportunities for architecture photography.",
+        "id" : "I",
+        "latitude" : -6.1738,
+        "longitude" : 106.8288,
+        "name" : "Museum Kota · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "culture",
+          "quiet",
+          "indoor",
+          "photography"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "A quiet indoor restaurant serving local meals. An outing focused on food and dining.",
+        "id" : "J",
+        "latitude" : -6.1735999999999995,
+        "longitude" : 106.82900000000001,
+        "name" : "Resto Rumahan · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "food",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "A lively indoor shopping centre with fashion shops and retail stores.",
+        "id" : "K",
+        "latitude" : -6.1734,
+        "longitude" : 106.8292,
+        "name" : "Pusat Belanja · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "shopping",
+          "lively",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    },
+    {
+      "matchingTags" : [
+
+      ],
+      "place" : {
+        "description" : "A quiet indoor art studio with painting workshops and creative activities.",
+        "id" : "L",
+        "latitude" : -6.1732,
+        "longitude" : 106.8294,
+        "name" : "Studio Seni · contoh",
+        "observedAt" : "2026-11-05",
+        "source" : "Synthetic catalog v1, authored 2026-11-05; all venue identities and attributes are fictional",
+        "synthetic" : true,
+        "tags" : [
+          "art",
+          "quiet",
+          "indoor"
+        ],
+        "unknowns" : [
+          "real venue availability",
+          "opening hours",
+          "price",
+          "travel feasibility"
+        ]
+      },
+      "score" : 0
+    }
+  ],
+  "createdAt" : "2026-11-05T00:32:34Z",
+  "elapsedSeconds" : 0.0006489753723144531,
+  "error" : "",
+  "id" : "1ECB010F-1428-457A-9660-CB107B41B170",
+  "os" : "Version 27.0.1 (Build 26A434)",
+  "profile" : {
+    "avoids" : [
+
+    ],
+    "feedback" : {
+
+    },
+    "interests" : [
+      "coffee",
+      "reading"
+    ],
+    "schemaVersion" : 1,
+    "text" : ""
+  },
+  "query" : "Activities I enjoy: coffee, reading",
+  "routingPerformed" : false,
+  "schemaVersion" : 1,
+  "semanticRanking" : [
+
+  ],
+  "status" : "category_only"
+}

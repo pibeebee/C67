@@ -1,0 +1,70 @@
+{
+  "$defs" : {
+    "VisitWindowSuggestion" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "evidenceIDs" : {
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 4,
+          "type" : "array"
+        },
+        "reason" : {
+          "type" : "string"
+        },
+        "stopID" : {
+          "type" : "string"
+        },
+        "window" : {
+          "enum" : [
+            "morning",
+            "midday",
+            "afternoon",
+            "evening",
+            "any",
+            "unknown"
+          ],
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "stopID",
+        "window",
+        "reason",
+        "evidenceIDs"
+      ],
+      "title" : "VisitWindowSuggestion",
+      "type" : "object",
+      "x-order" : [
+        "stopID",
+        "window",
+        "reason",
+        "evidenceIDs"
+      ]
+    }
+  },
+  "additionalProperties" : false,
+  "properties" : {
+    "note" : {
+      "type" : "string"
+    },
+    "suggestions" : {
+      "items" : {
+        "$ref" : "#/$defs/VisitWindowSuggestion"
+      },
+      "maxItems" : 6,
+      "type" : "array"
+    }
+  },
+  "required" : [
+    "suggestions",
+    "note"
+  ],
+  "title" : "VisitWindowProposal",
+  "type" : "object",
+  "x-order" : [
+    "suggestions",
+    "note"
+  ]
+}

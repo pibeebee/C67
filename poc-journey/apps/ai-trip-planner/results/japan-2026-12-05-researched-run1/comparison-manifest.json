@@ -1,0 +1,157 @@
+{
+  "comparisonPreparedAt": "2026-11-02T15:10:16.944Z",
+  "inputEqualsPrevious": true,
+  "input": {
+    "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+    "date": "2026-12-05",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "E03",
+        "locationId": "komachi",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "E04",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "optional": false
+      },
+      {
+        "id": "E05",
+        "locationId": "kamakura_meal",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "optional": false
+      },
+      {
+        "id": "E07",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "E09",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "optional": false
+      },
+      {
+        "id": "E11",
+        "locationId": "kokomae",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "optional": false
+      },
+      {
+        "id": "E13",
+        "locationId": "enoshima_station",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "E15",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "E16",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "optional": false
+      },
+      {
+        "id": "E17",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "locationId": "sea_candle",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "E19",
+        "locationId": "sea_candle",
+        "label": "Menyaksikan Illumination",
+        "optional": false
+      },
+      {
+        "id": "E20",
+        "locationId": "enoshima_dinner",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "optional": false
+      },
+      {
+        "id": "E22",
+        "locationId": "fujisawa_station",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      }
+    ],
+    "requiredWalk": {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+    },
+    "transportContext": [
+      "Kereta dan jalan kaki, mengikuti daftar semula.",
+      "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+    ],
+    "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan.",
+    "requiredTransit": [
+      {
+        "from": "funabashi_station",
+        "to": "kamakura_station"
+      },
+      {
+        "from": "kamakura_station",
+        "to": "inamura_station"
+      },
+      {
+        "from": "inamura_station",
+        "to": "shichiri_station"
+      },
+      {
+        "from": "kokomae",
+        "to": "enoshima_station"
+      },
+      {
+        "from": "katase_station",
+        "to": "fujisawa_station"
+      },
+      {
+        "from": "fujisawa_station",
+        "to": "funabashi_station"
+      }
+    ]
+  },
+  "sourceHashes": {
+    "ai.ts": "ab7df53189bc5d66df96bdaa7cf9099644385c508b92c497776d4ddf88c44292",
+    "audit-itinerary.ts": "627b1837d4149c6180859d4651abc72f651fa33aaf7c994847ed3ed558d931ad",
+    "audit-model.ts": "0dc24f59c341ef91fa057996b7ea7e0b4f4ff5f93ffc09d869808c1c4e3b169a",
+    "audit.ts": "1346b9de90d2948b9b1bca8437b8895c3c58a84e4fa36b93efa78ea128bbf54d",
+    "cli.ts": "7db11a60b82dd20930725d039e036bf99f41d29a0a34d61596d04a08777bc974",
+    "compare-reasoning.ts": "6258c2109eda384fbab10e951d58ede43950901bdb2792926f542bd1f4cc24a1",
+    "context.ts": "ca561ba3b72e0f2682c6e9f274bd61f345badaa6dd1b069cabdff1a17f01598e",
+    "data.ts": "ee43c7b105cfc21df5b98815f204259b460f9fb93b08da7e3fc0f4411db5929b",
+    "domain.ts": "55f6cf3e735eef5c394de1013737981807491c3fa2c6e1c20c8308f371721035",
+    "http.ts": "4a06461d24c2674970360972575daee9bec05e22430cc08dc2888b717ea844b7",
+    "model-session.ts": "56a9b48856e9fd9ee905c510dad3567bb169fc40425f2c8472fa2694b94f8df5",
+    "plan-researched.ts": "cfb21530c82c85805f2f69958dc83e7f610bd81bb20ad061ae652535759f7efc",
+    "plan-untimed.ts": "c1549be3c6f2f509f883ed8fdd5ca3338f2399230d7eb1a1eee0155f83a4b92f",
+    "planning-data.ts": "bae7a6923c20441dfe9b48b16bd372f2f81b0507662e22e025326afc3109520b",
+    "planning-simulation.ts": "df16597f1a0a3c61b28e89c6934fe1c5a09b7eb627c53448f6b27ea3902044b8",
+    "report.ts": "5219194802dca68c0fe518b43fc9ca286a8cb46e290ab2ac5b7c0a9f01d8d1a5",
+    "research-agent.ts": "f3b7e6b05bd5cebd5ae7197b247d7d5d0f817059f2409696fe24adcfcd15d0f3",
+    "research-browser.ts": "d063b5ff9a08acf39517772ee2eb9da1d9e2be8ca02a753afc87f92c54e1342a",
+    "scheduler.ts": "12aa98ad389c4bd7c05b4420016400a19bd5f0240027b09a8478f93645b9f8a3",
+    "untimed.ts": "29ae3a3e00b7eff10d9dfcd27320695738cf5be30e41aef64d2c4c202594f4cc"
+  },
+  "baseline": "results/japan-2026-12-05-untimed-run2/report.json"
+}

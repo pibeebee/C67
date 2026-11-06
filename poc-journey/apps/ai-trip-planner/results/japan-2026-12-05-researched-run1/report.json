@@ -1,0 +1,629 @@
+{
+  "generatedAt": "2026-11-02T15:15:37.733Z",
+  "mode": "browser_researched_simulated_itinerary",
+  "status": "no_valid_proposal",
+  "stopReason": "attempt_limit",
+  "bestAttempt": null,
+  "input": {
+    "title": "Funabashi–Kamakura–Enoshima, daftar tanpa jam",
+    "date": "2026-12-05",
+    "timeZone": "Asia/Tokyo",
+    "tripDays": 1,
+    "origin": "funabashi_station",
+    "returnTo": "funabashi_station",
+    "activities": [
+      {
+        "id": "E03",
+        "locationId": "komachi",
+        "label": "Stasiun Kamakura & Komachi Street",
+        "optional": false
+      },
+      {
+        "id": "E04",
+        "locationId": "hachimangu",
+        "label": "Tsurugaoka Hachimangu & Perempatan",
+        "optional": false
+      },
+      {
+        "id": "E05",
+        "locationId": "kamakura_meal",
+        "label": "Makan Siang Pagi (Area Kamakura)",
+        "optional": false
+      },
+      {
+        "id": "E07",
+        "locationId": "inamura_park",
+        "label": "Kamakura Seaside Park (Cape Inamuragasaki)",
+        "optional": false
+      },
+      {
+        "id": "E09",
+        "locationId": "shichiri_beach",
+        "label": "Shichirigahama Beach (Depan Sekolah)",
+        "optional": false
+      },
+      {
+        "id": "E11",
+        "locationId": "kokomae",
+        "label": "Kamakurakokomae Station (Foto Area Stasiun)",
+        "optional": false
+      },
+      {
+        "id": "E13",
+        "locationId": "enoshima_station",
+        "label": "Toko Suvenir Enoshima Station",
+        "optional": false
+      },
+      {
+        "id": "E15",
+        "locationId": "tourist_center",
+        "label": "Fujisawa City Tourist Center",
+        "optional": false
+      },
+      {
+        "id": "E16",
+        "locationId": "bridge",
+        "label": "Enoshima Ohashi Bridge (Video & Jalan Santai)",
+        "optional": false
+      },
+      {
+        "id": "E17",
+        "locationId": "oiwayamichi",
+        "label": "Oiwayamichi Street (Opsional) & Naik ke Atas",
+        "optional": true
+      },
+      {
+        "id": "E18",
+        "locationId": "sea_candle",
+        "label": "Tiba di Area Enoshima Sea Candle",
+        "optional": false
+      },
+      {
+        "id": "E19",
+        "locationId": "sea_candle",
+        "label": "Menyaksikan Illumination",
+        "optional": false
+      },
+      {
+        "id": "E20",
+        "locationId": "enoshima_dinner",
+        "label": "Turun dari Pulau & Makan Malam di Enoshima",
+        "optional": false
+      },
+      {
+        "id": "E22",
+        "locationId": "fujisawa_station",
+        "label": "Seichi Junrei Malam Stasiun Fujisawa (Menara Jam)",
+        "optional": false
+      }
+    ],
+    "requiredWalk": {
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "label": "Coastal Walk: Shichirigahama → Kamakurakokomae"
+    },
+    "transportContext": [
+      "Kereta dan jalan kaki, mengikuti daftar semula.",
+      "Stasiun Kamakura, Inamuragasaki, Shichirigahama, dan Katase-Enoshima adalah titik transfer yang dapat dipakai, bukan destinasi wisata tambahan."
+    ],
+    "inputNote": "Seluruh jam dan durasi baseline sengaja dihapus untuk eksperimen ini. Apartment diganti dengan Stasiun Funabashi sebagai awal dan akhir. Daftar bukan urutan yang dikunci; semua aktivitas termasuk yang opsional tetap ditampilkan.",
+    "requiredTransit": [
+      {
+        "from": "funabashi_station",
+        "to": "kamakura_station"
+      },
+      {
+        "from": "kamakura_station",
+        "to": "inamura_station"
+      },
+      {
+        "from": "inamura_station",
+        "to": "shichiri_station"
+      },
+      {
+        "from": "kokomae",
+        "to": "enoshima_station"
+      },
+      {
+        "from": "katase_station",
+        "to": "fujisawa_station"
+      },
+      {
+        "from": "fujisawa_station",
+        "to": "funabashi_station"
+      }
+    ]
+  },
+  "options": {
+    "walkingBufferMinutes": 5,
+    "transitBufferMinutes": 10,
+    "maxAttempts": 3,
+    "maxRouteRequests": 90,
+    "maxModelCalls": 8,
+    "maxRunTokens": 1000000,
+    "evidenceMaxAgeMinutes": 60
+  },
+  "model": {
+    "calls": [
+      {
+        "purpose": "official_place_research",
+        "elapsedMs": 22019,
+        "chargedTokens": 9074,
+        "usage": {
+          "prompt_tokens": 6838,
+          "completion_tokens": 2236,
+          "total_tokens": 9074,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2124,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "official_place_research",
+        "elapsedMs": 59564,
+        "chargedTokens": 17804,
+        "usage": {
+          "prompt_tokens": 11830,
+          "completion_tokens": 5974,
+          "total_tokens": 17804,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 5859,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "itinerary_proposal",
+        "elapsedMs": 123588,
+        "chargedTokens": 22529,
+        "usage": {
+          "prompt_tokens": 6145,
+          "completion_tokens": 16384,
+          "total_tokens": 22529,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 14053,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "itinerary_proposal",
+        "elapsedMs": 63766,
+        "chargedTokens": 22679,
+        "usage": {
+          "prompt_tokens": 6295,
+          "completion_tokens": 16384,
+          "total_tokens": 22679,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 13083,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      },
+      {
+        "purpose": "itinerary_proposal",
+        "elapsedMs": 47029,
+        "chargedTokens": 22679,
+        "usage": {
+          "prompt_tokens": 6295,
+          "completion_tokens": 16384,
+          "total_tokens": 22679,
+          "cost": 0,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 4336,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 13663,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "error": null
+      }
+    ],
+    "maxCalls": 8,
+    "chargedTokens": 94765,
+    "totalTokenLimit": 1000000,
+    "missingUsageChargedAtConservativeReservation": true,
+    "internalReasoningStored": false
+  },
+  "googleRequestsThisRun": 16,
+  "contextSourceProvenance": [
+    {
+      "id": "official:hoseki-2026",
+      "url": "https://enoshima-seacandle.com/information/post-4136/",
+      "browserReadThisSnapshot": false,
+      "quoteGroundedClaimIds": [],
+      "note": "Reading a page does not independently validate every initial context statement."
+    },
+    {
+      "id": "official:tourist-center",
+      "url": "https://www.fujisawa-kanko.jp/info/tourist_Information.html",
+      "browserReadThisSnapshot": true,
+      "quoteGroundedClaimIds": [],
+      "note": "Reading a page does not independently validate every initial context statement."
+    },
+    {
+      "id": "official:oiwayamichi",
+      "url": "https://www.fujisawa-kanko.jp/spot/enoshima/09.html",
+      "browserReadThisSnapshot": false,
+      "quoteGroundedClaimIds": [],
+      "note": "Reading a page does not independently validate every initial context statement."
+    },
+    {
+      "id": "official:hoseki-saturday-hours",
+      "url": "https://enoshima-seacandle.com/information/post-4136/",
+      "browserReadThisSnapshot": false,
+      "quoteGroundedClaimIds": [],
+      "note": "Reading a page does not independently validate every initial context statement."
+    },
+    {
+      "id": "official:sea-candle-hours",
+      "url": "https://enoshima-seacandle.com/opening-hours/",
+      "browserReadThisSnapshot": false,
+      "quoteGroundedClaimIds": [],
+      "note": "Reading a page does not independently validate every initial context statement."
+    }
+  ],
+  "researchSummary": {
+    "pagesRead": 4,
+    "searches": 2,
+    "claims": 0,
+    "rejectedClaims": 0
+  },
+  "simulation": null,
+  "routeEvidence": [
+    {
+      "id": "route:43f4c29f633f0309",
+      "from": "kamakura_station",
+      "to": "komachi",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:55.771Z",
+      "status": "ok",
+      "estimatedMinutes": 5.666666666666667,
+      "distanceMeters": 410,
+      "partialAddressMatch": true,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:e70c091cecbae94b",
+      "from": "komachi",
+      "to": "hachimangu",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:55.774Z",
+      "status": "ok",
+      "estimatedMinutes": 5.216666666666667,
+      "distanceMeters": 373,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:7ac8253dee9e3c98",
+      "from": "inamura_station",
+      "to": "inamura_park",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:55.774Z",
+      "status": "ok",
+      "estimatedMinutes": 4.816666666666666,
+      "distanceMeters": 345,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:9f281ce34ecf4c05",
+      "from": "shichiri_station",
+      "to": "shichiri_beach",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.181Z",
+      "status": "ok",
+      "estimatedMinutes": 7.233333333333333,
+      "distanceMeters": 527,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:beff41e2affbee1e",
+      "from": "shichiri_beach",
+      "to": "kokomae",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.182Z",
+      "status": "ok",
+      "estimatedMinutes": 17.583333333333332,
+      "distanceMeters": 1283,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:d0adc263d6b33041",
+      "from": "enoshima_station",
+      "to": "tourist_center",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.182Z",
+      "status": "ok",
+      "estimatedMinutes": 10,
+      "distanceMeters": 703,
+      "partialAddressMatch": true,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:8e431dbc949a3b39",
+      "from": "tourist_center",
+      "to": "bridge",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.493Z",
+      "status": "ok",
+      "estimatedMinutes": 5,
+      "distanceMeters": 380,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:b41f22bea43abc57",
+      "from": "bridge",
+      "to": "oiwayamichi",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.493Z",
+      "status": "ok",
+      "estimatedMinutes": 14.833333333333334,
+      "distanceMeters": 984,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:bb16a079fcd422e8",
+      "from": "oiwayamichi",
+      "to": "sea_candle",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.493Z",
+      "status": "ok",
+      "estimatedMinutes": 7.566666666666666,
+      "distanceMeters": 401,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:b61bb090da07081a",
+      "from": "sea_candle",
+      "to": "katase_station",
+      "mode": "WALK",
+      "departureAt": null,
+      "fetchedAt": "2026-11-02T15:09:56.759Z",
+      "status": "ok",
+      "estimatedMinutes": 23.1,
+      "distanceMeters": 1556,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": null
+    },
+    {
+      "id": "route:75dd2f2101ed76c3",
+      "from": "funabashi_station",
+      "to": "kamakura_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:56.760Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:88bbdeff27485b67",
+      "from": "kamakura_station",
+      "to": "inamura_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:56.761Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:932578f26e2f042d",
+      "from": "inamura_station",
+      "to": "shichiri_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:56.893Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:b80dd986bfb0bf46",
+      "from": "kokomae",
+      "to": "enoshima_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:56.893Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:a6a27e0ffad43bc0",
+      "from": "katase_station",
+      "to": "fujisawa_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:56.893Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    },
+    {
+      "id": "route:88d614fd17445210",
+      "from": "fujisawa_station",
+      "to": "funabashi_station",
+      "mode": "TRANSIT",
+      "departureAt": "2026-12-05T12:00:00.000+09:00",
+      "fetchedAt": "2026-11-02T15:09:57.001Z",
+      "status": "no_route",
+      "estimatedMinutes": null,
+      "distanceMeters": null,
+      "partialAddressMatch": false,
+      "transitDetails": [],
+      "error": "This provider query returned no route; actual transport availability remains unknown."
+    }
+  ],
+  "forecasts": [
+    {
+      "id": "weather:funabashi",
+      "areaId": "funabashi",
+      "fetchedAt": "2026-11-02T15:09:57.054Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:kamakura",
+      "areaId": "kamakura",
+      "fetchedAt": "2026-11-02T15:09:57.054Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:enoshima",
+      "areaId": "enoshima",
+      "fetchedAt": "2026-11-02T15:09:57.054Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:fujisawa",
+      "areaId": "fujisawa",
+      "fetchedAt": "2026-11-02T15:09:57.054Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    }
+  ],
+  "reusedEvidence": null,
+  "allOutputTimesSource": "AI proposal followed by deterministic route/buffer/opening-wait propagation",
+  "verifiedTravelFeasibility": false,
+  "artifactFiles": [
+    "user-input.json",
+    "collected.json",
+    "research.json",
+    "initial-evidence.json",
+    "attempts.json",
+    "route-evidence.json"
+  ]
+}

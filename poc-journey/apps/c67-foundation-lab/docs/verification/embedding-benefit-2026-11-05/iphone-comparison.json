@@ -1,0 +1,200 @@
+{
+  "device": "iPhone 17 / iOS 27.0.1 (24A446)",
+  "cases": 30,
+  "gatesAndStatesPassed": 30,
+  "meanNDCGAt3": {
+    "category": 0.49623650739140646,
+    "lexical": 0.8298997944446951,
+    "e5": 0.9770490373019844,
+    "combined": 0.9770490373019844
+  },
+  "caseMetricMaxDifference": 0,
+  "maxCosineDifference": 0.003728958984444919,
+  "changedFullRankings": 12,
+  "changedTopThreeRankings": 4,
+  "changes": [
+    {
+      "case": "currency-paraphrase",
+      "method": "e5",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "bi",
+        "sejarah",
+        "tekstil"
+      ],
+      "topThreeMac": [
+        "bi",
+        "sejarah",
+        "tekstil"
+      ]
+    },
+    {
+      "case": "currency-paraphrase",
+      "method": "combined",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "bi",
+        "sejarah",
+        "tekstil"
+      ],
+      "topThreeMac": [
+        "bi",
+        "sejarah",
+        "tekstil"
+      ]
+    },
+    {
+      "case": "textiles-literal",
+      "method": "e5",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "tekstil",
+        "bi",
+        "wayang"
+      ],
+      "topThreeMac": [
+        "tekstil",
+        "bi",
+        "wayang"
+      ]
+    },
+    {
+      "case": "textiles-literal",
+      "method": "combined",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "tekstil",
+        "bi",
+        "wayang"
+      ],
+      "topThreeMac": [
+        "tekstil",
+        "bi",
+        "wayang"
+      ]
+    },
+    {
+      "case": "puppets-literal",
+      "method": "e5",
+      "topThreeChanged": true,
+      "topThreePhone": [
+        "wayang",
+        "tekstil",
+        "bi"
+      ],
+      "topThreeMac": [
+        "wayang",
+        "tekstil",
+        "sejarah"
+      ]
+    },
+    {
+      "case": "puppets-literal",
+      "method": "combined",
+      "topThreeChanged": true,
+      "topThreePhone": [
+        "wayang",
+        "tekstil",
+        "bi"
+      ],
+      "topThreeMac": [
+        "wayang",
+        "tekstil",
+        "sejarah"
+      ]
+    },
+    {
+      "case": "focused-study-literal",
+      "method": "e5",
+      "topThreeChanged": true,
+      "topThreePhone": [
+        "bdt-silent",
+        "erasmus",
+        "bdt-rbbj"
+      ],
+      "topThreeMac": [
+        "bdt-silent",
+        "bdt-rbbj",
+        "erasmus"
+      ]
+    },
+    {
+      "case": "focused-study-literal",
+      "method": "combined",
+      "topThreeChanged": true,
+      "topThreePhone": [
+        "bdt-silent",
+        "erasmus",
+        "bdt-rbbj"
+      ],
+      "topThreeMac": [
+        "bdt-silent",
+        "bdt-rbbj",
+        "erasmus"
+      ]
+    },
+    {
+      "case": "community-art-literal",
+      "method": "e5",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ],
+      "topThreeMac": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ]
+    },
+    {
+      "case": "community-art-literal",
+      "method": "combined",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ],
+      "topThreeMac": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ]
+    },
+    {
+      "case": "community-art-paraphrase",
+      "method": "e5",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ],
+      "topThreeMac": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ]
+    },
+    {
+      "case": "community-art-paraphrase",
+      "method": "combined",
+      "topThreeChanged": false,
+      "topThreePhone": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ],
+      "topThreeMac": [
+        "dialogue",
+        "wayang",
+        "seni-rupa"
+      ]
+    }
+  ],
+  "firstCaseSeconds": 0.864482045173645,
+  "sumPipelineSeconds": 1.0579277276992798,
+  "limitations": "One scripted on-device suite over the same authored corpus, not a human walkthrough, latency benchmark or independent relevance sample. Encoder call counts include cache hits."
+}

@@ -1,0 +1,119 @@
+{
+  "area": "Jakarta",
+  "avoids": [],
+  "date": "2026-11-05",
+  "destinations": "noPreference",
+  "excludedIDs": [],
+  "experiences": [
+    "coffee",
+    "reading"
+  ],
+  "hasPlaces": true,
+  "pace": "relaxed",
+  "places": [
+    {
+      "evidence": [
+        {
+          "id": "place-A",
+          "key": "identity",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "A",
+          "synthetic": true,
+          "value": "Example Museum (fictional)"
+        },
+        {
+          "id": "hours-A-open",
+          "key": "opensMinute",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "A",
+          "synthetic": true,
+          "value": "09:00"
+        },
+        {
+          "id": "hours-A-close",
+          "key": "closesMinute",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "A",
+          "synthetic": true,
+          "value": "16:00"
+        }
+      ],
+      "place": {
+        "address": "",
+        "category": "museum",
+        "id": "A",
+        "latitude": -6.1754,
+        "longitude": 106.8272,
+        "name": "Example Museum (fictional)"
+      }
+    },
+    {
+      "evidence": [
+        {
+          "id": "place-B",
+          "key": "identity",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "B",
+          "synthetic": true,
+          "value": "Example Reading Cafe (fictional)"
+        },
+        {
+          "id": "reading-B",
+          "key": "reading",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "B",
+          "synthetic": true,
+          "value": "Reading seating is provided in this synthetic fixture; noise and price unknown"
+        }
+      ],
+      "place": {
+        "address": "",
+        "category": "cafe",
+        "id": "B",
+        "latitude": -6.25,
+        "longitude": 106.81,
+        "name": "Example Reading Cafe (fictional)"
+      }
+    },
+    {
+      "evidence": [
+        {
+          "id": "place-C",
+          "key": "identity",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "C",
+          "synthetic": true,
+          "value": "Example Garden (fictional)"
+        },
+        {
+          "id": "experience-C",
+          "key": "experienceWindow",
+          "observedAt": "2026-11-04T08:00:00+07:00",
+          "source": "Synthetic experiment fixture; all venue names, hours, travel and experience windows are illustrative",
+          "subjectID": "C",
+          "synthetic": true,
+          "value": "afternoon is a soft photography preference; no measured golden hour or weather"
+        }
+      ],
+      "place": {
+        "address": "",
+        "category": "park",
+        "id": "C",
+        "latitude": -6.22,
+        "longitude": 106.84,
+        "name": "Example Garden (fictional)"
+      }
+    }
+  ],
+  "schemaVersion": 1,
+  "spending": "flexible",
+  "text": "",
+  "transport": "flexible",
+  "walking": "depends"
+}

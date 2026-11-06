@@ -1,0 +1,208 @@
+{
+  "problemID": "21EF4B67-1121-4EBD-A0A4-3312FA48BD6E",
+  "requests": 60,
+  "acquisitionSeconds": 76.00490498542786,
+  "coverage": {
+    "availablePairs": 20,
+    "blockedPairs": [],
+    "modes": [
+      {
+        "available": 20,
+        "mode": "automobile",
+        "sampled": 20,
+        "statuses": {
+          "available": 20
+        }
+      },
+      {
+        "available": 0,
+        "mode": "transit",
+        "sampled": 20,
+        "statuses": {
+          "unavailable": 20
+        }
+      },
+      {
+        "available": 4,
+        "mode": "walking",
+        "sampled": 20,
+        "statuses": {
+          "available": 4,
+          "excluded_by_walking_limit": 16
+        }
+      }
+    ],
+    "requiredPairs": 20,
+    "unsampledPairs": 0
+  },
+  "results": [
+    {
+      "algorithm": "baseline",
+      "termination": "completed",
+      "proof": "not_proven",
+      "evaluations": 2,
+      "cpuSeconds": 0.00023305416107177734,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "algorithm": "local",
+      "termination": "completed",
+      "proof": "not_proven",
+      "evaluations": 500,
+      "cpuSeconds": 0.005668997764587402,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "algorithm": "insertion",
+      "termination": "completed",
+      "proof": "not_proven",
+      "evaluations": 71,
+      "cpuSeconds": 0.0007309913635253906,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "algorithm": "beam",
+      "termination": "completed",
+      "proof": "not_proven",
+      "evaluations": 50,
+      "cpuSeconds": 0.00047194957733154297,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "algorithm": "alns",
+      "termination": "completed",
+      "proof": "not_proven",
+      "evaluations": 1653,
+      "cpuSeconds": 0.012544989585876465,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    },
+    {
+      "algorithm": "exact",
+      "termination": "completed",
+      "proof": "exhaustive_fixed_evaluator",
+      "evaluations": 26,
+      "cpuSeconds": 0.0003160238265991211,
+      "travelSeconds": 6442,
+      "waitingSeconds": 8881,
+      "dwellSeconds": 7200,
+      "finishSecondsSinceDeparture": 22523,
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ]
+    }
+  ],
+  "earlierFinishingCandidateAlreadyInExactPool": {
+    "complete": true,
+    "conflicts": [],
+    "dwell": 7200,
+    "finish": 15467,
+    "fullTour": true,
+    "legs": [
+      {
+        "arrival": 237,
+        "departure": 0,
+        "from": 0,
+        "leave": 2037,
+        "mode": "automobile",
+        "to": 2,
+        "visit": 237
+      },
+      {
+        "arrival": 3193,
+        "departure": 2037,
+        "from": 2,
+        "leave": 4993,
+        "mode": "automobile",
+        "to": 1,
+        "visit": 3193
+      },
+      {
+        "arrival": 6012,
+        "departure": 4993,
+        "from": 1,
+        "leave": 7812,
+        "mode": "automobile",
+        "to": 4,
+        "visit": 6012
+      },
+      {
+        "arrival": 9794,
+        "departure": 7812,
+        "from": 4,
+        "leave": 12600,
+        "mode": "automobile",
+        "to": 3,
+        "visit": 10800
+      },
+      {
+        "arrival": 15467,
+        "departure": 12600,
+        "from": 3,
+        "leave": 15467,
+        "mode": "automobile",
+        "to": 0,
+        "visit": 15467
+      }
+    ],
+    "missing": 0,
+    "order": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "rain": 0,
+    "travel": 7261,
+    "unknownWeather": 15467,
+    "waiting": 1006
+  },
+  "note": "Stored candidate comparison only; no new solver or provider call."
+}

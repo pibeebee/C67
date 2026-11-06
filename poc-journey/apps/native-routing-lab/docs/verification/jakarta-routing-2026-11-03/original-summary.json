@@ -1,0 +1,1153 @@
+{
+  "source": "existing Simulator logs, before repair",
+  "comparison": {
+    "acquisitionSeconds": "29.09120500087738",
+    "kind": "mapkit_static_snapshot",
+    "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+    "requests": "40"
+  },
+  "coverage": {
+    "availableArcs": "4",
+    "kind": "mapkit_static_snapshot",
+    "nodes": "5",
+    "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+    "requests": "40",
+    "requiredPairs": "20",
+    "sampledArcs": "40",
+    "sampledPairs": "20"
+  },
+  "optionStatuses": {
+    "available": 4,
+    "unavailable": 28,
+    "excluded_by_walking_limit": 8
+  },
+  "results": [
+    {
+      "algorithm": "baseline",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 1800,
+          "finish": 2721,
+          "fullTour": false,
+          "legs": [
+            {
+              "arrival": 921,
+              "departure": 0,
+              "from": 0,
+              "leave": 2721,
+              "mode": "walking",
+              "to": 2,
+              "visit": 921
+            }
+          ],
+          "missing": 1,
+          "order": [
+            2,
+            4,
+            3,
+            1
+          ],
+          "rain": 0,
+          "travel": 921,
+          "unknownWeather": 1800,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.00023496150970458984,
+      "evaluations": 2,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    },
+    {
+      "algorithm": "local",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            4,
+            2,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.005630970001220703,
+      "evaluations": 500,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    },
+    {
+      "algorithm": "insertion",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            4,
+            1,
+            2,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            4,
+            2,
+            3,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 1800,
+          "finish": 2721,
+          "fullTour": false,
+          "legs": [
+            {
+              "arrival": 921,
+              "departure": 0,
+              "from": 0,
+              "leave": 2721,
+              "mode": "walking",
+              "to": 2,
+              "visit": 921
+            }
+          ],
+          "missing": 1,
+          "order": [
+            2,
+            3,
+            1,
+            4
+          ],
+          "rain": 0,
+          "travel": 921,
+          "unknownWeather": 1800,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 1800,
+          "finish": 2721,
+          "fullTour": false,
+          "legs": [
+            {
+              "arrival": 921,
+              "departure": 0,
+              "from": 0,
+              "leave": 2721,
+              "mode": "walking",
+              "to": 2,
+              "visit": 921
+            }
+          ],
+          "missing": 1,
+          "order": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "rain": 0,
+          "travel": 921,
+          "unknownWeather": 1800,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.0005110502243041992,
+      "evaluations": 47,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    },
+    {
+      "algorithm": "beam",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 1800,
+          "finish": 2721,
+          "fullTour": false,
+          "legs": [
+            {
+              "arrival": 921,
+              "departure": 0,
+              "from": 0,
+              "leave": 2721,
+              "mode": "walking",
+              "to": 2,
+              "visit": 921
+            }
+          ],
+          "missing": 1,
+          "order": [
+            2,
+            4,
+            3,
+            1
+          ],
+          "rain": 0,
+          "travel": 921,
+          "unknownWeather": 1800,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.0004661083221435547,
+      "evaluations": 50,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    },
+    {
+      "algorithm": "alns",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 1800,
+          "finish": 2721,
+          "fullTour": false,
+          "legs": [
+            {
+              "arrival": 921,
+              "departure": 0,
+              "from": 0,
+              "leave": 2721,
+              "mode": "walking",
+              "to": 2,
+              "visit": 921
+            }
+          ],
+          "missing": 1,
+          "order": [
+            2,
+            4,
+            3,
+            1
+          ],
+          "rain": 0,
+          "travel": 921,
+          "unknownWeather": 1800,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.0073479413986206055,
+      "evaluations": 1653,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    },
+    {
+      "algorithm": "exact",
+      "alternatives": [
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            2,
+            4,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            1,
+            4,
+            3,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            2,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            1,
+            4
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            2,
+            4,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            4,
+            1,
+            2
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        },
+        {
+          "complete": false,
+          "conflicts": [],
+          "dwell": 0,
+          "finish": 0,
+          "fullTour": false,
+          "legs": [],
+          "missing": 1,
+          "order": [
+            3,
+            4,
+            2,
+            1
+          ],
+          "rain": 0,
+          "travel": 0,
+          "unknownWeather": 0,
+          "waiting": 0
+        }
+      ],
+      "configuration": {
+        "beamWidth": 8,
+        "evaluationLimit": 100000,
+        "iterations": 150,
+        "secondsLimit": 3,
+        "seed": 67
+      },
+      "elapsed": 0.0003210306167602539,
+      "evaluations": 26,
+      "note": "Evaluator yang sama memilih moda ETA tercepat per ruas; tidak mencari penundaan berangkat disengaja. Optimum enumerasi hanya berlaku atas urutan dalam model ini.",
+      "problemID": "50F42772-C3AC-48B4-935B-9635D33C88B5",
+      "proof": "not_proven",
+      "termination": "data_incomplete"
+    }
+  ]
+}

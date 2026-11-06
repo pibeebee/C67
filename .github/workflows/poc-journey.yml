@@ -1,0 +1,56 @@
+name: PoC journey checks
+on:
+  pull_request:
+    paths:
+      - 'poc-journey/**'
+      - '.github/workflows/poc-journey.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication-and-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: poc-journey/apps/ai-trip-planner/package-lock.json
+      - run: python3 poc-journey/scripts/verify_portability.py
+      - run: python3 poc-journey/scripts/verify_evidence.py
+      - run: bash poc-journey/scripts/verify.sh cli
+  native-fixtures:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record compatible toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+          sw_vers
+      - uses: actions/cache@v4
+        with:
+          path: poc-journey/apps/c67-foundation-lab/Packages/PreferenceLearning/Sources/PreferenceLearning/Resources/Model
+          key: e5-614241f622f53c4eeff9890bdc4f31cfecc418b3-dd476dd0
+      - name: Restore and verify pinned model assets
+        run: python3 poc-journey/scripts/bootstrap.py
+      - name: Unsigned Simulator builds
+        run: bash poc-journey/scripts/verify.sh build
+      - name: Swift package fixture suites
+        run: bash poc-journey/scripts/verify.sh packages
+      - name: Native local and Jakarta replay harnesses
+        run: bash poc-journey/scripts/verify.sh native
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: poc-deterministic-results
+          path: |
+            poc-journey/.verification/**/*.log
+            poc-journey/.verification/**/summary.json
+            poc-journey/.verification/**/REPORT.md
+          retention-days: 14
+          include-hidden-files: true

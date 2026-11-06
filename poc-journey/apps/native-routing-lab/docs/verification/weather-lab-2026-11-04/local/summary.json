@@ -1,0 +1,408 @@
+{
+  "tests": 100,
+  "failures": 0,
+  "skipped": 0,
+  "source": "Actual XCTest console events, cross-checked with suite summary; JUnit reconstructed when SwiftPM omits it",
+  "cases": [
+    {
+      "name": "testAllFiveUserLogPlacesAreInTheOperationalBoundary",
+      "status": "passed"
+    },
+    {
+      "name": "testDuplicateEndpointIdentityCannotHideAnOutsideStop",
+      "status": "passed"
+    },
+    {
+      "name": "testEndpointOutsideScopeCannotPassValidation",
+      "status": "passed"
+    },
+    {
+      "name": "testExplicitConversionPreservesCoordinatesAndDoesNotSaveUntilChosen",
+      "status": "passed"
+    },
+    {
+      "name": "testFailureOfSelectedWeatherProviderStaysUnknown",
+      "status": "passed"
+    },
+    {
+      "name": "testJakartaQueryAvoidsCountrySuffixThatReturnedOnlyTheCityInLiveSearch",
+      "status": "passed"
+    },
+    {
+      "name": "testLegacyBulkLookupIsBlockedBeforeAnyProviderWork",
+      "status": "passed"
+    },
+    {
+      "name": "testLegacyDraftIsNotSilentlyConvertedOnRestore",
+      "status": "passed"
+    },
+    {
+      "name": "testNearbyCitiesAndForeignPinsAreRejectedEvenWithJakartaInAddress",
+      "status": "passed"
+    },
+    {
+      "name": "testNewProfileUsesJakartaCarAndWIB",
+      "status": "passed"
+    },
+    {
+      "name": "testOldActiveTripCannotReplanOutsideCurrentScopeButFactsRemain",
+      "status": "passed"
+    },
+    {
+      "name": "testOpenMeteoProfileNeverInvokesWeatherKit",
+      "status": "passed"
+    },
+    {
+      "name": "testOutOfScopeSelectionDoesNotReplaceCurrentPoint",
+      "status": "passed"
+    },
+    {
+      "name": "testPastedNamesReceiveJakartaSearchHint",
+      "status": "passed"
+    },
+    {
+      "name": "testProfileRejectsTransitPrivateCarAndUnknownScope",
+      "status": "passed"
+    },
+    {
+      "name": "testProfileSurvivesStorageRoundTripAndAcceptsEndOnlyProjection",
+      "status": "passed"
+    },
+    {
+      "name": "testSameNamedBranchesRemainAmbiguous",
+      "status": "passed"
+    },
+    {
+      "name": "testSingleNearbyStreetIsNotAutomaticallyChosenForRequestedVenue",
+      "status": "passed"
+    },
+    {
+      "name": "testAcceptedEndpointCannotBeChangedSilently",
+      "status": "passed"
+    },
+    {
+      "name": "testAcceptedReportRoundTripPreservesScheduleAndUnknowns",
+      "status": "passed"
+    },
+    {
+      "name": "testAdaptiveCannotSkipDeadlineConflict",
+      "status": "passed"
+    },
+    {
+      "name": "testBothCorruptRemainUntouchedAndBlockSaving",
+      "status": "passed"
+    },
+    {
+      "name": "testCorruptPrimaryRecoversValidatedBackup",
+      "status": "passed"
+    },
+    {
+      "name": "testDeadlineReachesBothPipelineAndSnapshot",
+      "status": "passed"
+    },
+    {
+      "name": "testDefaultNativeLaunchDoesNotRequireLegacyBootstrap",
+      "status": "passed"
+    },
+    {
+      "name": "testDeviceZoneDoesNotChangeDeadlineOrOperationalDate",
+      "status": "passed"
+    },
+    {
+      "name": "testDraftEditsDoNotEraseAcceptedChoice",
+      "status": "passed"
+    },
+    {
+      "name": "testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider",
+      "status": "passed"
+    },
+    {
+      "name": "testExplicitTimeZoneChangePreservesBothWallClocks",
+      "status": "passed"
+    },
+    {
+      "name": "testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks",
+      "status": "passed"
+    },
+    {
+      "name": "testFutureVersionBlocksEvenWithValidBackup",
+      "status": "passed"
+    },
+    {
+      "name": "testInfeasibleAcceptedPlanCannotCommit",
+      "status": "passed"
+    },
+    {
+      "name": "testInvalidAcceptedArithmeticCannotCommit",
+      "status": "passed"
+    },
+    {
+      "name": "testLegacyDraftRetainsEndOfDayAndCarPolicy",
+      "status": "passed"
+    },
+    {
+      "name": "testLocalDemoUsesValidSyntheticScheduleWithoutServices",
+      "status": "passed"
+    },
+    {
+      "name": "testMissingPrimaryUsesBackupWithVisibleNotice",
+      "status": "passed"
+    },
+    {
+      "name": "testOversizedPrimaryIsNotDecodedOrOverwritten",
+      "status": "passed"
+    },
+    {
+      "name": "testRejectsDeadlineBeforeStartAndBeyondDay",
+      "status": "passed"
+    },
+    {
+      "name": "testRestorationDoesNotClearReportOnObservationEcho",
+      "status": "passed"
+    },
+    {
+      "name": "testSaveFailurePreservesDiskAndPublishedRevision",
+      "status": "passed"
+    },
+    {
+      "name": "testStaleWriterCannotOverwriteNewerSavedDraft",
+      "status": "passed"
+    },
+    {
+      "name": "testWeatherMetadataAndCreditSurviveRestore",
+      "status": "passed"
+    },
+    {
+      "name": "testActiveTripGuardsPlannerReplacementAndStorageRestore",
+      "status": "passed"
+    },
+    {
+      "name": "testActualLegMustMatchRecordedArrivalAndPreviousDeparture",
+      "status": "passed"
+    },
+    {
+      "name": "testActualOutsideHoursRemainsFactWithWarning",
+      "status": "passed"
+    },
+    {
+      "name": "testArrivalBeforeOpeningDoesNotInventActualStart",
+      "status": "passed"
+    },
+    {
+      "name": "testBaselineRetainedOnTieAndExplicitBudgetRespected",
+      "status": "passed"
+    },
+    {
+      "name": "testCancellationPreventsLateProposalPersistence",
+      "status": "passed"
+    },
+    {
+      "name": "testCannotStartSecondVisitBeforeCompletingCurrent",
+      "status": "passed"
+    },
+    {
+      "name": "testClockCannotMoveBackwardsOrCreateNegativeVisit",
+      "status": "passed"
+    },
+    {
+      "name": "testCurrentClosingConflictPreventsApply",
+      "status": "passed"
+    },
+    {
+      "name": "testCurrentInputsSurvivePlannerFailureAndRestore",
+      "status": "passed"
+    },
+    {
+      "name": "testDeadlineChangeDoesNotMoveDeadlineWithActualStart",
+      "status": "passed"
+    },
+    {
+      "name": "testEndOnlyPreservesEndpointAndDoesNotMakeFakeStop",
+      "status": "passed"
+    },
+    {
+      "name": "testEqualTimestampsUseActualLegSequenceForLatestAnchor",
+      "status": "passed"
+    },
+    {
+      "name": "testExtendThirtyMinutesHasExact1130FinishAndFrozenPrefix",
+      "status": "passed"
+    },
+    {
+      "name": "testFailedApplyKeepsProposalAndRetryIsIdempotent",
+      "status": "passed"
+    },
+    {
+      "name": "testFailedFactSaveAndRetryPublishOnlyCommittedState",
+      "status": "passed"
+    },
+    {
+      "name": "testImpossibleDeadlineKeepsAllNonSkippedTargets",
+      "status": "passed"
+    },
+    {
+      "name": "testLateResultAfterNewRequestCannotReplaceLatestProposal",
+      "status": "passed"
+    },
+    {
+      "name": "testLifecycleRecordsManualFactsAndSingleCurrentVisit",
+      "status": "passed"
+    },
+    {
+      "name": "testMalformedActiveStateCannotCommit",
+      "status": "passed"
+    },
+    {
+      "name": "testMissingETAIsIncompleteNotZero",
+      "status": "passed"
+    },
+    {
+      "name": "testOnlyPendingLegsAreRequested",
+      "status": "passed"
+    },
+    {
+      "name": "testOverdueExtensionUsesNowAndSetLeaveCannotGoBack",
+      "status": "passed"
+    },
+    {
+      "name": "testPrivateCarAndTransitRequireExplicitSupportedScope",
+      "status": "passed"
+    },
+    {
+      "name": "testProjectionKeepsOriginalEndpointWhenAnchorChanges",
+      "status": "passed"
+    },
+    {
+      "name": "testProposalBecomesStaleAfterFactAndAfterSixtySeconds",
+      "status": "passed"
+    },
+    {
+      "name": "testRejectKeepsAcceptedPlanAndFacts",
+      "status": "passed"
+    },
+    {
+      "name": "testRequestRequiresAnchorConfirmationAndSameServiceDay",
+      "status": "passed"
+    },
+    {
+      "name": "testRestoredProposalCannotApplyInNewRuntimeSession",
+      "status": "passed"
+    },
+    {
+      "name": "testSameActionIsIdempotentButDifferentPayloadIsRejected",
+      "status": "passed"
+    },
+    {
+      "name": "testSkipIsExplicitAndDoesNotCreateCompletedHistory",
+      "status": "passed"
+    },
+    {
+      "name": "testStaleOperationalDateRejectedBeforePlanning",
+      "status": "passed"
+    },
+    {
+      "name": "testV1PlannedSessionPromotesToV2WithoutChangingInitialPlan",
+      "status": "passed"
+    },
+    {
+      "name": "testWatchdogStopsOperationAndKeepsFacts",
+      "status": "passed"
+    },
+    {
+      "name": "testZeroRemainingAtEndpointNeedsNoProviderRequests",
+      "status": "passed"
+    },
+    {
+      "name": "testAuthenticationBreakerStopsFurtherAppleAndResetRetries",
+      "status": "passed"
+    },
+    {
+      "name": "testAuthenticationClassifierDoesNotTreatEveryCodeTwoAsAuth",
+      "status": "passed"
+    },
+    {
+      "name": "testAutomaticUsesAppleWithAttributionAndNoBackup",
+      "status": "passed"
+    },
+    {
+      "name": "testBothFailuresRemainUnknownInsteadOfZeroRain",
+      "status": "passed"
+    },
+    {
+      "name": "testCacheRespectsFifteenMinuteTTLAndAppleEarlierExpiry",
+      "status": "passed"
+    },
+    {
+      "name": "testCancellationStopsFallbackAndIgnoresLateResponse",
+      "status": "passed"
+    },
+    {
+      "name": "testConcurrencyIsBoundedToTwoGroups",
+      "status": "passed"
+    },
+    {
+      "name": "testDifferentRangeAndProviderCannotReuseWrongCache",
+      "status": "passed"
+    },
+    {
+      "name": "testGroupingDoesNotChainDistantLocations",
+      "status": "passed"
+    },
+    {
+      "name": "testGroupingIsStableAndEveryMemberWithinRadius",
+      "status": "passed"
+    },
+    {
+      "name": "testImportCopiesCoordinatesWithoutChangingStoredPlan",
+      "status": "passed"
+    },
+    {
+      "name": "testImportNeverSilentlyDropsUnresolvedPlace",
+      "status": "passed"
+    },
+    {
+      "name": "testInvalidCoordinatesDuplicatesEmptyAndWindowAreRejected",
+      "status": "passed"
+    },
+    {
+      "name": "testLabDefaultAndExplicitNativeLaunchRemainSeparate",
+      "status": "passed"
+    },
+    {
+      "name": "testLateUncooperativeProviderCannotDelayFallbackOrFillCache",
+      "status": "passed"
+    },
+    {
+      "name": "testMissingHoursMissingCreditAndExpiredResponseAreNotPublished",
+      "status": "passed"
+    },
+    {
+      "name": "testModelCancelThenNewRunCannotReceiveOldResults",
+      "status": "passed"
+    },
+    {
+      "name": "testModelReportsSimulationProvenanceAndCapturedWindow",
+      "status": "passed"
+    },
+    {
+      "name": "testProbeBypassesCacheBreakerAndNeverFallsBack",
+      "status": "passed"
+    },
+    {
+      "name": "testRefreshAndClearCacheForceNewRequests",
+      "status": "passed"
+    },
+    {
+      "name": "testReorderedGroupsAndNarrowerWindowReuseCache",
+      "status": "passed"
+    },
+    {
+      "name": "testSuccessfulFreshProbeReopensAuthenticationCircuit",
+      "status": "passed"
+    },
+    {
+      "name": "testTransientRetryIsAtMostOnceWithinProviderBudget",
+      "status": "passed"
+    }
+  ]
+}

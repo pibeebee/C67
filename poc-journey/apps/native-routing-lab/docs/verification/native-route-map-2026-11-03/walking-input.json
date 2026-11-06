@@ -1,0 +1,44 @@
+{
+  "automobile": false,
+  "defaultDwell": 30,
+  "departure": "2026-11-05T00:00:00Z",
+  "end": {
+    "id": "end",
+    "query": "",
+    "title": "Titik akhir"
+  },
+  "extraWeatherMinutes": 15,
+  "maximumWalkingMinutes": 45,
+  "origin": {
+    "address": "Jalan Kendal No. 1, Kota Administrasi Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310, Indonesia",
+    "id": "origin",
+    "latitude": -6.2023912,
+    "longitude": 106.8234359,
+    "query": "Stasiun sudirman",
+    "resolvedName": "Stasiun Sudirman",
+    "selectionSource": "MapKit Local Search",
+    "title": "Stasiun sudirman"
+  },
+  "rainWeight": 2,
+  "returnsToOrigin": true,
+  "searchContext": "Jakarta, Indonesia",
+  "stops": [
+    {
+      "exposure": "unknown",
+      "point": {
+        "address": "Jl MH Thamrin No. 1\nKebon Melati, Tanah Abang, Central Jakarta\n Jakarta 10310\nIndonesia",
+        "id": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+        "latitude": -6.1951799,
+        "longitude": 106.8196893,
+        "query": "Grand Indonesia",
+        "resolvedName": "Grand Indonesia",
+        "selectionSource": "MapKit Local Search",
+        "title": "Grand Indonesia"
+      },
+      "role": "visit"
+    }
+  ],
+  "timeZoneID": "Asia/Jakarta",
+  "transit": false,
+  "walking": true
+}

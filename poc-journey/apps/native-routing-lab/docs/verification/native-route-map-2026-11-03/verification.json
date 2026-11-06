@@ -1,0 +1,158 @@
+{
+  "verifiedOn": "2026-11-03",
+  "simulatorID": "B774448D-6569-46E0-9833-669540D094D0",
+  "runtime": "iOS 27.0",
+  "deploymentTarget": "iOS 18",
+  "build": {
+    "status": "SUCCEEDED",
+    "finalBuildSeconds": 14.302,
+    "warnings": []
+  },
+  "ui": {
+    "method": "Device Hub native accessibility through cua_repl",
+    "jakarta": {
+      "availableLegs": 5,
+      "totalLegs": 5,
+      "routeAttemptsFirstOpen": 5,
+      "cacheHitsSecondOpen": 5,
+      "routeAttemptsAfterReopen": 5,
+      "listSelection": true,
+      "mapBadgeSelection": true,
+      "fitAll": true,
+      "returnLegIncluded": true,
+      "originAndReturnPinGrouped": true
+    },
+    "walking": {
+      "availableLegs": 2,
+      "totalLegs": 2,
+      "mode": "walking",
+      "dashedLineVisibleWhenSelected": true,
+      "selectedBadgeNumber": 2,
+      "selectedBadgeMode": "walking"
+    }
+  },
+  "localChecks": {
+    "groupsPassed": 6,
+    "provider": "synthetic",
+    "network": false,
+    "script": "bash scripts/check-native-trip-map.sh"
+  },
+  "formatLint": "passed",
+  "shellSyntax": "passed",
+  "gitDiffCheck": "passed",
+  "notVerified": [
+    "physical iPhone",
+    "same itinerary mixing walking and automobile",
+    "VoiceOver and large Dynamic Type",
+    "real transit geometry (unsupported by MapKit)",
+    "device offline/retry UI",
+    "all 20-stop inputs"
+  ],
+  "runtimeFilesSHA256": {
+    "poc-c67/Features/NativePlanner/NativeTripMapRoutes.swift": "e71fcd3fb25f6127209b288f2a40cf847d4d9926884cd6729280f84c0cc87b5f",
+    "poc-c67/Features/NativePlanner/NativeTripMapView.swift": "7ee4b4798179c4f2a2da5e2cee0e2873abead8731c6e00d014b54ab2f713b98d",
+    "poc-c67/Features/NativePlanner/NativeTripReportView.swift": "36dcdd9cdf70ee9979bb3ade6c2e71a40a148bd6745346be401b2b59f841dc78",
+    "checks/map/NativeTripMapChecks.swift": "8a01747d4350f6b25e74c9c44ce0239d9636a962273953c586afef2141487e8f",
+    "scripts/check-native-trip-map.sh": "a7d8f8b184f898eef1cc4257298dd53ec4bdd3ce04c0ebaf3cd23201a082960e"
+  },
+  "notes": [
+    "Jakarta driving and cache UI captured on build immediately before final walking-only dash/badge refinement; final build reverified with real walking geometry.",
+    "Failure, budget and stale-response cancellation branches verified with synthetic local provider.",
+    "Optimizer and opening-hours policy were not changed."
+  ],
+  "carGeometry": [
+    {
+      "departure": "2026-11-05T00:00:00Z",
+      "distanceMeters": "1171.0",
+      "elapsedSeconds": "0.4180259704589844",
+      "from": "Stasiun sudirman",
+      "itinerarySeconds": "237.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:0",
+      "mode": "automobile",
+      "points": "27",
+      "routeSeconds": "237.0",
+      "status": "available",
+      "to": "Grand Indonesia"
+    },
+    {
+      "departure": "2026-11-05T00:33:57Z",
+      "distanceMeters": "5559.0",
+      "elapsedSeconds": "1.1005940437316895",
+      "from": "Grand Indonesia",
+      "itinerarySeconds": "1260.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:1",
+      "mode": "automobile",
+      "points": "136",
+      "routeSeconds": "1260.0",
+      "status": "available",
+      "to": "National Monument"
+    },
+    {
+      "departure": "2026-11-05T01:24:57Z",
+      "distanceMeters": "5751.0",
+      "elapsedSeconds": "1.2267520427703857",
+      "from": "National Monument",
+      "itinerarySeconds": "1088.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:2",
+      "mode": "automobile",
+      "points": "72",
+      "routeSeconds": "1116.0",
+      "status": "available",
+      "to": "Kota Tua"
+    },
+    {
+      "departure": "2026-11-05T02:13:05Z",
+      "distanceMeters": "16073.0",
+      "elapsedSeconds": "1.2576509714126587",
+      "from": "Kota Tua",
+      "itinerarySeconds": "2136.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:3",
+      "mode": "automobile",
+      "points": "236",
+      "routeSeconds": "2078.0",
+      "status": "available",
+      "to": "Summarecon Mall Kelapa Gading"
+    },
+    {
+      "departure": "2026-11-05T03:30:00Z",
+      "distanceMeters": "14833.0",
+      "elapsedSeconds": "1.1838250160217285",
+      "from": "Summarecon Mall Kelapa Gading",
+      "itinerarySeconds": "2620.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94:4",
+      "mode": "automobile",
+      "points": "233",
+      "routeSeconds": "2499.0",
+      "status": "available",
+      "to": "Stasiun sudirman"
+    }
+  ],
+  "walkingGeometry": [
+    {
+      "departure": "2026-11-05T00:00:00Z",
+      "distanceMeters": "1125.0",
+      "elapsedSeconds": "0.3405740261077881",
+      "from": "Stasiun sudirman",
+      "itinerarySeconds": "921.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:0",
+      "mode": "walking",
+      "points": "44",
+      "routeSeconds": "921.0",
+      "status": "available",
+      "to": "Grand Indonesia"
+    },
+    {
+      "departure": "2026-11-05T00:45:21Z",
+      "distanceMeters": "1122.0",
+      "elapsedSeconds": "1.026394009590149",
+      "from": "Grand Indonesia",
+      "itinerarySeconds": "935.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:1",
+      "mode": "walking",
+      "points": "47",
+      "routeSeconds": "935.0",
+      "status": "available",
+      "to": "Stasiun sudirman"
+    }
+  ]
+}

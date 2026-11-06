@@ -1,0 +1,74 @@
+{
+  "baseline": "f55d1ecfdce973f8f1b387cba128441c92f3afe7",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "processor": "arm64",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "seeds": [
+    11,
+    67,
+    101
+  ],
+  "caseCount": 22,
+  "requestLimit": 96,
+  "evaluationLimit": 12000,
+  "secondsLimit": 3,
+  "method": "Actual old/new native pipeline sources; same deterministic oracle, cold cache, no network or artificial ETA pacing. Alternate execution order by case/seed. No weather data in either arm.",
+  "sources": {
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": {
+      "new": "45020b178665cf0b58ae6a6c891e7bf215cdf233768b1239479357b22bb82f05",
+      "old": "19ab40586e25d69102363e4c76c224c210f6ec996c28186aaaa2820ea86e07a0"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": {
+      "new": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1",
+      "old": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": {
+      "new": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+      "old": "9ec002a8cd12a1ececba5c9024f9992ea0c98de8c5d64e9e392b88ccf1bf506a"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": {
+      "new": "4a5c974c63ef5261c9f16a57424f9d8e02326e2bfa22189187311ae87f7579ad",
+      "old": "18690b4b9c5214935cc44fbcd493204e5dda32f9068b1d02434ca26f74ac26b1"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": {
+      "new": "7f37c7622d7e89e3d0e0bf156e60619dbb787ff6271d0431e342f2f7201b1f91",
+      "old": "fb5f4eafa4f54299b0c33507523d67f19c6e147b641b70418f1622f34d2b7112"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": {
+      "new": "f9156d2fb5edb594043379c581b61bd5905754a522c5e9e697c81d43615a073e"
+    },
+    "scripts/benchmark-routing-pipeline.sh": {
+      "sha256": "8c64ff6f43227accff489119334641a723099eb20effdcb123e814e19693063d"
+    },
+    "scripts/benchmark-routing-pipeline.py": {
+      "sha256": "fbc8e85deb066f7ff993305e66f1c5b68341d72e559b37d301e546b2164fb9c5"
+    },
+    "checks/routing/NativeTripPipelineReplay.swift": {
+      "sha256": "382b0d6e654b98691f131a94395060ae779d18e31a89fafbef9a53fcb1f9547b"
+    }
+  },
+  "caseSHA256": {
+    "jakarta-recorded-static": "b7d0f1cc5288c13ea4f67c66a18041249171405d0a2c7913b5fe7cfaeb2cd9ba",
+    "synthetic-4-17-static": "72e1d4ee37733d6a1484cf771c18f38f77875645bc82f1c83256dedff67278c5",
+    "synthetic-4-17-timed": "45a282fa63110b201dae25477f284c004c8dd64735e29aaee08b6d1ed5f2cdbd",
+    "synthetic-4-73-static": "685e850901c1e3e940bddb0d8cb31b2c42106269c5a3d5880a789e0cea68173c",
+    "synthetic-4-73-timed": "7c449b46c33460c62455831d53b1552108927e193f61efc4b2525a4d4943d350",
+    "synthetic-8-17-static": "b45c0a3d518c26aa9e665de5f6214a3f53cca548e16fddc3a3dc9a64c4a1a859",
+    "synthetic-8-17-timed": "1d0c60c23c83e1baa85ca15cb3d4993b5ef1a596424df882b657a326915ef3c2",
+    "synthetic-8-73-static": "214a6814d4691dc0d54b70245bd2fd27e47417d863bc1de667af2f040372d709",
+    "synthetic-8-73-timed": "153a962a161f860400471d22bb65693a6d9c4770fd6a520ada5438e208b2e43b",
+    "synthetic-12-17-static": "cb553e656c434d6267e8af7442bc7ad75d68a9c5302acbff712c0941bccf5877",
+    "synthetic-12-17-timed": "25d9deef09f981ea72d1892a8369cbd78bf9e244ca2daddf7fbb02acda6e3da3",
+    "synthetic-12-73-static": "65b52cf59f3ac71d951067ae57efaaeeb3a12aab0d22fdcd07d5c2b9bff9a7d6",
+    "synthetic-12-73-timed": "f74d3d41d8f0ed558a583859a6863a6e53b74544a0bd46e6e83ed70c9e73e860",
+    "synthetic-20-17-static": "ec2050e3129cacd221e0246b5ac65a91dd2d1e21d6df03e7af028f302c3a718a",
+    "synthetic-20-17-timed": "8da52a5ff68318a19778df38a01644e557e6313c3f15240fa5457bb0e2171cbd",
+    "synthetic-20-73-static": "a7d1aa7e6380b5fc4bd894ee4888d814d0ab21c25de238a9ef76c3d9418a590f",
+    "synthetic-20-73-timed": "ce429f57bfbeb883ec46d7bb01942fd243862af8fca3ae124265d90da57806ae",
+    "synthetic-8-17-timed-tight": "1f6b04ceb409a46e884b9680ddedeeca34d69a1f53ea1d614f475120c82e4df5",
+    "synthetic-8-73-timed-tight": "e14b03e787dfb3a71256a60b93f26c7ce944f4e0e8fef2590e6c71c6df4b5d6e",
+    "synthetic-12-17-timed-tight": "a32171f71685728a5b2984c17bec3f6bd6aa6dff110af9b06be25c94d3f54dda",
+    "synthetic-12-73-timed-tight": "9541b725ab17b4cdc44d7e08dbf6ebccd737443e2059facb2368f65f86988919",
+    "synthetic-known-infeasible": "f126207c566516844b27ac7e0fc320882348bb088443464d637d5e7c22985342"
+  }
+}

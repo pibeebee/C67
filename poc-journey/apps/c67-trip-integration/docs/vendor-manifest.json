@@ -1,0 +1,89 @@
+{
+  "note": "Copies for the separate P3 app. Original sources are read-only. Integration changes documented in VENDOR.md.",
+  "files": [
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripModels.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripModels.swift",
+      "originalSHA256": "d49ffbbd60f5a371b958afb59f9ab093511dbf8a17447f136469244f471c1977",
+      "copySHA256": "d49ffbbd60f5a371b958afb59f9ab093511dbf8a17447f136469244f471c1977"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripRoutingCore.swift",
+      "originalSHA256": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+      "copySHA256": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripEngine.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripEngine.swift",
+      "originalSHA256": "95ace9177427ff0b23548614c74e96784ed6dc65b39ff4c1cb21928239a3c750",
+      "copySHA256": "7348ed0698551bf02b81f1233d38eb18158931c198fbf2add4cf8a8832a1e2a5"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripRoutingBridge.swift",
+      "originalSHA256": "1545e840c3cc926af1c98c34977cd2743d6d11910bbc6e43ef419cb4ca0cc0ec",
+      "copySHA256": "1545e840c3cc926af1c98c34977cd2743d6d11910bbc6e43ef419cb4ca0cc0ec"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripTimeAwarePlanner.swift",
+      "originalSHA256": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18",
+      "copySHA256": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripAppleServices.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripAppleServices.swift",
+      "originalSHA256": "1ac8a568f375df43c74f138901c3c6bcf9b1d0bc49fb26f111e85f760139148f",
+      "copySHA256": "ec584c115681a789245349d9d0e9b5fef5a94596608e0ba9b32f82023ef6123e"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripWeatherSupport.swift",
+      "originalSHA256": "c58a424a89447df8c093c3c2af8f77818f034fd8e0598fff6f8b198541cbc226",
+      "copySHA256": "c58a424a89447df8c093c3c2af8f77818f034fd8e0598fff6f8b198541cbc226"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripSearchSupport.swift",
+      "originalSHA256": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+      "copySHA256": "85d37dfad43339b5389f66bfca023934615bf3614a5f209b6a0ab7bb1002063f"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripLogStore.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripLogStore.swift",
+      "originalSHA256": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27",
+      "copySHA256": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27"
+    },
+    {
+      "source": "<LOCAL_HOME>/Programming/software/ios/poc-c67/poc-c67/Features/NativePlanner/NativeTripInputSupport.swift",
+      "copy": "Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripInputSupport.swift",
+      "originalSHA256": "3698e1166ec47a09f516c1549cd71589d65d6290fb64607a65155c775191ef94",
+      "copySHA256": "3698e1166ec47a09f516c1549cd71589d65d6290fb64607a65155c775191ef94"
+    }
+  ],
+  "preparedOnLocalDate": "2026-11-05",
+  "buildAndTests": "Build 3 signed iOS build succeeded; 35 package + 2 Simulator UI tests passed; 7 scripted iPhone live cases passed; see verification report for untested scope.",
+  "preparedArtifacts": [
+    {
+      "path": "project.yml",
+      "sha256": "3058a7b27d603139d5749434fd50cac83818312d0c22d95ed6f1d7d650d89bd1"
+    },
+    {
+      "path": "C67TripIntegration.xcodeproj/project.pbxproj",
+      "sha256": "b7b431f81201c150b614480dfc46b65c3921983f52c4394cfe8b41bea25bbba5"
+    },
+    {
+      "path": "App/C67TripIntegration.entitlements",
+      "sha256": "4c7e5e88b9d593f0337bfa6c2a15b85626ddf6fcf164ea524c625b8cfcced83f"
+    },
+    {
+      "path": "Packages/TripIntegration/Sources/TripIntegration/Resources/timing.json",
+      "sha256": "c21e538a337ebb69f702232e8a61e52ba73493cac00bc6f70fee64b20f7c9ce8"
+    },
+    {
+      "path": "Packages/TripIntegration/Sources/TripIntegration/Resources/quality.json",
+      "sha256": "58002661cc9f5cf9fc53eba6af654bbc9ed9c4a34b84e456b785f8745924ef2f"
+    }
+  ]
+}

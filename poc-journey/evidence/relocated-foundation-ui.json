@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "mode": "relocated Simulator fixture UI; no Apple Foundation Models inference or live-provider acceptance implied",
+  "simulator": "iPhone 18 Pro / iOS 27.2",
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 264955,
+    "counts": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "testCases": [
+    {
+      "suite": "BenefitLabUITests",
+      "test": "testActualEmbeddingComparisonSourcesExportAndHistory",
+      "status": "passed",
+      "durationMs": 36479
+    },
+    {
+      "suite": "BenefitLabUITests",
+      "test": "testImpossibleCombinationAndUnconfirmedNegationSkipModelRanking",
+      "status": "passed",
+      "durationMs": 12790
+    },
+    {
+      "suite": "LivePreferenceUITests",
+      "test": "testCancellationAndLegacyTabRemainAvailable",
+      "status": "passed",
+      "durationMs": 11871
+    },
+    {
+      "suite": "LivePreferenceUITests",
+      "test": "testSearchLikeRefreshRestoreAndExport",
+      "status": "passed",
+      "durationMs": 22333
+    },
+    {
+      "suite": "QualityLabUITests",
+      "test": "testCombinedNeedsCorrectionsHistoryAndExport",
+      "status": "passed",
+      "durationMs": 53732
+    },
+    {
+      "suite": "QualityLabUITests",
+      "test": "testLikeLearnsOnlySelectedFacetAndReranks",
+      "status": "passed",
+      "durationMs": 23850
+    },
+    {
+      "suite": "QualityLabUITests",
+      "test": "testUnconfirmedNegationRequiresCorrection",
+      "status": "passed",
+      "durationMs": 24026
+    },
+    {
+      "suite": "VisitTimingUITests",
+      "test": "testActualWeekendScheduleHistoryAndExport",
+      "status": "passed",
+      "durationMs": 24940
+    },
+    {
+      "suite": "VisitTimingUITests",
+      "test": "testPublishedClosureAndUnknownCases",
+      "status": "passed",
+      "durationMs": 32815
+    }
+  ]
+}

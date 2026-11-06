@@ -1,0 +1,87 @@
+Building for debugging...
+[Planning deferred tasks]
+[41 / 65]
+[42 / 66] C67RoutingHarness
+[52 / 112]
+[60 / 112]
+[62 / 112]
+[67 / 112]
+[71 / 112]
+[75 / 112]
+[77 / 112]
+[78 / 112]
+[88 / 112] C67RoutingHarness
+[96 / 112] C67RoutingHarness
+[102 / 113] JakartaRoutingTests-product
+[116 / 149]
+[123 / 149]
+[124 / 149]
+[128 / 149]
+[129 / 149]
+[132 / 149]
+[133 / 149]
+[138 / 149] JakartaRoutingTests-product
+[143 / 149] JakartaRoutingTests-product
+[145 / 149] JakartaRoutingTests-product
+Build complete! (6.61 sec)
+Test Suite 'All tests' started at 2026-11-04 06:23:57.259.
+Test Suite 'JakartaRoutingTests.xctest' started at 2026-11-04 06:23:57.259.
+Test Suite 'NativeTripJakartaTests' started at 2026-11-04 06:23:57.259.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveEstimatedGainTriggersValidatedOptimization]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveEstimatedGainTriggersValidatedOptimization]' passed (0.038 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveJakartaSkipsExtraRequestsWithoutChangingSchedule]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveJakartaSkipsExtraRequestsWithoutChangingSchedule]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveLargeWaitingTriggersOptimization]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveLargeWaitingTriggersOptimization]' passed (0.023 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveNoWaitingDoesNotHideUnknownRoadShortcuts]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveNoWaitingDoesNotHideUnknownRoadShortcuts]' passed (0.017 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveOneAndTwoDestinationsCoverAllOrdersWithoutSnapshot]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveOneAndTwoDestinationsCoverAllOrdersWithoutSnapshot]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveScreeningPreservesWeatherAndPrivateCarSearch]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveScreeningPreservesWeatherAndPrivateCarSearch]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveTightClosingMarginStillRunsOptimization]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveTightClosingMarginStillRunsOptimization]' passed (0.017 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveTinyScreeningBudgetFallsBackToSearch]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAdaptiveTinyScreeningBudgetFallsBackToSearch]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAllSevenNativeMethodsPreserveStopsAndReachTheKnownFourStopReference]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testAllSevenNativeMethodsPreserveStopsAndReachTheKnownFourStopReference]' passed (0.027 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCentralJakartaSubsetReturnsToSudirman]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCentralJakartaSubsetReturnsToSudirman]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testChangedDateRejectsStaleOpeningHoursBeforeAnyETARequest]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testChangedDateRejectsStaleOpeningHoursBeforeAnyETARequest]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCompleteDwellAtClosingBoundaryIsAcceptedButOneMinuteEarlierIsNot]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCompleteDwellAtClosingBoundaryIsAcceptedButOneMinuteEarlierIsNot]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCurrentBaselinePipelineUsesElapsedObjective]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testCurrentBaselinePipelineUsesElapsedObjective]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testForcedFullHybridRemainsAvailableForComparison]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testForcedFullHybridRemainsAvailableForComparison]' passed (0.023 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testHybridPipelineKeepsValidatedBaselineAndRequestBudget]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testHybridPipelineKeepsValidatedBaselineAndRequestBudget]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testImpossibleOpeningWindowDoesNotProduceAFeasibleItinerary]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testImpossibleOpeningWindowDoesNotProduceAFeasibleItinerary]' passed (0.018 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testLessTravelDoesNotBeatAnEarlierTripFinish]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testLessTravelDoesNotBeatAnEarlierTripFinish]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testLongerDwellPropagatesAndCanReplaceOpeningWait]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testLongerDwellPropagatesAndCanReplaceOpeningWait]' passed (0.000 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testMissingAllRoutesIntoKelapaGadingRemainsUnknown]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testMissingAllRoutesIntoKelapaGadingRemainsUnknown]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testNorthJakartaSubsetWaitsUntilKelapaGadingOpens]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testNorthJakartaSubsetWaitsUntilKelapaGadingOpens]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testRecordedFourStopScheduleHasExpectedTravelWaitAndReturn]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testRecordedFourStopScheduleHasExpectedTravelWaitAndReturn]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testShuffledInputStillVisitsEveryPlaceAndRespectsOpening]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testShuffledInputStillVisitsEveryPlaceAndRespectsOpening]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testSyntheticHoursForEveryStopAreAllRespected]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testSyntheticHoursForEveryStopAreAllRespected]' passed (0.018 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testSyntheticPeakETAUsesActualDepartureAfterDwell]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testSyntheticPeakETAUsesActualDepartureAfterDwell]' passed (0.001 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testTripCrossingMidnightIsNotSilentlyShortened]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testTripCrossingMidnightIsNotSilentlyShortened]' passed (0.023 seconds).
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testUnavailableTransitAndWalkingLimitDoNotInventTransport]' started.
+Test Case '-[JakartaRoutingTests.NativeTripJakartaTests testUnavailableTransitAndWalkingLimitDoNotInventTransport]' passed (0.001 seconds).
+Test Suite 'NativeTripJakartaTests' passed at 2026-11-04 06:23:57.481.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.220 (0.222) seconds
+Test Suite 'JakartaRoutingTests.xctest' passed at 2026-11-04 06:23:57.481.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.220 (0.222) seconds
+Test Suite 'All tests' passed at 2026-11-04 06:23:57.481.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.220 (0.222) seconds

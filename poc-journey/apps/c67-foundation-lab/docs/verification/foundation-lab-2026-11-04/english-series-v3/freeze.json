@@ -1,0 +1,43 @@
+{
+  "createdAt": "2026-11-04T09:33:02Z",
+  "sourceSHA256": {
+    "App/C67FoundationLabApp.swift": "fc896e49fa47f468ff8e94e455f428267c3b31b5c7d622e16fd8bc202398cd98",
+    "App/LabModel.swift": "05506702cfa6dc14e9f73cacd81c97e66aa346a7a1e6d714aa712362b98275ba",
+    "App/LabViews.swift": "d135fec8daecc2b033ad3c58ee4ff4e53f8a4a0f5e2ee1c59253bddcf749934f",
+    "Packages/TripIntelligence/Package.swift": "9b89ba692beec88d38c730adc0b22e2790c9d22345bcfb2f702d97b3d7d6b837",
+    "Packages/TripIntelligence/Sources/FMTripEval/main.swift": "9e2430306698146041ca929dc3abfbc2899d4287956abca71282dfcc9c61b274",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Contracts.swift": "ea889475c684907d28be81f529bc92c0df4750b365354584c4aaef5a03a09494",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Evaluation.swift": "8af01d509b0630120e5aaea953890fdc30e08a79ca4b312cde6eb599ed4a2ddd",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Fixtures.swift": "6871a5a182fac65abf795d1503f0b45a721579eef3b0a2f4f2642da16c1aa1dd",
+    "Packages/TripIntelligence/Sources/TripIntelligence/ImportAndSearch.swift": "e10eaf587d289bd35dc74c05a1681a419ec98395f2569b44a70134e95f851375",
+    "Packages/TripIntelligence/Sources/TripIntelligence/ModelEngine.swift": "9004bf5f6d9350a58ec38c374b1fd7c81e2bbd7bff5392e9546bce11a3eaa6e8",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Pipeline.swift": "ea5c24251dc5ad1819c8f1c0c086aa9fa18efe7f33b5ee764a1b61b37c3cc75c",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Resources/BOUNDARY-LICENSE.md": "17dc303ab4d56c9f08094663f7e0b81ee2d215a5262fdd0ca38990748cd7fec4",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Resources/boundary-source.json": "a3243c0196ed486046f3288586fcc90af2b695ddcbb7bfe9c1f8e81a43b28994",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Resources/jakarta-report.json": "2e3376e45cbf7ac27978f0c260c8a7df12bae510a571b9f21018326b9b022326",
+    "Packages/TripIntelligence/Sources/TripIntelligence/Resources/jakarta.geojson": "9f9e223f1a5629b2663ec2639eb66d1b4d29ba9b01a3a6f027b8d4843a281f41",
+    "Packages/TripIntelligence/Tests/TripIntelligenceTests/LabTests.swift": "c83ee285fcc70b657a19d1c5e6f0fd35502ddcea375cae48dbfc32af5d929795",
+    "evaluation/README.md": "1fb43bbb4ec08106bfdd1e75f000a1f21b5a2c62c0a15f004ef63914ce505609",
+    "evaluation/inputs.jsonl": "21568090cb4620d678517405eb9762f600bbf55e2d4b06358f8e2421f40971a8",
+    "evaluation/oracle.json": "f16d655426d26dd8509684756508e28a6cf81802c1a6332fdde7c7ea8ad86fef",
+    "project.yml": "46ce064581c72dda567dd717303cd6271c16197f7ffcb070f45c14fb132d7130",
+    "scripts/audit-evidence.py": "ff9144149fb2eb2575d45a9f108b66b04b5f3d2d9fb28bc496da326654382efd",
+    "scripts/evaluate.py": "261622920dba6c585ceef50e058c9af5067cb1bc1749bda1caaee936a34038fd",
+    "scripts/make-evaluation.py": "9634edd594036ae391257f9d5aa43db35d5dcb9634aeb635cc62060194ebe294"
+  },
+  "binarySHA256": "bc7a4ef7ea1bffd60ac4ab884e0f4f6ccaad3fd2537964771750553dac285f76",
+  "binary": "/private/tmp/c67-foundation-build/out/Products/Debug/fm-trip-eval",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "sampling": "greedy",
+  "maximumResponseTokens": 800,
+  "timeoutSeconds": 20,
+  "processWatchdogSeconds": 25,
+  "repetitions": 3,
+  "automaticRetries": 0,
+  "semanticReview": "pending",
+  "limitations": [
+    "Not a blind holdout",
+    "Greedy repeats correlated",
+    "No packet capture or network isolation in this series"
+  ]
+}

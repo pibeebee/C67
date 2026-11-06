@@ -1,0 +1,633 @@
+{
+  "metadata": {
+    "requestedModel": "nvidia/nemotron-3.5-super-vl:free",
+    "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+    "reasoning": "on",
+    "maxCompletionTokens": 32768,
+    "contextBudget": {
+      "limitTokens": 1000000,
+      "reservedOutputTokens": 32768,
+      "estimatedInputTokens": 30299,
+      "estimatedTotalTokens": 63067,
+      "estimateMethod": "UTF-8 request bytes + 8192 overhead reserve; conservative estimate, not exact model tokenization."
+    },
+    "reportedUsageCheck": {
+      "inputTokens": 6145,
+      "completionTokens": 21883,
+      "totalTokens": 28028,
+      "withinLimit": true
+    },
+    "usage": {
+      "prompt_tokens": 6145,
+      "completion_tokens": 21883,
+      "total_tokens": 28028,
+      "cost": 0,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 4336,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 16884,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "stop",
+    "latencyMs": 164161,
+    "internalReasoningTextStored": false
+  },
+  "proposal": {
+    "status": "proposal_needs_verification",
+    "summary": "Itinerary satu hari (5 Desember 2026, JST) dari dan kembali ke Stasiun Funabashi. Semua waktu dan durasi adalah usulan saya, bukan jadwal resmi atau input pengguna. Setiap transit bermasalah `no_route` ditandai sebagai asumsi AI yang belum diverifikasi.",
+    "rows": [
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "start": "05:00",
+        "end": "06:25",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): perjalanan ke wilayah Kamakura, ~85 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "kamakura_station",
+        "to": "kamakura_station",
+        "start": "06:25",
+        "end": "06:35",
+        "mode": "NONE",
+        "note": "Buffer transfer/antrean 10 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kamakura_station",
+        "to": "komachi",
+        "start": "06:35",
+        "end": "06:41",
+        "mode": "WALK",
+        "note": "Bukti rute: ~5,7 menit, 410 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "komachi",
+        "to": "komachi",
+        "start": "06:41",
+        "end": "06:46",
+        "mode": "NONE",
+        "note": "Buffer jalan kaki 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E03",
+        "from": "komachi",
+        "to": "komachi",
+        "start": "06:46",
+        "end": "07:26",
+        "mode": "NONE",
+        "note": "Stasiun Kamakura & Komachi Street (asumsi 40 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "komachi",
+        "to": "hachimangu",
+        "start": "07:26",
+        "end": "07:31",
+        "mode": "WALK",
+        "note": "Bukti rute: ~5,2 menit, 373 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "hachimangu",
+        "to": "hachimangu",
+        "start": "07:31",
+        "end": "07:36",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E04",
+        "from": "hachimangu",
+        "to": "hachimangu",
+        "start": "07:36",
+        "end": "08:26",
+        "mode": "NONE",
+        "note": "Tsurugaoka Hachimangu & perempatan (asumsi 50 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "hachimangu",
+        "to": "kamakura_meal",
+        "start": "08:26",
+        "end": "08:36",
+        "mode": "WALK",
+        "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "kamakura_meal",
+        "to": "kamakura_meal",
+        "start": "08:36",
+        "end": "08:41",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E05",
+        "from": "kamakura_meal",
+        "to": "kamakura_meal",
+        "start": "08:41",
+        "end": "09:41",
+        "mode": "NONE",
+        "note": "Makan siang pagi area Kamakura (asumsi 60 menit). Lokasi restoran tidak diketahui."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kamakura_meal",
+        "to": "kamakura_station",
+        "start": "09:41",
+        "end": "09:51",
+        "mode": "WALK",
+        "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "kamakura_station",
+        "to": "kamakura_station",
+        "start": "09:51",
+        "end": "09:56",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kamakura_station",
+        "to": "inamura_station",
+        "start": "09:56",
+        "end": "10:56",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~60 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "inamura_station",
+        "start": "10:56",
+        "end": "11:06",
+        "mode": "NONE",
+        "note": "Buffer transit 10 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "inamura_park",
+        "start": "11:06",
+        "end": "11:11",
+        "mode": "WALK",
+        "note": "Bukti rute: ~4,8 menit, 345 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "inamura_park",
+        "to": "inamura_park",
+        "start": "11:11",
+        "end": "11:16",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E07",
+        "from": "inamura_park",
+        "to": "inamura_park",
+        "start": "11:16",
+        "end": "11:56",
+        "mode": "NONE",
+        "note": "Kamakura Seaside Park, Inamuragasaki (asumsi 40 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_park",
+        "to": "inamura_station",
+        "start": "11:56",
+        "end": "12:06",
+        "mode": "WALK",
+        "note": "Asumsi AI, tidak terverifikasi: ~10 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "inamura_station",
+        "start": "12:06",
+        "end": "12:11",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "inamura_station",
+        "to": "shichiri_station",
+        "start": "12:11",
+        "end": "13:01",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~50 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "shichiri_station",
+        "to": "shichiri_station",
+        "start": "13:01",
+        "end": "13:11",
+        "mode": "NONE",
+        "note": "Buffer transit 10 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "shichiri_station",
+        "to": "shichiri_beach",
+        "start": "13:11",
+        "end": "13:18",
+        "mode": "WALK",
+        "note": "Bukti rute: ~7,2 menit, 527 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "shichiri_beach",
+        "to": "shichiri_beach",
+        "start": "13:18",
+        "end": "13:23",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E09",
+        "from": "shichiri_beach",
+        "to": "shichiri_beach",
+        "start": "13:23",
+        "end": "14:03",
+        "mode": "NONE",
+        "note": "Pantai Shichirigahama, depan sekolah (asumsi 40 menit). Cuaca/jam matahari tidak diketahui."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "shichiri_beach",
+        "to": "kokomae",
+        "start": "14:03",
+        "end": "14:21",
+        "mode": "WALK",
+        "note": "Bukti rute: ~17,6 menit, 1283 m (Coastal Walk langsung Shichirigahama → Kamakurakokomae)."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "kokomae",
+        "to": "kokomae",
+        "start": "14:21",
+        "end": "14:26",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E11",
+        "from": "kokomae",
+        "to": "kokomae",
+        "start": "14:26",
+        "end": "14:56",
+        "mode": "NONE",
+        "note": "Kamakurakokomae, foto area stasiun (asumsi 30 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "kokomae",
+        "to": "enoshima_station",
+        "start": "14:56",
+        "end": "15:21",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~25 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "enoshima_station",
+        "to": "enoshima_station",
+        "start": "15:21",
+        "end": "15:31",
+        "mode": "NONE",
+        "note": "Buffer transit 10 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E13",
+        "from": "enoshima_station",
+        "to": "enoshima_station",
+        "start": "15:31",
+        "end": "15:51",
+        "mode": "NONE",
+        "note": "Toko suvenir Enoshima Station (asumsi 20 menit). Toko belum dipilih."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "enoshima_station",
+        "to": "tourist_center",
+        "start": "15:51",
+        "end": "16:01",
+        "mode": "WALK",
+        "note": "Bukti rute: 10 menit, 703 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "tourist_center",
+        "to": "tourist_center",
+        "start": "16:01",
+        "end": "16:06",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E15",
+        "from": "tourist_center",
+        "to": "tourist_center",
+        "start": "16:06",
+        "end": "16:36",
+        "mode": "NONE",
+        "note": "Fujisawa City Tourist Center, Katase Kaigan (asumsi 30 menit). Selesai dalam jam buka 08:30–17:00."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "tourist_center",
+        "to": "bridge",
+        "start": "16:36",
+        "end": "16:41",
+        "mode": "WALK",
+        "note": "Bukti rute: 5 menit, 380 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "bridge",
+        "to": "bridge",
+        "start": "16:41",
+        "end": "16:46",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E16",
+        "from": "bridge",
+        "to": "bridge",
+        "start": "16:46",
+        "end": "17:16",
+        "mode": "NONE",
+        "note": "Enoshima Ohashi Bridge, video & jalan santai (asumsi 30 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "bridge",
+        "to": "oiwayamichi",
+        "start": "17:16",
+        "end": "17:31",
+        "mode": "WALK",
+        "note": "Bukti rute: ~14,8 menit, 984 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "oiwayamichi",
+        "to": "oiwayamichi",
+        "start": "17:31",
+        "end": "17:36",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E17",
+        "from": "oiwayamichi",
+        "to": "oiwayamichi",
+        "start": "17:36",
+        "end": "18:06",
+        "mode": "NONE",
+        "note": "Oiwayamichi Street (opsional) & naik ke atas (asumsi 30 menit)."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "oiwayamichi",
+        "to": "sea_candle",
+        "start": "18:06",
+        "end": "18:14",
+        "mode": "WALK",
+        "note": "Bukti rute: ~7,6 menit, 401 m."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "18:14",
+        "end": "18:19",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E18",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "18:19",
+        "end": "18:39",
+        "mode": "NONE",
+        "note": "Tiba di area Enoshima Sea Candle (asumsi 20 menit). Jam umum 09:00–20:00 dipisahkan dari jam acara."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E19",
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "18:39",
+        "end": "20:00",
+        "mode": "NONE",
+        "note": "Menyaksikan Illumination Shonan no Hoseki (interpretasi; acara Sabtu 17:00–21:00, asumsi hingga 20:00)."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "sea_candle",
+        "to": "sea_candle",
+        "start": "20:00",
+        "end": "20:05",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "sea_candle",
+        "to": "enoshima_dinner",
+        "start": "20:05",
+        "end": "20:15",
+        "mode": "WALK",
+        "note": "Asumsi AI, tidak terverifikasi: turun pulau ke lokasi makan malam, ~10 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "enoshima_dinner",
+        "to": "enoshima_dinner",
+        "start": "20:15",
+        "end": "20:20",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E20",
+        "from": "enoshima_dinner",
+        "to": "enoshima_dinner",
+        "start": "20:20",
+        "end": "21:20",
+        "mode": "NONE",
+        "note": "Makan malam di Enoshima (asumsi 60 menit). Lokasi tidak diketahui."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "enoshima_dinner",
+        "to": "enoshima_dinner",
+        "start": "21:20",
+        "end": "21:25",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "enoshima_dinner",
+        "to": "katase_station",
+        "start": "21:25",
+        "end": "21:40",
+        "mode": "WALK",
+        "note": "Asumsi AI, tidak terverifikasi: ke Stasiun Katase-Enoshima, ~15 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "katase_station",
+        "to": "katase_station",
+        "start": "21:40",
+        "end": "21:45",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "katase_station",
+        "to": "fujisawa_station",
+        "start": "21:45",
+        "end": "22:00",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~15 menit."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "fujisawa_station",
+        "to": "fujisawa_station",
+        "start": "22:00",
+        "end": "22:10",
+        "mode": "NONE",
+        "note": "Buffer transit 10 menit."
+      },
+      {
+        "kind": "visit",
+        "activityId": "E22",
+        "from": "fujisawa_station",
+        "to": "fujisawa_station",
+        "start": "22:10",
+        "end": "22:40",
+        "mode": "NONE",
+        "note": "Seichi junrei malam Stasiun Fujisawa & menara jam (asumsi 30 menit)."
+      },
+      {
+        "kind": "wait",
+        "activityId": null,
+        "from": "fujisawa_station",
+        "to": "fujisawa_station",
+        "start": "22:40",
+        "end": "22:45",
+        "mode": "NONE",
+        "note": "Buffer 5 menit."
+      },
+      {
+        "kind": "move",
+        "activityId": null,
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "start": "22:45",
+        "end": "23:40",
+        "mode": "TRANSIT",
+        "note": "Asumsi AI, tidak terverifikasi (`no_route`): ~55 menit. Kembali ke origin Stasiun Funabashi."
+      }
+    ],
+    "assumptions": [
+      "Keberangkatan awal 05:00 JST dan pulang sekitar 23:40 JST.",
+      "Semua waktu kunjungan adalah estimasi saya karena input tidak menyediakan durasi.",
+      "Perjalanan antar stasiun yang dikembalikan `no_route` oleh penyedia diberi durasi positif sebagai asumsi AI, bukan jadwal kereta/layanan resmi.",
+      "Semua aktivitas, termasuk Oiwayamichi (opsional), muncul tepat satu kali.",
+      "Waktu foto di Kamakurakokomae dipisahkan dari jalan kaki langsung pantai menuju stasiun.",
+      "Pusat Informasi Pariwisata diakhiri pukul 16:36, dalam jam buka 08:30–17:00.",
+      "Illumination dimulai pukul 18:39, dalam rentang acara 17:00–21:00 (interpretasi Shonan no Hoseki, perlu konfirmasi).",
+      "Jam umum Sea Candle 09:00–20:00 dipisahkan dari jam acara.",
+      "Prakiraan cuaca dan waktu matahari tidak tersedia (di luar jangkauan ramalan).",
+      "Tidak memaksa optimalitas atau kelayakan lengkap."
+    ],
+    "uncertainties": [
+      "Durasi transit antar stasiun tidak diketahui penyedia (`no_route`).",
+      "Lokasi restoran makan siang dan malam belum diketahui; tidak diganti diam-diam.",
+      "Perkiraan waktu jalan tanpa bukti rute adalah asumsi AI, bukan fakta tarif/jalur resmi.",
+      "Buka tutup khusus dan cuaca pada 5 Desember 2026 belum dikonfirmasi."
+    ]
+  },
+  "rawFinal": null,
+  "error": null
+}

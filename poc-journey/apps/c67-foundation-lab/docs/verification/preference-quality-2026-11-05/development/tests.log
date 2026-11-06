@@ -1,0 +1,62 @@
+warning: '--skip-update' option is deprecated and will be removed in a future release
+Building for debugging...
+[Computing dependencies]
+[2 / 40] PreferenceQuality
+[6 / 44] PreferenceQuality
+[13 / 41] PreferenceQuality
+[17 / 42] PreferenceQualityTests-product
+[24 / 42] PreferenceQualityTests-product
+[25 / 42] PreferenceQualityTests-product
+[26 / 42] preference-quality-eval-product
+[30 / 48]
+[35 / 48] PreferenceQualityTests-product
+[40 / 48] preference-quality-eval-product
+[42 / 48] PreferenceQualityTests-product
+[44 / 48] PreferenceQualityTests-product
+[46 / 48] PreferenceQualityTests-product
+Build complete! (3.15 sec)
+Test Suite 'All tests' started at 2026-11-05 13:21:26.938.
+Test Suite 'All tests' passed at 2026-11-05 13:21:26.939.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite QualityTests started.
+􀟈  Test textNegationIsNotSilentlyAccepted() started.
+􀟈  Test allTwentyFourAuthoredGatesMatchExpectedIDs() started.
+􀟈  Test unknownAndConflictingFactsNeverSatisfyMust() started.
+􀟈  Test permutationDoesNotChangeRankTies() started.
+􀟈  Test unlinkedOrDuplicateClaimsRejected() started.
+􀟈  Test boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􀟈  Test expiredProgramAndSuspendedVenueCannotReenterViaEmbedding() started.
+􀟈  Test contradictedControlsAndUnsupportedLikeAreRejected() started.
+􀟈  Test cancellationPropagatesInsteadOfReturningFallback() started.
+􀟈  Test emptyProfileIsExplicitlyGeneral() started.
+􀟈  Test likingOneFacetDoesNotLearnAllVenueAttributes() started.
+􀟈  Test unavailableModelRetainsExplicitCategoryFallback() started.
+􀟈  Test coffeeAndReadingNeverMergeSeparateRooms() started.
+􀟈  Test storageRecoversNeighborsAndPreservesInvalidFile() started.
+􀟈  Test unknownAvoidCannotBeCalledSatisfied() started.
+􀟈  Test staleFactsLeaveNoVerifiedRanking() started.
+􀟈  Test allMethodsUseExactlyTheSameEligibleCandidateSet() started.
+􀟈  Test case passing 1 argument text → "Saya mau ngopi sambil membaca" to boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􀟈  Test case passing 1 argument text → "Coffee while reading books" to boundedPositiveProposalRequiresExplicitAcceptance(_:) started.
+􁁛  Test boundedPositiveProposalRequiresExplicitAcceptance(_:) with 2 test cases passed after 0.011 seconds.
+􁁛  Test contradictedControlsAndUnsupportedLikeAreRejected() passed after 0.011 seconds.
+􁁛  Test unlinkedOrDuplicateClaimsRejected() passed after 0.011 seconds.
+􁁛  Test likingOneFacetDoesNotLearnAllVenueAttributes() passed after 0.011 seconds.
+􁁛  Test textNegationIsNotSilentlyAccepted() passed after 0.011 seconds.
+􁁛  Test coffeeAndReadingNeverMergeSeparateRooms() passed after 0.011 seconds.
+􁁛  Test unknownAndConflictingFactsNeverSatisfyMust() passed after 0.011 seconds.
+􁁛  Test unknownAvoidCannotBeCalledSatisfied() passed after 0.011 seconds.
+􁁛  Test staleFactsLeaveNoVerifiedRanking() passed after 0.011 seconds.
+􁁛  Test emptyProfileIsExplicitlyGeneral() passed after 0.012 seconds.
+􁁛  Test expiredProgramAndSuspendedVenueCannotReenterViaEmbedding() passed after 0.012 seconds.
+􁁛  Test cancellationPropagatesInsteadOfReturningFallback() passed after 0.012 seconds.
+􁁛  Test unavailableModelRetainsExplicitCategoryFallback() passed after 0.012 seconds.
+􁁛  Test allMethodsUseExactlyTheSameEligibleCandidateSet() passed after 0.012 seconds.
+􁁛  Test permutationDoesNotChangeRankTies() passed after 0.012 seconds.
+􁁛  Test allTwentyFourAuthoredGatesMatchExpectedIDs() passed after 0.015 seconds.
+􁁛  Test storageRecoversNeighborsAndPreservesInvalidFile() passed after 0.016 seconds.
+􁁛  Suite QualityTests passed after 0.016 seconds.
+􁁛  Test run with 17 tests in 1 suite passed after 0.016 seconds.

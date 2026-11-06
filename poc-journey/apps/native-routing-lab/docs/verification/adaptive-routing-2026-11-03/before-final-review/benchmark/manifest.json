@@ -1,0 +1,105 @@
+{
+  "baselineCommit": "712f036b222839173d7ea82bb736dd57aaeed6f5",
+  "sources": {
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": {
+      "adaptive": "e88c585052aae126c145407736be56bb5c6b84ff613cc258645af435a5d2b651",
+      "full": "45020b178665cf0b58ae6a6c891e7bf215cdf233768b1239479357b22bb82f05"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": {
+      "adaptive": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1",
+      "full": "2e201e1c010a5a09e255cb92e559eb9e7ce29add71ab9d743c4dc467d59a53b1"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": {
+      "adaptive": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+      "full": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": {
+      "adaptive": "4a5c974c63ef5261c9f16a57424f9d8e02326e2bfa22189187311ae87f7579ad",
+      "full": "4a5c974c63ef5261c9f16a57424f9d8e02326e2bfa22189187311ae87f7579ad"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": {
+      "adaptive": "7f37c7622d7e89e3d0e0bf156e60619dbb787ff6271d0431e342f2f7201b1f91",
+      "full": "7f37c7622d7e89e3d0e0bf156e60619dbb787ff6271d0431e342f2f7201b1f91"
+    },
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": {
+      "adaptive": "71f763180168102904097355c5933c24c38420e0840a607946d1327f44c792c5",
+      "full": "f9156d2fb5edb594043379c581b61bd5905754a522c5e9e697c81d43615a073e"
+    },
+    "scripts/benchmark-adaptive-routing.sh": {
+      "sha256": "f838f99e56618988c015a40eff5308ccc94ac6a414554cdcf5cb7201edd32439"
+    },
+    "scripts/benchmark-adaptive-routing.py": {
+      "sha256": "dd1a1f7610724c3877f3d24a7dadb969332e42cdae7bbc9de4d8da1d60d755a2"
+    },
+    "scripts/benchmark-routing-pipeline.py": {
+      "sha256": "fbc8e85deb066f7ff993305e66f1c5b68341d72e559b37d301e546b2164fb9c5"
+    },
+    "checks/routing/NativeTripPipelineReplay.swift": {
+      "sha256": "382b0d6e654b98691f131a94395060ae779d18e31a89fafbef9a53fcb1f9547b"
+    }
+  },
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "originalCases": 22,
+  "additionalCases": 12,
+  "freshCases": 8,
+  "smallCases": 3,
+  "seeds": [
+    11,
+    67,
+    101
+  ],
+  "requestLimit": 96,
+  "evaluationLimit": 12000,
+  "secondsLimit": 3,
+  "network": false,
+  "weather": false,
+  "method": "Actual committed full pipeline versus adaptive sources, same oracle/seed/budgets, cold cache, interleaved arms. Additional seeded cases are generated after policy design; not independent external validation.",
+  "caseSHA256": {
+    "jakarta-recorded-static": "abc44099c5e61040d8bf6ace78ad8ecb5b75f2578ae5ac475abd43c1680f8beb",
+    "synthetic-4-17-static": "e9750fdec566cc57589ff2b55105bf09986d398e56c13c10934a7744ff9c8760",
+    "synthetic-4-17-timed": "5646c76cb6103a971e02c97d96e7a055e4b6ffa2d0ecf0d351e282199523d004",
+    "synthetic-4-73-static": "730108c2400f91cd22cbcfc3ffb6bb69515fdf53b5f92556b90175f4477acec2",
+    "synthetic-4-73-timed": "f985664aa2ba0cc1fb283f64cbfbac1b54bbe887940c1d80442d13ef5705679a",
+    "synthetic-8-17-static": "4bbcf20281f5d8bd072c8ab6d0c85e307edd0e00edbb11b3f0cea800f90aa4ca",
+    "synthetic-8-17-timed": "286a07e0aaf76efb22c8da489d0718bb5ee4ad64f312580f3f63d28e7070912b",
+    "synthetic-8-73-static": "22619b82bd0ff58e10c6843588a6cf09a1757e2925411c4167f21cc5804c8a86",
+    "synthetic-8-73-timed": "577d4924bf9e6363d844698d37f6f3a7161fa3ff4430e8d07870b2e42c44b634",
+    "synthetic-12-17-static": "e68c7169d408313010832a98a24724bdda72f78ef56e527b02aa238f8b468a95",
+    "synthetic-12-17-timed": "15e16976ea14e3feadba3fbbe929db69f00b82af708be72af88f7391eb7d35b3",
+    "synthetic-12-73-static": "7c5a415e15dd03a7f1409933a03a0ec93435e089a72ea19c6b61d88ee9dcef71",
+    "synthetic-12-73-timed": "ccf3bf6df56cddba761a7a0fab1444ed043cc35c91f142286bfa1aa29e573b76",
+    "synthetic-20-17-static": "16a2e27da2e2883d80b2b9cde11dd45bd7ce024e1b0859de2a5705681412b401",
+    "synthetic-20-17-timed": "dec694ec6d1e07bf45bf9fd5370528836e40c770aca17a96e30f3127504b4227",
+    "synthetic-20-73-static": "72187bf2e179f10d3c230b5502d9723d0e33511592703fd2ec98a492ab5b893f",
+    "synthetic-20-73-timed": "bba232b510d2e6e31fdac7bee1faf66f5eb2e8126b32dd5b792ef24e2d14e7ea",
+    "synthetic-8-17-timed-tight": "45eb90de208bf6776c5b923e645b91d2c6925e9f9168a33353c49bfdefc49360",
+    "synthetic-8-73-timed-tight": "2b5d7cb2227cfb8436a3efe88d200a9b4500a6d49ff639fb738048475c2bb4d2",
+    "synthetic-12-17-timed-tight": "aa8e436d3b841185019231bb8ff2723a88f09e331fdab09ab95d0f08e3a73b50",
+    "synthetic-12-73-timed-tight": "69ea2c3f4f72aa3d31f43093c2389bbedf4086bffbd7a6c55a1ec6baaea39265",
+    "synthetic-known-infeasible": "659c7bf9f9983cf79e8b26a0eb3bb035f9a71fe98885d52c854d88aa11995a51",
+    "synthetic-4-103-static-no-windows": "bbf8aa9ed3757b78677ce719e452cf8c829f18338c8bc2e4777d6cc613a974ed",
+    "synthetic-4-103-timed-no-windows": "37199a881970ee5f6f9831e672e6cb6ba120500174757dbb0149ceee8e6d5924",
+    "synthetic-4-149-static": "4a7e6622b6742d3b54a2d37d56c5d49e7ce5902f8e4d3d6b38e412953c36a7bd",
+    "synthetic-4-149-timed": "1e6171a3de8c2cc9fe30a15bef111c1c41ead0f60ea3b005140a31b0c16fa0e1",
+    "synthetic-6-103-static-no-windows": "de087d6ffc7fa25d47af66c3d5ee4646c0e58511fa2deac275e2dfafaf2a5a7d",
+    "synthetic-6-103-timed-no-windows": "769189e3d9f430849a4310239ff657b7dfcaa12e30fd8cc3f80aa62852c500c3",
+    "synthetic-6-149-static": "1f19033414e4e318fbafd4a569e5090f35dfdfd830935df2c5f0c2e738f046e3",
+    "synthetic-6-149-timed": "72727c147447a27689742ff56fd8e24e27228bee5253e6f1b0845724257eb0bf",
+    "synthetic-10-103-static-no-windows": "625556020270b2f6c3244b7dfd6b8d496d8543cfcaee402cb5c667d00e288c8d",
+    "synthetic-10-103-timed-no-windows": "c1d12fabb1dcf35489a96f82fea1c976ec6ad6643309d2a30ca58e274c02fc70",
+    "synthetic-10-149-static": "5bc3c990742f9b9d25ba1482f6653e9cb92e0267006bd9ef7c95545d1c3c2c44",
+    "synthetic-10-149-timed": "191322d23cb9c045a6ab3db8435920d7284bb86fe1c31bc17bd3279deb96886f",
+    "synthetic-4-211-static-soft-windows": "ae4d46b819f8421841a4affd885c6bd8a349b462eb6d7d8fc15dd3d5f40cc169",
+    "synthetic-4-211-timed-soft-windows": "ce6e0035097125d0999961661a07fdd01776dc4e4b15a682bb5c63579745c7d6",
+    "synthetic-4-307-static-soft-windows": "336cae83d42079b29e22851e1956c79089537c1d5828a29f22ac35503f0266c9",
+    "synthetic-4-307-timed-soft-windows": "b224176442d0da4f1ad343bd0504001c4fab10a72c72e9200e13331540524bf1",
+    "synthetic-6-211-static-soft-windows": "52fcd1c8e91d658089db322c5bff01780c39f08b2fd9dc34ff3358aa00e0cbd7",
+    "synthetic-6-211-timed-soft-windows": "01f0b51b5366aeaeb92b6469f48dd7f4a9aa44a76a8053636d6ed24f26a9e491",
+    "synthetic-6-307-static-soft-windows": "e786c556b536a37efa4fd33596f78965bc0208a87f508517b0b40ec38514edf1",
+    "synthetic-6-307-timed-soft-windows": "5ab0fd93ea5350ade2205847163f7812111eb4e12d45572a706e627ca5b79e90",
+    "jakarta-central-two": "14c079b27e1900ed0b97d94a1b7bbcbe37203025a1e7dca75c0edd1544c6c9fc",
+    "jakarta-north-two": "4f5882918577243bce3a87d6fda3c7c39b8a12d7a14d75acc74c6e84415faec1",
+    "jakarta-one-stop": "63f1783d42d2331c5c9131530ae80345c862a1fb19590d6b5b69ab969435c503"
+  }
+}

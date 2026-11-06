@@ -1,0 +1,258 @@
+import Foundation
+
+extension Date {
+    /// Bound date components to the supported four-digit Gregorian/ISO representation.
+    var isValidTimingTimestamp: Bool {
+        (-62_135_596_800 ..< 253_402_300_800).contains(timeIntervalSince1970)
+    }
+}
+
+public enum TimingError: Error, LocalizedError, Sendable {
+    case invalid(String)
+    public var errorDescription: String? {
+        switch self {
+        case .invalid(let message): return message
+        }
+    }
+}
+
+public struct FactSource: Codable, Identifiable, Sendable {
+    public var id: String
+    public var title: String
+    public var url: URL
+    public var checkedAt: Date
+    public var method: String
+    public var note: String
+}
+
+/// Venue-local minutes. Sessions/pauses use exclusive ends; valid start ranges are inclusive.
+public struct MinuteRange: Codable, Equatable, Sendable {
+    public var start: Int
+    public var end: Int
+    public init(_ start: Int, _ end: Int) {
+        self.start = start
+        self.end = end
+    }
+    public var label: String { "\(Self.clock(start))–\(Self.clock(end))" }
+    public static func clock(_ minute: Int) -> String {
+        String(format: "%02d.%02d", minute / 60, minute % 60)
+    }
+}
+
+public struct DaySchedule: Codable, Sendable {
+    /// ISO weekday: Monday 1 ... Sunday 7. Missing day means unknown, not closed.
+    public var weekday: Int
+    public var sessions: [MinuteRange]
+    public var lastEntry: Int?
+    public var entryPauses: [MinuteRange]
+}
+
+public struct VenueFacts: Codable, Identifiable, Sendable {
+    public var id: String
+    public var name: String
+    public var address: String
+    public var query: String
+    public var timeZone: String
+    public var sourceIDs: [String]
+    public var schedule: [DaySchedule]
+    public var exposure: String
+    public var exposureSourceID: String?
+    public var notice: String?
+    public var noticeSourceID: String?
+    /// Unresolved official closure notice blocks suggestions until rechecked.
+    public var suspended: Bool
+    public var unknowns: [String]
+}
+
+public struct TimingCatalog: Codable, Sendable {
+    public var schemaVersion: Int
+    public var id: String
+    public var sources: [FactSource]
+    public var venues: [VenueFacts]
+    public static func load() throws -> Self {
+        let url = Bundle.module.url(forResource: "jakarta-2026-11-05", withExtension: "json")!
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let value = try decoder.decode(Self.self, from: Data(contentsOf: url))
+        try value.validate()
+        return value
+    }
+    public func validate() throws {
+        let ids = Set(sources.map(\.id))
+        guard schemaVersion == 1, !id.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              ids.count == sources.count,
+              Set(venues.map(\.id)).count == venues.count
+        else { throw TimingError.invalid("Versi/identitas katalog tidak valid.") }
+        for source in sources {
+            guard !source.id.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  source.url.scheme?.lowercased() == "https", source.url.host?.isEmpty == false,
+                  source.checkedAt.isValidTimingTimestamp
+            else { throw TimingError.invalid("Identitas, URL atau tanggal sumber tidak valid.") }
+        }
+        for venue in venues {
+            guard !venue.id.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  venue.timeZone == "Asia/Jakarta", !venue.sourceIDs.isEmpty,
+                  Set(venue.sourceIDs).count == venue.sourceIDs.count,
+                  Set(venue.sourceIDs).isSubset(of: ids),
+                  venue.noticeSourceID.map({ venue.sourceIDs.contains($0) }) ?? true,
+                  venue.exposureSourceID.map({ venue.sourceIDs.contains($0) }) ?? true,
+                  ["unknown", "indoor", "outdoor"].contains(venue.exposure),
+                  venue.exposure == "unknown" || venue.exposureSourceID != nil,
+                  !venue.suspended
+                  || (venue.noticeSourceID != nil
+                      && venue.notice?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false),
+                  Set(venue.schedule.map(\.weekday)).count == venue.schedule.count
+            else { throw TimingError.invalid("Referensi fakta tidak valid: \(venue.id).") }
+            for day in venue.schedule {
+                let ranges = day.sessions + day.entryPauses
+                guard (1 ... 7).contains(day.weekday),
+                      ranges.allSatisfy({ $0.start >= 0 && $0.start < $0.end && $0.end <= 1440 }),
+                      day.lastEntry.map({ (0 ..< 1440).contains($0) }) ?? true
+                else { throw TimingError.invalid("Jam tidak valid: \(venue.id).") }
+                guard !day.sessions.isEmpty || (day.lastEntry == nil && day.entryPauses.isEmpty) else {
+                    throw TimingError.invalid(
+                        "Hari tutup mempunyai aturan masuk yang bertentangan: \(venue.id).")
+                }
+                for pair in zip(
+                    day.sessions.sorted { $0.start < $1.start },
+                    day.sessions.sorted { $0.start < $1.start }.dropFirst())
+                {
+                    guard pair.0.end <= pair.1.start else {
+                        throw TimingError.invalid("Sesi tumpang tindih: \(venue.id).")
+                    }
+                }
+            }
+        }
+    }
+}
+
+public enum TimingGoal: String, Codable, CaseIterable, Sendable, Identifiable {
+    case openingOnly, lowerRain, daylight, nearSunset
+    public var id: String { rawValue }
+    public var label: String {
+        switch self {
+        case .openingOnly: "Sesuai jam layanan"
+        case .lowerRain: "Peluang hujan lebih rendah"
+        case .daylight: "Saat masih terang"
+        case .nearSunset: "Mendekati matahari terbenam"
+        }
+    }
+}
+
+public struct TimingRequest: Codable, Sendable {
+    public var venueID: String
+    public var date: String
+    public var available: MinuteRange
+    public var durationMinutes: Int
+    public var goal: TimingGoal
+    public init(
+        venueID: String, date: String, available: MinuteRange = .init(420, 1260),
+        durationMinutes: Int = 60, goal: TimingGoal = .openingOnly
+    ) {
+        self.venueID = venueID
+        self.date = date
+        self.available = available
+        self.durationMinutes = durationMinutes
+        self.goal = goal
+    }
+}
+
+public struct TimingHour: Codable, Sendable {
+    public var start: Date
+    public var rainChance: Double?
+    public var temperatureC: Double?
+    public init(start: Date, rainChance: Double?, temperatureC: Double?) {
+        self.start = start
+        self.rainChance = rainChance
+        self.temperatureC = temperatureC
+    }
+}
+
+public struct TimingEnvironment: Codable, Sendable {
+    public var provider: String
+    public var fetchedAt: Date
+    public var validUntil: Date
+    public var date: String
+    public var venueID: String
+    public var latitude: Double
+    public var longitude: Double
+    public var locationName: String
+    public var locationSource: String
+    public var hours: [TimingHour]
+    public var sunrise: Date?
+    public var sunset: Date?
+    public var attributionURL: URL
+    public var attribution: String
+    public var errors: [String]
+}
+
+public struct VisitOption: Codable, Identifiable, Sendable {
+    public var id: String { "\(start.timeIntervalSince1970)" }
+    public var start: Date
+    public var end: Date
+    public var maxRainChance: Double?
+    public var maxTemperatureC: Double?
+    public var reason: String
+}
+
+public struct TimingRun: Codable, Identifiable, Sendable {
+    public var schemaVersion = 1
+    public var id = UUID()
+    public var createdAt: Date
+    public var policyVersion = "visit-time-v2"
+    public var catalogID: String
+    public var request: TimingRequest
+    public var venue: VenueFacts
+    public var sources: [FactSource]
+    public var environment: TimingEnvironment?
+    public var status: String
+    public var options: [VisitOption]
+    public var validStartRanges: [MinuteRange]
+    public var warnings: [String]
+    public var elapsedSeconds: Double = 0
+    public var routingPerformed = false
+}
+
+public enum VenueClock {
+    public static func calendar(_ timeZone: String) throws -> Calendar {
+        guard let tz = TimeZone(identifier: timeZone) else {
+            throw TimingError.invalid("Zona waktu tidak valid.")
+        }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = tz
+        return calendar
+    }
+    public static func day(_ text: String, timeZone: String = "Asia/Jakarta") throws -> Date {
+        let bytes = Array(text.utf8)
+        guard bytes.count == 10,
+              bytes.enumerated().allSatisfy({ index, byte in
+                  (index == 4 || index == 7) ? byte == 45 : (48 ... 57).contains(byte)
+              })
+        else { throw TimingError.invalid("Tanggal harus yyyy-MM-dd dengan angka ASCII.") }
+        let parts = text.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3, text.count == 10 else {
+            throw TimingError.invalid("Tanggal harus yyyy-MM-dd.")
+        }
+        let cal = try calendar(timeZone)
+        let input = DateComponents(year: parts[0], month: parts[1], day: parts[2])
+        guard let date = cal.date(from: input),
+              cal.dateComponents([.year, .month, .day], from: date) == input
+        else { throw TimingError.invalid("Tanggal tidak valid.") }
+        return date
+    }
+    public static func dateString(_ date: Date, timeZone: String = "Asia/Jakarta") -> String {
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(identifier: timeZone)
+        f.dateFormat = "yyyy-MM-dd"
+        return f.string(from: date)
+    }
+    public static func label(_ date: Date, timeZone: String = "Asia/Jakarta") -> String {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "id_ID")
+        f.timeZone = TimeZone(identifier: timeZone)
+        f.dateFormat = "HH.mm"
+        return f.string(from: date)
+    }
+}

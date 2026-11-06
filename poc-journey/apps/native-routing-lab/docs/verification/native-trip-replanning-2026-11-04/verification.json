@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-11-03T23:39:11.498607+00:00",
+  "xctest": {
+    "local": 59,
+    "newActive": 35,
+    "jakarta": 26,
+    "failures": 0
+  },
+  "replay": {
+    "runs": 144,
+    "pairs": 72,
+    "auditErrors": 0
+  },
+  "sourceManifests": {
+    "final": "all match",
+    "jakarta": "all compiled sources match",
+    "replay": "all compiled sources match",
+    "local": {
+      "differences": [
+        "poc-c67/Features/NativePlanner/NativeTripActiveView.swift"
+      ],
+      "reason": "UI-only completed-state text changed after host tests; this file is not compiled by the host harness. Final iOS build and semantic/visual observations verified it."
+    }
+  },
+  "finalBuild": "Succeeded on iPhone 18 Pro iOS27.0 Simulator; raw AppIntents metadata warning retained",
+  "checks": [
+    "Swift format strict",
+    "shell/Python syntax",
+    "git diff --check",
+    "report links resolve",
+    "JUnit/test summary counts match",
+    "replay JSON parsed",
+    "final synthetic UI snapshot schema2 valid"
+  ],
+  "limits": "No live provider,physical device,user study or rapid-tap stress validation. No scheduler needed; 5H last checked74percent used."
+}

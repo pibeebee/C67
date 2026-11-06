@@ -1,0 +1,21 @@
+/tmp/c67-jakarta-fix/LiveJakartaProbe.swift:64:61: error: call can throw but is not marked with 'try'
+ 62 |     active.proposal = proposal
+ 63 |     try perform(.apply(proposal.id), at: asOf)
+ 64 |     guard try facts(active.visits) == facts(before.visits), facts(active.actualLegs) == facts(before.actualLegs),
+    |                                                             |- error: call can throw but is not marked with 'try'
+    |                                                             |- note: did you mean to use 'try'?
+    |                                                             |- note: did you mean to handle error as optional value?
+    |                                                             `- note: did you mean to disable error propagation?
+ 65 |       active.acceptedRemaining?.draft.endPoint == draft.origin else {
+ 66 |       fatalError("Actual history or endpoint changed")
+
+/tmp/c67-jakarta-fix/LiveJakartaProbe.swift:64:89: error: call can throw but is not marked with 'try'
+ 62 |     active.proposal = proposal
+ 63 |     try perform(.apply(proposal.id), at: asOf)
+ 64 |     guard try facts(active.visits) == facts(before.visits), facts(active.actualLegs) == facts(before.actualLegs),
+    |                                                                                         |- error: call can throw but is not marked with 'try'
+    |                                                                                         |- note: did you mean to use 'try'?
+    |                                                                                         |- note: did you mean to handle error as optional value?
+    |                                                                                         `- note: did you mean to disable error propagation?
+ 65 |       active.acceptedRemaining?.draft.endPoint == draft.origin else {
+ 66 |       fatalError("Actual history or endpoint changed")

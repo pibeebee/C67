@@ -1,0 +1,11 @@
+# Third-party sources and attribution
+
+- **E5:** `intfloat/multilingual-e5-small`, MIT as declared by the [pinned model card](https://huggingface.co/intfloat/multilingual-e5-small/tree/614241f622f53c4eeff9890bdc4f31cfecc418b3). The [model manifest](apps/c67-foundation-lab/Packages/PreferenceLearning/Sources/PreferenceLearning/Resources/Model/manifest.json) pins every asset hash/URL. [License text](apps/c67-foundation-lab/Packages/PreferenceLearning/Sources/PreferenceLearning/Resources/Model/E5-LICENSE.txt) is retained. No weight bytes are committed.
+- **Runtime/tokenization:** ONNX Runtime Swift Package Manager1.24.2 and swift-transformers1.4.0, with transitive versions recorded in the package lockfiles. Source/binary licenses remain with those upstream packages restored by SwiftPM.
+- **Jakarta boundary:** geoBoundaries/OSM-derived operational mask, ODbL-1.0; [native provenance](apps/native-routing-lab/docs/data/jakarta-boundary/README.md) and [Foundation package attribution](apps/c67-foundation-lab/Packages/TripIntelligence/Sources/TripIntelligence/Resources/BOUNDARY-LICENSE.md) are preserved.
+- **Venue facts:** reports/catalogs retain official source URLs, check times, source hashes and uncertainty notes. Full third-party HTML captures are withheld; extracted facts and provenance are retained. A source hash identifies the historical capture, not the sanitized publication's bytes.
+- **Apple Weather:** actual captured provider records preserve legal attribution and mark URLs. Live UI must continue using the framework's attribution. [Apple legal attribution](https://weatherkit.apple.com/legal-attribution.html).
+- **Open-Meteo:** preserve the provider/source and CC BY4.0 attribution when used. Open-Meteo fallback success is not WeatherKit proof.
+- **Google and other legacy providers:** retained CLI reports describe provider limits and attribution. Credentials and unnecessary private request metadata are excluded. No current live API entitlement or coverage is promised by this archive.
+
+Imported code/reports are research artifacts supplied by Giovan and the identified teammate contribution. This document does not grant rights to unrelated third-party material or change upstream license terms.

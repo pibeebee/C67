@@ -1,0 +1,215 @@
+swift-driver version: 1.168.6 1/45 jakarta-recorded-static: audited
+2/45 synthetic-4-17-static: audited
+3/45 synthetic-4-17-timed: audited
+4/45 synthetic-4-73-static: audited
+5/45 synthetic-4-73-timed: audited
+6/45 synthetic-8-17-static: audited
+7/45 synthetic-8-17-timed: audited
+8/45 synthetic-8-73-static: audited
+9/45 synthetic-8-73-timed: audited
+10/45 synthetic-12-17-static: audited
+11/45 synthetic-12-17-timed: audited
+12/45 synthetic-12-73-static: audited
+13/45 synthetic-12-73-timed: audited
+14/45 synthetic-20-17-static: audited
+15/45 synthetic-20-17-timed: audited
+16/45 synthetic-20-73-static: audited
+17/45 synthetic-20-73-timed: audited
+18/45 synthetic-8-17-timed-tight: audited
+19/45 synthetic-8-73-timed-tight: audited
+20/45 synthetic-12-17-timed-tight: audited
+21/45 synthetic-12-73-timed-tight: audited
+22/45 synthetic-known-infeasible: audited
+23/45 synthetic-4-103-static-no-windows: audited
+24/45 synthetic-4-103-timed-no-windows: audited
+25/45 synthetic-4-149-static: audited
+26/45 synthetic-4-149-timed: audited
+27/45 synthetic-6-103-static-no-windows: audited
+28/45 synthetic-6-103-timed-no-windows: audited
+29/45 synthetic-6-149-static: audited
+30/45 synthetic-6-149-timed: audited
+31/45 synthetic-10-103-static-no-windows: audited
+32/45 synthetic-10-103-timed-no-windows: audited
+33/45 synthetic-10-149-static: audited
+34/45 synthetic-10-149-timed: audited
+35/45 synthetic-4-211-static-soft-windows: audited
+36/45 synthetic-4-211-timed-soft-windows: audited
+37/45 synthetic-4-307-static-soft-windows: audited
+38/45 synthetic-4-307-timed-soft-windows: audited
+39/45 synthetic-6-211-static-soft-windows: audited
+40/45 synthetic-6-211-timed-soft-windows: audited
+41/45 synthetic-6-307-static-soft-windows: audited
+42/45 synthetic-6-307-timed-soft-windows: audited
+43/45 jakarta-central-two: audited
+44/45 jakarta-north-two: audited
+45/45 jakarta-one-stop: audited
+{
+  "cases": 45,
+  "runs": 405,
+  "auditErrors": 0,
+  "aggregate": {
+    "full-hybrid": {
+      "runs": 135,
+      "feasible": 132,
+      "medianRequests": 76,
+      "medianWallMilliseconds": 17.52293109893799,
+      "skipped": 0
+    },
+    "adaptive-hybrid": {
+      "runs": 135,
+      "feasible": 132,
+      "medianRequests": 74,
+      "medianWallMilliseconds": 17.56894588470459,
+      "skipped": 12
+    },
+    "baseline": {
+      "runs": 135,
+      "feasible": 120,
+      "medianRequests": 18,
+      "medianWallMilliseconds": 0.49102306365966797,
+      "skipped": 0
+    }
+  },
+  "comparisons": {
+    "original": {
+      "pairs": 66,
+      "fullFeasible": 63,
+      "adaptiveFeasible": 63,
+      "bothFeasible": 63,
+      "faster": 0,
+      "tied": 63,
+      "slower": 0,
+      "medianElapsedDeltaMinutes": 0.0,
+      "maxElapsedRegressionMinutes": 0,
+      "requestsSaved": 174,
+      "fullRequests": 5421,
+      "requestSavingsPercent": 3.209739900387387,
+      "fewerRequests": 3,
+      "sameRequests": 63,
+      "moreRequests": 0,
+      "regressions": []
+    },
+    "additional": {
+      "pairs": 36,
+      "fullFeasible": 36,
+      "adaptiveFeasible": 36,
+      "bothFeasible": 36,
+      "faster": 0,
+      "tied": 36,
+      "slower": 0,
+      "medianElapsedDeltaMinutes": 0.0,
+      "maxElapsedRegressionMinutes": 0,
+      "requestsSaved": 0,
+      "fullRequests": 2481,
+      "requestSavingsPercent": 0.0,
+      "fewerRequests": 0,
+      "sameRequests": 36,
+      "moreRequests": 0,
+      "regressions": []
+    },
+    "fresh": {
+      "pairs": 24,
+      "fullFeasible": 24,
+      "adaptiveFeasible": 24,
+      "bothFeasible": 24,
+      "faster": 0,
+      "tied": 24,
+      "slower": 0,
+      "medianElapsedDeltaMinutes": 0.0,
+      "maxElapsedRegressionMinutes": 0,
+      "requestsSaved": 0,
+      "fullRequests": 1347,
+      "requestSavingsPercent": 0.0,
+      "fewerRequests": 0,
+      "sameRequests": 24,
+      "moreRequests": 0,
+      "regressions": []
+    },
+    "small": {
+      "pairs": 9,
+      "fullFeasible": 9,
+      "adaptiveFeasible": 9,
+      "bothFeasible": 9,
+      "faster": 0,
+      "tied": 9,
+      "slower": 0,
+      "medianElapsedDeltaMinutes": 0.0,
+      "maxElapsedRegressionMinutes": 0,
+      "requestsSaved": 54,
+      "fullRequests": 180,
+      "requestSavingsPercent": 30.000000000000004,
+      "fewerRequests": 9,
+      "sameRequests": 0,
+      "moreRequests": 0,
+      "regressions": []
+    },
+    "all": {
+      "pairs": 135,
+      "fullFeasible": 132,
+      "adaptiveFeasible": 132,
+      "bothFeasible": 132,
+      "faster": 0,
+      "tied": 132,
+      "slower": 0,
+      "medianElapsedDeltaMinutes": 0.0,
+      "maxElapsedRegressionMinutes": 0,
+      "requestsSaved": 228,
+      "fullRequests": 9429,
+      "requestSavingsPercent": 2.418071905822461,
+      "fewerRequests": 12,
+      "sameRequests": 123,
+      "moreRequests": 0,
+      "regressions": []
+    }
+  },
+  "jakarta": [
+    {
+      "case": "jakarta-recorded-static",
+      "suite": "original",
+      "n": 4,
+      "seed": 67,
+      "system": "baseline",
+      "feasible": true,
+      "elapsedMinutes": 257.78333333333336,
+      "travelMinutes": 121.01666666666667,
+      "waitingMinutes": 16.766666666666666,
+      "requests": 30,
+      "wallSeconds": 0.0005810260772705078,
+      "evaluations": 0,
+      "decision": null,
+      "optimized": null
+    },
+    {
+      "case": "jakarta-recorded-static",
+      "suite": "original",
+      "n": 4,
+      "seed": 67,
+      "system": "adaptive-hybrid",
+      "feasible": true,
+      "elapsedMinutes": 257.78333333333336,
+      "travelMinutes": 121.01666666666667,
+      "waitingMinutes": 16.766666666666666,
+      "requests": 30,
+      "wallSeconds": 0.0005630254745483398,
+      "evaluations": 20,
+      "decision": "no_material_estimated_gain",
+      "optimized": "false"
+    },
+    {
+      "case": "jakarta-recorded-static",
+      "suite": "original",
+      "n": 4,
+      "seed": 67,
+      "system": "full-hybrid",
+      "feasible": true,
+      "elapsedMinutes": 257.78333333333336,
+      "travelMinutes": 121.01666666666667,
+      "waitingMinutes": 16.766666666666666,
+      "requests": 88,
+      "wallSeconds": 0.007290959358215332,
+      "evaluations": 1641,
+      "decision": null,
+      "optimized": null
+    }
+  ]
+}

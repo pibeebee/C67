@@ -1,0 +1,879 @@
+{
+  "ui": [
+    {
+      "schema": "xcodebuildmcp.output.capture-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1mka6k4",
+          "seq": 26,
+          "count": 104,
+          "targets": [
+            "e33|tap|button|Buka kembali data tersimpan||",
+            "e51|tap|button|Titik awal, Cari atau pilih pin pada peta||",
+            "e68|tap|button|Nov 4, 2026||",
+            "e74|tap|switch|Tentukan batas tiba di titik akhir|0|",
+            "e28|tap|button|Simpan draft||",
+            "e38|tap|button|Uji penyimpanan lokal||",
+            "e40|tap|button|||",
+            "e58|tap|switch|Kembali ke titik awal|1|",
+            "e60|tap|switch||1|",
+            "e67|tap|button|Date and Time Picker|6:19, Nov 4, 2026|",
+            "e69|tap|button|6:19||",
+            "e76|tap|switch||0|",
+            "e102|tap|button|Log||",
+            "e103|tap|button|Kelola rencana||"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e3|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e8|swipe|other|||",
+            "e9|swipe|other|||",
+            "e10|swipe|other|||",
+            "e11|swipe|other|||",
+            "e12|swipe|other|||"
+          ],
+          "text": [
+            "e24|text|text|Draft belum disimpan||",
+            "e39|text|text|Uji penyimpanan lokal||",
+            "e52|text|text|Titik awal||",
+            "e54|text|text|Cari atau pilih pin pada peta||",
+            "e59|text|text|Kembali ke titik awal||",
+            "e65|text|text|Berangkat||",
+            "e75|text|text|Tentukan batas tiba di titik akhir||",
+            "e81|text|text|Batas lama: akhir hari trip (belum memilih batas pulang)||",
+            "e86|text|text|Asia/Jakarta||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Refresh after layout changes: snapshot_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\" })",
+        "Wait for UI to settle: wait_for_ui({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", predicate: \"settled\" })",
+        "Batch visible switch toggles: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e58\"},{\"action\":\"tap\",\"elementRef\":\"e60\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e33\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": true,
+      "error": "The runtime UI snapshot for this simulator has expired.",
+      "data": {
+        "summary": {
+          "status": "FAILED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e103"
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "uiError": {
+          "code": "SNAPSHOT_EXPIRED",
+          "message": "The runtime UI snapshot for this simulator has expired.",
+          "recoveryHint": "Run snapshot_ui again and retry with a current elementRef.",
+          "snapshotAgeMs": 114286
+        }
+      }
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e91",
+          "x": 201,
+          "y": 146
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0mzqs6e",
+          "seq": 36,
+          "count": 100,
+          "targets": [
+            "e62|tap|button|Saya sudah tiba di tujuan berikutnya||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e47|tap|button|Waktu +10 menit||",
+            "e48|tap|button|Waktu +30 menit||",
+            "e67|tap|button|Ubah batas tiba||",
+            "e72|tap|button|Hitung ulang sisa trip||",
+            "e84|tap|button|Lewati A||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 8:00||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Perubahan tersimpan · sisa rencana perlu dihitung ulang||",
+            "e58|text|text|Tujuan berikutnya: Tujuan A · simulasi||",
+            "e82|text|text|Tujuan A · simulasi||",
+            "e83|text|text|Belum dikunjungi||",
+            "e88|text|text|Tujuan B · simulasi||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e62\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e133",
+          "x": 201,
+          "y": 212
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1c1covi",
+          "seq": 43,
+          "count": 102,
+          "targets": [
+            "e77|tap|button|Selesai kunjungan dan berangkat||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e47|tap|button|Waktu +10 menit||",
+            "e48|tap|button|Waktu +30 menit||",
+            "e67|tap|button|Tambah 30 menit di sini||",
+            "e72|tap|button|Atur waktu keluar||",
+            "e82|tap|button|Ubah batas tiba||",
+            "e87|tap|button|Hitung ulang sisa trip||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 9:00||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Perubahan tersimpan · sisa rencana perlu dihitung ulang||",
+            "e58|text|text|Sekarang di: Tujuan B · simulasi||",
+            "e62|text|text|Rencana keluar: Nov 5, 2026 at 9:50||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e77\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e133",
+          "x": 201,
+          "y": 212
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1sqyia8",
+          "seq": 45,
+          "count": 102,
+          "targets": [
+            "e77|tap|button|Selesai kunjungan dan berangkat||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e47|tap|button|Waktu +10 menit||",
+            "e48|tap|button|Waktu +30 menit||",
+            "e67|tap|button|Tambah 30 menit di sini||",
+            "e72|tap|button|Atur waktu keluar||",
+            "e82|tap|button|Ubah batas tiba||",
+            "e87|tap|button|Hitung ulang sisa trip||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 9:00||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Perubahan tersimpan · sisa rencana perlu dihitung ulang||",
+            "e58|text|text|Sekarang di: Tujuan B · simulasi||",
+            "e62|text|text|Rencana keluar: Nov 5, 2026 at 9:50||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e77\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "swipe",
+          "withinElementRef": "e1",
+          "direction": "up",
+          "from": {
+            "x": 201,
+            "y": 575
+          },
+          "to": {
+            "x": 201,
+            "y": 299
+          }
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0dzsvv2",
+          "seq": 47,
+          "count": 107,
+          "targets": [
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e79|tap|button|Terapkan perubahan||",
+            "e84|tap|button|Abaikan usulan||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e30|text|text|Rencana awal selesai: Nov 5, 2026 at 11:00||",
+            "e34|text|text|Urutan sekarang, waktu diperbarui: Nov 5, 2026 at 11:30||",
+            "e39|text|text|Usulan selesai: Nov 5, 2026 at 11:30||",
+            "e44|text|text|Tujuan C · simulasi → Tujuan D · simulasi||",
+            "e49|text|text|Perjalanan 40.0 menit · menunggu 0.0 menit · singgah sisa 60 menit||",
+            "e54|text|text|Total sisa dari waktu perhitungan: 150.0 menit||",
+            "e59|text|text|Perubahan terhadap urutan yang sama-sama dihitung ulang: 0.0 menit||",
+            "e64|text|text|Jam operasional Tujuan C · simulasi belum diisi.||",
+            "e69|text|text|Jam operasional Tujuan D · simulasi belum diisi.||",
+            "e74|text|text|Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.||",
+            "e94|text|text|Tujuan A · simulasi||",
+            "e95|text|text|Selesai dikunjungi||",
+            "e96|text|text|Tiba aktual: Nov 5, 2026 at 8:10||",
+            "e97|text|text|Mulai aktual: Nov 5, 2026 at 8:10||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e9\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e79",
+          "x": 201,
+          "y": 642
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1pq4vva",
+          "seq": 48,
+          "count": 87,
+          "targets": [
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e25|tap|button|Hitung ulang sisa trip||",
+            "e52|tap|button|Lewati C||",
+            "e59|tap|button|Lewati D||",
+            "e75|tap|button|Diagnostik lokal||",
+            "e77|tap|button|||"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e3|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e12|swipe|other|||",
+            "e13|swipe|other|||",
+            "e14|swipe|other|||",
+            "e15|swipe|other|||",
+            "e16|swipe|other|||"
+          ],
+          "text": [
+            "e34|text|text|Tujuan A · simulasi||",
+            "e35|text|text|Selesai dikunjungi||",
+            "e36|text|text|Tiba aktual: Nov 5, 2026 at 8:10||",
+            "e37|text|text|Mulai aktual: Nov 5, 2026 at 8:10||",
+            "e38|text|text|Selesai aktual: Nov 5, 2026 at 8:40||",
+            "e42|text|text|Tujuan B · simulasi||",
+            "e43|text|text|Sedang dikunjungi||",
+            "e44|text|text|Tiba aktual: Nov 5, 2026 at 8:50||",
+            "e45|text|text|Mulai aktual: Nov 5, 2026 at 8:50||",
+            "e50|text|text|Tujuan C · simulasi||",
+            "e51|text|text|Belum dikunjungi||",
+            "e57|text|text|Tujuan D · simulasi||",
+            "e58|text|text|Belum dikunjungi||",
+            "e65|text|text|Usulan siap ditinjau||",
+            "e70|text|text|Perubahan tersimpan di perangkat.||",
+            "e76|text|text|Diagnostik lokal||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e9\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e33",
+          "x": 201,
+          "y": 338
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1exyn40",
+          "seq": 50,
+          "count": 99,
+          "targets": [
+            "e82|tap|button|Selesai kunjungan dan berangkat||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e52|tap|button|Waktu +10 menit||",
+            "e53|tap|button|Waktu +30 menit||",
+            "e72|tap|button|Tambah 30 menit di sini||",
+            "e77|tap|button|Atur waktu keluar||",
+            "e87|tap|button|Ubah batas tiba||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 9:00||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Usulan terakhir sudah diterapkan||",
+            "e47|text|text|Estimasi selesai pada rencana terakhir: Nov 5, 2026 at 11:30||",
+            "e63|text|text|Sekarang di: Tujuan B · simulasi||",
+            "e67|text|text|Rencana keluar: Nov 5, 2026 at 9:50||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e82\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e126",
+          "x": 201,
+          "y": 212
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1h0ojjz",
+          "seq": 59,
+          "count": 108,
+          "targets": [
+            "e29|tap|button|Selesai kunjungan dan berangkat||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e21|tap|button|Atur waktu keluar||",
+            "e34|tap|button|Ubah batas tiba||",
+            "e39|tap|button|Hitung ulang sisa trip||",
+            "e88|tap|button|Terapkan perubahan||",
+            "e93|tap|button|Abaikan usulan||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e49|text|text|Rencana awal selesai: Nov 5, 2026 at 11:00||",
+            "e53|text|text|Urutan sekarang, waktu diperbarui: Nov 5, 2026 at 10:50||",
+            "e58|text|text|Usulan selesai: Nov 5, 2026 at 10:50||",
+            "e63|text|text|Langsung ke titik akhir||",
+            "e68|text|text|Perjalanan 60.0 menit · menunggu 0.0 menit · singgah sisa 0 menit||",
+            "e73|text|text|Total sisa dari waktu perhitungan: 110.0 menit||",
+            "e78|text|text|Perubahan terhadap urutan yang sama-sama dihitung ulang: 0.0 menit||",
+            "e83|text|text|Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e29\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e93",
+          "x": 201,
+          "y": 796
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "0ein167",
+          "seq": 60,
+          "count": 100,
+          "targets": [
+            "e29|tap|button|Selesai kunjungan dan berangkat||",
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||",
+            "e21|tap|button|Atur waktu keluar||",
+            "e34|tap|button|Ubah batas tiba||",
+            "e39|tap|button|Hitung ulang sisa trip||"
+          ],
+          "scroll": [
+            "e1|swipe|application|C67 POC||"
+          ],
+          "text": [
+            "e49|text|text|Tujuan A · simulasi||",
+            "e50|text|text|Selesai dikunjungi||",
+            "e51|text|text|Tiba aktual: Nov 5, 2026 at 8:10||",
+            "e52|text|text|Mulai aktual: Nov 5, 2026 at 8:10||",
+            "e53|text|text|Selesai aktual: Nov 5, 2026 at 8:40||",
+            "e57|text|text|Tujuan B · simulasi||",
+            "e58|text|text|Sedang dikunjungi||",
+            "e59|text|text|Tiba aktual: Nov 5, 2026 at 8:50||",
+            "e60|text|text|Mulai aktual: Nov 5, 2026 at 8:50||",
+            "e65|text|text|Tujuan C · simulasi||",
+            "e66|text|text|Dilewati pengguna||",
+            "e71|text|text|Tujuan D · simulasi||",
+            "e72|text|text|Dilewati pengguna||",
+            "e78|text|text|Usulan siap ditinjau||",
+            "e83|text|text|Perubahan tersimpan di perangkat.||",
+            "e89|text|text|Diagnostik lokal||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e29\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e126",
+          "x": 201,
+          "y": 212
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "105ijua",
+          "seq": 66,
+          "count": 90,
+          "targets": [
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e3|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e12|swipe|other|||",
+            "e13|swipe|other|||",
+            "e14|swipe|other|||",
+            "e15|swipe|other|||",
+            "e16|swipe|other|||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 10:50||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Perubahan tersimpan · sisa rencana perlu dihitung ulang||",
+            "e47|text|text|Estimasi selesai pada rencana terakhir: Nov 5, 2026 at 11:30||",
+            "e52|text|text|Tiba aktual: Nov 5, 2026 at 10:50||",
+            "e62|text|text|Tujuan A · simulasi||",
+            "e63|text|text|Selesai dikunjungi||",
+            "e64|text|text|Tiba aktual: Nov 5, 2026 at 8:10||",
+            "e65|text|text|Mulai aktual: Nov 5, 2026 at 8:10||",
+            "e66|text|text|Selesai aktual: Nov 5, 2026 at 8:40||",
+            "e70|text|text|Tujuan B · simulasi||",
+            "e71|text|text|Selesai dikunjungi||",
+            "e72|text|text|Tiba aktual: Nov 5, 2026 at 8:50||",
+            "e73|text|text|Mulai aktual: Nov 5, 2026 at 8:50||",
+            "e74|text|text|Selesai aktual: Nov 5, 2026 at 9:50||",
+            "e79|text|text|Tujuan C · simulasi||",
+            "e80|text|text|Dilewati pengguna||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e9\" })"
+      ]
+    },
+    {
+      "schema": "xcodebuildmcp.output.ui-action-result",
+      "schemaVersion": "2",
+      "didError": false,
+      "error": null,
+      "data": {
+        "summary": {
+          "status": "SUCCEEDED"
+        },
+        "action": {
+          "type": "tap",
+          "elementRef": "e38",
+          "x": 201,
+          "y": 390
+        },
+        "artifacts": {
+          "simulatorId": "B774448D-6569-46E0-9833-669540D094D0"
+        },
+        "capture": {
+          "type": "runtime-snapshot",
+          "rs": "1",
+          "screenHash": "1ojx3uz",
+          "seq": 68,
+          "count": 87,
+          "targets": [
+            "e9|tap|button|Rencana||BackButton",
+            "e11|tap|button|Bagikan ringkasan||"
+          ],
+          "scroll": [
+            "e2|swipe|other|||",
+            "e3|swipe|other|||",
+            "e4|swipe|other|||",
+            "e5|swipe|other|||",
+            "e6|swipe|other|||",
+            "e7|swipe|other|||",
+            "e12|swipe|other|||",
+            "e13|swipe|other|||",
+            "e14|swipe|other|||",
+            "e15|swipe|other|||",
+            "e16|swipe|other|||"
+          ],
+          "text": [
+            "e28|text|text|SIMULASI LOKAL · tanpa provider live||",
+            "e32|text|text|Sekarang: Nov 5, 2026 at 10:50||",
+            "e37|text|text|Batas tiba: Nov 5, 2026 at 12:00||",
+            "e42|text|text|Perjalanan selesai berdasarkan konfirmasi Anda. Riwayat aktual tersimpan.||",
+            "e47|text|text|Estimasi selesai pada rencana terakhir: Nov 5, 2026 at 11:30||",
+            "e52|text|text|Tiba aktual: Nov 5, 2026 at 10:50||",
+            "e62|text|text|Tujuan A · simulasi||",
+            "e63|text|text|Selesai dikunjungi||",
+            "e64|text|text|Tiba aktual: Nov 5, 2026 at 8:10||",
+            "e65|text|text|Mulai aktual: Nov 5, 2026 at 8:10||",
+            "e66|text|text|Selesai aktual: Nov 5, 2026 at 8:40||",
+            "e70|text|text|Tujuan B · simulasi||",
+            "e71|text|text|Selesai dikunjungi||",
+            "e72|text|text|Tiba aktual: Nov 5, 2026 at 8:50||",
+            "e73|text|text|Mulai aktual: Nov 5, 2026 at 8:50||",
+            "e74|text|text|Selesai aktual: Nov 5, 2026 at 9:50||",
+            "e79|text|text|Tujuan C · simulasi||",
+            "e80|text|text|Dilewati pengguna||"
+          ],
+          "udid": "<REDACTED_DEVICE_METADATA>"
+        }
+      },
+      "nextSteps": [
+        "Batch same-screen taps: batch({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e9\"},{\"action\":\"tap\",\"elementRef\":\"e11\"}] })",
+        "Tap an elementRef: tap({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", elementRef: \"e9\" })"
+      ]
+    }
+  ],
+  "proposalShot": {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "screenshotPath": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_f19c096f-d70c-49d1-ab74-28cb46fe1317.jpg"
+      },
+      "capture": {
+        "format": "image/jpeg",
+        "width": 368,
+        "height": 800
+      }
+    }
+  },
+  "endOnlyShot": {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "screenshotPath": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_de137305-867a-4810-ac0a-eea2d8fc49d4.jpg"
+      },
+      "capture": {
+        "format": "image/jpeg",
+        "width": 368,
+        "height": 800
+      }
+    }
+  },
+  "finishedShot": {
+    "schema": "xcodebuildmcp.output.capture-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED"
+      },
+      "artifacts": {
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "screenshotPath": "/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/screenshot_optimized_9f545ef9-ccb6-4e5c-8e91-1d1a27bda0ac.jpg"
+      },
+      "capture": {
+        "format": "image/jpeg",
+        "width": 368,
+        "height": 800
+      }
+    }
+  },
+  "finalBuild": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 11038,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/c67-p2-derived/Build/Products/Debug-iphonesimulator/poc-c67.app",
+        "bundleId": "giovanchristoffel.poc-c67",
+        "processId": 15774,
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-34-01-193Z_pid22489_2420b911.log",
+        "runtimeLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_2026-11-03T23-34-08-429Z_helperpid15729_ownerpid22489_74562c3d.log",
+        "osLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_oslog_2026-11-03T23-34-12-198Z_helperpid15882_ownerpid22489_79b9351c.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", bundleId: \"giovanchristoffel.poc-c67\" })"
+    ]
+  },
+  "earlierActualBuild": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 17641,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/c67-p2-derived/Build/Products/Debug-iphonesimulator/poc-c67.app",
+        "bundleId": "giovanchristoffel.poc-c67",
+        "processId": 8427,
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-24-01-405Z_pid22489_fc62e286.log",
+        "runtimeLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_2026-11-03T23-24-13-646Z_helperpid8381_ownerpid22489_e2d6dffb.log",
+        "osLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_oslog_2026-11-03T23-24-18-993Z_helperpid8699_ownerpid22489_b2dad684.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", bundleId: \"giovanchristoffel.poc-c67\" })"
+    ]
+  },
+  "initialFailedBuild": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n🚀 Build & Run\n\nErrors (8):\n\n  ✗ property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123\n\n  ✗ |                                                 `- error: property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122\n\n  ✗ |                                                                                                                `- error: property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122\n\n  ✗ |                                                                         `- error: property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n  ✗ property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n    1 | import Foundation\n    2 | import Observation\n    3 |\n    | `- note: add import of module 'WeatherKit'\n    4 | @MainActor @Observable final class NativeTripActiveController {\n    5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n    :\n    /tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123\n\n  ✗ |                                                                                                        `- error: property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n\n❌ Build failed. (⏱️ 8.4s)\n  └ Files:\n     └── ~/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-18-22-384Z_pid22489_35a08cae.log — Build Logs\n"
+      }
+    ],
+    "structuredContent": {
+      "schema": "xcodebuildmcp.output.build-run-result",
+      "schemaVersion": "2",
+      "didError": true,
+      "error": "Build failed",
+      "data": {
+        "summary": {
+          "status": "FAILED",
+          "durationMs": 8374,
+          "target": "simulator"
+        },
+        "artifacts": {
+          "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-03T23-18-22-384Z_pid22489_35a08cae.log"
+        },
+        "diagnostics": {
+          "warnings": [],
+          "errors": [
+            {
+              "message": "property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+              "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123"
+            },
+            {
+              "message": "|                                                 `- error: property 'combinedMarkLightURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+            },
+            {
+              "message": "property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+              "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122"
+            },
+            {
+              "message": "|                                                                                                                `- error: property 'legalPageURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+            },
+            {
+              "message": "property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+              "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:122"
+            },
+            {
+              "message": "|                                                                         `- error: property 'serviceName' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+            },
+            {
+              "message": "property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]\n1 | import Foundation\n2 | import Observation\n3 |\n| `- note: add import of module 'WeatherKit'\n4 | @MainActor @Observable final class NativeTripActiveController {\n5 |   typealias Planner = @MainActor (NativeTripReplanProjection, @escaping (String) -> Void) async throws -> NativeTripReport\n:",
+              "location": "/tmp/c67-p2-work/poc-c67/Features/NativePlanner/NativeTripActiveController.swift:123"
+            },
+            {
+              "message": "|                                                                                                        `- error: property 'combinedMarkDarkURL' is not available due to missing import of defining module 'WeatherKit' [#MemberImportVisibility]"
+            }
+          ]
+        }
+      }
+    },
+    "isError": true
+  }
+}

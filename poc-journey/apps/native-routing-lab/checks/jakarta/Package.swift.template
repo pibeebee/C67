@@ -1,0 +1,13 @@
+// swift-tools-version: 6.0
+import PackageDescription
+
+let package = Package(
+  name: "C67JakartaUnitTests",
+  platforms: [.macOS(.v14)],
+  targets: [
+    .target(name: "C67RoutingHarness", swiftSettings: [.define("PIPELINE_CHECKS")]),
+    .testTarget(
+      name: "JakartaRoutingTests", dependencies: ["C67RoutingHarness"],
+      resources: [.copy("Fixtures")]),
+  ],
+  swiftLanguageModes: [.v5])

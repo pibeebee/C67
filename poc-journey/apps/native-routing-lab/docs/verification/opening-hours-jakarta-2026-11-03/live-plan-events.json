@@ -1,0 +1,2906 @@
+[
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "input",
+    "event": "input.snapshot",
+    "fields": {
+      "json": "{\"automobile\":true,\"defaultDwell\":30,\"departure\":\"2026-11-05T00:00:00Z\",\"end\":{\"id\":\"end\",\"query\":\"\",\"title\":\"Titik akhir\"},\"extraWeatherMinutes\":15,\"maximumWalkingMinutes\":45,\"origin\":{\"address\":\"Jalan Kendal No. 1, Kota Administrasi Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310, Indonesia\",\"id\":\"origin\",\"latitude\":-6.2023912,\"longitude\":106.8234359,\"query\":\"Stasiun sudirman\",\"resolvedName\":\"Stasiun Sudirman\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Stasiun sudirman\"},\"rainWeight\":2,\"returnsToOrigin\":true,\"searchContext\":\"Jakarta, Indonesia\",\"stops\":[{\"exposure\":\"unknown\",\"point\":{\"address\":\"Gambir\\nCentral Jakarta\\nJakarta 10110\\nIndonesia\",\"id\":\"0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE\",\"latitude\":-6.1753936,\"longitude\":106.827186,\"query\":\"Monas\",\"resolvedName\":\"National Monument\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"National Monument\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"point\":{\"address\":\"Jl MH Thamrin No. 1\\nKebon Melati, Tanah Abang, Central Jakarta\\n Jakarta 10310\\nIndonesia\",\"id\":\"E32284F7-2A9E-4739-9991-4A086BB990DF\",\"latitude\":-6.1951799,\"longitude\":106.8196893,\"query\":\"Grand Indonesia\",\"resolvedName\":\"Grand Indonesia\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Grand Indonesia\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"opening\":{\"opensMinute\":600,\"serviceDate\":\"2026-11-05\",\"sourceNote\":\"Jam buka 10.00 berdasarkan informasi pengguna pada 3 November 2026; jam tutup belum diketahui. Tidak diverifikasi ke sumber eksternal.\",\"timeZoneID\":\"Asia\\/Jakarta\"},\"point\":{\"address\":\"Jl. Bulevar Kelapa Gading Blok M, Jakarta Utara, Jakarta 14240, Indonesia\",\"id\":\"106E65CA-64AA-4292-9D96-DED708AF9D94\",\"latitude\":-6.1573955,\"longitude\":106.9084284,\"query\":\"Summarecon Kelapa Gading\",\"resolvedName\":\"Summarecon Mall Kelapa Gading\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Summarecon Mall Kelapa Gading\"},\"role\":\"visit\"},{\"exposure\":\"unknown\",\"point\":{\"address\":\"Jalan Kali Besar Timur No. 10, West Jakarta, Jakarta 11270, Indonesia\",\"id\":\"BF2C3EFA-9309-4E4D-A550-2DE23C235AFC\",\"latitude\":-6.1347997,\"longitude\":106.8130414,\"query\":\"Kota Tua Jakarta\",\"resolvedName\":\"Kota Tua\",\"selectionSource\":\"MapKit Local Search\",\"title\":\"Kota Tua\"},\"role\":\"visit\"}],\"timeZoneID\":\"Asia\\/Jakarta\",\"transit\":true,\"walking\":true}"
+    },
+    "id": "26394643-CECC-4125-AECC-89D67BEA3EF2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 253,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "planner",
+    "event": "plan.started",
+    "fields": {},
+    "id": "F8691ECC-2DB0-4B6C-83D8-3695B2953970",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 254,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.attribution_requested",
+    "fields": {
+      "provider": "weatherkit"
+    },
+    "id": "87A27050-6A35-46DB-9C9A-4979EFBE4538",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 255,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Cuaca 1/5"
+    },
+    "id": "61152700-31CB-4AA9-9B7F-A0DA3B88AFFF",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 256,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.requested",
+    "fields": {
+      "coordinate": "-6.2023912,106.8234359",
+      "pointID": "origin",
+      "provider": "weatherkit"
+    },
+    "id": "3A79DD96-957F-4E29-95D0-2F02A18ECA64",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 257,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.failed",
+    "fields": {
+      "code": "0",
+      "description": "The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)",
+      "domain": "WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors",
+      "pointID": "origin",
+      "provider": "weatherkit"
+    },
+    "id": "89BB3434-FFB8-4612-95AA-3F12D629266F",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 258,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.fallback_requested",
+    "fields": {
+      "coordinate": "-6.2023912,106.8234359",
+      "dayOffset": "2",
+      "pointID": "origin",
+      "provider": "open_meteo"
+    },
+    "id": "D7A9B07D-D190-4C76-B049-860A39331658",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 259,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.7873110771179199",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "origin",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T07:23:21Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "E3504636-DA0F-451B-ABBE-68E3D8687064",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 260,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Cuaca 2/5"
+    },
+    "id": "94AA3187-3576-48AC-AC22-E2EBA2DE2D53",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 261,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.requested",
+    "fields": {
+      "coordinate": "-6.1753936,106.827186",
+      "pointID": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "provider": "weatherkit"
+    },
+    "id": "B3EFBD67-540B-49A1-844D-CF5251DEFDE5",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 262,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.failed",
+    "fields": {
+      "code": "0",
+      "description": "The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)",
+      "domain": "WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors",
+      "pointID": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "provider": "weatherkit"
+    },
+    "id": "E75A3BF4-C862-4F9D-B12B-ACBD3414902F",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 263,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:21Z",
+    "category": "weather",
+    "event": "weather.fallback_requested",
+    "fields": {
+      "coordinate": "-6.1753936,106.827186",
+      "dayOffset": "2",
+      "pointID": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "provider": "open_meteo"
+    },
+    "id": "D67CF05B-7398-45A9-BE08-93A75C2149CB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 264,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.18067896366119385",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T07:23:22Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "16BC7F01-88A4-417D-8813-5A0EE006B049",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 265,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Cuaca 3/5"
+    },
+    "id": "760E33FC-04E5-4F28-8333-F69092F35DC4",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 266,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "hourCount": "17",
+      "pointID": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "provider": "open_meteo",
+      "source": "cache",
+      "status": "available"
+    },
+    "id": "E191E4DE-12E0-40F1-9DA7-746F6D8A9351",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 267,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Cuaca 4/5"
+    },
+    "id": "B6A6BE1C-BBD2-45AD-B48C-11C20500504C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 268,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.requested",
+    "fields": {
+      "coordinate": "-6.1573955,106.9084284",
+      "pointID": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "provider": "weatherkit"
+    },
+    "id": "5F44BB34-790D-4D5D-A70E-A208658819ED",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 269,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.failed",
+    "fields": {
+      "code": "0",
+      "description": "The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)",
+      "domain": "WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors",
+      "pointID": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "provider": "weatherkit"
+    },
+    "id": "FD34AD2D-F57D-41DF-8219-6D0D2C8DC10F",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 270,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.fallback_requested",
+    "fields": {
+      "coordinate": "-6.1573955,106.9084284",
+      "dayOffset": "2",
+      "pointID": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "provider": "open_meteo"
+    },
+    "id": "F00C3A8E-8B01-4A8F-94EB-399897BB1F9B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 271,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.19203901290893555",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T07:23:22Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "74BCA0A3-9E6B-40DE-B526-5E65F4FD8FA2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 272,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Cuaca 5/5"
+    },
+    "id": "EA880C9B-C59A-4A44-8668-AD075B4724F5",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 273,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.requested",
+    "fields": {
+      "coordinate": "-6.1347997,106.8130414",
+      "pointID": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "provider": "weatherkit"
+    },
+    "id": "F4B60B28-9CA9-4DE2-96E3-113DAF56A534",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 274,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.failed",
+    "fields": {
+      "code": "0",
+      "description": "The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)",
+      "domain": "WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors",
+      "pointID": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "provider": "weatherkit"
+    },
+    "id": "2EF5578B-401B-41CF-8538-DD3353076B0D",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 275,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.fallback_requested",
+    "fields": {
+      "coordinate": "-6.1347997,106.8130414",
+      "dayOffset": "2",
+      "pointID": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "provider": "open_meteo"
+    },
+    "id": "1F8DA06A-77E8-4518-BDA8-0E8A724C53DB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 276,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "weather",
+    "event": "weather.result",
+    "fields": {
+      "elapsedSeconds": "0.1912219524383545",
+      "fetchedAt": "unknown",
+      "hourCount": "17",
+      "note": "Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+      "pointID": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "provider": "open_meteo",
+      "retrievedAt": "2026-11-03T07:23:22Z",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "0F5F0B40-4F75-4799-9B97-935F41FAD292",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 277,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Menyusun kandidat urutan"
+    },
+    "id": "FFF8FFC9-DEB8-4F52-B012-3898D94044C8",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 278,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.candidates",
+    "fields": {
+      "orders": "E32284F7-2A9E-4739-9991-4A086BB990DF → 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE → BF2C3EFA-9309-4E4D-A550-2DE23C235AFC → 106E65CA-64AA-4292-9D96-DED708AF9D94 | 106E65CA-64AA-4292-9D96-DED708AF9D94 → BF2C3EFA-9309-4E4D-A550-2DE23C235AFC → 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE → E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "70C17EF0-37D5-4B00-BA37-7DE8E5F66810",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 279,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 1/2 · Ruas 1/5: Stasiun sudirman → Grand Indonesia"
+    },
+    "id": "CA65B0E8-8A65-4DB1-9E98-B27C6C9EEAAF",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 280,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "walking",
+      "requestID": "946E191D-2EAB-48B2-A8BA-562B993A9B9E",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "743ADB06-63D0-4008-B4C0-E991E4F4C8E1",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 281,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "1125.0",
+      "expectedArrival": "2026-11-05T00:15:21Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "expectedTravelSeconds": "921.0",
+      "requestID": "946E191D-2EAB-48B2-A8BA-562B993A9B9E",
+      "transportType": "2"
+    },
+    "id": "BC3E24C2-6B6B-49A3-B7DE-87AB8A5A373F",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 282,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "1125.0",
+      "elapsedSeconds": "0.1566779613494873",
+      "expectedArrival": "2026-11-05T00:15:21Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "946E191D-2EAB-48B2-A8BA-562B993A9B9E",
+      "seconds": "921.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "4DA89571-E16B-4CE0-B7C8-9AFCC8F02116",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 283,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "BA954183-84DE-4165-9B94-63626CA45F81",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 284,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:22Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "transit",
+      "requestID": "E737391A-0A01-4B81-BE49-EF0A41C32AE7",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "94AB6109-C7EF-4336-B99A-9C60D26A75E8",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 285,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:23Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.3128509521484375",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "E737391A-0A01-4B81-BE49-EF0A41C32AE7",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "002A2A81-60D0-4A1A-8BF6-58DAA87DD0E4",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 286,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:23Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "3FCA2A7C-791F-43CE-9C8F-7BEF780D1F30",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 287,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:23Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "automobile",
+      "requestID": "2A31803B-ACC0-4772-9617-C798181AA20D",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "118FC8AB-FAB9-47F1-B2A3-D209BAD4F046",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 288,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:25Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "1171.0",
+      "expectedArrival": "2026-11-05T00:03:57Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "expectedTravelSeconds": "237.0",
+      "requestID": "2A31803B-ACC0-4772-9617-C798181AA20D",
+      "transportType": "1"
+    },
+    "id": "A3254D43-F6C0-4B3B-93E1-3A39AC48102E",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 289,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:25Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "1171.0",
+      "elapsedSeconds": "1.222885012626648",
+      "expectedArrival": "2026-11-05T00:03:57Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "2A31803B-ACC0-4772-9617-C798181AA20D",
+      "seconds": "237.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "54D585F4-BA4F-44B9-B5C3-C8848F4A7010",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 290,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:25Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "696A4C56-983C-4F7E-9277-92CEE8267EFB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 291,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:25Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 1/2 · Ruas 2/5: Grand Indonesia → National Monument"
+    },
+    "id": "90455B05-0667-4C88-8DCA-858E67E10E96",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 292,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:25Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "walking",
+      "requestID": "9003459C-08BA-4021-AFD7-978A03459275",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "01B21616-0658-4C5B-882F-B9C988B4F4F5",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 293,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:26Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "2933.0",
+      "expectedArrival": "2026-11-05T01:15:10Z",
+      "expectedDeparture": "2026-11-05T00:33:57Z",
+      "expectedTravelSeconds": "2473.0",
+      "requestID": "9003459C-08BA-4021-AFD7-978A03459275",
+      "transportType": "2"
+    },
+    "id": "E1DF8E30-AFFB-478D-8BB7-F9B8D4CB5FAE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 294,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:26Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "2933.0",
+      "elapsedSeconds": "1.1209629774093628",
+      "expectedArrival": "2026-11-05T01:15:10Z",
+      "expectedDeparture": "2026-11-05T00:33:57Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "9003459C-08BA-4021-AFD7-978A03459275",
+      "seconds": "2473.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "A4B5FB40-4CC6-4A57-8469-891D589070DC",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 295,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:26Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "7764176A-4171-4301-878D-915D3FA1DFB8",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 296,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:26Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "transit",
+      "requestID": "7C8C132F-EFE9-4E27-9E66-690242EEC90D",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "6A3F4183-847E-496B-9595-F99C8524C5CB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 297,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:27Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.1907789707183838",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "7C8C132F-EFE9-4E27-9E66-690242EEC90D",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "82F112D8-FD90-425E-AC12-44644AC00D54",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 298,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:27Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "4F8C7C70-726C-4765-8623-BFF447D4E717",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 299,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:27Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:33:57Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "automobile",
+      "requestID": "82831B37-4872-4A63-93E6-844A4F8C37F7",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "F2ACDC93-4990-4186-BB62-ACC1DB543840",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 300,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:28Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "5559.0",
+      "expectedArrival": "2026-11-05T00:54:57Z",
+      "expectedDeparture": "2026-11-05T00:33:57Z",
+      "expectedTravelSeconds": "1260.0",
+      "requestID": "82831B37-4872-4A63-93E6-844A4F8C37F7",
+      "transportType": "1"
+    },
+    "id": "77219290-F1B6-4191-9D82-56C9F118DAFA",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 301,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:28Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "5559.0",
+      "elapsedSeconds": "1.2107120752334595",
+      "expectedArrival": "2026-11-05T00:54:57Z",
+      "expectedDeparture": "2026-11-05T00:33:57Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "82831B37-4872-4A63-93E6-844A4F8C37F7",
+      "seconds": "1260.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "99434A27-50A2-41DA-ABF2-1C5FD773EB1F",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 302,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:28Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "526020D2-233A-416F-85B7-FDD96CACE0F6",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 303,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:28Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 1/2 · Ruas 3/5: National Monument → Kota Tua"
+    },
+    "id": "27AB0D7B-1ECB-449D-B075-E176E72F3856",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 304,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:28Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "walking",
+      "requestID": "CB2B26FD-4555-4076-ABEE-BA97E5BD7853",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "2483668D-F43E-465C-AD67-1968DDECDBBE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 305,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:29Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "5280.0",
+      "expectedArrival": "2026-11-05T02:42:42Z",
+      "expectedDeparture": "2026-11-05T01:24:57Z",
+      "expectedTravelSeconds": "4665.0",
+      "requestID": "CB2B26FD-4555-4076-ABEE-BA97E5BD7853",
+      "transportType": "2"
+    },
+    "id": "77F95188-ADC9-45B1-8C98-252268BF0A0C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 306,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:29Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "5280.0",
+      "elapsedSeconds": "1.201748013496399",
+      "expectedArrival": "2026-11-05T02:42:42Z",
+      "expectedDeparture": "2026-11-05T01:24:57Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "CB2B26FD-4555-4076-ABEE-BA97E5BD7853",
+      "seconds": "4665.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "D731392B-E9E6-45D8-B7DE-035E5FF30DDE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 307,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:29Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "176D38E3-F9DF-4D68-975E-D46761631818",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 308,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:29Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "transit",
+      "requestID": "AE329635-A0A7-4774-B785-36706C55B81A",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "EBE7B1BE-B678-4C40-AB4F-47A6B0D9BF21",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 309,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:31Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.1693370342254639",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "AE329635-A0A7-4774-B785-36706C55B81A",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "04098DA0-CCC0-4C5E-A49F-9FD70AB0934B",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 310,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:31Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "7AC757AA-0C9E-4A3C-89C0-6CA80C1F9828",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 311,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:31Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T01:24:57Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "automobile",
+      "requestID": "7CA5840B-CB36-46C6-BAE7-5F97225CEC7E",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "F4E9AD98-DC47-48BE-A764-B76F6E3904BB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 312,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:32Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "5782.0",
+      "expectedArrival": "2026-11-05T01:43:05Z",
+      "expectedDeparture": "2026-11-05T01:24:57Z",
+      "expectedTravelSeconds": "1088.0",
+      "requestID": "7CA5840B-CB36-46C6-BAE7-5F97225CEC7E",
+      "transportType": "1"
+    },
+    "id": "F75A2A46-8E6C-4E3C-A26F-2F134261475C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 313,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:32Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "5782.0",
+      "elapsedSeconds": "1.2822550535202026",
+      "expectedArrival": "2026-11-05T01:43:05Z",
+      "expectedDeparture": "2026-11-05T01:24:57Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "7CA5840B-CB36-46C6-BAE7-5F97225CEC7E",
+      "seconds": "1088.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "06FBBF36-25F7-40D3-A947-0B3AFC6F7B7B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 314,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:32Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "F124FEAD-79C8-4BB8-8599-6C672DAE114E",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 315,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:32Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 1/2 · Ruas 4/5: Kota Tua → Summarecon Mall Kelapa Gading"
+    },
+    "id": "7C16589C-7F18-4424-87A2-2C1FA238BD0B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 316,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:32Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "walking",
+      "requestID": "545EC6C7-25BE-47A8-AB28-473B9F006BE1",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "FAAA4ECD-F4A2-4679-9498-0D77E07BDE4A",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 317,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:33Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "13688.0",
+      "expectedArrival": "2026-11-05T06:02:42Z",
+      "expectedDeparture": "2026-11-05T02:13:05Z",
+      "expectedTravelSeconds": "13777.0",
+      "requestID": "545EC6C7-25BE-47A8-AB28-473B9F006BE1",
+      "transportType": "2"
+    },
+    "id": "E2F77DC2-09A0-439A-BD4A-C2779C7C1717",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 318,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:33Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "13688.0",
+      "elapsedSeconds": "1.4338079690933228",
+      "expectedArrival": "2026-11-05T06:02:42Z",
+      "expectedDeparture": "2026-11-05T02:13:05Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "545EC6C7-25BE-47A8-AB28-473B9F006BE1",
+      "seconds": "13777.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "290A692E-3A73-4D04-B0DD-65AA9DCE2675",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 319,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:33Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "F07E7E71-A810-4924-B7D8-CCAF9C9301C4",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 320,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:33Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "transit",
+      "requestID": "3D4E8B9F-C19C-4C71-8086-7E76617C6B42",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "56B50991-FCB7-49A5-A1D3-499DCE69395E",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 321,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:34Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "0.86474609375",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "3D4E8B9F-C19C-4C71-8086-7E76617C6B42",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "56503362-4D3A-4AC9-B707-D569018F4A5A",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 322,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:34Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "EFE8F392-A00A-4098-90F1-CD2CF06F2E67",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 323,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:34Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T02:13:05Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "automobile",
+      "requestID": "F7FC1EC8-CDBC-402D-A379-11825AB89551",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "72A4D8B0-E4BF-416F-84B1-580A674DFE37",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 324,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:35Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "15345.0",
+      "expectedArrival": "2026-11-05T02:48:41Z",
+      "expectedDeparture": "2026-11-05T02:13:05Z",
+      "expectedTravelSeconds": "2136.0",
+      "requestID": "F7FC1EC8-CDBC-402D-A379-11825AB89551",
+      "transportType": "1"
+    },
+    "id": "E40AE16D-F168-47EB-A62F-1453874A4AC6",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 325,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:35Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "15345.0",
+      "elapsedSeconds": "1.2311710119247437",
+      "expectedArrival": "2026-11-05T02:48:41Z",
+      "expectedDeparture": "2026-11-05T02:13:05Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "F7FC1EC8-CDBC-402D-A379-11825AB89551",
+      "seconds": "2136.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "76CB866B-2964-4DC3-B7E2-F575BE3B108C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 326,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:35Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "D8494793-7030-4CD5-A600-8E131A124B5A",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 327,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:35Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 1/2 · Ruas 5/5: Summarecon Mall Kelapa Gading → Stasiun sudirman"
+    },
+    "id": "DED5D69A-B14F-4E42-8B05-D33689975BB9",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 328,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:35Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "walking",
+      "requestID": "C282925A-EC0D-4E2B-AD45-07CB43A95E81",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "B3FA16A1-BCCA-46ED-901C-F06FC31FE195",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 329,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:37Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "12907.0",
+      "expectedArrival": "2026-11-05T07:05:38Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "expectedTravelSeconds": "12938.0",
+      "requestID": "C282925A-EC0D-4E2B-AD45-07CB43A95E81",
+      "transportType": "2"
+    },
+    "id": "566BBB8B-3606-4D48-8787-AF7E8BC1CA80",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 330,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:37Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "12907.0",
+      "elapsedSeconds": "1.5706199407577515",
+      "expectedArrival": "2026-11-05T07:05:38Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "C282925A-EC0D-4E2B-AD45-07CB43A95E81",
+      "seconds": "12938.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "BBC49606-8AC3-472E-857F-DA6CEADF13F2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 331,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:37Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 216 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "origin"
+    },
+    "id": "17F85261-D846-41FB-B072-C0B1054626B5",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 332,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:37Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "transit",
+      "requestID": "76FB5327-1A9F-4DDE-9594-7E20F1435732",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "C4964DE1-9DF6-4A79-812A-859F8B06A9C4",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 333,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:38Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "0.7929270267486572",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "76FB5327-1A9F-4DDE-9594-7E20F1435732",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "BF864F84-0159-4BBB-BDAD-0C37F4AC1634",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 334,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:38Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "origin"
+    },
+    "id": "D8FDBC4F-1DF2-4AAD-B686-49959F8F9CAC",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 335,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:38Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "automobile",
+      "requestID": "E0697579-2414-4474-8320-B4E68E187E51",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "727F97D5-F6A2-4CC4-A0C6-3101327DC5E7",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 336,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:39Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "14538.0",
+      "expectedArrival": "2026-11-05T04:13:40Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "expectedTravelSeconds": "2620.0",
+      "requestID": "E0697579-2414-4474-8320-B4E68E187E51",
+      "transportType": "1"
+    },
+    "id": "487230BE-92F2-40D0-B6B0-9463A9763663",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 337,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:39Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "14538.0",
+      "elapsedSeconds": "1.3265429735183716",
+      "expectedArrival": "2026-11-05T04:13:40Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "E0697579-2414-4474-8320-B4E68E187E51",
+      "seconds": "2620.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "9A748FD5-5D5E-4B19-BE1A-50C62CF5C3E4",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 338,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:39Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "origin"
+    },
+    "id": "41214C35-0C11-4B89-A5C7-BA81525BA623",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 339,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:39Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 2/2 · Ruas 1/5: Stasiun sudirman → Summarecon Mall Kelapa Gading"
+    },
+    "id": "7546AAF3-02A2-498A-8A17-DB8CBE5C59E0",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 340,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:39Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "walking",
+      "requestID": "AF60F59B-DBBE-4D75-933F-4F4B91EB2587",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "2D185A3B-3DB0-4BAE-AC39-686CAC248910",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 341,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "13012.0",
+      "expectedArrival": "2026-11-05T03:37:26Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "expectedTravelSeconds": "13046.0",
+      "requestID": "AF60F59B-DBBE-4D75-933F-4F4B91EB2587",
+      "transportType": "2"
+    },
+    "id": "2AC74D88-505F-4331-9873-285D062EABE2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 342,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "13012.0",
+      "elapsedSeconds": "1.3916630744934082",
+      "expectedArrival": "2026-11-05T03:37:26Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "AF60F59B-DBBE-4D75-933F-4F4B91EB2587",
+      "seconds": "13046.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "6C64280E-03B6-4F43-AF67-C140CAF1A283",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 343,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "walking",
+      "note": "ETA berjalan 218 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "0DFB54D0-C0EA-484D-9B74-DD2BFA169720",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 344,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "transit",
+      "requestID": "F49244B4-2879-4F8A-BE2B-84C519021AC7",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "7DCB8441-3323-4720-9307-41EF5879E13E",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 345,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "0.8708510398864746",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "F49244B4-2879-4F8A-BE2B-84C519021AC7",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "1EF4A60B-961A-4E63-B7D4-53FC3A37C35C",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 346,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "47137F0B-FC01-4B84-A8C0-B4C5C0EC5458",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 347,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:41Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "fromCoordinate": "-6.2023912,106.8234359",
+      "mode": "automobile",
+      "requestID": "0A4305D6-B4D3-4DC2-8948-2A5675AA2146",
+      "timeoutSeconds": "25",
+      "to": "Summarecon Mall Kelapa Gading",
+      "toCoordinate": "-6.1573955,106.9084284"
+    },
+    "id": "DBE5B594-7C6D-4B39-B124-DC519226E3A2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 348,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:43Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "13726.0",
+      "expectedArrival": "2026-11-05T00:31:59Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "expectedTravelSeconds": "1919.0",
+      "requestID": "0A4305D6-B4D3-4DC2-8948-2A5675AA2146",
+      "transportType": "1"
+    },
+    "id": "3BF5A4ED-5612-416F-9266-EA0887AF3FAE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 349,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:43Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "13726.0",
+      "elapsedSeconds": "1.3580149412155151",
+      "expectedArrival": "2026-11-05T00:31:59Z",
+      "expectedDeparture": "2026-11-05T00:00:00Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "0A4305D6-B4D3-4DC2-8948-2A5675AA2146",
+      "seconds": "1919.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "41BC355A-2319-4226-A863-E1FED85B2D36",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 350,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:43Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "origin",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "106E65CA-64AA-4292-9D96-DED708AF9D94"
+    },
+    "id": "9299106C-5AEB-48F7-9214-115B640A81F6",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 351,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:43Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 2/2 · Ruas 2/5: Summarecon Mall Kelapa Gading → Kota Tua"
+    },
+    "id": "902ABED5-7D54-444C-B988-9C22FA020F89",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 352,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:43Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "walking",
+      "requestID": "BB57C3E9-F012-452E-9785-8621798D13AB",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "714AD474-EFD1-47E6-B04B-2309EB27A3B9",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 353,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:44Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "13699.0",
+      "expectedArrival": "2026-11-05T07:19:47Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "expectedTravelSeconds": "13787.0",
+      "requestID": "BB57C3E9-F012-452E-9785-8621798D13AB",
+      "transportType": "2"
+    },
+    "id": "DBD1EB6B-93E0-4AD7-BA6E-B95FCB9EF0EA",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 354,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:44Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "13699.0",
+      "elapsedSeconds": "1.3326148986816406",
+      "expectedArrival": "2026-11-05T07:19:47Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "BB57C3E9-F012-452E-9785-8621798D13AB",
+      "seconds": "13787.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "59BCAE45-02E3-4B6F-930F-B3B4E3CEBD25",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 355,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:44Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "walking",
+      "note": "ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "F8C809E7-FE12-4AFB-A3A0-72FA83A38E21",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 356,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:44Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "transit",
+      "requestID": "F5BDB03D-B670-4FA9-87E5-655810967294",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "89C7EE01-E652-4234-9BB1-A02A0EF1620C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 357,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:45Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "0.9984478950500488",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "F5BDB03D-B670-4FA9-87E5-655810967294",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "B8EF22D2-3B2F-4CA2-AAA0-3531B2B8C146",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 358,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:45Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "7F4FB0A7-06DD-49E9-906C-BE3FDB14C6F8",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 359,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:45Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T03:30:00Z",
+      "from": "Summarecon Mall Kelapa Gading",
+      "fromCoordinate": "-6.1573955,106.9084284",
+      "mode": "automobile",
+      "requestID": "13EB893A-9F70-4F56-BE68-848A3DF98F26",
+      "timeoutSeconds": "25",
+      "to": "Kota Tua",
+      "toCoordinate": "-6.1347997,106.8130414"
+    },
+    "id": "FDCF1D4C-B3E1-4F89-B365-7502B1816441",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 360,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:46Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "18755.0",
+      "expectedArrival": "2026-11-05T04:07:48Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "expectedTravelSeconds": "2268.0",
+      "requestID": "13EB893A-9F70-4F56-BE68-848A3DF98F26",
+      "transportType": "1"
+    },
+    "id": "F56EB747-DD6D-45CE-A40C-04FEAA06B185",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 361,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:46Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "18755.0",
+      "elapsedSeconds": "1.1960439682006836",
+      "expectedArrival": "2026-11-05T04:07:48Z",
+      "expectedDeparture": "2026-11-05T03:30:00Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "13EB893A-9F70-4F56-BE68-848A3DF98F26",
+      "seconds": "2268.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "96C8CB3E-96E0-4487-BBDD-F3D90D829D37",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 362,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:46Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC"
+    },
+    "id": "C264E5F4-3D78-4385-A9EB-3C3D902D24DA",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 363,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:46Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 2/2 · Ruas 3/5: Kota Tua → National Monument"
+    },
+    "id": "2729F03B-E80F-4207-8C23-BEDF460232A1",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 364,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:46Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T04:37:48Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "walking",
+      "requestID": "630BA65B-6B5F-469D-A9CD-A832FABE455F",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "811E69B2-A44A-4BBA-8E1A-38D8311A869F",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 365,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:47Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "5280.0",
+      "expectedArrival": "2026-11-05T05:55:27Z",
+      "expectedDeparture": "2026-11-05T04:37:48Z",
+      "expectedTravelSeconds": "4659.0",
+      "requestID": "630BA65B-6B5F-469D-A9CD-A832FABE455F",
+      "transportType": "2"
+    },
+    "id": "14A59218-82BA-4CC2-A2E5-7C7BC8315EF8",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 366,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:47Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "5280.0",
+      "elapsedSeconds": "1.2145569324493408",
+      "expectedArrival": "2026-11-05T05:55:27Z",
+      "expectedDeparture": "2026-11-05T04:37:48Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "630BA65B-6B5F-469D-A9CD-A832FABE455F",
+      "seconds": "4659.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "EB1906B2-0F39-4B90-96C7-C714E0A452AE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 367,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:47Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "walking",
+      "note": "ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.",
+      "status": "excluded_by_walking_limit",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "47EACCE6-45D5-4CDE-82E4-FC0B4E8FE867",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 368,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:47Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T04:37:48Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "transit",
+      "requestID": "97DD0B2B-04B1-442D-9877-108C8FDC34E4",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "292659ED-5E36-4E80-94F9-17CA415A49E0",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 369,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:49Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.180482029914856",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "97DD0B2B-04B1-442D-9877-108C8FDC34E4",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "4F2A146F-29ED-43B2-BD4E-E9FE86E3DDFE",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 370,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:49Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "980612FE-ED5C-4D16-9EC0-32B2A2A292D5",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 371,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:49Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T04:37:48Z",
+      "from": "Kota Tua",
+      "fromCoordinate": "-6.1347997,106.8130414",
+      "mode": "automobile",
+      "requestID": "4E7445F6-8E08-4317-9566-FEC66269CD1F",
+      "timeoutSeconds": "25",
+      "to": "National Monument",
+      "toCoordinate": "-6.1753936,106.827186"
+    },
+    "id": "09C4519C-4A87-490F-83EE-7F0E0D2F9B89",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 372,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:50Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "9283.0",
+      "expectedArrival": "2026-11-05T05:14:28Z",
+      "expectedDeparture": "2026-11-05T04:37:48Z",
+      "expectedTravelSeconds": "2200.0",
+      "requestID": "4E7445F6-8E08-4317-9566-FEC66269CD1F",
+      "transportType": "1"
+    },
+    "id": "C9C3E74E-1D52-407E-B5F5-8964A8D2FF8B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 373,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:50Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "9283.0",
+      "elapsedSeconds": "1.1983760595321655",
+      "expectedArrival": "2026-11-05T05:14:28Z",
+      "expectedDeparture": "2026-11-05T04:37:48Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "4E7445F6-8E08-4317-9566-FEC66269CD1F",
+      "seconds": "2200.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "54D670F2-C954-4211-9650-E54CF091CCC7",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 374,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:50Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "BF2C3EFA-9309-4E4D-A550-2DE23C235AFC",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE"
+    },
+    "id": "60A4D1D0-D878-460E-B32B-03A8F413659B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 375,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:50Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 2/2 · Ruas 4/5: National Monument → Grand Indonesia"
+    },
+    "id": "E38233FA-79E6-405C-956E-EE4206A3D18D",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 376,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:50Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T05:44:28Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "walking",
+      "requestID": "D41E3199-3A30-4207-95C0-B8CDC199A625",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "08273C33-D656-484B-A66E-B0587688D723",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 377,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:51Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "2769.0",
+      "expectedArrival": "2026-11-05T06:23:15Z",
+      "expectedDeparture": "2026-11-05T05:44:28Z",
+      "expectedTravelSeconds": "2327.0",
+      "requestID": "D41E3199-3A30-4207-95C0-B8CDC199A625",
+      "transportType": "2"
+    },
+    "id": "226DCA3D-C229-4913-884B-9CD22FE82ACB",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 378,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:51Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "2769.0",
+      "elapsedSeconds": "1.144347071647644",
+      "expectedArrival": "2026-11-05T06:23:15Z",
+      "expectedDeparture": "2026-11-05T05:44:28Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "D41E3199-3A30-4207-95C0-B8CDC199A625",
+      "seconds": "2327.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "95B69192-AB14-4FB3-A090-CA9C340AE1F1",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 379,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:51Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "F347C17D-A35C-4A57-931D-BE71982D1A02",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 380,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:51Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T05:44:28Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "transit",
+      "requestID": "BB71F7C6-EAE8-47E2-9AB2-B020C1A46A61",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "FD31BDDA-FA11-4585-9A9A-110F64593019",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 381,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:52Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.3057960271835327",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "BB71F7C6-EAE8-47E2-9AB2-B020C1A46A61",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "74A1C8EE-7E1A-412C-8AE9-842819C73B2F",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 382,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:52Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "D11EE10F-373A-4C65-A134-7C3940275B52",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 383,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:52Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T05:44:28Z",
+      "from": "National Monument",
+      "fromCoordinate": "-6.1753936,106.827186",
+      "mode": "automobile",
+      "requestID": "5C08D1BD-E8BB-4793-B87D-FE6883767795",
+      "timeoutSeconds": "25",
+      "to": "Grand Indonesia",
+      "toCoordinate": "-6.1951799,106.8196893"
+    },
+    "id": "62CDAE63-51C3-4A4B-B026-1137CDB36B8E",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 384,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:53Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "3097.0",
+      "expectedArrival": "2026-11-05T05:55:30Z",
+      "expectedDeparture": "2026-11-05T05:44:28Z",
+      "expectedTravelSeconds": "662.0",
+      "requestID": "5C08D1BD-E8BB-4793-B87D-FE6883767795",
+      "transportType": "1"
+    },
+    "id": "E390F429-303B-4AB7-9F37-7E6DA863E954",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 385,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:53Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "3097.0",
+      "elapsedSeconds": "1.0814059972763062",
+      "expectedArrival": "2026-11-05T05:55:30Z",
+      "expectedDeparture": "2026-11-05T05:44:28Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "5C08D1BD-E8BB-4793-B87D-FE6883767795",
+      "seconds": "662.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "4D1900E2-F591-450F-B7B5-DB7548F3232F",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 386,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:53Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "E32284F7-2A9E-4739-9991-4A086BB990DF"
+    },
+    "id": "19BB9654-E18F-47EB-A341-A431783E31A6",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 387,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:53Z",
+    "category": "planner",
+    "event": "plan.progress",
+    "fields": {
+      "phase": "Kandidat 2/2 · Ruas 5/5: Grand Indonesia → Stasiun sudirman"
+    },
+    "id": "FE2E598C-D9D8-4A7A-85CB-FA63F925E3E2",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 388,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:53Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T06:25:30Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "walking",
+      "requestID": "6E377D63-5BE8-4C9D-9805-D1630E0E5718",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "DAE175A5-65FB-49C1-91C1-8158857B94F3",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 389,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:55Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "1122.0",
+      "expectedArrival": "2026-11-05T06:41:05Z",
+      "expectedDeparture": "2026-11-05T06:25:30Z",
+      "expectedTravelSeconds": "935.0",
+      "requestID": "6E377D63-5BE8-4C9D-9805-D1630E0E5718",
+      "transportType": "2"
+    },
+    "id": "F9080EE9-80AD-4AC2-A744-E9FA641FE4DF",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 390,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:55Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "1122.0",
+      "elapsedSeconds": "1.2377439737319946",
+      "expectedArrival": "2026-11-05T06:41:05Z",
+      "expectedDeparture": "2026-11-05T06:25:30Z",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "requestID": "6E377D63-5BE8-4C9D-9805-D1630E0E5718",
+      "seconds": "935.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "0373CB62-21AD-4799-BFE2-A8FBDE1EAFF9",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 391,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:55Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "walking",
+      "note": "Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.",
+      "status": "available",
+      "to": "origin"
+    },
+    "id": "68B8861B-2F0C-4616-9F1C-1719F75D78BC",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 392,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:55Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T06:25:30Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "transit",
+      "requestID": "E766590C-A7CF-47A8-8BD8-12100F91011F",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "9E0851DE-006B-4827-AFB7-F09D21426102",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 393,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:56Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "code": "4",
+      "description": "Directions Not Available",
+      "distance": "unknown",
+      "domain": "MKErrorDomain",
+      "elapsedSeconds": "1.2914289236068726",
+      "expectedArrival": "unknown",
+      "expectedDeparture": "unknown",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "requestID": "E766590C-A7CF-47A8-8BD8-12100F91011F",
+      "seconds": "unknown",
+      "source": "provider",
+      "status": "unavailable"
+    },
+    "id": "4E9497EA-81CF-4A8C-B0D8-65FC13C43D27",
+    "level": "warning",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 394,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:56Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "transit",
+      "note": "MapKit belum memberi ETA: Directions Not Available",
+      "status": "unavailable",
+      "to": "origin"
+    },
+    "id": "481B7C06-A080-4DE0-9190-6C7B16D9C2BE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 395,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:56Z",
+    "category": "mapkit",
+    "event": "eta.requested",
+    "fields": {
+      "departure": "2026-11-05T06:25:30Z",
+      "from": "Grand Indonesia",
+      "fromCoordinate": "-6.1951799,106.8196893",
+      "mode": "automobile",
+      "requestID": "119E6FC8-4C5D-4A64-BA9B-81BFC329B5D5",
+      "timeoutSeconds": "25",
+      "to": "Stasiun sudirman",
+      "toCoordinate": "-6.2023912,106.8234359"
+    },
+    "id": "138C0E74-0401-44BE-BBF9-3F5F550D1420",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 396,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "mapkit",
+    "event": "eta.provider_response",
+    "fields": {
+      "distance": "1467.0",
+      "expectedArrival": "2026-11-05T06:33:40Z",
+      "expectedDeparture": "2026-11-05T06:25:30Z",
+      "expectedTravelSeconds": "490.0",
+      "requestID": "119E6FC8-4C5D-4A64-BA9B-81BFC329B5D5",
+      "transportType": "1"
+    },
+    "id": "E139EB2C-C339-4BE0-92BE-26DA05E77273",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 397,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "mapkit",
+    "event": "eta.result",
+    "fields": {
+      "distance": "1467.0",
+      "elapsedSeconds": "1.1300909519195557",
+      "expectedArrival": "2026-11-05T06:33:40Z",
+      "expectedDeparture": "2026-11-05T06:25:30Z",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "requestID": "119E6FC8-4C5D-4A64-BA9B-81BFC329B5D5",
+      "seconds": "490.0",
+      "source": "provider",
+      "status": "available"
+    },
+    "id": "CA9C78F8-3EC9-4594-82F1-84167E4ED268",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 398,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "mapkit",
+    "event": "route.option",
+    "fields": {
+      "from": "E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "mode": "automobile",
+      "note": "Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.",
+      "status": "available",
+      "to": "origin"
+    },
+    "id": "9E79472A-6600-40DB-BD6B-DC5AC146B013",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 399,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "planner",
+    "event": "plan.candidate_result",
+    "fields": {
+      "complete": "true",
+      "conflicts": "",
+      "feasible": "true",
+      "finish": "2026-11-05T04:13:40Z",
+      "order": "E32284F7-2A9E-4739-9991-4A086BB990DF → 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE → BF2C3EFA-9309-4E4D-A550-2DE23C235AFC → 106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "rainExposureMinutes": "0.0",
+      "travelMinutes": "122.35",
+      "uncertainties": "Jam operasional Grand Indonesia belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam operasional National Monument belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam operasional Kota Tua belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam tutup Summarecon Mall Kelapa Gading belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+      "unknownWeatherMinutes": "253.66666666666666"
+    },
+    "id": "6782815A-9AFC-43CE-8C2D-4F0C20D91F4C",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 400,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "planner",
+    "event": "plan.candidate_result",
+    "fields": {
+      "complete": "true",
+      "conflicts": "",
+      "feasible": "true",
+      "finish": "2026-11-05T06:33:40Z",
+      "order": "106E65CA-64AA-4292-9D96-DED708AF9D94 → BF2C3EFA-9309-4E4D-A550-2DE23C235AFC → 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE → E32284F7-2A9E-4739-9991-4A086BB990DF",
+      "rainExposureMinutes": "0.0",
+      "travelMinutes": "125.64999999999999",
+      "uncertainties": "Jam tutup Summarecon Mall Kelapa Gading belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam operasional Kota Tua belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam operasional National Monument belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Jam operasional Grand Indonesia belum diisi. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui. | Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.",
+      "unknownWeatherMinutes": "393.6666666666667"
+    },
+    "id": "EE5E60DC-5F20-49C9-9411-5243659E51AA",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 401,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "planner",
+    "event": "plan.weather_decision",
+    "fields": {
+      "fastest": "E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94",
+      "note": "Rekomendasi cuaca ditunda: prakiraan, paparan transit, atau kandidat layak belum lengkap. Prakiraan per tempat yang tersedia tetap dapat dilihat.",
+      "weatherChoice": "none"
+    },
+    "id": "52828EB5-8C3F-4E27-823F-4FFE922166AE",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 402,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  },
+  {
+    "at": "2026-11-03T07:23:57Z",
+    "category": "planner",
+    "event": "plan.completed",
+    "fields": {
+      "report": "# Itinerary native PoC C67\nDraf tersedia · periksa data bersyarat\nBerangkat: Nov 5, 2026 at 7:00 (Asia/Jakarta)\nAI: tidak digunakan\nMapKit transit: estimasi ETA, bukan jadwal atau detail jalur kereta.\nBaseline geografis\n\nInput 1: National Monument · 30 menit\n   Jam operasional: belum diisi\nInput 2: Grand Indonesia · 30 menit\n   Jam operasional: belum diisi\nInput 3: Summarecon Mall Kelapa Gading · 30 menit\n   Jam operasional: Buka 10.00 · jam tutup belum diisi\n   Input manual · tanggal 2026-11-05 · Asia/Jakarta\n   Catatan sumber: Jam buka 10.00 berdasarkan informasi pengguna pada 3 November 2026; jam tutup belum diketahui. Tidak diverifikasi ke sumber eksternal.\nInput 4: Kota Tua · 30 menit\n   Jam operasional: belum diisi\n\nKandidat: E32284F7-2A9E-4739-9991-4A086BB990DF/0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE/BF2C3EFA-9309-4E4D-A550-2DE23C235AFC/106E65CA-64AA-4292-9D96-DED708AF9D94\nLengkap: true; layak terhadap batas yang diketahui: true\nPerjalanan: 122.3 menit; menunggu buka: 11.3 menit; singgah: 120 menit.\n1. Stasiun sudirman → Grand Indonesia | berangkat Nov 5, 2026 at 7:00 | tiba Nov 5, 2026 at 7:03 | singgah 30 menit (default)\n   Mulai singgah: Nov 5, 2026 at 7:03\n   Lanjut: Nov 5, 2026 at 7:33\n   Jalan kaki: 15.3 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.\n   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available\n   Mobil · ETA: 4.0 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.\n2. Grand Indonesia → National Monument | berangkat Nov 5, 2026 at 7:33 | tiba Nov 5, 2026 at 7:54 | singgah 30 menit (default)\n   Mulai singgah: Nov 5, 2026 at 7:54\n   Lanjut: Nov 5, 2026 at 8:24\n   Jalan kaki: 41.2 menit [available] · Estimasi berjalan MapKit; kondisi cuaca tidak ditambahkan sebagai keterlambatan buatan.\n   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available\n   Mobil · ETA: 21.0 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.\n3. National Monument → Kota Tua | berangkat Nov 5, 2026 at 8:24 | tiba Nov 5, 2026 at 8:43 | singgah 30 menit (default)\n   Mulai singgah: Nov 5, 2026 at 8:43\n   Lanjut: Nov 5, 2026 at 9:13\n   Jalan kaki: 77.8 menit [excluded_by_walking_limit] · ETA berjalan 78 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.\n   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available\n   Mobil · ETA: 18.1 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.\n4. Kota Tua → Summarecon Mall Kelapa Gading | berangkat Nov 5, 2026 at 9:13 | tiba Nov 5, 2026 at 9:48 | singgah 30 menit (default)\n   Mulai singgah: Nov 5, 2026 at 10:00\n   Lanjut: Nov 5, 2026 at 10:30\n   Menunggu buka: 11.3 menit\n   Jalan kaki: 229.6 menit [excluded_by_walking_limit] · ETA berjalan 230 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.\n   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available\n   Mobil · ETA: 35.6 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.\n5. Summarecon Mall Kelapa Gading → Stasiun sudirman | berangkat Nov 5, 2026 at 10:30 | tiba Nov 5, 2026 at 11:13 | singgah 0 menit (transfer)\n   Mulai singgah: Nov 5, 2026 at 11:13\n   Lanjut: Nov 5, 2026 at 11:13\n   Jalan kaki: 215.6 menit [excluded_by_walking_limit] · ETA berjalan 216 menit melebihi batas 45 menit per ruas. Tidak dipilih otomatis.\n   Transit · ETA: belum tersedia [unavailable] · MapKit belum memberi ETA: Directions Not Available\n   Mobil · ETA: 43.7 menit [available] · Estimasi mobil MapKit pada waktu yang diminta. Belum termasuk mencari kendaraan, parkir atau berjalan dari parkir; bukan ETA motor atau transit.\nBersyarat: Jam operasional Grand Indonesia belum diisi.\nBersyarat: Jam operasional Kota Tua belum diisi.\nBersyarat: Jam operasional National Monument belum diisi.\nBersyarat: Jam tutup Summarecon Mall Kelapa Gading belum diisi.\nBersyarat: Waktu parkir, akses kendaraan dan paparan di luar mobil belum diketahui.\n\nRekomendasi cuaca ditunda: prakiraan, paparan transit, atau kandidat layak belum lengkap. Prakiraan per tempat yang tersedia tetap dapat dilihat.\nCuaca origin: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.\nCuaca 0CE4F07E-E3A7-467F-A0F1-D4C715AC6FBE: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.\nCuaca E32284F7-2A9E-4739-9991-4A086BB990DF: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.\nCuaca 106E65CA-64AA-4292-9D96-DED708AF9D94: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.\nCuaca BF2C3EFA-9309-4E4D-A550-2DE23C235AFC: available · sumber Open-Meteo · Cadangan Open-Meteo. WeatherKit: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.\nData cuaca: Open-Meteo (https://open-meteo.com/), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Peluang presipitasi dikonversi ke 0–1 dan interval satu jam sebelumnya untuk perhitungan paparan.\nPencarian terbatas: seed geografis dibandingkan menggunakan ETA aktual MapKit. Tidak menjamin optimum global.\nPermintaan arah/ETA MapKit: 30. Laporan ini bukan bukti uji perangkat atau jaminan layanan transportasi.",
+      "requests": "30",
+      "status": "Draf tersedia · periksa data bersyarat"
+    },
+    "id": "22698D69-179D-4DF2-A433-471CEF966C6B",
+    "level": "info",
+    "operationID": "674D24A4-2805-4781-BF97-146C90C46671",
+    "schemaVersion": 1,
+    "sequence": 403,
+    "sessionID": "276F8D00-0BDD-4AB4-9E6C-24C6D47708D0"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "network": true,
+  "providers": [
+    "Apple MapKit automobile ETA/search",
+    "Open-Meteo forecast"
+  ],
+  "environment": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "scriptedReportedFacts": true,
+  "physicalDevice": false,
+  "sources": {
+    "poc-c67/Features/NativePlanner/NativeTripModels.swift": "d49ffbbd60f5a371b958afb59f9ab093511dbf8a17447f136469244f471c1977",
+    "poc-c67/Features/NativePlanner/NativeTripInputSupport.swift": "3698e1166ec47a09f516c1549cd71589d65d6290fb64607a65155c775191ef94",
+    "poc-c67/Features/NativePlanner/NativeTripSearchSupport.swift": "37d7a3eda6ce9b44f66b6fa87935582407838b5eb540f393cdd6a1088fa607bd",
+    "poc-c67/Features/NativePlanner/NativeTripWeatherSupport.swift": "c58a424a89447df8c093c3c2af8f77818f034fd8e0598fff6f8b198541cbc226",
+    "poc-c67/Features/NativePlanner/NativeTripLogStore.swift": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27",
+    "poc-c67/Features/NativePlanner/NativeTripAppleServices.swift": "1ac8a568f375df43c74f138901c3c6bcf9b1d0bc49fb26f111e85f760139148f",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingCore.swift": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+    "poc-c67/Features/NativePlanner/NativeTripEngine.swift": "95ace9177427ff0b23548614c74e96784ed6dc65b39ff4c1cb21928239a3c750",
+    "poc-c67/Features/NativePlanner/NativeTripRoutingBridge.swift": "1545e840c3cc926af1c98c34977cd2743d6d11910bbc6e43ef419cb4ca0cc0ec",
+    "poc-c67/Features/NativePlanner/NativeTripTimeAwarePlanner.swift": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18",
+    "poc-c67/Features/NativePlanner/NativeTripLocalStore.swift": "7154968a62b356222949e8e4667f2ddd497205cc2932b12b143bda99b006156d",
+    "poc-c67/Features/NativePlanner/NativeTripActiveTrip.swift": "92eabe08cc748a21f8f36529ff92333d8198fde97d264d1d7cc199c751544183",
+    "poc-c67/Features/NativePlanner/NativeTripActivePlanner.swift": "d5f68c3f9556123a8a8d9a8773ba92249e074587addb1c6a8e96ffa92a0853ba",
+    "checks/jakarta/NativeTripJakartaLiveProbe.swift": "c69e05d1fed45b8d668c13aa67c342929db5465c4c7c348df8677b1662a690da",
+    "scripts/test-native-trip-jakarta-live.sh": "a9a873a3b904b26f4738fe06330bf1e15096f403d0d862875af5168373b854e3"
+  }
+}

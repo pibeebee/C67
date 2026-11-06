@@ -1,0 +1,273 @@
+{
+  "generatedAt": "2026-11-02T13:28:33.560Z",
+  "inputHash": "c901eae1a941cd6a0545cd204e9e5d16d699070775ea364761df5c27706a829d",
+  "eventsPreserved": 24,
+  "mode": "ordered_itinerary_audit",
+  "date": "2026-11-05",
+  "timeZone": "Asia/Tokyo",
+  "reusedProviderData": false,
+  "googleCallsThisRun": 13,
+  "weatherCallsThisRun": 4,
+  "ai": {
+    "metadata": {
+      "requestedModel": "nvidia/nemotron-3.5-super-vl:free",
+      "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+      "reasoning": "on",
+      "maxCompletionTokens": 16384,
+      "timeoutMs": 180000,
+      "contextBudget": {
+        "limitTokens": 1000000,
+        "reservedOutputTokens": 16384,
+        "estimatedInputTokens": 71392,
+        "estimatedTotalTokens": 87776,
+        "estimateMethod": "UTF-8 request bytes + 8192 overhead reserve; conservative estimate, not exact model tokenization."
+      },
+      "reportedUsageCheck": {
+        "inputTokens": 25044,
+        "completionTokens": 9396,
+        "totalTokens": 34440,
+        "withinLimit": true
+      },
+      "usage": {
+        "prompt_tokens": 25044,
+        "completion_tokens": 9396,
+        "total_tokens": 34440,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6555,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "latencyMs": 53972,
+      "internalReasoningTextStored": false
+    },
+    "decision": {
+      "status": "needs_changes_or_confirmation",
+      "summary": "Audit menemukan konflik material dan data lokasi yang hilang. 24 event asli dan urutannya dipertahankan; tidak ada jadwal pengganti atau lokasi baru yang diambil.",
+      "findings": [
+        {
+          "eventIds": [
+            "E01",
+            "E02"
+          ],
+          "severity": "unknown",
+          "explanation": "E01 dan E02 melibatkan perjalanan dari apartemen ke Stasiun Funabashi. Lokasi apartemen tidak diketahui persis, sehingga rute dan waktu tempuh tidak dapat diverifikasi. Alokasi 15 menit adalah asumsi pengguna, bukan estimasi penyedia. Referensi: route:L01.",
+          "proposedAdjustment": "Verifikasi alamat apartemen dan estimasi waktu berjalan ke Stasiun Funabashi sebelum mempertahankan 15 menit.",
+          "evidenceIds": [
+            "route:L01"
+          ]
+        },
+        {
+          "eventIds": [
+            "E02",
+            "E03"
+          ],
+          "severity": "unknown",
+          "explanation": "E02 hingga E03 adalah perjalanan transit Stasiun Funabashi ke Stasiun Kamakura dalam 90 menit. Sistem rute mengembalikan no_route, yang tidak berarti perjalanan mustahil, hanya bahwa estimasi penyedia tidak tersedia. Alokasi 90 menit tidak diverifikasi. Referensi: route:L02.",
+          "proposedAdjustment": "Konfirmasi rute kereta dan durasi nyata Funabashi → Kamakura; perlakukan 90 menit sebagai alokasi pengguna yang perlu ditinjau.",
+          "evidenceIds": [
+            "route:L02"
+          ]
+        },
+        {
+          "eventIds": [
+            "E03",
+            "E04"
+          ],
+          "severity": "note",
+          "explanation": "E03 hingga E04 menggunakan slot activity_and_travel. Estimasi perjalanan kaki Stasiun Kamakura ke Tsurugaoka Hachimangu melalui Komachi adalah sekitar 10,9 menit, sehingga tersisa sekitar 49,1 menit untuk aktivitas sebelum antrian atau istirahat. Referensi: route:L03.",
+          "proposedAdjustment": "Perkirakan waktu kegiatan di Komachi dan Hachimangu sebagai bagian dari slot gabungan, bukan waktu eksklusif untuk satu lokasi.",
+          "evidenceIds": [
+            "route:L03"
+          ]
+        },
+        {
+          "eventIds": [
+            "E04",
+            "E05",
+            "E06"
+          ],
+          "severity": "unknown",
+          "explanation": "E04 hingga E06 bergantung pada lokasi makan siang Kamakura yang tidak ditentukan. Karena lokasi restoran tidak diketahui, L04 dan L05 tidak dapat divalidasi; masing-masing dialokasikan 60 menit tanpa dasar rute. Referensi: route:L04, route:L05.",
+          "proposedAdjustment": "Pilih restoran siang spesifik di Kamakura dan pisahkan waktu makan dari waktu perjalanan kaki.",
+          "evidenceIds": [
+            "route:L04",
+            "route:L05"
+          ]
+        },
+        {
+          "eventIds": [
+            "E06",
+            "E07"
+          ],
+          "severity": "unknown",
+          "explanation": "E06 hingga E07 adalah transit Stasiun Kamakura ke Inamuragasaki dalam 15 menit. Rute tidak tersedia dari penyedia; ini bukan bukti perjalanan mustahil. Alokasi 15 menit tidak diverifikasi. Referensi: route:L06.",
+          "proposedAdjustment": "Konfirmasi rute kereta Stasiun Kamakura → Inamuragasaki dan waktu tempuh nyata.",
+          "evidenceIds": [
+            "route:L06"
+          ]
+        },
+        {
+          "eventIds": [
+            "E08",
+            "E09"
+          ],
+          "severity": "unknown",
+          "explanation": "E08 hingga E09 adalah transit Stasiun Inamuragasaki ke Shichirigahama dalam 15 menit. Rute tidak tersedia; alokasi tidak diverifikasi. Referensi: route:L08.",
+          "proposedAdjustment": "Konfirmasi rute Stasiun Inamuragasaki → Shichirigahama dan durasi nyata.",
+          "evidenceIds": [
+            "route:L08"
+          ]
+        },
+        {
+          "eventIds": [
+            "E10",
+            "E11"
+          ],
+          "severity": "conflict",
+          "explanation": "E10 hingga E11 adalah perjalanan kaki Shichirigahama ke Kamakurakokomae dalam slot 15 menit. Estimasi penyedia adalah 17,583333333333332 menit, melebihi slot sebesar 2,583333333333332 menit. Ini adalah konflik material pada slot travel_only. Referensi: route:L10.",
+          "proposedAdjustment": "Tambahkan sekitar 2,6 menit ke slot, atau perpendek walk/foto di lokasi sebelumnya agar E11 tetap mulai pada waktu yang direncanakan.",
+          "evidenceIds": [
+            "route:L10"
+          ]
+        },
+        {
+          "eventIds": [
+            "E12",
+            "E13"
+          ],
+          "severity": "unknown",
+          "explanation": "E12 hingga E13 adalah transit Kamakurakokomae ke Enoshima dalam 5 menit. Rute tidak tersedia; slot sangat ketat dan tidak diverifikasi. Referensi: route:L12.",
+          "proposedAdjustment": "Konfirmasi rute Enoden Kamakurakokomae → Enoshima dan apakah 5 menit mencakup waktu naik turun serta jalan ke toko suvenir.",
+          "evidenceIds": [
+            "route:L12"
+          ]
+        },
+        {
+          "eventIds": [
+            "E14",
+            "E15"
+          ],
+          "severity": "note",
+          "explanation": "E14 hingga E15 adalah perjalanan kaki dari Enoshima Station ke Fujisawa City Tourist Center. Estimasi 10 menit, tersisa 5 menit dalam slot 15 menit. Jam umum wisatawan adalah 08:30–17:00, sehingga 15:15 masih terlihat terbuka, tapi penutupan khusus tanggal belum dikonfirmasi. Referensi: route:L14, official:tourist-center.",
+          "proposedAdjustment": "Konfirmasi apakah Tourist Center buka pada 5 November 2026 dan alokasikan waktu untuk antrian masuk.",
+          "evidenceIds": [
+            "route:L14",
+            "official:tourist-center"
+          ]
+        },
+        {
+          "eventIds": [
+            "E15",
+            "E16"
+          ],
+          "severity": "note",
+          "explanation": "E15 hingga E16 menggunakan slot activity_and_travel dari Tourist Center ke Enoshima Ohashi. Estimasi perjalanan kaki 5 menit, tersisa 25 menit untuk aktivitas di jembatan sebelum antrian atau istirahat. Referensi: route:L15.",
+          "proposedAdjustment": "Perlakukan 25 menit tersisa sebagai batas atas untuk foto/jalan santai di jembatan, bukan waktu bersih yang dijamin.",
+          "evidenceIds": [
+            "route:L15"
+          ]
+        },
+        {
+          "eventIds": [
+            "E16",
+            "E17"
+          ],
+          "severity": "note",
+          "explanation": "E16 hingga E17 adalah slot activity_and_travel dari jembatan ke Oiwayamichi. Estimasi perjalanan kaki sekitar 14,8 menit, tersisa sekitar 30,2 menit untuk aktivitas opsional di Oiwayamichi. Referensi: route:L16.",
+          "proposedAdjustment": "Karena E17 opsional, keputusan naik ke Oiwayamichi harus menyesuaikan sisa waktu dan kondisi cuaca.",
+          "evidenceIds": [
+            "route:L16"
+          ]
+        },
+        {
+          "eventIds": [
+            "E17",
+            "E18"
+          ],
+          "severity": "note",
+          "explanation": "E17 hingga E18 adalah slot activity_and_travel dari Oiwayamichi ke Enoshima Sea Candle. Estimasi perjalanan kaki sekitar 7,6 menit, tersisa sekitar 22,4 menit untuk aktivitas di Oiwayamichi sebelum tiba di Sea Candle. Referensi: route:L17.",
+          "proposedAdjustment": "Verifikasi apakah aktivitas di Oiwayamichi memenuhi waktu yang tersisa tanpa menunda tiba di Sea Candle pukul 17:00.",
+          "evidenceIds": [
+            "route:L17"
+          ]
+        },
+        {
+          "eventIds": [
+            "E19",
+            "E20",
+            "E21"
+          ],
+          "severity": "unknown",
+          "explanation": "E19 hingga E21 bergantung pada lokasi makan malam Enoshima yang tidak ditentukan. L19 dan L20 masing-masing dialokasikan 60 menit dan mencakup jalan serta makan, tapi lokasi restoran tidak diketahui, sehingga rute tidak dapat divalidasi. Referensi: route:L19, route:L20.",
+          "proposedAdjustment": "Pilih restoran malam spesifik di Enoshima dan pisahkan waktu makan dari waktu perjalanan ke Stasiun Katase-Enoshima.",
+          "evidenceIds": [
+            "route:L19",
+            "route:L20"
+          ]
+        },
+        {
+          "eventIds": [
+            "E21",
+            "E22"
+          ],
+          "severity": "unknown",
+          "explanation": "E21 hingga E22 adalah transit Katase-Enoshima ke Fujisawa dalam 15 menit. Rute tidak tersedia dari penyedia; ini bukan bukti perjalanan mustahil. Alokasi tidak diverifikasi. Referensi: route:L21.",
+          "proposedAdjustment": "Konfirmasi rute kereta Katase-Enoshima → Fujisawa dan durasi nyata.",
+          "evidenceIds": [
+            "route:L21"
+          ]
+        },
+        {
+          "eventIds": [
+            "E23",
+            "E24"
+          ],
+          "severity": "unknown",
+          "explanation": "E23 hingga E24 adalah perjalanan pulang Fujisawa ke Funabashi dalam 90 menit, tetapi rute berakhir di Stasiun Funabashi, bukan apartemen. Transfer akhir dari stasiun ke apartemen tidak diketahui dan tidak termasuk dalam alokasi. Referensi: route:L23, input:E24.",
+          "proposedAdjustment": "Tambahkan transfer terakhir Stasiun Funabashi → apartemen dan verifikasi apakah tiba pada 22:00 masih realistis.",
+          "evidenceIds": [
+            "route:L23",
+            "input:E24"
+          ]
+        },
+        {
+          "eventIds": [
+            "E19"
+          ],
+          "severity": "conflict",
+          "explanation": "Identitas illuminasi di Enoshima Sea Candle tidak jelas. Shonan no Hoseki 2026–2027 berlaku 2026-12-01 hingga 2027-02-28, di luar 5 November 2026. Shonan Candle 2026 berlaku 2026-10-10 hingga 2026-11-03, sudah berakhir. Pencahayaan malam biasa tidak diverifikasi. Pengumuman operator bertanggal 2026-10-23 dan 2026-09-01 adalah acuan, bukan data musim lama. Referensi: official:hoseki-2026, official:candle-2026.",
+          "proposedAdjustment": "Klarifikasi apakah E19 maksudnya Shonan no Hoseki, Shonan Candle, atau pencahayaan biasa; jika keduanya tidak aktif, pertimbangkan mengganti atau menghapus aktivitas illuminasi.",
+          "evidenceIds": [
+            "official:hoseki-2026",
+            "official:candle-2026"
+          ]
+        }
+      ],
+      "uncertainties": [
+        "Apartemen, restoran siang Kamakura, toko suvenir Enoshima, titik depan sekolah Shichirigahama, restoran malam Enoshima, dan menara jam Fujisawa belum ditentukan secara lengkap.",
+        "Prakiraan hujan regional adalah probabilitas, bukan jaminan hujan atau durasi hujan yang diprediksi.",
+        "no_route dari sistem rute tidak berarti perjalanan harus ditolak, hanya estimasi penyedia tidak tersedia."
+      ]
+    },
+    "rawFinal": null,
+    "error": null
+  },
+  "aiError": null,
+  "status": "needs_changes_or_confirmation",
+  "snapshotFile": "collected.json"
+}

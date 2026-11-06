@@ -1,0 +1,308 @@
+{
+  "evaluatedAt": "2026-11-02T23:14:35.993Z",
+  "date": "2026-12-01",
+  "timeZone": "Asia/Tokyo",
+  "originAssumption": "funabashi_station",
+  "returnAssumption": "funabashi_station",
+  "apartmentRemoved": true,
+  "selectedPlaces": 15,
+  "forcedTransitPairs": 0,
+  "forcedWalk": null,
+  "knownPlaceContextSupplied": true,
+  "endToEndPassed": false,
+  "validProposal": false,
+  "fullCandidateSimulationRan": false,
+  "reviewerRan": false,
+  "sourceChangedSinceRun2Launch": [],
+  "run1": {
+    "status": "no_valid_proposal",
+    "stopReason": "planner_request_failed",
+    "modelCalls": 18,
+    "tokens": 791896,
+    "aggregateCap": 1000000,
+    "roleCalls": {
+      "researcher": 10,
+      "planner": 8
+    },
+    "outcomes": [
+      {
+        "role": "researcher",
+        "result": {
+          "status": "stalled",
+          "submission": null,
+          "error": "Repeated invalid tool actions.",
+          "turns": 10
+        }
+      },
+      {
+        "role": "planner",
+        "result": {
+          "status": "request_failed",
+          "submission": null,
+          "error": "Run AI token budget exhausted before request.",
+          "turns": 9
+        }
+      }
+    ]
+  },
+  "run2": {
+    "status": "no_valid_proposal",
+    "stopReason": "planner_stalled",
+    "modelCalls": 21,
+    "tokens": 618904,
+    "aggregateCap": 2000000,
+    "roleCalls": {
+      "researcher": 17,
+      "planner": 4
+    },
+    "outcomes": [
+      {
+        "role": "researcher",
+        "result": {
+          "status": "stalled",
+          "submission": null,
+          "error": "Repeated invalid tool actions.",
+          "turns": 17
+        }
+      },
+      {
+        "role": "planner",
+        "result": {
+          "status": "stalled",
+          "submission": null,
+          "error": "Repeated invalid tool actions.",
+          "turns": 4
+        }
+      }
+    ]
+  },
+  "draft": {
+    "source": "Rejected simulate_candidate tool arguments; not an accepted itinerary",
+    "order": [
+      "P15",
+      "P14",
+      "P07",
+      "P08",
+      "P06",
+      "P02",
+      "P01",
+      "P11",
+      "P03",
+      "P12",
+      "P05",
+      "P04",
+      "P13",
+      "P09",
+      "P10"
+    ],
+    "labels": [
+      "Stasiun Kamakura",
+      "Komachi Street",
+      "Tsurugaoka Hachimangu",
+      "Shichirigahama Beach",
+      "Stasiun Kamakurakokomae",
+      "Stasiun Inamuragasaki",
+      "Kamakura Seaside Park (Cape Inamuragasaki)",
+      "Stasiun Enoshima",
+      "Toko Suvenir Enoshima Station",
+      "Oiwayamichi Street",
+      "Enoshima Sea Candle",
+      "Enoshima Ohashi Bridge",
+      "Stasiun Katase-Enoshima",
+      "Fujisawa City Tourist Center",
+      "Stasiun Fujisawa (Menara Jam)"
+    ],
+    "allSelectedPlacesExactlyOnce": true,
+    "positionsChanged": 14
+  },
+  "evidence": {
+    "pagesAttempted": 10,
+    "pagesRead": 7,
+    "newClaimsAccepted": 0,
+    "newClaimsRejected": 3,
+    "routes": [
+      {
+        "id": "route:ae82dfc9471285ea",
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:62de26a2757a27aa",
+        "from": "funabashi_station",
+        "to": "fujisawa_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:cb44f68bbc4f28fb",
+        "from": "funabashi_station",
+        "to": "fujisawa_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:0b7caa737ddcffb4",
+        "from": "kamakura_station",
+        "to": "enoshima_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:43f4c29f633f0309",
+        "from": "kamakura_station",
+        "to": "komachi",
+        "mode": "WALK",
+        "status": "ok",
+        "estimatedMinutes": 5.666666666666667,
+        "partialAddressMatch": true
+      },
+      {
+        "id": "route:f2bd73c551fb089c",
+        "from": "funabashi_station",
+        "to": "kamakura_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:41ff76a91aac4b87",
+        "from": "funabashi_station",
+        "to": "fujisawa_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:16555539ff86a18c",
+        "from": "inamura_station",
+        "to": "enoshima_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:cbb1c8d8e5b073cd",
+        "from": "katase_station",
+        "to": "fujisawa_station",
+        "mode": "WALK",
+        "status": "ok",
+        "estimatedMinutes": 49.36666666666667,
+        "partialAddressMatch": false
+      },
+      {
+        "id": "route:26d4957beaa9373b",
+        "from": "fujisawa_station",
+        "to": "funabashi_station",
+        "mode": "TRANSIT",
+        "status": "no_route",
+        "estimatedMinutes": null,
+        "partialAddressMatch": false
+      }
+    ],
+    "forecasts": [
+      {
+        "areaId": "funabashi",
+        "status": "outside_forecast_horizon"
+      },
+      {
+        "areaId": "kamakura",
+        "status": "outside_forecast_horizon"
+      },
+      {
+        "areaId": "enoshima",
+        "status": "outside_forecast_horizon"
+      },
+      {
+        "areaId": "fujisawa",
+        "status": "outside_forecast_horizon"
+      }
+    ]
+  },
+  "offlineDiagnostic": {
+    "note": "Offline diagnosis only: timestamps were converted in a copy for structural inspection. No production candidate or result was changed; no route simulation/reviewer was run on this normalized copy.",
+    "checks": [
+      {
+        "index": 1,
+        "formatOnlyDiagnostic": "Timeline teleports between locations.",
+        "unknownEvidence": [],
+        "order": [
+          "P15",
+          "P14",
+          "P07",
+          "P08",
+          "P06",
+          "P02",
+          "P01",
+          "P11",
+          "P03",
+          "P12",
+          "P05",
+          "P04",
+          "P13",
+          "P09",
+          "P10"
+        ],
+        "acceptedByActualRun": false
+      },
+      {
+        "index": 2,
+        "formatOnlyDiagnostic": "Timeline has a gap or overlap; use an explicit wait row.",
+        "unknownEvidence": [],
+        "order": [
+          "P15",
+          "P14",
+          "P07",
+          "P08",
+          "P06",
+          "P02",
+          "P01",
+          "P11",
+          "P03",
+          "P12",
+          "P05",
+          "P04",
+          "P13",
+          "P09",
+          "P10"
+        ],
+        "acceptedByActualRun": false
+      },
+      {
+        "index": 3,
+        "formatOnlyDiagnostic": "Timeline has a gap or overlap; use an explicit wait row.",
+        "unknownEvidence": [],
+        "order": [
+          "P15",
+          "P14",
+          "P07",
+          "P08",
+          "P06",
+          "P02",
+          "P01",
+          "P11",
+          "P03",
+          "P12",
+          "P05",
+          "P04",
+          "P13",
+          "P09",
+          "P10"
+        ],
+        "acceptedByActualRun": false
+      }
+    ]
+  }
+}

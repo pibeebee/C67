@@ -1,0 +1,37 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🚀 Build & Run\n\nℹ️ Resolving app path\n✅ Resolving app path\nℹ️ Booting simulator\n✅ Booting simulator\nℹ️ Installing app\n✅ Installing app\nℹ️ Launching app\n\n✅ Build succeeded. (⏱️ 12.7s)\n✅ Build & Run complete\n  ├ Bundle ID: giovanchristoffel.poc-c67\n  ├ Process ID: 78043\n  └ Files:\n     ├── /tmp/c67-weather-lab/DerivedData/Build/Products/Debug-iphonesimulator/poc-c67.app — App Path\n     └── ~/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/\n         ├── build_run_sim_2026-11-04T10-02-59-009Z_pid71733_cedeb085.log — Build Logs\n         ├── giovanchristoffel.poc-c67_2026-11-04T10-03-06-151Z_helperpid77993_ownerpid71733_c2e8e5f8.log — Runtime Logs\n         └── giovanchristoffel.poc-c67_oslog_2026-11-04T10-03-11-653Z_helperpid78185_ownerpid71733_fed2351d.log — OSLog\n\nNext steps:\n1. Stop app in simulator: stop_app_sim({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", bundleId: \"giovanchristoffel.poc-c67\" })\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 12702,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/c67-weather-lab/DerivedData/Build/Products/Debug-iphonesimulator/poc-c67.app",
+        "bundleId": "giovanchristoffel.poc-c67",
+        "processId": 78043,
+        "simulatorId": "B774448D-6569-46E0-9833-669540D094D0",
+        "buildLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/build_run_sim_2026-11-04T10-02-59-009Z_pid71733_cedeb085.log",
+        "runtimeLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_2026-11-04T10-03-06-151Z_helperpid77993_ownerpid71733_c2e8e5f8.log",
+        "osLogPath": "<LOCAL_HOME>/Library/Developer/XcodeBuildMCP/workspaces/C6---Pisang-Besar-Balaraja-d752e434f295/logs/giovanchristoffel.poc-c67_oslog_2026-11-04T10-03-11-653Z_helperpid78185_ownerpid71733_fed2351d.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"B774448D-6569-46E0-9833-669540D094D0\", bundleId: \"giovanchristoffel.poc-c67\" })"
+    ]
+  }
+}

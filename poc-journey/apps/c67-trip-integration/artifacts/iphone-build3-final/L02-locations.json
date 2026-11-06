@@ -1,0 +1,138 @@
+{
+  "locations" : [
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+          "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+          "latitude" : -6.1912059,
+          "longitude" : 106.8226755,
+          "name" : "Bundaran HI Bank Jakarta",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "origin",
+      "manualConfirmation" : false,
+      "query" : "Bundaran HI Jakarta",
+      "selected" : {
+        "address" : "Jalan Mohammad Husni Thamrin Kav. 17-136\nGondangdia, Menteng, Central Jakarta\nJakarta 10350\nIndonesia",
+        "id" : "Bundaran HI Bank Jakarta:-6.1912059:106.8226755",
+        "latitude" : -6.1912059,
+        "longitude" : 106.8226755,
+        "name" : "Bundaran HI Bank Jakarta",
+        "source" : "MapKit search"
+      }
+    },
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+          "id" : "Baca Di Tebet Perpustakaan dan Ruang Temu:-6.236237:106.846974",
+          "latitude" : -6.236237,
+          "longitude" : 106.846974,
+          "name" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "bdt-rbbj",
+      "manualConfirmation" : false,
+      "query" : "Baca Di Tebet Jakarta",
+      "selected" : {
+        "address" : "Jalan Tebet Barat Dalam No. 29, South Jakarta, Jakarta 12810, Indonesia",
+        "id" : "Baca Di Tebet Perpustakaan dan Ruang Temu:-6.236237:106.846974",
+        "latitude" : -6.236237,
+        "longitude" : 106.846974,
+        "name" : "Baca Di Tebet Perpustakaan dan Ruang Temu",
+        "source" : "MapKit search"
+      }
+    },
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+          "id" : "Jakarta Provincial Library:-6.19023:106.838857",
+          "latitude" : -6.19023,
+          "longitude" : 106.838857,
+          "name" : "Jakarta Provincial Library",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "cikini",
+      "manualConfirmation" : false,
+      "query" : "Perpustakaan Jakarta — Cikini, Jakarta",
+      "selected" : {
+        "address" : "Jalan Cikini Raya No. 73, Central Jakarta, Jakarta 10540, Indonesia",
+        "id" : "Jakarta Provincial Library:-6.19023:106.838857",
+        "latitude" : -6.19023,
+        "longitude" : 106.838857,
+        "name" : "Jakarta Provincial Library",
+        "source" : "MapKit search"
+      }
+    },
+    {
+      "candidates" : [
+        {
+          "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+          "id" : "Erasmus Huis:-6.23406:106.8283543",
+          "latitude" : -6.23406,
+          "longitude" : 106.8283543,
+          "name" : "Erasmus Huis",
+          "source" : "MapKit search"
+        }
+      ],
+      "id" : "erasmus",
+      "manualConfirmation" : false,
+      "query" : "Erasmus Huis Jakarta",
+      "selected" : {
+        "address" : "Jalan Denpasar Raya No. KAV 10, South Jakarta, Jakarta 12950, Indonesia",
+        "id" : "Erasmus Huis:-6.23406:106.8283543",
+        "latitude" : -6.23406,
+        "longitude" : 106.8283543,
+        "name" : "Erasmus Huis",
+        "source" : "MapKit search"
+      }
+    }
+  ],
+  "request" : {
+    "allowOpenMeteo" : false,
+    "deadline" : "2026-11-06T12:00:00Z",
+    "defaultDuration" : 60,
+    "departure" : "2026-11-06T02:00:00Z",
+    "desiredCount" : 3,
+    "durationByVenue" : {
+
+    },
+    "goal" : "openingOnly",
+    "id" : "391AE89E-1FB7-4822-93AA-6F9EECC95A80",
+    "originQuery" : "Bundaran HI Jakarta",
+    "profile" : {
+      "avoid" : [
+
+      ],
+      "direction" : "",
+      "directionConfirmed" : false,
+      "excludedIDs" : [
+
+      ],
+      "must" : [
+
+      ],
+      "prefer" : [
+
+      ],
+      "schemaVersion" : 1
+    },
+    "requiredCandidateIDs" : [
+
+    ],
+    "revision" : 0,
+    "useEmbedding" : false
+  },
+  "searchRequests" : 4,
+  "searchSeconds" : 1.2850699424743652,
+  "selectedIDs" : [
+    "bdt-rbbj",
+    "cikini",
+    "erasmus"
+  ]
+}

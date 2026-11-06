@@ -1,0 +1,13 @@
+# Public build/test extract; original build command noise omitted.
+# Original SHA256: ae73d69be152493c421aee10b3fa6c9b801a6cedd9c2982b7ed0d95a65578cd2
+error: SwiftCompile normal arm64 /private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.8uZ5FC/Sources/C67LocalHarness/NativeTripActiveController.swift failed with a nonzero exit code. Command line:     cd /private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T
+/private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.8uZ5FC/Sources/C67LocalHarness/NativeTripActiveController.swift:50:13: error: cannot assign to value: 'error' is immutable
+    |             `- error: cannot assign to value: 'error' is immutable
+/private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.8uZ5FC/Sources/C67LocalHarness/NativeTripActiveController.swift:50:27: error: cannot assign value of type 'String' to type 'any Error'
+    |                           `- error: cannot assign value of type 'String' to type 'any Error'
+/private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.8uZ5FC/Sources/C67LocalHarness/NativeTripActiveController.swift:153:15: error: cannot assign to value: 'error' is immutable
+    |               `- error: cannot assign to value: 'error' is immutable
+/private/var/folders/l8/w492464x4x98gyx7xjm500bm0000gn/T/c67-local-tests.8uZ5FC/Sources/C67LocalHarness/NativeTripActiveController.swift:153:29: error: cannot assign value of type 'String' to type 'any Error'
+    |                             `- error: cannot assign value of type 'String' to type 'any Error'
+error: Build failed
+error: fatalError

@@ -1,0 +1,48 @@
+import Foundation
+import PreferenceQuality
+
+@main struct BenefitEval {
+    static func main() async throws {
+        let args = CommandLine.arguments
+        func option(_ name: String, fallback: String) -> String {
+            guard let index = args.firstIndex(of: name), index + 1 < args.count else { return fallback }
+            return args[index + 1]
+        }
+        let dataset = try BenefitDataset.load()
+        let selected =
+            args.contains("--all")
+                ? dataset.cases
+                : dataset.cases.filter {
+                    $0.id == option("--case", fallback: "currency-paraphrase")
+                }
+        guard !selected.isEmpty else { throw CocoaError(.fileReadNoSuchFile) }
+        let out = URL(fileURLWithPath: option("--out", fallback: "/tmp/c67-embedding-benefit"))
+        let store = BenefitStore(directory: out)
+        let pipeline = BenefitPipeline()
+        var runs: [BenefitRun] = []
+        let now = args.contains("--live-clock") ? Date.now : dataset.snapshotClock
+        for item in selected {
+            let run = try await pipeline.run(
+                item: item, dataset: dataset,
+                maskNames: !args.contains("--unmasked"), useEmbedding: !args.contains("--baseline"),
+                now: now)
+            _ = try await store.export(run)
+            runs.append(run)
+            print(
+                "\(item.id) \(run.status) gate=\(run.gatePassed) "
+                    + run.rankings.map {
+                        "\($0.id)=\($0.metrics.map { String(format: "%.3f", $0.ndcgAt3) } ?? "safety")"
+                    }.joined(separator: " "))
+        }
+        try BenefitCodec.encode(runs).write(
+            to: out.appendingPathComponent("series.json"), options: .atomic)
+        let failures = runs.filter {
+            !$0.gatePassed || (!args.contains("--baseline") && $0.status != $0.input.expectedStatus)
+        }
+        print(
+            "Completed \(runs.count), unexpected states/gates \(failures.count). Clock: \(args.contains("--live-clock") ? "live" : "frozen source snapshot")."
+        )
+        if !failures.isEmpty { throw PreferenceErrorForCLI.unexpectedState }
+    }
+    enum PreferenceErrorForCLI: Error { case unexpectedState }
+}

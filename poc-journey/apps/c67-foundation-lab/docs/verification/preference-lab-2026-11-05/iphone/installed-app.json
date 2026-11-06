@@ -1,0 +1,47 @@
+{
+  "info": {
+    "arguments": [
+      "devicectl",
+      "device",
+      "info",
+      "apps",
+      "--device",
+      "<DEVICE_UDID>",
+      "--bundle-id",
+      "giovanchristoffel.c67-foundation-lab",
+      "--json-output",
+      "/tmp/c67-preference-installed-app.json"
+    ],
+    "commandType": "devicectl.device.info.apps",
+    "environment": {
+      "TERM": "dumb"
+    },
+    "jsonVersion": 5,
+    "outcome": "success",
+    "version": "651.32"
+  },
+  "result": {
+    "apps": [
+      {
+        "appClip": false,
+        "builtByDeveloper": true,
+        "bundleIdentifier": "giovanchristoffel.c67-foundation-lab",
+        "bundleVersion": "5",
+        "containerAccessible": true,
+        "defaultApp": false,
+        "hidden": false,
+        "internalApp": false,
+        "name": "C67 Foundation Lab",
+        "removable": true,
+        "url": "file:///private/var/containers/Bundle/Application/2807F754-32C6-498B-B571-CC6A9D09EA89/C67FoundationLab.app/",
+        "version": "0.3"
+      }
+    ],
+    "defaultAppsIncluded": false,
+    "deviceIdentifier": "<REDACTED_DEVICE_METADATA>",
+    "hiddenAppsIncluded": false,
+    "internalAppsIncluded": false,
+    "matchingBundleIdentifier": "giovanchristoffel.c67-foundation-lab",
+    "removableAppsIncluded": true
+  }
+}

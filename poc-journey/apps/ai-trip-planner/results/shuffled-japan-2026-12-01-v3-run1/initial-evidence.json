@@ -1,0 +1,48 @@
+{
+  "initial": {
+    "evidence": [],
+    "probeTimeSource": "TRANSIT noon probe is a system sampling assumption, not the user's departure time or a confirmed itinerary. Final routes are queried again at propagated departures."
+  },
+  "forecasts": [
+    {
+      "id": "weather:funabashi",
+      "areaId": "funabashi",
+      "fetchedAt": "2026-11-02T22:54:56.051Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:kamakura",
+      "areaId": "kamakura",
+      "fetchedAt": "2026-11-02T22:54:56.051Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:enoshima",
+      "areaId": "enoshima",
+      "fetchedAt": "2026-11-02T22:54:56.051Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    },
+    {
+      "id": "weather:fujisawa",
+      "areaId": "fujisawa",
+      "fetchedAt": "2026-11-02T22:54:56.051Z",
+      "status": "outside_forecast_horizon",
+      "hours": [],
+      "sunrise": null,
+      "sunset": null,
+      "error": "Trip date is outside the forecast horizon. Weather and solar times were not fabricated."
+    }
+  ]
+}

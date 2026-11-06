@@ -1,0 +1,430 @@
+{
+  "authenticationBlocked" : true,
+  "cacheTTLSeconds" : 900,
+  "events" : [
+    {
+      "date" : "2026-11-04T10:03:46Z",
+      "id" : "700034CF-4C02-44EB-83F6-14D766CBD0B7",
+      "message" : "LIVE: hanya request cuaca; tidak ada pencarian\/routing MapKit."
+    },
+    {
+      "date" : "2026-11-04T10:03:46Z",
+      "id" : "BAC402DB-E614-4252-9DF7-0B00D7FF4C13",
+      "message" : "Blok M: meminta Apple Weather, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:03:47Z",
+      "id" : "F7A5AD3C-DA0D-47FC-8602-2058C741133B",
+      "message" : "Blok M: Apple Weather: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) [WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors:0]"
+    },
+    {
+      "date" : "2026-11-04T10:03:47Z",
+      "id" : "CE9C9356-77F1-4D35-A770-71D09B819E34",
+      "message" : "Blok M: meminta Open-Meteo, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "F9278EAF-18DA-440B-864C-EEFE89DAD35D",
+      "message" : "Blok M: Open-Meteo tersedia."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "BE2999FE-D81A-4713-BDF4-C7DD84F5D25A",
+      "message" : "Sudirman: meminta Open-Meteo, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "394B5F78-BCDF-4435-B607-F9697ABA60A8",
+      "message" : "Monas: meminta Open-Meteo, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "BF3A3A45-D354-4D2D-A8C3-0B4184CE6E18",
+      "message" : "Sudirman: Open-Meteo tersedia."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "8D9D34EF-C552-4C0E-94CD-4FCEF5ADE25D",
+      "message" : "Monas: Open-Meteo tersedia."
+    },
+    {
+      "date" : "2026-11-04T10:03:48Z",
+      "id" : "314904CC-A230-48C2-9D78-6CBCBABE149C",
+      "message" : "Glodok: meminta Open-Meteo, percobaan 1."
+    },
+    {
+      "date" : "2026-11-04T10:03:49Z",
+      "id" : "B585D40A-51F2-46EC-AAC2-2CF021CF75B8",
+      "message" : "Glodok: Open-Meteo tersedia."
+    }
+  ],
+  "exportedAt" : "2026-11-04T10:03:49Z",
+  "maxConcurrentGroups" : 2,
+  "mode" : "automatic",
+  "probe" : false,
+  "radiusMeters" : 3000,
+  "requestedGroups" : [
+    {
+      "members" : [
+        {
+          "id" : "blok-m",
+          "latitude" : -6.2445743,
+          "longitude" : 106.8006164,
+          "name" : "Blok M"
+        },
+        {
+          "id" : "ashta",
+          "latitude" : -6.229714,
+          "longitude" : 106.807101,
+          "name" : "Ashta"
+        }
+      ],
+      "representative" : {
+        "id" : "blok-m",
+        "latitude" : -6.2445743,
+        "longitude" : 106.8006164,
+        "name" : "Blok M"
+      }
+    },
+    {
+      "members" : [
+        {
+          "id" : "sudirman",
+          "latitude" : -6.2023912,
+          "longitude" : 106.8234359,
+          "name" : "Sudirman"
+        }
+      ],
+      "representative" : {
+        "id" : "sudirman",
+        "latitude" : -6.2023912,
+        "longitude" : 106.8234359,
+        "name" : "Sudirman"
+      }
+    },
+    {
+      "members" : [
+        {
+          "id" : "monas",
+          "latitude" : -6.1753936,
+          "longitude" : 106.827186,
+          "name" : "Monas"
+        }
+      ],
+      "representative" : {
+        "id" : "monas",
+        "latitude" : -6.1753936,
+        "longitude" : 106.827186,
+        "name" : "Monas"
+      }
+    },
+    {
+      "members" : [
+        {
+          "id" : "glodok",
+          "latitude" : -6.1434347,
+          "longitude" : 106.815066,
+          "name" : "Glodok"
+        },
+        {
+          "id" : "kota-tua",
+          "latitude" : -6.1347997,
+          "longitude" : 106.8130414,
+          "name" : "Kota Tua"
+        }
+      ],
+      "representative" : {
+        "id" : "glodok",
+        "latitude" : -6.1434347,
+        "longitude" : 106.815066,
+        "name" : "Glodok"
+      }
+    }
+  ],
+  "results" : [
+    {
+      "cached" : false,
+      "group" : {
+        "members" : [
+          {
+            "id" : "blok-m",
+            "latitude" : -6.2445743,
+            "longitude" : 106.8006164,
+            "name" : "Blok M"
+          },
+          {
+            "id" : "ashta",
+            "latitude" : -6.229714,
+            "longitude" : 106.807101,
+            "name" : "Ashta"
+          }
+        ],
+        "representative" : {
+          "id" : "blok-m",
+          "latitude" : -6.2445743,
+          "longitude" : 106.8006164,
+          "name" : "Blok M"
+        }
+      },
+      "notes" : [
+        "Apple Weather: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.) [WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors:0]"
+      ],
+      "payload" : {
+        "expiresAt" : "2026-11-04T10:18:48Z",
+        "forecast" : {
+          "hours" : [
+            {
+              "date" : "2026-11-04T11:00:00Z",
+              "rainChance" : 0.47,
+              "temperatureC" : 28.3
+            },
+            {
+              "date" : "2026-11-04T12:00:00Z",
+              "rainChance" : 0.33,
+              "temperatureC" : 27.1
+            },
+            {
+              "date" : "2026-11-04T13:00:00Z",
+              "rainChance" : 0.21,
+              "temperatureC" : 26.5
+            },
+            {
+              "date" : "2026-11-04T14:00:00Z",
+              "rainChance" : 0.12,
+              "temperatureC" : 26.2
+            },
+            {
+              "date" : "2026-11-04T15:00:00Z",
+              "rainChance" : 0.1,
+              "temperatureC" : 26.2
+            },
+            {
+              "date" : "2026-11-04T16:00:00Z",
+              "rainChance" : 0.13,
+              "temperatureC" : 26.1
+            }
+          ],
+          "note" : "Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+          "pointID" : "blok-m",
+          "provider" : "open_meteo",
+          "retrievedAt" : "2026-11-04T10:03:48Z",
+          "status" : "available"
+        }
+      }
+    },
+    {
+      "cached" : false,
+      "group" : {
+        "members" : [
+          {
+            "id" : "sudirman",
+            "latitude" : -6.2023912,
+            "longitude" : 106.8234359,
+            "name" : "Sudirman"
+          }
+        ],
+        "representative" : {
+          "id" : "sudirman",
+          "latitude" : -6.2023912,
+          "longitude" : 106.8234359,
+          "name" : "Sudirman"
+        }
+      },
+      "notes" : [
+        "WeatherKit dilewati: autentikasi diblokir untuk sesi ini."
+      ],
+      "payload" : {
+        "expiresAt" : "2026-11-04T10:18:48Z",
+        "forecast" : {
+          "hours" : [
+            {
+              "date" : "2026-11-04T11:00:00Z",
+              "rainChance" : 0.47,
+              "temperatureC" : 30.4
+            },
+            {
+              "date" : "2026-11-04T12:00:00Z",
+              "rainChance" : 0.33,
+              "temperatureC" : 28.4
+            },
+            {
+              "date" : "2026-11-04T13:00:00Z",
+              "rainChance" : 0.21,
+              "temperatureC" : 27.4
+            },
+            {
+              "date" : "2026-11-04T14:00:00Z",
+              "rainChance" : 0.12,
+              "temperatureC" : 26.7
+            },
+            {
+              "date" : "2026-11-04T15:00:00Z",
+              "rainChance" : 0.1,
+              "temperatureC" : 26.5
+            },
+            {
+              "date" : "2026-11-04T16:00:00Z",
+              "rainChance" : 0.13,
+              "temperatureC" : 26.5
+            }
+          ],
+          "note" : "Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+          "pointID" : "sudirman",
+          "provider" : "open_meteo",
+          "retrievedAt" : "2026-11-04T10:03:48Z",
+          "status" : "available"
+        }
+      }
+    },
+    {
+      "cached" : false,
+      "group" : {
+        "members" : [
+          {
+            "id" : "monas",
+            "latitude" : -6.1753936,
+            "longitude" : 106.827186,
+            "name" : "Monas"
+          }
+        ],
+        "representative" : {
+          "id" : "monas",
+          "latitude" : -6.1753936,
+          "longitude" : 106.827186,
+          "name" : "Monas"
+        }
+      },
+      "notes" : [
+        "WeatherKit dilewati: autentikasi diblokir untuk sesi ini."
+      ],
+      "payload" : {
+        "expiresAt" : "2026-11-04T10:18:48Z",
+        "forecast" : {
+          "hours" : [
+            {
+              "date" : "2026-11-04T11:00:00Z",
+              "rainChance" : 0.47,
+              "temperatureC" : 30.9
+            },
+            {
+              "date" : "2026-11-04T12:00:00Z",
+              "rainChance" : 0.33,
+              "temperatureC" : 30
+            },
+            {
+              "date" : "2026-11-04T13:00:00Z",
+              "rainChance" : 0.21,
+              "temperatureC" : 29.1
+            },
+            {
+              "date" : "2026-11-04T14:00:00Z",
+              "rainChance" : 0.12,
+              "temperatureC" : 28.2
+            },
+            {
+              "date" : "2026-11-04T15:00:00Z",
+              "rainChance" : 0.1,
+              "temperatureC" : 27.5
+            },
+            {
+              "date" : "2026-11-04T16:00:00Z",
+              "rainChance" : 0.13,
+              "temperatureC" : 27.2
+            }
+          ],
+          "note" : "Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+          "pointID" : "monas",
+          "provider" : "open_meteo",
+          "retrievedAt" : "2026-11-04T10:03:48Z",
+          "status" : "available"
+        }
+      }
+    },
+    {
+      "cached" : false,
+      "group" : {
+        "members" : [
+          {
+            "id" : "glodok",
+            "latitude" : -6.1434347,
+            "longitude" : 106.815066,
+            "name" : "Glodok"
+          },
+          {
+            "id" : "kota-tua",
+            "latitude" : -6.1347997,
+            "longitude" : 106.8130414,
+            "name" : "Kota Tua"
+          }
+        ],
+        "representative" : {
+          "id" : "glodok",
+          "latitude" : -6.1434347,
+          "longitude" : 106.815066,
+          "name" : "Glodok"
+        }
+      },
+      "notes" : [
+        "WeatherKit dilewati: autentikasi diblokir untuk sesi ini."
+      ],
+      "payload" : {
+        "expiresAt" : "2026-11-04T10:18:49Z",
+        "forecast" : {
+          "hours" : [
+            {
+              "date" : "2026-11-04T11:00:00Z",
+              "rainChance" : 0.47,
+              "temperatureC" : 30.9
+            },
+            {
+              "date" : "2026-11-04T12:00:00Z",
+              "rainChance" : 0.33,
+              "temperatureC" : 30
+            },
+            {
+              "date" : "2026-11-04T13:00:00Z",
+              "rainChance" : 0.21,
+              "temperatureC" : 29.1
+            },
+            {
+              "date" : "2026-11-04T14:00:00Z",
+              "rainChance" : 0.12,
+              "temperatureC" : 28.2
+            },
+            {
+              "date" : "2026-11-04T15:00:00Z",
+              "rainChance" : 0.1,
+              "temperatureC" : 27.5
+            },
+            {
+              "date" : "2026-11-04T16:00:00Z",
+              "rainChance" : 0.13,
+              "temperatureC" : 27.2
+            }
+          ],
+          "note" : "Prakiraan area Open-Meteo, bukan jaminan cuaca tepat di tempat. Presipitasi mencakup hujan\/salju; interval tanpa nilai tetap unknown. Titik dekat berbagi prakiraan sementara per sekitar 0,01 derajat.",
+          "pointID" : "glodok",
+          "provider" : "open_meteo",
+          "retrievedAt" : "2026-11-04T10:03:49Z",
+          "status" : "available"
+        }
+      }
+    }
+  ],
+  "schema" : 1,
+  "simulation" : false,
+  "startedAt" : "2026-11-04T10:03:46Z",
+  "stats" : {
+    "cacheHits" : 0,
+    "elapsedSeconds" : 2.2905490398406982,
+    "maxConcurrentGroups" : 2,
+    "openMeteoRequests" : 4,
+    "weatherKitRequests" : 1
+  },
+  "status" : "Selesai: 4\/4 kelompok memiliki prakiraan lengkap.",
+  "timeoutPerProviderSeconds" : 8,
+  "window" : {
+    "end" : "2026-11-04T17:00:00Z",
+    "start" : "2026-11-04T11:00:00Z"
+  }
+}

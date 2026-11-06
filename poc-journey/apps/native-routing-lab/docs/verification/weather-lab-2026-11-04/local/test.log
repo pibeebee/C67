@@ -1,0 +1,253 @@
+Building for debugging...
+[Planning deferred tasks]
+[43 / 77] C67LocalTests_LocalTests
+[46 / 77]
+[47 / 78] C67LocalHarness
+[56 / 129]
+[57 / 129]
+[62 / 129]
+[66 / 129]
+[67 / 129]
+[71 / 129]
+[74 / 129]
+[81 / 129]
+[82 / 129]
+[83 / 129]
+[84 / 129]
+[98 / 129] C67LocalHarness
+[99 / 129] C67LocalHarness
+[109 / 130] C67LocalHarness
+[109 / 130] StorageProbe-product
+[112 / 132] StorageProbe-product
+[115 / 132] C67LocalHarness
+[120 / 133] StorageProbe-product
+[122 / 133] LocalTests-product
+[138 / 171]
+[141 / 171]
+[144 / 171]
+[148 / 171]
+[149 / 171]
+[152 / 171]
+[153 / 171]
+[160 / 171] LocalTests-product
+[165 / 171] LocalTests-product
+[167 / 171] LocalTests-product
+Build complete! (11.70 sec)
+Test Suite 'All tests' started at 2026-11-04 17:02:51.009.
+Test Suite 'LocalTests.xctest' started at 2026-11-04 17:02:51.011.
+Test Suite 'JakartaProfileTests' started at 2026-11-04 17:02:51.011.
+Test Case '-[LocalTests.JakartaProfileTests testAllFiveUserLogPlacesAreInTheOperationalBoundary]' started.
+Test Case '-[LocalTests.JakartaProfileTests testAllFiveUserLogPlacesAreInTheOperationalBoundary]' passed (0.003 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testDuplicateEndpointIdentityCannotHideAnOutsideStop]' started.
+Test Case '-[LocalTests.JakartaProfileTests testDuplicateEndpointIdentityCannotHideAnOutsideStop]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testEndpointOutsideScopeCannotPassValidation]' started.
+Test Case '-[LocalTests.JakartaProfileTests testEndpointOutsideScopeCannotPassValidation]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testExplicitConversionPreservesCoordinatesAndDoesNotSaveUntilChosen]' started.
+Test Case '-[LocalTests.JakartaProfileTests testExplicitConversionPreservesCoordinatesAndDoesNotSaveUntilChosen]' passed (0.004 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testFailureOfSelectedWeatherProviderStaysUnknown]' started.
+Test Case '-[LocalTests.JakartaProfileTests testFailureOfSelectedWeatherProviderStaysUnknown]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testJakartaQueryAvoidsCountrySuffixThatReturnedOnlyTheCityInLiveSearch]' started.
+Test Case '-[LocalTests.JakartaProfileTests testJakartaQueryAvoidsCountrySuffixThatReturnedOnlyTheCityInLiveSearch]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testLegacyBulkLookupIsBlockedBeforeAnyProviderWork]' started.
+Test Case '-[LocalTests.JakartaProfileTests testLegacyBulkLookupIsBlockedBeforeAnyProviderWork]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testLegacyDraftIsNotSilentlyConvertedOnRestore]' started.
+Test Case '-[LocalTests.JakartaProfileTests testLegacyDraftIsNotSilentlyConvertedOnRestore]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testNearbyCitiesAndForeignPinsAreRejectedEvenWithJakartaInAddress]' started.
+Test Case '-[LocalTests.JakartaProfileTests testNearbyCitiesAndForeignPinsAreRejectedEvenWithJakartaInAddress]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testNewProfileUsesJakartaCarAndWIB]' started.
+Test Case '-[LocalTests.JakartaProfileTests testNewProfileUsesJakartaCarAndWIB]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testOldActiveTripCannotReplanOutsideCurrentScopeButFactsRemain]' started.
+Test Case '-[LocalTests.JakartaProfileTests testOldActiveTripCannotReplanOutsideCurrentScopeButFactsRemain]' passed (0.004 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testOpenMeteoProfileNeverInvokesWeatherKit]' started.
+Test Case '-[LocalTests.JakartaProfileTests testOpenMeteoProfileNeverInvokesWeatherKit]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testOutOfScopeSelectionDoesNotReplaceCurrentPoint]' started.
+Test Case '-[LocalTests.JakartaProfileTests testOutOfScopeSelectionDoesNotReplaceCurrentPoint]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testPastedNamesReceiveJakartaSearchHint]' started.
+Test Case '-[LocalTests.JakartaProfileTests testPastedNamesReceiveJakartaSearchHint]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testProfileRejectsTransitPrivateCarAndUnknownScope]' started.
+Test Case '-[LocalTests.JakartaProfileTests testProfileRejectsTransitPrivateCarAndUnknownScope]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testProfileSurvivesStorageRoundTripAndAcceptsEndOnlyProjection]' started.
+Test Case '-[LocalTests.JakartaProfileTests testProfileSurvivesStorageRoundTripAndAcceptsEndOnlyProjection]' passed (0.001 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testSameNamedBranchesRemainAmbiguous]' started.
+Test Case '-[LocalTests.JakartaProfileTests testSameNamedBranchesRemainAmbiguous]' passed (0.000 seconds).
+Test Case '-[LocalTests.JakartaProfileTests testSingleNearbyStreetIsNotAutomaticallyChosenForRequestedVenue]' started.
+Test Case '-[LocalTests.JakartaProfileTests testSingleNearbyStreetIsNotAutomaticallyChosenForRequestedVenue]' passed (0.001 seconds).
+Test Suite 'JakartaProfileTests' passed at 2026-11-04 17:02:51.030.
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.019 (0.020) seconds
+Test Suite 'LocalTripTests' started at 2026-11-04 17:02:51.030.
+Test Case '-[LocalTests.LocalTripTests testAcceptedEndpointCannotBeChangedSilently]' started.
+Test Case '-[LocalTests.LocalTripTests testAcceptedEndpointCannotBeChangedSilently]' passed (0.002 seconds).
+Test Case '-[LocalTests.LocalTripTests testAcceptedReportRoundTripPreservesScheduleAndUnknowns]' started.
+Test Case '-[LocalTests.LocalTripTests testAcceptedReportRoundTripPreservesScheduleAndUnknowns]' passed (0.003 seconds).
+Test Case '-[LocalTests.LocalTripTests testAdaptiveCannotSkipDeadlineConflict]' started.
+Test Case '-[LocalTests.LocalTripTests testAdaptiveCannotSkipDeadlineConflict]' passed (0.026 seconds).
+Test Case '-[LocalTests.LocalTripTests testBothCorruptRemainUntouchedAndBlockSaving]' started.
+Test Case '-[LocalTests.LocalTripTests testBothCorruptRemainUntouchedAndBlockSaving]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testCorruptPrimaryRecoversValidatedBackup]' started.
+Test Case '-[LocalTests.LocalTripTests testCorruptPrimaryRecoversValidatedBackup]' passed (0.002 seconds).
+Test Case '-[LocalTests.LocalTripTests testDeadlineReachesBothPipelineAndSnapshot]' started.
+Test Case '-[LocalTests.LocalTripTests testDeadlineReachesBothPipelineAndSnapshot]' passed (0.022 seconds).
+Test Case '-[LocalTests.LocalTripTests testDefaultNativeLaunchDoesNotRequireLegacyBootstrap]' started.
+Test Case '-[LocalTests.LocalTripTests testDefaultNativeLaunchDoesNotRequireLegacyBootstrap]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testDeviceZoneDoesNotChangeDeadlineOrOperationalDate]' started.
+Test Case '-[LocalTests.LocalTripTests testDeviceZoneDoesNotChangeDeadlineOrOperationalDate]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testDraftEditsDoNotEraseAcceptedChoice]' started.
+Test Case '-[LocalTests.LocalTripTests testDraftEditsDoNotEraseAcceptedChoice]' passed (0.009 seconds).
+Test Case '-[LocalTests.LocalTripTests testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider]' started.
+Test Case '-[LocalTests.LocalTripTests testEmptyUnresolvedDraftCanBeSavedWithoutAnyProvider]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testExplicitTimeZoneChangePreservesBothWallClocks]' started.
+Test Case '-[LocalTests.LocalTripTests testExplicitTimeZoneChangePreservesBothWallClocks]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks]' started.
+Test Case '-[LocalTests.LocalTripTests testFailedAcceptedSaveKeepsPreviousChoiceAndRetryWorks]' passed (0.003 seconds).
+Test Case '-[LocalTests.LocalTripTests testFutureVersionBlocksEvenWithValidBackup]' started.
+Test Case '-[LocalTests.LocalTripTests testFutureVersionBlocksEvenWithValidBackup]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testInfeasibleAcceptedPlanCannotCommit]' started.
+Test Case '-[LocalTests.LocalTripTests testInfeasibleAcceptedPlanCannotCommit]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testInvalidAcceptedArithmeticCannotCommit]' started.
+Test Case '-[LocalTests.LocalTripTests testInvalidAcceptedArithmeticCannotCommit]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testLegacyDraftRetainsEndOfDayAndCarPolicy]' started.
+Test Case '-[LocalTests.LocalTripTests testLegacyDraftRetainsEndOfDayAndCarPolicy]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testLocalDemoUsesValidSyntheticScheduleWithoutServices]' started.
+Test Case '-[LocalTests.LocalTripTests testLocalDemoUsesValidSyntheticScheduleWithoutServices]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testMissingPrimaryUsesBackupWithVisibleNotice]' started.
+Test Case '-[LocalTests.LocalTripTests testMissingPrimaryUsesBackupWithVisibleNotice]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testOversizedPrimaryIsNotDecodedOrOverwritten]' started.
+Test Case '-[LocalTests.LocalTripTests testOversizedPrimaryIsNotDecodedOrOverwritten]' passed (0.003 seconds).
+Test Case '-[LocalTests.LocalTripTests testRejectsDeadlineBeforeStartAndBeyondDay]' started.
+Test Case '-[LocalTests.LocalTripTests testRejectsDeadlineBeforeStartAndBeyondDay]' passed (0.000 seconds).
+Test Case '-[LocalTests.LocalTripTests testRestorationDoesNotClearReportOnObservationEcho]' started.
+Test Case '-[LocalTests.LocalTripTests testRestorationDoesNotClearReportOnObservationEcho]' passed (0.005 seconds).
+Test Case '-[LocalTests.LocalTripTests testSaveFailurePreservesDiskAndPublishedRevision]' started.
+Test Case '-[LocalTests.LocalTripTests testSaveFailurePreservesDiskAndPublishedRevision]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testStaleWriterCannotOverwriteNewerSavedDraft]' started.
+Test Case '-[LocalTests.LocalTripTests testStaleWriterCannotOverwriteNewerSavedDraft]' passed (0.001 seconds).
+Test Case '-[LocalTests.LocalTripTests testWeatherMetadataAndCreditSurviveRestore]' started.
+Test Case '-[LocalTests.LocalTripTests testWeatherMetadataAndCreditSurviveRestore]' passed (0.003 seconds).
+Test Suite 'LocalTripTests' passed at 2026-11-04 17:02:51.120.
+	 Executed 24 tests, with 0 failures (0 unexpected) in 0.088 (0.089) seconds
+Test Suite 'NativeTripActiveTests' started at 2026-11-04 17:02:51.120.
+Test Case '-[LocalTests.NativeTripActiveTests testActiveTripGuardsPlannerReplacementAndStorageRestore]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testActiveTripGuardsPlannerReplacementAndStorageRestore]' passed (0.004 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testActualLegMustMatchRecordedArrivalAndPreviousDeparture]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testActualLegMustMatchRecordedArrivalAndPreviousDeparture]' passed (0.006 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testActualOutsideHoursRemainsFactWithWarning]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testActualOutsideHoursRemainsFactWithWarning]' passed (0.001 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testArrivalBeforeOpeningDoesNotInventActualStart]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testArrivalBeforeOpeningDoesNotInventActualStart]' passed (0.001 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testBaselineRetainedOnTieAndExplicitBudgetRespected]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testBaselineRetainedOnTieAndExplicitBudgetRespected]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testCancellationPreventsLateProposalPersistence]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testCancellationPreventsLateProposalPersistence]' passed (0.021 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testCannotStartSecondVisitBeforeCompletingCurrent]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testCannotStartSecondVisitBeforeCompletingCurrent]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testClockCannotMoveBackwardsOrCreateNegativeVisit]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testClockCannotMoveBackwardsOrCreateNegativeVisit]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testCurrentClosingConflictPreventsApply]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testCurrentClosingConflictPreventsApply]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testCurrentInputsSurvivePlannerFailureAndRestore]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testCurrentInputsSurvivePlannerFailureAndRestore]' passed (0.008 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testDeadlineChangeDoesNotMoveDeadlineWithActualStart]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testDeadlineChangeDoesNotMoveDeadlineWithActualStart]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testEndOnlyPreservesEndpointAndDoesNotMakeFakeStop]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testEndOnlyPreservesEndpointAndDoesNotMakeFakeStop]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testEqualTimestampsUseActualLegSequenceForLatestAnchor]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testEqualTimestampsUseActualLegSequenceForLatestAnchor]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testExtendThirtyMinutesHasExact1130FinishAndFrozenPrefix]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testExtendThirtyMinutesHasExact1130FinishAndFrozenPrefix]' passed (0.004 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testFailedApplyKeepsProposalAndRetryIsIdempotent]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testFailedApplyKeepsProposalAndRetryIsIdempotent]' passed (0.012 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testFailedFactSaveAndRetryPublishOnlyCommittedState]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testFailedFactSaveAndRetryPublishOnlyCommittedState]' passed (0.006 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testImpossibleDeadlineKeepsAllNonSkippedTargets]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testImpossibleDeadlineKeepsAllNonSkippedTargets]' passed (0.005 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testLateResultAfterNewRequestCannotReplaceLatestProposal]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testLateResultAfterNewRequestCannotReplaceLatestProposal]' passed (0.024 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testLifecycleRecordsManualFactsAndSingleCurrentVisit]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testLifecycleRecordsManualFactsAndSingleCurrentVisit]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testMalformedActiveStateCannotCommit]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testMalformedActiveStateCannotCommit]' passed (0.004 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testMissingETAIsIncompleteNotZero]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testMissingETAIsIncompleteNotZero]' passed (3.022 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testOnlyPendingLegsAreRequested]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testOnlyPendingLegsAreRequested]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testOverdueExtensionUsesNowAndSetLeaveCannotGoBack]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testOverdueExtensionUsesNowAndSetLeaveCannotGoBack]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testPrivateCarAndTransitRequireExplicitSupportedScope]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testPrivateCarAndTransitRequireExplicitSupportedScope]' passed (0.001 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testProjectionKeepsOriginalEndpointWhenAnchorChanges]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testProjectionKeepsOriginalEndpointWhenAnchorChanges]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testProposalBecomesStaleAfterFactAndAfterSixtySeconds]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testProposalBecomesStaleAfterFactAndAfterSixtySeconds]' passed (0.004 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testRejectKeepsAcceptedPlanAndFacts]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testRejectKeepsAcceptedPlanAndFacts]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testRequestRequiresAnchorConfirmationAndSameServiceDay]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testRequestRequiresAnchorConfirmationAndSameServiceDay]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testRestoredProposalCannotApplyInNewRuntimeSession]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testRestoredProposalCannotApplyInNewRuntimeSession]' passed (0.007 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testSameActionIsIdempotentButDifferentPayloadIsRejected]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testSameActionIsIdempotentButDifferentPayloadIsRejected]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testSkipIsExplicitAndDoesNotCreateCompletedHistory]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testSkipIsExplicitAndDoesNotCreateCompletedHistory]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testStaleOperationalDateRejectedBeforePlanning]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testStaleOperationalDateRejectedBeforePlanning]' passed (0.002 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testV1PlannedSessionPromotesToV2WithoutChangingInitialPlan]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testV1PlannedSessionPromotesToV2WithoutChangingInitialPlan]' passed (0.003 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testWatchdogStopsOperationAndKeepsFacts]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testWatchdogStopsOperationAndKeepsFacts]' passed (0.025 seconds).
+Test Case '-[LocalTests.NativeTripActiveTests testZeroRemainingAtEndpointNeedsNoProviderRequests]' started.
+Test Case '-[LocalTests.NativeTripActiveTests testZeroRemainingAtEndpointNeedsNoProviderRequests]' passed (0.002 seconds).
+Test Suite 'NativeTripActiveTests' passed at 2026-11-04 17:02:54.322.
+	 Executed 35 tests, with 0 failures (0 unexpected) in 3.200 (3.202) seconds
+Test Suite 'WeatherLabTests' started at 2026-11-04 17:02:54.322.
+Test Case '-[LocalTests.WeatherLabTests testAuthenticationBreakerStopsFurtherAppleAndResetRetries]' started.
+Test Case '-[LocalTests.WeatherLabTests testAuthenticationBreakerStopsFurtherAppleAndResetRetries]' passed (0.001 seconds).
+Test Case '-[LocalTests.WeatherLabTests testAuthenticationClassifierDoesNotTreatEveryCodeTwoAsAuth]' started.
+Test Case '-[LocalTests.WeatherLabTests testAuthenticationClassifierDoesNotTreatEveryCodeTwoAsAuth]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testAutomaticUsesAppleWithAttributionAndNoBackup]' started.
+Test Case '-[LocalTests.WeatherLabTests testAutomaticUsesAppleWithAttributionAndNoBackup]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testBothFailuresRemainUnknownInsteadOfZeroRain]' started.
+Test Case '-[LocalTests.WeatherLabTests testBothFailuresRemainUnknownInsteadOfZeroRain]' passed (0.001 seconds).
+Test Case '-[LocalTests.WeatherLabTests testCacheRespectsFifteenMinuteTTLAndAppleEarlierExpiry]' started.
+Test Case '-[LocalTests.WeatherLabTests testCacheRespectsFifteenMinuteTTLAndAppleEarlierExpiry]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testCancellationStopsFallbackAndIgnoresLateResponse]' started.
+Test Case '-[LocalTests.WeatherLabTests testCancellationStopsFallbackAndIgnoresLateResponse]' passed (0.012 seconds).
+Test Case '-[LocalTests.WeatherLabTests testConcurrencyIsBoundedToTwoGroups]' started.
+Test Case '-[LocalTests.WeatherLabTests testConcurrencyIsBoundedToTwoGroups]' passed (0.074 seconds).
+Test Case '-[LocalTests.WeatherLabTests testDifferentRangeAndProviderCannotReuseWrongCache]' started.
+Test Case '-[LocalTests.WeatherLabTests testDifferentRangeAndProviderCannotReuseWrongCache]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testGroupingDoesNotChainDistantLocations]' started.
+Test Case '-[LocalTests.WeatherLabTests testGroupingDoesNotChainDistantLocations]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testGroupingIsStableAndEveryMemberWithinRadius]' started.
+Test Case '-[LocalTests.WeatherLabTests testGroupingIsStableAndEveryMemberWithinRadius]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testImportCopiesCoordinatesWithoutChangingStoredPlan]' started.
+Test Case '-[LocalTests.WeatherLabTests testImportCopiesCoordinatesWithoutChangingStoredPlan]' passed (0.001 seconds).
+Test Case '-[LocalTests.WeatherLabTests testImportNeverSilentlyDropsUnresolvedPlace]' started.
+Test Case '-[LocalTests.WeatherLabTests testImportNeverSilentlyDropsUnresolvedPlace]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testInvalidCoordinatesDuplicatesEmptyAndWindowAreRejected]' started.
+Test Case '-[LocalTests.WeatherLabTests testInvalidCoordinatesDuplicatesEmptyAndWindowAreRejected]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testLabDefaultAndExplicitNativeLaunchRemainSeparate]' started.
+Test Case '-[LocalTests.WeatherLabTests testLabDefaultAndExplicitNativeLaunchRemainSeparate]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testLateUncooperativeProviderCannotDelayFallbackOrFillCache]' started.
+Test Case '-[LocalTests.WeatherLabTests testLateUncooperativeProviderCannotDelayFallbackOrFillCache]' passed (0.038 seconds).
+Test Case '-[LocalTests.WeatherLabTests testMissingHoursMissingCreditAndExpiredResponseAreNotPublished]' started.
+Test Case '-[LocalTests.WeatherLabTests testMissingHoursMissingCreditAndExpiredResponseAreNotPublished]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testModelCancelThenNewRunCannotReceiveOldResults]' started.
+Test Case '-[LocalTests.WeatherLabTests testModelCancelThenNewRunCannotReceiveOldResults]' passed (0.026 seconds).
+Test Case '-[LocalTests.WeatherLabTests testModelReportsSimulationProvenanceAndCapturedWindow]' started.
+Test Case '-[LocalTests.WeatherLabTests testModelReportsSimulationProvenanceAndCapturedWindow]' passed (0.007 seconds).
+Test Case '-[LocalTests.WeatherLabTests testProbeBypassesCacheBreakerAndNeverFallsBack]' started.
+Test Case '-[LocalTests.WeatherLabTests testProbeBypassesCacheBreakerAndNeverFallsBack]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testRefreshAndClearCacheForceNewRequests]' started.
+Test Case '-[LocalTests.WeatherLabTests testRefreshAndClearCacheForceNewRequests]' passed (0.000 seconds).
+Test Case '-[LocalTests.WeatherLabTests testReorderedGroupsAndNarrowerWindowReuseCache]' started.
+Test Case '-[LocalTests.WeatherLabTests testReorderedGroupsAndNarrowerWindowReuseCache]' passed (0.001 seconds).
+Test Case '-[LocalTests.WeatherLabTests testSuccessfulFreshProbeReopensAuthenticationCircuit]' started.
+Test Case '-[LocalTests.WeatherLabTests testSuccessfulFreshProbeReopensAuthenticationCircuit]' passed (0.001 seconds).
+Test Case '-[LocalTests.WeatherLabTests testTransientRetryIsAtMostOnceWithinProviderBudget]' started.
+Test Case '-[LocalTests.WeatherLabTests testTransientRetryIsAtMostOnceWithinProviderBudget]' passed (0.412 seconds).
+Test Suite 'WeatherLabTests' passed at 2026-11-04 17:02:54.901.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 0.577 (0.579) seconds
+Test Suite 'LocalTests.xctest' passed at 2026-11-04 17:02:54.901.
+	 Executed 100 tests, with 0 failures (0 unexpected) in 3.884 (3.890) seconds
+Test Suite 'All tests' passed at 2026-11-04 17:02:54.901.
+	 Executed 100 tests, with 0 failures (0 unexpected) in 3.884 (3.892) seconds

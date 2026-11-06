@@ -1,0 +1,132 @@
+{
+  "mode": "off",
+  "maxTokens": 2500,
+  "timeoutMs": 30000,
+  "elapsedMs": 7856,
+  "passed": true,
+  "error": null,
+  "promptHash": "161d6dbd875ace7e78f5111a539385c727791e5fff7ef053ef22a5ef20368447",
+  "schemaHash": "a5c6eddb21a26e40d36450210171bd2007cbfd72758fcc0a49161bf1d8bd0005",
+  "observation": {
+    "actualModel": "nvidia/nemotron-3.5-super-vl:free",
+    "finishReason": "stop",
+    "promptTokens": 6775,
+    "completionTokens": 924,
+    "reasoningTokens": 0,
+    "visibleTokens": 924,
+    "cachedPromptTokens": 4336,
+    "reportedCost": 0,
+    "contentCharacters": 2364
+  },
+  "decision": {
+    "candidateId": "D/B/C:wait",
+    "summary": "Rute pilihan: D → B → C, dengan tunggu di C agar kunjungan luar ruang memasuki jendela sunset. Rute ini feasible dan memiliki skor terbaik (126.59, ranked 1). Selesai pukul 17:31:43 WIB, sebelum batas 19:00 WIB. Diterapkan sesuai preferensi: semua tujuan tetap dikunjungi, C diwaktu jendela 16:46:43–17:46:43 WIB. Catatan risiko: probabilitas hujan pada kunjungan outdoor C adalah 100%, dan rainExposureMinutes 45 menit hanyalah proxy peranking, bukan prediksi durasi hujan. Kunjungan B (indoor) pada 14:59:25–15:59:25 WIB memiliki probabilitas hujan 92.87%, tapi berada di ruangan.",
+    "rationale": [
+      {
+        "placeId": "D",
+        "reason": "Tiba pukul 14:05:42 WIB dan selesai 14:50:42 WIB. Kunjungan indoor untuk baca, weather evidenceIds: input:D, route:A/D@1793689200, weather:D. Probabilitas hujan 80%, suhu 32.5°C, tidak ada exposure luar ruang.",
+        "evidenceIds": [
+          "input:D",
+          "route:A/D@1793689200",
+          "weather:D"
+        ]
+      },
+      {
+        "placeId": "B",
+        "reason": "Kopi indoor dan baca pukul 14:59:25–15:59:25 WIB, cocok untuk aktivitas di ruangan sambil menunggu cuaca luar ruang. weather evidenceIds: input:B, route:D/B@1793692242, weather:B. Probabilitas hujan 92.87%, suhu 31.41°C, exposure 0 menit karena indoor.",
+        "evidenceIds": [
+          "input:B",
+          "route:D/B@1793692242",
+          "weather:B"
+        ]
+      },
+      {
+        "placeId": "C",
+        "reason": "Tunggu 33.5 menit agar kunjungan outdoor dimulai pukul 16:46:43 WIB, tepat dalam jendela sunset 16:46:43–17:46:43 WIB, dan selesai 17:31:43 WIB. weather evidenceIds: input:C, route:B/C@1793696365, weather:C. Probabilitas hujan 100%, rainExposureMinutes 45 (proxy ranking, bukan prediksi durasi hujan).",
+        "evidenceIds": [
+          "input:C",
+          "route:B/C@1793696365",
+          "weather:C"
+        ]
+      }
+    ],
+    "tradeoffs": [
+      "Skor 126.59 lebih baik daripada B/D/C:wait (134.37) meski waktu tunggu lebih lama (33.5 vs 23.13 menit), karena rute D→B→C lebih pendek secara perjalanan (28.22 vs 38.58 menit) dan jarak lebih hemat. C sama-sama memiliki probabilitas hujan 100 dan rainExposureMinutes 45 di semua candidate yang mencakupnya, jadi risiko cuaca outdoor tidak bisa dihindari dengan memilih rute lain dalam data ini. Tidak ada pelanggaran jendela waktu atau melebihi batas selesai 19:00 WIB."
+    ],
+    "uncertainties": [
+      "Cuaca adalah estimasi probabilistik, bukan jaminan. Jam buka adalah asumsi user, bukan fakta terverifikasi. Tidak ada waktu pulang yang termasuk dalam jadwal."
+    ]
+  },
+  "finalAnswer": {
+    "candidateId": "D/B/C:wait",
+    "summary": "Rute pilihan: D → B → C, dengan tunggu di C agar kunjungan luar ruang memasuki jendela sunset. Rute ini feasible dan memiliki skor terbaik (126.59, ranked 1). Selesai pukul 17:31:43 WIB, sebelum batas 19:00 WIB. Diterapkan sesuai preferensi: semua tujuan tetap dikunjungi, C diwaktu jendela 16:46:43–17:46:43 WIB. Catatan risiko: probabilitas hujan pada kunjungan outdoor C adalah 100%, dan rainExposureMinutes 45 menit hanyalah proxy peranking, bukan prediksi durasi hujan. Kunjungan B (indoor) pada 14:59:25–15:59:25 WIB memiliki probabilitas hujan 92.87%, tapi berada di ruangan.",
+    "rationale": [
+      {
+        "placeId": "D",
+        "reason": "Tiba pukul 14:05:42 WIB dan selesai 14:50:42 WIB. Kunjungan indoor untuk baca, weather evidenceIds: input:D, route:A/D@1793689200, weather:D. Probabilitas hujan 80%, suhu 32.5°C, tidak ada exposure luar ruang.",
+        "evidenceIds": [
+          "input:D",
+          "route:A/D@1793689200",
+          "weather:D"
+        ]
+      },
+      {
+        "placeId": "B",
+        "reason": "Kopi indoor dan baca pukul 14:59:25–15:59:25 WIB, cocok untuk aktivitas di ruangan sambil menunggu cuaca luar ruang. weather evidenceIds: input:B, route:D/B@1793692242, weather:B. Probabilitas hujan 92.87%, suhu 31.41°C, exposure 0 menit karena indoor.",
+        "evidenceIds": [
+          "input:B",
+          "route:D/B@1793692242",
+          "weather:B"
+        ]
+      },
+      {
+        "placeId": "C",
+        "reason": "Tunggu 33.5 menit agar kunjungan outdoor dimulai pukul 16:46:43 WIB, tepat dalam jendela sunset 16:46:43–17:46:43 WIB, dan selesai 17:31:43 WIB. weather evidenceIds: input:C, route:B/C@1793696365, weather:C. Probabilitas hujan 100%, rainExposureMinutes 45 (proxy ranking, bukan prediksi durasi hujan).",
+        "evidenceIds": [
+          "input:C",
+          "route:B/C@1793696365",
+          "weather:C"
+        ]
+      }
+    ],
+    "tradeoffs": [
+      "Skor 126.59 lebih baik daripada B/D/C:wait (134.37) meski waktu tunggu lebih lama (33.5 vs 23.13 menit), karena rute D→B→C lebih pendek secara perjalanan (28.22 vs 38.58 menit) dan jarak lebih hemat. C sama-sama memiliki probabilitas hujan 100 dan rainExposureMinutes 45 di semua candidate yang mencakupnya, jadi risiko cuaca outdoor tidak bisa dihindari dengan memilih rute lain dalam data ini. Tidak ada pelanggaran jendela waktu atau melebihi batas selesai 19:00 WIB."
+    ],
+    "uncertainties": [
+      "Cuaca adalah estimasi probabilistik, bukan jaminan. Jam buka adalah asumsi user, bukan fakta terverifikasi. Tidak ada waktu pulang yang termasuk dalam jadwal."
+    ]
+  },
+  "selectedFacts": {
+    "candidateId": "D/B/C:wait",
+    "order": [
+      "D",
+      "B",
+      "C"
+    ],
+    "score": 126.59,
+    "feasible": true,
+    "travelMinutes": 28.21666666666667,
+    "waitMinutes": 33.5,
+    "finishWIB": "17:31",
+    "visits": [
+      {
+        "placeId": "D",
+        "visitWIB": "14:05",
+        "leaveWIB": "14:50",
+        "durationMinutes": 45
+      },
+      {
+        "placeId": "B",
+        "visitWIB": "14:59",
+        "leaveWIB": "15:59",
+        "durationMinutes": 60
+      },
+      {
+        "placeId": "C",
+        "visitWIB": "16:46",
+        "leaveWIB": "17:31",
+        "durationMinutes": 45
+      }
+    ]
+  }
+}

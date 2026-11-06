@@ -1,5 +1,7 @@
 # C67
 
+The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Its apps and evidence are isolated from the production implementation described below.
+
 C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
 
 **Repository implementation — 30 October 2026:** the default iOS flow is now Plan → review → My Trips → start/arrive/extend/recalculate. It includes synthetic mock adapters, a separate Node/TypeScript Planning API and worker, Apple Maps/Weather and hosted-model adapters, a bounded public-site reader, OpenAPI 0.6 and an additive SQL migration. This batch is local code, not a shared deployment or live-provider acceptance. Read [implementation/evidence](docs/tasks/ai-trip-planning-implementation.md), [planning design](docs/ai-trip-planning.md) and [ADR-0009](docs/decisions/0009-personal-planning-implementation.md).

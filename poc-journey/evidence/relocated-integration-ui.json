@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "mode": "relocated Simulator fixture UI; no live WeatherKit or physical-device acceptance implied",
+  "simulator": "iPhone 18 Pro / iOS 27.2",
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 73445,
+    "counts": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "testCases": [
+    {
+      "suite": "IntegrationUITests",
+      "test": "testReplayCannotBeMistakenForWeatherKitDiagnosis",
+      "status": "passed",
+      "durationMs": 10024
+    },
+    {
+      "suite": "IntegrationUITests",
+      "test": "testReplayJourneyCanBeReviewedAndAccepted",
+      "status": "passed",
+      "durationMs": 21400
+    }
+  ]
+}

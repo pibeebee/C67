@@ -1,0 +1,247 @@
+sandbox-exec: sandbox_apply: Operation not permitted
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:133:36: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+131 | }
+132 | 
+133 | @MainActor @Observable final class NativeTripLogStore {
+    |                                    `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+134 |   static let shared = NativeTripLogStore()
+135 |   let sessionID = UUID().uuidString
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:134:14: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+132 | 
+133 | @MainActor @Observable final class NativeTripLogStore {
+134 |   static let shared = NativeTripLogStore()
+    |              `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+135 |   let sessionID = UUID().uuidString
+136 |   let directory: URL
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:135:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+133 | @MainActor @Observable final class NativeTripLogStore {
+134 |   static let shared = NativeTripLogStore()
+135 |   let sessionID = UUID().uuidString
+    |       `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+136 |   let directory: URL
+137 |   private(set) var storageError: String?
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:136:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+134 |   static let shared = NativeTripLogStore()
+135 |   let sessionID = UUID().uuidString
+136 |   let directory: URL
+    |       `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+137 |   private(set) var storageError: String?
+138 |   private(set) var savedEvents = 0
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:137:20: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+135 |   let sessionID = UUID().uuidString
+136 |   let directory: URL
+137 |   private(set) var storageError: String?
+    |                    `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+138 |   private(set) var savedEvents = 0
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:138:20: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+136 |   let directory: URL
+137 |   private(set) var storageError: String?
+138 |   private(set) var savedEvents = 0
+    |                    `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:139:35: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+137 |   private(set) var storageError: String?
+138 |   private(set) var savedEvents = 0
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+141 |   @ObservationIgnored private var sequence = 0
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:140:35: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+138 |   private(set) var savedEvents = 0
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+141 |   @ObservationIgnored private var sequence = 0
+142 | 
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:141:35: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+141 |   @ObservationIgnored private var sequence = 0
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+142 | 
+143 |   init(directory: URL? = nil, maximumFiles: Int = 10, maximumBytes: Int = 2_000_000) {
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:143:3: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+141 |   @ObservationIgnored private var sequence = 0
+142 | 
+143 |   init(directory: URL? = nil, maximumFiles: Int = 10, maximumBytes: Int = 2_000_000) {
+    |   `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+144 |     self.directory =
+145 |       directory
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:165:8: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+163 |   }
+164 | 
+165 |   func record(
+    |        `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+166 |     _ event: String, category: String, level: String = "info", operationID: String? = nil,
+167 |     fields: [String: String] = [:]
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:186:8: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+184 |   }
+185 | 
+186 |   func recordJSON<Value: Encodable>(
+    |        `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+187 |     _ event: String, category: String, operationID: String? = nil, value: Value
+188 |   ) {
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:204:15: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+202 |   }
+203 | 
+204 |   static func errorFields(_ error: Error) -> [String: String] {
+    |               `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+205 |     let root = error as NSError
+206 |     var fields = [
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:220:8: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+218 |   }
+219 | 
+220 |   func flush() async { await pending?.value }
+    |        `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+221 | 
+222 |   func snapshot() async throws -> NativeTripLogSnapshot {
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:222:8: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+220 |   func flush() async { await pending?.value }
+221 | 
+222 |   func snapshot() async throws -> NativeTripLogSnapshot {
+    |        `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+223 |     await flush()
+224 |     return try await writer.snapshot()
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:133:36: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+131 | }
+132 | 
+133 | @MainActor @Observable final class NativeTripLogStore {
+    |                                    `- error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+134 |   static let shared = NativeTripLogStore()
+135 |   let sessionID = UUID().uuidString
+
+Observation.Observable:2:210: note: 'Observable()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+  |                                                                                                                                                                                                                  `- note: 'Observable()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:139:35: error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+137 |   private(set) var storageError: String?
+138 |   private(set) var savedEvents = 0
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+141 |   @ObservationIgnored private var sequence = 0
+
+Observation.ObservationIgnored:2:34: note: 'ObservationIgnored()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(accessor) public macro ObservationIgnored() = #externalMacro(module: "ObservationMacros", type: "ObservationIgnoredMacro")
+  |                                  `- note: 'ObservationIgnored()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:140:35: error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+138 |   private(set) var savedEvents = 0
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+141 |   @ObservationIgnored private var sequence = 0
+142 | 
+
+Observation.ObservationIgnored:2:34: note: 'ObservationIgnored()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(accessor) public macro ObservationIgnored() = #externalMacro(module: "ObservationMacros", type: "ObservationIgnoredMacro")
+  |                                  `- note: 'ObservationIgnored()' declared here
+
+/private/tmp/c67-p0p1-work/poc-c67/Features/NativePlanner/NativeTripLogStore.swift:141:35: error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+139 |   @ObservationIgnored private let writer: NativeTripLogWriter
+140 |   @ObservationIgnored private var pending: Task<Void, Never>?
+141 |   @ObservationIgnored private var sequence = 0
+    |                                   `- error: external macro implementation type 'ObservationMacros.ObservationIgnoredMacro' could not be found for macro 'ObservationIgnored()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+142 | 
+143 |   init(directory: URL? = nil, maximumFiles: Int = 10, maximumBytes: Int = 2_000_000) {
+
+Observation.ObservationIgnored:2:34: note: 'ObservationIgnored()' declared here
+1 | @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+2 | @attached(accessor) public macro ObservationIgnored() = #externalMacro(module: "ObservationMacros", type: "ObservationIgnoredMacro")
+  |                                  `- note: 'ObservationIgnored()' declared here

@@ -1,0 +1,252 @@
+{
+  "P01": {
+    "capability": "preferences",
+    "interests": [
+      "coffee",
+      "reading"
+    ],
+    "avoids": [],
+    "pace": "relaxed"
+  },
+  "P02": {
+    "capability": "preferences",
+    "interests": [
+      "outdoor",
+      "photography"
+    ],
+    "avoids": [
+      "coffee"
+    ],
+    "pace": "balanced"
+  },
+  "P03": {
+    "capability": "preferences",
+    "interests": [
+      "culture"
+    ],
+    "avoids": [
+      "coffee"
+    ],
+    "pace": "balanced"
+  },
+  "P04": {
+    "capability": "preferences",
+    "interests": [],
+    "avoids": [],
+    "pace": "balanced"
+  },
+  "P05": {
+    "capability": "preferences",
+    "interests": [
+      "food",
+      "culture"
+    ],
+    "avoids": [
+      "indoor"
+    ],
+    "pace": "packed"
+  },
+  "P06": {
+    "capability": "preferences",
+    "clarification": true
+  },
+  "C01": {
+    "capability": "candidates",
+    "required": [
+      "P1"
+    ],
+    "allowed": [
+      "P1"
+    ],
+    "unknown_terms": [
+      "price"
+    ]
+  },
+  "C02": {
+    "capability": "candidates",
+    "required": [],
+    "allowed": []
+  },
+  "C03": {
+    "capability": "candidates",
+    "required": [
+      "P1"
+    ],
+    "allowed": [
+      "P1"
+    ],
+    "unknown_terms": [
+      "price",
+      "quiet"
+    ]
+  },
+  "C04": {
+    "capability": "candidates",
+    "allowed": [
+      "P1",
+      "P2"
+    ],
+    "forbidden_terms": [
+      "saved",
+      "P9"
+    ]
+  },
+  "C05": {
+    "capability": "candidates",
+    "required": [
+      "P2"
+    ],
+    "allowed": [
+      "P2"
+    ]
+  },
+  "C06": {
+    "capability": "candidates",
+    "allowed": [
+      "P1",
+      "P2"
+    ],
+    "unknown_terms": [
+      "quiet"
+    ]
+  },
+  "W01": {
+    "capability": "windows",
+    "required_windows": {
+      "C": [
+        "afternoon"
+      ],
+      "B": [
+        "any",
+        "unknown"
+      ]
+    }
+  },
+  "W02": {
+    "capability": "windows",
+    "required_windows": {
+      "A": [
+        "any",
+        "unknown"
+      ],
+      "B": [
+        "any",
+        "unknown"
+      ],
+      "C": [
+        "any",
+        "unknown"
+      ]
+    }
+  },
+  "W03": {
+    "capability": "windows",
+    "required_windows": {
+      "C": [
+        "morning",
+        "any",
+        "unknown"
+      ]
+    }
+  },
+  "W04": {
+    "capability": "windows",
+    "all_stops": true
+  },
+  "W05": {
+    "capability": "windows",
+    "all_stops": true,
+    "forbidden_terms": [
+      "cancel",
+      "remove stop",
+      "skip stop"
+    ]
+  },
+  "W06": {
+    "capability": "windows",
+    "required_windows": {
+      "A": [
+        "any",
+        "unknown"
+      ],
+      "B": [
+        "any",
+        "unknown"
+      ],
+      "C": [
+        "any",
+        "unknown"
+      ]
+    },
+    "forbidden_terms": [
+      "no rain",
+      "rain-free"
+    ]
+  },
+  "E01": {
+    "capability": "explanation",
+    "required_terms": [
+      "12:15",
+      "18:00"
+    ],
+    "forbidden_terms": [
+      "saved",
+      "applied"
+    ]
+  },
+  "E02": {
+    "capability": "explanation",
+    "required_any": [
+      "incomplete",
+      "missing",
+      "unknown"
+    ],
+    "forbidden_terms": [
+      "all constraints are satisfied"
+    ]
+  },
+  "E03": {
+    "capability": "explanation",
+    "required_any": [
+      "conflict",
+      "exceed",
+      "not feasible",
+      "late"
+    ],
+    "forbidden_terms": [
+      "all constraints are satisfied"
+    ]
+  },
+  "E04": {
+    "capability": "explanation",
+    "required_any": [
+      "unknown",
+      "not provided",
+      "not verified",
+      "unavailable",
+      "missing"
+    ]
+  },
+  "E05": {
+    "capability": "explanation",
+    "forbidden_terms": [
+      "have been saved",
+      "has been saved",
+      "already applied",
+      "i saved"
+    ]
+  },
+  "E06": {
+    "capability": "explanation",
+    "required_any": [
+      "unfulfilled",
+      "not fulfilled",
+      "not met",
+      "afternoon"
+    ],
+    "forbidden_terms": [
+      "cancel the garden",
+      "skip the garden"
+    ]
+  }
+}

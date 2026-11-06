@@ -1,0 +1,139 @@
+[
+  {
+    "at": "2026-11-03T08:32:41Z",
+    "category": "route_map",
+    "event": "map.routes_started",
+    "fields": {
+      "legs": "2",
+      "retryFailed": "false"
+    },
+    "id": "6D653127-D5EC-4814-8C36-99FC8C30C1AA",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 29,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:32:41Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "from": "Stasiun sudirman",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:0",
+      "mode": "walking",
+      "requestCount": "1",
+      "to": "Grand Indonesia"
+    },
+    "id": "5B061E3F-E818-44DC-BC34-B70C5F71F065",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 30,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:32:42Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T00:00:00Z",
+      "distanceMeters": "1125.0",
+      "elapsedSeconds": "0.3405740261077881",
+      "from": "Stasiun sudirman",
+      "itinerarySeconds": "921.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:0",
+      "mode": "walking",
+      "points": "44",
+      "routeSeconds": "921.0",
+      "status": "available",
+      "to": "Grand Indonesia"
+    },
+    "id": "00C8CDAE-0028-4D5D-BAD3-A0E6A41FF8A5",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 31,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:32:42Z",
+    "category": "route_map",
+    "event": "map.route_requested",
+    "fields": {
+      "departure": "2026-11-05T00:45:21Z",
+      "from": "Grand Indonesia",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:1",
+      "mode": "walking",
+      "requestCount": "2",
+      "to": "Stasiun sudirman"
+    },
+    "id": "96A47CC4-E381-4CEC-AF5C-4AB53070A7A8",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 32,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:32:43Z",
+    "category": "route_map",
+    "event": "map.route_result",
+    "fields": {
+      "departure": "2026-11-05T00:45:21Z",
+      "distanceMeters": "1122.0",
+      "elapsedSeconds": "1.026394009590149",
+      "from": "Grand Indonesia",
+      "itinerarySeconds": "935.0",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:1",
+      "mode": "walking",
+      "points": "47",
+      "routeSeconds": "935.0",
+      "status": "available",
+      "to": "Stasiun sudirman"
+    },
+    "id": "601823F3-9A0E-4CEE-B744-D243328C2601",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 33,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:32:43Z",
+    "category": "route_map",
+    "event": "map.routes_completed",
+    "fields": {
+      "available": "2",
+      "failed": "0",
+      "legs": "2",
+      "requestCount": "2"
+    },
+    "id": "80BC50DB-BFF8-4D2B-BF47-523E22AD400B",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 34,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  },
+  {
+    "at": "2026-11-03T08:33:04Z",
+    "category": "route_map",
+    "event": "map.leg_selected",
+    "fields": {
+      "departure": "2026-11-05T00:45:21Z",
+      "from": "Grand Indonesia",
+      "legID": "E32284F7-2A9E-4739-9991-4A086BB990DF:1",
+      "mode": "walking",
+      "selection": "E32284F7-2A9E-4739-9991-4A086BB990DF:1",
+      "to": "Stasiun sudirman"
+    },
+    "id": "CF7049EE-3951-4C99-A458-8C77312DB383",
+    "level": "info",
+    "operationID": "BD1DD322-682E-45D0-8F5D-F2305EEFB1F7",
+    "schemaVersion": 1,
+    "sequence": 35,
+    "sessionID": "A0BBC662-22AD-4766-90CC-985B3EF80601"
+  }
+]
