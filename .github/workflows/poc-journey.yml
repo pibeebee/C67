@@ -42,6 +42,10 @@ jobs:
         run: python3 poc-journey/scripts/bootstrap.py
       - name: Unsigned Simulator builds
         run: bash poc-journey/scripts/verify.sh build
+      - name: Journey model and geometry regressions
+        run: |
+          export P3_SIMULATOR_DESTINATION="$(python3 scripts/simulator_destination.py)"
+          bash poc-journey/scripts/verify.sh journey-models
       - name: Swift package fixture suites
         run: bash poc-journey/scripts/verify.sh packages
       - name: Offline TJ capability evaluator

@@ -4,13 +4,12 @@ import SwiftUI
 struct QualityLabView: View {
     @State private var model = QualityLabModel()
     @State private var showHistory = false
-    @FocusState private var directionFocused: Bool
     var body: some View {
         NavigationStack {
             List {
                 QualityIntroSection()
                 QualityBriefSection(model: model)
-                QualityControlsSection(model: model, directionFocused: $directionFocused)
+                QualityControlsSection(model: model)
                 if model.busy {
                     Section {
                         ProgressView(model.progress)
@@ -40,11 +39,10 @@ struct QualityLabView: View {
                     }
                 }
             }
-            .scrollDismissesKeyboard(.immediately)
             .navigationTitle("Kecocokan")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Bandingkan", systemImage: "list.bullet.rectangle") { directionFocused = false; model.compare() }
+                    Button("Bandingkan", systemImage: "list.bullet.rectangle") { model.compare() }
                         .disabled(model.busy).accessibilityIdentifier("quality-compare")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -119,7 +117,6 @@ private struct QualityBriefSection: View {
 }
 private struct QualityControlsSection: View {
     @Bindable var model: QualityLabModel
-    var directionFocused: FocusState<Bool>.Binding
     var body: some View {
         Section("Koreksi preferensi") {
             DisclosureGroup("Syarat wajib, preferensi dan avoid") {
@@ -139,14 +136,13 @@ private struct QualityControlsSection: View {
                 text: Binding(
                     get: { model.profile.direction },
                     set: { text in
-                        guard model.profile.direction != text else { return }
                         var value = model.profile
                         value.direction = text
                         value.directionConfirmed = false
                         model.profile = value
                     }), axis: .vertical
             )
-            .accessibilityIdentifier("quality-direction").focused(directionFocused).autocorrectionDisabled()
+            .accessibilityIdentifier("quality-direction")
             if !model.profile.direction.isEmpty && !model.profile.directionConfirmed {
                 Button("Tinjau arahan") { model.reviewDirection() }
                     .accessibilityIdentifier("quality-review")

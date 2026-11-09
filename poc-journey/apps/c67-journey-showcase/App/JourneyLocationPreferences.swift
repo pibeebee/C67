@@ -59,22 +59,30 @@ struct JourneyDestinationPreferences: View {
     }
     var body: some View {
         JourneyPanel {
+            areaPicker
+            Divider()
+            requiredSpots
+            spotSearch
+        }
+    }
+    private var areaPicker: some View {
+        VStack(alignment: .leading, spacing: 12) {
             Text("Area yang ingin dijelajahi").font(.headline)
             Text("Tanpa pilihan berarti semua area dalam katalog. Spot di luar area tidak akan diusulkan.").font(.footnote).foregroundStyle(.secondary)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 130))]) {
                 ForEach(model.availableAreas) { area in
-                    let chosen = model.request.targetAreas?.contains(area) == true
-                    Button { model.toggleArea(area) } label: {
-                        Label(area.label, systemImage: chosen ? "checkmark.circle.fill" : "circle")
-                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                    }.accessibilityIdentifier("area-" + area.rawValue)
-                        .accessibilityAddTraits(chosen ? .isSelected : [])
+                    JourneyAreaChoice(area: area, chosen: model.request.targetAreas?.contains(area) == true) {
+                        model.toggleArea(area)
+                    }
                 }
             }
             if !(model.request.targetAreas ?? []).isEmpty {
                 Button("Semua area") { model.edit { $0.targetAreas = nil } }.accessibilityIdentifier("all-areas")
             }
-            Divider()
+        }
+    }
+    private var requiredSpots: some View {
+        VStack(alignment: .leading, spacing: 12) {
             Text("Ada spot yang wajib didatangi?").font(.headline)
             Text("Pilih hingga enam spot dari katalog bersumber. Syarat minat, jam layanan, dan rute tetap diperiksa; spot wajib tidak diganti diam-diam.").font(.footnote).foregroundStyle(.secondary)
             ForEach(model.request.requiredCandidateIDs, id: \.self) { id in
@@ -82,23 +90,56 @@ struct JourneyDestinationPreferences: View {
                     Label(model.catalog.candidate(id)?.name ?? id, systemImage: "pin.slash")
                 }.accessibilityLabel("Lepas spot wajib " + (model.catalog.candidate(id)?.name ?? id))
             }
-            DisclosureGroup("Cari & pilih spot dalam katalog") {
-                TextField("Nama spot atau alamat", text: $spotQuery).textFieldStyle(.roundedBorder).accessibilityIdentifier("spot-query")
-                if spots.isEmpty { Text("Belum ada spot bersumber untuk pencarian ini. Coba area atau nama lain.").font(.footnote) }
-                ForEach(spots, id: \.self) { id in
-                    if let candidate = model.catalog.candidate(id) {
-                        Button { model.toggleDesiredSpot(id) } label: {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(candidate.name); Text(candidate.scope).font(.caption).foregroundStyle(.secondary)
-                                }
-                                Spacer()
-                                Image(systemName: model.request.requiredCandidateIDs.contains(id) ? "pin.fill" : "plus.circle")
-                            }.frame(minHeight: 44)
-                        }.accessibilityIdentifier("desired-spot-" + id)
-                    }
-                }
+        }
+    }
+    private var spotSearch: some View {
+        DisclosureGroup("Cari & pilih spot dalam katalog") {
+            TextField("Nama spot atau alamat", text: $spotQuery).textFieldStyle(.roundedBorder).accessibilityIdentifier("spot-query")
+            if spots.isEmpty { Text("Belum ada spot bersumber untuk pencarian ini. Coba area atau nama lain.").font(.footnote) }
+            ForEach(spots, id: \.self) { id in
+                spotChoice(id)
             }
         }
+    }
+    @ViewBuilder private func spotChoice(_ id: String) -> some View {
+        if let candidate = model.catalog.candidate(id) {
+            JourneySpotChoice(id: id, name: candidate.name, scope: candidate.scope,
+                              required: model.request.requiredCandidateIDs.contains(id)) {
+                model.toggleDesiredSpot(id)
+            }
+        }
+    }
+}
+
+private struct JourneyAreaChoice: View {
+    let area: TripArea
+    let chosen: Bool
+    let action: () -> Void
+    var body: some View {
+        Button(action: action) {
+            Label(area.label, systemImage: chosen ? "checkmark.circle.fill" : "circle")
+                .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+        }.accessibilityIdentifier("area-" + area.rawValue)
+            .accessibilityAddTraits(chosen ? .isSelected : [])
+    }
+}
+
+private struct JourneySpotChoice: View {
+    let id: String
+    let name: String
+    let scope: String
+    let required: Bool
+    let action: () -> Void
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(name)
+                    Text(scope).font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: required ? "pin.fill" : "plus.circle")
+            }.frame(minHeight: 44)
+        }.accessibilityIdentifier("desired-spot-" + id)
     }
 }

@@ -1,5 +1,9 @@
 # Capability and verification status
 
+## Scoped PR #12 repairs — 9 November 2026
+
+Journey Showcase and its required shared TripIntegration engine are the contribution. Production code, Context Lab, and the standalone Foundation Lab/Trip Integration App and UITests retain current main. The development ledger now covers 12 maintained-source changes; immutable import hashes and historical reports are preserved. Earlier consolidation UI results describe the pre-scope-adjustment run, not a new test of the retained diagnostic UI. See the [repair task](docs/tasks/pr12-journey-fixes-2026-11-09.md) for the current checks and CI status.
+
 ## Journey Showcase entry point — 9 November 2026
 
 Journey Showcase is the guided user UI for the TJ itinerary experiment; Trip Integration owns the shared engine and diagnostic app. The current POC includes custom origins, area/required-spot preferences, car/TJ routing, transfer details, road maps, proposal persistence and exports. See the [consolidation report](docs/consolidation-report-2026-11-09.md) for new-worktree verification and the [Showcase guide](apps/c67-journey-showcase/README.md) to run it.

@@ -78,6 +78,28 @@ import UIKit
         XCTAssertEqual(model.phase, .preferences)
         XCTAssertNil(model.review); XCTAssertFalse(model.busy)
     }
+    func testNewTripsKeepTheCurrentModesEmbeddingPolicy() async throws {
+        model.newTrip()
+        XCTAssertEqual(model.mode, .demo)
+        XCTAssertFalse(model.request.useEmbedding)
+
+        await model.switchMode(.live)
+        model.newTrip()
+        XCTAssertEqual(model.mode, .live)
+        XCTAssertTrue(model.request.useEmbedding)
+        await model.flushDraft()
+
+        let restored = JourneyModel(root: folder)
+        await restored.switchMode(.live)
+        XCTAssertTrue(restored.request.useEmbedding)
+        restored.newTrip()
+        XCTAssertTrue(restored.request.useEmbedding)
+        await restored.flushDraft()
+
+        await model.switchMode(.demo)
+        model.newTrip()
+        XCTAssertFalse(model.request.useEmbedding)
+    }
     func testRequiredPlaceTogglePreservesOtherSelections() async throws {
         model.recommend(); try await settled()
         let previous = model.selected

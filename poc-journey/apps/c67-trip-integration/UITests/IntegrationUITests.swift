@@ -1,9 +1,9 @@
 import XCTest
 
 @MainActor final class IntegrationUITests: XCTestCase {
-    private func app(arguments: [String] = ["--p3-replay"]) -> XCUIApplication {
+    private func app() -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = arguments
+        app.launchArguments = ["--p3-replay"]
         app.launch()
         return app
     }
@@ -22,6 +22,7 @@ import XCTest
         tap("recommend", app: app)
         tap("verify-locations", app: app)
         tap("calculate-plan", app: app)
+        XCTAssertTrue(app.buttons["proposal"].waitForExistence(timeout: 30))
         tap("proposal", app: app)
         XCTAssertTrue(app.staticTexts["plan-status"].waitForExistence(timeout: 5))
         let evidence = XCTAttachment(screenshot: app.screenshot())
@@ -34,28 +35,6 @@ import XCTest
         XCTAssertTrue(app.staticTexts["REPLAY SINTETIS"].exists)
         tap("accept-plan", app: app)
         XCTAssertTrue(app.staticTexts["Versi tersimpan; tidak diubah oleh input baru."].waitForExistence(timeout: 5))
-    }
-    func testBlokMReplayJourneyCanBeReviewedAndAccepted() {
-        let app = app(arguments: ["--p3-blok-m-replay"])
-        XCTAssertTrue(app.staticTexts["blok-m-mode"].waitForExistence(timeout: 5))
-        proposal(app)
-        XCTAssertTrue(app.staticTexts["REPLAY SINTETIS"].exists)
-        tap("accept-plan", app: app)
-        XCTAssertTrue(app.staticTexts["Versi tersimpan; tidak diubah oleh input baru."].waitForExistence(timeout: 5))
-    }
-    func testBuswayReplayCanBeReviewedAndAccepted() {
-        let app = app(arguments: ["--p3-busway-replay"])
-        XCTAssertTrue(app.staticTexts["busway-assumptions"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["transport-mode"].exists)
-        proposal(app)
-        XCTAssertTrue(app.staticTexts["REPLAY SINTETIS"].exists)
-        tap("accept-plan", app: app)
-        XCTAssertTrue(app.staticTexts["Versi tersimpan; tidak diubah oleh input baru."].waitForExistence(timeout: 5))
-        for _ in 0 ..< 12 {
-            if app.staticTexts["busway-leg"].firstMatch.isHittable { break }
-            app.swipeUp()
-        }
-        XCTAssertTrue(app.staticTexts["busway-leg"].firstMatch.exists)
     }
     func testReplayCannotBeMistakenForWeatherKitDiagnosis() {
         let app = app()
