@@ -174,10 +174,17 @@ import ContextPilotAdapters
         request.priorities = input.priorities; request.maximumTotalWaitingMinutes = input.maximumWaitingMinutes
         request.policy = input.policy; request.maxTravelCalls = input.maxTravelCalls
         request.allVisitSlots = true; request.beamWidth = 12
+        request.order = input.order ?? .optimized
         let preparation = Self.seconds(clock)
-        let adapter = try AppleContextTravelAdapter(identities: identities, provider: LabRESTETA(apple: apple))
+        let eta = LabRESTETA(apple: apple)
+        let adapter: any MeasuredContextTravelProvider
+        if input.transport == .transjakarta {
+            adapter = try BuswayContextAdapter(identities: identities, provider: eta)
+        } else {
+            adapter = try AppleContextTravelAdapter(identities: identities, provider: eta)
+        }
         let routeClock = ContinuousClock.now
-        let baseline: ContextItineraryResult
+        var baseline: ContextItineraryResult
         var baselineMoment: VisitOpportunity?
         var alternate: ContextItineraryResult?
         var alternateMoment: VisitOpportunity?
@@ -193,9 +200,13 @@ import ContextPilotAdapters
         } else {
             baseline = try await ContextItineraryPlanner.plan(request, provider: adapter, now: Date())
         }
-        let metrics = DynamicStageMetrics(preparationSeconds: preparation, routingSeconds: Self.seconds(routeClock),
+        if input.transport == .transjakarta {
+            baseline.warnings.append("TJ uses an attributed static GTFS snapshot and estimated headways, not real-time arrivals. Access/transfer weather exposure is unknown.")
+        }
+        var metrics = DynamicStageMetrics(preparationSeconds: preparation, routingSeconds: Self.seconds(routeClock),
                                           etaAdapterSeconds: adapter.providerWallSeconds, serverTotalSeconds: Self.seconds(clock), etaCalls: baseline.travelCalls,
-                                          unavailableETA: adapter.metrics.failures, weatherStatus: weatherStates.isEmpty ? "not_requested" : weatherStates.joined(separator: ","), evidenceMode: "LIVE")
+                                          unavailableETA: eta.metrics.failures, weatherStatus: weatherStates.isEmpty ? "not_requested" : weatherStates.joined(separator: ","), evidenceMode: input.transport == .transjakarta ? "LIVE_WALKING_STATIC_GTFS" : "LIVE")
+        metrics.providerCalls = eta.metrics.calls; metrics.providerCells = eta.metrics.cells
         return .init(baseline: .init(itinerary: baseline, metrics: metrics, weatherAttributions: weatherSources, moment: baselineMoment),
                      alternative: alternate.map { .init(itinerary: $0, metrics: metrics, weatherAttributions: weatherSources, moment: alternateMoment) })
     }

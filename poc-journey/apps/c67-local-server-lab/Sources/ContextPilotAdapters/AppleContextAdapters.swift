@@ -16,7 +16,9 @@ public struct PilotIdentity: Codable, Sendable {
     }
 }
 
-@MainActor public final class AppleContextTravelAdapter: ContextTravelProvider {
+@MainActor public protocol MeasuredContextTravelProvider: ContextTravelProvider { var providerWallSeconds: Double { get } }
+
+@MainActor public final class AppleContextTravelAdapter: MeasuredContextTravelProvider {
     private let identities: [String: PilotIdentity]
     private let provider: any LabETAProvider
     public private(set) var providerWallSeconds = 0.0

@@ -27,7 +27,7 @@ let package = Package(name: "C67LocalServerLab", platforms: [.macOS(.v26), .iOS(
     .target(name: "DynamicTripContracts", dependencies: ["PlaceContextEngine"]),
     .target(name: "DynamicTripEngine", dependencies: ["DynamicTripContracts", "ContextPilotAdapters", "PlannerEngine"]),
     .testTarget(name: "DynamicTripTests", dependencies: ["DynamicTripEngine", "DynamicTripContracts"]),
-    .target(name: "ContextPilotAdapters", dependencies: ["PlaceContextEngine", "PlannerEngine"]),
+    .target(name: "ContextPilotAdapters", dependencies: ["PlaceContextEngine", "PlannerEngine", .product(name: "TripIntegration", package: "TripIntegration")]),
     .executableTarget(name: "ContextPilotCLI", dependencies: ["ContextPilotAdapters", "PlaceContextEngine", "PlannerEngine"]),
     .testTarget(name: "ContextPilotTests", dependencies: ["ContextPilotAdapters", "PlaceContextEngine", "PlannerEngine"]),
     .executableTarget(name: "PlacesContextCLI", dependencies: ["PlaceContextEngine"]),

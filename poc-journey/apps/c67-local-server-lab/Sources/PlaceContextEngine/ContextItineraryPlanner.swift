@@ -2,7 +2,8 @@ import Foundation
 
 public struct ContextTravelTime: Codable, Sendable {
     public var seconds: Double; public var departure: Date; public var source: String
-    public init(seconds: Double, departure: Date, source: String) { self.seconds = seconds; self.departure = departure; self.source = source }
+    public var details: ContextTransportDetails?
+    public init(seconds: Double, departure: Date, source: String, details: ContextTransportDetails? = nil) { self.seconds = seconds; self.departure = departure; self.source = source; self.details = details }
 }
 @MainActor public protocol ContextTravelProvider: Sendable {
     func travel(from: String, to: String, departure: Date) async throws -> ContextTravelTime?
@@ -22,7 +23,8 @@ public struct ContextPlanRequest: Codable, Sendable {
     public var maximumTotalWaitingMinutes: Int?
     public var policy = ContextSearchPolicy.beam
     public var allVisitSlots = false
-    enum CodingKeys: String, CodingKey { case originID, returnID, departure, deadline, stops, priorities, beamWidth, maxTravelCalls, maximumTotalWaitingMinutes, policy, allVisitSlots }
+    public var order = ContextVisitOrder.optimized
+    enum CodingKeys: String, CodingKey { case originID, returnID, departure, deadline, stops, priorities, beamWidth, maxTravelCalls, maximumTotalWaitingMinutes, policy, allVisitSlots, order }
     public init(from decoder: Decoder)throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         originID = try c.decode(String.self, forKey: .originID); returnID = try c.decode(String.self, forKey: .returnID)
@@ -34,6 +36,7 @@ public struct ContextPlanRequest: Codable, Sendable {
         maximumTotalWaitingMinutes = try c.decodeIfPresent(Int.self, forKey: .maximumTotalWaitingMinutes)
         policy = try c.decodeIfPresent(ContextSearchPolicy.self, forKey: .policy) ?? .beam
         allVisitSlots = try c.decodeIfPresent(Bool.self, forKey: .allVisitSlots) ?? false
+        order = try c.decodeIfPresent(ContextVisitOrder.self, forKey: .order) ?? .optimized
     }
     public init(originID: String, returnID: String, departure: Date, deadline: Date, stops: [ContextPlanStop]) {
         self.originID = originID; self.returnID = returnID; self.departure = departure; self.deadline = deadline; self.stops = stops
@@ -96,10 +99,12 @@ public struct ContextItineraryResult: Codable, Sendable {
                 guard result.travelCalls < input.maxTravelCalls else { result.searchTruncated = true; return nil }
                 result.travelCalls += 1
                 guard let value = try await provider.travel(from: from, to: to, departure: date), value.seconds.isFinite, value.seconds >= 0,
-                      abs(value.departure.timeIntervalSince(date)) < 0.001,!value.source.isEmpty else {
+                      abs(value.departure.timeIntervalSince(date)) < 0.001,!value.source.isEmpty,
+                      value.details.map({ $0.walkingSeconds.isFinite && $0.walkingSeconds >= 0 && $0.transitWaitingSeconds.isFinite && $0.transitWaitingSeconds >= 0 && $0.walkingSeconds + $0.transitWaitingSeconds <= value.seconds + 0.001 }) ?? true else {
                     missing.insert(key); hadUnavailable = true; return nil
                 }
                 time = value; cache[key] = value
+                if value.details?.searchLimited == true { result.searchTruncated = true }
             }
             return .init(from: from, to: to, departure: date, arrival: date.addingTimeInterval(time.seconds), evidence: time)
         }
@@ -140,7 +145,7 @@ public struct ContextItineraryResult: Codable, Sendable {
         let indices = Array(input.stops.indices)
         let rotations = indices.map { offset in Array(indices[offset...]) + Array(indices[..<offset]) }
         let rest = permutations(indices).filter { !rotations.contains($0) }
-        let orders: [[Int]?] = input.policy == .beam ? [nil] : (rotations + rest).map { Optional($0) }
+        let orders: [[Int]?] = input.order == .fixed ? [indices] : (input.policy == .beam ? [nil] : (rotations + rest).map { Optional($0) })
         var complete: [State] = []
         var attemptedOrders = 0
         for order in orders {
@@ -171,7 +176,7 @@ public struct ContextItineraryResult: Codable, Sendable {
                         if selected.count < feasible.count { result.searchTruncated = true }
                         for option in selected {
                             var n = state; n.remaining.removeAll { $0 == index }; n.last = id; n.cursor = option.end
-                            n.waiting += option.start.timeIntervalSince(movement.arrival)
+                            n.waiting += option.start.timeIntervalSince(movement.arrival) + (movement.evidence.details?.transitWaitingSeconds ?? 0)
                             if let cap = input.maximumTotalWaitingMinutes, n.waiting > Double(cap * 60) + 0.001 { continue }
                             n.legs.append(movement); n.visits.append(.init(placeID: id, arrival: movement.arrival, visit: option)); n.travel += movement.evidence.seconds
                             for (i, goal) in input.priorities.enumerated() {
@@ -192,7 +197,10 @@ public struct ContextItineraryResult: Codable, Sendable {
             var found: [State] = []
             for state in beam where state.remaining.isEmpty {
                 guard let movement = try await leg(state.last, input.returnID, state.cursor), movement.arrival <= input.deadline else { continue }
-                var finished = state; finished.legs.append(movement); finished.travel += movement.evidence.seconds; finished.cursor = movement.arrival; found.append(finished)
+                var finished = state
+                finished.waiting += movement.evidence.details?.transitWaitingSeconds ?? 0
+                if let cap = input.maximumTotalWaitingMinutes, finished.waiting > Double(cap * 60) + 0.001 { continue }
+                finished.legs.append(movement); finished.travel += movement.evidence.seconds; finished.cursor = movement.arrival; found.append(finished)
             }
             complete += found
             if input.policy == .firstFeasible && !found.isEmpty {

@@ -78,3 +78,7 @@ The handoff is published for review in [C67 PR #10](https://github.com/pibeebee/
 Start with [Showcase](apps/c67-journey-showcase/README.md) for Demo/Live mode selection, custom origins, area/spot preferences, map controls, TJ details, reviewed save/revision and exports. Use Trip Integration for engine changes and diagnostics, and the sibling Foundation Lab packages for preference and timing rules. Keep Native Routing Lab and CLI independently runnable.
 
 The [consolidation report](docs/consolidation-report-2026-11-09.md) records this checkout's checks. Use the [evidence policy](evidence/README.md) when changing maintained imported source: historical publication hashes remain fixed, and functional changes require a reviewed development-ledger entry. Tests run offline fixtures unless a separate provider/device task explicitly says otherwise.
+
+## Local Context Lab editor extension — 9 November 2026
+
+The local feature branch adds pre-departure itinerary editing and the shared TJ engine to Context Lab. See the [editor task](docs/tasks/context-itinerary-editor.md), [app usage](apps/c67-local-server-lab/ContextHarness/README.md#itinerary-editor-and-transjakarta-local-development), and [new report](apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md). This is separate from the dated v0.5/provider evidence above.

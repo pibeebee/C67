@@ -36,6 +36,9 @@ struct SimplePersonalRoot: View {
                     }
                 }
             }
+            .sheet(isPresented: Binding(get: { model.editor.presented }, set: { model.editor.presented = $0 }), onDismiss: { model.restoreRevision() }) {
+                ItineraryEditorView(editor: model.editor, model: model)
+            }
             .sheet(item: $model.candidateDetail){row in NavigationStack { SimplePlaceDetail(model: model, row: row) }}
             .sheet(item: Binding(get: {model.pendingOrigin ? nil : model.pending}, set: {model.pending = $0})){
                 _ in NavigationStack { PersonalAppleConfirmation(model: model) }
@@ -292,6 +295,9 @@ private struct SimplePlanView: View {
     var body: some View {
         ScrollViewReader { proxy in
             List {
+                if model.planOutput == nil, model.editor.state.current != nil {
+                    Button("Buka itinerary tersimpan") { model.restoreRevision() }.disabled(model.busy)
+                }
                 if let output = model.planOutput {
                     SimplePlanResult(model: model, output: output).id("simple-result")
                 }
@@ -314,7 +320,11 @@ private struct SimplePlanView: View {
                         Button { sheet = .origin } label: {
                             HStack{Text(model.origin?.prepared.name ?? "Pilih lokasi awal"); Spacer(); Image(systemName: "chevron.right").font(.caption)}
                         }.disabled(model.busy).accessibilityIdentifier("simple-origin")
-                        Text("Mobil · kembali ke lokasi awal · tunggu maks. \(model.waitingMinutes) menit")
+                        Picker("Transportasi", selection: $model.transport) {
+                            Text("Mobil").tag(ContextTransport.automobile)
+                            Text("TJ + jalan kaki").tag(ContextTransport.transjakarta)
+                        }.disabled(model.busy)
+                        Text("Kembali ke lokasi awal · total menunggu maks. \(model.waitingMinutes) menit")
                             .font(.footnote).foregroundStyle(.secondary)
                         if model.rainAdjustmentEnabled { Label("Cuaca otomatis untuk kegiatan luar ruang", systemImage: "cloud.sun.rain").font(.footnote).foregroundStyle(.secondary) }
                         if model.busy { HStack{ProgressView(); Text("Menyusun perjalanan…")} }
@@ -325,7 +335,7 @@ private struct SimplePlanView: View {
                 }
             }.navigationTitle("Rencana")
                 .onChange(of: model.planID){_, _ in Task { @MainActor in await Task.yield(); proxy.scrollTo("simple-result", anchor: .top) }}
-                .onChange(of: model.planSettings){_, _ in model.planOutput = nil}
+                .onChange(of: model.planSettings){_, value in if value != model.appliedSettings { model.planOutput = nil } }
         }
     }
 }
@@ -336,13 +346,20 @@ private struct SimplePlanResult: View {
     var body: some View {
         let trip = output.result.itinerary
         Section("Perjalanan Anda") {
+            if let error = model.editor.error { Text(error).foregroundStyle(.red) }
+            Button(model.editor.state.draft == nil ? "Edit perjalanan" : "Lanjutkan edit perjalanan") { model.editor.begin() }
+                .buttonStyle(.borderedProminent).accessibilityIdentifier("revision-open")
+            if !model.editor.state.revisions.isEmpty {
+                NavigationLink("Riwayat versi (\(model.editor.state.revisions.count))") { ItineraryHistoryView(state: model.editor.state) }.accessibilityIdentifier("revision-history")
+            }
+
             if trip.visits.isEmpty {
                 Label("Jadwal belum dapat disusun", systemImage: "calendar.badge.exclamationmark")
                     .accessibilityIdentifier("personal-plan-status")
             } else {
                 Text("\(trip.visits.count) tujuan · pulang \(trip.finish.map(ContextLabModel.time) ?? "–") WIB")
                     .font(.headline).accessibilityIdentifier("personal-plan-status")
-                Text("Menunggu \(trip.waitingSeconds / 60, specifier: "%.1f") menit").font(.subheadline).foregroundStyle(.secondary)
+                Text("Menunggu \(trip.totalWaitingSeconds / 60, specifier: "%.1f") menit").font(.subheadline).foregroundStyle(.secondary)
                 if let moment = output.result.moment {
                     let place = model.stops.first { $0.stop.place.prepared.googlePlaceID == moment.placeID }?.stop.place.prepared.name
                     if let place { TripMomentCard(moment: moment, place: place) }
@@ -352,6 +369,7 @@ private struct SimplePlanResult: View {
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(index + 1)").font(.caption.bold()).frame(width: 26, height: 26).background(Color.accentColor.opacity(0.13), in: Circle())
                         VStack(alignment: .leading, spacing: 4) {
+
                             Text(model.stops.first{$0.stop.place.prepared.googlePlaceID == visit.placeID}?.stop.place.prepared.name ?? "Tujuan").font(.headline)
                             Text("\(ContextLabModel.time(visit.visit.start))–\(ContextLabModel.time(visit.visit.end)) WIB").font(.subheadline).foregroundStyle(.secondary)
                         }

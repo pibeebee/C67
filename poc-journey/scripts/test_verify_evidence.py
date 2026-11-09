@@ -104,6 +104,17 @@ class EvidenceTests(unittest.TestCase):
         self.target.write_text("rewritten")
         self.assertTrue(validate(self.root, {"files": []}, self.ledger(), additional_manifests=[context]))
 
+    def test_context_maintained_change_requires_matching_manifest_owner(self):
+        path = "apps/c67-local-server-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift"
+        target = self.root / path; target.parent.mkdir(parents=True); target.write_text("original")
+        baseline = self.digest(target)
+        context = {"files": [{"publicationPath": path, "disposition": "included", "publishedSHA256": baseline}]}
+        target.write_text("functional change")
+        ledger = {"schemaVersion": 1, "changes": [{"publicationPath": path, "publicationManifest": "context-lab-publication.json", "importedPublishedSHA256": baseline, "currentSHA256": self.digest(target), "reason": "Fixed order planning", "verification": "verification.md"}]}
+        self.assertEqual(validate(self.root, self.manifest, ledger, additional_manifests=[context]), [])
+        ledger["changes"][0]["publicationManifest"] = "publication-manifest.json"
+        self.assertTrue(validate(self.root, self.manifest, ledger, additional_manifests=[context]))
+
 
 if __name__ == "__main__":
     unittest.main()

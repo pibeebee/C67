@@ -14,7 +14,7 @@ struct ContextRunConfig: Decodable {
     private let session: URLSession
     private let namespace: String
     init(namespace: String = "context") throws {
-        guard ["context", "recommendation"].contains(namespace) else { throw ContextError.invalid("Namespace lab tidak valid") }
+        guard ["context", "recommendation", "itinerary"].contains(namespace) else { throw ContextError.invalid("Namespace lab tidak valid") }
         self.namespace = namespace
         guard let url = Bundle.main.url(forResource: "RunConfig", withExtension: "json") else {
             throw ContextError.invalid("Konfigurasi server lokal belum tersedia")
