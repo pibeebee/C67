@@ -34,9 +34,9 @@ Fixtures are explicitly synthetic, even when the system Map loads real base-map 
 
 ## 3. Open the app
 
-Open `apps/c67-trip-integration/C67TripIntegration.xcodeproj`, scheme `C67TripIntegration`. The normal launch does not automatically call providers. Optional preferences can be skipped, but a skipped profile must be described as general rather than personalized. Review destinations and any ambiguous MapKit branch before calculating a route.
+Open `apps/c67-journey-showcase/C67JourneyShowcase.xcodeproj`, scheme `C67JourneyShowcase`, for the guided user flow. Trip Integration remains the shared engine and diagnostic application. The normal launch does not automatically call providers. Optional preferences can be skipped, but a skipped profile must be described as general rather than personalized. Review destinations and any ambiguous MapKit branch before calculating a route.
 
-Use `--p3-replay` only for the fixed synthetic scenario. Debug-only `--p3-live-eval` runs real provider/evaluation scenarios with **separate** storage under `Documents/P3LiveEval`; it does not modify the normal accepted itinerary. It keeps the screen awake while the evaluation screen is visible. Normal launch restores normal screen behavior.
+The following diagnostic launch flags belong to Trip Integration, not Showcase. Use `--p3-replay` only for the fixed synthetic scenario. Debug-only `--p3-live-eval` runs real provider/evaluation scenarios with **separate** storage under `Documents/P3LiveEval`; it does not modify the normal accepted itinerary. It keeps the screen awake while the evaluation screen is visible. Normal launch restores normal screen behavior.
 
 ## 4. Configure live signing and WeatherKit separately
 
@@ -48,7 +48,7 @@ The Foundation Models experiment additionally needs supported hardware, enabled/
 
 ## 5. Understand data and proposals
 
-- Jakarta/WIB, one day, maximum six selected destinations, automobile/on-demand car. Live evidence currently covers one, two and three venues, not every six-place combination.
+- Jakarta/WIB, one day, maximum six destinations and return to the selected origin. Current Showcase supports car/taxi or TJ plus walking, with at most one transfer. Choose destination areas and required sourced spots before recommendation. Consult the current report for evidence limits; not every city/venue/service combination is covered.
 - Every chosen destination remains; a missing fact or impossible deadline is a visible correction/conflict, not silent removal.
 - Area-level preference claims cannot be borrowed from another room or branch. Cikini's English MapKit alias still requires the Cikini address.
 - Published hours and full-stay entry/session rules are hard checks. Rain/daylight/sunset advice is contextual; the route does not promise every preferred window is globally optimized.
@@ -68,3 +68,9 @@ The full [CBL source record](docs/source-records/CBL.md) preserves earlier decis
 ## Delivery and review
 
 The handoff is published for review in [C67 PR #10](https://github.com/pibeebee/C67/pull/10), branch `gi/poc-journey-handoff`. The initial import commit is [0094e3a](https://github.com/pibeebee/C67/commit/0094e3a7061617733b43d79e824d1a5b74864291); subsequent delivery documentation and CI corrections, if any, are visible in the PR history. Follow the PR checks for the current CI outcome. No merge or deployment is part of this delivery.
+
+## Current consolidated entry point — 9 November 2026
+
+Start with [Showcase](apps/c67-journey-showcase/README.md) for Demo/Live mode selection, custom origins, area/spot preferences, map controls, TJ details, reviewed save/revision and exports. Use Trip Integration for engine changes and diagnostics, and the sibling Foundation Lab packages for preference and timing rules. Keep Native Routing Lab and CLI independently runnable.
+
+The [consolidation report](docs/consolidation-report-2026-11-09.md) records this checkout's checks. Use the [evidence policy](evidence/README.md) when changing maintained imported source: historical publication hashes remain fixed, and functional changes require a reviewed development-ledger entry. Tests run offline fixtures unless a separate provider/device task explicitly says otherwise.

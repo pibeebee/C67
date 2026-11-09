@@ -33,10 +33,15 @@ public struct TripRequest: Codable, Equatable, Sendable {
     public var durationByVenue: [String: Int] = [:]
     public var defaultDuration = 60
     public var desiredCount = 3
+    public var transport: TripTransport? = nil
+    public var effectiveTransport: TripTransport { transport ?? .automobile }
     public var useEmbedding = true
     public var allowOpenMeteo = false
     public var goal = TimingGoal.openingOnly
     public var originQuery = "Bundaran HI Jakarta"
+    public var useCityCatalog: Bool? = nil
+    public var originPin: PlacePin? = nil
+    public var targetAreas: [TripArea]? = nil
     public init(now: Date = .now) {
         let calendar = TripClock.calendar
         let today = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: now)!
@@ -54,9 +59,13 @@ public struct TripRequest: Codable, Equatable, Sendable {
               durationByVenue.values.allSatisfy({ (15 ... 360).contains($0) && $0.isMultiple(of: 15) }),
               Set(durationByVenue.keys).isSubset(of: Set(catalog.timing.venues.map(\.id))),
               Set(requiredCandidateIDs).count == requiredCandidateIDs.count,
-              requiredCandidateIDs.count <= 6, originQuery == "Bundaran HI Jakarta",
+              requiredCandidateIDs.count <= 6, (3 ... 200).contains(originQuery.trimmingCharacters(in: .whitespacesAndNewlines).count),
               requiredCandidateIDs.allSatisfy({ id in catalog.quality.candidates.contains { $0.id == id } })
         else { throw IntegrationError.invalid("Input trip tidak valid: satu hari WIB, 1–6 tempat, durasi kelipatan 15 menit. Tanggal lama tidak digeser otomatis.") }
+        guard originPin.map({ IntegrationCatalog.contains($0) }) ?? true,
+              Set(targetAreas ?? []).count == (targetAreas ?? []).count else {
+            throw IntegrationError.invalid("Titik awal harus berada dalam cakupan Jakarta; area tidak boleh duplikat.")
+        }
         let venues = requiredCandidateIDs.compactMap { id in catalog.candidate(id)?.venueID }
         guard Set(venues).count == venues.count else {
             throw IntegrationError.invalid("Dua area dalam venue yang sama tidak dihitung sebagai dua destinasi. Pilih satu area.")
@@ -214,6 +223,8 @@ public struct PlannedLeg: Codable, Identifiable, Sendable {
     public var arrival: Date?
     public var seconds: Double?
     public var providerStatus: String
+    public var mode: String? = nil
+    public var busway: BuswayJourney? = nil
 }
 public struct IntegratedPlan: Codable, Identifiable, Sendable {
     public var schemaVersion = 1

@@ -18,13 +18,18 @@ import TripIntegration
     var exportURLs: [URL] = []
     let catalog: IntegrationCatalog
     let replay: Bool
+    let blokM: Bool
     private let pipeline: IntegrationPipeline
     private let store: TripStore
     private var operation: Task<Void, Never>?
     private var epoch = OperationEpoch()
     private var generation: UUID { epoch.current }
     private var loaded = false
-    private var evaluationNow: Date { replay ? TripClock.date("2026-11-05T07:00:00Z") : .now }
+    private var evaluationNow: Date {
+        guard replay else { return .now }
+        let clock = blokM ? BlokMExperiment.snapshotClock(catalog) : TripClock.date("2026-11-05T07:00:00Z")
+        return request.effectiveTransport == .transjakartaBRT ? max(clock, (try? BuswayFeed.load().source.checkedAt.addingTimeInterval(1)) ?? clock) : clock
+    }
     var displayPlan: IntegratedPlan? { session.proposal ?? session.accepted }
     var canApplyProposal: Bool {
         guard let proposal = session.proposal, let prepared,
@@ -38,19 +43,47 @@ import TripIntegration
 
     init() {
         do {
-            let loadedCatalog = try IntegrationCatalog.load()
             #if DEBUG
-                let isReplay = ProcessInfo.processInfo.arguments.contains("--p3-replay")
-                let service = isReplay ? try IntegrationReplay.pipeline() : IntegrationPipeline(catalog: loadedCatalog)
+                let arguments = ProcessInfo.processInfo.arguments
+                let isBusway = arguments.contains("--p3-busway") || arguments.contains("--p3-busway-replay")
+                let isBlokM = isBusway || arguments.contains("--p3-blok-m") || arguments.contains("--p3-blok-m-replay")
+                let isReplay = arguments.contains("--p3-replay") || arguments.contains("--p3-blok-m-replay") || arguments.contains("--p3-busway-replay")
+                guard !(arguments.contains("--p3-replay") && isBlokM) else {
+                    throw IntegrationError.invalid("Choose one explicit experiment mode.")
+                }
+                let loadedCatalog = try IntegrationCatalog.load(blokM: isBlokM)
+                let service: IntegrationPipeline
+                if isReplay {
+                    service = isBlokM ? try BlokMReplay.pipeline() : try IntegrationReplay.pipeline()
+                } else {
+                    let logs = isBlokM ? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                        .appendingPathComponent("C67BlokM-2026-11-06/ProviderLogs") : nil
+                    service = IntegrationPipeline(catalog: loadedCatalog, logDirectory: logs)
+                }
             #else
+                let isBusway = false
+                let isBlokM = false
                 let isReplay = false
+                let loadedCatalog = try IntegrationCatalog.load()
                 let service = IntegrationPipeline(catalog: loadedCatalog)
             #endif
-            catalog = loadedCatalog; replay = isReplay; pipeline = service
-            store = TripStore(directory: isReplay ? FileManager.default.temporaryDirectory
-                .appendingPathComponent("C67P3Replay-\(UUID().uuidString)") : nil)
+            catalog = loadedCatalog; replay = isReplay; blokM = isBlokM; pipeline = service
+            let directory: URL?
+            if isReplay {
+                directory = FileManager.default.temporaryDirectory.appendingPathComponent("C67P3Replay-\(UUID())")
+            } else if isBusway {
+                directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                    .appendingPathComponent("C67Busway-2026-11-06")
+            } else if isBlokM {
+                directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                    .appendingPathComponent("C67BlokM-2026-11-06")
+            } else {
+                directory = nil
+            }
+            store = TripStore(directory: directory)
             #if DEBUG
-                if isReplay { request = IntegrationReplay.request() }
+                if isReplay { request = isBlokM ? try BlokMReplay.request() : IntegrationReplay.request() }
+                if isBusway { request.transport = .transjakartaBRT }
             #endif
         } catch { fatalError("Invalid bundled catalog: \(error)") }
     }

@@ -1,0 +1,1733 @@
+{
+  "schemaVersion": 2,
+  "id": "tj-only-capability-2026-11-06-v2",
+  "snapshotSHA256": "376b11f72ac30f9f4eb972ae32c7f1a3251b416dc3cd77cc573475a3b2676b9c",
+  "notes": [
+    "Endpoint labels describe test intent; capability-gated cases do not claim that a route was generated.",
+    "Historical service clock is fixed; walking and timing mutations are synthetic, never live evidence.",
+    "Mikrotrans route candidates are selected by category from the optional full-feed inspection.",
+    "Northbound Kota-area control uses Kali Besar G00060; Kota G00061 is a southbound call in this snapshot. The sweep retains an unavailable northbound G00061 pair as a directional control.",
+    "Supersedes active v1 tests: all requested motorized services are TransJakarta agency Tije. Historical v1 is retained unchanged.",
+    "Network source audits are separate from actual application routing results."
+  ],
+  "cases": [
+    {
+      "id": "T01",
+      "title": "Direct TJ beyond Blok M",
+      "origin": "Bundaran HI",
+      "destination": "Kota area (Kali Besar boarding stop)",
+      "requiredCapability": "direct_brt",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Retain a real bus ride northbound using the published ordered calls.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T01",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T02",
+      "title": "Reverse direction",
+      "origin": "Kota",
+      "destination": "Bundaran HI",
+      "requiredCapability": "direct_brt",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Retain a real bus ride southbound with directional boarding.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T02",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T03",
+      "title": "Short corridor journey",
+      "origin": "MH Thamrin",
+      "destination": "Tosari",
+      "requiredCapability": "direct_brt",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Use ordered calls rather than a straight-line ETA.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T03",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T04",
+      "title": "Same-stop walking",
+      "origin": "Bundaran HI",
+      "destination": "Bundaran HI",
+      "requiredCapability": "walking",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Classify as walking only and never count as TJ support.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T04",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T05",
+      "title": "One BRT interchange",
+      "origin": "Ragunan",
+      "destination": "Kota",
+      "requiredCapability": "brt_transfer",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Requires two ordered rides and a verified interchange.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "6",
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T05",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T06",
+      "title": "Two BRT interchanges",
+      "origin": "Kampung Rambutan",
+      "destination": "Kalideres",
+      "requiredCapability": "brt_transfer",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Requires at least three rides; no transfer shortcut.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "7",
+        "5",
+        "3"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T06",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T07",
+      "title": "East to west",
+      "origin": "Pulo Gadung",
+      "destination": "Kalideres",
+      "requiredCapability": "brt_transfer",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Compare directional patterns and transfer feasibility.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "2",
+        "3"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T07",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T08",
+      "title": "South to north",
+      "origin": "Ragunan",
+      "destination": "Ancol",
+      "requiredCapability": "brt_transfer",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Retain all required rides, access and waiting.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "6",
+        "5"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T08",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T09",
+      "title": "BRT to feeder",
+      "origin": "Bundaran HI",
+      "destination": "Pondok Labu",
+      "requiredCapability": "non_brt",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Verify route 1E category and direction before chaining.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1",
+        "1E"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T09",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Angkutan Umum Integrasi"
+    },
+    {
+      "id": "T10",
+      "title": "Feeder to BRT",
+      "origin": "Pondok Labu",
+      "destination": "Kota",
+      "requiredCapability": "non_brt",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Access bus, interchange and BRT are distinct steps.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1E",
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T10",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Angkutan Umum Integrasi"
+    },
+    {
+      "id": "T11",
+      "title": "Feeder BRT feeder",
+      "origin": "Palmerah",
+      "destination": "Pantai Maju",
+      "requiredCapability": "non_brt",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Do not merge route 1B and 1A into one ride.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1B",
+        "1",
+        "1A"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T11",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Angkutan Umum Integrasi"
+    },
+    {
+      "id": "T12",
+      "title": "Direct non-BRT",
+      "origin": "Palmerah",
+      "destination": "Transport Hub Dukuh Atas",
+      "requiredCapability": "non_brt",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Route 1B is Angkutan Umum Integrasi, not BRT.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1B"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T12",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Angkutan Umum Integrasi"
+    },
+    {
+      "id": "T13",
+      "title": "Mikrotrans to BRT",
+      "origin": "Cengkareng via JAK.79",
+      "destination": "Kota",
+      "requiredCapability": "mikrotrans",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Resolve an actual Mikrotrans route from the pinned full feed.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "JAK.79",
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T13",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Mikrotrans"
+    },
+    {
+      "id": "T14",
+      "title": "BRT to Mikrotrans",
+      "origin": "Kota",
+      "destination": "Tubagus Angke via JAK.79",
+      "requiredCapability": "mikrotrans",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Keep Mikrotrans category and alighting identity.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1",
+        "JAK.79"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T14",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Mikrotrans"
+    },
+    {
+      "id": "T15",
+      "title": "Three service categories",
+      "origin": "Jembatan Garden via JAK.107",
+      "destination": "Ragunan",
+      "requiredCapability": "mikrotrans",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Mikrotrans, non-BRT and BRT require separate rides.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "JAK.107",
+        "1B",
+        "6"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T15",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Mikrotrans"
+    },
+    {
+      "id": "T16",
+      "title": "Beyond supported geography",
+      "origin": "Bekasi",
+      "destination": "Jakarta destination",
+      "requiredCapability": "outside_region",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "input",
+      "assertion": "Reject out-of-bounds coordinates explicitly.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T16",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T17",
+      "title": "BRT corridor 2",
+      "origin": "Pulo Gadung",
+      "destination": "Monumen Nasional",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "2"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T17",
+      "preferences": {},
+      "serviceCategory": "BRT",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T18",
+      "title": "BRT corridor 3",
+      "origin": "Kalideres",
+      "destination": "Monumen Nasional",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "3"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T18",
+      "preferences": {},
+      "serviceCategory": "BRT",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T19",
+      "title": "Cross-city corridor 9",
+      "origin": "Pinang Ranti",
+      "destination": "Pluit",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "9"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T19",
+      "preferences": {},
+      "serviceCategory": "BRT",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T20",
+      "title": "Elevated corridor 13",
+      "origin": "Ciledug",
+      "destination": "Tegal Mampang",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "13"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T20",
+      "preferences": {},
+      "serviceCategory": "BRT",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T21",
+      "title": "BRT corridor 14",
+      "origin": "Jakarta International Stadium",
+      "destination": "Senen",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "14"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T21",
+      "preferences": {},
+      "serviceCategory": "BRT",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T22",
+      "title": "Royaltrans cross-boundary service",
+      "origin": "Bekasi Barat",
+      "destination": "Kuningan",
+      "requiredCapability": "royaltrans",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "B14"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T22",
+      "preferences": {},
+      "serviceCategory": "Royaltrans",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T23",
+      "title": "Transjabodetabek with restricted calls",
+      "origin": "Cikarang",
+      "destination": "Cawang",
+      "requiredCapability": "transjabodetabek",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "B51"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T23",
+      "preferences": {},
+      "serviceCategory": "Transjabodetabek",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T24",
+      "title": "Tourist loop service",
+      "origin": "Sejarah Jakarta loop",
+      "destination": "Sejarah Jakarta loop",
+      "requiredCapability": "bus_wisata",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Preserve the actual TJ service identity and source category; current corridor-1 runtime must not fabricate coverage.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "BW1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T24",
+      "preferences": {},
+      "serviceCategory": "Bus Wisata",
+      "operators": [
+        "Tije"
+      ]
+    },
+    {
+      "id": "T25",
+      "title": "Same name different stop",
+      "origin": "Named platform A",
+      "destination": "Same-named platform B",
+      "requiredCapability": "transfer_integrity",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "Names alone must not create a ride between disconnected patterns.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T25",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T26",
+      "title": "Opposite platform",
+      "origin": "Southbound platform",
+      "destination": "Northbound destination",
+      "requiredCapability": "transfer_integrity",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "Reverse ride is unavailable in a single directional pattern.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T26",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T27",
+      "title": "Exit and re-entry transfer",
+      "origin": "Paid-area exit",
+      "destination": "Different paid-area entrance",
+      "requiredCapability": "transfer_integrity",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "No implicit zero-time paid-area transfer can be represented.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1",
+        "4"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T27",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T28",
+      "title": "Nearby but inaccessible",
+      "origin": "Origin",
+      "destination": "Nearby destination",
+      "requiredCapability": "walking_failure",
+      "expectedOutcome": "provider_failure",
+      "blockingLayer": "provider",
+      "assertion": "Unavailable walking must not be replaced by fabricated duration.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T28",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T29",
+      "title": "Before opening",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Include wait until service opens plus one full headway.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T29",
+      "preferences": {},
+      "probeInputs": {
+        "departureHourWIB": 8,
+        "syntheticFrequencyHours": [
+          9,
+          10
+        ],
+        "headwaySeconds": 600
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T30",
+      "title": "Service end exclusive",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "Boarding exactly at the frequency end is unavailable.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T30",
+      "preferences": {},
+      "probeInputs": {
+        "departureWIB": "09:48:00",
+        "syntheticFrequencyEndWIB": "10:00:00"
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T31",
+      "title": "Previous service day",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "01:00 may belong to a 23:00-26:00 previous-day window.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T31",
+      "preferences": {},
+      "probeInputs": {
+        "departureHourWIB": 1,
+        "syntheticFrequencyHours": [
+          23,
+          26
+        ]
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T32",
+      "title": "Calendar and exceptions",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "calendar",
+      "expectedOutcome": "missing_data",
+      "blockingLayer": "data",
+      "assertion": "Verify weekly exclusion; missing holiday exceptions remain unknown.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T32",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T33",
+      "title": "One-minute connection delay",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "delay",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "An extra minute of access can exhaust the last boarding window.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T33",
+      "preferences": {},
+      "probeInputs": {
+        "baselineDepartureWIB": "09:47:30",
+        "delaySeconds": 60
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T34",
+      "title": "Five-minute connection delay",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "delay",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "A five-minute delay must not retain a departed connection.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T34",
+      "preferences": {},
+      "probeInputs": {
+        "baselineDepartureWIB": "09:47:30",
+        "delaySeconds": 300
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T35",
+      "title": "Visit plus 30 minutes",
+      "origin": "Mandatory venue",
+      "destination": "Return origin",
+      "requiredCapability": "revision",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "itinerary",
+      "assertion": "An extension that exceeds the accepted finish deadline is rejected.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T35",
+      "preferences": {},
+      "probeInputs": {
+        "extensionMinutes": 30,
+        "deadline": "accepted finish plus 1 second"
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T36",
+      "title": "Outbound only",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination and return",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "An available outbound ride does not establish return service.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T36",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T37",
+      "title": "800-metre access cutoff",
+      "origin": "Offset origin",
+      "destination": "Boarding coordinate",
+      "requiredCapability": "access_boundary",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "Test 799, 800 and 801 metres around the actual search cutoff.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T37",
+      "preferences": {},
+      "probeInputs": {
+        "accessDistancesMeters": [
+          799,
+          800,
+          801
+        ]
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T38",
+      "title": "20-minute walking cutoff",
+      "origin": "Origin",
+      "destination": "Destination",
+      "requiredCapability": "access_boundary",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "1199 and 1200 seconds pass; 1201 seconds is unavailable.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T38",
+      "preferences": {},
+      "probeInputs": {
+        "walkingDurationsSeconds": [
+          1199,
+          1200,
+          1201
+        ]
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T39",
+      "title": "Third-nearest valid platform",
+      "origin": "Origin",
+      "destination": "Destination",
+      "requiredCapability": "candidate_limit",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "Expose a valid route missed by the two-nearest-platform limit.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T39",
+      "preferences": {},
+      "probeInputs": {
+        "closerUnusablePlatforms": 2,
+        "validPlatformRank": 3
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T40",
+      "title": "Accessibility constraint",
+      "origin": "Wheelchair traveller",
+      "destination": "Destination",
+      "requiredCapability": "accessibility",
+      "expectedOutcome": "missing_data",
+      "blockingLayer": "input",
+      "assertion": "No structured wheelchair or per-user walking constraint is supported.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T40",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T41",
+      "title": "Six geographically spread venues",
+      "origin": "Kota and Ragunan",
+      "destination": "Six citywide venues",
+      "requiredCapability": "citywide_catalog",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "catalog",
+      "assertion": "Report catalog rejection before pretending to evaluate citywide routing.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T41",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T42",
+      "title": "Mandatory venue deadline",
+      "origin": "Bundaran HI",
+      "destination": "Mandatory Blok M venue",
+      "requiredCapability": "deadline",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "itinerary",
+      "assertion": "Keep mandatory venue identity and reject an impossible plan.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T42",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T43",
+      "title": "Personalized TJ coffee and Wi-Fi",
+      "origin": "Bundaran HI",
+      "destination": "Eligible coffee venue",
+      "requiredCapability": "personalization",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "itinerary",
+      "assertion": "The sourced coffee/Wi-Fi preference remains intact throughout a complete TJ-only itinerary.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T43",
+      "preferences": {
+        "prefer": [
+          "coffee",
+          "wifi"
+        ]
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T44",
+      "title": "Invalid stop counts",
+      "origin": "Origin",
+      "destination": "Zero or seven venues",
+      "requiredCapability": "input_validation",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "input",
+      "assertion": "Reject both counts without dropping destinations silently.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T44",
+      "preferences": {},
+      "probeInputs": {
+        "desiredCounts": [
+          0,
+          7
+        ]
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T45",
+      "title": "Timeout and partial walking",
+      "origin": "Origin",
+      "destination": "Destination",
+      "requiredCapability": "provider_resilience",
+      "expectedOutcome": "provider_failure",
+      "blockingLayer": "provider",
+      "assertion": "Missing callback times out; unavailable access prevents a bus journey.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T45",
+      "preferences": {},
+      "probeInputs": {
+        "callbackTimeoutMilliseconds": 5
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T46",
+      "title": "Stale feed and geometry mismatch",
+      "origin": "Origin",
+      "destination": "Destination",
+      "requiredCapability": "provenance",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "data",
+      "assertion": "Reject stale routing data and geometry with the wrong source hash.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T46",
+      "preferences": {},
+      "probeInputs": {
+        "feedAgeSeconds": 604800
+      },
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T47",
+      "title": "Cancel and restart TJ work",
+      "origin": "Origin",
+      "destination": "Destination",
+      "requiredCapability": "cancellation",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "routing",
+      "assertion": "An in-flight cancelled TJ walking operation terminates; a fresh TJ request succeeds independently.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T47",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T48",
+      "title": "Save reopen export reject",
+      "origin": "Bundaran HI",
+      "destination": "Accepted itinerary",
+      "requiredCapability": "persistence",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "storage",
+      "assertion": "Rejected revision leaves the accepted plan and its bus proof intact.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T48",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T49",
+      "title": "BRT corridor 4",
+      "origin": "Pulo Gadung",
+      "destination": "Galunggung",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "4"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T49",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T50",
+      "title": "BRT corridor 5",
+      "origin": "Kampung Melayu",
+      "destination": "Ancol",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "5"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T50",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T51",
+      "title": "BRT corridor 6",
+      "origin": "Ragunan",
+      "destination": "Galunggung",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "6"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T51",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T52",
+      "title": "BRT corridor 7",
+      "origin": "Kampung Rambutan",
+      "destination": "Kampung Melayu",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "7"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T52",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T53",
+      "title": "BRT corridor 8",
+      "origin": "Lebak Bulus",
+      "destination": "Pasar Baru",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "8"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T53",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T54",
+      "title": "BRT corridor 10",
+      "origin": "Tanjung Priok",
+      "destination": "PGC",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "10"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T54",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T55",
+      "title": "BRT corridor 11",
+      "origin": "Pulo Gebang",
+      "destination": "Kampung Melayu",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "11"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T55",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T56",
+      "title": "BRT corridor 12",
+      "origin": "Tanjung Priok",
+      "destination": "Pluit",
+      "requiredCapability": "brt_other",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "12"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T56",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T57",
+      "title": "Rusun feeder",
+      "origin": "Rusun Pulo Gebang",
+      "destination": "Penggilingan",
+      "requiredCapability": "rusun",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "11C"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T57",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "Rusun"
+    },
+    {
+      "id": "T58",
+      "title": "Three TJ interchanges",
+      "origin": "Kampung Rambutan",
+      "destination": "Pluit via several TJ services",
+      "requiredCapability": "brt_transfer",
+      "expectedOutcome": "unsupported_capability",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "7",
+        "5",
+        "1",
+        "9"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T58",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T59",
+      "title": "Missed short window then later bus",
+      "origin": "Corridor origin",
+      "destination": "Corridor destination",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "routing",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T59",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T60",
+      "title": "Six visits with varied durations",
+      "origin": "Bundaran HI",
+      "destination": "Six selected Blok M venues",
+      "requiredCapability": "itinerary_scale",
+      "expectedOutcome": "supported_feasible",
+      "blockingLayer": "itinerary",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T60",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT",
+      "probeInputs": {
+        "venueIDs": [
+          "bm01",
+          "bm02",
+          "bm03",
+          "bm05",
+          "bm08",
+          "bm13"
+        ],
+        "durationsMinutes": [
+          15,
+          30,
+          45,
+          60,
+          75,
+          90
+        ]
+      }
+    },
+    {
+      "id": "T61",
+      "title": "Invalid provider durations",
+      "origin": "TJ access origin",
+      "destination": "TJ boarding coordinate",
+      "requiredCapability": "provider_resilience",
+      "expectedOutcome": "provider_failure",
+      "blockingLayer": "provider",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T61",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT",
+      "probeInputs": {
+        "invalidSeconds": [
+          "NaN",
+          "infinity",
+          "-1"
+        ]
+      }
+    },
+    {
+      "id": "T62",
+      "title": "Wrong walking coordinates",
+      "origin": "TJ access origin",
+      "destination": "TJ boarding coordinate",
+      "requiredCapability": "provider_resilience",
+      "expectedOutcome": "provider_failure",
+      "blockingLayer": "provider",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T62",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T63",
+      "title": "Invalid headway and frequency window",
+      "origin": "TJ boarding coordinate",
+      "destination": "TJ alighting coordinate",
+      "requiredCapability": "time_boundary",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "data",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T63",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    },
+    {
+      "id": "T64",
+      "title": "Forged ordered bus proof",
+      "origin": "TJ boarding coordinate",
+      "destination": "TJ alighting coordinate",
+      "requiredCapability": "provenance",
+      "expectedOutcome": "supported_conflict",
+      "blockingLayer": "data",
+      "assertion": "Execute the named TJ runtime boundary and retain explicit source/fixture evidence.",
+      "evidenceMode": "synthetic_probe_with_pinned_gtfs",
+      "constraints": {
+        "maxVenues": 6,
+        "walkingComponentLimitSeconds": 1200,
+        "boardingRadiusMeters": 800
+      },
+      "routeCandidates": [
+        "1"
+      ],
+      "baselineDepartureWIB": "2026-11-07T09:00:00+07:00",
+      "runtimeProbeID": "T64",
+      "preferences": {},
+      "operators": [
+        "Tije"
+      ],
+      "serviceCategory": "BRT"
+    }
+  ],
+  "scope": "transjakarta_only",
+  "caseCount": 64
+}

@@ -247,3 +247,11 @@ After the user reported signing in, a read-only database transaction confirmed a
 with a recent sign-in, a session and an owned trip. This establishes live backend sign-in acceptance;
 Hide My Email, relaunch/refresh/logout/revocation and device-specific acceptance are not inferred.
 No new shared data/configuration write or deployment was performed during PR preparation.
+
+## Journey POC consolidation — 9 November 2026
+
+A separate `codex/poc-journey-consolidation` worktree starts at main `48d7139` and carries the existing local Journey POC changes. Showcase is the user entry point; Trip Integration remains the shared engine. The original publication manifest and dated reports are preserved, with 20 reviewed maintained-source changes in a separate development ledger.
+
+Local checks passed 265 shared package test functions, 51 Python tests, 55 CLI tests, 126 native harness tests and four native Simulator builds. App/UI coverage is 39 unique cases: six unaffected Foundation Lab cases from full runs, three corrected Quality cases from a targeted rerun, four Trip Integration cases and 26 Showcase cases. TJ offline checks matched all 64 expected outcomes, covered 1,000 departure/access inputs and audited 5,552 pinned-source observations without invariant failures. These include expected conflicts and unsupported/missing-data cases; source coverage is distinct from runtime routing.
+
+The original checkout's pre-existing content and index were preserved. Unrelated icon archives added during execution were retained and excluded from the worktree. No source commit, push, deployment, remote CI run or new live-provider/device acceptance is claimed. See the [consolidation report](../poc-journey/docs/consolidation-report-2026-11-09.md) for bundle provenance, corrected failures and preservation evidence.

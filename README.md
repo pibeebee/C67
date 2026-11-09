@@ -1,6 +1,6 @@
 # C67
 
-The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Its apps and evidence are isolated from the production implementation described below.
+The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Start with [Journey Showcase](poc-journey/apps/c67-journey-showcase/README.md) for the guided itinerary UI; Trip Integration owns its shared engine. Its apps and evidence are isolated from the production implementation described below.
 
 C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
 
