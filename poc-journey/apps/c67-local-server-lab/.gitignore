@@ -1,0 +1,24 @@
+.build/
+.swiftpm/
+.env
+.env.*
+!.env.example
+*.p8
+.local/
+ClientHarness/RunConfig.json
+__pycache__/
+*.pyc
+
+ContextHarness/RunConfig.json
+
+# Public checkout restores large E5 assets via poc-journey bootstrap.
+*.onnx
+Sources/PlannerEngine/Resources/Model/tokenizer.json
+Sources/PlannerEngine/Resources/Model/tokenizer_config.json
+Sources/PlannerEngine/Resources/Model/config.json
+*.xcresult/
+xcuserdata/
+*.xcuserstate
+.DS_Store
+ContextHarness/*.xcodeproj/
+ClientHarness/*.xcodeproj/

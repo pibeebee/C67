@@ -32,9 +32,21 @@ def safe_file(root, path):
     return (root / path).resolve().is_relative_to(root.resolve()) and (root / path).is_file()
 
 
-def validate(root, manifest, development=None, published_paths=None):
+def validate(root, manifest, development=None, published_paths=None, additional_manifests=()):
     issues = []
-    imports = {entry["publicationPath"]: entry for entry in manifest["files"] if entry["disposition"] == "included"}
+    imports = {}
+    baseline_paths = set()
+    for index, source in enumerate((manifest, *additional_manifests)):
+        for entry in source["files"]:
+            if entry["disposition"] != "included":
+                continue
+            path = entry["publicationPath"]
+            if path in imports:
+                issues.append(f"{path}: duplicate publication path")
+                continue
+            imports[path] = entry
+            if index == 0:
+                baseline_paths.add(path)
     changes = {}
     if development is not None:
         if development.get("schemaVersion") != 1 or not isinstance(development.get("changes"), list):
@@ -43,7 +55,7 @@ def validate(root, manifest, development=None, published_paths=None):
             if not isinstance(change, dict):
                 issues.append("development ledger: invalid entry"); continue
             path = change.get("publicationPath")
-            if not isinstance(path, str) or path in changes or path not in imports or not maintained_path(path):
+            if not isinstance(path, str) or path in changes or path not in baseline_paths or not maintained_path(path):
                 issues.append(f"{path}: duplicate, unknown or archival development path"); continue
             baseline = imports[path]["publishedSHA256"]
             current = change.get("currentSHA256", "")
@@ -72,16 +84,18 @@ def main():
     if args.refresh_publication_hashes:
         parser.error("Import hashes are immutable. Record reviewed functional changes in development-manifest.json.")
     manifest = json.loads((ROOT / "evidence/publication-manifest.json").read_text())
+    context_manifest = ROOT / "evidence/context-lab-publication.json"
+    additional = [json.loads(context_manifest.read_text())] if context_manifest.exists() else []
     ledger = ROOT / "evidence/development-manifest.json"
     development = json.loads(ledger.read_text()) if ledger.exists() else None
     published_paths = set(subprocess.check_output(
         ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", "poc-journey"],
         cwd=ROOT.parent,
     ).decode().split("\0"))
-    issues = validate(ROOT, manifest, development, published_paths)
+    issues = validate(ROOT, manifest, development, published_paths, additional)
     if issues:
         raise SystemExit("\n".join(issues))
-    included = sum(entry["disposition"] == "included" for entry in manifest["files"])
+    included = sum(entry["disposition"] == "included" for source in [manifest, *additional] for entry in source["files"])
     print(f"PASS: {included} imported publication copies; {len(development['changes']) if development else 0} reviewed maintained-source changes. Original/import hashes remain unchanged.")
 
 

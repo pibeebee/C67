@@ -31,6 +31,10 @@ case "${1:-}" in
       --output "$output_root/capabilities" ${gtfs_options[@]+"${gtfs_options[@]}"}
     cat "$output_root/transjakarta-capabilities.log"
     ;;
+  context)
+    run_logged "$output_root/context-lab-tests.log" swift test -j 4 --package-path "$journey_root/apps/c67-local-server-lab"
+    tail -n 10 "$output_root/context-lab-tests.log"
+    ;;
   packages)
     for package in TripIntelligence PreferenceLearning VisitTiming PreferenceQuality; do
       run_logged "$output_root/$package.log" swift test --package-path "$journey_root/apps/c67-foundation-lab/Packages/$package"
@@ -88,6 +92,6 @@ case "${1:-}" in
       -only-testing:poc-c67UITests/NativePlannerPortabilityTests ${package_options[@]+"${package_options[@]}"} -parallel-testing-enabled NO test
     printf 'PASS: native planner fixture UI regression\n'
     ;;
-  *) printf 'Usage: verify.sh packages|transjakarta|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
+  *) printf 'Usage: verify.sh context|packages|transjakarta|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"

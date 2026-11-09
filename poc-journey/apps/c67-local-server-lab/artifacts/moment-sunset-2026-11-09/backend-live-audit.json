@@ -1,0 +1,43 @@
+{
+  "mode": "live backend CLI, no device E5",
+  "tripDateWIB": "2026-11-10",
+  "departureWIB": "16:10",
+  "deadlineWIB": "20:00",
+  "origin": "Mercure Convention Center Ancol",
+  "venue": "Pantai Indah Ancol",
+  "visitWIB": [
+    "16:25:00",
+    "17:25:00"
+  ],
+  "opportunityWIB": [
+    "17:02:53",
+    "17:47:53"
+  ],
+  "overlapMinutes": 22.12,
+  "returnWIB": "17:26:01",
+  "waitingMinutes": 10.95,
+  "weather": "available",
+  "metrics": {
+    "etaAdapterSeconds": 7.605000374,
+    "etaCalls": 7,
+    "evidenceMode": "LIVE",
+    "preparationSeconds": 0.223749125,
+    "routingSeconds": 7.612402291,
+    "serverTotalSeconds": 7.836183792,
+    "unavailableETA": 0,
+    "weatherStatus": "available"
+  },
+  "review": {
+    "costUSD": 0,
+    "extraTravelSeconds": 1,
+    "extraWaitingSeconds": 600,
+    "model": "nvidia/nemotron-3.5-super-vl:free",
+    "outcome": "llm_selected",
+    "reasonCode": "sourced_sunset",
+    "seconds": 7.6053560000000004,
+    "selectedPlanID": "moment"
+  },
+  "placeSource": "https://enjoy.jakarta.go.id/article/ancol-jakarta",
+  "clientPlanSeconds": 15.45,
+  "audit": "opening interval, visit overlap, return, required stop, waiting and travel checked"
+}

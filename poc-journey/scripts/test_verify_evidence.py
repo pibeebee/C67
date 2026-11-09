@@ -84,6 +84,26 @@ class EvidenceTests(unittest.TestCase):
         ledger = self.ledger(); ledger["changes"][0]["verification"] = "../outside.md"
         self.assertTrue(validate(self.root, self.manifest, ledger))
 
+    def test_context_manifest_checks_integrity_and_presence(self):
+        path = "apps/c67-local-server-lab/artifacts/result.json"
+        target = self.root / path
+        target.parent.mkdir(parents=True)
+        target.write_text("original")
+        context = {"files": [{"publicationPath": path, "disposition": "included", "publishedSHA256": self.digest(target)}]}
+        self.assertEqual(validate(self.root, self.manifest, additional_manifests=[context]), [])
+        target.write_text("tampered")
+        self.assertTrue(validate(self.root, self.manifest, additional_manifests=[context]))
+        target.unlink()
+        self.assertTrue(validate(self.root, self.manifest, additional_manifests=[context]))
+
+    def test_duplicate_paths_across_manifests_are_rejected(self):
+        self.assertTrue(validate(self.root, self.manifest, additional_manifests=[self.manifest]))
+
+    def test_context_paths_cannot_be_overridden_by_ledger(self):
+        context = copy.deepcopy(self.manifest)
+        self.target.write_text("rewritten")
+        self.assertTrue(validate(self.root, {"files": []}, self.ledger(), additional_manifests=[context]))
+
 
 if __name__ == "__main__":
     unittest.main()

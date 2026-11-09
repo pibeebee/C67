@@ -1,6 +1,10 @@
 # Teammate handoff
 
-## 1. Read the current boundary
+## Latest entry point — Context Lab
+
+Read [the 9 November handoff](docs/context-lab-handoff-2026-11-09.md) and [current CBL section 0I](docs/source-records/CBL.md). Context Lab v0.5 is the active experiment, using a local Mac service, Google Places, device E5 and OpenRouter. Follow its [app setup](apps/c67-local-server-lab/ContextHarness/README.md). The instructions below retain the earlier Trip Integration checkpoint.
+
+## 1. Read the earlier native boundary
 
 Start with [STATUS](STATUS.md) and [JOURNEY](JOURNEY.md). The native recommendation path no longer needs the team's OpenRouter/backend service. It still uses Apple's online Maps/Weather services for live data. Local E5 handles semantic ranking; native gates, sourced hours and the routing engine own factual/time constraints.
 
