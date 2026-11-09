@@ -1,0 +1,31 @@
+{
+  "mode": "live Simulator with E5",
+  "campaign": "sunset-live-simulator-v2",
+  "recommendationModel": "nvidia/nemotron-3.5-super-vl:free",
+  "recommendationReadySeconds": 17.005621959,
+  "tripDateWIB": "2026-11-10",
+  "visitWIB": [
+    "17:00:00",
+    "18:00:00"
+  ],
+  "opportunityWIB": [
+    "17:02:53",
+    "17:47:53"
+  ],
+  "overlapMinutes": 45.0,
+  "returnWIB": "18:01:01",
+  "waitingMinutes": 25.95,
+  "clientPlanSeconds": 3.057982042,
+  "metrics": {
+    "etaAdapterSeconds": 2.8365240419999997,
+    "etaCalls": 3,
+    "evidenceMode": "LIVE",
+    "preparationSeconds": 0.179469541,
+    "routingSeconds": 2.842019792,
+    "serverTotalSeconds": 3.021636875,
+    "unavailableETA": 0,
+    "weatherStatus": "available"
+  },
+  "review": null,
+  "automaticWeather": true
+}

@@ -1,0 +1,16 @@
+{
+  "request": {
+    "placeID": "REPLACE_WITH_GOOGLE_PLACE_ID",
+    "identityConfirmed": true,
+    "day": "2026-11-09",
+    "availableStart": 540,
+    "availableEnd": 1080,
+    "durationMinutes": 60,
+    "preferredTime": {"earliest": 900, "latest": 960, "required": false},
+    "seeksQuiet": false,
+    "avoidRain": false,
+    "exposure": "unknown",
+    "priorities": ["preferredTime", "lowerRain", "quiet", "comfortableTemperature"]
+  },
+  "includeReviews": false
+}

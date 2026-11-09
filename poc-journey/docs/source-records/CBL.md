@@ -1,8 +1,8 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Diperbarui:** 5 November 2026, Asia/Jakarta (WIB).
+**Diperbarui:** 9 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Status:** kelayakan mesin inti PoC disepakati telah terbukti pada lingkup uji saat ini: penyusunan itinerary, penyimpanan lokal dan replanning manual tanpa backend tim/AI. Integrasi provider routing aktual mempunyai bukti awal pada macOS; validasi iPhone untuk alur routing, perjalanan nyata, kesesuaian pengalaman dan manfaat pengguna belum lengkap. PoC Foundation Models terpisah sudah berjalan dengan model lokal dan MapKit aktual pada Mac serta iPhone fisik, dengan mutu rekomendasi masih parsial; hasil dan batasnya dikunci pada bagian 0A. Eksperimen preferensi berikutnya menunjukkan profil lokal + aturan native + MapKit langsung + embeddings dapat menjalankan rekomendasi tempat dasar tanpa Foundation Model; mutu personalisasi dan manfaat pengguna masih perlu dibuktikan, sebagaimana dicatat pada bagian 0B. Keputusan produk 29 Oktober dipertahankan sebagai jejak konteks.
+**Status:** fokus eksperimen terbaru adalah **C67 Context Lab v0.5 build 5** di `poc/c67-local-server-lab`, dengan aplikasi Simulator dan backend Swift/Vapor lokal Mac. Alurnya sudah mencakup preferensi terstruktur, discovery Google Places di luar katalog, E5 lokal dengan input Inggris, ranking OpenRouter, perencanaan berdasarkan jam buka/cuaca/ETA, satu pilot momen menjelang sunset, serta peta interaktif di dalam aplikasi. Hasil teknis dan batasnya dirangkum pada **bagian 0I**. Jalur native, Foundation Lab dan Trip Integration pada bagian 0–0H merupakan checkpoint terdahulu. Manfaat terhadap selera, beban interaksi dan pengalaman perjalanan masih perlu penilaian manusia serta uji lapangan.
 
 **Catatan teknis 3 November 2026:** pengguna mengunci **hybrid adaptif** untuk routing PoC: baseline tervalidasi terlebih dahulu, kemudian cheapest insertion + multi-start local search secara selektif. Implementasi dan pengujian lokal tersedia pada [laporan PoC native](../../apps/native-routing-lab/docs/verification/ADAPTIVE_ROUTING_REPORT_2026-11-03.md). Ini memperbarui status eksperimen routing; integrasi AI dan recalculation perjalanan aktif tetap mempunyai lingkup dan bukti tersendiri.
 
@@ -29,6 +29,10 @@
 **Pendalaman manfaat embeddings, 5 November 2026:** Foundation Lab v0.7 build 10 menambahkan eksperimen **05 · E5** sebelum prioritas 3. Pada 24 kasus ranking baru yang dibekukan sebelum inferensi, E5 membantu terutama pada parafrasa arahan terhadap deskripsi bersumber: NDCG@3 0,9770 dibanding BM25 0,8299; tujuh unggul, enam belas seri, satu kalah. Seluruh 30 kasus di iPhone menghasilkan metrik dan status sesuai, dengan beberapa perbedaan urutan bawah dibanding Mac. Ini manfaat retrieval terbatas, bukan akurasi 97,7% atau manfaat pengguna yang telah terbukti. [Laporan lengkap](../../apps/c67-foundation-lab/docs/verification/EMBEDDING_BENEFIT_REPORT_2026-11-05.md); rincian bagian 0E.
 
 **Integrasi prioritas 3, 5 November 2026:** aplikasi terpisah C67 Trip Integration **v0.1 build 3** sudah berhasil diverifikasi: **35 test package, 2 test UI Simulator dan 7 skenario live iPhone lulus**. WeatherKit bekerja tanpa fallback; rute tiga tempat, revisi durasi +30 menit dan penolakan deadline tidak layak menghasilkan bukti yang konsisten. Ini bukti integrasi teknis pada dataset/perangkat yang diuji, belum bukti kepuasan atau pengurangan beban pengguna. [Laporan hasil](../../apps/c67-trip-integration/docs/VERIFICATION_REPORT_2026-11-05.md); rincian bagian 0G.
+
+**Checkpoint alur ringkas dan arah pengembangan, 6 November 2026:** Trip Integration **v0.2 build 4** melewati 220 tes package, 12 tes app-flow, tujuh kasus UI Simulator, dua kasus UI iPhone dengan replay sintetis, dan tiga skenario live iPhone menggunakan E5, MapKit serta WeatherKit tanpa fallback. Laporan v0.2 (original local evidence, omitted from this publication). Diskusi selanjutnya memetakan enam jalur pengembangan yang tidak harus sekuensial. Untuk eksperimen paling ringan, rekomendasi saat ini **E1 benchmark terbatas dan C2 audit ETA**; pilihan belum dikunci pengguna. Roadmap beserta dependensi dan batas (original local evidence, omitted from this publication); ringkasan bagian 0H.
+
+**Checkpoint terbaru, 9 November 2026:** mulai dari [alur Context Lab](../../apps/c67-local-server-lab/ContextHarness/README.md), [momen perjalanan](../../apps/c67-local-server-lab/docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md), dan [peta interaktif v0.5](../../apps/c67-local-server-lab/docs/INTERACTIVE_ROUTE_MAP_2026-11-09.md). Diagram [dari minat ke rute](../../apps/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/c67-flow.html) memperlihatkan urutan proses. Rincian keputusan, kekurangan dan pekerjaan berikutnya ada pada bagian 0I.
 
 ## 0. Kesepakatan pencapaian PoC — 4 November 2026
 
@@ -306,13 +310,177 @@ Pengujian live menemukan satu masalah nyata: MapKit menamai cabang Cikini **“J
 
 [Laporan lengkap beserta data, kegagalan awal, perbaikan dan batas bukti](../../apps/c67-trip-integration/docs/VERIFICATION_REPORT_2026-11-05.md). [Matriks uji](../../apps/c67-trip-integration/docs/TEST_MATRIX.md). [Ringkasan mesin](../../apps/c67-trip-integration/artifacts/verification-summary.json).
 
+## 0H. Variabel planner, opsi pengembangan dan dependensi — 6 November 2026
+
+Giovan meminta kesepemahaman mengenai variabel yang benar-benar dipakai planner, mengusulkan cuaca, kemacetan dan jalan kaki untuk didalami, lalu meminta roadmap berbentuk pilihan arah. Pengguna menanyakan jalur paling mudah/cepat dan ketergantungannya, serta meminta pembahasan disimpan sebelum melanjutkan. **Pencatatan ini tidak memulai eksperimen atau mengunci kategori berikutnya.**
+
+### Acuan runtime dan pembagian keputusan
+
+Acuan diskusi adalah **C67 Trip Integration v0.2 build 4**, aplikasi terpisah dari PoC routing awal dan Foundation Lab. Alur ringkas sudah diuji; eksperimen lama tetap tersedia. Bukti terakhir mencakup 220 tes package, 12 tes model aplikasi dengan provider terkontrol, tujuh kasus UI Simulator, dua kasus UI perangkat fisik dengan replay sintetis, dan tiga skenario otomatis provider asli pada iPhone 17/iOS 27.0.1. Ini perhitungan rencana, bukan perjalanan yang sudah dilakukan atau studi pengguna. Hasil, kegagalan awal dan batas verifikasi (original local evidence, omitted from this publication).
+
+| Keputusan | Variabel yang digunakan saat ini | Batas yang perlu dibaca |
+| --- | --- | --- |
+| Memilih tempat | Katalog lokal; preferensi disukai/wajib/hindari; bukti atribut pada area yang sama; ranking kategori dan E5 bila digunakan; tujuan wajib; jumlah tujuan; tanggal, durasi dan slot layanan; status serta freshness sumber | Memilih tempat mendahului routing. Tanpa preferensi, rekomendasi bersifat umum. MapKit memverifikasi identitas/lokasi, bukan melengkapi seluruh fakta jam/karakter tempat. |
+| Menyusun urutan dan jadwal | Koordinat untuk kandidat awal; ETA sesuai waktu tiap ruas; sesi layanan/aturan masuk; durasi, menunggu, deadline, dan total waktu | Semua tujuan pilihan dipertahankan. Saran jendela pengalaman belum menjadi target wajib optimizer. Hasil hybrid terbatas tidak membuktikan optimum global. |
+| Menilai cuaca | Prakiraan per jam, rentang kunjungan, serta exposure indoor/outdoor/mixed/unknown | Pengambilan cuaca sudah berhasil. Pada run v0.2 terakhir, alternatif cuaca tidak terpilih karena paparan perjalanan automobile dan sebagian exposure tempat masih unknown. Keberhasilan WeatherKit tidak membuktikan cuaca mengubah urutan. |
+| Menentukan moda | Profil Jakarta memakai automobile dengan asumsi on-demand, mulai dan kembali ke Bundaran HI | Belum memilih kombinasi jalan kaki atau melacak posisi kendaraan pribadi. ETA mobil belum menjadi bukti ETA/rute motor. |
+
+Pada satu run live tiga tempat, total sekitar **29,67 detik**, dengan preferensi **0,870 detik**, pencarian **1,653 detik**, cuaca **0,297 detik**, dan routing **26,579 detik**; empat search dan 23 request ETA. Ini observasi satu run, bukan SLA atau bukti distribusi performa. Temuan tersebut menjadi alasan mengukur biaya provider/routing sebelum menganggap penggantian model sebagai solusi percepatan.
+
+### ETA, kemacetan dan waktu yang diminta
+
+Kode mengisi `request.departureDate` lalu memakai `calculateETA()`. Evaluasi kandidat dimulai dari jam berangkat trip dan meneruskan waktu selesai kunjungan sebagai waktu berangkat ruas berikutnya; cache automobile membedakan waktu keberangkatan. Snapshot pencarian awal memakai waktu awal trip, lalu kandidat diperiksa/refinement secara terbatas. [Permintaan ETA](../../apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripAppleServices.swift), [evaluasi ruas](../../apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripEngine.swift), [snapshot pencarian](../../apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripRoutingBridge.swift).
+
+Dalam hasil v0.2, rencana dibuat 6 November untuk keberangkatan 7 November: ruas awal pukul 09.00 WIB, ruas sesudah Cikini 10.15, sesudah BDT 11.45, dan ruas pulang sesudah Erasmus 13.00. Ini mendukung bahwa permintaan memakai **depart at**, bukan seluruh ruas memakai waktu sekarang. Dokumentasi Apple menyatakan ETA memperhitungkan expected traffic. Namun PoC belum mengukur kemacetan sebagai nilai terpisah, belum memvalidasi error terhadap perjalanan aktual Jakarta, dan belum mencari semua pasangan lokasi pada semua kemungkinan waktu. [Apple ETA](https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedtraveltime), [departureDate](https://developer.apple.com/documentation/mapkit/mkdirections/request/departuredate).
+
+### Jam operasional Google: kemampuan dan pertanyaan izin yang belum selesai
+
+Google Places menyediakan `regularOpeningHours`, `currentOpeningHours` untuk tujuh hari termasuk hari ini, serta `businessStatus`. Jadwal membutuhkan sesi yang mencakup seluruh durasi kunjungan pada tanggal kedatangan; `openNow` saja tidak cukup. Field jam Place Details masuk Enterprise SKU. Data tersebut belum otomatis melengkapi last entry, aturan area, exposure, atau kepastian penerimaan pengunjung. [Referensi data](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places), [field dan SKU](https://developers.google.com/maps/documentation/places/web-service/place-details).
+
+Giovan mengklarifikasi bahwa data jam hanya akan menjadi variabel optimizer, bukan dikirim langsung ke MapKit atau ditampilkan sebagai data jam pada peta. Secara teknis pola tersebut dapat dibangun. **Izin penggunaannya belum terkonfirmasi:** ketentuan standar non-EEA §14.1 mengizinkan Places API tanpa Google Map, sementara §14.2 membatasi penggunaan bersama peta non-Google; ketentuan umum §3.2.3(e) memakai cakupan penggunaan yang lebih luas daripada marker/teks. [Ketentuan khusus](https://cloud.google.com/maps-platform/terms/maps-service-terms), [ketentuan umum](https://cloud.google.com/maps-platform/terms).
+
+Interpretasi diskusi: alur **jam Google → optimizer → itinerary yang ditampilkan dengan MapKit** masih berpotensi masuk penggunaan bersama peta non-Google. Ini interpretasi terhadap bunyi ketentuan, bukan keputusan tertulis Google untuk kasus optimizer tersebut. Belum ditemukan contoh resmi yang secara eksplisit memastikan boleh/tidak untuk skenario persis ini. Tidak menampilkan jam atau memprosesnya di engine sendiri belum membuktikan pengecualian. Places UI Kit mempunyai pengecualian bagi komponennya, bukan bukti otomatis izin mengekstrak data ke planner/storage. Ketentuan akun/region dapat berbeda; akun penagihan tim tidak diperiksa dalam diskusi ini.
+
+Pertanyaan konkret yang disarankan untuk konfirmasi tertulis Google: apakah Places API opening hours boleh dipakai hanya sebagai kendala optimizer itinerary, sementara koordinat, ETA dan peta seluruhnya berasal dari Apple MapKit, tanpa menampilkan jam Google? Belum ada pertanyaan yang dikirim atau jawaban Google yang diterima. Pemeriksaan ketentuan dilakukan dalam diskusi 6 November 2026; periksa kembali sebelum adopsi. Jalur A2 tetap **perlu konfirmasi hak penggunaan**, bukan dianggap otomatis boleh atau diputuskan pasti terlarang untuk seluruh variasi arsitektur.
+
+### Berjalan kaki dan kendaraan
+
+Usulan variabel meliputi waktu pintu ke pintu, waktu akses/parkir/menunggu jemputan, cuaca selama perpindahan, batas berjalan per ruas dan total sehari, kebutuhan mobilitas/barang, serta kualitas jalur bila datanya tersedia. Kondisi trotoar, penyeberangan, tangga, penerangan, keteduhan dan perlindungan hujan tidak dapat disimpulkan hanya dari kedekatan pin atau tersedianya ETA berjalan. [ITDP Pedestrians First](https://pedestriansfirst.itdp.org/neighborhood-tool/step-1). Penelitian pilihan jalur di Singapura mendukung pentingnya paparan matahari, tetapi bobot penelitian tidak langsung menjadi kebijakan Jakarta. [Studi paparan matahari](https://pmc.ncbi.nlm.nih.gov/articles/PMC8844002/).
+
+On-demand + berjalan dan kendaraan pribadi merupakan cabang eksperimen berbeda. Pada kendaraan pribadi, pengguna yang berjalan dari A ke B belum membawa kendaraannya ke B; lokasi kendaraan dan perjalanan mengambilnya kembali harus masuk perhitungan. Pola parkir sekali → mengunjungi beberapa tempat dengan berjalan → kembali mengambil kendaraan masih usulan. Data parkir dan audit kualitas jalur belum dimiliki PoC.
+
+### Roadmap berupa pilihan arah
+
+| Kategori | Opsi | Keputusan yang hendak dibuktikan |
+| --- | --- | --- |
+| A · Data dan sumber | A1 katalog kecil terpelihara; A2 sumber terstruktur berskala luas | Fakta cukup, mutakhir, tepat area, dan boleh digunakan. |
+| B · Pemilihan tempat | B1 kategori/lexical/E5 bersyarat; B2 kombinasi tempat + perjalanan; B3 preferensi dengan input/koreksi singkat | Relevansi dan kelayakan meningkat dengan komputasi serta kontribusi pengguna yang rendah. |
+| C · Waktu dan kondisi | C1 pengaruh cuaca; C2 audit ETA menurut waktu; C3 preferensi waktu pengalaman | Konteks benar-benar memengaruhi jadwal tanpa melanggar batas wajib. |
+| D · Moda | D1 jalan + on-demand; D2 kendaraan pribadi/parkir sekali; D3 kualitas jalur | Pilihan moda konsisten terhadap seluruh trip dan kebutuhan pengguna. |
+| E · Kinerja dan ketahanan | E1 pengukuran baseline dan optimasi terukur | Biaya waktu, request, komputasi dan pemeliharaan dapat dikendalikan dengan kualitas tetap. |
+| F · Penggunaan nyata | F1 observasi perencanaan/koreksi; F2 perjalanan dan perubahan sisa trip | Rencana diterima, dapat dijalani, dan mengurangi kontribusi pengguna dalam konteks uji. |
+
+Roadmap lengkap berisi 14 opsi, hipotesis, skenario, dependensi, kriteria adopsi dan batas (original local evidence, omitted from this publication).
+
+### Ketergantungan dan rekomendasi fokus terakhir
+
+Ketergantungan berlaku antarbagian eksperimen, bukan kewajiban menuntaskan kategori A–F secara berurutan. C1 membutuhkan jam/exposure terverifikasi pada sampel A1; C3 membutuhkan jam dan konteks aktivitas; B2 membutuhkan kandidat yang cukup lengkap serta evaluasi kelayakan perjalanan. D1 membutuhkan ETA kedua moda, batas berjalan dan aturan penilaian; D2 membutuhkan state pengguna/kendaraan serta pengambilan kendaraan. Optimasi performa perlu baseline E1 agar perbaikannya dapat dibandingkan.
+
+**E1, C2, F1 dan pembanding B1 dapat dimulai dengan fondasi sekarang.** Untuk uji live, kesegaran dan kesesuaian fakta sampel tetap diperiksa. Ini pekerjaan A1 terbatas, bukan kewajiban menyelesaikan A2 atau keputusan Google. Uji replay memakai snapshot/fixture berlabel dan tidak dipresentasikan sebagai bukti keadaan venue saat ini.
+
+Rekomendasi asisten berdasarkan kriteria paling mudah/cepat: **E1 benchmark terbatas**, dengan pembanding 1/3/6 tujuan, cold/warm, waktu tiap tahap, request/cache dan kualitas/kelengkapan hasil. Belum mencakup seluruh RAM/energi, background atau ketahanan lapangan. **C2 audit ETA** adalah alternatif ringan untuk membuktikan perilaku planner; keduanya disarankan sebagai eksperimen yang saling melengkapi. Pengukuran live enam tujuan memerlukan sampel dengan fakta lengkap, bukan memaksa katalog sekarang atau menghapus batas validasi.
+
+Rekomendasi berdasarkan nilai yang hendak dibuktikan tetap berbeda: **A1 + C1** untuk itinerary adaptif terhadap cuaca; **B3 + F1** untuk kontribusi pengguna yang lebih sedikit. Tidak ada deadline, budget, SLA, bobot kenyamanan atau pilihan implementasi berikutnya yang telah dikunci. Menyimpan pembahasan ini hanya menghasilkan pembaruan dokumentasi lokal; kode, provider, pengujian aplikasi dan publikasi tidak dijalankan.
+
+## 0I. Context Lab aktif, pembelajaran dan kelanjutan — 9 November 2026
+
+### Tujuan dan perubahan fokus
+
+Pertanyaan yang sedang dijawab adalah bagaimana aplikasi membantu orang menemukan tempat yang cocok, memilih urutan serta jam kunjungan, dan menikmati kesempatan pengalaman yang belum ia ketahui. Giovan membedakan **kecepatan** sebagai lama pemrosesan rute atau urutan, termasuk validasi ETA yang diperlukan, dari **akurasi** sebagai kesesuaian hasil terhadap keinginan pengguna. Waktu tempuh trip, waktu menunggu dan waktu komputasi dilaporkan sebagai ukuran berbeda.
+
+Pengguna memilih melanjutkan lab server lokal ini setelah mempertimbangkan keterbatasan komputasi perangkat. Homelab dan penggabungan seluruh PoC ke aplikasi produksi belum menjadi pekerjaan aktif. Paket Foundation Lab dan Trip Integration tetap menjadi dependency lokal untuk implementasi yang digunakan ulang. Pilihan server memberi ruang akuisisi data, evaluasi dan LLM, sedangkan E5 tetap berjalan di perangkat sebagai pembantu kecocokan semantik. Kemampuan replanning aktif dan penyimpanan native terdahulu mempunyai bukti tersendiri yang belum otomatis berpindah ke Context Lab.
+
+### Keputusan produk yang menjadi acuan
+
+| Keputusan | Makna pada PoC aktif |
+| --- | --- |
+| Pengguna memilih preferensi dengan kontrol terstruktur seperti onboarding dating app | Minat dan ritme disimpan lokal. Area, tanggal, jam berangkat dan batas pulang merupakan konteks perjalanan. Pengguna tidak diwajibkan menulis brief panjang. |
+| Minim interaksi yang berulang | Profil dipakai ulang. Pengaturan lanjutan dibuka bila diperlukan. Koreksi pengguna tetap dimungkinkan. |
+| Pilihan tempat dapat bertambah | **Cari lainnya** menambah kandidat unik dan mempertahankan tujuan yang sudah dipilih. Maksimal enam tujuan dalam satu rencana berbeda dari maksimal enam kartu per putaran. |
+| Pengguna memutuskan tujuan wajib dan opsional | Tujuan wajib tidak boleh dihapus diam-diam. Penghilangan opsional dan pencarian yang terpotong ditampilkan. |
+| Cuaca otomatis ketika kegiatan outdoor dikenali | Taman/kebun yang jelas dan jalan pesisir bersumber dapat memperoleh paparan outdoor. Paparan yang belum jelas tetap unknown. |
+| Pengalaman berkesan memerlukan saran waktu | Aplikasi perlu menemukan kesempatan yang relevan tanpa pengguna mengetahui jam terbaik sebelumnya. Pilot saat ini adalah kunjungan menjelang matahari terbenam di Pantai Indah Ancol. |
+| UI utama ringkas | Tab **Jelajah** dan **Rencana**. Bukti, pengaturan kegiatan dan lab diagnosis berada di bagian yang dapat dibuka saat dibutuhkan. |
+| Model utama dan cadangan | `stealth/crouton-alpha`, lalu `nvidia/nemotron-3.5-super-vl:free` dalam anggaran waktu yang sama. Validasi biaya nol dan bukti diterapkan. |
+| Pembelajaran preferensi terbatas | Interaksi memperbarui facet di dalam minat eksplisit. Bobot minat utama tidak diubah hanya karena sering membuka kategori tertentu. |
+| E5 menggunakan bahasa Inggris | Representasi `en-v1` memakai kategori/kegiatan yang diketahui, dengan checkpoint multilingual E5 yang sama. UI serta identitas tempat tetap memakai bahasa aslinya. |
+| Ide kompleks ditahan | Pengelolaan katalog oleh operator, pengetikan konfigurasi panjang dan AnyJev belum menjadi tahap implementasi yang dipilih. Istilah operator pada laporan lama merujuk penyusun skenario uji. |
+
+### Alur aplikasi dan pembagian peran
+
+1. Pengguna memilih minat dan ritme, kemudian area, tanggal, waktu berangkat dan batas kembali.
+2. Backend mencari kandidat melalui Google Places dan memeriksa identitas dasar serta irisan jam operasional.
+3. E5 pada perangkat memberi skor semantik. OpenRouter menilai seluruh ID kandidat, dengan alasan dan rujukan bukti yang dibatasi oleh data yang diberikan. Server memvalidasi keluaran dan menjaga keragaman minat.
+4. Jelajah menampilkan kandidat. Cari lainnya memakai kelanjutan pencarian, mengecualikan ID yang sudah ditampilkan dan mempertahankan pilihan sebelumnya.
+5. Pengguna menandai tujuan wajib/opsional dan mengonfirmasi padanan Apple Maps. Lokasi awal juga dikonfirmasi.
+6. Saat Susun rencana, backend memvalidasi pilihan, jam buka, durasi penuh, batas menunggu, waktu pulang, cuaca kegiatan outdoor dan ETA Apple pada waktu keberangkatan tiap ruas.
+7. Mesin menyusun jadwal biasa. Bila ada bukti momen yang berlaku, mesin mencoba alternatif dengan tempat yang sama dan sisa anggaran ETA yang tersedia.
+8. Jadwal biasa yang sudah mencakup momen dapat langsung ditampilkan. Alternatif tanpa tambahan berkendara maupun menunggu dapat dipilih langsung. Jika ada pertukaran waktu yang layak dinilai, LLM memilih di antara dua rencana yang telah divalidasi.
+9. Hasil menampilkan urutan, jam, alasan, momen bila tercakup dan tujuan opsional yang belum terjadwal. Garis jalan dimuat sesudah jadwal. Pengguna membuka peta di dalam aplikasi dan menyorot tiap ruas dari nomor peta atau daftar.
+
+LLM peringkat tempat menerima minat/ritme, konteks perjalanan, nama/kategori/deskripsi kategori, status jam ringkas, skor E5, facet affinity, ID bukti dan ringkasan cuaca area jika tersedia. Penilai jadwal menerima dua kandidat yang sudah layak, urutan ID tempat, waktu selesai, total berkendara/menunggu serta ID dan sumber momen. Keluaran penilai berupa pilihan ID rencana dan kode alasan yang dapat diperiksa. Rumusan kartu alasan berasal dari data tervalidasi.
+
+E5 memberi sinyal relatif dan tidak menambah fakta tempat. Mesin itinerary menentukan kelayakan waktu, bukan LLM. Google menyediakan data tempat/jam, sedangkan Apple menyediakan identitas peta, ETA dan geometri. Layanan yang gagal, data kedaluwarsa dan informasi yang belum tersedia mempunyai perilaku eksplisit. Kegagalan ranking LLM menghasilkan error/retry. Kegagalan penilaian alternatif mempertahankan jadwal biasa.
+
+### Pilot momen dan peta yang sudah berjalan
+
+Pilot sunset memadankan satu Google place ID Pantai Indah Ancol dengan sumber Jakarta Tourism. Pengambilan data jam dan prakiraan tetap aktual. Jendela **45 menit sebelum sunset**, minimal **20 menit irisan kunjungan**, peluang hujan maksimal **45%**, tutupan awan maksimal **75%**, dan tambahan jalan+tunggu maksimal **15 menit** adalah kebijakan PoC yang dipilih saat implementasi. Pengguna belum memvalidasi angka tersebut sebagai toleransi pribadi. Bukti sumber mendukung kegiatan pesisir, sementara kualitas cahaya dan pandangan pada waktu kunjungan masih perlu observasi.
+
+Jam manual yang dipilih pengguna didahulukan. Alternatif mempertahankan tempat pada jadwal biasa, durasi penuh dan batas perjalanan serta tidak memperburuk penalti preferensi yang sudah aktif. Rencana biasa memakai anggaran ETA penuh. Cache exact-departure dan sisa anggaran dipakai untuk alternatif. Jika data momen tidak cukup atau alternatif tak ditemukan dalam pencarian terbatas, sistem memakai jadwal biasa.
+
+Penelusuran identitas menemukan hasil Apple berupa tenant Bakso pada Pantai Festival dan Lawson pada Pantai Indah. Keduanya ditolak sebagai padanan pantai. Pantai Indah yang benar berada sekitar **41 m** dari pin referensi, sementara Lawson sekitar **38 m**. Pilot pantai memakai nama/alias yang jelas dan jarak maksimal **100 m**. Aturan umum nama+jarak untuk venue lain masih memerlukan perbaikan.
+
+Peta v0.5 membuka layar **Peta itinerary** di aplikasi. Setiap ruas mempunyai warna, nomor, jam berangkat/tiba dan jarak geometri. Memilih ruas menonjolkan garis serta memusatkan kamera. Seluruh rute mengembalikan gambaran lengkap. Garis sukses dipertahankan ketika ruas lain belum tersedia. Geometri peta merupakan permintaan MapKit terpisah dari ETA server dan tidak mengubah jadwal yang sudah dihitung.
+
+### Bukti yang sudah tersedia dan arti angkanya
+
+| Kampanye | Hasil yang diamati | Batas perbandingan |
+| --- | --- | --- |
+| Context Simulator 7–8 November | 54 observasi terkontrol, 16 rencana live. Lima tujuan first-feasible grid 15 median client **9,53 detik**, grid 5 **26,39 detik**. | Pemilihan tempat sudah disiapkan sebelum timer. Metode tercepat pada tiga tujuan kehilangan preferensi taman sore. |
+| Rekomendasi personal 8 November | Tiga live recommendation median **8,52 detik** sampai daftar tampil. Satu itinerary tiga tujuan **41,35 detik**, 35 ETA call. | Ranking tempat dan komputasi rute mengukur tahap berbeda. |
+| Jelajah v0.3, 9 November | Dua putaran menghasilkan **12 kandidat unik**, **15,00** dan **5,98 detik** sampai tampil. Pilihan putaran pertama tetap dirutekan. | Satu skenario pengembangan, bukan distribusi latensi atau kepuasan. |
+| Momen v0.4, Simulator | Kunjungan Pantai Indah **17.00–18.00 WIB**, irisan momen **45 menit**, menunggu **25,95 menit**. Susun rencana **3,06 detik**, 3 ETA call. | Satu tujuan, tanggal 10 November, profil uji dan prakiraan saat eksperimen. Tahap judge jadwal dilewati karena rencana biasa sudah memuat momen. |
+| Momen v0.4, backend live CLI | Kunjungan **16.25–17.25 WIB**, irisan **22,12 menit**, tambah tunggu **10 menit** dan jalan **1 detik**. Nemotron memilih alternatif. Endpoint plan **15,45 detik**, termasuk **7,61 detik** judge, biaya LLM **$0**. | CLI tidak menjalankan E5 perangkat. Crouton tetap utama tetapi hasil run ini berasal dari fallback. |
+| Peta v0.5, Simulator | Satu tes UI live lulus dari onboarding hingga peta. Pilih ruas pergi/pulang dari daftar dan nomor, kembali ke seluruh rute, tutup peta dan tetap di aplikasi. | Satu tujuan dan dua ruas. Lebih banyak tujuan, kegagalan geometri, background/reopen serta iPhone fisik belum diuji untuk UI baru. |
+
+Regresi paket menjelang v0.4 menjalankan **107 kasus**, terdiri atas **106 lulus dan satu benchmark opsional dilewati**. Tes momen memeriksa batas hujan/awan, prakiraan berlubang, jam tutup, batas tunggu, preferensi eksplisit, anggaran ETA, serta ID bukti LLM yang salah. v0.5 menambah verifikasi UI peta setelah build sukses. Angka tes disajikan menurut kampanye dan tidak dijumlahkan sebagai sampel pengguna.
+
+Review kode benchmark sebelumnya memperbaiki cache/budget ETA, pembacaan ETA parsial dan pelabelan pencarian terpotong. Hasil lama tetap merupakan rekaman eksekusi pada versi saat itu. Penilaian assistant sebagai user simulasi menemukan kehilangan syarat kegiatan, kekurangan kandidat, salah padanan tenant dan dampak grid. Run yang gagal dipertahankan sebagai bagian bukti.
+
+Rujukan utama adalah [validasi kode benchmark](../../apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md), [cuaca/jam dan 3–5 tujuan](../../apps/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md), [rekomendasi personal](../../apps/c67-local-server-lab/docs/PERSONAL_RECOMMENDATION_RESULTS_2026-11-08.md), [user simulasi](../../apps/c67-local-server-lab/docs/SYNTHETIC_USER_RESULTS_2026-11-08.md), [Jelajah v0.3](../../apps/c67-local-server-lab/docs/PERSONAL_SIMPLIFIED_RESULTS_2026-11-09.md), [momen v0.4](../../apps/c67-local-server-lab/docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md), dan [peta v0.5](../../apps/c67-local-server-lab/docs/INTERACTIVE_ROUTE_MAP_2026-11-09.md).
+
+### Blind spot yang berkurang dan yang masih terbuka
+
+| Kelompok dari BLINDSPOT | Yang sudah ditangani sebagian | Yang masih membutuhkan kode, data atau evaluasi |
+| --- | --- | --- |
+| Maksud pengguna dan syarat kegiatan | Profil terstruktur, wajib/opsional, durasi dan batas tunggu/pulang | Membaca di tempat vs membeli buku, tenang, vegetarian, harga, akses dan prioritas kompromi yang dapat dinyatakan dengan sedikit interaksi |
+| Penemuan dan kecocokan tempat | Google discovery dinamis, kelanjutan pencarian, keragaman minat, validasi alasan | Kelengkapan kandidat niche, atribut aktivitas lebih rinci, holdout baru, keuntungan E5/LLM/learning dibanding baseline |
+| Identitas dan cakupan aktivitas | Konfirmasi Apple, nama+jarak, penolakan tenant pada dua pantai | Kompleks vs tenant, alias bersumber, pintu masuk, akses nyata dan duplikasi tempat secara umum |
+| Jam dan kesempatan pengalaman | Sesi buka serta durasi penuh, satu pilot sunset | Last entry, tiket, antrean, pengecualian tanggal, event lain, sumber yang segar untuk lebih banyak venue |
+| Cuaca | Otomatis untuk kegiatan outdoor yang dikenali, hujan sepanjang kunjungan, cloud/sunset pada pilot | Paparan saat menunggu/berpindah, kegiatan campuran dan konteks mikro venue |
+| Kualitas pencarian rute | Cache/budget bersama, cutoff eksplisit, optional subset dan pemeriksaan alternatif | Grid 15 menit bisa menciptakan tunggu, kandidat waktu berbasis kejadian, ketahanan terhadap input order dan prioritas antarpenalti |
+| Keandalan pengalaman | Error/retry, fallback LLM dan jadwal biasa ketika judge gagal, peta per ruas | Pemulihan pilihan/jadwal setelah app/server berhenti, sesi kedaluwarsa, jaringan lambat/putus, concurrent users, background dan perangkat fisik |
+| Akurasi dan manfaat | Audit aturan serta beberapa observasi live yang dapat diperiksa | Kepuasan manusia, berkurangnya usaha menyusun trip, kualitas pengalaman dan ETA/kondisi lapangan |
+
+[BLINDSPOT.md](BLINDSPOT.md) mempertahankan analisis rinci dan benturan antarsolusi. Status bertanggal di dokumen tersebut perlu dibaca bersama checkpoint ini. Cakupan satu pantai tidak menyelesaikan seluruh masalah waktu kunjungan.
+
+### Arah berikutnya dan kriteria keputusan
+
+Urutan berikut adalah rekomendasi setelah implementasi terakhir dan belum menjadi kampanye baru yang dijalankan.
+
+1. **Stabilkan hasil yang sudah bisa dicoba.** Simpan draft/pilihan/jadwal, tangani expiry dan server restart, perjelas alasan tujuan opsional terlewat, lalu uji ulang beberapa tujuan beserta peta/background/retry. Selesai ketika state dan alasan tetap konsisten setelah kegagalan yang dipicu.
+2. **Lengkapi maksud dan data yang mengubah keputusan.** Tambahkan pilihan kegiatan atau satu pertanyaan lanjutan hanya ketika jawabannya berpengaruh. Modelkan syarat wajib/preferensi dan bukti didukung/bertentangan/unknown. Cari data operator tentang jam masuk, aktivitas dan karakter venue untuk sampel kecil.
+3. **Uji urutan dengan waktu berbasis kejadian.** Bandingkan grid 15, grid 5 dan jam berbasis tiba/buka/kejadian pada tempat, brief, snapshot dan anggaran ETA yang sama. Pertahankan durasi penuh, tujuan wajib dan batas tunggu/pulang.
+4. **Ukur nilai tambah setiap komponen.** Bandingkan tanpa/dengan momen dan tanpa/dengan judge jadwal. E5 serta facet learning juga diuji pada kandidat yang sama. Bekukan brief sebelum melihat hasil, acak urutan alternatif dan simpan kegagalan. Ukur discovery, E5, LLM, routing/ETA, geometri dan total client secara terpisah.
+5. **Minta penilaian manusia lalu lakukan perjalanan kecil.** Peserta menyatakan keinginan serta batasnya terlebih dahulu. Nilai pilihan, koreksi, alasan menerima/menolak dan usaha yang diperlukan. Bandingkan rencana yang layak pada 3 dan 5 tujuan, kemudian amati waktu tiba, pintu masuk, akses, cuaca dan momen di lapangan.
+
+Memperluas semua venue sekaligus, menambah banyak panggilan LLM, mengganti model lagi, atau menambahkan event tanpa sumber belum mempunyai bukti manfaat. Kebutuhan material berikutnya adalah sumber venue yang bisa diperiksa, brief peserta baru, perangkat fisik/jaringan yang siap serta anggaran request provider yang tercatat. API yang sudah dikonfigurasi berada pada konfigurasi privat Mac.
+
+### Lokasi, pengoperasian dan handoff
+
+Entrypoint adalah `poc/c67-local-server-lab/ContextHarness/C67ContextLab.xcodeproj`, scheme `C67ContextLab`, bundle `giovanchristoffel.c67-context-lab`. Jalankan backend menurut [panduan ContextHarness](../../apps/c67-local-server-lab/ContextHarness/README.md). Konfigurasi model dan kredensial berada di `.env.local` yang diabaikan Git. Helper start membuat token sementara untuk Simulator. Restart normal merotasi token sehingga resource koneksi perlu dibangun ulang. Backend hidup sebagai proses lokal dan dapat berhenti setelah lingkungan sesi berubah. Keberhasilan health check hanya berlaku pada saat diperiksa.
+
+Batas pilot saat ini adalah Jakarta/WIB, satu hari, mobil, maksimal enam tujuan terpilih dan satu momen yang disumberkan. Pencarian menggunakan konteks area dan batas Jakarta, sementara geofence kecamatan belum diterapkan. Hasil E5 tidak otomatis mendukung seluruh karakter venue. Potensi Google Places dalam keputusan itinerary dan kewajiban provider tetap memerlukan penilaian penggunaan yang sesuai sebelum adopsi di luar lab.
+
+Dokumen ini menjadi sumber konteks dan status untuk lanjutan kerja. Source, laporan ringkas dan bukti yang layak dibagikan akan mengikuti struktur `poc-journey` pada repository C67. Rekaman lama, data/model yang diunduh, token, log privat dan binary lokal mempunyai kebijakan publikasi masing-masing.
+
 ## 1. Konsep aktif dan cara membaca sumber
 
-Aplikasi membantu pengguna menyusun tujuan pilihannya menjadi perjalanan sesuai waktu tersedia, lalu menyesuaikan urutan serta jadwal ketika perjalanan berubah. **Fungsi inti PoC kini dijalankan engine native tanpa ketergantungan pada backend tim/AI.** Data lokasi, rute, cuaca dan informasi tempat menjadi bahan pertimbangan sesuai ketersediaannya. Pengguna tetap menentukan pilihan destinasi dan pengalaman yang ingin dijalani; personalisasi dan manfaat rekomendasi masih perlu evaluasi.
+Aplikasi membantu pengguna menemukan dan memilih tempat, lalu menyusun urutan serta jam kunjungan sesuai minat, waktu tersedia, kondisi dan kesempatan pengalaman. **Jalur yang sedang dikembangkan adalah Context Lab v0.5 dengan backend lokal Mac, E5 perangkat, Google Places, OpenRouter dan layanan Apple**, sebagaimana bagian 0I. Kemampuan native tanpa backend AI, penyimpanan dan replanning aktif pada bagian 0–0H tetap merupakan hasil historis dengan implementasinya sendiri.
 
-Pengalaman dasarnya berkesinambungan: punya minat/tujuan → memperoleh rencana → mengunjungi tempat → menyesuaikan perjalanan. Arah 29 Oktober mengusulkan AI sebagai engine rekomendasi; penajaman 3–4 November memastikan penyusunan dan penyesuaian trip tetap dapat berjalan tanpa AI. Jalur Foundation Models kemudian diambil alih Giovan dan diuji pada aplikasi terpisah; checkpoint 5 November di bagian 0A membatasi perannya sebagai asisten rekomendasi dengan mutu yang masih parsial. Bagian 0B mencatat eksperimen lanjutan pada layar terpisah dalam aplikasi yang sama: profil lokal dan embeddings dengan MapKit langsung untuk menjalankan rekomendasi dasar tanpa Foundation Model.
+Pengalaman yang dituju berkesinambungan dari minat/tujuan hingga rencana, kunjungan dan penyesuaian. Pada Context Lab saat ini, bukti terbaru mencakup discovery sampai itinerary dan peta. Pembaruan trip aktif yang andal serta manfaat perjalanan masih memerlukan integrasi dan evaluasi lanjutan.
 
-**Cara membaca riwayat:** bagian 2–9 mempertahankan rincian konsep dan keputusan 29 Oktober. Pernyataan tentang AI wajib, backend/browser, framework atau implementasi yang masih dirancang pada bagian tersebut harus dibaca bersama checkpoint terbaru di bagian 0, 0A, 0B, 0C, 0D dan 0E serta hasil bertanggal di awal dokumen.
+**Cara membaca riwayat:** bagian 2–9 mempertahankan rincian konsep dan keputusan 29 Oktober. Status lama tentang model, ketergantungan server, browser dan implementasi perlu dibaca bersama bagian 0I. Tanggal dan hasil setiap jalur tetap penting agar hasil native, Foundation Models, Trip Integration dan Context Lab tidak tertukar.
 
 Klarifikasi eksplisit terbaru pengguna mengungguli dokumen lama. Urutan baca:
 
@@ -320,7 +488,8 @@ Klarifikasi eksplisit terbaru pengguna mengungguli dokumen lama. Urutan baca:
 2. [Alur pengguna baru](../context/docs/product/ai-trip-planning-user-flow-2026-10-29.md).
 3. [Spesifikasi engine AI — rancangan](../context/docs/technology/11-ai-planning-engine.md) dan [indeks teknologi](../context/docs/technology/README.md).
 4. [Rencana validasi baru](../context/docs/product/ai-trip-planning-validation-plan-2026-10-29.md).
-5. [Snapshot konteks sebelum pembaruan](../missing-evidence.md#missing-e4ef2b63f729) untuk riwayat dan sumber bertanggal.
+5. Snapshot konteks sebelum pembaruan (original local evidence, omitted from this publication) untuk riwayat dan sumber bertanggal.
+6. Pilihan pengembangan PoC, dependensi dan rekomendasi fokus 6 November (original local evidence, omitted from this publication) untuk melanjutkan diskusi teknis tanpa menganggap seluruh kategori sebagai tahapan wajib.
 
 Keputusan produk, usulan teknis, implementasi dan bukti pengujian adalah empat status berbeda. Dokumen yang lengkap tidak membuktikan kebutuhan, USP, mutu rekomendasi, akurasi data atau kesiapan produksi.
 
@@ -424,6 +593,6 @@ Big Idea, Essential Question, Challenge Statement, Challenge Response dan App St
 - Pada 29 Oktober, pengguna menjelaskan masukan mentor, mengonfirmasi rekomendasi AI sebagai sumber rencana, tanggal/jam/batas selesai dari pengguna, serta recalculation selama trip.
 - Pengguna kemudian menegaskan kesinambungan konsep pengalaman dan perubahan utama pada engine rekomendasi. Pembaruan dokumen diotorisasi; kode, schema, model/API live dan deployment tidak diubah oleh pekerjaan ini.
 
-Chat ini menjadi acuan klarifikasi 29 Oktober; [indeks chat](../missing-evidence.md#missing-cf164b146107) menunjuk diskusi terkait. [Snapshot sebelum pembaruan](../missing-evidence.md#missing-e4ef2b63f729) menyimpan rincian cerita A/B, Athar, Gerald serta catatan pengujian terdahulu.
+Chat ini menjadi acuan klarifikasi 29 Oktober; indeks chat (original local evidence, omitted from this publication) menunjuk diskusi terkait. Snapshot sebelum pembaruan (original local evidence, omitted from this publication) menyimpan rincian cerita A/B, Athar, Gerald serta catatan pengujian terdahulu.
 
 Untuk melanjutkan: baca CBL ini dan dokumen aktif yang ditautkan di bagian 1, cek kode aktual bila hendak mengimplementasikan, lalu tentukan kontrak dan acceptance criteria untuk slice yang diminta pengguna.

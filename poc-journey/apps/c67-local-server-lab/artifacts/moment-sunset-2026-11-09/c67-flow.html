@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alur C67 Context Lab v0.4</title>
+<style>
+* { box-sizing: border-box; }
+:root {
+  --paper: #fff; --canvas: #f1f3f5; --ink: #20252c; --muted: #495b70;
+  --line: #c1cbd7; --accent: #2754a5; --soft: #eef2f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink); background: var(--paper);
+}
+body { margin: 0; }
+main { max-width: 1056px; padding: 44px 32px 56px; margin: auto; }
+h1 { margin: 7px 0 10px; letter-spacing: -.025em; font-size: clamp(30px,5vw,48px); line-height: 1.08; }
+h2 { font-size: 22px; margin: 0 0 13px; }
+p { line-height: 1.6; margin: 0; max-width: 76ch; }
+header p, .footnote { color: var(--muted); }
+.eyebrow { color: var(--accent); font-size: 12px; letter-spacing: .12em; font-weight: 700; }
+section { margin-top: 34px; }
+.diagram-container { width: 100%; overflow-x: auto; }
+svg { display: block; width: 100%; min-width: 960px; }
+.canvas { fill: var(--canvas); }
+.node { fill: var(--paper); stroke: #8090a3; stroke-width: 1.25; }
+.node.terminal { fill: #e6edf6; stroke: #8090a3; }
+.node.focus { fill: var(--soft); stroke: var(--accent); stroke-width: 1.7; }
+.node.decision { stroke: #64768d; }
+.arrows { stroke: var(--muted); stroke-width: 1.7; }
+.optional { stroke-dasharray: 5 4; }
+.node-title { fill: var(--ink); text-anchor: middle; font-size: 17px; font-weight: 650; }
+.node-detail { fill: var(--muted); text-anchor: middle; font-size: 14px; }
+.branch { font-family: ui-monospace, monospace; fill: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .05em; }
+.side-note { fill: var(--muted); font-size: 13px; }
+.footnote { margin-top: 12px; font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 32px; padding-top: 16px; font-size: 14px; }
+a { color: var(--accent); }
+@media (max-width: 640px) { main { padding: 28px 16px 42px; } }
+@media print { .diagram-container { overflow-x: visible; } svg { min-width: 0; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">C67 CONTEXT LAB · V0.4</p>
+    <h1>Dari minat ke rute perjalanan</h1>
+    <p>Alur PoC dari memilih tempat hingga menampilkan jadwal, momen perjalanan, dan garis rute di peta.</p>
+  </header>
+  <section aria-labelledby="explore-heading">
+    <h2 id="explore-heading">01 · Jelajah dan pilih tujuan</h2>
+
+<div class="diagram-container" tabindex="0" aria-label="Jelajah dan pilih tujuan">
+<svg viewBox="0 0 960 592" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="c67-explore-title c67-explore-desc">
+  <title id="c67-explore-title">Jelajah dan pilih tujuan</title>
+  <desc id="c67-explore-desc">Pengguna mengatur minat dan perjalanan, melihat rekomendasi yang diperiksa OpenRouter, dapat menambah hasil, lalu mengonfirmasi tempat sebelum menyusun rencana.</desc>
+  <defs><marker id="c67-explore-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7Z" fill="#495b70"/></marker></defs>
+  <rect width="960" height="592" rx="12" class="canvas"/>
+  <g class="arrows" fill="none" marker-end="url(#c67-explore-arrow)"><path d="M480 88 V116"/><path d="M480 184 V212"/><path d="M480 288 V316"/><path d="M480 384 V412"/><path d="M480 492 V520"/>
+    <path class="optional" d="M736 350 H792 Q800 350 800 342 V158 Q800 150 792 150 H736"/></g>
+  <rect class="node terminal" x="224" y="24" width="512" height="64" rx="24"/>
+<text class="node-title" x="480" y="49">Pilih minat dan atur perjalanan</text>
+<text class="node-detail" x="480" y="70">Area, tanggal, jam berangkat, dan batas pulang</text><rect class="node " x="224" y="116" width="512" height="68" rx="8"/>
+<text class="node-title" x="480" y="141">Temukan tempat</text>
+<text class="node-detail" x="480" y="162">Google Places mencari kandidat dan membaca data jam buka.</text><rect class="node focus" x="224" y="212" width="512" height="76" rx="8"/>
+<text class="node-title" x="480" y="237">Urutkan rekomendasi tempat</text>
+<text class="node-detail" x="480" y="258">E5 di perangkat memberi skor kecocokan.</text>
+<text class="node-detail" x="480" y="276">OpenRouter memberi peringkat dan alasan yang diperiksa server.</text><rect class="node " x="224" y="316" width="512" height="68" rx="8"/>
+<text class="node-title" x="480" y="341">Tampilkan pilihan di Jelajah</text>
+<text class="node-detail" x="480" y="362">Maksimal enam rekomendasi per putaran.</text><rect class="node " x="224" y="412" width="512" height="80" rx="8"/>
+<text class="node-title" x="480" y="437">Pilih tujuan dan lokasi awal</text>
+<text class="node-detail" x="480" y="458">Tandai Wajib dikunjungi atau Jika sempat.</text>
+<text class="node-detail" x="480" y="476">Konfirmasi padanan lokasi di Apple Maps.</text><rect class="node terminal" x="224" y="520" width="512" height="48" rx="24"/>
+<text class="node-title" x="480" y="550">Tekan Susun rencana</text>
+  <text class="branch" x="812" y="240">CARI LAINNYA</text>
+    <text class="side-note" x="812" y="260">Tambah hasil baru.</text>
+    <text class="side-note" x="812" y="278">Pilihan tetap ada.</text>
+</svg>
+</div>
+    <p class="footnote">Jika penilaian kandidat gagal setelah mencoba model cadangan, aplikasi menampilkan kesalahan. Saat menambah halaman, tujuan yang sudah dipilih tetap ada.</p>
+  </section>
+  <section aria-labelledby="plan-heading">
+    <h2 id="plan-heading">02 · Susun jadwal dan pilih momen</h2>
+
+<div class="diagram-container" tabindex="0" aria-label="Susun jadwal dan pilih momen">
+<svg viewBox="0 0 960 680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="c67-plan-title c67-plan-desc">
+  <title id="c67-plan-title">Susun jadwal dan pilih momen</title>
+  <desc id="c67-plan-desc">Mesin menguji kelayakan rencana biasa dan alternatif yang memuat momen, memakai OpenRouter jika ada pertukaran waktu, lalu menampilkan jadwal dan peta.</desc>
+  <defs><marker id="c67-plan-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0 0 L9 3.5 L0 7Z" fill="#495b70"/></marker></defs>
+  <rect width="960" height="680" rx="12" class="canvas"/>
+  <g class="arrows" fill="none" marker-end="url(#c67-plan-arrow)"><path d="M480 96 V124"/><path d="M648 160 H708"/><path d="M480 196 V224"/><path d="M480 292 V320"/>
+    <path d="M312 356 H216 Q208 356 208 364 V436"/><path d="M648 356 H708 Q716 356 716 364 V436"/>
+    <path d="M208 520 V540 Q208 548 216 548 H336 Q344 548 344 556 V576"/>
+    <path d="M716 520 V540 Q716 548 708 548 H624 Q616 548 616 556 V576"/></g>
+  <rect class="node " x="208" y="24" width="544" height="72" rx="8"/>
+<text class="node-title" x="480" y="49">Susun rencana biasa</text>
+<text class="node-detail" x="480" y="70">Cek jam buka, durasi, tujuan wajib, dan batas tunggu/pulang.</text>
+<text class="node-detail" x="480" y="88">Apple Maps memberi ETA. WeatherKit membantu untuk outdoor.</text><polygon class="node decision" points="480,124 648,160 480,196 312,160"/><text class="node-title" x="480" y="165">Ada jadwal layak?</text><rect class="node terminal" x="708" y="124" width="224" height="72" rx="24"/>
+<text class="node-title" x="820" y="149">Tampilkan kendala</text>
+<text class="node-detail" x="820" y="170">Pengguna bisa ubah pilihan.</text><rect class="node " x="232" y="224" width="496" height="68" rx="8"/>
+<text class="node-title" x="480" y="249">Periksa momen yang punya bukti</text>
+<text class="node-detail" x="480" y="270">Pilot Pantai Indah Ancol · cek waktu terbenam dan prakiraan.</text><polygon class="node decision" points="480,320 648,356 480,392 312,356"/><text class="node-title" x="480" y="361">Ada alternatif yang layak?</text><rect class="node " x="24" y="436" width="368" height="84" rx="8"/>
+<text class="node-title" x="208" y="461">Pakai rencana biasa</text>
+<text class="node-detail" x="208" y="482">Kartu momen tampil jika jadwal ini</text>
+<text class="node-detail" x="208" y="500">sudah mencakup jendela yang cocok.</text><rect class="node focus" x="496" y="436" width="440" height="84" rx="8"/>
+<text class="node-title" x="716" y="461">Pilih di antara dua rencana</text>
+<text class="node-detail" x="716" y="482">Tanpa tambahan jalan atau tunggu, pilih langsung.</text>
+<text class="node-detail" x="716" y="500">Jika ada tambahan, OpenRouter membandingkan.</text><rect class="node terminal" x="216" y="576" width="528" height="72" rx="24"/>
+<text class="node-title" x="480" y="601">Tampilkan jadwal, alasan, dan peta</text>
+<text class="node-detail" x="480" y="622">Kartu momen muncul jika rencana terpilih mencakupnya.</text>
+<text class="node-detail" x="480" y="640">Garis jalan Apple Maps dimuat setelah jadwal siap.</text>
+  <text class="branch" x="680" y="147" text-anchor="middle">TIDAK</text>
+    <text class="branch" x="492" y="215">YA</text>
+    <text class="branch" x="260" y="344" text-anchor="middle">TIDAK</text>
+    <text class="branch" x="676" y="344" text-anchor="middle">YA</text>
+</svg>
+</div>
+    <p class="footnote">Alternatif mempertahankan tujuan yang sama dan menghormati jam pilihan pengguna. Jika penilaian LLM gagal, rencana biasa dipakai. Urutan model adalah Crouton Alpha lalu Nemotron sebagai cadangan.</p>
+    <p class="footnote">Pada pilot sunset, jadwal harus mencakup minimal 20 menit dari jendela 45 menit sebelum matahari terbenam. Prakiraan dan jam buka bisa menggugurkan momen.</p>
+  </section>
+  <footer><a href="../../docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md">Bukti dan batas pengujian PoC</a></footer>
+</main>
+</body>
+</html>

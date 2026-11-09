@@ -1,6 +1,6 @@
 # Capability and verification status
 
-Snapshot date: **5 November 2026**. These are technical experiments with bounded data. There has been no participant study demonstrating satisfaction or reduced input effort.
+Snapshot date: **9 November 2026**. The current experiment is Context Lab v0.5 (5). The table below retains original native/P3 milestones. See [Context Lab status and next steps](docs/context-lab-handoff-2026-11-09.md). These are technical experiments with bounded data. There has been no participant study demonstrating satisfaction or reduced input effort.
 
 | Capability / project | Original evidence | Limit |
 | --- | --- | --- |
@@ -22,7 +22,7 @@ The relocated copies passed 220 package tests, 55 CLI tests, 126 native fixture 
 
 ## Current development entry point
 
-Use Trip Integration, with the sibling Foundation Lab packages unchanged in responsibility. Keep the native lab and CLI as independent experiments. The main C67 application's iOS 18/VIPER/backend architecture has not been replaced.
+Use Context Lab with its sibling Foundation packages and TripIntegration package. Its current target is a Mac-local backend and Simulator app. [Source export verification](evidence/context-lab-relocation-2026-11-09.md) records checks on the published copy. The earlier native and P3 results remain independent checkpoints.
 
 ## Still open
 

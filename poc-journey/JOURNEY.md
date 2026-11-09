@@ -16,6 +16,12 @@ This is a synthesis of the [CBL record](docs/source-records/CBL.md), retained pr
 | Feasibility priority2: quality | Does E5 add value beyond evidence/category/BM25? | First quality comparisons did not establish superiority; a later paraphrase study found bounded retrieval value with correlation/automation limits | [Quality](apps/c67-foundation-lab/docs/verification/PREFERENCE_QUALITY_REPORT_2026-11-05.md), [benefit study](apps/c67-foundation-lab/docs/verification/EMBEDDING_BENEFIT_REPORT_2026-11-05.md) |
 | Feasibility priority3: integration | Do preferences, source-backed time, real ETA/weather and proposal state agree? | Actual three-place plan, +30m revision and impossible-deadline refusal; live Cikini English-name failure fixed with branch-scoped regression tests | [P3 full report](apps/c67-trip-integration/docs/VERIFICATION_REPORT_2026-11-05.md) |
 
+## Context Lab continuation — 6–9 November 2026
+
+Work moved into an isolated Mac service to study route latency and richer venue context. Dynamic Places acquisition, sourced opening sessions and WeatherKit led to the personal E5/OpenRouter flow. Manual review then exposed repeated/reset candidates, excess weather configuration and a missing route map. v0.3 addressed browsing and automatic weather; v0.4 added one sourced pre-sunset opportunity and bounded plan judging; v0.5 brought back interactive per-leg mapping from the native routing experiment.
+
+The [current handoff](docs/context-lab-handoff-2026-11-09.md) records decisions, failed identities, measurements and proposed next evaluations. The earlier constraints below belong to the native/P3 decision scope.
+
 ## Decisions retained
 
 - Core trip planning must remain usable without a team-operated AI backend. That does not mean online Maps/Weather services have become offline.
