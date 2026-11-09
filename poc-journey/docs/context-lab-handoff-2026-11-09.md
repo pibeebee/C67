@@ -55,3 +55,7 @@ bash poc-journey/scripts/verify.sh context
 For the normal app, follow the [ContextHarness setup](../apps/c67-local-server-lab/ContextHarness/README.md). Create private `.env.local` values from the supplied example using your own Google, OpenRouter and Apple Maps/WeatherKit REST credentials. Starting the local service creates the ignored connection resource required before XcodeGen/build. Native WeatherKit entitlement setup from the historical app does not provision these REST credentials.
 
 Source export verification is recorded separately from original live evidence. Historical raw logs, provider payloads and opaque result bundles are retained at the original location. The public inventory records links that could not be included. Model assets are restored by immutable URLs and checksums.
+
+## Delivery
+
+The source and documentation are published for review in [C67 PR #11](https://github.com/pibeebee/C67/pull/11), branch `gi/context-lab-checkpoint`. The PR retains the repository review and CI workflow.

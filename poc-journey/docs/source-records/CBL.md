@@ -472,7 +472,7 @@ Entrypoint adalah `poc/c67-local-server-lab/ContextHarness/C67ContextLab.xcodepr
 
 Batas pilot saat ini adalah Jakarta/WIB, satu hari, mobil, maksimal enam tujuan terpilih dan satu momen yang disumberkan. Pencarian menggunakan konteks area dan batas Jakarta, sementara geofence kecamatan belum diterapkan. Hasil E5 tidak otomatis mendukung seluruh karakter venue. Potensi Google Places dalam keputusan itinerary dan kewajiban provider tetap memerlukan penilaian penggunaan yang sesuai sebelum adopsi di luar lab.
 
-Dokumen ini menjadi sumber konteks dan status untuk lanjutan kerja. Source, laporan ringkas dan bukti yang layak dibagikan akan mengikuti struktur `poc-journey` pada repository C67. Rekaman lama, data/model yang diunduh, token, log privat dan binary lokal mempunyai kebijakan publikasi masing-masing.
+Dokumen ini menjadi sumber konteks dan status untuk lanjutan kerja. Source, laporan ringkas dan bukti yang telah ditinjau sudah dipush ke branch `gi/context-lab-checkpoint` melalui [C67 PR #11](https://github.com/pibeebee/C67/pull/11). Folder aktif di GitHub adalah `poc-journey/apps/c67-local-server-lab`, dan CBL publik berada di `poc-journey/docs/source-records/CBL.md`. Verifikasi salinan ekspor menjalankan 106 tes lulus dengan satu benchmark opsional dilewati, XcodeGen, build unsigned Simulator, format Swift, tautan lokal dan checksum publikasi. Merge menunggu review repository. Rekaman lama dan ketidaktersediaan artefak dicatat; kredensial, token, model unduhan, log privat serta binary lokal tidak disertakan dalam commit.
 
 ## 1. Konsep aktif dan cara membaca sumber
 
