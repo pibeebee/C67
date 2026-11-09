@@ -293,6 +293,7 @@ private struct SavedPersonalState: Codable {
     }
     func makePlan() {
         perform {
+            guard self.editor.state.draft == nil else { throw ContextError.invalid("Selesaikan atau batalkan draft itinerary sebelum membuat rencana baru") }
             guard let rec = self.recommendation, let origin = self.origin,!self.stops.isEmpty, rec.context == self.context else {
                 throw ContextError.invalid("Pilih rekomendasi, lokasi awal, dan tujuan pada konteks yang sama")
             }
@@ -307,6 +308,10 @@ private struct SavedPersonalState: Codable {
             var plan = DynamicPlanInput(origin: origin.endpoint, stops: inputs, departure: base.addingTimeInterval(Double(self.departureMinute * 60)),
                                         deadline: base.addingTimeInterval(Double(self.deadlineMinute * 60)), maximumWaitingMinutes: self.waitingMinutes, startStepMinutes: self.grid, policy: self.policy, maxTravelCalls: 64)
             plan.transport = self.transport
+            if self.transport == .transjakarta {
+                let capabilities = try await ContextAPI().request("capabilities", body: Optional<String>.none, as: [String: String].self)
+                guard capabilities["transportTransjakarta"] == "1" else { throw ContextError.invalid("Server belum mendukung TransJakarta; perbarui backend sebelum melanjutkan") }
+            }
             let request = PersonalPlanInput(recommendationID: rec.id, profileRevision: rec.profileRevision,
                                             requiredPlaceIDs: self.stops.filter(\.required).map{$0.stop.place.prepared.googlePlaceID}, plan: plan, considerMoments: self.simpleLayout)
             self.status = "Menghitung jadwal wajib/opsional dan ETA aktual…"

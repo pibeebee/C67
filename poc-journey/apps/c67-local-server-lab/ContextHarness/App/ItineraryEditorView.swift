@@ -12,6 +12,7 @@ struct ItineraryEditorView: View {
                 if let draft = editor.state.draft {
                     Section("Perjalanan baru") {
                         Text("Urutan mengikuti pilihan Anda. Hitung ulang untuk memeriksa jadwal dan transportasi.").font(.footnote)
+                        if !editor.fixture { Text("Draft dan riwayat hanya tersedia selama aplikasi terbuka. Setelah aplikasi ditutup, susun ulang perjalanan Anda.").font(.footnote) }
                         Picker("Transportasi", selection: Binding(get: { draft.transport }, set: { mode in editor.edit { $0.transport = mode } })) {
                             Text("Mobil").tag(ContextTransport.automobile)
                             Text("TJ + jalan kaki").tag(ContextTransport.transjakarta)
@@ -78,7 +79,7 @@ struct ItineraryEditorView: View {
             .navigationTitle("Edit perjalanan")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) { Button("Batalkan") { editor.cancel() }.accessibilityIdentifier("revision-cancel") }
-                ToolbarItem(placement: .topBarTrailing) { Button("Simpan draft") { editor.close() }.accessibilityIdentifier("revision-save-draft") }
+                ToolbarItem(placement: .topBarTrailing) { Button(editor.fixture ? "Simpan draft" : "Tutup draft") { editor.close() }.accessibilityIdentifier("revision-save-draft") }
                 ToolbarItem(placement: .bottomBar) { EditButton() }
             }
             .alert("Hapus tujuan wajib?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } })) {

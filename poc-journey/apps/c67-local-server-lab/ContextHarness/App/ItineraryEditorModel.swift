@@ -33,9 +33,16 @@ import RecommendationContracts
         let testing = ProcessInfo.processInfo.arguments.contains("--revision-ui-test")
         fixtureMode = fixture ?? testing
         let selectedStore = overrideStore ?? ItineraryRevisionStore(url: dir.appendingPathComponent(testing ? "itinerary-revisions-test.json" : "itinerary-revisions.json"))
-        store = selectedStore; writeState = saveState ?? { try selectedStore.save($0) }
+        // Live provider content stays in memory until a durable, provider-compliant
+        // reconstruction path is available. Fixture-only storage remains testable.
+        store = selectedStore
+        if let saveState { writeState = saveState }
+        else if fixtureMode { writeState = { try selectedStore.save($0) } }
+        else { writeState = { _ in } }
         if testing && ProcessInfo.processInfo.arguments.contains("--revision-reset") { try? FileManager.default.removeItem(at: store.url) }
-        do { state = try store.load() } catch { self.error = "Perjalanan tersimpan belum dapat dibaca: \(error.localizedDescription)" }
+        if fixtureMode {
+            do { state = try store.load() } catch { self.error = "Perjalanan tersimpan belum dapat dibaca: \(error.localizedDescription)" }
+        }
     }
     @discardableResult private func persist(_ transform: (inout ItineraryRevisionState) throws -> Void) -> Bool {
         do {
@@ -43,6 +50,7 @@ import RecommendationContracts
         } catch { self.error = "Perubahan belum disimpan: \(error.localizedDescription)"; return false }
     }
     @discardableResult func capture(origin: ChosenPlace, stops: [PersonalStopDraft], input: DynamicPlanInput, result: PersonalPlanResult) -> Bool {
+        guard state.draft == nil else { error = "Selesaikan atau batalkan draft itinerary sebelum menyimpan rencana baru"; return false }
         guard result.result.itinerary.status.hasPrefix("candidate"), !result.result.itinerary.visits.isEmpty, stops.count == input.stops.count,
               origin.endpoint.preparedID == input.origin.preparedID,
               zip(stops, input.stops).allSatisfy({ $0.stop.place.endpoint.preparedID == $1.endpoint.preparedID && $0.stop.place.endpoint.appleCandidateID == $1.endpoint.appleCandidateID }) else { return false }
@@ -50,7 +58,9 @@ import RecommendationContracts
             RevisionStop(place: .init(prepared: row.stop.place.prepared, apple: row.stop.place.apple), required: row.required, durationMinutes: effective.durationMinutes, exposure: effective.exposure, preferredTime: effective.preferredTime, avoidRain: effective.avoidRain, source: .init(placeID: row.stop.place.prepared.googlePlaceID, origin: .previousPlan))
         }
         let draft = ItineraryEditDraft(parentRevisionID: UUID(), origin: .init(prepared: origin.prepared, apple: origin.apple), stops: rows, departure: input.departure, deadline: input.deadline, maximumWaitingMinutes: input.maximumWaitingMinutes, transport: input.transport ?? .automobile)
-        return persist { $0.capture(.init(draft: draft, result: result)) }
+        return persist { state in
+            guard state.capture(.init(draft: draft, result: result)) else { throw ContextError.invalid("Draft itinerary masih tersimpan") }
+        }
     }
     func begin() {
         invalidateOperation()

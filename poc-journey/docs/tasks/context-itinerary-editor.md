@@ -11,7 +11,7 @@ Extend the Context Lab personal screen with pre-departure replace, reorder, dele
 
 - [x] Add fixed-order planning and transit waiting evidence; prove fixed subsequences, hard constraints, return waiting and old JSON compatibility in PlaceContextEngineTests.
 - [x] Add a shared public TJ routing facade and REST walking adapter; test direct/transfer/walking, unavailable service, provenance and budgets. Connect DynamicTripService and add revision preview contracts/endpoint.
-- [x] Add locally persisted draft/preview/applied revision state and input identity checks. Preserve state on cancellation, expiry, relaunch and failure.
+- [x] Add in-session draft/preview/applied revision state and input identity checks. Preserve a draft on cancellation of a preview, expiry and failure. Live revision state is not persisted across relaunch pending a provider-compliant reconstruction design; isolated synthetic fixtures still exercise persistence.
 - [x] Add Context Lab edit/picker/compare UI and transit map segments. Exercise replace/add/delete/reorder/apply/cancel/relaunch with deterministic fixtures.
 - [x] Update maintained-source evidence with explicit manifest ownership, preserve immutable import records, run package/Python/format/build/UI checks and write a new result report.
 

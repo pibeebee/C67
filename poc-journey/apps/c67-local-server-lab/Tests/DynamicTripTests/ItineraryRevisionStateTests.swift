@@ -75,6 +75,17 @@ import PlaceContextEngine
         XCTAssertThrowsError(try blocked.save(state))
         XCTAssertEqual(try store.load().current!.id, state.current!.id)
     }
+    func testNewPlanCannotReplaceAnExistingDraft() async throws {
+        var state = try await state()
+        state.move(from: 0, to: 1)
+        let draft = state.draft
+        let original = state.current?.id
+        let next = try await ItineraryRevisionReplay.initial()
+        XCTAssertFalse(state.capture(next))
+        XCTAssertEqual(state.draft, draft)
+        XCTAssertEqual(state.current?.id, original)
+        XCTAssertThrowsError(try state.begin())
+    }
     func testDeadlineAndTransitWaitingConflictKeepOldVersion() async throws {
         var state = try await state(); let old = state.current!.id
         state.change { $0.transport = .transjakarta; $0.maximumWaitingMinutes = 0 }

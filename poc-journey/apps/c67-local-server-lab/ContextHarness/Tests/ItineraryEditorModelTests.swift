@@ -51,6 +51,20 @@ import PlaceContextEngine
         XCTAssertEqual(editor.state.current?.draft.stops[0].avoidRain, true)
         XCTAssertEqual(editor.state.current?.draft.stops[0].exposure, .outdoor)
     }
+    func testLiveEditorDoesNotPersistProviderDetails() async throws {
+        let source = ItineraryEditorModel(store: store(), fixture: true)
+        let model = try await setup(source)
+        let initial = try XCTUnwrap(source.state.current)
+        let liveStore = store()
+        let live = ItineraryEditorModel(store: liveStore, fixture: false)
+        XCTAssertTrue(live.capture(origin: try XCTUnwrap(model.origin), stops: model.stops, input: try initial.draft.request().plan, result: initial.result))
+        live.begin()
+        XCTAssertNotNil(live.state.draft)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: liveStore.url.path))
+        let restarted = ItineraryEditorModel(store: liveStore, fixture: false)
+        XCTAssertNil(restarted.state.draft)
+        XCTAssertNil(restarted.state.current)
+    }
     final class WriteGate { var fail = false }
     func testFailedCaptureDoesNotPublishDifferentVersion() async throws {
         let storage = store(); let gate = WriteGate()

@@ -104,7 +104,7 @@ import PlannerEngine
         app.get("v1", "lab", "context", "capabilities") { @MainActor req async throws -> Response in
             try authorize(req)
             return try response(["configured": String(dynamic != nil), "experiments": String(env["LAB_CONTEXT_EXPERIMENTS"] == "1"),
-                                 "catalogue": "dynamic Google place selection and explicit Apple candidate confirmation", "gridDefaultMinutes": "5"])
+                                 "catalogue": "dynamic Google place selection and explicit Apple candidate confirmation", "gridDefaultMinutes": "5", "transportTransjakarta": "1"])
         }
         app.get("v1", "lab", "recommendation", "capabilities") { @MainActor req async throws -> Response in
             try authorize(req)

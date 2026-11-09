@@ -48,6 +48,8 @@ jobs:
           bash poc-journey/scripts/verify.sh journey-models
       - name: Swift package fixture suites
         run: bash poc-journey/scripts/verify.sh packages
+      - name: Context Lab fixture tests
+        run: bash poc-journey/scripts/verify.sh context
       - name: Offline TJ capability evaluator
         run: bash poc-journey/scripts/verify.sh transjakarta
       - name: Native local and Jakarta replay harnesses

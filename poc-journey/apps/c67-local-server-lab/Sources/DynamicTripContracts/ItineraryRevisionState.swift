@@ -66,8 +66,12 @@ public struct ItineraryRevisionState: Codable, Sendable {
     public private(set) var preview: ItineraryRevisionPreview?
     public var current: LocalItineraryRevision? { revisions.last }
     public init() {}
-    public mutating func capture(_ revision: LocalItineraryRevision) { revisions.append(revision); draft = nil; preview = nil }
+    @discardableResult public mutating func capture(_ revision: LocalItineraryRevision) -> Bool {
+        guard draft == nil else { return false }
+        revisions.append(revision); preview = nil; return true
+    }
     public mutating func begin() throws {
+        guard draft == nil else { throw ContextError.invalid("Selesaikan atau batalkan draft yang masih tersimpan") }
         guard let current else { throw ContextError.invalid("Belum ada itinerary tersimpan") }
         var next = current.draft; next.parentRevisionID = current.id; next.id = UUID()
         let ordered = current.result.result.itinerary.visits.map(\.placeID)
