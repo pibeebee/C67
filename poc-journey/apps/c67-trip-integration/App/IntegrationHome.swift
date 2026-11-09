@@ -11,15 +11,9 @@ struct IntegrationHome: View {
             Form {
                 Section {
                     Text("Gabungkan minat, fakta tempat, jadwal, routing dan cuaca dalam satu draf yang dapat ditinjau.")
-                    Text(model.replay ? "REPLAY SINTETIS · bukan hasil MapKit/WeatherKit" : "Jakarta · satu hari WIB · maksimal 6 tempat · \(model.request.effectiveTransport.label)")
+                    Text(model.replay ? "REPLAY SINTETIS · bukan hasil MapKit/WeatherKit" : "Jakarta · satu hari WIB · maksimal 6 tempat · mobil/taksi")
                         .font(.caption).foregroundStyle(model.replay ? Color.orange : Color.secondary)
                     Text("Aplikasi dan penyimpanan ini terpisah dari Foundation Lab serta PoC routing.").font(.caption)
-                }
-                if model.blokM {
-                    Section("POC Blok M · 6 November 2026") {
-                        Text("Katalog bersumber · radius 1,5 km dari MRT Blok M BCA · Bundaran HI pulang-pergi · \(model.request.effectiveTransport.label)").accessibilityIdentifier("blok-m-mode")
-                        Text("Kecocokan personal masih dievaluasi. Jam, atribut yang belum diketahui, dan sumber lama tetap perlu ditinjau.").font(.caption)
-                    }
                 }
                 inputSection
                 preferenceSection
@@ -77,13 +71,6 @@ struct IntegrationHome: View {
     }
     private var inputSection: some View {
         Section("1 · Batas perjalanan") {
-            Picker("Transportasi", selection: Binding(get: { model.request.effectiveTransport }, set: { mode in model.edit { $0.transport = mode } })) {
-                ForEach(TripTransport.allCases) { Text($0.label).tag($0) }
-            }.accessibilityIdentifier("transport-mode")
-            if model.request.effectiveTransport == .transjakartaBRT {
-                Text("POC jaringan TJ Jakarta, rute langsung atau satu transfer. Estimasi GTFS dengan buffer satu headway penuh dan dua menit perpindahan.")
-                    .font(.caption).accessibilityIdentifier("busway-assumptions")
-            }
             DatePicker("Berangkat (WIB)", selection: departureBinding)
             DatePicker("Kembali paling lambat", selection: binding(\.deadline))
             Text("Mulai dan kembali di Bundaran HI. Tidak meminta lokasi perangkat.").font(.caption)
@@ -217,9 +204,7 @@ struct IntegrationHome: View {
             }
             Button("Hitung jadwal, rute dan cuaca", action: model.plan)
                 .disabled(model.busy || !prepared.ready).accessibilityIdentifier("calculate-plan")
-            Text(model.request.effectiveTransport == .transjakartaBRT
-                ? "Walking memakai MapKit. Bus memakai layanan dan headway GTFS pada waktu tiap ruas, lalu jam kunjungan diperiksa lagi."
-                : "Semua kandidat akhir memakai ETA MapKit pada waktu berangkat tiap ruas. Sesi layanan dan aturan masuk diperiksa lagi pada waktu tiba.").font(.caption)
+            Text("Semua kandidat akhir memakai ETA MapKit pada waktu berangkat tiap ruas. Sesi layanan dan aturan masuk diperiksa lagi pada waktu tiba.").font(.caption)
         }
     }
 }
@@ -230,7 +215,7 @@ struct PlanScreen: View {
     private var isProposal: Bool { model.session.proposal?.id == plan.id }
     var body: some View {
         List {
-            Section(plan.evidenceMode == "synthetic_replay" ? "REPLAY SINTETIS" : plan.evidenceMode == "live_gtfs_estimate" ? "Draf · estimasi GTFS + walking MapKit" : "Draf perjalanan") {
+            Section(plan.evidenceMode == "live" ? "Draf perjalanan" : "REPLAY SINTETIS") {
                 Text(plan.feasible ? "Memenuhi batas jadwal yang dihitung" : "Ada konflik yang belum terselesaikan")
                     .font(.headline).accessibilityIdentifier("plan-status")
                 Text(plan.summary)
@@ -281,25 +266,8 @@ struct PlanScreen: View {
                 ForEach(plan.legs) { leg in
                     VStack(alignment: .leading) {
                         Text("\(leg.from) → \(leg.to)")
-                        if let journey = leg.busway {
-                            Text(journey.summary).font(.caption).accessibilityIdentifier("busway-leg")
-                            ForEach(Array(journey.rides.enumerated()), id: \.offset) { _, ride in
-                                Text("TJ \(ride.pattern.effectiveRouteID) · \(ride.pattern.effectiveCategory). Naik \(TripClock.label(ride.boardAt)) · platform \(ride.board.platform). Turun \(TripClock.label(ride.alightAt)) · platform \(ride.alight.platform).")
-                                    .font(.caption)
-                            }
-                            if let connection = journey.connection {
-                                Text("Walking transfer \(Int(ceil(connection.walk.seconds / 60))) menit dan buffer perpindahan \(Int(connection.bufferSeconds / 60)) menit.").font(.caption)
-                            }
-                        }
                         Text("\(TripClock.label(leg.departure)) · \(leg.seconds.map { String(format: "%.1f menit", $0 / 60) } ?? "ETA belum tersedia") · \(leg.providerStatus)").font(.caption)
                     }
-                }
-            }
-            if let source = plan.legs.compactMap(\.busway).first?.source {
-                Section("Sumber TransJakarta") {
-                    Link(source.publisher + " · GTFS", destination: source.attributionURL)
-                    Link("CC BY 4.0", destination: source.licenseURL)
-                    Text("Diperiksa \(TripClock.label(source.checkedAt)). \(source.modification)").font(.caption)
                 }
             }
             Section("Konflik dan ketidakpastian") {
@@ -359,7 +327,8 @@ struct WeatherDiagnostics: View {
                 ShareLink("Bagikan JSON diagnosis", item: String(decoding: data, as: UTF8.self))
             }
             Section("Konfigurasi aplikasi") {
-                Text("Bundle ID: \(Bundle.main.bundleIdentifier ?? "unknown")").textSelection(.enabled)
+                Text("Bundle ID: giovanchristoffel.c67-trip-integration").textSelection(.enabled)
+                Text("Team: DP5XP7C2AM").textSelection(.enabled)
                 Text("Aktifkan WeatherKit pada App Services dan App Capabilities untuk App ID ini, lalu gunakan provisioning yang memuat entitlement WeatherKit.")
             }
         }.navigationTitle("Diagnosis cuaca")

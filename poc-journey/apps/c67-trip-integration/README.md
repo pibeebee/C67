@@ -1,9 +1,5 @@
 # C67 Trip Integration — Priority 3
 
-The latest routing implementation adds route-aware platforms, a 199-route Jakarta TJ snapshot, one-transfer fallback and early time-budget checks. The paired evaluation measures before/after recovery, request costs and remaining constraints. [Improvement report](docs/transjakarta/IMPROVEMENTS-REPORT-2026-11-06.md)
-
-The [TJ-only capability protocol](docs/transjakarta/CAPABILITY-TESTS.md) and [TJ-only report](docs/transjakarta/TJ-ONLY-REPORT-2026-11-06.md) cover 64 scenarios, 1,000 engine variations and optional source audits across all 241 TJ routes. BRT, non-BRT, Mikrotrans and special TJ services are explicit; runtime gates and source coverage are reported separately. Run `rtk proxy bash poc-journey/scripts/verify.sh transjakarta` from the repository root. The [previous v1 report](docs/transjakarta/CAPABILITY-REPORT-2026-11-06.md) remains historical.
-
 Separate iPhone PoC, **v0.1 build 3**, minimum iOS 26. After Giovan confirmed WeatherKit activation, the signed build, **35 package tests, 2 Simulator UI tests and 7 scripted iPhone live cases passed**. Previous Foundation Lab and routing apps remain separate. See the [verification report](docs/VERIFICATION_REPORT_2026-11-05.md) for measurements, fixed failures and untested scope.
 
 Open `C67TripIntegration.xcodeproj`, scheme **C67TripIntegration**.
@@ -103,17 +99,8 @@ swift run --package-path Packages/TripIntegration p3-mapkit-probe artifacts/mac-
 
 Pass only if all critical invariants in the matrix hold in deterministic fault cases **and** real signed-device flows. Report category/E5 outcomes, actual search/ETA/group counts, times, failures, corrections and pending claims separately. User relevance and reduced contribution still require observed use with participants; this technical PoC cannot establish them by itself.
 
-## Blok M recommendation POC
+## Shared engine for Journey Showcase — 9 November 2026
 
-Use Debug launch argument `--p3-blok-m` for the dated Blok M catalog with isolated session storage, `--p3-blok-m-replay` for synthetic screen-flow verification, or `--p3-blok-m-live-eval` for explicit scripted provider checks on a correctly signed iPhone. The [protocol](docs/blok-m/PROTOCOL.md) contains reproducible commands, contrasting profiles, test cases and blinded-review materials. The [6 November report](docs/blok-m/REPORT-2026-11-06.md) separates observed native Mac inference/routing, signed-iPhone WeatherKit/routing, synthetic tests and pending human/manual acceptance.
+The sibling [Journey Showcase](../c67-journey-showcase/README.md) uses this package's combined city/Blok M catalog, confirmed custom origins, target-area constraints and direct/one-transfer TJ planning. Its attributed runtime feed contains 199 routes and 544 patterns. The diagnostic App/UITests in this folder retain current main; adding the shared engine does not add the Showcase controls to that older UI.
 
-
-## TransJakarta itinerary POC
-
-The transport picker offers car/taxi or TransJakarta BRT plus walking. The BRT POC uses direct corridor-1 patterns from the [official GTFS Schedule feed](https://gtfs.transjakarta.co.id/files/file_gtfs.zip), with MapKit walking for access, egress and short local legs. The bundled subset retains the upstream ZIP hash, check time, platform IDs, weekly services and frequency-based trip patterns. Refresh it from the repository root with `python3 poc-journey/scripts/import_transjakarta.py --output poc-journey/apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Resources/transjakarta-corridor-1.json`. The snapshot must have been checked within seven days of planning. Unsupported new holiday or boarding restrictions require an importer/runtime update.
-
-The planner considers the nearest two published boarding coordinates within 800 m of each endpoint, limits each walking component to 20 minutes, and uses one full headway as a visible waiting buffer. Bus running times use stop-time offsets. `live_gtfs_estimate` identifies this combination of published bus estimates and live native providers. Actual bus arrivals, traffic, station entrances, accessibility, exceptional service and transfers need additional evidence. Mode selection is explicit per request, with the existing routing optimizer choosing among walking and BRT legs within the busway option.
-
-Debug launch arguments are `--p3-busway` for interactive Blok M planning, `--p3-busway-replay` for synthetic walking/search/weather screen checks, and `--p3-busway-live-eval` for isolated signed-device provider evaluation. Device evidence is written under `Documents/P3BuswayEval/<run UUID>`. Existing stored car requests decode with their original car default. JSON and Markdown exports include transport components and CC BY 4.0 attribution. See the [POC report](docs/transjakarta/REPORT-2026-11-06.md).
-
-A fresh synthetic command from the repository root is `swift run --package-path poc-journey/apps/c67-trip-integration/Packages/TripIntegration p3-blok-m-eval --out NEW_DIRECTORY --baseline --replay --busway`. Use `--baseline --live-clock --live-routes --busway` for explicit live Mac routing checks. Signed iPhone execution remains the WeatherKit acceptance evidence.
+Run `bash poc-journey/scripts/verify.sh packages` and `bash poc-journey/scripts/verify.sh transjakarta` from the repository root for deterministic package and TJ checks. The [prior improvement report](docs/transjakarta/IMPROVEMENTS-REPORT-2026-11-06.md) and [capability protocol](docs/transjakarta/CAPABILITY-TESTS.md) retain their historical dates and boundaries. See the [PR repair task](../../docs/tasks/pr12-journey-fixes-2026-11-09.md) for current scope and verification.

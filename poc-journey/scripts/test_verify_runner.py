@@ -52,6 +52,14 @@ class RunnerTests(unittest.TestCase):
         args = self.run_check("transjakarta")
         self.assertEqual(args[args.index("--gtfs-zip") + 1], self.env["TJ_GTFS_ZIP"])
 
+    def test_journey_models_uses_explicit_destination_and_only_local_unit_tests(self):
+        self.env["P3_SIMULATOR_DESTINATION"] = "platform=iOS Simulator,id=review-device"
+        args = self.run_check("journey-models")
+        self.assertEqual(args[args.index("-destination") + 1], self.env["P3_SIMULATOR_DESTINATION"])
+        self.assertIn("-only-testing:C67JourneyShowcaseTests", args)
+        self.assertIn("CODE_SIGN_IDENTITY=-", args)
+        self.assertNotIn("--journey-live-check", args)
+
 
 if __name__ == "__main__":
     unittest.main()

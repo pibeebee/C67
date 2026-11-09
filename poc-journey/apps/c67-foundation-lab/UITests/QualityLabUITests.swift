@@ -10,24 +10,14 @@ import XCTest
         return app
     }
     func reach(_ element: XCUIElement, app: XCUIApplication, up: Bool = true) {
-        for _ in 0 ..< 24 {
-            let keyboard = app.keyboards.firstMatch
-            let tabBar = app.tabBars.firstMatch
-            var bottom = tabBar.exists ? tabBar.frame.minY - 8 : app.frame.maxY - 50
-            if keyboard.exists { bottom = min(bottom, keyboard.frame.minY - 70) }
-            if element.exists, element.isHittable, element.frame.midY > 110, element.frame.midY < bottom {
+        for _ in 0 ..< 14 {
+            if element.exists && element.isHittable && element.frame.midY < app.frame.maxY - 150 {
                 return
             }
-            let shouldMoveUp = element.exists ? element.frame.midY >= bottom : up
-            let startY = shouldMoveUp ? bottom - 20 : 140
-            let endY = shouldMoveUp ? 140 : bottom - 20
-            app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: app.frame.midX, dy: startY))
-                .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: app.frame.midX, dy: endY)))
+            if up { app.swipeUp() } else { app.swipeDown() }
         }
-        capture("Unreachable quality control")
-        XCTFail("Unreachable control \(element). \(app.debugDescription)")
+        XCTAssertTrue(element.exists && element.isHittable)
     }
-
     func capture(_ name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name
@@ -81,7 +71,7 @@ import XCTest
         let ranking = app.buttons["quality-ranking-Kategori"]
         reach(ranking, app: app)
         ranking.tap()
-        let like = app.descendants(matching: .any).matching(identifier: "quality-like-bdt-silent").firstMatch
+        let like = app.buttons["quality-like-bdt-silent"]
         reach(like, app: app)
         like.tap()
         app.buttons["Membaca di tempat"].tap()

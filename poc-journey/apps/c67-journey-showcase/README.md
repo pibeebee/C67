@@ -6,7 +6,7 @@ A separate iOS 26+ SwiftUI POC for creating a one-day itinerary through a guided
 
 Open `C67JourneyShowcase.xcodeproj`, select scheme `C67JourneyShowcase`, and run on an iOS 26+ Simulator. The default mode is **Demo**. Demo search, walking/car durations and weather are authored inputs with visible synthetic labels. Maps load base tiles and visible walking/car road geometry from MapKit online. The map labels Demo timing separately. Demo is available in Debug and Release configurations.
 
-Generate the project from this directory with `rtk proxy xcodegen generate`. The post-generation hook adds the dictionary-valued WeatherKit capability. The bundled Gabarito font is registered through the generated Info.plist and retains its SIL OFL license.
+Generate the project from this directory with `xcodegen generate`. The post-generation hook adds the dictionary-valued WeatherKit capability. The bundled Gabarito font is registered through the generated Info.plist and retains its SIL OFL license.
 
 The app is installed separately using bundle ID `com.hendra.pocjourney.showcase`. Signing uses the operator's own local team override. WeatherKit requires this new App ID's matching service and provisioning configuration. The older `com.hendra.pocjourney` app has its own entitlement/provisioning history.
 
@@ -40,14 +40,14 @@ Transfer timing, platform identity and both services appear in detailed UI and J
 The sidecar can be regenerated from an existing matching capture, from the repository root.
 
 ```sh
-rtk proxy python3 poc-journey/scripts/import_transjakarta.py --input-zip PATH_TO_CAPTURED_ZIP --feed poc-journey/apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Resources/transjakarta-corridor-1.json --geometry-output poc-journey/apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Resources/transjakarta-corridor-1-geometry.json
+python3 poc-journey/scripts/import_transjakarta.py --input-zip PATH_TO_CAPTURED_ZIP --feed poc-journey/apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Resources/transjakarta-corridor-1.json --geometry-output poc-journey/apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Resources/transjakarta-corridor-1-geometry.json
 ```
 
 Use `--output` and optional `--geometry-output` when explicitly downloading a new routing snapshot. Existing reports retain their original dates and hashes.
 
 ## Verify and evidence
 
-From the repository root, `rtk proxy bash poc-journey/scripts/verify.sh packages` runs shared package tests, and `rtk proxy bash poc-journey/scripts/verify.sh build` builds all four native POC apps. Set `P3_SIMULATOR_DESTINATION` and run `verify.sh ui` for the existing apps and the new Showcase unit/UI suites. Use a fresh ignored `POC_OUTPUT_DIR` for each execution.
+From the repository root, `bash poc-journey/scripts/verify.sh packages` runs shared package tests, and `bash poc-journey/scripts/verify.sh build` builds all four native POC apps. Set `P3_SIMULATOR_DESTINATION` and run `verify.sh ui` for the existing apps and the new Showcase unit/UI suites. Use a fresh ignored `POC_OUTPUT_DIR` for each execution.
 
 See [visual rules](docs/DESIGN.md), [execution report](docs/REPORT-2026-11-06.md), and the [task brief](../../docs/tasks/journey-showcase.md). Source attribution is retained in the [journey third-party record](../../THIRD_PARTY.md).
 
@@ -56,3 +56,9 @@ See [visual rules](docs/DESIGN.md), [execution report](docs/REPORT-2026-11-06.md
 New trips use the combined Jakarta catalog. In setup, search and select a start/return point; Live searches MapKit addresses and POIs within Jakarta, while Demo offers labeled synthetic origins. In preferences, select one or more areas and optionally search the sourced catalog for required spots. Area constraints, required spots, hours and verified attributes all apply together. Empty or conflicting matches remain visible. Arbitrary searched venues are not assigned inferred opening hours.
 
 See [implementation and verification](../../docs/tasks/journey-custom-origins-and-areas.md).
+
+## PR review repairs — 9 November 2026
+
+Journey is contributed with its required shared engine. The standalone Foundation Lab and Trip Integration diagnostic UI/UITests retain current main; their historical consolidation results do not describe a new execution after this scope adjustment.
+
+Creating a new Live trip preserves English E5 matching; Demo retains its synthetic non-embedding defaults. Regression coverage includes mode changes and restored Live drafts. The origin binding uses an explicit setter closure for compiler compatibility while preserving the original view layout, labels and accessibility identifiers. Run `verify.sh journey-models` with `P3_SIMULATOR_DESTINATION` for the provider-free model and geometry regression suite. See the [repair task](../../docs/tasks/pr12-journey-fixes-2026-11-09.md) for current verification.

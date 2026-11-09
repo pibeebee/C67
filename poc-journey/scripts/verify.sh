@@ -72,6 +72,15 @@ case "${1:-}" in
     done
     if [[ "$build_failures" -gt 0 ]]; then exit 1; fi
     ;;
+  journey-models)
+    : "${P3_SIMULATOR_DESTINATION:?Choose an installed iOS 26+ Simulator destination}"
+    run_logged "$output_root/journey-models.log" xcodebuild -quiet \
+      -project "$journey_root/apps/c67-journey-showcase/C67JourneyShowcase.xcodeproj" -scheme C67JourneyShowcase \
+      -destination "$P3_SIMULATOR_DESTINATION" -derivedDataPath "$output_root/DerivedData-C67JourneyShowcase" \
+      -resultBundlePath "$output_root/C67JourneyShowcase.xcresult" CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- \
+      -only-testing:C67JourneyShowcaseTests ${package_options[@]+"${package_options[@]}"} -parallel-testing-enabled NO test
+    printf 'PASS: Journey model and geometry regression tests\n'
+    ;;
   ui)
     : "${P3_SIMULATOR_DESTINATION:?Choose an installed iOS 26+ Simulator destination}"
     for definition in 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration' 'c67-journey-showcase:C67JourneyShowcase'; do
@@ -92,6 +101,6 @@ case "${1:-}" in
       -only-testing:poc-c67UITests/NativePlannerPortabilityTests ${package_options[@]+"${package_options[@]}"} -parallel-testing-enabled NO test
     printf 'PASS: native planner fixture UI regression\n'
     ;;
-  *) printf 'Usage: verify.sh context|packages|transjakarta|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
+  *) printf 'Usage: verify.sh context|packages|transjakarta|cli|native|build|journey-models|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"

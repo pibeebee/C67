@@ -264,7 +264,12 @@ enum JourneyPhase: String, Codable {
     func newTrip() {
         guard !saving else { return }
         try? configureCatalog(city: true)
-        edit { input in input = BlokMExperiment.request(now: now); input.transport = .transjakartaBRT; input.useCityCatalog = true }
+        edit { input in
+            input = BlokMExperiment.request(now: now)
+            input.transport = .transjakartaBRT
+            input.useCityCatalog = true
+            input.useEmbedding = mode == .live
+        }
         session.proposal = nil; phase = .setup; persist()
     }
     func resume() {

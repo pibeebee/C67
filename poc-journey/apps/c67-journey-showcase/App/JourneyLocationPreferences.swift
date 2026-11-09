@@ -8,7 +8,7 @@ struct JourneyOriginPicker: View {
         JourneyPanel {
             Text("Mulai & kembali ke mana?").font(.headline)
             HStack {
-                TextField("Nama tempat atau alamat di Jakarta", text: Binding(get: { model.request.originQuery }, set: model.setOriginQuery))
+                TextField("Nama tempat atau alamat di Jakarta", text: Binding(get: { model.request.originQuery }, set: { model.setOriginQuery($0) }))
                     .textFieldStyle(.roundedBorder).accessibilityIdentifier("origin-query")
                     .focused($editingOrigin).submitLabel(.search)
                     .onSubmit { editingOrigin = false; model.searchOrigin() }

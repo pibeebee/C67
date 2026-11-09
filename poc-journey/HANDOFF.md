@@ -1,5 +1,7 @@
 # Teammate handoff
 
+PR #12 contributes [Journey Showcase](apps/c67-journey-showcase/README.md) with its required shared engine. The original production and Context Lab applications retain current main, as do the standalone Foundation Lab/Trip Integration diagnostic screens and UI tests. Read the [scoped repair task](docs/tasks/pr12-journey-fixes-2026-11-09.md) before applying older consolidation results to this revision.
+
 ## Latest entry point — Context Lab
 
 Read [the 9 November handoff](docs/context-lab-handoff-2026-11-09.md) and [current CBL section 0I](docs/source-records/CBL.md). Context Lab v0.5 is the active experiment, using a local Mac service, Google Places, device E5 and OpenRouter. Follow its [app setup](apps/c67-local-server-lab/ContextHarness/README.md). The instructions below retain the earlier Trip Integration checkpoint.
