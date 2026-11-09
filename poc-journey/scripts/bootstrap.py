@@ -25,4 +25,14 @@ for name, expected in manifest['files'].items():
         errors.append(name + ': size/hash mismatch')
 if errors:
     raise SystemExit('\n'.join(errors))
-print('PASS: four pinned E5 assets verified; no inference or place/weather request executed.')
+# The server has its own Bundle.module resource directory.
+context_model = ROOT / 'apps/c67-local-server-lab/Sources/PlannerEngine/Resources/Model'
+if context_model.is_dir():
+    import shutil
+    context_manifest = json.loads((context_model / 'manifest.json').read_text())
+    for name, expected in context_manifest['files'].items():
+        source = MODEL / name
+        if hashlib.sha256(source.read_bytes()).hexdigest() != expected['sha256']:
+            raise SystemExit('Context Lab model manifest disagrees with the shared pinned assets')
+        shutil.copyfile(source, context_model / name)
+print('PASS: pinned E5 assets verified and restored to the available app resource roots; no inference or provider request executed.')

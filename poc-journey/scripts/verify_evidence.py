@@ -11,13 +11,17 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--refresh-publication-hashes', action='store_true', help='Record reviewed packaging/layout changes; never edit original hashes')
 args = parser.parse_args()
 path = ROOT / 'evidence/publication-manifest.json'
-manifest = json.loads(path.read_text())
+manifests = {path: json.loads(path.read_text())}
+context_path = ROOT / 'evidence/context-lab-publication.json'
+if context_path.exists():
+    manifests[context_path] = json.loads(context_path.read_text())
+entries = [entry for manifest in manifests.values() for entry in manifest['files']]
 published_paths = set(subprocess.check_output(
     ['git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', 'poc-journey'],
     cwd=ROOT.parent,
 ).decode().split('\0'))
 issues = []; count = 0
-for entry in manifest['files']:
+for entry in entries:
     if entry['disposition'] != 'included':
         continue
     count += 1
@@ -37,5 +41,6 @@ for entry in manifest['files']:
 if issues:
     raise SystemExit('\n'.join(issues))
 if args.refresh_publication_hashes:
-    path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
+    for path, manifest in manifests.items():
+        path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
 print(f'PASS: {count} imported publication copies, original/publication hashes and exclusions accounted for.')

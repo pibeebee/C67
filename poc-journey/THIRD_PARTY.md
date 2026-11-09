@@ -9,3 +9,5 @@
 - **Google and other legacy providers:** retained CLI reports describe provider limits and attribution. Credentials and unnecessary private request metadata are excluded. No current live API entitlement or coverage is promised by this archive.
 
 Imported code/reports are research artifacts supplied by Giovan and the identified teammate contribution. This document does not grant rights to unrelated third-party material or change upstream license terms.
+
+- **Context Lab additions, 9 November:** the separate model manifest pins the same E5 weights and license. Google Places, Apple Maps Server API, native MapKit and WeatherKit REST are configured with private credentials. The source-backed Pantai Indah opportunity cites Jakarta Tourism. Crouton Alpha and Nemotron are invoked through OpenRouter with a zero-price ceiling and runtime response validation. Provider terms and pricing require checking for the consuming account before adopting the experiment beyond this lab.

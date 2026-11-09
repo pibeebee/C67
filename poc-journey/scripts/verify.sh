@@ -17,6 +17,10 @@ run_logged() {
   fi
 }
 case "${1:-}" in
+  context)
+    run_logged "$output_root/context-lab-tests.log" swift test -j 4 --package-path "$journey_root/apps/c67-local-server-lab"
+    tail -n 10 "$output_root/context-lab-tests.log"
+    ;;
   packages)
     for package in TripIntelligence PreferenceLearning VisitTiming PreferenceQuality; do
       run_logged "$output_root/$package.log" swift test --package-path "$journey_root/apps/c67-foundation-lab/Packages/$package"
@@ -74,6 +78,6 @@ case "${1:-}" in
       -only-testing:poc-c67UITests/NativePlannerPortabilityTests -parallel-testing-enabled NO test
     printf 'PASS: native planner fixture UI regression\n'
     ;;
-  *) printf 'Usage: verify.sh packages|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
+  *) printf 'Usage: verify.sh context|packages|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"
