@@ -1,0 +1,972 @@
+{
+  "schemaVersion": 1,
+  "id": "blok-m-timing-2026-11-06",
+  "sources": [
+    {
+      "id": "bm-parks",
+      "title": "Jakarta government — five 24-hour parks",
+      "url": "https://www.jakarta.go.id/siaran-pers/5546-SP-HMS-05-2025",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "local_government; fingerprint identifies the research summary, not remote HTML",
+      "note": "The government announced 24-hour operation for Taman Literasi, Taman Ayodia and Taman Langsat in May 2025. These are public parks; tenant/library hours are separate. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-literasi",
+      "title": "Jakarta Smart City — Taman Literasi",
+      "url": "https://smartcity.jakarta.go.id/id/blog/jatuh-hati-taman-literasi-martha-christina-tiahahu/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "local_government; fingerprint identifies the research summary, not remote HTML",
+      "note": "Public reading spaces and digital reading are described at Taman Literasi. No silent-zone or no-smoking policy is established by this source. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-library",
+      "title": "Taman Literasi library catalog",
+      "url": "https://tamanliterasi.id/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "venue_operator; fingerprint identifies the research summary, not remote HTML",
+      "note": "Library catalog identifies Perpustakaan Taman Literasi as part of the park managed by PT Integrasi Transit Jakarta. Library service hours remain unverified. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-polri",
+      "title": "Museum Polri — visit information",
+      "url": "https://museumpolri.wixsite.com/museumpolri/visit-us",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "venue_operator; fingerprint identifies the research summary, not remote HTML",
+      "note": "The museum describes police-history collections at Trunojoyo 3 and visiting Tuesday through Sunday 08:00–15:00. Groups over ten require coordination. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-titik",
+      "title": "MANUAL — Titik Temu M Bloc Space",
+      "url": "https://manual.co.id/directory/titik-temu-m-bloc-space/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "independent_directory; fingerprint identifies the research summary, not remote HTML",
+      "note": "Directory lists this Panglima Polim 37 branch daily 07:30–23:00, coffee, Wi-Fi, outdoor and a smoking area. Room-specific permissions and smoke exposure remain unknown. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-mbloc",
+      "title": "MANUAL — M Bloc Space",
+      "url": "https://manual.co.id/directory/m-bloc-space/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "independent_directory; fingerprint identifies the research summary, not remote HTML",
+      "note": "Creative hub with local music, comic and record outlets and outdoor common areas. Published hours Mon–Thu 08:00–22:00, Fri 08:00–24:00, Sat 08:00–01:00, Sun 07:00–23:00. Event and tenant access varies. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-row9",
+      "title": "MANUAL — ROW 9",
+      "url": "https://manual.co.id/directory/row-9/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "independent_directory; fingerprint identifies the research summary, not remote HTML",
+      "note": "Creative compound at Bulungan 9, daily 08:00–22:00. Coffee is listed at compound level. Individual tenant hours and other amenities are not established. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-kurasu",
+      "title": "MANUAL — Kurasu Kissaten",
+      "url": "https://manual.co.id/directory/kurasu-kissaten/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "independent_directory; fingerprint identifies the research summary, not remote HTML",
+      "note": "Iskandarsyah I 9 branch offers specialty coffee and a listening bar. Sun–Thu 08:00–22:00 and Fri–Sat 08:00–24:00. Wi-Fi and no-smoking policy are unknown. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-kuliner",
+      "title": "Indonesia Travel — Blok M guide",
+      "url": "https://www.indonesia.travel/id/id/travel-ideas/gastronomy/cafe-kuliner-blok-m",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "national_tourism_publication; fingerprint identifies the research summary, not remote HTML",
+      "note": "Guide describes coffee at Filosofi Kopi Melawai, Simetri Wijaya VI 11 and LBRY in Melawai Plaza, plus Jimmy book sales in Blok M Square basement. Calm ambience at LBRY is not a silent-zone policy. Book sales do not establish permission for an extended reading visit. SHA256 of this UTF-8 summary, not original remote HTML"
+    },
+    {
+      "id": "bm-filosofi",
+      "title": "Filosofi Kopi — operator website",
+      "url": "https://www.filosofikopi.id/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "method": "venue_operator; fingerprint identifies the research summary, not remote HTML",
+      "note": "Operator lists Filosofi Kopi Melawai at Melawai VI 8. Current hours, Wi-Fi and smoking rules were not established. SHA256 of this UTF-8 summary, not original remote HTML"
+    }
+  ],
+  "venues": [
+    {
+      "id": "bm01",
+      "name": "Taman Literasi Martha Christina Tiahahu",
+      "address": "Sisingamangaraja, Melawai",
+      "query": "Taman Literasi Martha Christina Tiahahu Sisingamangaraja, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-parks",
+        "bm-literasi"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "outdoor",
+      "exposureSourceID": "bm-parks",
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm02",
+      "name": "Taman Ayodia",
+      "address": "Lamandau III, Kramat Pela",
+      "query": "Taman Ayodia Lamandau III, Kramat Pela Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-parks"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "outdoor",
+      "exposureSourceID": "bm-parks",
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm03",
+      "name": "Taman Langsat",
+      "address": "Langsat, Kramat Pela",
+      "query": "Taman Langsat Langsat, Kramat Pela Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-parks"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 0,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "outdoor",
+      "exposureSourceID": "bm-parks",
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm04",
+      "name": "Museum Polri",
+      "address": "Trunojoyo 3, Selong",
+      "query": "Museum Polri Trunojoyo 3, Selong Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-polri"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 900
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm05",
+      "name": "M Bloc Space",
+      "address": "Panglima Polim 37, Melawai",
+      "query": "M Bloc Space Panglima Polim 37, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-mbloc"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 420,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm06",
+      "name": "ROW 9",
+      "address": "Bulungan 9, Kramat Pela",
+      "query": "ROW 9 Bulungan 9, Kramat Pela Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-row9"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm07",
+      "name": "Filosofi Kopi Melawai",
+      "address": "Melawai VI 8, Melawai",
+      "query": "Filosofi Kopi Melawai Melawai VI 8, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-filosofi",
+        "bm-kuliner"
+      ],
+      "schedule": [],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval.",
+        "Opening hours are unknown."
+      ]
+    },
+    {
+      "id": "bm08",
+      "name": "Titik Temu M Bloc Space",
+      "address": "Panglima Polim 37, Melawai",
+      "query": "Titik Temu M Bloc Space Panglima Polim 37, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-titik"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 450,
+              "end": 1380
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm09",
+      "name": "Simetri Home Coffee Roasters",
+      "address": "Wijaya VI 11, Melawai",
+      "query": "Simetri Home Coffee Roasters Wijaya VI 11, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "schedule": [],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval.",
+        "Opening hours are unknown."
+      ]
+    },
+    {
+      "id": "bm10",
+      "name": "LBRY Slow Coffee Bar",
+      "address": "Melawai Plaza, Melawai",
+      "query": "LBRY Slow Coffee Bar Melawai Plaza, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "schedule": [],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval.",
+        "Opening hours are unknown."
+      ]
+    },
+    {
+      "id": "bm11",
+      "name": "Toko Buku Jimmy",
+      "address": "Basement Blok M Square, Melawai",
+      "query": "Toko Buku Jimmy Basement Blok M Square, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "schedule": [],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval.",
+        "Opening hours are unknown."
+      ]
+    },
+    {
+      "id": "bm13",
+      "name": "Kurasu Kissaten",
+      "address": "Iskandarsyah I 9, Melawai",
+      "query": "Kurasu Kissaten Iskandarsyah I 9, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-kurasu"
+      ],
+      "schedule": [
+        {
+          "weekday": 1,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 2,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 3,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 4,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 5,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 6,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1440
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        },
+        {
+          "weekday": 7,
+          "sessions": [
+            {
+              "start": 480,
+              "end": 1320
+            }
+          ],
+          "lastEntry": null,
+          "entryPauses": []
+        }
+      ],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Holiday exceptions, queues, capacity and current access are unverified.",
+        "Published directory facts may be old despite current retrieval."
+      ]
+    },
+    {
+      "id": "bm12",
+      "name": "Perpustakaan Taman Literasi",
+      "address": "Taman Literasi, Melawai",
+      "query": "Perpustakaan Taman Literasi Taman Literasi, Melawai Jakarta",
+      "timeZone": "Asia/Jakarta",
+      "sourceIDs": [
+        "bm-library"
+      ],
+      "schedule": [],
+      "exposure": "unknown",
+      "exposureSourceID": null,
+      "notice": null,
+      "noticeSourceID": null,
+      "suspended": false,
+      "unknowns": [
+        "Library hours must be sourced separately from public-park hours."
+      ]
+    }
+  ]
+}

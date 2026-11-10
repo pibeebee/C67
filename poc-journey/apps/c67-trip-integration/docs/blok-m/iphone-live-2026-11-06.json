@@ -1,0 +1,600 @@
+{
+  "runID": "070C1753-125B-4523-BD9B-D3FFD33DBE6D",
+  "model": "iPhone 17",
+  "os": "Version 27.2 (Build 24B119)",
+  "teamID": "K39QVFTK2A",
+  "bundleID": "com.hendra.pocjourney",
+  "completedAt": "2026-11-06T04:37:09Z",
+  "results": [
+    {
+      "artifact": "BM-weatherkit.json",
+      "detail": "available: []",
+      "id": "BM-weatherkit",
+      "seconds": 4.909590005874634,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P0-plan.json",
+      "detail": "Scripted provider flow; human relevance pending. []",
+      "id": "BM-P0",
+      "seconds": 49.22074902057648,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P1-plan.json",
+      "detail": "Scripted provider flow; human relevance pending. []",
+      "id": "BM-P1",
+      "seconds": 26.61197602748871,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P2-plan.json",
+      "detail": "Scripted provider flow; human relevance pending. []",
+      "id": "BM-P2",
+      "seconds": 28.163442015647888,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P3-plan.json",
+      "detail": "Scripted provider flow; human relevance pending. []",
+      "id": "BM-P3",
+      "seconds": 25.470234036445618,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P4-plan.json",
+      "detail": "Scripted provider flow; human relevance pending. []",
+      "id": "BM-P4",
+      "seconds": 25.431702971458435,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-P5-recommendation.json",
+      "detail": "No verified match is explicit. No unsupported itinerary was generated. Human coverage review remains pending.",
+      "id": "BM-P5",
+      "seconds": 0.015841007232666016,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-scale-1-plan.json",
+      "detail": "Provider route, acceptance, persistence and export; inspect any revision conflicts separately.",
+      "id": "BM-scale-1",
+      "seconds": 2.3795899152755737,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-scale-3-plan.json",
+      "detail": "Provider route, acceptance, persistence and export; inspect any revision conflicts separately.",
+      "id": "BM-scale-3",
+      "seconds": 52.22178292274475,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-scale-6-plan.json",
+      "detail": "Provider route, acceptance, persistence and export; inspect any revision conflicts separately.",
+      "id": "BM-scale-6",
+      "seconds": 80.66795194149017,
+      "status": "pass"
+    },
+    {
+      "artifact": "BM-deadline-plan.json",
+      "detail": "A 60-minute visit cannot fit travel and return inside 60 minutes. Conflicts [\"Martha Christina Tiahahu Literacy Park: tidak ada waktu mulai valid setelah tiba untuk seluruh durasi kunjungan.\", \"Melewati batas tiba di titik akhir. Sisa tujuan tetap ada pada input; jadwal tidak dipangkas agar muat.\", \"Waktu mulai Taman Literasi Martha Christina Tiahahu tidak lolos audit jam layanan.\"]",
+      "id": "BM-deadline",
+      "seconds": 2.3385859727859497,
+      "status": "pass"
+    },
+    {
+      "detail": "Physical network loss, backgrounding, input changes and two-person relevance review require operator observations.",
+      "id": "BM-manual-network-and-input",
+      "seconds": 0,
+      "status": "not tested"
+    }
+  ],
+  "plans": [
+    {
+      "file": "BM-P0-plan.json",
+      "id": "3210FBE0-15E6-43E3-9F5B-BF8A1FC05892",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01",
+        "bm02",
+        "bm03"
+      ],
+      "stopNames": [
+        "Taman Literasi Martha Christina Tiahahu",
+        "Taman Langsat",
+        "Taman Ayodia"
+      ],
+      "travelMinutes": 58.16666666666667,
+      "finish": "2026-11-07T06:26:04Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00042891502380371094,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.295248031616211,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 2,
+          "seconds": 23.64270794391632,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.202301025390625,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 47.864349007606506,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-P1-plan.json",
+      "id": "C43D063F-DB63-47A9-A8D7-B49AFCB8654C",
+      "status": "ready",
+      "selectedIDs": [
+        "bm08",
+        "bm06",
+        "bm13"
+      ],
+      "stopNames": [
+        "Titik Temu M Bloc Space",
+        "ROW 9",
+        "Kurasu Kissaten"
+      ],
+      "travelMinutes": 52.583333333333336,
+      "finish": "2026-11-07T06:24:06Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0021560192108154297,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.4519519805908203,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.00013196468353271484,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.190881967544556,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.20226502418518,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-P2-plan.json",
+      "id": "BD18E047-3009-43AD-B9F7-8EB179BD1FB0",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01",
+        "bm05",
+        "bm08"
+      ],
+      "stopNames": [
+        "M Bloc Space",
+        "Taman Literasi Martha Christina Tiahahu",
+        "Titik Temu M Bloc Space"
+      ],
+      "travelMinutes": 49.31666666666667,
+      "finish": "2026-11-07T06:24:17Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0026880502700805664,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.4973011016845703,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.00010204315185546875,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 23,
+          "seconds": 26.59720504283905,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 26.60957705974579,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-P3-plan.json",
+      "id": "6F01860A-2C92-4198-812F-31C50135EDBA",
+      "status": "ready",
+      "selectedIDs": [
+        "bm04",
+        "bm05",
+        "bm01"
+      ],
+      "stopNames": [
+        "M Bloc Space",
+        "Taman Literasi Martha Christina Tiahahu",
+        "Museum Polri"
+      ],
+      "travelMinutes": 52.11666666666667,
+      "finish": "2026-11-07T06:24:16Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0024150609970092773,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.2174530029296875,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 9.894371032714844e-05,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.185420036315918,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.19748604297638,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-P4-plan.json",
+      "id": "F1B987CD-A672-4F48-BC83-3A947BD65AC4",
+      "status": "ready",
+      "selectedIDs": [
+        "bm02",
+        "bm03",
+        "bm01"
+      ],
+      "stopNames": [
+        "Taman Literasi Martha Christina Tiahahu",
+        "Taman Langsat",
+        "Taman Ayodia"
+      ],
+      "travelMinutes": 58.16666666666667,
+      "finish": "2026-11-07T06:26:04Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.002628922462463379,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.154934048652649,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 9.894371032714844e-05,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.211395025253296,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.223694920539856,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-deadline-plan.json",
+      "id": "40ED4AC5-F26C-47BE-AE42-A4CF82792EFA",
+      "status": "conflicted",
+      "selectedIDs": [
+        "bm01"
+      ],
+      "stopNames": [
+        "Taman Literasi Martha Christina Tiahahu"
+      ],
+      "travelMinutes": 20.366666666666667,
+      "finish": null,
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00022792816162109375,
+          "stage": "preferences"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.6020059585571289,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 9.000301361083984e-05,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 2,
+          "seconds": 1.6947760581970215,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 1.7015900611877441,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-revision-plan.json",
+      "id": "FFB87FDA-C776-4D10-8252-5350A6DAE339",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01",
+        "bm04",
+        "bm08"
+      ],
+      "stopNames": [
+        "Museum Polri",
+        "Taman Literasi Martha Christina Tiahahu",
+        "Titik Temu M Bloc Space"
+      ],
+      "travelMinutes": 52.599999999999994,
+      "finish": "2026-11-07T06:54:58Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0004069805145263672,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 2.3218369483947754,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.00010001659393310547,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.18369495868683,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.195676922798157,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-scale-1-plan.json",
+      "id": "26E573BC-50F8-44CA-9D9A-5733972D85DC",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01"
+      ],
+      "stopNames": [
+        "Taman Literasi Martha Christina Tiahahu"
+      ],
+      "travelMinutes": 38.93333333333334,
+      "finish": "2026-11-07T03:48:34Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00020396709442138672,
+          "stage": "preferences"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.572485089302063,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.0002919435501098633,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 2,
+          "seconds": 1.7378250360488892,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 1.745676040649414,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-scale-3-plan.json",
+      "id": "680344B2-3BB9-4EF5-B7F2-DD37C30FEB43",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01",
+        "bm04",
+        "bm08"
+      ],
+      "stopNames": [
+        "Titik Temu M Bloc Space",
+        "Taman Literasi Martha Christina Tiahahu",
+        "Museum Polri"
+      ],
+      "travelMinutes": 52.13333333333333,
+      "finish": "2026-11-07T06:24:16Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00040602684020996094,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.3835439682006836,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.0001289844512939453,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.185423016548157,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.197929978370667,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    },
+    {
+      "file": "BM-scale-6-plan.json",
+      "id": "AAA789EB-0A12-418E-AED2-F630F7837E2D",
+      "status": "ready",
+      "selectedIDs": [
+        "bm01",
+        "bm02",
+        "bm03",
+        "bm05",
+        "bm08",
+        "bm13"
+      ],
+      "stopNames": [
+        "M Bloc Space",
+        "Titik Temu M Bloc Space",
+        "Taman Literasi Martha Christina Tiahahu",
+        "Taman Langsat",
+        "Taman Ayodia",
+        "Kurasu Kissaten"
+      ],
+      "travelMinutes": 73.06666666666666,
+      "finish": "2026-11-07T10:15:34Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0002459287643432617,
+          "stage": "preferences"
+        },
+        {
+          "requests": 7,
+          "seconds": 2.369981050491333,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 0,
+          "seconds": 0.00011599063873291016,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 66,
+          "seconds": 78.23577797412872,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 78.25473296642303,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherProviders": [
+        "weatherkit"
+      ],
+      "weatherStatuses": [
+        "available"
+      ]
+    }
+  ],
+  "audit": "pass",
+  "auditChecks": [
+    "Selected destination sets, source visit-start ranges, dwell arithmetic, deadlines, request limits",
+    "Actual WeatherKit coverage, rain maximum over the entire visit interval, attribution metadata",
+    "Accepted revision and previous baseline checksum envelopes, plus 30-minute dwell change",
+    "Baseline JSON/Markdown/native-report exports and deliberately conflicted deadline"
+  ]
+}

@@ -176,6 +176,7 @@ struct NativeTripDraft: Codable, Equatable, Sendable {
     // false keeps the full hybrid pipeline available for controlled comparisons.
     var routingAdaptive: Bool?
     var routingSeed: Int?
+    var integrationBusway: Bool? = nil
     var planningArea: String? = nil
     var isJakartaProfile: Bool { planningArea == "jakarta" }
     var routingRequestLimit: Int?
@@ -241,11 +242,12 @@ struct NativeTripDraft: Codable, Equatable, Sendable {
             guard planningArea == "jakarta" else {
                 throw NativeTripError.message("Profil wilayah tidak dikenal. Input dipertahankan.")
             }
-            guard timeZoneID == "Asia/Jakarta", modes == [.automobile],
+            guard timeZoneID == "Asia/Jakarta",
+                  (modes == [.automobile] || (integrationBusway == true && modes == [.walking, .transit])),
                   carUse == NativeTripCarUse.onDemand.rawValue
             else {
                 throw NativeTripError.message(
-                    "Profil Jakarta memakai WIB dan satu moda mobil/taksi. ETA motor belum tersedia.")
+                    "Profil Jakarta memakai WIB, mobil/taksi atau adapter BRT + jalan kaki.")
             }
             let stopIDs = Set(stops.map(\.id))
             guard !stopIDs.contains(origin.id), !stopIDs.contains(endPoint.id),
@@ -314,6 +316,7 @@ struct NativeTripETA: Codable, Identifiable, Sendable {
     var expectedArrival: Date?
     var status: String
     var note: String
+    var busway: BuswayJourney? = nil
     var usable: Bool { seconds.map { $0.isFinite && $0 >= 0 } == true && status == "available" }
 }
 

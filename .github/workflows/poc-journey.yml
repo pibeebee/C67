@@ -22,6 +22,8 @@ jobs:
           cache-dependency-path: poc-journey/apps/ai-trip-planner/package-lock.json
       - run: python3 poc-journey/scripts/verify_portability.py
       - run: python3 poc-journey/scripts/verify_evidence.py
+      - name: Python evidence and TJ importer tests
+        run: python3 -m unittest discover -s poc-journey/scripts -p 'test_*.py'
       - run: bash poc-journey/scripts/verify.sh cli
   native-fixtures:
     runs-on: macos-26
@@ -40,8 +42,14 @@ jobs:
         run: python3 poc-journey/scripts/bootstrap.py
       - name: Unsigned Simulator builds
         run: bash poc-journey/scripts/verify.sh build
+      - name: Journey model and geometry regressions
+        run: |
+          export P3_SIMULATOR_DESTINATION="$(python3 scripts/simulator_destination.py)"
+          bash poc-journey/scripts/verify.sh journey-models
       - name: Swift package fixture suites
         run: bash poc-journey/scripts/verify.sh packages
+      - name: Offline TJ capability evaluator
+        run: bash poc-journey/scripts/verify.sh transjakarta
       - name: Native local and Jakarta replay harnesses
         run: bash poc-journey/scripts/verify.sh native
       - uses: actions/upload-artifact@v4

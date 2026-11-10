@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-09",
+  "scope": "Reviewed maintained-source evolution; historical import manifest remains immutable",
+  "changes": [
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Package.swift",
+      "importedPublishedSHA256": "ab2262da55ee913a4a6baab885467b49584e921023e3ec3f535e468c32a3d747",
+      "currentSHA256": "325ee6053c79bef566c67c3537e3c49d7a0efe160cfb9895d5a2016c0e9f9be2",
+      "reason": "Register TJ fixtures and the Blok M evaluator in the existing package.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/MapKitProbe/main.swift",
+      "importedPublishedSHA256": "d66b106303b8bd993b24eb496b02ccc79a09593ab4da34952e1cc7f725d5ccc2",
+      "currentSHA256": "f86fc81dc3dfa2137be8021f8c9726985c346ebfe642bef66921e4a8fc6b370e",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Catalog.swift",
+      "importedPublishedSHA256": "520b15003cafd62368fd964dc1b568a0189ff85b235ea0b14dbea8a3353653c5",
+      "currentSHA256": "560879eada3f367a6f14398989d26867ec4651306f4e73e75444642ba345a3d0",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Contracts.swift",
+      "importedPublishedSHA256": "c064fc65757900aacb76fea9c11710c946e954217a15620bc4ead523760badfd",
+      "currentSHA256": "93d0f234b4456200a9e6816741ec8a4186998403341605fa21c98d2a08cf506d",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/IntegrationPipeline.swift",
+      "importedPublishedSHA256": "0314088e0ef66a9470f0bca9a3a3eae435b6dc07f25acf0bc6ccdfe79ef8b900",
+      "currentSHA256": "57926b403aa0e8bbecf2faa3912c5a90efd20c7c53df5fb0e618d2a7688f977c",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/PlaceResolver.swift",
+      "importedPublishedSHA256": "fa015503a9ce6d1694e8103aba6d7963878f52ea40aefc6564c2ae931ff7c635",
+      "currentSHA256": "9ba6f58005f7c96eb5d987a78090e892dd6cbd6867ec300a013352ac484237f3",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/ReplayFixtures.swift",
+      "importedPublishedSHA256": "705dc8fc8d33d1ea9c2b76d1fff4e1fc9fe948187e01fdfe3eb8e222c1c89b3f",
+      "currentSHA256": "8ba4e87a00271f166b2b5cf95223cb360d6305fa8aff39ef74b45d7c2045e214",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/Storage.swift",
+      "importedPublishedSHA256": "618a45438b18d61f19ee8e3b6697ad93ddb96f2a9f349c414b97885f42623b7f",
+      "currentSHA256": "ed837861e5f3ff32c611a40a4b70c607c967eccf235343a0bb572e06b97b9780",
+      "reason": "Integrate sourced city/Blok M catalogs, custom origin/area constraints, TJ planning and backward-compatible audited persistence.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripAppleServices.swift",
+      "importedPublishedSHA256": "b79b880ed16ed6dcce10480eea0eff57ab9ee0d3f67591312aef6f29bfd1b9f9",
+      "currentSHA256": "d9844da157ee45da7984201c8da1536bf04e119dd970805b570ddcc7a658e0b5",
+      "reason": "Carry attributed TJ journey evidence through routing models and provider injection.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Sources/TripIntegration/VendorRouting/NativeTripModels.swift",
+      "importedPublishedSHA256": "03d6ac15f6a12510fec5e4a9d2895381b45dd57059e6ed7ae31194e76d802851",
+      "currentSHA256": "418cd869a01271900ff5765b6cc50e4d8c0d2dd5e7ff750d3d2fd5ea335c3639",
+      "reason": "Carry attributed TJ journey evidence through routing models and provider injection.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/README.md",
+      "importedPublishedSHA256": "141e977f6ec151b04a43859c5638a9f51d47712fb9ab4c45c218754abf69a1df",
+      "currentSHA256": "1cec804ad0e3247816434c02890be684c0705a2a0ccfaf322b6981d841cb6f95",
+      "reason": "Document the Journey shared-engine extension while retaining current main for the standalone diagnostic UI.",
+      "verification": "docs/tasks/pr12-journey-fixes-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/docs/VENDOR.md",
+      "importedPublishedSHA256": "67fc0c917668f3c2d7dccc5114ec84cb1531833a42e72e808c8b48c1bd9eae8f",
+      "currentSHA256": "97febeb1fce473678c01471cd36a34fb685e994b41de20d2c89db217484cd7bf",
+      "reason": "Document the evolved TJ/shared-engine capabilities and current application entry points.",
+      "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    }
+  ]
+}

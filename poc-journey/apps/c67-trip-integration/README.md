@@ -98,3 +98,9 @@ swift run --package-path Packages/TripIntegration p3-mapkit-probe artifacts/mac-
 ## Interpreting verification
 
 Pass only if all critical invariants in the matrix hold in deterministic fault cases **and** real signed-device flows. Report category/E5 outcomes, actual search/ETA/group counts, times, failures, corrections and pending claims separately. User relevance and reduced contribution still require observed use with participants; this technical PoC cannot establish them by itself.
+
+## Shared engine for Journey Showcase — 9 November 2026
+
+The sibling [Journey Showcase](../c67-journey-showcase/README.md) uses this package's combined city/Blok M catalog, confirmed custom origins, target-area constraints and direct/one-transfer TJ planning. Its attributed runtime feed contains 199 routes and 544 patterns. The diagnostic App/UITests in this folder retain current main; adding the shared engine does not add the Showcase controls to that older UI.
+
+Run `bash poc-journey/scripts/verify.sh packages` and `bash poc-journey/scripts/verify.sh transjakarta` from the repository root for deterministic package and TJ checks. The [prior improvement report](docs/transjakarta/IMPROVEMENTS-REPORT-2026-11-06.md) and [capability protocol](docs/transjakarta/CAPABILITY-TESTS.md) retain their historical dates and boundaries. See the [PR repair task](../../docs/tasks/pr12-journey-fixes-2026-11-09.md) for current scope and verification.

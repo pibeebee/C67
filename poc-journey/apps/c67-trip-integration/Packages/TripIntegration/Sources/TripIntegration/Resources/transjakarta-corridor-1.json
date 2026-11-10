@@ -1,0 +1,2973 @@
+{
+  "schemaVersion": 1,
+  "agencyID": "Tije",
+  "routeID": "1",
+  "routeName": "Blok M - Kota",
+  "category": "BRT",
+  "timeZone": "Asia/Jakarta",
+  "stops": [
+    {
+      "id": "G00009",
+      "name": "Masjid Agung",
+      "latitude": -6.236472,
+      "longitude": 106.798412,
+      "parentStation": "H00127P",
+      "platform": "A-B"
+    },
+    {
+      "id": "G00010",
+      "name": "Masjid Agung",
+      "latitude": -6.236477,
+      "longitude": 106.798482,
+      "parentStation": "H00127P",
+      "platform": "C-D"
+    },
+    {
+      "id": "G00012",
+      "name": "Asean",
+      "latitude": -6.239911,
+      "longitude": 106.79897,
+      "parentStation": "H00265P",
+      "platform": "3D-3E-3F"
+    },
+    {
+      "id": "G00014",
+      "name": "Senayan Bank Jakarta",
+      "latitude": -6.224286,
+      "longitude": 106.805761,
+      "parentStation": "H00067P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00016",
+      "name": "Senayan Bank Jakarta",
+      "latitude": -6.224137,
+      "longitude": 106.805837,
+      "parentStation": "H00067P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00017",
+      "name": "Polda Metro Jaya",
+      "latitude": -6.221044,
+      "longitude": 106.810241,
+      "parentStation": "H00176P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00018",
+      "name": "Polda Metro Jaya",
+      "latitude": -6.221129,
+      "longitude": 106.81031,
+      "parentStation": "H00176P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00019",
+      "name": "Bendungan Hilir",
+      "latitude": -6.217113,
+      "longitude": 106.815361,
+      "parentStation": "H00010P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00020",
+      "name": "Bendungan Hilir",
+      "latitude": -6.217194,
+      "longitude": 106.815261,
+      "parentStation": "H00010P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00021",
+      "name": "Dukuh Atas",
+      "latitude": -6.205627,
+      "longitude": 106.822295,
+      "parentStation": "H00047P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00024",
+      "name": "Dukuh Atas",
+      "latitude": -6.205621,
+      "longitude": 106.822203,
+      "parentStation": "H00047P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00027",
+      "name": "Tosari",
+      "latitude": -6.196742,
+      "longitude": 106.823051,
+      "parentStation": "H00251P",
+      "platform": "G-H-J"
+    },
+    {
+      "id": "G00030",
+      "name": "Tosari",
+      "latitude": -6.19695,
+      "longitude": 106.823131,
+      "parentStation": "H00251P",
+      "platform": "S-T-U"
+    },
+    {
+      "id": "G00031",
+      "name": "Bundaran HI Astra",
+      "latitude": -6.193596,
+      "longitude": 106.82306,
+      "parentStation": "H00022P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00034",
+      "name": "Bundaran HI Astra",
+      "latitude": -6.193601,
+      "longitude": 106.822983,
+      "parentStation": "H00022P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00036",
+      "name": "MH Thamrin",
+      "latitude": -6.188262,
+      "longitude": 106.82304,
+      "parentStation": "H00207P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00038",
+      "name": "MH Thamrin",
+      "latitude": -6.188038,
+      "longitude": 106.82296,
+      "parentStation": "H00207P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00039",
+      "name": "Kebon Sirih Arah Utara",
+      "latitude": -6.182776,
+      "longitude": 106.8228,
+      "parentStation": "H00267S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00040",
+      "name": "Kebon Sirih Arah Selatan",
+      "latitude": -6.184195,
+      "longitude": 106.8232317,
+      "parentStation": "H00268S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00048",
+      "name": "Harmoni Arah Selatan",
+      "latitude": -6.162764,
+      "longitude": 106.819961,
+      "parentStation": "H00278P",
+      "platform": "S-T-U"
+    },
+    {
+      "id": "G00049",
+      "name": "Harmoni Arah Utara",
+      "latitude": -6.162684,
+      "longitude": 106.819639,
+      "parentStation": "H00277P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00050",
+      "name": "Sawah Besar Arah Utara",
+      "latitude": -6.157418,
+      "longitude": 106.81846,
+      "parentStation": "H00279P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00051",
+      "name": "Sawah Besar Arah Selatan",
+      "latitude": -6.157366,
+      "longitude": 106.818702,
+      "parentStation": "H00280P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00052",
+      "name": "Mangga Besar Arah Selatan",
+      "latitude": -6.153943,
+      "longitude": 106.817952,
+      "parentStation": "H00282P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00053",
+      "name": "Mangga Besar Arah Utara",
+      "latitude": -6.153266,
+      "longitude": 106.817481,
+      "parentStation": "H00281P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00054",
+      "name": "Taman Sari",
+      "latitude": -6.149291,
+      "longitude": 106.816732,
+      "parentStation": "H00133P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00055",
+      "name": "Taman Sari",
+      "latitude": -6.149307,
+      "longitude": 106.816641,
+      "parentStation": "H00133P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00057",
+      "name": "Glodok",
+      "latitude": -6.144448,
+      "longitude": 106.815417,
+      "parentStation": "H00068P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00058",
+      "name": "Glodok",
+      "latitude": -6.144438,
+      "longitude": 106.815498,
+      "parentStation": "H00068P",
+      "platform": "G-H-J"
+    },
+    {
+      "id": "G00060",
+      "name": "Kali Besar",
+      "latitude": -6.135355,
+      "longitude": 106.81143,
+      "parentStation": "H00093P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00061",
+      "name": "Kota",
+      "latitude": -6.136827,
+      "longitude": 106.814876,
+      "parentStation": "H00275P",
+      "platform": "A-B-C-D"
+    },
+    {
+      "id": "G00064",
+      "name": "Museum Sejarah Jakarta",
+      "latitude": -6.133882,
+      "longitude": 106.81214,
+      "parentStation": "H00132P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00077",
+      "name": "Gerbang Pemuda Arah Barat",
+      "latitude": -6.213962,
+      "longitude": 106.808428,
+      "parentStation": "H00218S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00080",
+      "name": "Gerbang Pemuda Arah Timur",
+      "latitude": -6.214159,
+      "longitude": 106.809044,
+      "parentStation": "H00219S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00083",
+      "name": "Kejaksaan Agung",
+      "latitude": -6.24046,
+      "longitude": 106.798482,
+      "parentStation": "H00266P",
+      "platform": "4A-4B-4C"
+    },
+    {
+      "id": "G00163",
+      "name": "Petojo",
+      "latitude": -6.169948,
+      "longitude": 106.816978,
+      "parentStation": "H00170P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00166",
+      "name": "Petojo",
+      "latitude": -6.17001,
+      "longitude": 106.81699,
+      "parentStation": "H00170P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00397",
+      "name": "Tomang Raya",
+      "latitude": -6.176833,
+      "longitude": 106.800344,
+      "parentStation": "H00250P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00398",
+      "name": "Tomang Raya",
+      "latitude": -6.176897,
+      "longitude": 106.800386,
+      "parentStation": "H00250P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00399",
+      "name": "Tarakan",
+      "latitude": -6.171114,
+      "longitude": 106.810112,
+      "parentStation": "H00201P",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00400",
+      "name": "Tarakan",
+      "latitude": -6.17118,
+      "longitude": 106.810133,
+      "parentStation": "H00201P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00433",
+      "name": "Kemanggisan Arah Utara",
+      "latitude": -6.18991,
+      "longitude": 106.796939,
+      "parentStation": "H00220S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00434",
+      "name": "Kemanggisan Arah Selatan",
+      "latitude": -6.189783,
+      "longitude": 106.797265,
+      "parentStation": "H00224S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00436",
+      "name": "Kota Bambu Arah Utara",
+      "latitude": -6.184506,
+      "longitude": 106.796739,
+      "parentStation": "H00204S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00437",
+      "name": "Kota Bambu Arah Selatan",
+      "latitude": -6.185194,
+      "longitude": 106.79709,
+      "parentStation": "H00209S",
+      "platform": "A-B-C"
+    },
+    {
+      "id": "G00581",
+      "name": "Rawa Barat",
+      "latitude": -6.238909,
+      "longitude": 106.816264,
+      "parentStation": "H00192P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00583",
+      "name": "Pasar Santa",
+      "latitude": -6.239168,
+      "longitude": 106.807773,
+      "parentStation": "H00249P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00690",
+      "name": "Karet",
+      "latitude": -6.212352,
+      "longitude": 106.819981,
+      "parentStation": "H00099P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00692",
+      "name": "Karet",
+      "latitude": -6.212511,
+      "longitude": 106.820052,
+      "parentStation": "H00099P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00694",
+      "name": "Bundaran Senayan",
+      "latitude": -6.227941,
+      "longitude": 106.800905,
+      "parentStation": "H00023P",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00696",
+      "name": "Bundaran Senayan",
+      "latitude": -6.227766,
+      "longitude": 106.800954,
+      "parentStation": "H00023P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00724",
+      "name": "Petamburan",
+      "latitude": -6.201973,
+      "longitude": 106.800059,
+      "parentStation": "H00036C",
+      "platform": "D-E-F"
+    },
+    {
+      "id": "G00726",
+      "name": "Petamburan",
+      "latitude": -6.201963,
+      "longitude": 106.799812,
+      "parentStation": "H00036C",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00747",
+      "name": "Bendungan Hilir",
+      "latitude": -6.217046,
+      "longitude": 106.8153071,
+      "parentStation": "H00010P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00751",
+      "name": "Monumen Nasional",
+      "latitude": -6.17635751,
+      "longitude": 106.82292759,
+      "parentStation": "H00131P",
+      "platform": "G-H-J"
+    },
+    {
+      "id": "G00753",
+      "name": "Monumen Nasional",
+      "latitude": -6.176135,
+      "longitude": 106.822809,
+      "parentStation": "H00131P",
+      "platform": "S-T-U"
+    },
+    {
+      "id": "G00757",
+      "name": "Pasar Santa",
+      "latitude": -6.239239,
+      "longitude": 106.807681,
+      "parentStation": "H00249P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "G00758",
+      "name": "Rawa Barat",
+      "latitude": -6.23894596,
+      "longitude": 106.81621671,
+      "parentStation": "H00192P",
+      "platform": "K-L-M"
+    },
+    {
+      "id": "P00017",
+      "name": "Blok M",
+      "latitude": -6.243312,
+      "longitude": 106.80175,
+      "parentStation": "H00014P",
+      "platform": ""
+    }
+  ],
+  "services": [
+    {
+      "id": "HM",
+      "startDate": "20040115",
+      "endDate": "20271231",
+      "weekdays": [
+        7
+      ]
+    },
+    {
+      "id": "SH",
+      "startDate": "20040115",
+      "endDate": "20271231",
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "1-P96",
+      "serviceID": "SH",
+      "headsign": "Monumen Nasional",
+      "directionID": "0",
+      "shapeID": "wutv",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 222,
+          "departureOffset": 232
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 360,
+          "departureOffset": 370
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 669,
+          "departureOffset": 679
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 865,
+          "departureOffset": 875
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1041,
+          "departureOffset": 1051
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1249,
+          "departureOffset": 1259
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1464,
+          "departureOffset": 1474
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1694,
+          "departureOffset": 1704
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1980,
+          "departureOffset": 1990
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 10,
+          "arrivalOffset": 2094,
+          "departureOffset": 2104
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 11,
+          "arrivalOffset": 2275,
+          "departureOffset": 2285
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 12,
+          "arrivalOffset": 2447,
+          "departureOffset": 2457
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 13,
+          "arrivalOffset": 2664,
+          "departureOffset": 2674
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P97",
+      "serviceID": "SH",
+      "headsign": "Blok M",
+      "directionID": "1",
+      "shapeID": "0l4o",
+      "calls": [
+        {
+          "stopID": "G00751",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 1,
+          "arrivalOffset": 244,
+          "departureOffset": 254
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 2,
+          "arrivalOffset": 379,
+          "departureOffset": 389
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 3,
+          "arrivalOffset": 553,
+          "departureOffset": 563
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 4,
+          "arrivalOffset": 673,
+          "departureOffset": 683
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 5,
+          "arrivalOffset": 953,
+          "departureOffset": 963
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 6,
+          "arrivalOffset": 1190,
+          "departureOffset": 1200
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 7,
+          "arrivalOffset": 1408,
+          "departureOffset": 1418
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 8,
+          "arrivalOffset": 1612,
+          "departureOffset": 1622
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 9,
+          "arrivalOffset": 1792,
+          "departureOffset": 1802
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 10,
+          "arrivalOffset": 1988,
+          "departureOffset": 1998
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 11,
+          "arrivalOffset": 2287,
+          "departureOffset": 2297
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 12,
+          "arrivalOffset": 2419,
+          "departureOffset": 2429
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 13,
+          "arrivalOffset": 2596,
+          "departureOffset": 2606
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P28",
+      "serviceID": "SH",
+      "headsign": "Monas dan Blok M",
+      "directionID": "0",
+      "shapeID": "1-P28_shp",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 222,
+          "departureOffset": 232
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 358,
+          "departureOffset": 368
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 667,
+          "departureOffset": 677
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 863,
+          "departureOffset": 873
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1038,
+          "departureOffset": 1048
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1246,
+          "departureOffset": 1256
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1461,
+          "departureOffset": 1471
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1691,
+          "departureOffset": 1701
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1976,
+          "departureOffset": 1986
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 10,
+          "arrivalOffset": 2091,
+          "departureOffset": 2101
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 11,
+          "arrivalOffset": 2272,
+          "departureOffset": 2282
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 12,
+          "arrivalOffset": 2444,
+          "departureOffset": 2454
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 13,
+          "arrivalOffset": 2661,
+          "departureOffset": 2671
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 14,
+          "arrivalOffset": 2787,
+          "departureOffset": 2797
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 15,
+          "arrivalOffset": 3041,
+          "departureOffset": 3051
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 16,
+          "arrivalOffset": 3176,
+          "departureOffset": 3186
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 17,
+          "arrivalOffset": 3350,
+          "departureOffset": 3360
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 18,
+          "arrivalOffset": 3469,
+          "departureOffset": 3479
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 19,
+          "arrivalOffset": 3749,
+          "departureOffset": 3759
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 20,
+          "arrivalOffset": 3985,
+          "departureOffset": 3995
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 21,
+          "arrivalOffset": 4203,
+          "departureOffset": 4213
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 22,
+          "arrivalOffset": 4407,
+          "departureOffset": 4417
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 23,
+          "arrivalOffset": 4587,
+          "departureOffset": 4597
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 24,
+          "arrivalOffset": 4783,
+          "departureOffset": 4793
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 25,
+          "arrivalOffset": 5079,
+          "departureOffset": 5089
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 26,
+          "arrivalOffset": 5211,
+          "departureOffset": 5221
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 27,
+          "arrivalOffset": 5389,
+          "departureOffset": 5399
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 900,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P39",
+      "serviceID": "SH",
+      "headsign": "Blok M via Cideng",
+      "directionID": "1",
+      "shapeID": "px27",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 69,
+          "departureOffset": 79
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 287,
+          "departureOffset": 297
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 565,
+          "departureOffset": 575
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 729,
+          "departureOffset": 739
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 887,
+          "departureOffset": 897
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1004,
+          "departureOffset": 1014
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1185,
+          "departureOffset": 1195
+        },
+        {
+          "stopID": "G00166",
+          "sequence": 8,
+          "arrivalOffset": 1765,
+          "departureOffset": 1775
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 9,
+          "arrivalOffset": 2611,
+          "departureOffset": 2621
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 10,
+          "arrivalOffset": 2746,
+          "departureOffset": 2756
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 11,
+          "arrivalOffset": 2920,
+          "departureOffset": 2930
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 12,
+          "arrivalOffset": 3040,
+          "departureOffset": 3050
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 13,
+          "arrivalOffset": 3320,
+          "departureOffset": 3330
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 14,
+          "arrivalOffset": 3556,
+          "departureOffset": 3566
+        },
+        {
+          "stopID": "G00019",
+          "sequence": 15,
+          "arrivalOffset": 3772,
+          "departureOffset": 3782
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 16,
+          "arrivalOffset": 3978,
+          "departureOffset": 3988
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 17,
+          "arrivalOffset": 4158,
+          "departureOffset": 4168
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 18,
+          "arrivalOffset": 4354,
+          "departureOffset": 4364
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 19,
+          "arrivalOffset": 4653,
+          "departureOffset": 4663
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 20,
+          "arrivalOffset": 4785,
+          "departureOffset": 4795
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 21,
+          "arrivalOffset": 4962,
+          "departureOffset": 4972
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P94",
+      "serviceID": "SH",
+      "headsign": "Monumen Nasional",
+      "directionID": "1",
+      "shapeID": "msst",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 70,
+          "departureOffset": 80
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 287,
+          "departureOffset": 297
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 565,
+          "departureOffset": 575
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 729,
+          "departureOffset": 739
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 887,
+          "departureOffset": 897
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1004,
+          "departureOffset": 1014
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1185,
+          "departureOffset": 1195
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1643,
+          "departureOffset": 1653
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R08",
+      "serviceID": "SH",
+      "headsign": "Blok M",
+      "directionID": "1",
+      "shapeID": "3xre",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 69,
+          "departureOffset": 79
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 287,
+          "departureOffset": 297
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 565,
+          "departureOffset": 575
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 729,
+          "departureOffset": 739
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 887,
+          "departureOffset": 897
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1004,
+          "departureOffset": 1014
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1185,
+          "departureOffset": 1195
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1642,
+          "departureOffset": 1652
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 9,
+          "arrivalOffset": 1896,
+          "departureOffset": 1906
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 10,
+          "arrivalOffset": 2031,
+          "departureOffset": 2041
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 11,
+          "arrivalOffset": 2205,
+          "departureOffset": 2215
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 12,
+          "arrivalOffset": 2325,
+          "departureOffset": 2335
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 13,
+          "arrivalOffset": 2605,
+          "departureOffset": 2615
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 14,
+          "arrivalOffset": 2842,
+          "departureOffset": 2852
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 15,
+          "arrivalOffset": 3060,
+          "departureOffset": 3070
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 16,
+          "arrivalOffset": 3264,
+          "departureOffset": 3274
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 17,
+          "arrivalOffset": 3444,
+          "departureOffset": 3454
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 18,
+          "arrivalOffset": 3640,
+          "departureOffset": 3650
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 19,
+          "arrivalOffset": 3939,
+          "departureOffset": 3949
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 20,
+          "arrivalOffset": 4071,
+          "departureOffset": 4081
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 21,
+          "arrivalOffset": 4248,
+          "departureOffset": 4258
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 360,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R10",
+      "serviceID": "HM",
+      "headsign": "Blok M",
+      "directionID": "1",
+      "shapeID": "7gi1",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 68,
+          "departureOffset": 78
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 282,
+          "departureOffset": 292
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 561,
+          "departureOffset": 571
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 725,
+          "departureOffset": 735
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 883,
+          "departureOffset": 893
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1000,
+          "departureOffset": 1010
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1180,
+          "departureOffset": 1190
+        },
+        {
+          "stopID": "G00163",
+          "sequence": 8,
+          "arrivalOffset": 1761,
+          "departureOffset": 1771
+        },
+        {
+          "stopID": "G00399",
+          "sequence": 9,
+          "arrivalOffset": 1984,
+          "departureOffset": 1994
+        },
+        {
+          "stopID": "G00398",
+          "sequence": 10,
+          "arrivalOffset": 2343,
+          "departureOffset": 2353
+        },
+        {
+          "stopID": "G00437",
+          "sequence": 11,
+          "arrivalOffset": 2675,
+          "departureOffset": 2685
+        },
+        {
+          "stopID": "G00434",
+          "sequence": 12,
+          "arrivalOffset": 2825,
+          "departureOffset": 2835
+        },
+        {
+          "stopID": "G00724",
+          "sequence": 13,
+          "arrivalOffset": 3224,
+          "departureOffset": 3234
+        },
+        {
+          "stopID": "G00758",
+          "sequence": 14,
+          "arrivalOffset": 5994,
+          "departureOffset": 6004
+        },
+        {
+          "stopID": "G00757",
+          "sequence": 15,
+          "arrivalOffset": 6266,
+          "departureOffset": 6276
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 16,
+          "arrivalOffset": 6569,
+          "departureOffset": 6579
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 17,
+          "arrivalOffset": 6751,
+          "departureOffset": 6761
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 18000,
+          "end": 36000,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R12",
+      "serviceID": "SH",
+      "headsign": "Blok M via Gerbang Pemuda",
+      "directionID": "1",
+      "shapeID": "zuby",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 69,
+          "departureOffset": 79
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 282,
+          "departureOffset": 292
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 560,
+          "departureOffset": 570
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 724,
+          "departureOffset": 734
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 882,
+          "departureOffset": 892
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 999,
+          "departureOffset": 1009
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1179,
+          "departureOffset": 1189
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1637,
+          "departureOffset": 1647
+        },
+        {
+          "stopID": "G00163",
+          "sequence": 9,
+          "arrivalOffset": 2370,
+          "departureOffset": 2380
+        },
+        {
+          "stopID": "G00399",
+          "sequence": 10,
+          "arrivalOffset": 2592,
+          "departureOffset": 2602
+        },
+        {
+          "stopID": "G00398",
+          "sequence": 11,
+          "arrivalOffset": 2952,
+          "departureOffset": 2962
+        },
+        {
+          "stopID": "G00437",
+          "sequence": 12,
+          "arrivalOffset": 3283,
+          "departureOffset": 3293
+        },
+        {
+          "stopID": "G00434",
+          "sequence": 13,
+          "arrivalOffset": 3434,
+          "departureOffset": 3444
+        },
+        {
+          "stopID": "G00724",
+          "sequence": 14,
+          "arrivalOffset": 3833,
+          "departureOffset": 3843
+        },
+        {
+          "stopID": "G00080",
+          "sequence": 15,
+          "arrivalOffset": 4312,
+          "departureOffset": 4322
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 16,
+          "arrivalOffset": 4865,
+          "departureOffset": 4875
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 17,
+          "arrivalOffset": 5061,
+          "departureOffset": 5071
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 18,
+          "arrivalOffset": 5357,
+          "departureOffset": 5367
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 19,
+          "arrivalOffset": 5489,
+          "departureOffset": 5499
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 20,
+          "arrivalOffset": 5664,
+          "departureOffset": 5674
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 18000,
+          "end": 36000,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P23",
+      "serviceID": "SH",
+      "headsign": "Tosari dan Blok M",
+      "directionID": "0",
+      "shapeID": "1-P23_shp",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 222,
+          "departureOffset": 232
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 358,
+          "departureOffset": 368
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 667,
+          "departureOffset": 677
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 863,
+          "departureOffset": 873
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1038,
+          "departureOffset": 1048
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1246,
+          "departureOffset": 1256
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1461,
+          "departureOffset": 1471
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1691,
+          "departureOffset": 1701
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1976,
+          "departureOffset": 1986
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 10,
+          "arrivalOffset": 2159,
+          "departureOffset": 2169
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 11,
+          "arrivalOffset": 2439,
+          "departureOffset": 2449
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 12,
+          "arrivalOffset": 2675,
+          "departureOffset": 2685
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 13,
+          "arrivalOffset": 2893,
+          "departureOffset": 2903
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 14,
+          "arrivalOffset": 3097,
+          "departureOffset": 3107
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 15,
+          "arrivalOffset": 3277,
+          "departureOffset": 3287
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 16,
+          "arrivalOffset": 3473,
+          "departureOffset": 3483
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 17,
+          "arrivalOffset": 3769,
+          "departureOffset": 3779
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 18,
+          "arrivalOffset": 3901,
+          "departureOffset": 3911
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 19,
+          "arrivalOffset": 4079,
+          "departureOffset": 4089
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1505,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P33",
+      "serviceID": "SH",
+      "headsign": "Taman Sari dan Blok M",
+      "directionID": "0",
+      "shapeID": "sdr6",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 223,
+          "departureOffset": 233
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 360,
+          "departureOffset": 370
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 669,
+          "departureOffset": 679
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 865,
+          "departureOffset": 875
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1040,
+          "departureOffset": 1050
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1247,
+          "departureOffset": 1257
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1462,
+          "departureOffset": 1472
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1692,
+          "departureOffset": 1702
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1978,
+          "departureOffset": 1988
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 10,
+          "arrivalOffset": 2093,
+          "departureOffset": 2103
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 11,
+          "arrivalOffset": 2274,
+          "departureOffset": 2284
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 12,
+          "arrivalOffset": 2446,
+          "departureOffset": 2456
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 13,
+          "arrivalOffset": 2663,
+          "departureOffset": 2673
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 14,
+          "arrivalOffset": 3119,
+          "departureOffset": 3129
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 15,
+          "arrivalOffset": 3295,
+          "departureOffset": 3305
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 16,
+          "arrivalOffset": 3436,
+          "departureOffset": 3446
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 17,
+          "arrivalOffset": 3570,
+          "departureOffset": 3580
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 18,
+          "arrivalOffset": 3733,
+          "departureOffset": 3743
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 19,
+          "arrivalOffset": 3891,
+          "departureOffset": 3901
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 20,
+          "arrivalOffset": 4009,
+          "departureOffset": 4019
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 21,
+          "arrivalOffset": 4189,
+          "departureOffset": 4199
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 22,
+          "arrivalOffset": 4646,
+          "departureOffset": 4656
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 23,
+          "arrivalOffset": 4900,
+          "departureOffset": 4910
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 24,
+          "arrivalOffset": 5035,
+          "departureOffset": 5045
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 25,
+          "arrivalOffset": 5208,
+          "departureOffset": 5218
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 26,
+          "arrivalOffset": 5328,
+          "departureOffset": 5338
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 27,
+          "arrivalOffset": 5608,
+          "departureOffset": 5618
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 28,
+          "arrivalOffset": 5844,
+          "departureOffset": 5854
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 29,
+          "arrivalOffset": 6062,
+          "departureOffset": 6072
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 30,
+          "arrivalOffset": 6266,
+          "departureOffset": 6276
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 31,
+          "arrivalOffset": 6446,
+          "departureOffset": 6456
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 32,
+          "arrivalOffset": 6642,
+          "departureOffset": 6652
+        },
+        {
+          "stopID": "G00010",
+          "sequence": 33,
+          "arrivalOffset": 6938,
+          "departureOffset": 6948
+        },
+        {
+          "stopID": "G00083",
+          "sequence": 34,
+          "arrivalOffset": 7070,
+          "departureOffset": 7080
+        },
+        {
+          "stopID": "P00017",
+          "sequence": 35,
+          "arrivalOffset": 7248,
+          "departureOffset": 7258
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 3400,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P34",
+      "serviceID": "SH",
+      "headsign": "Bundaran Senayan dan Kali Besar Barat",
+      "directionID": "0",
+      "shapeID": "ikon",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 68,
+          "departureOffset": 78
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 285,
+          "departureOffset": 295
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 565,
+          "departureOffset": 575
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 729,
+          "departureOffset": 739
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 887,
+          "departureOffset": 897
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1004,
+          "departureOffset": 1014
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1185,
+          "departureOffset": 1195
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1642,
+          "departureOffset": 1652
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 9,
+          "arrivalOffset": 1896,
+          "departureOffset": 1906
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 10,
+          "arrivalOffset": 2031,
+          "departureOffset": 2041
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 11,
+          "arrivalOffset": 2204,
+          "departureOffset": 2214
+        },
+        {
+          "stopID": "G00030",
+          "sequence": 12,
+          "arrivalOffset": 2324,
+          "departureOffset": 2334
+        },
+        {
+          "stopID": "G00021",
+          "sequence": 13,
+          "arrivalOffset": 2604,
+          "departureOffset": 2614
+        },
+        {
+          "stopID": "G00692",
+          "sequence": 14,
+          "arrivalOffset": 2840,
+          "departureOffset": 2850
+        },
+        {
+          "stopID": "G00020",
+          "sequence": 15,
+          "arrivalOffset": 3058,
+          "departureOffset": 3068
+        },
+        {
+          "stopID": "G00018",
+          "sequence": 16,
+          "arrivalOffset": 3262,
+          "departureOffset": 3272
+        },
+        {
+          "stopID": "G00014",
+          "sequence": 17,
+          "arrivalOffset": 3442,
+          "departureOffset": 3452
+        },
+        {
+          "stopID": "G00694",
+          "sequence": 18,
+          "arrivalOffset": 3638,
+          "departureOffset": 3648
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 19,
+          "arrivalOffset": 3800,
+          "departureOffset": 3810
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 20,
+          "arrivalOffset": 3996,
+          "departureOffset": 4006
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 21,
+          "arrivalOffset": 4171,
+          "departureOffset": 4181
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 22,
+          "arrivalOffset": 4379,
+          "departureOffset": 4389
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 23,
+          "arrivalOffset": 4594,
+          "departureOffset": 4604
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 24,
+          "arrivalOffset": 4824,
+          "departureOffset": 4834
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 25,
+          "arrivalOffset": 5110,
+          "departureOffset": 5120
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 26,
+          "arrivalOffset": 5225,
+          "departureOffset": 5235
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 27,
+          "arrivalOffset": 5406,
+          "departureOffset": 5416
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 28,
+          "arrivalOffset": 5578,
+          "departureOffset": 5588
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 29,
+          "arrivalOffset": 5795,
+          "departureOffset": 5805
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 30,
+          "arrivalOffset": 6251,
+          "departureOffset": 6261
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 31,
+          "arrivalOffset": 6427,
+          "departureOffset": 6437
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 32,
+          "arrivalOffset": 6568,
+          "departureOffset": 6578
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 33,
+          "arrivalOffset": 6702,
+          "departureOffset": 6712
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 34,
+          "arrivalOffset": 6869,
+          "departureOffset": 6879
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 35,
+          "arrivalOffset": 7224,
+          "departureOffset": 7234
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1000,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P38",
+      "serviceID": "SH",
+      "headsign": "Kali Besar Barat via Kebon Sirih",
+      "directionID": "0",
+      "shapeID": "6gk4",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 222,
+          "departureOffset": 232
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 360,
+          "departureOffset": 370
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 669,
+          "departureOffset": 679
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 865,
+          "departureOffset": 875
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1040,
+          "departureOffset": 1050
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1249,
+          "departureOffset": 1259
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1464,
+          "departureOffset": 1474
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1694,
+          "departureOffset": 1704
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1980,
+          "departureOffset": 1990
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 10,
+          "arrivalOffset": 2094,
+          "departureOffset": 2104
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 11,
+          "arrivalOffset": 2275,
+          "departureOffset": 2285
+        },
+        {
+          "stopID": "G00163",
+          "sequence": 12,
+          "arrivalOffset": 3361,
+          "departureOffset": 3371
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 13,
+          "arrivalOffset": 3667,
+          "departureOffset": 3677
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 14,
+          "arrivalOffset": 3843,
+          "departureOffset": 3853
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 15,
+          "arrivalOffset": 3984,
+          "departureOffset": 3994
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 16,
+          "arrivalOffset": 4117,
+          "departureOffset": 4127
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 17,
+          "arrivalOffset": 4281,
+          "departureOffset": 4291
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 18,
+          "arrivalOffset": 4636,
+          "departureOffset": 4646
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R09",
+      "serviceID": "SH",
+      "headsign": "Kota",
+      "directionID": "0",
+      "shapeID": "pm53",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00583",
+          "sequence": 1,
+          "arrivalOffset": 294,
+          "departureOffset": 304
+        },
+        {
+          "stopID": "G00581",
+          "sequence": 2,
+          "arrivalOffset": 565,
+          "departureOffset": 575
+        },
+        {
+          "stopID": "G00726",
+          "sequence": 3,
+          "arrivalOffset": 2353,
+          "departureOffset": 2363
+        },
+        {
+          "stopID": "G00433",
+          "sequence": 4,
+          "arrivalOffset": 2751,
+          "departureOffset": 2761
+        },
+        {
+          "stopID": "G00436",
+          "sequence": 5,
+          "arrivalOffset": 2927,
+          "departureOffset": 2937
+        },
+        {
+          "stopID": "G00397",
+          "sequence": 6,
+          "arrivalOffset": 3267,
+          "departureOffset": 3277
+        },
+        {
+          "stopID": "G00400",
+          "sequence": 7,
+          "arrivalOffset": 3628,
+          "departureOffset": 3638
+        },
+        {
+          "stopID": "G00166",
+          "sequence": 8,
+          "arrivalOffset": 3849,
+          "departureOffset": 3859
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 9,
+          "arrivalOffset": 4156,
+          "departureOffset": 4166
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 10,
+          "arrivalOffset": 4332,
+          "departureOffset": 4342
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 11,
+          "arrivalOffset": 4473,
+          "departureOffset": 4483
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 12,
+          "arrivalOffset": 4607,
+          "departureOffset": 4617
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 13,
+          "arrivalOffset": 4771,
+          "departureOffset": 4781
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 14,
+          "arrivalOffset": 5125,
+          "departureOffset": 5135
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 18000,
+          "end": 36000,
+          "headway": 474,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P95",
+      "serviceID": "SH",
+      "headsign": "Kota",
+      "directionID": "0",
+      "shapeID": "gl2s",
+      "calls": [
+        {
+          "stopID": "G00753",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 1,
+          "arrivalOffset": 446,
+          "departureOffset": 456
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 2,
+          "arrivalOffset": 622,
+          "departureOffset": 632
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 3,
+          "arrivalOffset": 763,
+          "departureOffset": 773
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 4,
+          "arrivalOffset": 897,
+          "departureOffset": 907
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 5,
+          "arrivalOffset": 1061,
+          "departureOffset": 1071
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 6,
+          "arrivalOffset": 1415,
+          "departureOffset": 1425
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R07",
+      "serviceID": "SH",
+      "headsign": "Kali Besar Barat",
+      "directionID": "0",
+      "shapeID": "ojbp",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 216,
+          "departureOffset": 226
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 352,
+          "departureOffset": 362
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 661,
+          "departureOffset": 671
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 857,
+          "departureOffset": 867
+        },
+        {
+          "stopID": "G00017",
+          "sequence": 5,
+          "arrivalOffset": 1032,
+          "departureOffset": 1042
+        },
+        {
+          "stopID": "G00747",
+          "sequence": 6,
+          "arrivalOffset": 1239,
+          "departureOffset": 1249
+        },
+        {
+          "stopID": "G00690",
+          "sequence": 7,
+          "arrivalOffset": 1454,
+          "departureOffset": 1464
+        },
+        {
+          "stopID": "G00024",
+          "sequence": 8,
+          "arrivalOffset": 1684,
+          "departureOffset": 1694
+        },
+        {
+          "stopID": "G00027",
+          "sequence": 9,
+          "arrivalOffset": 1970,
+          "departureOffset": 1980
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 10,
+          "arrivalOffset": 2085,
+          "departureOffset": 2095
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 11,
+          "arrivalOffset": 2266,
+          "departureOffset": 2276
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 12,
+          "arrivalOffset": 2438,
+          "departureOffset": 2448
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 13,
+          "arrivalOffset": 2655,
+          "departureOffset": 2665
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 14,
+          "arrivalOffset": 3111,
+          "departureOffset": 3121
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 15,
+          "arrivalOffset": 3287,
+          "departureOffset": 3297
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 16,
+          "arrivalOffset": 3428,
+          "departureOffset": 3438
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 17,
+          "arrivalOffset": 3562,
+          "departureOffset": 3572
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 18,
+          "arrivalOffset": 3729,
+          "departureOffset": 3739
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 19,
+          "arrivalOffset": 4083,
+          "departureOffset": 4093
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 360,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P36",
+      "serviceID": "SH",
+      "headsign": "Bundaran HI dan Kali Besar Barat",
+      "directionID": "0",
+      "shapeID": "xbjz",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 69,
+          "departureOffset": 79
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 282,
+          "departureOffset": 292
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 563,
+          "departureOffset": 573
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 727,
+          "departureOffset": 737
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 885,
+          "departureOffset": 895
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1002,
+          "departureOffset": 1012
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1182,
+          "departureOffset": 1192
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1640,
+          "departureOffset": 1650
+        },
+        {
+          "stopID": "G00040",
+          "sequence": 9,
+          "arrivalOffset": 1894,
+          "departureOffset": 1904
+        },
+        {
+          "stopID": "G00036",
+          "sequence": 10,
+          "arrivalOffset": 2029,
+          "departureOffset": 2039
+        },
+        {
+          "stopID": "G00031",
+          "sequence": 11,
+          "arrivalOffset": 2202,
+          "departureOffset": 2212
+        },
+        {
+          "stopID": "G00034",
+          "sequence": 12,
+          "arrivalOffset": 2355,
+          "departureOffset": 2365
+        },
+        {
+          "stopID": "G00038",
+          "sequence": 13,
+          "arrivalOffset": 2536,
+          "departureOffset": 2546
+        },
+        {
+          "stopID": "G00039",
+          "sequence": 14,
+          "arrivalOffset": 2708,
+          "departureOffset": 2718
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 15,
+          "arrivalOffset": 2925,
+          "departureOffset": 2935
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 16,
+          "arrivalOffset": 3381,
+          "departureOffset": 3391
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 17,
+          "arrivalOffset": 3557,
+          "departureOffset": 3567
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 18,
+          "arrivalOffset": 3698,
+          "departureOffset": 3708
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 19,
+          "arrivalOffset": 3832,
+          "departureOffset": 3842
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 20,
+          "arrivalOffset": 3996,
+          "departureOffset": 4006
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 21,
+          "arrivalOffset": 4350,
+          "departureOffset": 4360
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1380,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-P37",
+      "serviceID": "SH",
+      "headsign": "Monas dan Kali Besar Barat",
+      "directionID": "0",
+      "shapeID": "mmai",
+      "calls": [
+        {
+          "stopID": "G00060",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00064",
+          "sequence": 1,
+          "arrivalOffset": 71,
+          "departureOffset": 81
+        },
+        {
+          "stopID": "G00061",
+          "sequence": 2,
+          "arrivalOffset": 282,
+          "departureOffset": 292
+        },
+        {
+          "stopID": "G00058",
+          "sequence": 3,
+          "arrivalOffset": 564,
+          "departureOffset": 574
+        },
+        {
+          "stopID": "G00054",
+          "sequence": 4,
+          "arrivalOffset": 728,
+          "departureOffset": 738
+        },
+        {
+          "stopID": "G00052",
+          "sequence": 5,
+          "arrivalOffset": 886,
+          "departureOffset": 896
+        },
+        {
+          "stopID": "G00051",
+          "sequence": 6,
+          "arrivalOffset": 1003,
+          "departureOffset": 1013
+        },
+        {
+          "stopID": "G00048",
+          "sequence": 7,
+          "arrivalOffset": 1183,
+          "departureOffset": 1193
+        },
+        {
+          "stopID": "G00751",
+          "sequence": 8,
+          "arrivalOffset": 1641,
+          "departureOffset": 1651
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 9,
+          "arrivalOffset": 1953,
+          "departureOffset": 1963
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 10,
+          "arrivalOffset": 2409,
+          "departureOffset": 2419
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 11,
+          "arrivalOffset": 2585,
+          "departureOffset": 2595
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 12,
+          "arrivalOffset": 2726,
+          "departureOffset": 2736
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 13,
+          "arrivalOffset": 2860,
+          "departureOffset": 2870
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 14,
+          "arrivalOffset": 3024,
+          "departureOffset": 3034
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 15,
+          "arrivalOffset": 3378,
+          "departureOffset": 3388
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 0,
+          "end": 86399,
+          "headway": 1800,
+          "exactTimes": 0
+        }
+      ]
+    },
+    {
+      "id": "1-R11",
+      "serviceID": "SH",
+      "headsign": "Kota via Gerbang Pemuda",
+      "directionID": "0",
+      "shapeID": "ku4m",
+      "calls": [
+        {
+          "stopID": "P00017",
+          "sequence": 0,
+          "arrivalOffset": -10,
+          "departureOffset": 0
+        },
+        {
+          "stopID": "G00012",
+          "sequence": 1,
+          "arrivalOffset": 216,
+          "departureOffset": 226
+        },
+        {
+          "stopID": "G00009",
+          "sequence": 2,
+          "arrivalOffset": 352,
+          "departureOffset": 362
+        },
+        {
+          "stopID": "G00696",
+          "sequence": 3,
+          "arrivalOffset": 661,
+          "departureOffset": 671
+        },
+        {
+          "stopID": "G00016",
+          "sequence": 4,
+          "arrivalOffset": 857,
+          "departureOffset": 867
+        },
+        {
+          "stopID": "G00077",
+          "sequence": 5,
+          "arrivalOffset": 1278,
+          "departureOffset": 1288
+        },
+        {
+          "stopID": "G00726",
+          "sequence": 6,
+          "arrivalOffset": 1745,
+          "departureOffset": 1755
+        },
+        {
+          "stopID": "G00433",
+          "sequence": 7,
+          "arrivalOffset": 2143,
+          "departureOffset": 2153
+        },
+        {
+          "stopID": "G00436",
+          "sequence": 8,
+          "arrivalOffset": 2319,
+          "departureOffset": 2329
+        },
+        {
+          "stopID": "G00397",
+          "sequence": 9,
+          "arrivalOffset": 2659,
+          "departureOffset": 2669
+        },
+        {
+          "stopID": "G00400",
+          "sequence": 10,
+          "arrivalOffset": 3020,
+          "departureOffset": 3030
+        },
+        {
+          "stopID": "G00166",
+          "sequence": 11,
+          "arrivalOffset": 3241,
+          "departureOffset": 3251
+        },
+        {
+          "stopID": "G00753",
+          "sequence": 12,
+          "arrivalOffset": 4198,
+          "departureOffset": 4208
+        },
+        {
+          "stopID": "G00049",
+          "sequence": 13,
+          "arrivalOffset": 4654,
+          "departureOffset": 4664
+        },
+        {
+          "stopID": "G00050",
+          "sequence": 14,
+          "arrivalOffset": 4830,
+          "departureOffset": 4840
+        },
+        {
+          "stopID": "G00053",
+          "sequence": 15,
+          "arrivalOffset": 4971,
+          "departureOffset": 4981
+        },
+        {
+          "stopID": "G00055",
+          "sequence": 16,
+          "arrivalOffset": 5105,
+          "departureOffset": 5115
+        },
+        {
+          "stopID": "G00057",
+          "sequence": 17,
+          "arrivalOffset": 5269,
+          "departureOffset": 5279
+        },
+        {
+          "stopID": "G00060",
+          "sequence": 18,
+          "arrivalOffset": 5623,
+          "departureOffset": 5633
+        }
+      ],
+      "frequencies": [
+        {
+          "start": 18000,
+          "end": 36000,
+          "headway": 1200,
+          "exactTimes": 0
+        }
+      ]
+    }
+  ],
+  "source": {
+    "id": "transjakarta-corridor-1-2026-11-06",
+    "sourceURL": "https://gtfs.transjakarta.co.id/files/file_gtfs.zip",
+    "attributionURL": "https://ppid.transjakarta.co.id/informasi/berkala",
+    "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+    "publisher": "PT Transportasi Jakarta",
+    "checkedAt": "2026-11-06T07:01:50Z",
+    "lastModified": "Fri, 30 Oct 2026 09:51:57 GMT",
+    "sourceSHA256": "376b11f72ac30f9f4eb972ae32c7f1a3251b416dc3cd77cc573475a3b2676b9c",
+    "modification": "Corridor 1 subset with stop-time offsets normalized to each trip's first departure. Shapes and fares omitted."
+  }
+}

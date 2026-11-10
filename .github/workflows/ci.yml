@@ -1,6 +1,7 @@
 name: Starter checks
 on:
   pull_request:
+  workflow_dispatch:
   push:
     branches: [main, gi/trip-graph]
 permissions:
