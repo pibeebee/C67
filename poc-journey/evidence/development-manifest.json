@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "scope": "Reviewed maintained-source evolution; historical import manifest remains immutable",
   "changes": [
     {
@@ -55,9 +55,17 @@
       "publicationPath": "apps/c67-local-server-lab/Package.swift",
       "publicationManifest": "context-lab-publication.json",
       "importedPublishedSHA256": "d4639055a7822bb3f0ebbbf2ae3f62c65b31aab979f3ec25cda62de49f567057",
-      "currentSHA256": "6fcd2157e98c0528213c754c2b353646d04c0edbc3e0732ac422dee25ac95a16",
-      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
-      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+      "currentSHA256": "90edbfc7fdd64c354d6c406e3dfd70de6e2fcf301b137a30771084fbad626780",
+      "reason": "Preserve the itinerary editor and shared TJ integration while adding an isolated routing benchmark, provider/access adapters, adversarial tests and documented synthetic/local evidence. Google live is disabled by default and excluded from the current MVP campaign.",
+      "verification": "apps/c67-local-server-lab/docs/ROUTING_BENCHMARK_RESULTS_2026-11-10.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/README.md",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "f6cf0528d95e59ffc12d147e2970d0f074afcc782e68b63c439d6c8a9d78c400",
+      "currentSHA256": "09c0856a7cc952fbcc5065018e07dcb57a7cfc50ba7f9d062fe7e31775805137",
+      "reason": "Preserve the itinerary editor and shared TJ integration while adding an isolated routing benchmark, provider/access adapters, adversarial tests and documented synthetic/local evidence. Google live is disabled by default and excluded from the current MVP campaign. Document native Apple versus local Valhalla live comparison without changing app defaults.",
+      "verification": "apps/c67-local-server-lab/docs/APPLE_VALHALLA_LIVE_RESULTS_2026-11-10.md"
     },
     {
       "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotAdapters/AppleContextAdapters.swift",

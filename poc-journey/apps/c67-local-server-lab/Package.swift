@@ -9,7 +9,8 @@ let package = Package(name: "C67LocalServerLab", platforms: [.macOS(.v26), .iOS(
     .executable(name: "places-context", targets: ["PlacesContextCLI"]),
     .executable(name: "context-pilot", targets: ["ContextPilotCLI"]),
     .executable(name: "planner-server", targets: ["PlannerServer"]),
-    .executable(name: "planner-bench", targets: ["PlannerBenchCLI"])
+    .executable(name: "planner-bench", targets: ["PlannerBenchCLI"]),
+    .executable(name: "routing-bench", targets: ["RoutingBenchCLI"])
 ], dependencies: [
     .package(url: "https://github.com/vapor/vapor.git", exact: "4.122.3"),
     .package(url: "https://github.com/microsoft/onnxruntime-swift-package-manager", exact: "1.24.2"),
@@ -21,6 +22,9 @@ let package = Package(name: "C67LocalServerLab", platforms: [.macOS(.v26), .iOS(
 ], targets: [
     .systemLibrary(name: "CSQLite", pkgConfig: "sqlite3", providers: [.brew(["sqlite3"])]),
     .target(name: "PlaceContextEngine"),
+    .target(name: "RoutingBenchmark", dependencies: ["PlaceContextEngine", "ContextPilotAdapters", "PlannerEngine", .product(name: "TripIntegration", package: "TripIntegration")]),
+    .executableTarget(name: "RoutingBenchCLI", dependencies: ["RoutingBenchmark"]),
+    .testTarget(name: "RoutingBenchmarkTests", dependencies: ["RoutingBenchmark", .product(name: "TripIntegration", package: "TripIntegration")]),
     .target(name: "RecommendationContracts", dependencies: ["PlaceContextEngine"]),
     .target(name: "RecommendationEngine", dependencies: ["RecommendationContracts", "DynamicTripContracts", "PlaceContextEngine", "PlannerEngine"]),
     .testTarget(name: "RecommendationTests", dependencies: ["RecommendationEngine", "RecommendationContracts", "DynamicTripEngine", "DynamicTripContracts"]),
