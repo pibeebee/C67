@@ -60,3 +60,28 @@ python3 scripts/report-dynamic-context.py artifacts/dynamic-context-simulator-20
 ```
 
 Live UI tests consume `selection-three.json`/`selection-five.json` from the app's Documents directory and delete those transient files after loading. They must be prepared fresh, reviewed and copied before the relevant tests; ordinary interactive use needs no selection file. Live tests incur provider calls; do not run them repeatedly without checking the service counters and freshness.
+
+## Itinerary editor and TransJakarta (local development)
+
+The personal **Rencana** screen now supports **Edit perjalanan** before departure. Replace, move (drag or up/down), delete, or add from personal recommendations/manual name search. Confirm each new Google/Apple association. Required deletions require confirmation. Changes stay in a separate draft until **Hitung ulang**, review, and **Terapkan itinerary baru**. Manual order is fixed; the planner can omit optional visits while preserving the retained order. A failing preview does not replace the accepted version. **Tutup draft** keeps edits only while the app remains open; **Batalkan** discards them. Live drafts and revision history are not persisted across relaunch because they contain provider data. **Riwayat versi** shows earlier plans from the current session. Synthetic test fixtures may use isolated on-disk storage.
+
+Choose **Mobil** or **TJ + jalan kaki** for the whole trip. TJ reuses Trip Integration's attributed static network, direct-service/one-transfer rules and access limits. It is not real-time bus tracking. Bus geometry comes from the matching GTFS shapes; road geometry is loaded separately. Missing shapes or roads remain explicit, without straight-line substitutes. Total waiting includes venue waits and transit boarding/transfer waits; transit waiting is already contained in travel duration and is not added again to elapsed time.
+
+A restored plan is historical. Prepared places expire and the Mac service does not restore its in-memory handles after a restart. Use **Segarkan lokasi awal** and each stop's **Segarkan konteks dan identitas**, then confirm the new Apple candidates and recalculate. Recommendation proofs remain short-lived; manual choices/history are labelled separately from fresh personal rankings. A provider or save failure retains the applied version/draft.
+
+For deterministic UI acceptance, launch with `--revision-ui-test --revision-reset`. This path uses explicitly synthetic venues, travel and schematic geometry, with the production editor state and fixed-order planner. It makes no Google Places, Apple REST, OpenRouter or MKDirections requests and is not live-route evidence. The map can still load Apple basemap tiles. Omit `--revision-reset` to exercise recovery. Normal launches require the operator's private service setup above; a fixture-only build may contain an inert local RunConfig and cannot run live until replaced by the server setup.
+
+See [editor task](../../../docs/tasks/context-itinerary-editor.md) and [implementation report](../docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md). Production APIs and database schemas are unchanged.
+
+Run only the deterministic editor app checks with your installed Simulator destination:
+
+```sh
+xcodebuild -project ContextHarness/C67ContextLab.xcodeproj -scheme C67ContextLab \
+  -destination 'platform=iOS Simulator,id=<SIMULATOR_ID>' \
+  CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- \
+  -only-testing:ContextLabTests \
+  -only-testing:ContextLabUITests/ItineraryEditorUITests \
+  -parallel-testing-enabled NO test
+```
+
+These selected tests are independent of the older live-provider UI campaigns in the same scheme.

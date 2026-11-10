@@ -36,7 +36,7 @@ import Foundation
             blocked.warnings.append("Tujuan wajib kekurangan jendela/bukti; tidak dihapus dan jam tidak dibuat-buat")
             return blocked
         }
-        let stable = eligible.sorted{input.stops[$0].request.placeID < input.stops[$1].request.placeID}
+        let stable = input.order == .fixed ? eligible : eligible.sorted{input.stops[$0].request.placeID < input.stops[$1].request.placeID}
         var subsets: [[Int]] = []
         if !stable.isEmpty {
             for mask in 1 ..< (1 << stable.count) {

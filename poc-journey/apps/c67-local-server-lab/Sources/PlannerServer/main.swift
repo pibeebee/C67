@@ -104,7 +104,7 @@ import PlannerEngine
         app.get("v1", "lab", "context", "capabilities") { @MainActor req async throws -> Response in
             try authorize(req)
             return try response(["configured": String(dynamic != nil), "experiments": String(env["LAB_CONTEXT_EXPERIMENTS"] == "1"),
-                                 "catalogue": "dynamic Google place selection and explicit Apple candidate confirmation", "gridDefaultMinutes": "5"])
+                                 "catalogue": "dynamic Google place selection and explicit Apple candidate confirmation", "gridDefaultMinutes": "5", "transportTransjakarta": "1"])
         }
         app.get("v1", "lab", "recommendation", "capabilities") { @MainActor req async throws -> Response in
             try authorize(req)
@@ -160,6 +160,22 @@ import PlannerEngine
                                                     "Belum dipilih dalam batas pencarian; bukan bukti global tidak memungkinkan")
                 }
                 return try response(PersonalPlanResult(result: result, requiredPlaceIDs: input.requiredPlaceIDs, omitted: omitted, momentReview: momentReview))
+            } catch { throw contextFailure(error) }
+        }
+        app.post("v1", "lab", "itinerary", "revisions", "preview") { @MainActor req async throws -> Response in
+            try authorize(req); guard let dynamic else { throw Abort(.serviceUnavailable) }
+            do {
+                let input = try body(req, as: ItineraryRevisionInput.self)
+                let ids = try dynamic.selectedPlaceIDs(input.plan)
+                try input.validate(placeIDs: ids)
+                for source in input.sources where source.origin == .recommendation {
+                    guard let recommendations, let recommendationID = source.recommendationID, let revision = source.profileRevision else { throw ContextError.invalid("Recommendation proof missing") }
+                    _ = try recommendations.authorizePlan(recommendationID: recommendationID, profileRevision: revision, placeIDs: [source.placeID], departure: input.plan.departure, deadline: input.plan.deadline)
+                }
+                // Explicit user/history choices need fresh place/identity evidence, not a new LLM endorsement.
+                let choices = try await dynamic.planWithMoments(input.plan, requiredIDs: Set(input.requiredPlaceIDs))
+                let result = input.result(for: choices.baseline)
+                return try response(ItineraryRevisionPreview(input: input, result: result))
             } catch { throw contextFailure(error) }
         }
         app.get("v1", "lab", "context", "counters") { @MainActor req async throws -> Response in

@@ -11,10 +11,19 @@ ROOT = Path(__file__).resolve().parents[1]
 SHA256 = re.compile(r"[0-9a-f]{64}")
 
 
-def maintained_path(path):
+def maintained_path(path, owner="publication-manifest.json"):
     """Functional evolution is allowed only for maintained implementation/guide files."""
     parts = PurePosixPath(path).parts
     if not parts or PurePosixPath(path).is_absolute() or ".." in parts:
+        return False
+    if owner == "context-lab-publication.json":
+        prefix = "apps/c67-local-server-lab/"
+        if not path.startswith(prefix):
+            return False
+        tail = path[len(prefix):]
+        return (tail in {"Package.swift", "README.md", "ContextHarness/README.md", "ContextHarness/project.yml"}
+                or (tail.endswith(".swift") and tail.startswith(("Sources/", "Tests/", "ContextHarness/App/", "ContextHarness/UITests/", "ContextHarness/Tests/"))))
+    if owner != "publication-manifest.json":
         return False
     if path in {"apps/c67-foundation-lab/App/VisitTimingModel.swift", "apps/c67-foundation-lab/UITests/QualityLabUITests.swift", "apps/c67-foundation-lab/App/QualityLabViews.swift"}:
         return True
@@ -35,7 +44,7 @@ def safe_file(root, path):
 def validate(root, manifest, development=None, published_paths=None, additional_manifests=()):
     issues = []
     imports = {}
-    baseline_paths = set()
+    owners = {}
     for index, source in enumerate((manifest, *additional_manifests)):
         for entry in source["files"]:
             if entry["disposition"] != "included":
@@ -45,8 +54,7 @@ def validate(root, manifest, development=None, published_paths=None, additional_
                 issues.append(f"{path}: duplicate publication path")
                 continue
             imports[path] = entry
-            if index == 0:
-                baseline_paths.add(path)
+            owners[path] = "publication-manifest.json" if index == 0 else "context-lab-publication.json"
     changes = {}
     if development is not None:
         if development.get("schemaVersion") != 1 or not isinstance(development.get("changes"), list):
@@ -55,7 +63,8 @@ def validate(root, manifest, development=None, published_paths=None, additional_
             if not isinstance(change, dict):
                 issues.append("development ledger: invalid entry"); continue
             path = change.get("publicationPath")
-            if not isinstance(path, str) or path in changes or path not in baseline_paths or not maintained_path(path):
+            owner = change.get("publicationManifest", "publication-manifest.json")
+            if not isinstance(path, str) or path in changes or owners.get(path) != owner or not maintained_path(path, owner):
                 issues.append(f"{path}: duplicate, unknown or archival development path"); continue
             baseline = imports[path]["publishedSHA256"]
             current = change.get("currentSHA256", "")

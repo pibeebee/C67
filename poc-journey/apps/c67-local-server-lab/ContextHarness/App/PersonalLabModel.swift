@@ -45,6 +45,8 @@ private struct SavedPersonalState: Codable {
 }
 
 @MainActor @Observable final class PersonalLabModel {
+    let editor: ItineraryEditorModel
+    var transport = ContextTransport.automobile
     var learning = PersonalLearningState()
     var onboarded = false
     var selectedTab = 0
@@ -73,6 +75,7 @@ private struct SavedPersonalState: Codable {
     var waitingMinutes = 30
     var grid = 15
     var policy = ContextSearchPolicy.beam
+    var appliedSettings: PlanSettings?
     var planOutput: PersonalPlanResult?
     var observations: [PersonalObservation] = []
     var embeddingInfo = "E5 belum dijalankan"
@@ -91,21 +94,24 @@ private struct SavedPersonalState: Codable {
         let filename = ProcessInfo.processInfo.arguments.contains("--personal-ui-test") ? "personal-state-ui-test.json" : "personal-state.json"
         return dir.appendingPathComponent(filename)
     }
-    init() {
+    init(editor: ItineraryEditorModel? = nil) {
+        self.editor = editor ?? ItineraryEditorModel()
         if ProcessInfo.processInfo.arguments.contains("--personal-reset-test"), ProcessInfo.processInfo.arguments.contains("--personal-ui-test") { try? FileManager.default.removeItem(at: storeURL) }
         if let bytes = try? Data(contentsOf: storeURL), let saved = try? ContextJSON.decoder().decode(SavedPersonalState.self, from: bytes),
            (try? saved.learning.profile.validate()) != nil { learning = saved.learning; onboarded = saved.onboarded }
         if let testDay = ProcessInfo.processInfo.environment["PERSONAL_TEST_DAY"], let date = ContextClock.day(testDay) { day = date }
+        restoreRevision()
+        if self.editor.fixture { onboarded = true; Task { @MainActor in await self.editor.seedFixtureIfNeeded(); restoreRevision() } }
     }
     struct PlanSettings: Equatable {
         struct Stop: Equatable {
             let id: UUID; let minutes: Int; let exposure: ActivityExposure; let afternoon: Bool; let required: Bool
         }
-        let stops: [Stop]; let waitingMinutes: Int; let rainAdjustmentEnabled: Bool
+        let stops: [Stop]; let waitingMinutes: Int; let rainAdjustmentEnabled: Bool; let transport: ContextTransport; let day: Date; let departureMinute: Int; let deadlineMinute: Int; let originID: UUID?
     }
     var planSettings: PlanSettings {
         .init(stops: stops.map{.init(id: $0.id, minutes: $0.stop.durationMinutes, exposure: $0.stop.exposure,
-                                     afternoon: $0.stop.afternoon, required: $0.required)}, waitingMinutes: waitingMinutes, rainAdjustmentEnabled: rainAdjustmentEnabled)
+                                     afternoon: $0.stop.afternoon, required: $0.required)}, waitingMinutes: waitingMinutes, rainAdjustmentEnabled: rainAdjustmentEnabled, transport: transport, day: day, departureMinute: departureMinute, deadlineMinute: deadlineMinute, originID: origin?.id)
     }
     var context: PersonalTripContext { .init(area: area, day: ContextClock.label(day), departureMinute: departureMinute, deadlineMinute: deadlineMinute) }
     func saveProfile() {
@@ -287,23 +293,31 @@ private struct SavedPersonalState: Codable {
     }
     func makePlan() {
         perform {
+            guard self.editor.state.draft == nil else { throw ContextError.invalid("Selesaikan atau batalkan draft itinerary sebelum membuat rencana baru") }
             guard let rec = self.recommendation, let origin = self.origin,!self.stops.isEmpty, rec.context == self.context else {
                 throw ContextError.invalid("Pilih rekomendasi, lokasi awal, dan tujuan pada konteks yang sama")
             }
+            let requestedSettings = self.planSettings
+            let requestedStops = self.stops
             let base = ContextClock.day(rec.context.day)!
             let inputs = self.stops.map { row -> DynamicStopInput in
                 var input = row.stop.input
                 if self.simpleLayout { input.avoidRain = self.rainAdjustmentEnabled && input.exposure == .outdoor }
                 return input
             }
-            let plan = DynamicPlanInput(origin: origin.endpoint, stops: inputs, departure: base.addingTimeInterval(Double(self.departureMinute * 60)),
+            var plan = DynamicPlanInput(origin: origin.endpoint, stops: inputs, departure: base.addingTimeInterval(Double(self.departureMinute * 60)),
                                         deadline: base.addingTimeInterval(Double(self.deadlineMinute * 60)), maximumWaitingMinutes: self.waitingMinutes, startStepMinutes: self.grid, policy: self.policy, maxTravelCalls: 64)
+            plan.transport = self.transport
+            if self.transport == .transjakarta {
+                let capabilities = try await ContextAPI().request("capabilities", body: Optional<String>.none, as: [String: String].self)
+                guard capabilities["transportTransjakarta"] == "1" else { throw ContextError.invalid("Server belum mendukung TransJakarta; perbarui backend sebelum melanjutkan") }
+            }
             let request = PersonalPlanInput(recommendationID: rec.id, profileRevision: rec.profileRevision,
                                             requiredPlaceIDs: self.stops.filter(\.required).map{$0.stop.place.prepared.googlePlaceID}, plan: plan, considerMoments: self.simpleLayout)
             self.status = "Menghitung jadwal wajib/opsional dan ETA aktual…"
             let began = ContinuousClock.now
             let value = try await ContextAPI(namespace: "recommendation").request("plan", body: request, as: PersonalPlanResult.self)
-            self.planID = UUID(); self.planOutput = value
+            try self.publishPlan(value, origin: origin, stops: requestedStops, input: plan, expectedSettings: requestedSettings)
             var sanitized = value
             let bounds = Dictionary(uniqueKeysWithValues: value.result.itinerary.contexts.map{($0.placeID, $0.hours.intervals)})
             sanitized.result.itinerary.contexts = []
@@ -313,6 +327,37 @@ private struct SavedPersonalState: Codable {
             self.status = value.result.itinerary.visits.isEmpty ? "Rencana belum terverifikasi; periksa tujuan wajib dan bukti" : "Jadwal siap ditinjau; periksa tujuan opsional dan ketidakpastian"
         }
     }
+    func publishPlan(_ value: PersonalPlanResult, origin: ChosenPlace, stops requestedStops: [PersonalStopDraft], input plan: DynamicPlanInput, expectedSettings requestedSettings: PlanSettings) throws {
+        try Task.checkCancellation()
+        guard planSettings == requestedSettings else { throw ContextError.invalid("Pilihan berubah saat menghitung; hasil lama tidak diterapkan") }
+        if value.result.itinerary.status.hasPrefix("candidate"), !value.result.itinerary.visits.isEmpty {
+            guard editor.capture(origin: origin, stops: requestedStops, input: plan, result: value) else {
+                restoreRevision()
+                throw ContextError.invalid(editor.error ?? "Itinerary belum tersimpan; coba lagi")
+            }
+        }
+        planID = editor.state.current?.id ?? UUID(); planOutput = value
+        appliedSettings = requestedSettings
+    }
+    func revisionSource(_ placeID: String) -> RevisionPlaceSource {
+        .init(placeID: placeID, origin: .recommendation, recommendationID: placeProofs[placeID] ?? recommendation?.id, profileRevision: recommendation?.profileRevision)
+    }
+    func restoreRevision() {
+        guard let current = editor.state.current else { return }
+        let draft = current.draft
+        origin = .init(prepared: draft.origin.prepared, apple: draft.origin.apple)
+        stops = draft.stops.map { row in
+            var stop = StopDraft(place: .init(prepared: row.place.prepared, apple: row.place.apple))
+            stop.durationMinutes = row.durationMinutes; stop.exposure = row.exposure
+            stop.afternoon = row.preferredTime != nil; stop.avoidRain = row.avoidRain
+            return .init(stop: stop, required: row.required)
+        }
+        day = ContextClock.calendar.startOfDay(for: draft.departure)
+        departureMinute = tripMinute(draft.departure); deadlineMinute = tripMinute(draft.deadline)
+        waitingMinutes = draft.maximumWaitingMinutes; transport = draft.transport
+        planID = current.id; planOutput = current.result; appliedSettings = planSettings
+    }
+    private func tripMinute(_ date: Date) -> Int { let c = ContextClock.calendar.dateComponents([.hour, .minute], from: date); return (c.hour ?? 0) * 60 + (c.minute ?? 0) }
     private func appendObservation(_ row: PersonalObservation)throws {
         if !observationLoaded {
             let path = benchmarkDirectory.appendingPathComponent("recommendations.json")

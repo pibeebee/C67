@@ -1,6 +1,7 @@
 import SwiftUI
 import MapKit
 import PlaceContextEngine
+import DynamicTripContracts
 
 struct PersonalRouteMapData {
     struct Point: Identifiable {
@@ -24,6 +25,7 @@ struct PersonalRouteMapData {
         let to: Point
         let departure: Date
         let arrival: Date
+        var segment: ContextRouteSegment? = nil
 
         var number: Int { id + 1 }
         var color: Color { [.blue, .orange, .purple, .green, .pink, .teal, .indigo][id % 7] }
@@ -33,14 +35,24 @@ struct PersonalRouteMapData {
     let legs: [Leg]
 
     @MainActor init?(model: PersonalLabModel, trip: ContextItineraryResult) {
-        guard let origin = model.origin, let initialLeg = trip.legs.first, !trip.visits.isEmpty else { return nil }
+        self.init(origin: model.origin, stops: model.stops, trip: trip)
+    }
+
+    @MainActor init?(draft: ItineraryEditDraft, trip: ContextItineraryResult) {
+        let origin = ChosenPlace(prepared: draft.origin.prepared, apple: draft.origin.apple)
+        let stops = draft.stops.map { PersonalStopDraft(stop: StopDraft(place: .init(prepared: $0.place.prepared, apple: $0.place.apple)), required: $0.required) }
+        self.init(origin: origin, stops: stops, trip: trip)
+    }
+
+    @MainActor private init?(origin selectedOrigin: ChosenPlace?, stops: [PersonalStopDraft], trip: ContextItineraryResult) {
+        guard let origin = selectedOrigin, let initialLeg = trip.legs.first, !trip.visits.isEmpty else { return nil }
         func point(_ id: String, label: String, _ chosen: ChosenPlace) -> Point {
             .init(id: id, name: chosen.apple.name, label: label, latitude: chosen.apple.latitude, longitude: chosen.apple.longitude)
         }
 
         var order = [point(initialLeg.from, label: "Mulai / pulang", origin)]
         for (index, visit) in trip.visits.enumerated() {
-            guard let row = model.stops.first(where: { $0.stop.place.prepared.googlePlaceID == visit.placeID }) else { return nil }
+            guard let row = stops.first(where: { $0.stop.place.prepared.googlePlaceID == visit.placeID }) else { return nil }
             order.append(point(visit.placeID, label: "\(index + 1). \(row.stop.place.apple.name)", row.stop.place))
         }
         let byID = Dictionary(uniqueKeysWithValues: order.map { ($0.id, $0) })
@@ -49,8 +61,20 @@ struct PersonalRouteMapData {
             guard let from = byID[leg.from], let to = byID[leg.to] else { return nil }
             edges.append(.init(id: index, from: from, to: to, departure: leg.departure, arrival: leg.arrival))
         }
+        var expanded: [Leg] = []
+        for edge in edges {
+            let segments = trip.legs[edge.id].evidence.details?.segments ?? []
+            if segments.isEmpty { expanded.append(.init(id: expanded.count, from: edge.from, to: edge.to, departure: edge.departure, arrival: edge.arrival)) }
+            else {
+                for segment in segments {
+                    let from = Point(id: "\(edge.id)-\(segment.id)-from", name: segment.label, label: segment.label, latitude: segment.from.latitude, longitude: segment.from.longitude)
+                    let to = Point(id: "\(edge.id)-\(segment.id)-to", name: segment.label, label: segment.label, latitude: segment.to.latitude, longitude: segment.to.longitude)
+                    expanded.append(.init(id: expanded.count, from: from, to: to, departure: segment.departure ?? edge.departure, arrival: segment.arrival ?? edge.arrival, segment: segment))
+                }
+            }
+        }
         points = order
-        legs = edges
+        legs = expanded
     }
 }
 
@@ -86,10 +110,16 @@ private struct PersonalMapRoad: Identifiable {
         }
         badge = coordinate
     }
+    init(leg: PersonalRouteMapData.Leg, coordinates: [CLLocationCoordinate2D]) {
+        self.leg = leg; line = MKPolyline(coordinates: coordinates, count: coordinates.count)
+        distance = 0; badge = coordinates[coordinates.count / 2]
+    }
+
 }
 
 struct PersonalRouteMap: View {
     let data: PersonalRouteMapData
+    var identifier = "simple-apple-map"
     @State private var roads: [PersonalMapRoad] = []
     @State private var loading = true
     @State private var request = 0
@@ -122,7 +152,7 @@ struct PersonalRouteMap: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(Color.accentColor)
-            .accessibilityIdentifier("simple-apple-map")
+            .accessibilityIdentifier(identifier)
             .accessibilityHint("Membuka peta interaktif di dalam aplikasi.")
             PersonalMapStatus(available: roads.count, total: data.legs.count, loading: loading, retry: retry)
         }
@@ -143,10 +173,17 @@ struct PersonalRouteMap: View {
         loading = true
         for leg in data.legs where !roads.contains(where: { $0.id == leg.id }) {
             guard !Task.isCancelled else { return }
+            if let segment = leg.segment, segment.geometryStatus != "load_road" {
+                if segment.points.count > 1 {
+                    roads.append(.init(leg: leg, coordinates: segment.points.map { .init(latitude: $0.latitude, longitude: $0.longitude) }))
+                }
+                continue
+            }
+            if ProcessInfo.processInfo.arguments.contains("--revision-ui-test") { continue }
             let directions = MKDirections.Request()
             directions.source = leg.from.mapItem
             directions.destination = leg.to.mapItem
-            directions.transportType = .automobile
+            directions.transportType = leg.segment?.kind == "walking" ? .walking : .automobile
             directions.departureDate = leg.departure
             do {
                 let response = try await MKDirections(request: directions).calculate()
@@ -175,7 +212,7 @@ private struct PersonalMapStatus: View {
                 Text("Memuat jalur · \(available)/\(total) ruas")
             }.font(.caption)
         } else if available == total {
-            Text("Rute mobil · Apple Maps")
+            Text("Geometri ruas · Apple Maps / GTFS sesuai sumber")
                 .font(.caption).foregroundStyle(.secondary)
                 .accessibilityIdentifier("simple-map-route-ready")
         } else {

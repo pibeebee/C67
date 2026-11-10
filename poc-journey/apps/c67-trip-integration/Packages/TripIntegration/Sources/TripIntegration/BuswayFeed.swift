@@ -190,6 +190,9 @@ public struct BuswayWalk: Codable, Sendable {
     public var seconds: Double
     public var distanceMeters: Double
     public var provider: String
+    public init(from: PlacePin, to: PlacePin, seconds: Double, distanceMeters: Double, provider: String) {
+        self.from = from; self.to = to; self.seconds = seconds; self.distanceMeters = distanceMeters; self.provider = provider
+    }
 }
 
 public struct BuswayRide: Codable, Sendable {
@@ -263,7 +266,7 @@ public struct BuswayJourney: Codable, Sendable {
               seconds.isFinite, seconds >= 0, !source.id.isEmpty,
               walks.allSatisfy({ $0.seconds.isFinite && $0.seconds >= 0 && $0.distanceMeters.isFinite && $0.distanceMeters >= 0
                       && IntegrationCatalog.contains($0.from) && IntegrationCatalog.contains($0.to)
-                      && ["mapkit_walking", "synthetic_walking"].contains($0.provider) }) else {
+                      && ["mapkit_walking", "apple_maps_rest_walking", "synthetic_walking"].contains($0.provider) }) else {
             throw IntegrationError.invalid("Bukti jalan kaki/GTFS tidak valid.")
         }
         if let ride {

@@ -32,7 +32,7 @@ case "${1:-}" in
     cat "$output_root/transjakarta-capabilities.log"
     ;;
   context)
-    run_logged "$output_root/context-lab-tests.log" swift test -j 4 --package-path "$journey_root/apps/c67-local-server-lab"
+    run_logged "$output_root/context-lab-tests.log" swift test -j 4 -Xswiftc -parse-as-library --package-path "$journey_root/apps/c67-local-server-lab"
     tail -n 10 "$output_root/context-lab-tests.log"
     ;;
   packages)

@@ -85,6 +85,8 @@ public struct DynamicStopInput: Codable, Sendable {
 }
 
 public struct DynamicPlanInput: Codable, Sendable {
+    public var transport: ContextTransport?
+    public var order: ContextVisitOrder?
     public var origin: DynamicEndpoint
     public var stops: [DynamicStopInput]
     public var departure: Date
@@ -102,6 +104,8 @@ public struct DynamicPlanInput: Codable, Sendable {
 }
 
 public struct DynamicStageMetrics: Codable, Sendable {
+    public var providerCalls: Int?
+    public var providerCells: Int?
     public var preparationSeconds: Double
     public var routingSeconds: Double
     public var etaAdapterSeconds: Double

@@ -4,6 +4,110 @@
   "scope": "Reviewed maintained-source evolution; historical import manifest remains immutable",
   "changes": [
     {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/ContextLabModel.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "07083d72155879c2c8ec32b249f0051fdb68d65d19ad7c667f697ac1acb3b926",
+      "currentSHA256": "227fe8a4b1e15b1dde37ba1666ca993eeb504875c6752ee4ffc71154d05828ae",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/PersonalLabModel.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "b0e899b374ad424b603bff5fa347bc13225e76ba23c55615d193ea1a96d87c8d",
+      "currentSHA256": "22cdf31499906d2dbd88c7afcc6bcfbf55e5f8988bcdae3b935d9a3cca7e72e4",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow. Follow-up protects drafts, checks server transport capability and limits live revision persistence to the app session.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_SAFETY_2026-11-10.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/PersonalRouteMap.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "592636c4a9e99cfa2184bc0ed7e7f375f5f9d27067b9ffc2cd00f977ae0bcf84",
+      "currentSHA256": "ea5bdbba49f91c721a458f946fed47b4997db30ca28ae00203b54c083523aa23",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/SimplePersonalViews.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "004e797819cd891bb7af44de5726e2e2a78ee643a06e932af5f7777c9457a3eb",
+      "currentSHA256": "668f5f6540047aeb61b9f1c4e6157d050dee99c5e76f953e32d121acf39daea4",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/README.md",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "665b0ef42e87658082ff330e6e3332f23dded04f7adecf2e9682caff9677f507",
+      "currentSHA256": "6427d6b820ddfc3d6666cba10176b32c33f86b4d53a0708bb890c544e7b02286",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow. Follow-up protects drafts, checks server transport capability and limits live revision persistence to the app session.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_SAFETY_2026-11-10.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/project.yml",
+      "importedPublishedSHA256": "8088a776e94c122052647b14c22776aa081079b46517a40c29f9586111302285",
+      "reason": "Support the pre-departure editor with fixed-order transport-aware revisions, persistent drafts and compatibility checks.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md",
+      "publicationManifest": "context-lab-publication.json",
+      "currentSHA256": "0286a882c747667cb387253a1efd8401d2d807f4fe1b9e66b773e9c3aa970905"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Package.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "d4639055a7822bb3f0ebbbf2ae3f62c65b31aab979f3ec25cda62de49f567057",
+      "currentSHA256": "6fcd2157e98c0528213c754c2b353646d04c0edbc3e0732ac422dee25ac95a16",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotAdapters/AppleContextAdapters.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "5ed6db040347731cd772b013f0cf1bc258c41c19dbc1d2610e7029514baff220",
+      "currentSHA256": "03d5efc6a2aa02a9a873577826e613090fa6396152264d1039885030adf20ed6",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripContracts/Contracts.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "d58105fdd98f4323390a6bd6c7a4ef81d0d04d954a41dbe2f7907599fbdcf416",
+      "currentSHA256": "48db0a8dbf7d9171ebe992d23f26935036cf69c3a5d61b29c3babbf192da0afc",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripEngine/DynamicTripService.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "87edf4fd92e18a7dc853e0f992d0aa322b3de1745440a3ce34c0411ec898dd50",
+      "currentSHA256": "df8b0f87739ef0fdc9171f536e59687a3b23062bb6d45a39d412950f042f530d",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "36bf861c6e74b14adb34f235d08375e1304e95ac445273f9cf9743d42c343872",
+      "currentSHA256": "c002fbc44ef547f4317d729b7b99909e4bda672ca7836ffd24239e752fec7195",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/OptionalItineraryPlanner.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "5b7f978b84aca18f9fe9ca00e0c39b78a161e1072973423bebf515ca8f3f86b3",
+      "currentSHA256": "7dc370089344c8cd9a801b5cad76751daacc4b17585aba897dc42149f644a5b4",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_RESULTS_2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerServer/main.swift",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "cfa9b7af05b73dd58d2c71930aa7e3754d81f69554547e41a814fa48acf3406b",
+      "currentSHA256": "49e39a9697174ffc661c69d7f01407e5bbf1caccecedf14d8050b2c9807b1cde",
+      "reason": "Implement pre-departure itinerary revisions, fixed-order scheduling and shared TransJakarta routing while preserving the existing Context Lab flow. Follow-up protects drafts, checks server transport capability and limits live revision persistence to the app session.",
+      "verification": "apps/c67-local-server-lab/docs/ITINERARY_EDITOR_SAFETY_2026-11-10.md"
+    },
+    {
       "publicationPath": "apps/c67-trip-integration/Packages/TripIntegration/Package.swift",
       "importedPublishedSHA256": "ab2262da55ee913a4a6baab885467b49584e921023e3ec3f535e468c32a3d747",
       "currentSHA256": "325ee6053c79bef566c67c3537e3c49d7a0efe160cfb9895d5a2016c0e9f9be2",

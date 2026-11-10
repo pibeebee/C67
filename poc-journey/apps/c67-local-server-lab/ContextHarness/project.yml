@@ -40,6 +40,17 @@ targets:
         INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking: YES
         INFOPLIST_KEY_NSLocalNetworkUsageDescription: Connect to your local itinerary context lab.
         TARGETED_DEVICE_FAMILY: '1,2'
+  ContextLabTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: C67ContextLab
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: giovanchristoffel.c67-context-lab-tests
   ContextLabUITests:
     type: bundle.ui-testing
     platform: iOS
@@ -59,5 +70,6 @@ schemes:
         C67ContextLab: all
     test:
       targets:
+        - ContextLabTests
         - ContextLabUITests
       gatherCoverageData: false
