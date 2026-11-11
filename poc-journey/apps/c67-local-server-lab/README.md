@@ -1,5 +1,7 @@
 # C67 local itinerary server lab
 
+**Routing benchmark development — 10 November 2026.** The isolated [routing benchmark](docs/ROUTING_BENCHMARK.md) compares endpoint selection and planning runtime through a CLI, with Apple/Google adapters, local Valhalla and the shared TJ engine. It does not change application routing defaults or live-editor storage. See the [fresh execution report](docs/ROUTING_BENCHMARK_RESULTS_2026-11-10.md); synthetic, local-graph and missing live-provider prerequisites are reported separately.
+
 **Current public checkout — 9 November 2026.** Start with [Context Lab v0.5](ContextHarness/README.md) and the [current handoff](../../docs/context-lab-handoff-2026-11-09.md). Run the repository model bootstrap before building. The dated reports and historical commands below keep their original experiment scope; original-location source-hash checks can differ after publication formatting. [Source export verification](../../evidence/context-lab-relocation-2026-11-09.md).
 
 **Evaluasi user simulasi, 8 November:** tiga kebutuhan baru diuji tanpa tuning engine. Ditemukan kebutuhan yang tidak tertangkap UI, kekurangan kandidat arsitektur, penolakan alias/penerimaan tenant pada identitas, dan artefak grid yang menghilangkan kegiatan opsional. [Hasil dan batas penilaian](docs/SYNTHETIC_USER_RESULTS_2026-11-08.md). Ini bukan validasi kepuasan manusia.
@@ -64,3 +66,5 @@ Untuk harness, generate `ClientHarness/project.yml` dengan XcodeGen dan build sc
 - Audit CLI (original local evidence, omitted from this publication), audit simulator (original local evidence, omitted from this publication), kesiapan live (original local evidence, omitted from this publication)
 
 Log/artefak merupakan bukti engineering lokal dan tidak otomatis aman untuk publikasi. Folder `.local`, private key dan file konfigurasi token diabaikan Git. Eksperimen ini belum membuktikan portabilitas Linux, ketahanan produksi, throughput banyak pengguna atau akurasi perjalanan lapangan.
+
+The [matched Apple native / Valhalla live report](docs/APPLE_VALHALLA_LIVE_RESULTS_2026-11-10.md) records actual matched road requests, controlled 1/3/6-stop calculations and shared-TJ live-walking comparisons. See the [benchmark commands](docs/ROUTING_BENCHMARK.md#matched-native-apple-versus-valhalla-live-campaign). Google paid calls remain excluded; this does not change the app routing default.

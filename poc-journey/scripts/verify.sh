@@ -22,6 +22,11 @@ run_logged() {
   fi
 }
 case "${1:-}" in
+  routing)
+    run_logged "$output_root/routing-synthetic.log" swift run -j 4 -Xswiftc -parse-as-library --package-path "$journey_root/apps/c67-local-server-lab" routing-bench synthetic "$output_root/synthetic"
+    run_logged "$output_root/routing-audit.log" python3 "$journey_root/scripts/audit_routing_benchmark.py" "$output_root/synthetic/observations.json" --output "$output_root/synthetic/summary.json"
+    cat "$output_root/routing-audit.log"
+    ;;
   transjakarta)
     run_logged "$output_root/python-tests.log" python3 -m unittest discover -s "$journey_root/scripts" -p 'test_*.py'
     gtfs_options=()
@@ -101,6 +106,6 @@ case "${1:-}" in
       -only-testing:poc-c67UITests/NativePlannerPortabilityTests ${package_options[@]+"${package_options[@]}"} -parallel-testing-enabled NO test
     printf 'PASS: native planner fixture UI regression\n'
     ;;
-  *) printf 'Usage: verify.sh context|packages|transjakarta|cli|native|build|journey-models|ui|native-ui\n' >&2; exit 64 ;;
+  *) printf 'Usage: verify.sh routing|context|packages|transjakarta|cli|native|build|journey-models|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"

@@ -266,7 +266,7 @@ public struct BuswayJourney: Codable, Sendable {
               seconds.isFinite, seconds >= 0, !source.id.isEmpty,
               walks.allSatisfy({ $0.seconds.isFinite && $0.seconds >= 0 && $0.distanceMeters.isFinite && $0.distanceMeters >= 0
                       && IntegrationCatalog.contains($0.from) && IntegrationCatalog.contains($0.to)
-                      && ["mapkit_walking", "apple_maps_rest_walking", "synthetic_walking"].contains($0.provider) }) else {
+                      && ["mapkit_walking", "apple_maps_rest_walking", "google_routes_walking", "valhalla_osm_walking", "synthetic_walking"].contains($0.provider) }) else {
             throw IntegrationError.invalid("Bukti jalan kaki/GTFS tidak valid.")
         }
         if let ride {

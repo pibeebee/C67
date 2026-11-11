@@ -70,3 +70,5 @@ jobs:
         run: python3 poc-journey/scripts/bootstrap.py
       - name: Context Lab fixture tests
         run: bash poc-journey/scripts/verify.sh context
+      - name: Routing benchmark synthetic campaign and audit
+        run: bash poc-journey/scripts/verify.sh routing
