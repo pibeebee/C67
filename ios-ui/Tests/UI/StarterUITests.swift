@@ -3,6 +3,8 @@ import XCTest
 final class StarterUITests: XCTestCase {
     @MainActor func testAccountUsesConfiguredMode() {
         let app = XCUIApplication()
+        app.launchArguments += ["--skip-splash"]
+        app.launchArguments += ["--planning-workspace"]
         let expectsLive = ProcessInfo.processInfo.environment["C67_TEST_LIVE"] == "1"
         if ProcessInfo.processInfo.environment["C67_TEST_LARGE_TEXT"] == "1" {
             app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -42,6 +44,8 @@ final class StarterUITests: XCTestCase {
             throw XCTSkip("Run this form check with the explicitly configured live client.")
         }
         let app = XCUIApplication()
+        app.launchArguments += ["--skip-splash"]
+        app.launchArguments += ["--planning-workspace"]
         if ProcessInfo.processInfo.environment["C67_TEST_LARGE_TEXT"] == "1" {
             app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         }
@@ -98,6 +102,8 @@ final class StarterUITests: XCTestCase {
             throw XCTSkip("Run callback routing only with the explicitly configured live client.")
         }
         let app = XCUIApplication()
+        app.launchArguments += ["--skip-splash"]
+        app.launchArguments += ["--planning-workspace"]
         app.launch()
         XCTAssertTrue(app.buttons["Account"].waitForExistence(timeout: 5))
         XCUIDevice.shared.press(.home)
@@ -127,6 +133,7 @@ final class StarterUITests: XCTestCase {
 
     @MainActor func testMockDiscoveryDetailAndTrip() {
         let app = XCUIApplication()
+        app.launchArguments += ["--skip-splash"]
         app.launchArguments += ["--legacy-catalog"]
         app.launch()
         XCTAssertTrue(app.staticTexts["Mock • memory only"].waitForExistence(timeout: 10))

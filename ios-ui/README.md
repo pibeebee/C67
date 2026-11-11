@@ -1,5 +1,44 @@
 # iOS UI
 
+## Xcode Canvas previews
+
+Open `Features/Home/View/TripHomeRootView.swift` for the full **HOME EMPTY** preview or `Features/Itinerary/View/ItineraryListView.swift` for **ITINERARY LIST**. Each file offers Light and Dark previews. In Xcode, choose **Editor → Canvas** and select **Resume** if prompted. These DEBUG previews use synthetic, in-memory or Sketch sample data; the itinerary map may need network access to load map tiles.
+
+For the additional Sketch states, open `Features/Home/View/TripHomeRootView.swift` and select **HOME EMPTY ADD TRIP · Tap plus**, then tap the plus in the live Canvas to open the native menu. Open `Features/Recommendations/View/RecommendationsProcessingView.swift` for **PREFERENCES PROCESSING 1**, or `Features/Recommendations/View/PlacesRecommendationsView.swift` for **PLACES LISTS** and **PLACES LIST ADDED**. The list previews use Sketch sample content and photos; runtime recommendations use the planner's actual candidate data. See [implementation and checks](../docs/tasks/recommendations-swiftui.md).
+
+## Connected Hi-Fi flow — 11 November 2026
+
+Home now starts one of two draft flows. Get Recommendations opens Q1–Q7, then a confirmation form for an origin, at least one required place, exact times and walking/driving. Add Specific Place opens the compact searchable place list first. Both continue through main-spot/stay preferences, real request processing, itinerary review and a native save-name dialog. Renaming regenerates the proposal and requires another review before saving; it does not rename a saved record through an invented API.
+
+Preferences such as public transport, motorcycle and automatic timing remain wishes in the request text. The confirmation form makes the supported routing mode and schedule explicit. Flexible stay retains the draft duration. A main spot does not become a forced first stop.
+
+A saved trip opens a styled itinerary detail, then a map/status screen. Arrival is manually confirmed per stop. Finishing the last visit moves the trip into History. Live guidance opens Apple Maps; the in-app status UI does not claim turn-by-turn navigation. Existing extension and recalculation controls remain available under Trip options.
+
+Additional Xcode Canvas files:
+
+| Source | Named previews |
+|---|---|
+| `Features/TripCreation/Preview/AddPlacesDesignPreview.swift` | All six ADD PLACES states, including keyboard/search and the Places sheet |
+| `Features/TripCreation/Preview/TripCreationDesignPreview.swift` | Both connected mock creation flows |
+| `Features/Itinerary/Preview/ItinerarySaveDesignPreview.swift` | ITINERARY LIST SAVE native name alert |
+| `Features/SavedTrip/Preview/SavedTripDesignPreview.swift` | ITINERARY LIST Copy / My Trip, Dark and completed states |
+| `Features/Home/Preview/HomeAddedTripDesignPreview.swift` | HOME ADDED TRIP and the HOME Copy 3 variation |
+| `Features/ActiveTrip/Preview/TripProgressDesignPreview.swift` | TRIP STARTED, TRIP DONE / per-stop arrival, Dark and large text |
+
+Keyboard and native alerts may require Live Canvas. Preview photos, directions and estimates are sample content. Runtime live place search uses MapKit; mock search returns explicitly named synthetic places. Missing runtime photo/category data uses placeholders. See [implementation and verification](../docs/tasks/hi-fi-ui-completion.md).
+
+## Itinerary review — 11 November 2026
+
+The Home planning editor now opens `Features/Itinerary` after generating a proposal. The HI-FI ITINERARY LIST slice includes the departure summary, numbered stops, travel legs, native map, expandable weather/evidence context and Save Itinerary. Editing a visit or adding a place regenerates the proposal; saving opens the existing trip detail. Missing stop metadata stays explicit. The current planning contract still determines stop order.
+
+For the supplied Sketch content, use the Xcode `ITINERARY LIST` preview or the DEBUG launch argument `--itinerary-preview`. Its photos were exported from the visible Sketch thumbnail layers. Preview actions show a sample-content notice and never save a trip. The normal app uses repository proposals and does not inject the reference's example weather, distances or venues. See [implementation and checks](../docs/tasks/itinerary-list-swiftui.md).
+
+## Native trip home — 11 November 2026
+
+The default entry is now `Features/Home`, sliced from Balaraja Sketch → HI-FI → HOME EMPTY. It uses system SF typography, adaptive canvas colors, native Trip/History tabs and native Liquid Glass buttons on iOS 26+, with material/bordered-button fallbacks on iOS 18. The plus button opens the recommendation/specific-place menu; the location pill opens starting-point search. Completed trips appear in History. Account is available from History or the editor.
+
+The pill displays the actual draft origin label, including the explicit synthetic label in mock mode. It does not assert that the device is in the location illustrated by Sketch. The existing workspace remains accessible with `--planning-workspace`, and Discovery with `--legacy-catalog`. See [task and verification](../docs/tasks/home-empty-swiftui.md).
+
 ## Default planning flow — 30 October 2026
 
 `Features/Planning` is now the default SwiftUI/VIPER feature: draft input → optional candidates → proposal/review → My Trips → manual start/arrival/extension/completion and recalculation. Platform helpers own MapKit place search/directions and user-requested Core Location. A marker map accompanies selected places. Native controls and source/uncertainty disclosure use the existing style; no new font/design-system dependency is introduced.

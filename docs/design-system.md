@@ -114,7 +114,7 @@ Prefer native SwiftUI controls and their accessibility behavior before building 
 
 ## Implementation boundary and agent workflow
 
-The implementation home is [ios-ui/Shared/DesignSystem](../ios-ui/Shared/DesignSystem/README.md). It currently contains documentation and a placeholder, not Swift tokens, font assets or shared controls. Existing Discovery code uses native SwiftUI text styles and colors; it has not been restyled by this guide.
+The implementation home is [ios-ui/Shared/DesignSystem](../ios-ui/Shared/DesignSystem/README.md). Home now reuses `TripGlassCapsule` and an adaptive `TripCanvas` color asset. Existing Discovery code uses native SwiftUI text styles and colors; it has not been restyled by this guide. Gabarito remains uninstalled.
 
 For an authorized UI implementation task:
 
@@ -126,3 +126,22 @@ For an authorized UI implementation task:
 6. Run the relevant Simulator/build checks from [root instructions](../AGENTS.md) and report exactly what was tested. A screenshot, documented token or passing build alone does not establish accessibility or HIG compliance.
 
 Font files/licensing, exact remaining palette values, final C67 tab structure, reusable component implementations and visual/accessibility verification remain implementation work. Do not silently treat unresolved reference details as implemented requirements.
+
+## Sketch itinerary screen — 11 November 2026
+
+The supplied Balaraja Sketch HI-FI `ITINERARY LIST` frame defines a screen-specific SF Pro direction: a departure summary, numbered stop timeline, one surface per editable stop, compact travel legs, a native map, expandable evidence and a capsule save action. Home's native Trip/History navigation supplies its entry context. These are local implemented screen choices rather than new backend capabilities.
+
+- `ItineraryBlue` (#356AE6) follows the frame's Brand/Blue/500. The hero's lower endpoint uses #456BC8 instead of the source #8FB0FF to preserve normal white text contrast (endpoint checks: 4.82:1 and 5.01:1, versus 2.14:1 at the source's light endpoint).
+- The canvas reuses adaptive `TripCanvas`; `ItinerarySurface` maps stop/evidence surfaces to white in Light appearance and #1C1C1E in Dark, keeping their grouping visible against the black canvas. Labels use system primary/secondary roles. The hero remains blue with white text in both appearances.
+- `ItineraryAction` uses #356AE6 on Light surfaces and #8FB0FF for readable text/icon actions in Dark appearance. Filled save buttons retain the deeper blue with white text; the lighter Dark action color is not used as a white-text button fill.
+- System Dynamic Type styles preserve the source's hierarchy. Cards use a 14 pt corner radius, 48 pt decorative thumbnails when available, and a 26 pt hero radius. Time edits use the full place-summary hit region, preserving a 44 pt minimum without stretching a separate tiny time control. Number markers scale with text.
+- Dashed connectors identify travel gaps, not a verified route line. Map annotations locate the proposal's stops; native map attribution remains visible.
+- Production proposals omit unprovided metadata rather than inventing photos, categories, distances or forecasts. A DEBUG-only preview uses the supplied Sketch thumbnails and explicitly illustrative content. The source's reorder affordances become edit controls because arbitrary order changes are not yet supported by the planning contract.
+- Native disclosure, navigation, scrolling and sheet behavior are intentional platform-specific variations from the static frame. See [implementation and evidence](tasks/itinerary-list-swiftui.md).
+
+
+## Hi-Fi creation and trip states — 11 November 2026
+
+The connected Hi-Fi slice reuses AppColor, system Dynamic Type and the existing question/itinerary components. Add Places uses compact rows with 76-point thumbnails, semibold subheadline names, footnote metadata and 26-point rounded surfaces. Search and selection footers share a maximum 640-point reading width on iPad. Runtime missing imagery stays a map-pin placeholder; Sketch images remain isolated preview metadata.
+
+The save-name alert, sheets, toolbar chrome and permission alert keep native system appearance. A saved itinerary reuses the departure/timeline/map presentation with read-only visit summaries and a status-dependent primary action. Active-trip and arrival states use a native Map and a scrollable blue panel; accessibility sizes can scroll to all panel actions. The TRIP DONE source is an arrival at a stop, rather than completion of the whole itinerary. Preview turn instructions are illustrative; runtime guidance opens Maps and trip state changes remain manual confirmations.

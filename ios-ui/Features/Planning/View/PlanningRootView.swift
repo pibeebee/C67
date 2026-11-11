@@ -94,11 +94,19 @@ private enum JourneySection { case plan, trips }
 
 private enum PlaceSearchPurpose: String, Identifiable { case origin, destination; var id: String { rawValue } }
 
-private struct PlanningEditorView: View {
+struct PlanningEditorView: View {
     @Bindable var presenter: PlanningPresenter
     @State private var searchPurpose: PlaceSearchPurpose?
     @State private var location = PlanningLocation()
+    @State private var reviewProposal: ItineraryReviewRoute?
+    @State private var isProcessingRecommendations = false
+    @State private var showsRecommendations = false
+    @State private var recommendations: PlanningResult?
+    @State private var recommendationsInput: PlanningInput?
+    @State private var didOpenPlaceSearch = false
     let mode: String
+    var usesItineraryReview = false
+    var opensPlaceSearch = false
 
     var body: some View {
         Form {
@@ -134,14 +142,14 @@ private struct PlanningEditorView: View {
             }.environment(\.timeZone, TimeZone(identifier: presenter.timeZone) ?? .current).disabled(presenter.isBusy)
             if !presenter.places.isEmpty { PlanningMapSection(places: presenter.places, origin: presenter.origin) }
             Section {
-                Button("Suggest additional places") { Task { await presenter.request(.suggest) } }
-                    .disabled(presenter.isBusy || presenter.draftInput == nil || presenter.places.isEmpty || presenter.privateAccessBlocked)
+                Button("Suggest additional places", action: suggestPlaces)
+                    .disabled(presenter.isBusy || isProcessingRecommendations || presenter.draftInput == nil || presenter.places.isEmpty || presenter.privateAccessBlocked)
                 Button("Plan my trip") { Task { await presenter.request() } }
                     .disabled(presenter.isBusy || presenter.draftInput == nil || presenter.places.isEmpty || presenter.privateAccessBlocked)
                 PlanningFeedback(presenter: presenter)
             }
             if let result = presenter.job?.result, presenter.job?.tripID == nil {
-                if !result.candidates.isEmpty {
+                if !usesItineraryReview && !result.candidates.isEmpty {
                     Section("Optional suggestions") {
                         ForEach(result.candidates) { place in
                             Button {
@@ -152,9 +160,23 @@ private struct PlanningEditorView: View {
                         ForEach(result.warnings, id: \.self) { Text($0).font(.footnote) }
                     }
                 }
-                if let proposal = result.proposal { PlanningProposalSections(proposal: proposal, presenter: presenter) }
+                if let proposal = result.proposal {
+                    if usesItineraryReview {
+                        Section {
+                            Button("Review itinerary") { reviewProposal = .init(proposal: proposal) }
+                        }
+                    } else {
+                        PlanningProposalSections(proposal: proposal, presenter: presenter)
+                    }
+                }
             }
         }
+        .overlay {
+            if isProcessingRecommendations {
+                RecommendationsProcessingView()
+            }
+        }
+        .toolbar(isProcessingRecommendations ? .hidden : .automatic, for: .navigationBar)
         .sheet(item: $searchPurpose) { purpose in
             PlanningSearchSheet(near: presenter.origin, title: purpose == .origin ? "Starting point" : "Add a place") { place in
                 if purpose == .origin { location.cancel(); presenter.origin = place.location; presenter.originLabel = place.name }
@@ -162,11 +184,81 @@ private struct PlanningEditorView: View {
             }
         }
         .onChange(of: location.point) { _, point in if let point { presenter.receivedLocation(point) } }
-        .onChange(of: presenter.draftInput) { _, _ in presenter.draftChanged() }
+        .onChange(of: presenter.draftInput) { _, input in
+            presenter.draftChanged()
+            if input == nil { reviewProposal = nil }
+            if input != recommendationsInput {
+                showsRecommendations = false
+                recommendations = nil
+                recommendationsInput = nil
+            }
+        }
+        .onChange(of: presenter.job?.result?.proposal) { _, proposal in
+            if usesItineraryReview, let proposal, reviewProposal == nil { reviewProposal = .init(proposal: proposal) }
+        }
+        .navigationDestination(item: $reviewProposal) { route in
+            ItineraryReviewView(presenter: presenter, initialProposal: route.proposal)
+        }
+        .navigationDestination(isPresented: $showsRecommendations) {
+            if let recommendations {
+                PlacesRecommendationsView(batch: .init(result: recommendations), existing: presenter.places,
+                                          refresh: refreshRecommendations, complete: addRecommendations)
+            }
+        }
+        .task {
+            if opensPlaceSearch && !didOpenPlaceSearch {
+                didOpenPlaceSearch = true
+                searchPurpose = .destination
+            }
+        }
+    }
+
+    private func suggestPlaces() {
+        guard !presenter.isBusy, !isProcessingRecommendations else { return }
+        if !usesItineraryReview {
+            Task { await presenter.request(.suggest) }
+            return
+        }
+        isProcessingRecommendations = true
+        Task {
+            await presenter.request(.suggest)
+            isProcessingRecommendations = false
+            guard let result = currentRecommendations(), let input = presenter.draftInput else { return }
+            recommendations = result
+            recommendationsInput = input
+            showsRecommendations = true
+        }
+    }
+
+    private func currentRecommendations() -> PlanningResult? {
+        guard !Task.isCancelled, !presenter.privateAccessBlocked, presenter.error == nil,
+              let job = presenter.job, job.purpose == .suggest, job.status == .succeeded,
+              job.input == presenter.draftInput else { return nil }
+        return job.result
+    }
+
+    private func refreshRecommendations() async -> RecommendationsBatch? {
+        guard !presenter.isBusy, presenter.draftInput == recommendationsInput else { return nil }
+        await presenter.request(.suggest)
+        guard presenter.draftInput == recommendationsInput, let result = currentRecommendations() else { return nil }
+        return RecommendationsBatch(result: result)
+    }
+
+    private func addRecommendations(_ places: [PlanningPlace]) {
+        guard !presenter.isBusy, presenter.draftInput == recommendationsInput else { return }
+        let knownIDs = Set(presenter.places.map(\.id))
+        let additions = places.filter { !knownIDs.contains($0.id) }
+        guard !additions.isEmpty, presenter.places.count + additions.count <= 6 else { return }
+        presenter.places.append(contentsOf: additions)
+        presenter.draftChanged()
+        showsRecommendations = false
+        recommendations = nil
+        recommendationsInput = nil
+        Task { await presenter.request() }
     }
 }
 
-private struct PlanningPlaceEditor: View {
+struct PlanningPlaceEditor: View {
     @Binding var place: PlanningPlace
     let zone: String
     let defaultStart: Date
@@ -187,7 +279,7 @@ private struct PlanningPlaceEditor: View {
     }
 }
 
-private struct PlanningSearchSheet: View {
+struct PlanningSearchSheet: View {
     @State private var search = PlanningPlaceSearch()
     @Environment(\.dismiss) private var dismiss
     let near: PlanningPoint?
@@ -288,7 +380,7 @@ private struct PlanningStopRow: View {
     }
 }
 
-private struct ActivePlanningTripView: View {
+struct ActivePlanningTripView: View {
     let tripID: UUID
     let presenter: PlanningPresenter
     @State private var location = PlanningLocation()
