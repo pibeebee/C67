@@ -9,8 +9,8 @@ C67 plans personal trips from the traveller's places, preferences and available 
 ## Run the app
 
 1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
-2. In default mock mode, review the sample places, adjust durations/time/preferences and tap **Plan my trip**.
-3. Review the synthetic proposal and **Save this trip**. In My Trips, start, manually confirm arrival, extend/finish a visit and recalculate.
+2. On the Trip home screen, tap **+**. In default mock mode, review the sample places, adjust durations/time/preferences and tap **Plan my trip**.
+3. Review the synthetic proposal and **Save this trip**. Open the saved trip from Trip to start, manually confirm arrival, extend/finish a visit and recalculate. Completed trips appear in History.
 
 Mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
 

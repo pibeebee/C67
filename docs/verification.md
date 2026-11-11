@@ -1,5 +1,25 @@
 # Starter verification
 
+## Native ITINERARY LIST — 11 November 2026
+
+[Itinerary evidence](tasks/itinerary-list-swiftui.md) records the HI-FI review screen, supplied thumbnail exports, native map/disclosures and real proposal integration. XcodeGen and Simulator builds passed with Xcode 27.2, retaining the iOS 18 minimum. The final iPhone 18 Pro / iOS 27.2 Light run passes 2 UI tests (sample preview and generated edit/regenerate/add-place-search/save/detail); Dark accessibility XXXL passes 1 preview/scroll/interaction test. Home's save/detail/back regression passed with the new review flow. Standard Light/Dark and iPad renders were inspected. All 18 touched Swift files pass formatting; the repository-wide check still finds the two unrelated existing issues. Sketch sample content stays in the DEBUG preview; generated proposals do not invent missing per-stop weather, categories, photos or distances. Device, manual VoiceOver, iOS 18 runtime and live providers remain separate acceptance.
+
+## Native HOME EMPTY — 11 November 2026
+
+[Home implementation evidence](tasks/home-empty-swiftui.md) records the Sketch HI-FI slice and native Trip/History entry into the existing planning flow. XcodeGen generation and iOS Simulator build passed with Xcode 27.2, retaining the iOS 18 minimum. On iPhone 18 Pro / iOS 27.2 in mock mode, the final Dark run passed 3 Home tests, including accessibility XXXL and proposal/save/detail/back; the final Light run passed Home navigation plus Account and Discovery regression checks (3 tests). Light, Dark, large-text and iPad Pro 11-inch Simulator screenshots were visually checked. Changed Swift files pass the pinned formatter; the full repository check still reports two unrelated existing formatting problems. Device, VoiceOver, iOS 18 runtime and live-provider acceptance remain separate.
+
+## Foundation Models focused English experiment — 5 November 2026
+
+[The focused experiment](../evaluations/foundation-models-2026-11-04/focused-english/REPORT.md) tested smaller task-specific schemas and context on the on-device M5 Mac model. A provisional single-review assessment found five of 12 matched cases correct in both repetitions, while ambiguity, negation, deadlines and stale proposals remained problematic. Three synthetic read-only tool cases each made the expected call; one response inaccurately reported 70% as 69.99%. Experimental harness guard tests passed, but the guard still permitted an incorrect interpretation of an ambiguous request. These are not tests of the app's production validator, automatic task router, physical iPhone, live providers, or independent human review.
+
+## TripSense repeated-search recovery — 4 November 2026
+
+[Search-limit recovery](tasks/tripsense-search-budget-recovery.md) reproduced the iPhone-reported wrapped search-budget error at the production orchestration seam. One tool-free local finishing request now uses already retrieved matching candidates when enough exist; the five-search cap and native validation remain enforced. Safe UI error mapping avoids tool-state/coordinate dumps. The package suite passed 52 deterministic tests with one opt-in live test skipped; the standalone app built and passed three fixture tests on Simulator. Live iPhone model/MapKit recovery and visual acceptance remain unverified.
+
+## Foundation Models language-assistant evaluation — 4 November 2026
+
+[The isolated evaluation](../evaluations/foundation-models-2026-11-04/REPORT.md) used Apple's on-device `SystemLanguageModel.default` on an M5 Mac with synthetic cases and process-level network denial. An additional English M1 and Indonesian diagnostic M2 sample returned while Wi-Fi and Ethernet were disabled and no active network interface was reported; neither exercised a tool call. Runtime locale support for `id_ID` was false, so Indonesian observations are diagnostic rather than eligible product results. The supported English control returned nine contract-valid responses in ten attempts, but none had an exact action-field match; one attempt timed out. Two-human semantic review, target-iPhone inference, offline fixture-tool execution and real application validator/fallback checks remain unverified. The corrected nullable schema was tested in a follow-up after the initial evaluator results had been seen; it is not a fresh holdout.
+
 ## TripSense optimization and OSM — 3 November 2026
 
 The standalone POC now compares up to 720 candidate orders using a directed ETA matrix, validates up to five schedules at actual segment departure times, and has an OSM hours adapter with conservative matching. [Live evidence](../tripsense-poc/FEASIBILITY.md) shows lower travel estimates than revalidated baselines in three Mac scenarios. The six-place OSM audit could not establish coverage: the provider timed out in this environment, and a separate direct endpoint probe returned HTTP 406. Test, Simulator and formatting outcomes are recorded in [task evidence](tasks/tripsense-poc.md). Physical-device and accessibility acceptance remain separate.
@@ -255,3 +275,18 @@ After the user reported signing in, a read-only database transaction confirmed a
 with a recent sign-in, a session and an owned trip. This establishes live backend sign-in acceptance;
 Hide My Email, relaunch/refresh/logout/revocation and device-specific acceptance are not inferred.
 No new shared data/configuration write or deployment was performed during PR preparation.
+
+## Journey POC custom origins and destination preferences — 6 November 2026
+
+The standalone C67 Journey app supports selectable origins, multiple Jakarta target areas and required sourced spots. All 265 package test functions and 26 Showcase unit/UI cases passed. A bounded Mac MapKit probe returned address/POI results for three non-Bundaran-HI origins. The final signed app was installed on the iPhone; automatic launch was blocked by its locked screen. Simulator Demo evidence does not establish physical-device routing, live WeatherKit or field acceptance. See the [task and evidence record](../poc-journey/docs/tasks/journey-custom-origins-and-areas.md).
+
+## Recommendations Sketch slice — 11 November 2026
+
+The generic Simulator build and relevant mock UI interactions passed on iPhone 18 Pro / iOS 27.2, including an accessibility text-size check. The shared `ios-backend` package passed 34 tests on macOS. Xcode Canvas rendered the Home, processing and recommendation list previews; the native Home menu was separately exercised by UI test. Targeted SwiftFormat lint passed for 17 files. The repository-wide check reports formatting in 13 other files, including existing Preferences, Splash, evaluation and TripSense changes; those unrelated edits were preserved. Live provider, physical-device, VoiceOver and iOS 18 runtime acceptance remain unverified. See the [task record](tasks/recommendations-swiftui.md).
+
+
+## Connected Hi-Fi UI completion — 11 November 2026
+
+The new Add Places, saved itinerary, save-name alert, populated Home and per-stop arrival screens are connected to the existing planner and trip events. Final generic Simulator build passed. Fourteen creation unit tests and two recommendation UI checks passed together (16/16); the focused regression run passed 17/17 after fixing the three failures in the broader run. Latest results cover all 15 affected iPhone UI cases on iPhone 18 Pro / iOS 27.2. The iPad Pro 11-inch (M5) / iOS 27.2 rendered eight screen states and separately passed a reading-width check plus an accessibility audit for descriptions, traits and text clipping. This does not establish a full VoiceOver or contrast audit.
+
+The shared package passed 34 tests; targeted formatting passed 47 files and whitespace checks passed. The full formatter still reports 16 unrelated existing files. Add Places was observed in Xcode Canvas after clearing a stale initializer-link cache. Live provider/search, physical-device, full VoiceOver/Reduce Motion and iOS 18 runtime acceptance remain unverified; iPad retains its existing orientation warning. See the [task and result record](tasks/hi-fi-ui-completion.md) and [Canvas guide](../ios-ui/README.md).
