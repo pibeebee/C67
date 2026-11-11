@@ -1,0 +1,65 @@
+[
+  {
+    "control": "tokens",
+    "wallSeconds": 1.236,
+    "result": {
+      "contextSize": 8192,
+      "instructionsTokens": 691,
+      "mode": "tokens",
+      "model": "SystemLanguageModel.default",
+      "note": "Counts are per component for one English sample; their sum excludes framework overhead and output tokens.",
+      "promptTokens": 296,
+      "schemaTokens": 717,
+      "weatherToolTokens": 121
+    }
+  },
+  {
+    "control": "long",
+    "wallSeconds": 7.092,
+    "result": {
+      "contextSize": 8192,
+      "error": "May contain unsafe content",
+      "errorType": "FoundationModels.LanguageModelError",
+      "mode": "long",
+      "model": "SystemLanguageModel.default",
+      "outcome": "error",
+      "promptTokens": 60298
+    }
+  },
+  {
+    "control": "cancel",
+    "wallSeconds": 4.704,
+    "result": {
+      "canceledRequest": "error",
+      "cancelError": "CancellationError()",
+      "cancelErrorType": "Swift.CancellationError",
+      "freshSession": "response",
+      "freshSessionRaw": "{\"evidenceIDs\": [], \"status\": \"propose\", \"basedOnRevision\": 7, \"candidateIDs\": [], \"actions\": [{\"query\": null, \"targetID\": \"B\", \"type\": \"extend_current_visit\", \"minutes\": 30, \"proposalID\": null, \"localTime\": \"2026-11-05T09:50:00+07:00\"}], \"question\": null, \"preferences\": [], \"requiresConfirmation\": true, \"message\": \"Extending the visit at Kafe B by 30 minutes will shift the leave time to 09:50.\"}",
+      "isRespondingAfterCancel": false,
+      "mode": "cancel",
+      "model": "SystemLanguageModel.default"
+    }
+  },
+  {
+    "control": "stale-revision-synthetic-wrapper",
+    "responseRevision": 7,
+    "currentRevision": 8,
+    "accepted": false,
+    "note": "Evaluator demonstration only; no C67 application validator or storage was exercised."
+  },
+  {
+    "control": "network-denial",
+    "observed": "sandboxed TCP connect returned errno 1 (EPERM)",
+    "note": "Evaluator-process socket restriction only; separately hosted OS daemons were not proven offline."
+  },
+  {
+    "control": "unavailable-device",
+    "observed": "not run: actual device was available",
+    "note": "No system settings or product fallback were changed."
+  },
+  {
+    "control": "unsupported-locale",
+    "observed": "id_ID false, en_US true in runtime preflight",
+    "note": "Unsupported Indonesian responses are diagnostic and not eligible product results."
+  }
+]

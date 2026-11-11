@@ -1,0 +1,30 @@
+[
+  {
+    "input": {
+      "kind": "weather",
+      "stop": "C",
+      "probability": 60,
+      "evidenceID": "E-WEATHER"
+    },
+    "output": "At C, the forecast gives a 60% chance of rain; rain is not certain. [E-WEATHER]"
+  },
+  {
+    "input": {
+      "kind": "route",
+      "arrival": "11:40",
+      "deadline": "12:00",
+      "evidenceID": "E-ROUTE"
+    },
+    "output": "The app-calculated arrival is 11:40; the deadline is 12:00. [E-ROUTE]"
+  },
+  {
+    "input": {
+      "kind": "golden",
+      "end": "10:00",
+      "arrival": "10:15",
+      "closes": "11:00",
+      "evidenceID": "E-GOLD"
+    },
+    "output": "Golden hour ends at 10:00; arrival is 10:15. The stop remains open until 11:00; missing golden hour does not itself require cancellation. [E-GOLD]"
+  }
+]

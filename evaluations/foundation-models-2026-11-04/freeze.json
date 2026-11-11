@@ -1,0 +1,32 @@
+{
+  "frozenAt": "2026-11-04T07:19:18.178649+00:00",
+  "promptVersion": "package-v1/schema-v2",
+  "note": "Operational split, not blind: evaluators received the package. Oracle was not read by model executable.",
+  "sha256": {
+    "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/run_evaluation.py": "bb9e5b0a3fdd2505a82d7dbaf10af94ce39f7ac76803074b25d4e42ea096de3a",
+    "/tmp/c67-foundation-model-evaluator": "497c6b8b49eefe99ed52435cbe32341f799ad63797d0e30de6d60c25bd9a4840",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/inputs.jsonl": "d9026933684880851c3de450c3bd78edcface3f21e9b26d1f6f4821ac3079af5",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/model-instructions.txt": "b43b07c0d20751af0224d1285e4b19306e379ddf6d8451d538d221342842e19c",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/output-contract.json": "f7fbdff95af77c6c26beedb7022b0c2bdd3f4b3c8db69fd5c720da042ff6eda6",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/local-tool-fixtures.json": "e50f1a7a6a8a83c18987ee0b303694cbe2ff24b45adfe3b80838b9882ee2c35e",
+    "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/frozen-Evaluator.swift.txt": "308a4c1be7a66b06188537c4a4a0f4d5ed795d12e04cfb227dc7cc0398cd4143"
+  },
+  "settings": {
+    "model": "SystemLanguageModel.default",
+    "samplingMode": "greedy",
+    "temperature": null,
+    "seed": null,
+    "maximumResponseTokens": 1400,
+    "maximumToolCalls": 2,
+    "timeoutSeconds": 20,
+    "network": "evaluator process sandbox denies network",
+    "sessions": "new process and session per run"
+  },
+  "sourceArchiveRelocation": {
+    "at": "2026-11-04T07:40:32.184989+00:00",
+    "reason": "Preserve exact frozen source bytes while formatting the working Swift copy.",
+    "originalPath": "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/Evaluator.swift",
+    "archivePath": "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/frozen-Evaluator.swift.txt",
+    "sourceBytesChanged": false
+  }
+}

@@ -151,7 +151,7 @@ public struct Itinerary: Sendable {
     public var visitTime: TimeInterval { stops.reduce(0) { $0 + $1.departure.timeIntervalSince($1.arrival) } }
 }
 public enum PlanningError: Error, LocalizedError, Equatable {
-    case invalidInput, invalidIDs, noPlaces, unavailableModel, unavailableRoute, incompleteMatrix, insufficientTime, hoursConflict(String), toolBudget, deadlineExceeded, throttled
+    case invalidInput, invalidIDs, noPlaces, unavailableModel, unavailableRoute, incompleteMatrix, insufficientTime, hoursConflict(String), toolBudget, searchLimit, deadlineExceeded, throttled
     public var errorDescription: String? {
         switch self {
         case .invalidInput: "Check coordinates, date, duration and stop count."
@@ -164,7 +164,8 @@ public enum PlanningError: Error, LocalizedError, Equatable {
         case .deadlineExceeded: "Route planning timed out. Try fewer stops."
         case .insufficientTime: "No schedule fits the current route estimates, available hours and time budget. Reduce stops or increase duration."
         case .hoursConflict(let id): "Opening hours conflict for \(id). Choose another date or fewer stops."
-        case .toolBudget: "The experiment's bounded tool-call budget was reached."
+        case .toolBudget: "Trip planning reached its request limit. Try fewer stops or a simpler request."
+        case .searchLimit: "Search reached its limit before finding enough matching places. Try a different area, a broader request, or fewer stops."
         }
     }
 }

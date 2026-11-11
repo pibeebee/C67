@@ -97,7 +97,7 @@ import TripSenseCore
                 itinerary = result
             } catch is CancellationError {} catch {
                 guard id == generationID else { return }
-                self.error = error.localizedDescription
+                self.error = PlanningError.userMessage(for: error)
                 log.record("Planning failed; no schedule accepted. Details shown in the error message.")
             }
         }
@@ -143,7 +143,7 @@ import TripSenseCore
                 if removal { candidatePlaces = pool; recommendations = choices; lockedIDs.formIntersection(Set(pool.map(\.id))) }
             } catch is CancellationError {} catch {
                 guard id == generationID else { return }
-                self.error = "Recalculation failed. Previous itinerary retained. " + error.localizedDescription
+                self.error = "Recalculation failed. Previous itinerary retained. " + PlanningError.userMessage(for: error)
             }
         }
     }

@@ -1,0 +1,51 @@
+{
+  "plannedCases": 32,
+  "plannedRepeatsPerCase": 10,
+  "plannedRunsIfAllEligible": 320,
+  "localeEligibleCases": 1,
+  "localeBlockedCases": 31,
+  "blockedPlannedRuns": 310,
+  "primaryAttempted": 10,
+  "primaryResponses": 9,
+  "primaryTimeouts": 1,
+  "primarySchemaValidAttempted": 9,
+  "primaryIntentAllFieldsExactAttempted": 0,
+  "primaryTypeTargetMinutesCorrectResponses": 9,
+  "primaryLatencyM1ResponseOnly": {
+    "nResponses": 9,
+    "p50Seconds": 10.174,
+    "p90NearestRankSeconds": 13.942,
+    "maxSeconds": 13.942
+  },
+  "primaryMaxObservedIncludingTimeoutSeconds": 20.061,
+  "primaryDistinctCanonicalResponses": 1,
+  "indonesianDiagnosticAttempted": 31,
+  "indonesianDiagnosticResponses": 29,
+  "indonesianDiagnosticTimeouts": 2,
+  "indonesianDiagnosticSchemaValid": 29,
+  "indonesianDiagnosticM1ResponseOnly": {
+    "nResponses": 27,
+    "p50Seconds": 4.818,
+    "p90NearestRankSeconds": 11.349,
+    "maxSeconds": 13.906
+  },
+  "indonesianDiagnosticM2ResponseOnly": {
+    "nResponses": 2,
+    "p50Seconds": 17.151,
+    "p90NearestRankSeconds": 18.75,
+    "maxSeconds": 18.75
+  },
+  "indonesianDiagnosticToolCases": 3,
+  "indonesianDiagnosticActualToolCalls": 0,
+  "indonesianDiagnosticObjectiveFailures": 22,
+  "indonesianDiagnosticObjectiveChecksOnlyPendingHuman": 7,
+  "separateOfflineControlRuns": 2,
+  "separateOfflineControlCases": [
+    "LANG-01",
+    "TOOL-01"
+  ],
+  "humanReviewers": 0,
+  "unverifiedSemanticAccuracy": true,
+  "indonesianSupport": "blocked by SystemLanguageModel.supportsLocale(id_ID) == false",
+  "latencyCaveat": "Mac process/session per run, mixed warm/cold unknown; repeated greedy outputs are not independent."
+}

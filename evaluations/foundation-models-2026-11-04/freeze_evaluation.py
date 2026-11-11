@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""Freeze this development series before any evaluation-case run."""
+import datetime
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+
+HERE = Path(__file__).resolve().parent
+PACKAGE = Path('/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04')
+BINARY = Path('/tmp/c67-foundation-model-evaluator')
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def command(*args):
+    return subprocess.check_output(args, text=True).strip()
+
+
+def main():
+    target = HERE / 'freeze.json'
+    if target.exists() or (HERE / 'runs-evaluation-diagnostic.jsonl').exists():
+        raise SystemExit('Already frozen or evaluation phase already started')
+    cases = [json.loads(line) for line in (PACKAGE / 'inputs.jsonl').read_text().splitlines()]
+    expected = {case['id'] for case in cases if case['split'] == 'development'}
+    seen = set()
+    for path in (HERE / 'runs-sanity.jsonl', HERE / 'runs-development-diagnostic.jsonl'):
+        for line in path.read_text().splitlines():
+            item = json.loads(line)
+            if item['promptVersion'] == 'package-v1/schema-v2':
+                seen.add(item['caseID'])
+    if expected != seen:
+        raise SystemExit(f'Current-schema development cases missing or unexpected: {expected ^ seen}')
+    files = [HERE / 'Evaluator.swift', HERE / 'run_evaluation.py', BINARY,
+             PACKAGE / 'inputs.jsonl', PACKAGE / 'model-instructions.txt',
+             PACKAGE / 'output-contract.json', PACKAGE / 'local-tool-fixtures.json']
+    frozen = {'frozenAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'promptVersion': 'package-v1/schema-v2',
+              'note': 'Operational split, not blind: evaluators received the package. Oracle was not read by model executable.',
+              'sha256': {str(path): digest(path) for path in files},
+              'settings': {'model': 'SystemLanguageModel.default', 'samplingMode': 'greedy',
+                           'temperature': None, 'seed': None, 'maximumResponseTokens': 1400,
+                           'maximumToolCalls': 2, 'timeoutSeconds': 20,
+                           'network': 'evaluator process sandbox denies network', 'sessions': 'new process and session per run'}}
+    target.write_text(json.dumps(frozen, indent=2, ensure_ascii=False) + '\n')
+    manifest = {'observedAt': frozen['frozenAt'], 'deviceModel': command('sysctl', '-n', 'hw.model'),
+                'processor': command('sysctl', '-n', 'machdep.cpu.brand_string'),
+                'memoryBytes': int(command('sysctl', '-n', 'hw.memsize')),
+                'os': command('sw_vers'), 'xcode': command('xcodebuild', '-version'),
+                'swift': command('xcrun', 'swift', '--version'),
+                'macOSSDK': command('xcrun', '--sdk', 'macosx', '--show-sdk-version'),
+                'systemLocale': command('defaults', 'read', '-g', 'AppleLocale'),
+                'timeZone': command('date', '+%Z %z'),
+                'runtimePreflight': {'model': 'SystemLanguageModel.default', 'availability': 'available',
+                                     'id_ID': False, 'en_US': True,
+                                     'supportedLanguages': ['da', 'de', 'en', 'en-AU', 'en-GB', 'en-IN', 'es', 'es-419', 'es-US', 'fr', 'fr-CA', 'it', 'ja', 'ko', 'nb', 'nl', 'pt', 'pt-PT', 'sv', 'tr', 'vi', 'zh', 'zh-HK', 'zh-TW'],
+                                     'modelVersion': 'not exposed by the observed API',
+                                     'evidence': 'swift runtime preflight on this machine; model availability and locale support can change'},
+                'packageChecksums': json.loads((PACKAGE / 'checksums.json').read_text()),
+                'packageChecksumVerification': 'All nine supplied hashes matched before running.',
+                'freezeFile': 'freeze.json', 'scope': 'Mac only; no physical iPhone inference',
+                'networkCaveat': 'Evaluator process denied socket access; system daemons are not proven offline.'}
+    (HERE / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
+    print(f'Frozen {len(expected)} development cases; {len(files)} inputs/binaries hashed.')
+
+
+if __name__ == '__main__':
+    main()
