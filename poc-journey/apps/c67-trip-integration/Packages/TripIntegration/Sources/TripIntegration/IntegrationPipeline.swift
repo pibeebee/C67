@@ -9,16 +9,22 @@ import VisitTiming
     public let weather: TripWeatherCoordinator
     private let logDirectory: URL
     private var routing: NativeTripAppleServices?
+    private let buswayWalking: (any BuswayWalking)?
+    private let buswayFeed: BuswayFeed?
+    private var activeWalking: (any BuswayWalking)?
     // Test-only explicit injection; no synthetic defaults in the app's normal entry point.
     var replayETA: (@MainActor (NativeTripPoint, NativeTripPoint, NativeTripMode, Date) async throws -> NativeTripETA)?
     public init(catalog: IntegrationCatalog, quality: QualityPipeline = .init(),
                 search: any TripPlaceSearching = MapKitTripSearch(),
-                weather: TripWeatherCoordinator = .init(), logDirectory: URL? = nil) {
+                weather: TripWeatherCoordinator = .init(), logDirectory: URL? = nil,
+                buswayWalking: (any BuswayWalking)? = nil, buswayFeed: BuswayFeed? = nil) {
+        self.buswayWalking = buswayWalking
+        self.buswayFeed = buswayFeed
         self.catalog = catalog; self.quality = quality; self.search = search; self.weather = weather
         self.logDirectory = logDirectory ?? FileManager.default.urls(for: .applicationSupportDirectory,
                                                                      in: .userDomainMask)[0].appendingPathComponent("C67TripIntegration-v1/ProviderLogs")
     }
-    public func cancel() { search.cancel(); routing?.cancel() }
+    public func cancel() { search.cancel(); routing?.cancel(); activeWalking?.cancel() }
 
     public func recommend(_ request: TripRequest, now: Date = .now,
                           progress: @escaping @Sendable (String) async -> Void = { _ in }) async throws -> RecommendationReview {
@@ -35,6 +41,7 @@ import VisitTiming
         for id in ids {
             guard let candidate = catalog.candidate(id), let decision = result.decisions.first(where: { $0.id == id }) else { continue }
             var issues = decision.state == "eligible" ? [] : decision.reasons + ["Status fakta: \(decision.state)."]
+            if !request.includesArea(candidateID: id) { issues.append("Di luar area pilihan. Ubah area untuk menyertakan spot ini.") }
             let timing = try catalog.timingRun(candidateID: id, request: request, now: now)
             if timing == nil { issues.append("Jam layanan bersumber belum tersedia untuk venue ini.") }
             if let timing, timing.validStartRanges.isEmpty { issues += ["Waktu kunjung belum layak: \(timing.status)."] + timing.warnings }
@@ -50,7 +57,7 @@ import VisitTiming
         let missingRequired = request.requiredCandidateIDs.filter { id in !suggestions.contains { $0.id == id } }
         guard missingRequired.isEmpty else { throw IntegrationError.invalid("Tujuan wajib hilang dari hasil preferensi: \(missingRequired).") }
         return .init(request: request, quality: result, suggestions: suggestions,
-                     warnings: result.warnings + [
+                     warnings: result.warnings + [TripTimeBudget.evaluate(request, selectedIDs: suggestions.filter(\.recommended).map(\.id), catalog: catalog).message] + [
                          "Katalog lokal terbatas; MapKit memverifikasi lokasi, bukan sumber preferensi/jam layanan.",
                          "Tanpa tujuan utama, semua tempat yang Anda pilih tetap setara dan dipertahankan.",
                          "Waktu pilihan P1 adalah saran per tempat; optimasi rute tidak menjamin seluruh saran tercapai.",
@@ -74,22 +81,30 @@ import VisitTiming
         guard Set(selected.map(\.venueID)).count == selected.count else {
             throw IntegrationError.invalid("Pilih satu area per venue untuk itinerary ini.")
         }
+        let budget = TripTimeBudget.evaluate(review.request, selectedIDs: selectedIDs, catalog: catalog)
+        guard !budget.visitsExceedBudget else { throw IntegrationError.invalid(budget.message) }
         var locations: [LocationReview] = []
         var requests = 0
-        let definitions = [("origin", review.request.originQuery, ["bundaran", "hi"], Optional<String>.none)]
+        let originWords = review.request.originQuery.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber })
+            .map(String.init).filter { !["jakarta", "indonesia"].contains($0) }
+        let definitions = [("origin", review.request.originQuery, originWords, Optional<String>.none)]
             + selected.map { item in
                 let candidate = catalog.candidate(item.id)!
                 let branch: String? = item.venueID == "cikini" ? "cikini" : item.venueID == "bdt" ? "tebet" : nil
                 return (item.id, candidate.mapQuery, candidate.matchWords, branch)
             }
         for (id, query, words, branch) in definitions {
+            if id == "origin", let pin = review.request.originPin {
+                locations.append(.init(id: id, query: query, candidates: [pin], selected: pin, manualConfirmation: true))
+                continue
+            }
             try Task.checkCancellation()
             progress("Mencari lokasi: \(query)")
             requests += 1
             do {
                 let results = try await search.search(query: query)
                 try Task.checkCancellation()
-                locations.append(PlaceIdentityPolicy.review(id: id, query: query, words: words, branch: branch, results: results))
+                locations.append(PlaceIdentityPolicy.review(id: id, query: query, words: words, branch: branch, results: results, region: catalog.region(for: id)))
             } catch {
                 try Task.checkCancellation()
                 if (error as? URLError)?.code == .cancelled { throw CancellationError() }
@@ -107,6 +122,8 @@ import VisitTiming
         let request = prepared.request
         try request.validate(catalog: catalog, now: now)
         guard request == review.request,
+              request.originPin.map({ $0 == prepared.locations.first { $0.id == "origin" }?.selected }) ?? true,
+              prepared.selectedIDs.allSatisfy({ request.includesArea(candidateID: $0) }),
               prepared.ready, prepared.locations.count == prepared.selectedIDs.count + 1,
               Set(prepared.locations.map(\.id)) == Set(["origin"] + prepared.selectedIDs),
               Set(request.requiredCandidateIDs).isSubset(of: Set(prepared.selectedIDs)),
@@ -115,6 +132,7 @@ import VisitTiming
               prepared.locations.allSatisfy({ location in
                   guard let pin = location.selected else { return false }
                   return location.candidates.contains(pin) && IntegrationCatalog.contains(pin)
+                      && (location.id == "origin" || catalog.region(for: location.id)?.contains(pin, candidateID: location.id) != false)
               }) else { throw IntegrationError.invalid("Lokasi belum dikonfirmasi atau input telah berubah.") }
         let selectedCandidates = try prepared.selectedIDs.map { id in
             guard let candidate = catalog.candidate(id), review.suggestions.first(where: { $0.id == id })?.selectable == true else {
@@ -148,7 +166,17 @@ import VisitTiming
         }
         let logs = NativeTripLogStore(directory: logDirectory, maximumFiles: 3, maximumBytes: 500_000)
         let services = NativeTripAppleServices(logs: logs, requestLimit: 512)
-        services.integrationETA = replayETA
+        let usesBusway = request.effectiveTransport == .transjakartaBRT
+        let walking: (any BuswayWalking)? = usesBusway ? (buswayWalking ?? MapKitBuswayWalking()) : nil
+        let walkingRequestsBefore = walking?.requests ?? 0
+        let synthetic = usesBusway ? walking?.synthetic == true : replayETA != nil
+        if let walking {
+            let busway = try BuswayPlanner(feed: buswayFeed ?? .network(), walking: walking, now: now)
+            activeWalking = walking
+            services.integrationETA = { from, to, mode, departure in
+                try await busway.eta(from: from, to: to, mode: mode, departure: departure)
+            }
+        } else { services.integrationETA = replayETA }
         services.integrationForecasts = prepared.locations.map { location in
             let value = forecasts.first { $0.memberIDs.contains(location.id) }
             let valid = value.map { $0.complete && $0.expiresAt > now } ?? false
@@ -163,7 +191,7 @@ import VisitTiming
             VisitStartPolicy.earliest(arrival: arrival, tripDate: request.departure, ranges: ranges[id] ?? [])
         }
         routing = services
-        defer { routing = nil }
+        defer { routing = nil; activeWalking = nil }
         func point(_ id: String) -> NativeTripPoint {
             let location = prepared.locations.first { $0.id == id }!
             let pin = location.selected!
@@ -172,6 +200,10 @@ import VisitTiming
                          selectionSource: location.manualConfirmation ? "MapKit · dikonfirmasi pengguna" : "MapKit · satu kecocokan nama/cabang")
         }
         var draft = NativeTripDraft.jakarta(now: request.departure)
+        if usesBusway {
+            draft.walking = true; draft.transit = true; draft.automobile = false
+            draft.integrationBusway = true; draft.maximumWalkingMinutes = 20
+        }
         draft.departure = request.departure; draft.finishBy = request.deadline
         draft.origin = point("origin"); draft.end = draft.origin; draft.returnsToOrigin = true
         draft.defaultDwell = request.defaultDuration
@@ -193,7 +225,7 @@ import VisitTiming
         let weatherStillFresh = forecasts.allSatisfy { !$0.complete || $0.expiresAt > completionNow }
         let chosen = (weatherStillFresh ? report.weatherChoice : nil) ?? report.fastest
             ?? report.candidates.sorted(by: NativeTripCandidate.better).first
-        if replayETA != nil { report.simulationKind = "P3 explicit synthetic replay; not live provider evidence" }
+        if synthetic { report.simulationKind = "P3 explicit synthetic replay; not live provider evidence" }
         if let credit = forecasts.first(where: { $0.provider == "weatherkit" && $0.complete })?.credit,
            let light = credit.markLightURL, let dark = credit.markDarkURL {
             report.storedWeatherCredit = .init(serviceName: credit.name, legalPageURL: credit.legalURL,
@@ -215,7 +247,7 @@ import VisitTiming
                                recommendedWindows: run.options, notes: leg.notes + run.warnings))
         }
         var conflicts = chosen?.conflicts ?? ["Tidak ada kandidat rute lengkap."]
-        if request.departure < completionNow && replayETA == nil {
+        if request.departure < completionNow && !synthetic {
             conflicts.append("Waktu berangkat sudah berlalu saat proses selesai; pilih waktu baru dan hitung ulang.")
         }
         if Set(stops.map(\.id)) != Set(prepared.selectedIDs) { conflicts.append("Tidak semua tujuan pilihan berhasil dijadwalkan; tidak ada penghapusan otomatis.") }
@@ -233,10 +265,15 @@ import VisitTiming
         uncertainties += ["Parkir, antrean, kapasitas, tiket, hari libur dan penutupan mendadak belum dijamin.",
                           "Pencarian dibatasi; hasil hybrid adaptif bukan bukti optimum global.",
                           "Perubahan durasi +30 menit menghitung ulang seluruh draf sebelum perjalanan, bukan pelacakan trip aktif."]
+        if usesBusway {
+            uncertainties += BuswayAssumptions.notes
+            uncertainties += walking?.failures ?? []
+        }
         let feasible = chosen?.feasible == true && conflicts.isEmpty
         let legs = (chosen?.legs ?? []).map { leg in
             PlannedLeg(id: leg.id, from: leg.from.title, to: leg.to.title, departure: leg.departure,
-                       arrival: leg.arrival, seconds: leg.chosen?.seconds, providerStatus: leg.chosen?.status ?? "unavailable")
+                       arrival: leg.arrival, seconds: leg.chosen?.seconds, providerStatus: leg.chosen?.status ?? "unavailable",
+                       mode: leg.chosen?.mode.rawValue, busway: leg.chosen?.busway)
         }
         var value = IntegratedPlan(createdAt: now, request: request, prepared: prepared, quality: review.quality,
                                    stops: stops, legs: legs, timing: timing, weather: forecasts, status: feasible ? "ready" : "conflicted",
@@ -245,10 +282,14 @@ import VisitTiming
                                    metrics: [.init(stage: "preferences", seconds: review.quality.elapsedSeconds, requests: 0),
                                              .init(stage: "mapkit_search", seconds: prepared.searchSeconds, requests: prepared.searchRequests),
                                              .init(stage: "weather_groups", seconds: weatherSeconds, requests: weather.requests),
-                                             .init(stage: "mapkit_eta", seconds: routeSeconds, requests: report.requests),
+                                             .init(stage: usesBusway ? "routing_options" : "mapkit_eta", seconds: routeSeconds, requests: report.requests),
                                              .init(stage: "plan_total_excluding_review_search", seconds: Date().timeIntervalSince(began), requests: 0)],
                                    summary: "", rawRoutingReport: try IntegrationJSON.encoder().encode(report), baseAcceptedID: baseAcceptedID)
-        value.evidenceMode = replayETA == nil ? "live" : "synthetic_replay"
+        value.evidenceMode = synthetic ? "synthetic_replay" : usesBusway ? "live_gtfs_estimate" : "live"
+        if let walking {
+            value.metrics.append(.init(stage: walking.synthetic ? "synthetic_walking" : "mapkit_walking_eta",
+                                       seconds: routeSeconds, requests: walking.requests - walkingRequestsBefore))
+        }
         do { value.providerLog = try await logs.snapshot().data }
         catch { value.uncertainties.append("Log provider tidak lengkap: \(error.localizedDescription)") }
         try Task.checkCancellation()
@@ -284,9 +325,9 @@ public enum PlanExplanation {
         let sequence = plan.stops.map(\.name).joined(separator: " → ")
         let finish = plan.finish.map(TripClock.label) ?? "unknown"
         let weather = Set(plan.weather.filter(\.complete).map(\.provider)).sorted().joined(separator: ", ")
-        return "\(plan.feasible ? "Reviewable draft" : "Unresolved draft"): \(sequence). "
+        return "\(plan.request.effectiveTransport.label). \(plan.feasible ? "Reviewable draft" : "Unresolved draft"): \(sequence). "
             + "Travel \(String(format: "%.1f", plan.travelMinutes)) min; waiting \(String(format: "%.1f", plan.waitingMinutes)) min. "
-            + "Return to Bundaran HI: \(finish). Deadline: \(TripClock.label(plan.request.deadline)). "
+            + "Return to \(plan.request.originQuery): \(finish). Deadline: \(TripClock.label(plan.request.deadline)). "
             + "All \(plan.prepared.selectedIDs.count) selected places have equal priority. "
             + "\(plan.conflicts.count) conflicts; \(plan.uncertainties.count) uncertainty notes. "
             + "Weather source: \(weather.isEmpty ? "unknown" : weather). "

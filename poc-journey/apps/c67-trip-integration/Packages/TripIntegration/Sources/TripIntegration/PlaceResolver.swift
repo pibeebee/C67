@@ -9,14 +9,15 @@ import MapKit
 @MainActor public final class MapKitTripSearch: TripPlaceSearching {
     private var operation: MKLocalSearch?
     private var operationID: UUID?
-    public init() {}
+    private let includeAddresses: Bool
+    public init(includeAddresses: Bool = false) { self.includeAddresses = includeAddresses }
     public func cancel() { operation?.cancel() }
     public func search(query: String) async throws -> [PlacePin] {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
         request.region = .init(center: .init(latitude: -6.2, longitude: 106.83),
                                latitudinalMeters: 45000, longitudinalMeters: 45000)
-        request.resultTypes = .pointOfInterest
+        request.resultTypes = includeAddresses ? [.address, .pointOfInterest] : .pointOfInterest
         let operation = MKLocalSearch(request: request)
         let operationID = UUID()
         self.operation = operation
@@ -52,9 +53,9 @@ public enum PlaceIdentityPolicy {
             .split { !$0.isLetter && !$0.isNumber }.joined(separator: " ")
     }
     public static func review(id: String, query: String, words: [String], branch: String?,
-                              results: [PlacePin]) -> LocationReview {
+                              results: [PlacePin], region: ExperimentRegion? = nil) -> LocationReview {
         var unique: [PlacePin] = []
-        for pin in results where IntegrationCatalog.contains(pin) {
+        for pin in results where IntegrationCatalog.contains(pin) && (id == "origin" || region?.contains(pin, candidateID: id) != false) {
             if !unique.contains(where: {
                 normalize($0.name) == normalize(pin.name)
                     && abs($0.latitude - pin.latitude) < 0.0003 && abs($0.longitude - pin.longitude) < 0.0003
@@ -70,9 +71,13 @@ public enum PlaceIdentityPolicy {
             return (words.allSatisfy { name.contains(normalize($0)) } || localizedCikini)
                 && (branch.map { combined.contains(normalize($0)) } ?? true)
         }
+        if id == "origin", matches.isEmpty, !unique.isEmpty {
+            return .init(id: id, query: query, candidates: unique, selected: nil,
+                         issue: "Pilih titik awal dari hasil pencarian.")
+        }
         let selected = matches.count == 1 ? matches[0] : nil
         return LocationReview(id: id, query: query, candidates: matches, selected: selected,
-                              issue: selected == nil ? (unique.isEmpty ? "Tidak ada hasil MapKit di Jakarta." : matches.isEmpty
+                              issue: selected == nil ? (unique.isEmpty ? "Tidak ada hasil MapKit dalam batas lokasi eksperimen." : matches.isEmpty
                                   ? "Hasil MapKit tidak cocok dengan nama/cabang bersumber. Tidak menerapkan fakta ke cabang lain."
                                   : "Ada beberapa kecocokan nama/cabang. Pilih hasil MapKit yang benar secara eksplisit.") : nil)
     }

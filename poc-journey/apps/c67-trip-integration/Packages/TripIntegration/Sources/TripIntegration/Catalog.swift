@@ -5,14 +5,31 @@ import VisitTiming
 public struct IntegrationCatalog: Sendable {
     public var quality: QualityCatalog
     public var timing: TimingCatalog
-    public static func load() throws -> Self {
+    public var region: ExperimentRegion?
+    public static func load(blokM: Bool = false, includeBlokM: Bool = false) throws -> Self {
         let decoder = IntegrationJSON.decoder()
-        let quality = try decoder.decode(QualityCatalog.self, from: Data(contentsOf:
-            Bundle.module.url(forResource: "quality", withExtension: "json")!))
-        let timing = try decoder.decode(TimingCatalog.self, from: Data(contentsOf:
-            Bundle.module.url(forResource: "timing", withExtension: "json")!))
+        var quality = try decoder.decode(QualityCatalog.self, from: Data(contentsOf:
+            Bundle.module.url(forResource: blokM ? "quality-blok-m" : "quality", withExtension: "json")!))
+        var timing = try decoder.decode(TimingCatalog.self, from: Data(contentsOf:
+            Bundle.module.url(forResource: blokM ? "timing-blok-m" : "timing", withExtension: "json")!))
+        if !blokM && includeBlokM {
+            let local = try load(blokM: true)
+            quality.id += "+blok-m"
+            quality.sources += local.quality.sources.filter { source in !quality.sources.contains { $0.id == source.id } }
+            quality.candidates += local.quality.candidates
+            timing.id += "+blok-m"
+            timing.sources += local.timing.sources.filter { source in !timing.sources.contains { $0.id == source.id } }
+            timing.venues += local.timing.venues.filter { venue in !timing.venues.contains { $0.id == venue.id } }
+        }
         try quality.validate(); try timing.validate()
-        return Self(quality: quality, timing: timing)
+        let region = blokM ? try decoder.decode(ExperimentRegion.self, from: Data(contentsOf:
+            Bundle.module.url(forResource: "region-blok-m", withExtension: "json")!)) : nil
+        try region?.validate(candidateIDs: Set(quality.candidates.map(\.id)))
+        return Self(quality: quality, timing: timing, region: region)
+    }
+    private static let blokMRegion = try? load(blokM: true).region
+    public func region(for candidateID: String) -> ExperimentRegion? {
+        region ?? (candidateID.hasPrefix("bm") ? Self.blokMRegion : nil)
     }
     public func candidate(_ id: String) -> QualityCandidate? { quality.candidates.first { $0.id == id } }
     public func venue(_ id: String) -> VenueFacts? { timing.venues.first { $0.id == id } }

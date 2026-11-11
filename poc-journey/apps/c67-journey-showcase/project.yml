@@ -1,0 +1,75 @@
+name: C67JourneyShowcase
+options:
+  postGenCommand: python3 scripts/configure-capability.py
+  deploymentTarget:
+    iOS: '26.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    MARKETING_VERSION: '0.1'
+    CURRENT_PROJECT_VERSION: '1'
+packages:
+  TripIntegration:
+    path: ../c67-trip-integration/Packages/TripIntegration
+  PreferenceQuality:
+    path: ../c67-foundation-lab/Packages/PreferenceQuality
+  VisitTiming:
+    path: ../c67-foundation-lab/Packages/VisitTiming
+targets:
+  C67JourneyShowcase:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: TripIntegration
+      - package: PreferenceQuality
+      - package: VisitTiming
+    attributes:
+      CreatedOnToolsVersion: '27.2'
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: C67 Journey
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIAppFonts: [Gabarito.ttf]
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hendra.pocjourney.showcase
+        INFOPLIST_KEY_CFBundleDisplayName: C67 Journey
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: '1,2'
+        SUPPORTS_MACCATALYST: NO
+        CODE_SIGN_ENTITLEMENTS: App/Journey.entitlements
+  C67JourneyShowcaseTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: C67JourneyShowcase
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+  C67JourneyShowcaseUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: C67JourneyShowcase
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: C67JourneyShowcase
+schemes:
+  C67JourneyShowcase:
+    build:
+      targets:
+        C67JourneyShowcase: all
+    test:
+      targets: [C67JourneyShowcaseTests, C67JourneyShowcaseUITests]

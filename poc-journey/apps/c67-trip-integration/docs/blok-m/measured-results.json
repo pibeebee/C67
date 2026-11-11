@@ -1,0 +1,812 @@
+{
+  "recommendations": {
+    "catalogID": "blok-m-quality-2026-11-06",
+    "clockMode": "live",
+    "humanJudgments": "pending_two_independent_reviewers",
+    "disagreements": [],
+    "personalizationOutcome": "insufficient_evidence",
+    "meanCategoryNDCGAt3": null,
+    "meanCategoryDeltaFromGeneral": null,
+    "sensitivity": [
+      {
+        "from": "P1",
+        "to": "P3",
+        "status": "insufficient_evidence"
+      },
+      {
+        "from": "P3",
+        "to": "P1",
+        "status": "insufficient_evidence"
+      },
+      {
+        "from": "P1",
+        "to": "P4",
+        "status": "insufficient_evidence"
+      },
+      {
+        "from": "P4",
+        "to": "P1",
+        "status": "insufficient_evidence"
+      }
+    ],
+    "limitations": [
+      "Technical replay and local inference do not establish user satisfaction.",
+      "Hard-gate audits here check exported set consistency. Native regression tests independently exercise factual gates.",
+      "Repeated windows share venue facts and are correlated."
+    ],
+    "runs": [
+      {
+        "persona": "P0",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "general_control"
+      },
+      {
+        "persona": "P0",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.0001609325408935547,
+        "relevanceStatus": "general_control",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P0",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.0005289316177368164,
+        "relevanceStatus": "general_control",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P1",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P1",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [
+          "bm08",
+          "bm06",
+          "bm13"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 0.0004849433898925781,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.0
+      },
+      {
+        "persona": "P1",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [
+          "bm08",
+          "bm06",
+          "bm13"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 1.6841570138931274,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.0
+      },
+      {
+        "persona": "P2",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P2",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.0004519224166870117,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P2",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [
+          "bm01",
+          "bm05",
+          "bm08"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.009830951690673828,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P3",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P3",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [
+          "bm04",
+          "bm05",
+          "bm01"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.0004119873046875,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P3",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [
+          "bm04",
+          "bm05",
+          "bm01"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.0504460334777832,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P4",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P4",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.0005260705947875977,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P4",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [
+          "bm02",
+          "bm03",
+          "bm01"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.021293997764587402,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P5",
+        "window": "day",
+        "method": "general",
+        "displayedIDs": [],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.000680088996887207,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P5",
+        "window": "day",
+        "method": "category",
+        "displayedIDs": [],
+        "pipelineStatus": "no_verified_match",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.0002149343490600586,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": null
+      },
+      {
+        "persona": "P5",
+        "window": "day",
+        "method": "combined",
+        "displayedIDs": [],
+        "pipelineStatus": "no_verified_match",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.00016701221466064453,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": null
+      },
+      {
+        "persona": "P0",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "general_control"
+      },
+      {
+        "persona": "P0",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.00043201446533203125,
+        "relevanceStatus": "general_control",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P0",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 0,
+        "seconds": 0.0005290508270263672,
+        "relevanceStatus": "general_control",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P1",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P1",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [
+          "bm08",
+          "bm06",
+          "bm13"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 0.00022792816162109375,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.0
+      },
+      {
+        "persona": "P1",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [
+          "bm08",
+          "bm06",
+          "bm13"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 3,
+        "seconds": 0.0030840635299682617,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.0
+      },
+      {
+        "persona": "P2",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P2",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.0004410743713378906,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P2",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [
+          "bm01",
+          "bm05",
+          "bm08"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 1,
+        "seconds": 0.004606962203979492,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P3",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P3",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [
+          "bm04",
+          "bm05",
+          "bm01"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.0002620220184326172,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P3",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [
+          "bm04",
+          "bm05",
+          "bm01"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 2,
+        "seconds": 0.005243062973022461,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 0.2
+      },
+      {
+        "persona": "P4",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P4",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [
+          "bm01",
+          "bm02",
+          "bm03"
+        ],
+        "pipelineStatus": "category_only",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.0006979703903198242,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P4",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [
+          "bm02",
+          "bm03",
+          "bm01"
+        ],
+        "pipelineStatus": "comparison_completed",
+        "eligibleCount": 8,
+        "factSupportedCount": 5,
+        "seconds": 0.002138972282409668,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": 1.0
+      },
+      {
+        "persona": "P5",
+        "window": "afternoon",
+        "method": "general",
+        "displayedIDs": [],
+        "pipelineStatus": "general_not_personalized",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.0004930496215820312,
+        "relevanceStatus": "pending_two_independent_reviewers"
+      },
+      {
+        "persona": "P5",
+        "window": "afternoon",
+        "method": "category",
+        "displayedIDs": [],
+        "pipelineStatus": "no_verified_match",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.0003439188003540039,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": null
+      },
+      {
+        "persona": "P5",
+        "window": "afternoon",
+        "method": "combined",
+        "displayedIDs": [],
+        "pipelineStatus": "no_verified_match",
+        "eligibleCount": 0,
+        "factSupportedCount": 0,
+        "seconds": 0.00036203861236572266,
+        "relevanceStatus": "pending_two_independent_reviewers",
+        "generalTop3Overlap": null
+      }
+    ]
+  },
+  "coldWarmSeconds": [
+    1.3138270378112793,
+    0.0022159814834594727
+  ],
+  "liveMacOutcomes": [
+    {
+      "count": 1,
+      "detail": "Live Mac routing only. Weather weatherkit/unavailable, weatherkit/unavailable. Conflicts []",
+      "seconds": 3.073517918586731,
+      "status": "pass"
+    },
+    {
+      "count": 3,
+      "detail": "Live Mac routing only. Weather weatherkit/unavailable, weatherkit/unavailable. Conflicts []",
+      "seconds": 25.815451979637146,
+      "status": "pass"
+    },
+    {
+      "count": 6,
+      "detail": "Live Mac routing only. Weather weatherkit/unavailable, weatherkit/unavailable. Conflicts []",
+      "seconds": 77.66698491573334,
+      "status": "pass"
+    }
+  ],
+  "liveMacPlans": [
+    {
+      "id": "7F5F8968-A18A-4029-BFE4-BB1DDB5874BC",
+      "evidenceHost": "Mac native process, not iPhone",
+      "selectedIDs": [
+        "bm01",
+        "bm04",
+        "bm08"
+      ],
+      "feasible": true,
+      "travelMinutes": 52.13333333333333,
+      "finish": "2026-11-07T06:24:16Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00042498111724853516,
+          "stage": "preferences"
+        },
+        {
+          "requests": 4,
+          "seconds": 1.569840908050537,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.00309598445892334,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 21,
+          "seconds": 24.20870804786682,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 24.221134066581726,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherStatus": [
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        },
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A44F9D34-97BD-4F70-BBC1-D7C74D3F936C",
+      "evidenceHost": "Mac native process, not iPhone",
+      "selectedIDs": [
+        "bm01",
+        "bm02",
+        "bm03",
+        "bm05",
+        "bm08",
+        "bm13"
+      ],
+      "feasible": true,
+      "travelMinutes": 72.11666666666667,
+      "finish": "2026-11-07T10:14:37Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.0021009445190429688,
+          "stage": "preferences"
+        },
+        {
+          "requests": 7,
+          "seconds": 2.756510019302368,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.1579359769821167,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 63,
+          "seconds": 74.6751080751419,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 74.8518579006195,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherStatus": [
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        },
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF2DA7A5-7572-4084-B30C-D47BCE18364E",
+      "evidenceHost": "Mac native process, not iPhone",
+      "selectedIDs": [
+        "bm01"
+      ],
+      "feasible": true,
+      "travelMinutes": 38.93333333333334,
+      "finish": "2026-11-07T03:48:34Z",
+      "metrics": [
+        {
+          "requests": 0,
+          "seconds": 0.00044596195220947266,
+          "stage": "preferences"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.955968976020813,
+          "stage": "mapkit_search"
+        },
+        {
+          "requests": 2,
+          "seconds": 0.4788970947265625,
+          "stage": "weather_groups"
+        },
+        {
+          "requests": 2,
+          "seconds": 1.6183220148086548,
+          "stage": "mapkit_eta"
+        },
+        {
+          "requests": 0,
+          "seconds": 2.10274600982666,
+          "stage": "plan_total_excluding_review_search"
+        }
+      ],
+      "weatherStatus": [
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        },
+        {
+          "provider": "weatherkit",
+          "status": "unavailable",
+          "errors": [
+            "WeatherKit: WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors [0]: The operation couldn’t be completed. (WeatherDaemon.WDSJWTAuthenticatorServiceProxy.Errors error 0.)"
+          ]
+        }
+      ]
+    }
+  ],
+  "rawEvidenceDirectory": "poc-journey/.verification/blok-m-2026-11-06",
+  "humanReviews": "pending, no grades generated",
+  "signedIPhoneWeatherKit": {
+    "status": "pass",
+    "teamID": "K39QVFTK2A",
+    "bundleID": "com.hendra.pocjourney",
+    "model": "iPhone 17",
+    "os": "Version 27.2 (Build 24B119)",
+    "provider": "weatherkit",
+    "diagnosisHourlyIntervals": 3,
+    "errors": [],
+    "attribution": {
+      "legalURL": "https://weatherkit.apple.com/legal-attribution.html",
+      "markDarkURL": "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_wht_en_3X_090122.png",
+      "markLightURL": "https://weatherkit.apple.com/assets/branding/en/Apple_Weather_blk_en_3X_090122.png",
+      "name": "Apple Weather"
+    },
+    "fallbackEnabled": false,
+    "earlierAttempt": "The initial build failed on the Program License Agreement and missing WeatherKit provisioning. After the user activated WeatherKit, signed build/install and provider diagnosis succeeded."
+  },
+  "verification": {
+    "packageTests": 232,
+    "tripIntegrationTests": 47,
+    "newBlokMTests": 12,
+    "pythonScorerTests": 8,
+    "tripIntegrationSimulatorUITests": 3,
+    "simulatorRuntime": "iOS 27.2",
+    "unsignedSimulatorBuilds": 3,
+    "foundationLabUI": "9/9 passed after the historical replay clock correction",
+    "simulatorUITests": 12,
+    "finalTripIntegrationBuild": "Passed after the final live-evaluation additions",
+    "finalUIEvidenceDirectory": "poc-journey/.verification/20261106-111707-ui"
+  },
+  "signedIPhoneEvaluation": {
+    "runID": "070C1753-125B-4523-BD9B-D3FFD33DBE6D",
+    "scriptedPass": 11,
+    "manualNotTested": 1,
+    "artifactAudit": "pass",
+    "summaryFile": "iphone-live-2026-11-06.json"
+  }
+}

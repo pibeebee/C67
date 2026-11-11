@@ -17,6 +17,15 @@ run_logged() {
   fi
 }
 case "${1:-}" in
+  transjakarta)
+    run_logged "$output_root/python-tests.log" rtk proxy python3 -m unittest discover -s "$journey_root/scripts" -p 'test_*.py'
+    gtfs_options=()
+    if [[ -n "${TJ_GTFS_ZIP:-}" ]]; then gtfs_options=(--gtfs-zip "$TJ_GTFS_ZIP"); fi
+    run_logged "$output_root/transjakarta-capabilities.log" rtk proxy python3 \
+      "$journey_root/scripts/evaluate_transjakarta_capabilities.py" \
+      --output "$output_root/capabilities" "${gtfs_options[@]}"
+    cat "$output_root/transjakarta-capabilities.log"
+    ;;
   packages)
     for package in TripIntelligence PreferenceLearning VisitTiming PreferenceQuality; do
       run_logged "$output_root/$package.log" swift test --package-path "$journey_root/apps/c67-foundation-lab/Packages/$package"
@@ -42,7 +51,7 @@ case "${1:-}" in
     ;;
   build)
     build_failures=0
-    for definition in 'native-routing-lab:poc-c67' 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration'; do
+    for definition in 'native-routing-lab:poc-c67' 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration' 'c67-journey-showcase:C67JourneyShowcase'; do
       app="${definition%%:*}"; scheme="${definition##*:}"
       if run_logged "$output_root/build-$scheme.log" xcodebuild -quiet -project "$journey_root/apps/$app/$scheme.xcodeproj" -scheme "$scheme" \
         -destination 'generic/platform=iOS Simulator' -derivedDataPath "$output_root/DerivedData-$scheme" \
@@ -56,7 +65,7 @@ case "${1:-}" in
     ;;
   ui)
     : "${P3_SIMULATOR_DESTINATION:?Choose an installed iOS 26+ Simulator destination}"
-    for definition in 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration'; do
+    for definition in 'c67-foundation-lab:C67FoundationLab' 'c67-trip-integration:C67TripIntegration' 'c67-journey-showcase:C67JourneyShowcase'; do
       app="${definition%%:*}"; scheme="${definition##*:}"
       run_logged "$output_root/ui-$scheme.log" xcodebuild -quiet -project "$journey_root/apps/$app/$scheme.xcodeproj" -scheme "$scheme" \
         -destination "$P3_SIMULATOR_DESTINATION" -derivedDataPath "$output_root/DerivedData-$scheme" \
@@ -74,6 +83,6 @@ case "${1:-}" in
       -only-testing:poc-c67UITests/NativePlannerPortabilityTests -parallel-testing-enabled NO test
     printf 'PASS: native planner fixture UI regression\n'
     ;;
-  *) printf 'Usage: verify.sh packages|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
+  *) printf 'Usage: verify.sh packages|transjakarta|cli|native|build|ui|native-ui\n' >&2; exit 64 ;;
 esac
 printf 'Evidence directory: %s\n' "$output_root"

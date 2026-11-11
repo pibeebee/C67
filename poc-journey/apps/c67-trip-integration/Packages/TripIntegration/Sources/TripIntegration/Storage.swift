@@ -2,10 +2,15 @@ import Foundation
 import CryptoKit
 
 public enum PlanAudit {
+    private static let bundledNetwork = Result { try BuswayFeed.network() }
+    private static let bundledLegacy = Result { try BuswayFeed.load() }
     public static func validate(_ plan: IntegratedPlan) throws {
         guard plan.schemaVersion == 1, plan.prepared.request.id == plan.request.id,
               plan.prepared.request.revision == plan.request.revision,
               plan.quality.profile == plan.request.profile,
+              plan.prepared.request == plan.request,
+              plan.request.originPin.map({ $0 == plan.prepared.locations.first { $0.id == "origin" }?.selected }) ?? true,
+              plan.prepared.selectedIDs.allSatisfy({ plan.request.includesArea(candidateID: $0) }),
               Set(plan.prepared.selectedIDs).count == plan.prepared.selectedIDs.count,
               (1 ... 6).contains(plan.prepared.selectedIDs.count),
               Set(plan.request.requiredCandidateIDs).isSubset(of: Set(plan.prepared.selectedIDs)),
@@ -24,6 +29,44 @@ public enum PlanAudit {
                       && abs(stop.leave.timeIntervalSince(stop.visit) - Double(stop.duration) * 60) < 0.01
                       && (stop.rainChance.map { $0.isFinite && (0 ... 1).contains($0) } ?? true)
               }) else { throw IntegrationError.invalid("Kontrak hasil tersimpan tidak valid.") }
+        if plan.request.effectiveTransport == .transjakartaBRT {
+            guard ["live_gtfs_estimate", "synthetic_replay"].contains(plan.evidenceMode) else {
+                throw IntegrationError.invalid("Label bukti BRT tidak sesuai.")
+            }
+            for (index, leg) in plan.legs.enumerated() where leg.providerStatus == "available" {
+                guard let journey = leg.busway, let seconds = leg.seconds, let arrival = leg.arrival,
+                      (journey.ride == nil ? leg.mode == "walking" : leg.mode == "transit"),
+                      abs(journey.departure.timeIntervalSince(leg.departure)) < 1.01,
+                      abs(journey.arrival.timeIntervalSince(arrival)) < 1.01,
+                      abs(journey.seconds - seconds) < 1.01 else {
+                    throw IntegrationError.invalid("Bukti ruas BRT hilang atau durasinya berubah.")
+                }
+                try journey.validate()
+                let sourceFeed = try (journey.source.id == bundledLegacy.get().source.id ? bundledLegacy : bundledNetwork).get()
+                guard sourceFeed.source == journey.source,
+                      journey.rides.allSatisfy({ ride in
+                          sourceFeed.patterns.contains(ride.pattern)
+                              && sourceFeed.stops.contains(ride.board) && sourceFeed.stops.contains(ride.alight)
+                      }) else { throw IntegrationError.invalid("Bukti bus berbeda dari snapshot sumber.") }
+                if let connection = journey.connection, let first = journey.ride {
+                    guard sourceFeed.transfers?.contains(where: {
+                        $0.fromStopID == first.alight.id && $0.toStopID == connection.ride.board.id
+                            && $0.minimumSeconds == connection.bufferSeconds && $0.evidence == connection.evidence
+                    }) == true else { throw IntegrationError.invalid("Bukti transfer berbeda dari snapshot sumber.") }
+                }
+                let expectedStart = index == 0 ? plan.prepared.locations.first { $0.id == "origin" }?.selected : (index - 1 < plan.stops.count ? plan.stops[index - 1].pin : nil)
+                let expectedEnd = index < plan.stops.count ? plan.stops[index].pin : plan.prepared.locations.first { $0.id == "origin" }?.selected
+                let end = journey.egress?.to ?? journey.access.to
+                guard let expectedStart, let expectedEnd,
+                      journey.access.from.latitude == expectedStart.latitude, journey.access.from.longitude == expectedStart.longitude,
+                      end.latitude == expectedEnd.latitude, end.longitude == expectedEnd.longitude,
+                      plan.evidenceMode == "synthetic_replay" || journey.walks.allSatisfy({ $0.provider == "mapkit_walking" }) else {
+                    throw IntegrationError.invalid("Lokasi/sumber walking tidak sesuai ruas itinerary.")
+                }
+            }
+        } else if plan.legs.contains(where: { $0.busway != nil }) {
+            throw IntegrationError.invalid("Bukti BRT tidak sesuai pilihan moda.")
+        }
         if plan.feasible {
             guard Set(plan.stops.map(\.id)) == Set(plan.prepared.selectedIDs),
                   let finish = plan.finish, finish <= plan.request.deadline,
@@ -149,15 +192,31 @@ extension PlanExplanation {
         let stops = plan.stops.map {
             "- \($0.name) / \($0.area): arrival \(TripClock.label($0.arrival)); visit \(TripClock.label($0.visit))–\(TripClock.label($0.leave)); rain \($0.rainChance.map { String(format: "%.0f%%", $0 * 100) } ?? "unknown"); \($0.weatherProvider ?? "unknown provider")."
         }
+        let journeys = plan.legs.compactMap(\.busway)
+        let transport = plan.legs.flatMap { leg -> [String] in
+            var details = ["- \(leg.from) → \(leg.to). \(TripClock.label(leg.departure)). \(leg.busway?.summary ?? leg.mode ?? "automobile")."]
+            for ride in leg.busway?.rides ?? [] {
+                details.append("- TJ \(ride.pattern.effectiveRouteID), \(ride.pattern.effectiveCategory), direction \(ride.headsign). Board \(ride.board.name) [\(ride.board.id)] at \(TripClock.label(ride.boardAt)). Alight \(ride.alight.name) [\(ride.alight.id)] at \(TripClock.label(ride.alightAt)).")
+            }
+            if let connection = leg.busway?.connection {
+                details.append("- Transfer walking \(Int(connection.walk.seconds)) seconds, additional buffer \(Int(connection.bufferSeconds)) seconds. \(connection.evidence).")
+            }
+            return details
+        }
+        let busSources = journeys.map { journey in
+            "- \(journey.source.publisher), [GTFS](\(journey.source.sourceURL)). [CC BY 4.0](\(journey.source.licenseURL)). [Attribution](\(journey.source.attributionURL)). Checked \(journey.source.checkedAt.ISO8601Format()). SHA256 \(journey.source.sourceSHA256). \(journey.source.modification)"
+        }
         let metrics = plan.metrics.map { "- \($0.stage): \(String(format: "%.3f", $0.seconds)) s, \($0.requests) requests/group fetches." }
         let weather = plan.weather.map {
             "- \($0.provider): \($0.status), members \($0.memberIDs.joined(separator: ", ")); representative \($0.representative.name); metadata \($0.fetchedAt.ISO8601Format()); retrieved \($0.retrievedAt.ISO8601Format()); cache \($0.cached); \($0.credit?.legalURL.absoluteString ?? "no attribution"). Errors: \($0.errors.joined(separator: "; "))"
         }
-        return (["# C67 Priority 3 run \(plan.id)", "", "Evidence: \(plan.evidenceMode). Status: \(plan.status). \(plan.summary)", "", "## Schedule", ""]
-            + stops + ["", "## Conflicts", ""] + plan.conflicts.map { "- " + $0 }
-            + ["", "## Uncertainties", ""] + plan.uncertainties.map { "- " + $0 }
-            + ["", "## Weather evidence", ""] + weather + ["", "## Metrics", ""] + metrics
-            + ["", "## Sources", ""] + Array(Set(sources)).sorted()
-            + ["", "No backend is required. This run alone does not establish user satisfaction, current venue availability or global optimality.", ""]).joined(separator: "\n")
+        return (["# C67 Priority 3 run \(plan.id)", "", "Evidence: \(plan.evidenceMode). Status: \(plan.status). \(plan.summary)", "", "Origin: \(plan.request.originQuery)",
+                 "Target areas: \((plan.request.targetAreas ?? []).isEmpty ? "All catalog areas" : plan.request.targetAreas!.map(\.label).joined(separator: ", "))",
+                 "Required spots: \(plan.request.requiredCandidateIDs.joined(separator: ", "))", "", "## Schedule", ""]
+                + stops + ["", "## Transport", ""] + transport + busSources + ["", "## Conflicts", ""] + plan.conflicts.map { "- " + $0 }
+                + ["", "## Uncertainties", ""] + plan.uncertainties.map { "- " + $0 }
+                + ["", "## Weather evidence", ""] + weather + ["", "## Metrics", ""] + metrics
+                + ["", "## Sources", ""] + Array(Set(sources)).sorted()
+                + ["", "No backend is required. This run alone does not establish user satisfaction, current venue availability or global optimality.", ""]).joined(separator: "\n")
     }
 }

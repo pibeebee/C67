@@ -265,6 +265,11 @@ import WeatherKit
         }
         if var saved = cache[key] {
             if mode == .walking, let seconds = saved.seconds {
+                if var journey = saved.busway, journey.ride == nil {
+                    journey.departure = departure
+                    journey.arrival = departure.addingTimeInterval(seconds)
+                    saved.busway = journey
+                }
                 saved.expectedDeparture = departure
                 saved.expectedArrival = departure.addingTimeInterval(seconds)
             }
@@ -272,7 +277,7 @@ import WeatherKit
             value = saved
             return value
         }
-        if from.latitude == to.latitude && from.longitude == to.longitude {
+        if integrationETA == nil, from.latitude == to.latitude && from.longitude == to.longitude {
             source = "same_coordinate"
             value.seconds = 0
             value.distance = 0

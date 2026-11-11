@@ -6,6 +6,7 @@ The original routing checkout is `<LOCAL_HOME>/Programming/software/ios/poc-c67`
 - `NativeTripAppleServices.swift` adds explicitly injected forecasts, a replay ETA closure and a valid-visit-start hook. Injected forecasts bypass the legacy Jakarta Open-Meteo-only branch. The implicit old active-trip simulation branch is replaced by an explicit failure; P3 replay requires dependency injection.
 - `NativeTripEngine.swift` asks the P3 visit hook for a full-stay-valid start after actual arrival. No valid start adds a conflict. The opening-source label describes imported evidence, not manual user input.
 - During Xcode 27.2 compilation, the copied `NativeTripSearchSupport` async lookup callback needed explicit `@MainActor` isolation. This changes the adapter declaration, not the routing algorithm. The original file is untouched.
+- The TransJakarta adapter adds an explicit Jakarta BRT marker, optional per-ETA journey evidence and walking-cache timestamp rebasing. Its injected provider handles walking and static-GTFS corridor-1 estimates. The routing objective and pure optimizer remain shared.
 - The wrapper supplies separate P3 log storage, preserves real candidate validation and exports the original report shape. It adds Apple attribution to the report when available.
 - P3 `PlaceResolver`, `WeatherCoordinator`, `Catalog`, `IntegrationPipeline` and `Storage` are new. They are **not** automatically validated by previous PoC results.
 

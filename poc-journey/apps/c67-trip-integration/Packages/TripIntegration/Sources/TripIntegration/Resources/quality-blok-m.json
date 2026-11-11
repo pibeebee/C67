@@ -1,0 +1,499 @@
+{
+  "schemaVersion": 1,
+  "id": "blok-m-quality-2026-11-06",
+  "sources": [
+    {
+      "id": "bm-parks",
+      "title": "Jakarta government — five 24-hour parks",
+      "url": "https://www.jakarta.go.id/siaran-pers/5546-SP-HMS-05-2025",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "cdabb9a963f7abde8620e82a944838fd1e5ce9f5807a58229ca460623308ad34",
+      "relation": "local_government; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-literasi",
+      "title": "Jakarta Smart City — Taman Literasi",
+      "url": "https://smartcity.jakarta.go.id/id/blog/jatuh-hati-taman-literasi-martha-christina-tiahahu/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "dbd75a19fb19525a64d1f1157471b25d1b548b2b6ef6b1d8628dafa9f8c7829c",
+      "relation": "local_government; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-library",
+      "title": "Taman Literasi library catalog",
+      "url": "https://tamanliterasi.id/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "589e8e94040a4d6b3029d5b398fe6a722fbe1fe4662336b738f1261a2811b0f2",
+      "relation": "venue_operator; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-polri",
+      "title": "Museum Polri — visit information",
+      "url": "https://museumpolri.wixsite.com/museumpolri/visit-us",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "f00351eac2abc8cb019ab9bee33ef638c2cc79fdca5e07dc095937ff23cd0160",
+      "relation": "venue_operator; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-titik",
+      "title": "MANUAL — Titik Temu M Bloc Space",
+      "url": "https://manual.co.id/directory/titik-temu-m-bloc-space/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "6e33aab23feb6a5cba97075fbbc678d00c29a2eecefe420ec2363323fc0801b2",
+      "relation": "independent_directory; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-mbloc",
+      "title": "MANUAL — M Bloc Space",
+      "url": "https://manual.co.id/directory/m-bloc-space/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "fbcf97133564b5559df08b02c97ef8990092af52c6e63c96058867bd5d1d62d5",
+      "relation": "independent_directory; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-row9",
+      "title": "MANUAL — ROW 9",
+      "url": "https://manual.co.id/directory/row-9/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "6c55524a06ff60bf7681a4cfec65d68e377f93b0d7958baba0a8a4d88551f249",
+      "relation": "independent_directory; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-kurasu",
+      "title": "MANUAL — Kurasu Kissaten",
+      "url": "https://manual.co.id/directory/kurasu-kissaten/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "dd7d335c20d61f7c6f0c5c5ae5143b94a01d4e86df3334b49db9eeb30bd49cb1",
+      "relation": "independent_directory; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-kuliner",
+      "title": "Indonesia Travel — Blok M guide",
+      "url": "https://www.indonesia.travel/id/id/travel-ideas/gastronomy/cafe-kuliner-blok-m",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "26011ebfb43dce6bc55d60876fbee72be20b4e8271a1e9e44e3bffb55d488d0e",
+      "relation": "national_tourism_publication; fingerprint identifies the research summary, not remote HTML"
+    },
+    {
+      "id": "bm-filosofi",
+      "title": "Filosofi Kopi — operator website",
+      "url": "https://www.filosofikopi.id/",
+      "checkedAt": "2026-11-06T03:59:33Z",
+      "publishedDate": null,
+      "sha256": "5a9314906ea2d4778475fbe4fb1287816ae886c7fc56b2457414a5400db89f45",
+      "relation": "venue_operator; fingerprint identifies the research summary, not remote HTML"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "bm01",
+      "venueID": "bm01",
+      "name": "Taman Literasi Martha Christina Tiahahu",
+      "scope": "Public park reading spaces",
+      "address": "Sisingamangaraja, Melawai",
+      "mapQuery": "Taman Literasi Martha Christina Tiahahu Sisingamangaraja, Melawai Jakarta",
+      "matchWords": [
+        "martha",
+        "christina",
+        "tiahahu"
+      ],
+      "claims": [
+        {
+          "feature": "reading",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-literasi"
+          ],
+          "statement": "Published support for reading in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "outdoor",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for outdoor in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "nature",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for nature in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-parks",
+        "bm-literasi"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm02",
+      "venueID": "bm02",
+      "name": "Taman Ayodia",
+      "scope": "Public park",
+      "address": "Lamandau III, Kramat Pela",
+      "mapQuery": "Taman Ayodia Lamandau III, Kramat Pela Jakarta",
+      "matchWords": [
+        "taman",
+        "ayo"
+      ],
+      "claims": [
+        {
+          "feature": "outdoor",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for outdoor in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "nature",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for nature in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-parks"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm03",
+      "venueID": "bm03",
+      "name": "Taman Langsat",
+      "scope": "Public park",
+      "address": "Langsat, Kramat Pela",
+      "mapQuery": "Taman Langsat Langsat, Kramat Pela Jakarta",
+      "matchWords": [
+        "langsat"
+      ],
+      "claims": [
+        {
+          "feature": "outdoor",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for outdoor in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "nature",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-parks"
+          ],
+          "statement": "Published support for nature in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-parks"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm04",
+      "venueID": "bm04",
+      "name": "Museum Polri",
+      "scope": "Police-history collections",
+      "address": "Trunojoyo 3, Selong",
+      "mapQuery": "Museum Polri Trunojoyo 3, Selong Jakarta",
+      "matchWords": [
+        "museum",
+        "polri"
+      ],
+      "claims": [
+        {
+          "feature": "culture",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-polri"
+          ],
+          "statement": "Published support for culture in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-polri"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm05",
+      "venueID": "bm05",
+      "name": "M Bloc Space",
+      "scope": "Creative common areas; event entry separate",
+      "address": "Panglima Polim 37, Melawai",
+      "mapQuery": "M Bloc Space Panglima Polim 37, Melawai Jakarta",
+      "matchWords": [
+        "bloc"
+      ],
+      "claims": [
+        {
+          "feature": "culture",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-mbloc"
+          ],
+          "statement": "Published support for culture in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "outdoor",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-mbloc"
+          ],
+          "statement": "Published support for outdoor in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-mbloc"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm06",
+      "venueID": "bm06",
+      "name": "ROW 9",
+      "scope": "Creative compound; tenant details unknown",
+      "address": "Bulungan 9, Kramat Pela",
+      "mapQuery": "ROW 9 Bulungan 9, Kramat Pela Jakarta",
+      "matchWords": [
+        "row",
+        "9"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-row9"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-row9"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm07",
+      "venueID": "bm07",
+      "name": "Filosofi Kopi Melawai",
+      "scope": "Melawai cafe branch",
+      "address": "Melawai VI 8, Melawai",
+      "mapQuery": "Filosofi Kopi Melawai Melawai VI 8, Melawai Jakarta",
+      "matchWords": [
+        "filosofi",
+        "kopi"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-filosofi"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-filosofi",
+        "bm-kuliner"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm08",
+      "venueID": "bm08",
+      "name": "Titik Temu M Bloc Space",
+      "scope": "M Bloc cafe branch, mixed areas",
+      "address": "Panglima Polim 37, Melawai",
+      "mapQuery": "Titik Temu M Bloc Space Panglima Polim 37, Melawai Jakarta",
+      "matchWords": [
+        "temu"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-titik"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "wifi",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-titik"
+          ],
+          "statement": "Published support for wifi in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "outdoor",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-titik"
+          ],
+          "statement": "Published support for outdoor in this named scope; availability at arrival remains unverified."
+        },
+        {
+          "feature": "smokingArea",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-titik"
+          ],
+          "statement": "Published support for smokingArea in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-titik"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm09",
+      "venueID": "bm09",
+      "name": "Simetri Home Coffee Roasters",
+      "scope": "Wijaya VI branch",
+      "address": "Wijaya VI 11, Melawai",
+      "mapQuery": "Simetri Home Coffee Roasters Wijaya VI 11, Melawai Jakarta",
+      "matchWords": [
+        "simetri"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-kuliner"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm10",
+      "venueID": "bm10",
+      "name": "LBRY Slow Coffee Bar",
+      "scope": "Melawai Plaza branch",
+      "address": "Melawai Plaza, Melawai",
+      "mapQuery": "LBRY Slow Coffee Bar Melawai Plaza, Melawai Jakarta",
+      "matchWords": [
+        "lbry"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-kuliner"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm11",
+      "venueID": "bm11",
+      "name": "Toko Buku Jimmy",
+      "scope": "Book stall; reading permission unknown",
+      "address": "Basement Blok M Square, Melawai",
+      "mapQuery": "Toko Buku Jimmy Basement Blok M Square, Melawai Jakarta",
+      "matchWords": [
+        "jimmy"
+      ],
+      "claims": [],
+      "sourceIDs": [
+        "bm-kuliner"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm12",
+      "venueID": "bm12",
+      "name": "Perpustakaan Taman Literasi",
+      "scope": "Library room; park hours do not transfer",
+      "address": "Taman Literasi, Melawai",
+      "mapQuery": "Perpustakaan Taman Literasi Taman Literasi, Melawai Jakarta",
+      "matchWords": [
+        "literasi"
+      ],
+      "claims": [
+        {
+          "feature": "reading",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-library"
+          ],
+          "statement": "Published support for reading in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-library"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    },
+    {
+      "id": "bm13",
+      "venueID": "bm13",
+      "name": "Kurasu Kissaten",
+      "scope": "Iskandarsyah I branch",
+      "address": "Iskandarsyah I 9, Melawai",
+      "mapQuery": "Kurasu Kissaten Iskandarsyah I 9, Melawai Jakarta",
+      "matchWords": [
+        "kurasu"
+      ],
+      "claims": [
+        {
+          "feature": "coffee",
+          "value": "yes",
+          "sourceIDs": [
+            "bm-kurasu"
+          ],
+          "statement": "Published support for coffee in this named scope; availability at arrival remains unverified."
+        }
+      ],
+      "sourceIDs": [
+        "bm-kurasu"
+      ],
+      "blockedReason": null,
+      "validThrough": null
+    }
+  ]
+}
