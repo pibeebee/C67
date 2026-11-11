@@ -8,6 +8,8 @@ final class TripHomeUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["homeEmptyState"].waitForExistence(timeout: 10))
         XCTAssertGreaterThanOrEqual(app.buttons["homeAddTrip"].frame.width, 44)
         XCTAssertGreaterThanOrEqual(app.buttons["homeAddTrip"].frame.height, 44)
+        XCTAssertLessThanOrEqual(app.buttons["homeAddTrip"].frame.width, 48)
+        XCTAssertLessThanOrEqual(app.buttons["homeAddTrip"].frame.height, 48)
         capture(app, name: "HOME EMPTY - Light")
 
         app.buttons["homeLocation"].tap()

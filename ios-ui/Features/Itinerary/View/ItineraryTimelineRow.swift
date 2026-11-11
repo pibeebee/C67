@@ -14,6 +14,9 @@ struct ItineraryTimelineRow: View {
     var isEditable = true
     let weatherEvidence: [PlanningEvidence]
     let edit: () -> Void
+    var beginReorder: (() -> NSItemProvider)? = nil
+    var moveUp: (() -> Void)? = nil
+    var moveDown: (() -> Void)? = nil
 
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
@@ -38,7 +41,8 @@ struct ItineraryTimelineRow: View {
                 }
             }
             VStack(alignment: .leading, spacing: 0) {
-                ItineraryStopCard(stop: stop, zone: zone, details: details, isEditable: isEditable, weatherEvidence: weatherEvidence, edit: edit)
+                ItineraryStopCard(stop: stop, zone: zone, details: details, isEditable: isEditable, weatherEvidence: weatherEvidence, edit: edit,
+                                  beginReorder: beginReorder, moveUp: moveUp, moveDown: moveDown)
                 if let nextStop {
                     Label {
                         Text("\(nextStop.travelSeconds / 60) min\(nextDistance.map { " · " + $0 } ?? "")")

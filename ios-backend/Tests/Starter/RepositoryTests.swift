@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 import C67Domain
-import C67Data
+@testable import C67Data
 
 @Test func mockCopiesSnapshotAndRetriesWithoutDuplicating() async throws {
     let repository = try MockRundownRepository()
@@ -32,4 +32,36 @@ import C67Data
     #expect(throws: RepositoryError.invalidConfiguration) {
         try SupabaseRundownRepository(baseURL: #require(URL(string: "http://example.com")), clientKey: "example")
     }
+}
+
+@Test func mockPlanningPreservesRequestedOrderAndRecalculatesTimes() async throws {
+    let repository = MockPlanningRepository()
+    var input = try MockPlanningRepository.sampleInput()
+    input.places.reverse()
+    input.preservesPlaceOrder = true
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .plan, input: input))
+    let proposal = try #require(job.result?.proposal)
+    #expect(proposal.stops.map(\.id) == input.places.map(\.id))
+    var previous = input.startsAt
+    for stop in proposal.stops {
+        #expect(stop.arrivalAt == previous.addingTimeInterval(Double(stop.travelSeconds)))
+        #expect(stop.departureAt == stop.arrivalAt.addingTimeInterval(Double(stop.visitSeconds)))
+        previous = stop.departureAt
+    }
+    #expect(proposal.finishesAt == previous)
+}
+
+@Test func manualOrderWireFlagRoundTripsAndDefaultsForOlderPayloads() throws {
+    var input = try MockPlanningRepository.sampleInput()
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+    let olderPayload = try encoder.encode(PlanningInputDTO(input))
+    let olderJSON = try #require(JSONSerialization.jsonObject(with: olderPayload) as? [String: Any])
+    #expect(olderJSON["preserve_place_order"] == nil)
+    #expect(try decoder.decode(PlanningInputDTO.self, from: olderPayload).domain == input)
+    input.preservesPlaceOrder = true
+    let fixedPayload = try encoder.encode(PlanningInputDTO(input))
+    let fixedJSON = try #require(JSONSerialization.jsonObject(with: fixedPayload) as? [String: Any])
+    #expect(fixedJSON["preserve_place_order"] as? Bool == true)
+    #expect(try decoder.decode(PlanningInputDTO.self, from: fixedPayload).domain == input)
 }

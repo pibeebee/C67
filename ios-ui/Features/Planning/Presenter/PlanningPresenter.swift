@@ -13,6 +13,7 @@ final class PlanningPresenter {
     var finishBy = Date().addingTimeInterval(4 * 3600 + 600)
     var timeZone = TimeZone.current.identifier
     var mode: PlanningMode = .walking
+    var preservesPlaceOrder = false
     private(set) var trips: [PersonalPlanningTrip] = []
     private(set) var job: PlanningJob?
     private(set) var isBusy = false
@@ -37,11 +38,12 @@ final class PlanningPresenter {
     private func setDraft(_ value: PlanningInput) {
         title = value.title; origin = value.origin; places = value.places; preferences = value.preferences
         startsAt = value.startsAt; finishBy = value.finishBy; timeZone = value.timeZone; mode = value.mode
+        preservesPlaceOrder = value.preservesPlaceOrder
     }
     var draftInput: PlanningInput? {
         guard let origin else { return nil }
         return .init(title: title, origin: origin, places: places, preferences: preferences,
-                     startsAt: startsAt, finishBy: finishBy, timeZone: timeZone, mode: mode)
+                     startsAt: startsAt, finishBy: finishBy, timeZone: timeZone, mode: mode, preservesPlaceOrder: preservesPlaceOrder)
     }
     func draftChanged() {
         guard !isBusy else { return }
@@ -57,7 +59,7 @@ final class PlanningPresenter {
         sessionID = value.sessionID; generation += 1; isBusy = false; progress = nil
         trips = []; job = nil; pendingRequest = nil; pendingApply = nil; pendingEvent = nil
         openTripID = nil; title = "My trip"; origin = nil; originLabel = "Choose a starting point"
-        places = []; preferences = ""; reportedPosition = nil; error = nil
+        places = []; preferences = ""; preservesPlaceOrder = false; reportedPosition = nil; error = nil
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
         timeZone = TimeZone.current.identifier; mode = .walking
     }
@@ -125,7 +127,20 @@ final class PlanningPresenter {
             try Task.checkCancellation(); guard ticket == generation else { return }
             job = latest
             switch latest.status {
-            case .succeeded: pendingRequest = nil; progress = nil; return
+            case .succeeded:
+                if latest.purpose == .plan, let requested = draftInput, requested.preservesPlaceOrder,
+                   latest.input != requested {
+                    job = nil; pendingRequest = nil; needsFreshProposal = true
+                    throw PlanningError.invalidResponse
+                }
+                if latest.purpose != .suggest, latest.input.preservesPlaceOrder {
+                    guard latest.result?.proposal?.stops.map(\.id) == latest.input.places.map(\.id),
+                          latest.result?.proposal?.input == latest.input else {
+                        job = nil; pendingRequest = nil; needsFreshProposal = true
+                        throw PlanningError.invalidResponse
+                    }
+                }
+                pendingRequest = nil; progress = nil; return
             case .failed: pendingRequest = nil; throw PlanningError.failed(latest.errorCode ?? "PROVIDER_UNAVAILABLE")
             case .unknown: throw PlanningError.invalidResponse
             case .queued: progress = "Your planning request is queued…"

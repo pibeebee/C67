@@ -124,7 +124,8 @@ public actor MockPlanningRepository: PlanningRepository {
         var pending = input.places; var from = input.origin; var at = input.startsAt; var stops: [ScheduledPlanningStop] = []
         while !pending.isEmpty {
             let chosen: PlanningPlace
-            if stops.isEmpty, let first = input.firstPlaceID, let match = pending.first(where: { $0.id == first }) { chosen = match }
+            if input.preservesPlaceOrder { chosen = pending[0] }
+            else if stops.isEmpty, let first = input.firstPlaceID, let match = pending.first(where: { $0.id == first }) { chosen = match }
             else { chosen = pending.min { distance(from, $0.location) < distance(from, $1.location) }! }
             let meters = distance(from, chosen.location)
             let travel = meters < 1 ? 0 : max(60, Int(ceil(meters / (input.mode == .walking ? 1.2 : 5))))

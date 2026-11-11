@@ -73,7 +73,8 @@ public struct PlanningInput: Equatable, Sendable {
     public var timeZone: String
     public var mode: PlanningMode
     public var firstPlaceID: UUID?
-    public init(title: String, origin: PlanningPoint, places: [PlanningPlace], preferences: String, startsAt: Date, finishBy: Date, timeZone: String, mode: PlanningMode, firstPlaceID: UUID? = nil) {
+    public var preservesPlaceOrder: Bool
+    public init(title: String, origin: PlanningPoint, places: [PlanningPlace], preferences: String, startsAt: Date, finishBy: Date, timeZone: String, mode: PlanningMode, firstPlaceID: UUID? = nil, preservesPlaceOrder: Bool = false) {
         self.title = title
         self.origin = origin
         self.places = places
@@ -83,6 +84,7 @@ public struct PlanningInput: Equatable, Sendable {
         self.timeZone = timeZone
         self.mode = mode
         self.firstPlaceID = firstPlaceID
+        self.preservesPlaceOrder = preservesPlaceOrder
     }
 }
 
@@ -262,6 +264,7 @@ public extension PlanningInput {
             if let after = place.preferredAfter, let before = place.preferredBefore, after > before { throw PlanningError.invalidInput }
         }
         if let firstPlaceID, !places.contains(where: { $0.id == firstPlaceID }) { throw PlanningError.invalidInput }
+        if preservesPlaceOrder, let firstPlaceID, places.first?.id != firstPlaceID { throw PlanningError.invalidInput }
     }
 }
 

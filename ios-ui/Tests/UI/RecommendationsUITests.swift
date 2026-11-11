@@ -1,6 +1,26 @@
 import XCTest
 
 final class RecommendationsUITests: XCTestCase {
+    @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--recommendations-added-preview"]
+        app.launch()
+        XCTAssertTrue(app.buttons["My Places"].waitForExistence(timeout: 10))
+        app.buttons["My Places"].tap()
+        let remove = app.buttons["Remove ALDI’S BURGER"]
+        XCTAssertTrue(remove.waitForExistence(timeout: 5))
+        XCTAssertGreaterThanOrEqual(remove.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(remove.frame.height, 44)
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "PLACES - remove button"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        remove.tap()
+        expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: remove)
+        waitForExpectations(timeout: 5)
+        XCTAssertTrue(app.buttons["Remove FamiCafé by FamilyMart"].exists)
+    }
+
     @MainActor func testSpecificPlaceMenuOpensSearch() {
         let app = XCUIApplication()
         app.launchArguments = ["--skip-splash"]

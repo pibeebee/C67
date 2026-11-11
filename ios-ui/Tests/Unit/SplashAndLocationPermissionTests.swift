@@ -50,7 +50,7 @@ struct SplashAndLocationPermissionTests {
     func locatingPillRendersDifferently() throws {
         func png(_ isLocating: Bool) throws -> Data {
             let renderer = ImageRenderer(
-                content: TripLocationButton(title: "Current device position", isLocating: isLocating, action: {})
+                content: TripLocationLabel(title: "Current device position", isLocating: isLocating)
                     .frame(width: 260, height: 44)
             )
             renderer.scale = 1

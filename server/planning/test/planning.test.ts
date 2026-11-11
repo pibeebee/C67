@@ -215,6 +215,27 @@ test('scheduler holds the current place first during active recalculation', asyn
   assert.ok(result.every((candidate) => candidate.stops[0].id === ids[1]));
 });
 
+test('manual order is retained and travel times are recalculated in that order', async () => {
+  const value = input();
+  value.places.reverse();
+  value.preserve_place_order = true;
+  const result = await schedule(value, async (from, to) => ({
+    duration_seconds: from === 'origin' ? 120 : 300,
+    distance_meters: null,
+    evidence_id: 'fixture',
+  }));
+  assert.equal(result.length, 1);
+  assert.deepEqual(
+    result[0].stops.map((stop) => stop.id),
+    [...ids].reverse(),
+  );
+  assert.deepEqual(
+    result[0].stops.map((stop) => stop.travel_seconds),
+    [120, 300, 300],
+  );
+  assert.equal((Date.parse(result[0].finishes_at) - Date.parse(value.starts_at)) / 1000, 6120);
+});
+
 test('input rejects duplicate locations identities, invalid zone, unsupported mode and excess places', () => {
   const duplicate = input();
   duplicate.places[1].id = duplicate.places[0].id;
