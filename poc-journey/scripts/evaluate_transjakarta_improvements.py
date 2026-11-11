@@ -84,7 +84,7 @@ def main():
     environment = dict(os.environ, POC_OUTPUT_DIR=str(directory / "packages"),
                        TJ_IMPROVEMENT_OUTPUT=str(directory), TJ_CAPABILITY_OUTPUT=str(directory / "capabilities"))
     with (directory / "verify.log").open("w") as log:
-        completed = subprocess.run(["rtk", "proxy", "bash", str(ROOT / "scripts/verify.sh"), "packages"],
+        completed = subprocess.run(["bash", str(ROOT / "scripts/verify.sh"), "packages"],
                                    env=environment, stdout=log, stderr=subprocess.STDOUT, check=False)
     paired_path = directory / "paired-results.json"
     rows = json.loads(paired_path.read_text()) if paired_path.exists() else []

@@ -164,53 +164,53 @@ struct SplashFrameView: View {
 }
 
 #if DEBUG
-#Preview("1 · Pen appears (0.5 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 0.5))
-}
+    #Preview("1 · Pen appears (0.5 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 0.5))
+    }
 
-#Preview("2 · Drawing the pin (1.2 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 1.2))
-}
+    #Preview("2 · Drawing the pin (1.2 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 1.2))
+    }
 
-#Preview("3 · Pin almost closed (1.8 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 1.8))
-}
+    #Preview("3 · Pin almost closed (1.8 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 1.8))
+    }
 
-#Preview("4 · Ball hops to center (2.3 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 2.3))
-}
+    #Preview("4 · Ball hops to center (2.3 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 2.3))
+    }
 
-#Preview("5 · First pulse (2.75 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 2.75))
-}
+    #Preview("5 · First pulse (2.75 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 2.75))
+    }
 
-#Preview("6 · Antennae (3.6 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 3.6))
-}
+    #Preview("6 · Antennae (3.6 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 3.6))
+    }
 
-#Preview("7 · Antennae wave (4.2 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 4.2))
-}
+    #Preview("7 · Antennae wave (4.2 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 4.2))
+    }
 
-#Preview("8 · Relay ball drops from the pin (4.8 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 4.8))
-}
+    #Preview("8 · Relay ball drops from the pin (4.8 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 4.8))
+    }
 
-#Preview("9 · Letters spring up as it rolls (5.5 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 5.5))
-}
+    #Preview("9 · Letters spring up as it rolls (5.5 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 5.5))
+    }
 
-#Preview("10 · Ball pulls the t crossbar out (6.2 s)") {
-    SplashFrameView(frame: SplashTimeline.frame(at: 6.2))
-}
+    #Preview("10 · Ball pulls the t crossbar out (6.2 s)") {
+        SplashFrameView(frame: SplashTimeline.frame(at: 6.2))
+    }
 
-#Preview("11 · Final") {
-    SplashFrameView(frame: SplashTimeline.finalFrame)
-}
+    #Preview("11 · Final") {
+        SplashFrameView(frame: SplashTimeline.finalFrame)
+    }
 
-#Preview("11 · Final · Dark + large text") {
-    SplashFrameView(frame: SplashTimeline.finalFrame)
-        .preferredColorScheme(.dark)
-        .dynamicTypeSize(.accessibility2)
-}
+    #Preview("11 · Final · Dark + large text") {
+        SplashFrameView(frame: SplashTimeline.finalFrame)
+            .preferredColorScheme(.dark)
+            .dynamicTypeSize(.accessibility2)
+    }
 #endif

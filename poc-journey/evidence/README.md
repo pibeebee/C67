@@ -27,3 +27,11 @@ The scoped `.gitattributes` preserves whitespace in historical output, attribute
 PNG/JPEG metadata is stripped where present; no location-bearing legacy screenshots were assumed safe merely because they were in a PoC directory. Fixture/source dates and forecast provenance are preserved.
 
 No release containing unreviewed raw data is created by this handoff. The excluded originals remain on the source machine, with their disposition recorded. A future safe release archive must be reviewed and hashed separately.
+
+## Maintained implementation after import
+
+The publication manifest is the immutable import baseline. The [development ledger](development-manifest.json) records each reviewed functional change to a maintained imported file: its baseline publication SHA256, current SHA256, rationale and local verification reference. The validator requires both hashes to match and rejects duplicate/unknown paths, archival overrides, missing references and later unregistered changes. It does not rewrite the import manifest. The former refresh flag now fails with guidance rather than changing historical hashes.
+
+Only implementation and guide paths explicitly allowed by the validator may evolve through this ledger. Historical outputs, fixtures and source snapshots continue to match their original publication hashes. Newly authored code is covered by the normal source tests, static checks and scoped review; it is not presented as an imported historical artifact. Read the [consolidation report](../docs/consolidation-report-2026-11-09.md) for fresh execution evidence.
+
+Maintained Context Lab code/guide changes record `publicationManifest: context-lab-publication.json` in the development ledger; original imports use `publication-manifest.json`. The validator matches ownership as well as baseline/current hashes and permits maintained source paths only. Neither ownership field authorizes historical artifacts or reports to change.

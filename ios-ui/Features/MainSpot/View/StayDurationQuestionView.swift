@@ -21,26 +21,26 @@ struct StayDurationQuestionView: View {
 }
 
 #if DEBUG
-#Preview("PLACES MAIN COURSE STAY") {
-    @Previewable @State var selection: StayDuration?
-    PreferenceQuestionPreview {
-        StayDurationQuestionView(placeName: "ROH Project", selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("PLACES MAIN COURSE STAY") {
+        @Previewable @State var selection: StayDuration?
+        PreferenceQuestionPreview {
+            StayDurationQuestionView(placeName: "ROH Project", selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("PLACES MAIN COURSE STAY SELECTED") {
-    @Previewable @State var selection: StayDuration? = .ninetyMinutes
-    PreferenceQuestionPreview {
-        StayDurationQuestionView(placeName: "ROH Project", selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("PLACES MAIN COURSE STAY SELECTED") {
+        @Previewable @State var selection: StayDuration? = .ninetyMinutes
+        PreferenceQuestionPreview {
+            StayDurationQuestionView(placeName: "ROH Project", selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("STAY · Dark, large text") {
-    @Previewable @State var selection: StayDuration? = .ninetyMinutes
-    PreferenceQuestionPreview {
-        StayDurationQuestionView(placeName: "FamiCafé by FamilyMart", selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("STAY · Dark, large text") {
+        @Previewable @State var selection: StayDuration? = .ninetyMinutes
+        PreferenceQuestionPreview {
+            StayDurationQuestionView(placeName: "FamiCafé by FamilyMart", selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

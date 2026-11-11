@@ -251,7 +251,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     import os
     environment = dict(os.environ, TJ_CAPABILITY_OUTPUT=str(args.output.resolve()))
-    command = ["rtk", "proxy", "swift", "test", "--package-path", str(PACKAGE), "--filter", "BuswayCapabilityTests"]
+    command = ["swift", "test", "--package-path", str(PACKAGE), "--filter", "BuswayCapabilityTests"]
     with (args.output / "swift-tests.log").open("w") as log:
         completed = subprocess.run(command, env=environment, stdout=log, stderr=subprocess.STDOUT, check=False)
     core, sweep, errors = collect(manifest, args.output, completed.returncode)

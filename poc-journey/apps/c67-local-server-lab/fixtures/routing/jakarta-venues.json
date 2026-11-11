@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "evidenceMode": "OSM_SOURCE_ONLY_ENTRANCES_UNVERIFIED",
+  "sourceURL": "https://download.geofabrik.de/asia/indonesia/java.html",
+  "licenseURL": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "OpenStreetMap contributors",
+  "sourceSHA256": "b7f66e5b9d93677f081c5a93fd67e8d08c7a63abead7de925bf3a3439cf004dc",
+  "graphInputSHA256": "9340256256dbff5a011df5a8de98810b20f9010c7a3d46f251295b6fccd558cc",
+  "bounds": [
+    -6.45,
+    106.62,
+    -6.08,
+    107.0
+  ],
+  "extractionPolicy": "Keep nodes inside bounds, ways with all references retained, complete turn restrictions. Boundary-crossing ways omitted; do not benchmark at the cut boundary.",
+  "note": "Nearest distinct named cafes, two per area. POI centers are not public entrance or parking evidence; no Apple/Google pins inferred.",
+  "venues": [
+    {
+      "id": "osm-node-12110042118",
+      "name": "Toko Kopi TUKU - Blok M",
+      "area": "Blok M",
+      "displayPoint": {
+        "latitude": -6.2439142,
+        "longitude": 106.7997041
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/12110042118"
+    },
+    {
+      "id": "osm-node-9748512421",
+      "name": "D corne",
+      "area": "Blok M",
+      "displayPoint": {
+        "latitude": -6.2445604,
+        "longitude": 106.7983704
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/9748512421"
+    },
+    {
+      "id": "osm-node-7071022693",
+      "name": "Eat Well & Coffee",
+      "area": "Cikini",
+      "displayPoint": {
+        "latitude": -6.1916202,
+        "longitude": 106.8387506
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/7071022693"
+    },
+    {
+      "id": "osm-node-6219136690",
+      "name": "Starbucks",
+      "area": "Cikini",
+      "displayPoint": {
+        "latitude": -6.1880008,
+        "longitude": 106.8366042
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/6219136690"
+    },
+    {
+      "id": "osm-way-482194043",
+      "name": "Kopilojik Tebet",
+      "area": "Tebet",
+      "displayPoint": {
+        "latitude": -6.23202604,
+        "longitude": 106.85495900000001
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/way/482194043"
+    },
+    {
+      "id": "osm-way-482365631",
+      "name": "Kopi Buntu",
+      "area": "Tebet",
+      "displayPoint": {
+        "latitude": -6.2317715,
+        "longitude": 106.85582672000001
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/way/482365631"
+    },
+    {
+      "id": "osm-node-11256916505",
+      "name": "Tanamera",
+      "area": "Senayan-SCBD",
+      "displayPoint": {
+        "latitude": -6.2236254,
+        "longitude": 106.8096599
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/11256916505"
+    },
+    {
+      "id": "osm-node-12109993592",
+      "name": "Toko Kopi TUKU - GBK Senayan",
+      "area": "Senayan-SCBD",
+      "displayPoint": {
+        "latitude": -6.2218904,
+        "longitude": 106.8045591
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/12109993592"
+    },
+    {
+      "id": "osm-node-4373146458",
+      "name": "Maxx Coffee",
+      "area": "Kemang",
+      "displayPoint": {
+        "latitude": -6.2615974,
+        "longitude": 106.8125358
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/4373146458"
+    },
+    {
+      "id": "osm-node-12110033736",
+      "name": "Toko Kopi TUKU - Kemang",
+      "area": "Kemang",
+      "displayPoint": {
+        "latitude": -6.262392,
+        "longitude": 106.8160957
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/12110033736"
+    },
+    {
+      "id": "osm-node-9729553215",
+      "name": "Point Coffee - Indomaret Kebon Jeruk Episentrum (TPO8)",
+      "area": "Kebon Jeruk",
+      "displayPoint": {
+        "latitude": -6.1908738,
+        "longitude": 106.7675124
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/9729553215"
+    },
+    {
+      "id": "osm-node-6956700686",
+      "name": "Keep On",
+      "area": "Kebon Jeruk",
+      "displayPoint": {
+        "latitude": -6.1876679,
+        "longitude": 106.7770461
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/6956700686"
+    },
+    {
+      "id": "osm-node-13626123718",
+      "name": "Berkala Coffee",
+      "area": "Ragunan",
+      "displayPoint": {
+        "latitude": -6.2897778,
+        "longitude": 106.817439
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/13626123718"
+    },
+    {
+      "id": "osm-node-4443581213",
+      "name": "Chillowd (warung kopi)",
+      "area": "Ragunan",
+      "displayPoint": {
+        "latitude": -6.286167,
+        "longitude": 106.818914
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/4443581213"
+    },
+    {
+      "id": "osm-node-6951184892",
+      "name": "Kopi Kenangan",
+      "area": "Kuningan",
+      "displayPoint": {
+        "latitude": -6.2274953,
+        "longitude": 106.8328977
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/6951184892"
+    },
+    {
+      "id": "osm-node-4241116099",
+      "name": "Crematology Coffee Roasters",
+      "area": "Kuningan",
+      "displayPoint": {
+        "latitude": -6.2288012,
+        "longitude": 106.8338831
+      },
+      "accesses": [],
+      "sourceURL": "https://www.openstreetmap.org/node/4241116099"
+    }
+  ],
+  "sourceFile": "java-261109.osm.pbf",
+  "downloadedAt": "2026-11-10T09:52:35.237747+00:00",
+  "preparedAt": "2026-11-10T09:59:18.738750+00:00"
+}

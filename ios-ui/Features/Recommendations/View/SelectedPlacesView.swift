@@ -62,30 +62,30 @@ struct SelectedPlacesView: View {
 }
 
 #if DEBUG
-private struct SelectedPlacesPreview: View {
-    @State private var selected = Array(RecommendationsPreviewData.batch.places.prefix(3).map(\.place))
+    private struct SelectedPlacesPreview: View {
+        @State private var selected = Array(RecommendationsPreviewData.batch.places.prefix(3).map(\.place))
 
-    var body: some View {
-        Color.clear
-            .sheet(isPresented: .constant(true)) {
-                SelectedPlacesView(
-                    existing: [],
-                    selected: $selected,
-                    details: Dictionary(
-                        RecommendationsPreviewData.batch.places.map { ($0.id, $0) },
-                        uniquingKeysWith: { first, _ in first }
+        var body: some View {
+            Color.clear
+                .sheet(isPresented: .constant(true)) {
+                    SelectedPlacesView(
+                        existing: [],
+                        selected: $selected,
+                        details: Dictionary(
+                            RecommendationsPreviewData.batch.places.map { ($0.id, $0) },
+                            uniquingKeysWith: { first, _ in first }
+                        )
                     )
-                )
-            }
+                }
+        }
     }
-}
 
-#Preview("PLACES LIST ADDED LIST") {
-    SelectedPlacesPreview()
-}
+    #Preview("PLACES LIST ADDED LIST") {
+        SelectedPlacesPreview()
+    }
 
-#Preview("PLACES LIST ADDED LIST · Dark") {
-    SelectedPlacesPreview()
-        .preferredColorScheme(.dark)
-}
+    #Preview("PLACES LIST ADDED LIST · Dark") {
+        SelectedPlacesPreview()
+            .preferredColorScheme(.dark)
+    }
 #endif

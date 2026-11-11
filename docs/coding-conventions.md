@@ -72,3 +72,8 @@ The first run downloads the pinned binary from its official GitHub release; netw
 Other files follow [`.editorconfig`](../.editorconfig). Generated Xcode configuration still comes from `ios-ui/project.yml`. Keep dependencies and formatter version upgrades separate from unrelated feature changes.
 
 Reference: [Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/), [SwiftFormat](https://github.com/nicklockwood/SwiftFormat).
+
+The two focused-English evaluator snapshots listed in
+evaluations/foundation-models-2026-11-04/focused-english/freeze.sha256 are excluded from
+automatic Swift layout changes so their recorded source hashes remain reproducible.
+Maintained app/package sources, including the other evaluation harness copies, stay covered.

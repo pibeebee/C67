@@ -1,0 +1,55 @@
+# Task: preserve main and repair the Journey contribution
+
+Status: Ready for review; remote CI pending at commit time
+Owner: Giovan, implementation assisted by Codex
+Reviewers: repository maintainers
+Branch: `gi/pr12-journey-fixes`, fast-forward update of PR #12's existing branch
+
+## Outcome
+
+Make the teammate's Journey PoC contribution reviewable and reproducible while retaining current main for the original application and unrelated standalone PoC UI. Preserve the existing Journey/shared-engine work and historical evidence.
+
+## Scope and dependencies
+
+- Allowed: Journey Showcase, its tests/docs, necessary shared TripIntegration engine/resources, the publication development ledger, and PoC verification support.
+- Preserve main: production UI/backend/contracts, Context Lab application, Foundation Lab standalone App/UITests, and Trip Integration diagnostic App/UITests.
+- Fix the Live new-trip embedding reset and the Showcase view compilation problem observed on the CI toolchain.
+- Data: authored replay inputs and verified pinned public model assets; no live provider calls or shared deployment.
+- External actions authorized: repair and update existing PR #12 with a normal fast-forward commit/push. No force push, merge, branch-protection change, remote database change or provider call is part of this task.
+
+## References
+
+- [Contribution assessment](../poc-consolidation-assessment-2026-11-09.md)
+- [Journey guide](../../apps/c67-journey-showcase/README.md)
+- [Evidence policy](../../evidence/README.md)
+- [PR #12](https://github.com/pibeebee/C67/pull/12)
+
+## Acceptance criteria
+
+- [x] Unrelated application files match the fetched current main; required shared-engine additions remain.
+- [x] New Live trips preserve E5 and Demo trips retain explicit replay behavior, including mode switches.
+- [x] The refactored origin/area/spot UI retains its interaction and accessibility identifiers.
+- [x] Journey Simulator unit/UI tests and relevant deterministic checks pass locally.
+- [ ] The updated PR head passes the full remote checks, including the previously failing native job.
+- [x] Evidence hashes and documentation describe the scoped contribution without rewriting historical claims.
+
+## Verification plan
+
+Use `scripts/verify.sh` for package/publication checks, the pinned Swift formatter, a dedicated Simulator for Journey tests, and the remote CI toolchain for the original compiler regression. Record local and CI evidence separately. Use a fresh ignored output directory and preserve failed runs.
+
+## Result and handoff
+
+- Restored eight standalone Foundation Lab/Trip Integration App/UITest files to main `72a8c9575e079be4ad7cebed26c3d8ae5c5ff640`; production and Context Lab source also match that main. Required shared-engine changes remain.
+- New Live trips preserve E5; the added regression covers Demo/Live switching and restored Live drafts without calling a provider.
+- The first attempt split the destination-preferences result builder into smaller sections and concrete rows. Commit `04a6e3f` still crashed in Swift 6.3.3 IR generation on CI, so that speculative refactor was reverted. The next repair keeps the original view layout and wraps the main-actor origin setter in an explicit `Binding` closure rather than passing its bound method reference. Remote verification remains required.
+- Added `verify.sh journey-models` and its portable dispatch test; the native CI job now runs Journey model/geometry tests on an available Simulator.
+- Enabled manual dispatch of the existing Starter checks without changing its jobs, permissions or automatic triggers. The `223fd7f` push updated the PR head but produced no automatic check suites; explicit dispatch allows both unchanged suites to verify the selected final revision. No required check is removed or bypassed.
+- First repair, local Xcode 27.2 / iPhone 17e iOS 27.2 Simulator: **27 tests passed, zero failed/skipped**, comprising 19 model/geometry tests and eight UI tests. This includes origin/area/required-spot flow, maps, persistence, export, large text and the Live E5 regression. A new full run is required for the subsequent minimal setter repair; these earlier results are not represented as testing that later revision.
+- Python: **55 tests passed**. Pinned SwiftFormat: **365 files checked**, no formatting changes needed. Publication: **3,415 imported copies / 12 maintained changes** validated; portability: **3,538 files** checked. Git whitespace check passed.
+- Evidence: local result bundle `/tmp/c67-pr12-journey-fixed.xcresult`, summary `/tmp/c67-pr12-journey-summary.json`, log `/tmp/c67-pr12-journey-fixed.log`. Raw outputs are not committed. Historical consolidation reports are preserved as earlier evidence.
+- Remote verification: follow [PR #12 checks](https://github.com/pibeebee/C67/pull/12/checks) for the updated commit; the failed original run remains available as historical evidence. Local Xcode 27.2 success alone does not establish Xcode 26.6 compatibility.
+- No real-provider call, physical-device acceptance, production deployment or merge is claimed. The existing Context Lab LLM-reason validation error is outside this task.
+
+## Failed CI attempt retained
+
+The [first repaired-head CI run](https://github.com/pibeebee/C67/actions/runs/42595185143) passed publication/CLI but failed the fourth native build on Xcode 26.6 / Swift 6.3.3. The first three app builds passed. The crash remained in `JourneyLocationPreferences.swift`, with `SyncCallEmission::setArgs` / `SmallVectorBase::grow_pod` frames while generating a compiler-created thunk. This motivates removing the origin `Binding` setter's bound method reference; it does not establish the workaround until the next remote run passes. The starter workflow on `04a6e3f` passed all five jobs.

@@ -1,0 +1,2671 @@
+{
+  "date": "2026-11-09",
+  "mode": "reviewed Context Lab source and small evidence export",
+  "files": [
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/CSQLite/module.modulemap",
+      "sourceSHA256": "67bac33754b447a28e62d315c37dbd1bcc0a363e94375de0834c55f56a49ee39",
+      "publicationPath": "apps/c67-local-server-lab/Sources/CSQLite/module.modulemap",
+      "publishedSHA256": "67bac33754b447a28e62d315c37dbd1bcc0a363e94375de0834c55f56a49ee39",
+      "publishedBytes": 71,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/CSQLite/shim.h",
+      "sourceSHA256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024",
+      "publicationPath": "apps/c67-local-server-lab/Sources/CSQLite/shim.h",
+      "publishedSHA256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024",
+      "publishedBytes": 21,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/ContextPilotAdapters/AppleContextAdapters.swift",
+      "sourceSHA256": "eef95d5971091ca6c60a8d1602bd5ad708c8692c1f2c3c1d44671abc06ccc1ba",
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotAdapters/AppleContextAdapters.swift",
+      "publishedSHA256": "5ed6db040347731cd772b013f0cf1bc258c41c19dbc1d2610e7029514baff220",
+      "publishedBytes": 3931,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/ContextPilotCLI/DiagnosticETA.swift",
+      "sourceSHA256": "e73c37f5c66bdddc1166e9b75ba8078e58bab72ca69ec219cc114d9b5a95a792",
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotCLI/DiagnosticETA.swift",
+      "publishedSHA256": "796718b6573018f7058b69b9afc4ab8482a8c007e58b3f92c2dda059ba2c1767",
+      "publishedBytes": 702,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/ContextPilotCLI/ETAResponseProbe.swift",
+      "sourceSHA256": "772c3ac845d80ae4febdb3aaebb541280622363bd0335d7f93b675bf3c820ed2",
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotCLI/ETAResponseProbe.swift",
+      "publishedSHA256": "824c7a0b195e19955dd9f30689a854b7d5720f39408ca1205f84281f92316afa",
+      "publishedBytes": 3547,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/ContextPilotCLI/LivePilot.swift",
+      "sourceSHA256": "cc4ce388d8ab4498d94347be8c3ae9696213fb89ca691f4cf4d81642f0747fbd",
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotCLI/LivePilot.swift",
+      "publishedSHA256": "63ededf170d91d2e85e58fc059616ef41baf533dd09a18be2287df5cda1bfe11",
+      "publishedBytes": 20717,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/ContextPilotCLI/main.swift",
+      "sourceSHA256": "6e03d91478433637e1fa089857976545b687f854645ec269e15cc57aeb2e9283",
+      "publicationPath": "apps/c67-local-server-lab/Sources/ContextPilotCLI/main.swift",
+      "publishedSHA256": "bd0003f542b8b6481198548ffa23acd5979d73b1c86689665d449a84e487166d",
+      "publishedBytes": 5885,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/DynamicTripContracts/Contracts.swift",
+      "sourceSHA256": "50d9e4ac72ddd6c90043c0a15fc4fd91f865b34f416109f44268d2ad096ddeb6",
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripContracts/Contracts.swift",
+      "publishedSHA256": "d58105fdd98f4323390a6bd6c7a4ef81d0d04d954a41dbe2f7907599fbdcf416",
+      "publishedBytes": 10616,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/DynamicTripEngine/ContextExperiments.swift",
+      "sourceSHA256": "a5696eff4177f5c5f2309f16cdd8b90a36d4a23ea561b032b85fde278b119ce8",
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripEngine/ContextExperiments.swift",
+      "publishedSHA256": "7887466180c3e4394e8c7f119b7a1e2b237772644d3aa5e09dfc2c838a8e7187",
+      "publishedBytes": 7229,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/DynamicTripEngine/DynamicTripService.swift",
+      "sourceSHA256": "e7b7a76b68dc004bba551c21ff786e6a7d19f8799af40adf44c3414eb06766b1",
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripEngine/DynamicTripService.swift",
+      "publishedSHA256": "87edf4fd92e18a7dc853e0f992d0aa322b3de1745440a3ce34c0411ec898dd50",
+      "publishedBytes": 13723,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/DynamicTripEngine/SunsetOpportunityPolicy.swift",
+      "sourceSHA256": "e4d3e680d5a08e5db60d85db1bcfd6c5c7079814390c08ffde43100fdb08c7ec",
+      "publicationPath": "apps/c67-local-server-lab/Sources/DynamicTripEngine/SunsetOpportunityPolicy.swift",
+      "publishedSHA256": "7dc164478ae35a0ee16ae366f984dc0cf583df0a5aa81e08a7ec77b7b6282594",
+      "publishedBytes": 1790,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift",
+      "sourceSHA256": "ee9848361a7891735674e06d4550302904a36fdfc39fd8869000e468f1db72d2",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift",
+      "publishedSHA256": "36bf861c6e74b14adb34f235d08375e1304e95ac445273f9cf9743d42c343872",
+      "publishedBytes": 16398,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/ContextService.swift",
+      "sourceSHA256": "325829cd20cc8e20d41288f653cec06e5996179275361ce702161e8cd371b914",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/ContextService.swift",
+      "publishedSHA256": "a8c5b3079531124ca2e564a0a6f107f1c2ffc99e27909e04472951ca053671e0",
+      "publishedBytes": 6725,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/GooglePlaces.swift",
+      "sourceSHA256": "200bcb24a57fc2f081e7cdad4a915e851c378dfdda085d0b4944dde7ea8b8722",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/GooglePlaces.swift",
+      "publishedSHA256": "228885f0d326e2da35b9e775becc43ab4b42179295bdfde32863649235fd3998",
+      "publishedBytes": 11808,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/OptionalItineraryPlanner.swift",
+      "sourceSHA256": "e3e19982d8f8077dca81eb42074b0ef803929d725cd117e8ff6dd72c2e3e2a34",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/OptionalItineraryPlanner.swift",
+      "publishedSHA256": "5b7f978b84aca18f9fe9ca00e0c39b78a161e1072973423bebf515ca8f3f86b3",
+      "publishedBytes": 5322,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/SunsetVenueEvidence.swift",
+      "sourceSHA256": "3ef91b8c6dd1d5a45f41b84ab9461af4198495e8801aaa780eb89afe76208cb7",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/SunsetVenueEvidence.swift",
+      "publishedSHA256": "52fcb79826a696b63d44067ef2455b3ab7364202ee31687c9fbcf6a8cbeed5e8",
+      "publishedBytes": 1359,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/VisitContext.swift",
+      "sourceSHA256": "4f762fd4c28d5d6e0c00027daf4204dff8a1f1af41e9116b576df95247956cde",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/VisitContext.swift",
+      "publishedSHA256": "08c78d8f102d4d7c5b751ee10074a2958fa57f41539248f1d6e8dccae52a1a8a",
+      "publishedBytes": 22479,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlaceContextEngine/VisitOpportunity.swift",
+      "sourceSHA256": "1f2b8a64ffcf7372dcf52b654e32f8a1053aabcbeaf94815d2f010d13f7b0deb",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlaceContextEngine/VisitOpportunity.swift",
+      "publishedSHA256": "3167809fd1381748af124d74f7049f2d68f6abca761e3f4b56c6f13672e8b0dd",
+      "publishedBytes": 4795,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlacesContextCLI/LiveVerification.swift",
+      "sourceSHA256": "92881701076adc04b0bb120b6667fb00a1a919aaafb8f34036658a970b98acdb",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlacesContextCLI/LiveVerification.swift",
+      "publishedSHA256": "816d8b91d98f98081107b56d6a22706fcdef816f6cca45d3b7b269ab9a8a8c7e",
+      "publishedBytes": 6186,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlacesContextCLI/main.swift",
+      "sourceSHA256": "1f8b595da90b59d7bd3014655d3b8c472da1b420f149dfe427d910cefedad3a3",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlacesContextCLI/main.swift",
+      "publishedSHA256": "4a3c3a8e3b9f37839afb12803eb27b003ae6257fdf4b711bba04f870a030d390",
+      "publishedBytes": 1922,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerBenchCLI/OriginalDriver.swift",
+      "sourceSHA256": "93f23af02f44cf6361aa73d2059682f5a53f483fcc3f1495c9a29859809591d7",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerBenchCLI/OriginalDriver.swift",
+      "publishedSHA256": "0c07761171b7e82a82f2c2f1b9da7aad98c51fb2344b19be7af0b2ac1e80ac01",
+      "publishedBytes": 8086,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerBenchCLI/OriginalIntegrationModel.swift",
+      "sourceSHA256": "f8df262a3f0d301245a08325fb91173bfdda63ef9c5dacfc3481bad190078fa8",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerBenchCLI/OriginalIntegrationModel.swift",
+      "publishedSHA256": "89a4dff8da31173871aa4b2813a0e50af60da5efc85ecb66b92380b81d253414",
+      "publishedBytes": 18560,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerBenchCLI/main.swift",
+      "sourceSHA256": "f8c78af6a340d83269116e430782223c3dca20ca1945cd0fcda05ec362106621",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerBenchCLI/main.swift",
+      "publishedSHA256": "89c243fbfcaaa4d671d325d9974951693e6e0f8b6090236131560915fb849ed1",
+      "publishedBytes": 9700,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerContracts/Campaign.swift",
+      "sourceSHA256": "0816a4c2761cff773672aceaf075f1ffc3da4279a9614541445f24000c849012",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerContracts/Campaign.swift",
+      "publishedSHA256": "254b9187abef473791989793220dd6d08e2904c7337e369428e0f5771660e1a0",
+      "publishedBytes": 2923,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerContracts/Contracts.swift",
+      "sourceSHA256": "dfcbcbf08ed279dca1e301be6af388de8aeea0bb4bfd96c116d61a918ddb34d2",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerContracts/Contracts.swift",
+      "publishedSHA256": "6d03bf03e37a14f30bec8fe7b709165091044cd9786d8358ef737fb495d96ec8",
+      "publishedBytes": 7366,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerContracts/LabClient.swift",
+      "sourceSHA256": "b85eb63645486dd6a103ccfccfc96834450fe139b8f90126a4f12b6f41c802b3",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerContracts/LabClient.swift",
+      "publishedSHA256": "7cdab0a2cd955fd7bd7ba58c3825d4e4ac1b878795a266803e77cb8282dbb41a",
+      "publishedBytes": 4890,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Catalog.swift",
+      "sourceSHA256": "43383ce8a0293e4cddc9098d36b384f705d75201adc74c07b48a3fe0be6f0541",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Catalog.swift",
+      "publishedSHA256": "520b15003cafd62368fd964dc1b568a0189ff85b235ea0b14dbea8a3353653c5",
+      "publishedBytes": 2882,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Contracts.swift",
+      "sourceSHA256": "f73d3df01460842e426aa4063ac6db3737903f191b8a8ebfb483ebd2fa198b64",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Contracts.swift",
+      "publishedSHA256": "b7c6e32d7c6d8a64ed078e85afb5a10cad11a1f185b86f963b29960371622217",
+      "publishedBytes": 11462,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/IntegrationPipeline.swift",
+      "sourceSHA256": "fbe0fde7a503aefb3804caabd4bf0446e44cbebe0e3a75d1f5dc197ce1f102ad",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/IntegrationPipeline.swift",
+      "publishedSHA256": "09d86021a7879c81054bf966a789cd9433a9c7179464fd33dee7f5a7a4361421",
+      "publishedBytes": 23250,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabDiscoveryProbe.swift",
+      "sourceSHA256": "eff6b38ba10741accf02c8b96ee35b43ba85c4a0f5a742bda7159d75e66f172c",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabDiscoveryProbe.swift",
+      "publishedSHA256": "8db64fbdc2705dbb836daeb381d4da15acb94290fea0794661e57528cc7d69b0",
+      "publishedBytes": 6837,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabE5Embedding.swift",
+      "sourceSHA256": "00d254df57f57f8230484d555c4b887095f89204cc84ad5a193710050a975960",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabE5Embedding.swift",
+      "publishedSHA256": "be4844f9e0838b55b5a99c13dfb8ea8047ea03e5590d5cdf128f35a83c79f765",
+      "publishedBytes": 6154,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabEmbeddingCache.swift",
+      "sourceSHA256": "12544643d7d5010e0740a6479d82f4c87cc2cd45be8a644dcd47a8605e609c2a",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabEmbeddingCache.swift",
+      "publishedSHA256": "18e903a2e0e2beaade8c7011eadad2cc1cd4512ff62173ffba72cb051f2f007e",
+      "publishedBytes": 1538,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabFastPlanner.swift",
+      "sourceSHA256": "e07d5252648bc95fdc4a2caeaeae892e1a758397255fc0c855c22723d13608fb",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabFastPlanner.swift",
+      "publishedSHA256": "f58504c7c8088b78b35d259cb77550f79d34a4f7099dbf06014d85714d4a0a7c",
+      "publishedBytes": 7433,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabPinnedSearch.swift",
+      "sourceSHA256": "54f2b33a1a05493e2594f828f98513f5b527610fa0d965c4331818266374627f",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabPinnedSearch.swift",
+      "publishedSHA256": "2b055af43219e3a4863149de4358ff06e08c2113992d0dc1939c0d5646f4e8c1",
+      "publishedBytes": 1401,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabProvider.swift",
+      "sourceSHA256": "9f03b4e5363160980e7979ebec35a3e0f3e9dd7f185707ff8ffc3d2de97b4236",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabProvider.swift",
+      "publishedSHA256": "340bb29c769c04a0f9265ebc2b91c874bd880df648b3b610aed485d9289d5b44",
+      "publishedBytes": 5337,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabREST.swift",
+      "sourceSHA256": "d8a9eac8c00e9a5377105764e2252b945b155ed76b6423d3472c1ffb4df11f98",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabREST.swift",
+      "publishedSHA256": "64dcd35a6e96110d29d8d49055c0d64b17223bafff859a035a613562810c64f3",
+      "publishedBytes": 16822,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabRuntime.swift",
+      "sourceSHA256": "a72f139cb9b505c39adbc0bf6baf08cda84abf8f4eac5f560060f264b6951579",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabRuntime.swift",
+      "publishedSHA256": "cd62ea68a2c525754dbf44d2ab32df9fd72d02758daea82ca7915803db764e05",
+      "publishedBytes": 6685,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/LabSelectivePlanner.swift",
+      "sourceSHA256": "624dc74e062c734d088e8e5b415f114d048468e10710fb2883e0399b63e2ed57",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/LabSelectivePlanner.swift",
+      "publishedSHA256": "24e6f50292a5b62f5c6a31780fcc591b6ab27755d381ef4e4f62206a25bb562a",
+      "publishedBytes": 5109,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/PlaceResolver.swift",
+      "sourceSHA256": "8495ab613c0867d5b1899dd2b61e80bcbcd3e71979a53b884bb8568245314646",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/PlaceResolver.swift",
+      "publishedSHA256": "fa015503a9ce6d1694e8103aba6d7963878f52ea40aefc6564c2ae931ff7c635",
+      "publishedBytes": 4025,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/ReplayFixtures.swift",
+      "sourceSHA256": "4b050bb3f4a8db54fafd02ac0bcb658525878104f2788a484567853e7e34fc7e",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/ReplayFixtures.swift",
+      "publishedSHA256": "2f4ace586409791876326db1c9a20f7eb29143c476102212f31188de57f48c3a",
+      "publishedBytes": 4131,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/E5-LICENSE.txt",
+      "sourceSHA256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/E5-LICENSE.txt",
+      "publishedSHA256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe",
+      "publishedBytes": 1104,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/NOTICE.md",
+      "sourceSHA256": "867c0dcf8acf9b9fa7849017583cfcae2222371a0956341fcc1ff6565049e82d",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/NOTICE.md",
+      "publishedSHA256": "867c0dcf8acf9b9fa7849017583cfcae2222371a0956341fcc1ff6565049e82d",
+      "publishedBytes": 1535,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/manifest.json",
+      "sourceSHA256": "e61ace3b1939553ba256c049bdbbb2e38dbeb58e0d1c15185f186fc30dd6d85f",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Resources/Model/manifest.json",
+      "publishedSHA256": "e61ace3b1939553ba256c049bdbbb2e38dbeb58e0d1c15185f186fc30dd6d85f",
+      "publishedBytes": 1312,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Resources/quality.json",
+      "sourceSHA256": "58002661cc9f5cf9fc53eba6af654bbc9ed9c4a34b84e456b785f8745924ef2f",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Resources/quality.json",
+      "publishedSHA256": "58002661cc9f5cf9fc53eba6af654bbc9ed9c4a34b84e456b785f8745924ef2f",
+      "publishedBytes": 16354,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Resources/timing.json",
+      "sourceSHA256": "c21e538a337ebb69f702232e8a61e52ba73493cac00bc6f70fee64b20f7c9ce8",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Resources/timing.json",
+      "publishedSHA256": "c21e538a337ebb69f702232e8a61e52ba73493cac00bc6f70fee64b20f7c9ce8",
+      "publishedBytes": 30639,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/Storage.swift",
+      "sourceSHA256": "9ee6560e649459b37a7770bd1f2283f009dfc5f7285a83c7c1f1656cb25055c7",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/Storage.swift",
+      "publishedSHA256": "618a45438b18d61f19ee8e3b6697ad93ddb96f2a9f349c414b97885f42623b7f",
+      "publishedBytes": 11153,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripAppleServices.swift",
+      "sourceSHA256": "c74085f2265fce9e621b9e9b1a4393f5b887636ebbc8029d7904cc821fc058b2",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripAppleServices.swift",
+      "publishedSHA256": "a65a94addfa054a2a0484ae111f3641b3722d10262ba971af8938174e87c4d8d",
+      "publishedBytes": 27097,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripEngine.swift",
+      "sourceSHA256": "7348ed0698551bf02b81f1233d38eb18158931c198fbf2add4cf8a8832a1e2a5",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripEngine.swift",
+      "publishedSHA256": "f615e1fff5d1613a534cabfc6a75f93b7fadd3e9cea7a0231432718c28f8dd61",
+      "publishedBytes": 15443,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripInputSupport.swift",
+      "sourceSHA256": "3698e1166ec47a09f516c1549cd71589d65d6290fb64607a65155c775191ef94",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripInputSupport.swift",
+      "publishedSHA256": "e7fc70947ce7c55c59f56b575daf5f759cfb4c2de9d533aeb999b937c1fb35dc",
+      "publishedBytes": 8485,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripLogStore.swift",
+      "sourceSHA256": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripLogStore.swift",
+      "publishedSHA256": "e69d8ef099a1d56917ca6bc3a99c9af6e2aede268bbbcf53b412b244ee6e73a6",
+      "publishedBytes": 9168,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripModels.swift",
+      "sourceSHA256": "d49ffbbd60f5a371b958afb59f9ab093511dbf8a17447f136469244f471c1977",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripModels.swift",
+      "publishedSHA256": "03d6ac15f6a12510fec5e4a9d2895381b45dd57059e6ed7ae31194e76d802851",
+      "publishedBytes": 30365,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingBridge.swift",
+      "sourceSHA256": "fdcd8dfeed95ef7bb1ab949444d0fc6825d25d99777892cbd10790c07a62174a",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingBridge.swift",
+      "publishedSHA256": "7b1628593d513a4fabe731f4d344476a5d9ac66b3321ccb6952fddf4985a2334",
+      "publishedBytes": 9444,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingCore.swift",
+      "sourceSHA256": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingCore.swift",
+      "publishedSHA256": "691babfb35b2ca70c2e1ac0ece1bcff1f86360196ec0ce6f83aae72daf16c486",
+      "publishedBytes": 30275,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripSearchSupport.swift",
+      "sourceSHA256": "85d37dfad43339b5389f66bfca023934615bf3614a5f209b6a0ab7bb1002063f",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripSearchSupport.swift",
+      "publishedSHA256": "d08218444e55cdd8ecdef27ac0ff98b3bfd406148e3896ef8d31e6459a44dece",
+      "publishedBytes": 7259,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripTimeAwarePlanner.swift",
+      "sourceSHA256": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripTimeAwarePlanner.swift",
+      "publishedSHA256": "effc96d9a8c2ae2a8056a0b608bc5531c33658bb1449f49b4c8609a51437c33c",
+      "publishedBytes": 20801,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripWeatherSupport.swift",
+      "sourceSHA256": "c58a424a89447df8c093c3c2af8f77818f034fd8e0598fff6f8b198541cbc226",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/VendorRouting/NativeTripWeatherSupport.swift",
+      "publishedSHA256": "325a4ce687c3648f2f8a2a6f2a74f65ff03a821186d155dfcd9a21f4fed34f7e",
+      "publishedBytes": 11001,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerEngine/WeatherCoordinator.swift",
+      "sourceSHA256": "73a7857fc2827d746fbcfcca9cd88dab77e34af2be625844fbd2f3c440f077cf",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerEngine/WeatherCoordinator.swift",
+      "publishedSHA256": "a358540f1cbce6b525017cb687f6ca069e748c375ff9a6ffeeb8e4dc37765fd3",
+      "publishedBytes": 11129,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerServer/main.swift",
+      "sourceSHA256": "4ef870975d7d731a4e7aded3c5d06d107f7081ac00b8682752b1b2bbcef91bb1",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerServer/main.swift",
+      "publishedSHA256": "cfa9b7af05b73dd58d2c71930aa7e3754d81f69554547e41a814fa48acf3406b",
+      "publishedBytes": 18364,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerStorage/JobStore.swift",
+      "sourceSHA256": "5bae4e08f679c298055a161fbc4ed66ae0ecb83ba2fa8240abeaafd27351d453",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerStorage/JobStore.swift",
+      "publishedSHA256": "f1df58418bffc54895a9d5121b6103eb6c0812d334b5fd9dbb46ce1941e67673",
+      "publishedBytes": 6274,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/PlannerStorage/LabWorker.swift",
+      "sourceSHA256": "93fb891493636a9d502c50fe43faeae5086eea841fed775d83e12e0baaf58f09",
+      "publicationPath": "apps/c67-local-server-lab/Sources/PlannerStorage/LabWorker.swift",
+      "publishedSHA256": "442a2331ed31dec9716c47d7ccce955e47468d5f09ce70e961363c09603cc37b",
+      "publishedBytes": 5208,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationContracts/PersonalContracts.swift",
+      "sourceSHA256": "f701c31259ece8274f523dff53b6846c13583f4b5ff7ff0afc0a3e1f8ea209e4",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationContracts/PersonalContracts.swift",
+      "publishedSHA256": "71c1e2dadf26e667526e1728d4edbb0f19419487ff12c5a01325fc0863b4422a",
+      "publishedBytes": 12833,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationContracts/PersonalEmbeddingText.swift",
+      "sourceSHA256": "098b8ff514b5004e489357a08b96f24af49313ea428485c75615ddfd3a969003",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationContracts/PersonalEmbeddingText.swift",
+      "publishedSHA256": "38bd660ff1d9ca99c24beec7471a982c92838eeae6407e393c7e6ae099bd9504",
+      "publishedBytes": 2827,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationEngine/CandidatePolicy.swift",
+      "sourceSHA256": "cc8c9305e52ad2742c6e0092c1e8215907986efff0ef6feb504b39b0c12736ef",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationEngine/CandidatePolicy.swift",
+      "publishedSHA256": "0267b4746590590ff61030dd4fb6fe7e9450e5bd7f7ed5c75ed6d3c9eaed0a0c",
+      "publishedBytes": 7858,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationEngine/OpenRouterClient.swift",
+      "sourceSHA256": "a4c2d52332c57e4d2e56fbafa2ad0c24e2ba0da6268a6178ed36670b25e3cb98",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationEngine/OpenRouterClient.swift",
+      "publishedSHA256": "43eeb84fe76720f5ce6d176f0d2f1666bf0f84b8366fa1eba8d1c8262bca6b31",
+      "publishedBytes": 14425,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationEngine/PersonalMomentReview.swift",
+      "sourceSHA256": "f8ad455d9f92c27013f055b31da7f5f413c8deb259bce8c097c2584c552a79b1",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationEngine/PersonalMomentReview.swift",
+      "publishedSHA256": "e8d0a36fe22632b9012860ebcdbd4d5f56a2068513379b2083e17205ed4458c6",
+      "publishedBytes": 3577,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Sources/RecommendationEngine/RecommendationService.swift",
+      "sourceSHA256": "451f1ed8a6c7ad76516b70c2dcb884958bb7ba8323783cd9b2fbcef8611f61ba",
+      "publicationPath": "apps/c67-local-server-lab/Sources/RecommendationEngine/RecommendationService.swift",
+      "publishedSHA256": "16a148d3297633d81a28e2e3d507453b3fc5595002f9c20d96cb1c24a804e23b",
+      "publishedBytes": 15958,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/ContextPilotTests/BenchmarkCodeValidationTests.swift",
+      "sourceSHA256": "87010f8fd6cfe19db3ef5ba548e37b88edd9d101adf1952cbeaff769abc4fda6",
+      "publicationPath": "apps/c67-local-server-lab/Tests/ContextPilotTests/BenchmarkCodeValidationTests.swift",
+      "publishedSHA256": "288ee929592ad464578b89e20b0fa26ef28156cb4d3e344e76c34a0e5431a031",
+      "publishedBytes": 6277,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/ContextPilotTests/ContextPilotTests.swift",
+      "sourceSHA256": "98c62941e8d30fa4b13163f21a11d51565d7274344ff3e35257dded2b7850a73",
+      "publicationPath": "apps/c67-local-server-lab/Tests/ContextPilotTests/ContextPilotTests.swift",
+      "publishedSHA256": "bbabc47aeebfca8bb3c1611080e8a93cf7b34a8e20a4154e0063ec3310ae1a64",
+      "publishedBytes": 6485,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/DynamicTripTests/DynamicContextTests.swift",
+      "sourceSHA256": "a3aaa83c9963725d3434e2dc2d4d9b866cc7370abd2c2845d97aca624e274f76",
+      "publicationPath": "apps/c67-local-server-lab/Tests/DynamicTripTests/DynamicContextTests.swift",
+      "publishedSHA256": "aba6697db1f43de097e1d4086b6968ba1b75bdcc5e6ab032f14f9843cbb4e246",
+      "publishedBytes": 2684,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/DynamicTripTests/SunsetOpportunityTests.swift",
+      "sourceSHA256": "39c1ea7c6937dd72541f85f2a4fe6d173fa38235b5bf60d499d542dbcbad04d4",
+      "publicationPath": "apps/c67-local-server-lab/Tests/DynamicTripTests/SunsetOpportunityTests.swift",
+      "publishedSHA256": "fa47acb887271860f89e9f83c7d961a224eb84fc4a634abed6b7961329e27608",
+      "publishedBytes": 6741,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlaceContextEngineTests/PlaceContextTests.swift",
+      "sourceSHA256": "c3822fb0ec42a412f94549b4d480cdd142ac35015c08ec024596a23996891d25",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlaceContextEngineTests/PlaceContextTests.swift",
+      "publishedSHA256": "9ec187b1b22786b3f79b0a01a8e9756265954086987c9619113b1b72fd08266b",
+      "publishedBytes": 16900,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/DecisionSequenceTests.swift",
+      "sourceSHA256": "a2a59040977edccfdf0d76dcf071d3ddcdb98e7f0b8a6e4e143a29b866200dd2",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/DecisionSequenceTests.swift",
+      "publishedSHA256": "58c2a67b8e75d395f64940f014030aab0c267ac5d30e165e8ca0362c3d59d3f1",
+      "publishedBytes": 7712,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/FastPlannerTests.swift",
+      "sourceSHA256": "6c055002c5f972e694e42ac9c8bf39952ac1ec799df55d811f2fb07d3868f129",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/FastPlannerTests.swift",
+      "publishedSHA256": "484037d2fb92edd00a574281661586d5ccd86292122042ede4194bd2c3b0b14a",
+      "publishedBytes": 7327,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/LabTests.swift",
+      "sourceSHA256": "e95900140b2e779e34b8b6afb3907f2b65158b430914cdb5e180720786c841f0",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/LabTests.swift",
+      "publishedSHA256": "4b569a3ba950ee2b1fde913881997d105bd17adf114e192d54046fbe881ccaa8",
+      "publishedBytes": 15364,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/RESTFaultTests.swift",
+      "sourceSHA256": "7308886c63346569722eb75b16239faa1830dc03c3b2d169bac1313d1dfa5eb4",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/RESTFaultTests.swift",
+      "publishedSHA256": "acb75933fdab258d8d7e57dd0c982a61cc2b1b48525f9e110c57909dde82ca8c",
+      "publishedBytes": 6284,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/ReusedIntegrationTests.swift",
+      "sourceSHA256": "1c61f5b17a4612bee40f938421185669be0b4fe67daa7d1af4f0a2adfe9d2c12",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/ReusedIntegrationTests.swift",
+      "publishedSHA256": "900961ebdd0beeeb28262adb48c816d7454667785a46f02950c2625d505a2a6e",
+      "publishedBytes": 18515,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/PlannerLabTests/ReusedWeatherStorageTests.swift",
+      "sourceSHA256": "85f5ca04bd9138a17e8ab02f23a59df09c652a1f8c504b862c90c16c4cf05312",
+      "publicationPath": "apps/c67-local-server-lab/Tests/PlannerLabTests/ReusedWeatherStorageTests.swift",
+      "publishedSHA256": "e9bd64b8d41ee2b2015e273cf60d51fb180200a79b02a2a233304a496ad5ece3",
+      "publishedBytes": 6498,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/RecommendationTests/PersonalEmbeddingTextTests.swift",
+      "sourceSHA256": "adf770092b8629562eba67e7e818ffb9f07f4200dcfdcff2abfdf59a09fa2e98",
+      "publicationPath": "apps/c67-local-server-lab/Tests/RecommendationTests/PersonalEmbeddingTextTests.swift",
+      "publishedSHA256": "a61094ed88fe29ac4ac50aa5676fc1ec2553b9fff07d3225408b4d3648cbe3e7",
+      "publishedBytes": 2200,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/RecommendationTests/PersonalMomentReviewTests.swift",
+      "sourceSHA256": "752ba19a281dc0ba9e3c2bcb89aad40805296cbe9aaa7624e822a919d27a025a",
+      "publicationPath": "apps/c67-local-server-lab/Tests/RecommendationTests/PersonalMomentReviewTests.swift",
+      "publishedSHA256": "04cdf79387ed4cce0f3b233095670f48672bab856a66943c3ff2dc99c268ff88",
+      "publishedBytes": 3708,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/RecommendationTests/PersonalRecommendationTests.swift",
+      "sourceSHA256": "29c86dd66ebda24121771df381bcc0aebc032eb6124c69a6a1293c89e636bf69",
+      "publicationPath": "apps/c67-local-server-lab/Tests/RecommendationTests/PersonalRecommendationTests.swift",
+      "publishedSHA256": "87eaeecd8a28e4e04016a70abf731789b6611445bb387117042823db6ee08dee",
+      "publishedBytes": 20202,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Tests/RecommendationTests/SyntheticUserDiagnosticsTests.swift",
+      "sourceSHA256": "b869091f8f1c9718d95fc9c6f01b4d03d2a22906d0abad800427ec5f446a0442",
+      "publicationPath": "apps/c67-local-server-lab/Tests/RecommendationTests/SyntheticUserDiagnosticsTests.swift",
+      "publishedSHA256": "b765fd0045530ae6d91f30ba9262dcf5442c55aa137dcf3c4f7533afad9f856a",
+      "publishedBytes": 3946,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/audit-context-pilot-live.py",
+      "sourceSHA256": "516c86cab66b012e69eafa6b95b2ec2ddacc216997d97bc355040b274b2eb2ee",
+      "publicationPath": "apps/c67-local-server-lab/scripts/audit-context-pilot-live.py",
+      "publishedSHA256": "516c86cab66b012e69eafa6b95b2ec2ddacc216997d97bc355040b274b2eb2ee",
+      "publishedBytes": 6826,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/audit-dynamic-context.py",
+      "sourceSHA256": "17d2506b9ebd588dacf88f6d35b1f1cedddd8ee029b954ad76c7828b205599b6",
+      "publicationPath": "apps/c67-local-server-lab/scripts/audit-dynamic-context.py",
+      "publishedSHA256": "17d2506b9ebd588dacf88f6d35b1f1cedddd8ee029b954ad76c7828b205599b6",
+      "publishedBytes": 8469,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/audit-personal-recommendation.py",
+      "sourceSHA256": "91146211cd4a476bb7426184739b0189f844648cb220843380f65070482bfe42",
+      "publicationPath": "apps/c67-local-server-lab/scripts/audit-personal-recommendation.py",
+      "publishedSHA256": "91146211cd4a476bb7426184739b0189f844648cb220843380f65070482bfe42",
+      "publishedBytes": 12287,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/audit-synthetic-user.py",
+      "sourceSHA256": "bc56024456aed409f900e8678b816cdf3509241e203a3da628169f9e29b6dd34",
+      "publicationPath": "apps/c67-local-server-lab/scripts/audit-synthetic-user.py",
+      "publishedSHA256": "bc56024456aed409f900e8678b816cdf3509241e203a3da628169f9e29b6dd34",
+      "publishedBytes": 3451,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/audit.py",
+      "sourceSHA256": "1db26947bbb02c2dd7f75a7360bf78ae2b3d6c0bf1e9bafe3fec5e2dc6cd9232",
+      "publicationPath": "apps/c67-local-server-lab/scripts/audit.py",
+      "publishedSHA256": "a7392dc314336c964024b8c8e41e595cad84f3c2e0d0ef3160b73ee9ca029684",
+      "publishedBytes": 16515,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/check-personal-http.py",
+      "sourceSHA256": "c6a6c7cbf863e3de7b16af9468ed0713bc6ffa48d2c80758edb3e0a2d2f6c890",
+      "publicationPath": "apps/c67-local-server-lab/scripts/check-personal-http.py",
+      "publishedSHA256": "c6a6c7cbf863e3de7b16af9468ed0713bc6ffa48d2c80758edb3e0a2d2f6c890",
+      "publishedBytes": 5193,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/context-five-fixtures.py",
+      "sourceSHA256": "85a567a14a0a8b970ac926f105154de6ec19f8e23cc07a2fce8702864571d816",
+      "publicationPath": "apps/c67-local-server-lab/scripts/context-five-fixtures.py",
+      "publishedSHA256": "85a567a14a0a8b970ac926f105154de6ec19f8e23cc07a2fce8702864571d816",
+      "publishedBytes": 2488,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/context-five-followup.py",
+      "sourceSHA256": "1219cc687357a99a54968be7f79463c6da46a24cb924b30564aa243019204b82",
+      "publicationPath": "apps/c67-local-server-lab/scripts/context-five-followup.py",
+      "publishedSHA256": "1219cc687357a99a54968be7f79463c6da46a24cb924b30564aa243019204b82",
+      "publishedBytes": 2431,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/context-pilot-fixtures.py",
+      "sourceSHA256": "2aad0a2fa865cd9227b899a33373cb56bafda7c3baf4763b9f5c2658705e9e6b",
+      "publicationPath": "apps/c67-local-server-lab/scripts/context-pilot-fixtures.py",
+      "publishedSHA256": "2aad0a2fa865cd9227b899a33373cb56bafda7c3baf4763b9f5c2658705e9e6b",
+      "publishedBytes": 12756,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/context-pilot.py",
+      "sourceSHA256": "6f33d44101442e99a2801ccf54a53179a60e0d444e61286922d695ef50c9886c",
+      "publicationPath": "apps/c67-local-server-lab/scripts/context-pilot.py",
+      "publishedSHA256": "6f33d44101442e99a2801ccf54a53179a60e0d444e61286922d695ef50c9886c",
+      "publishedBytes": 1115,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/decision-fixtures.py",
+      "sourceSHA256": "87fdb660f3383989e10e3a72d7a48d9e37b81b914ed456cf93e198a48a564257",
+      "publicationPath": "apps/c67-local-server-lab/scripts/decision-fixtures.py",
+      "publishedSHA256": "87fdb660f3383989e10e3a72d7a48d9e37b81b914ed456cf93e198a48a564257",
+      "publishedBytes": 10040,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/decision-monitor.py",
+      "sourceSHA256": "a31eececcbbf7b33fe98545294c91843ea0d151f4eb0859c92a1203db3c3cf51",
+      "publicationPath": "apps/c67-local-server-lab/scripts/decision-monitor.py",
+      "publishedSHA256": "a31eececcbbf7b33fe98545294c91843ea0d151f4eb0859c92a1203db3c3cf51",
+      "publishedBytes": 1233,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/decision-negative-controls.py",
+      "sourceSHA256": "5a21a1aecf9e797f66e7d983ab0a0ee2ffed1422009ee9b85e5782d67df68a31",
+      "publicationPath": "apps/c67-local-server-lab/scripts/decision-negative-controls.py",
+      "publishedSHA256": "5a21a1aecf9e797f66e7d983ab0a0ee2ffed1422009ee9b85e5782d67df68a31",
+      "publishedBytes": 1927,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/device-run.py",
+      "sourceSHA256": "0365197bfbcb17b46b18532dc13011c5733b3a5e6ec2bbda88ad621e06ba0312",
+      "publicationPath": "apps/c67-local-server-lab/scripts/device-run.py",
+      "publishedSHA256": "0365197bfbcb17b46b18532dc13011c5733b3a5e6ec2bbda88ad621e06ba0312",
+      "publishedBytes": 2303,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/dynamic-context-selection.py",
+      "sourceSHA256": "3e3e02bad55f789e81af209d919c4cd5298c40eea791014d4c6940c161c2fa6e",
+      "publicationPath": "apps/c67-local-server-lab/scripts/dynamic-context-selection.py",
+      "publishedSHA256": "3e3e02bad55f789e81af209d919c4cd5298c40eea791014d4c6940c161c2fa6e",
+      "publishedBytes": 3883,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/dynamic-context-server.py",
+      "sourceSHA256": "0369dfe0fb9a0c7160c2c43ce4e30163134a8bb4e5730f616eb89ef802b3e974",
+      "publicationPath": "apps/c67-local-server-lab/scripts/dynamic-context-server.py",
+      "publishedSHA256": "0369dfe0fb9a0c7160c2c43ce4e30163134a8bb4e5730f616eb89ef802b3e974",
+      "publishedBytes": 3644,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/export-personal-observations.py",
+      "sourceSHA256": "1d9d975111d71df97cb716f9cd187a1f89779c8496278dba7c4fb8087cfeeb09",
+      "publicationPath": "apps/c67-local-server-lab/scripts/export-personal-observations.py",
+      "publishedSHA256": "1d9d975111d71df97cb716f9cd187a1f89779c8496278dba7c4fb8087cfeeb09",
+      "publishedBytes": 994,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/export-synthetic-user.py",
+      "sourceSHA256": "05b8879091cb99d0568b6cf899332d2e4dbd3b5b3a83470f928cb71aa912c56b",
+      "publicationPath": "apps/c67-local-server-lab/scripts/export-synthetic-user.py",
+      "publishedSHA256": "05b8879091cb99d0568b6cf899332d2e4dbd3b5b3a83470f928cb71aa912c56b",
+      "publishedBytes": 1504,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/freeze.py",
+      "sourceSHA256": "23754b082e164f2a19dcdbf10af908dd66339b34968f8be620464b16681ffcef",
+      "publicationPath": "apps/c67-local-server-lab/scripts/freeze.py",
+      "publishedSHA256": "23754b082e164f2a19dcdbf10af908dd66339b34968f8be620464b16681ffcef",
+      "publishedBytes": 1926,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/http-check.py",
+      "sourceSHA256": "cee770ca72bc4d371cbe7874ac1d268f925a31d1fe9f14acf341dbeec27e0fab",
+      "publicationPath": "apps/c67-local-server-lab/scripts/http-check.py",
+      "publishedSHA256": "cee770ca72bc4d371cbe7874ac1d268f925a31d1fe9f14acf341dbeec27e0fab",
+      "publishedBytes": 3704,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/merge-live-blocks.py",
+      "sourceSHA256": "59939a839a711def342ffba3ef02e5388aad45022b849d3c7d4ca13754a58bc1",
+      "publicationPath": "apps/c67-local-server-lab/scripts/merge-live-blocks.py",
+      "publishedSHA256": "59939a839a711def342ffba3ef02e5388aad45022b849d3c7d4ca13754a58bc1",
+      "publishedBytes": 3019,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/monitor-simulator-live.py",
+      "sourceSHA256": "93d41d2d96b69e3ef7c80040a452e2c36a87cf37f1edcd770cc546ae71b2ef6c",
+      "publicationPath": "apps/c67-local-server-lab/scripts/monitor-simulator-live.py",
+      "publishedSHA256": "93d41d2d96b69e3ef7c80040a452e2c36a87cf37f1edcd770cc546ae71b2ef6c",
+      "publishedBytes": 2129,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/places-context.py",
+      "sourceSHA256": "364fbd121618036f490115d880ad382ddc06af5e2e69db85784ac9b54d38ce40",
+      "publicationPath": "apps/c67-local-server-lab/scripts/places-context.py",
+      "publishedSHA256": "364fbd121618036f490115d880ad382ddc06af5e2e69db85784ac9b54d38ce40",
+      "publishedBytes": 1134,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/prepare-live.py",
+      "sourceSHA256": "7a6f66dce48cdb32a3518bfac380f818fcab2f2851514696e7de6bbbae368b38",
+      "publicationPath": "apps/c67-local-server-lab/scripts/prepare-live.py",
+      "publishedSHA256": "7a6f66dce48cdb32a3518bfac380f818fcab2f2851514696e7de6bbbae368b38",
+      "publishedBytes": 4004,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/probe-recommendation-models.py",
+      "sourceSHA256": "ed2aad1c260aac8c0a710b300e498ef552e837fa394850e933f2ea6e986483df",
+      "publicationPath": "apps/c67-local-server-lab/scripts/probe-recommendation-models.py",
+      "publishedSHA256": "ed2aad1c260aac8c0a710b300e498ef552e837fa394850e933f2ea6e986483df",
+      "publishedBytes": 3084,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/recommendation-preflight.py",
+      "sourceSHA256": "a3ddcfb8e6b90a1ecc1f5439baaf35a23035b2770e5ffb1c43d277f8cc5ede37",
+      "publicationPath": "apps/c67-local-server-lab/scripts/recommendation-preflight.py",
+      "publishedSHA256": "a3ddcfb8e6b90a1ecc1f5439baaf35a23035b2770e5ffb1c43d277f8cc5ede37",
+      "publishedBytes": 2577,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/recommendation-smoke.py",
+      "sourceSHA256": "2af4a3265b58392c31233e03b34eee0595171834514938b7b583ad95e931f26f",
+      "publicationPath": "apps/c67-local-server-lab/scripts/recommendation-smoke.py",
+      "publishedSHA256": "2af4a3265b58392c31233e03b34eee0595171834514938b7b583ad95e931f26f",
+      "publishedBytes": 3028,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/replay.py",
+      "sourceSHA256": "af0677819ca1104b4ba9edfb4c8b7ec440f878bced2da842e20666c54646563d",
+      "publicationPath": "apps/c67-local-server-lab/scripts/replay.py",
+      "publishedSHA256": "af0677819ca1104b4ba9edfb4c8b7ec440f878bced2da842e20666c54646563d",
+      "publishedBytes": 609,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/report-context-five.py",
+      "sourceSHA256": "024bc35012823b91e0d4f6bb71221c1a23f1dfea7f3ad61fd2676d3765a0b1bf",
+      "publicationPath": "apps/c67-local-server-lab/scripts/report-context-five.py",
+      "publishedSHA256": "024bc35012823b91e0d4f6bb71221c1a23f1dfea7f3ad61fd2676d3765a0b1bf",
+      "publishedBytes": 8714,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/report-decision.py",
+      "sourceSHA256": "d81f95c5365a3342ad1c4cac0f476e42bece0f1f02d0e7b342cdd42bcccebe3c",
+      "publicationPath": "apps/c67-local-server-lab/scripts/report-decision.py",
+      "publishedSHA256": "d81f95c5365a3342ad1c4cac0f476e42bece0f1f02d0e7b342cdd42bcccebe3c",
+      "publishedBytes": 4822,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/report-dynamic-context.py",
+      "sourceSHA256": "169f82ee22e92cdae9c658ff78a2d65ae8b65b97cc249559ac349414d5aee6d6",
+      "publicationPath": "apps/c67-local-server-lab/scripts/report-dynamic-context.py",
+      "publishedSHA256": "169f82ee22e92cdae9c658ff78a2d65ae8b65b97cc249559ac349414d5aee6d6",
+      "publishedBytes": 4174,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/report-fast.py",
+      "sourceSHA256": "14a918c76ec1bdc19d9c15f5c2e7ff12e3d3d1570e04d77c4b36c09975431ed5",
+      "publicationPath": "apps/c67-local-server-lab/scripts/report-fast.py",
+      "publishedSHA256": "14a918c76ec1bdc19d9c15f5c2e7ff12e3d3d1570e04d77c4b36c09975431ed5",
+      "publishedBytes": 5482,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/report-live.py",
+      "sourceSHA256": "a9c2ec45dc9a6a7ff8e9c97accdeb1823543da006b06afc7804e0fd005de2239",
+      "publicationPath": "apps/c67-local-server-lab/scripts/report-live.py",
+      "publishedSHA256": "a9c2ec45dc9a6a7ff8e9c97accdeb1823543da006b06afc7804e0fd005de2239",
+      "publishedBytes": 4304,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/restore-device.py",
+      "sourceSHA256": "5f5e5b3db8d116b9537742ee4c45b192719e8adc85429e27c02c836ae32d43af",
+      "publicationPath": "apps/c67-local-server-lab/scripts/restore-device.py",
+      "publishedSHA256": "5f5e5b3db8d116b9537742ee4c45b192719e8adc85429e27c02c836ae32d43af",
+      "publishedBytes": 1997,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/sample_resources.py",
+      "sourceSHA256": "fcd421e561a6b23fc181f5208de228526718557b7a5ccdba3aa0b10cfc3bdc4b",
+      "publicationPath": "apps/c67-local-server-lab/scripts/sample_resources.py",
+      "publishedSHA256": "fcd421e561a6b23fc181f5208de228526718557b7a5ccdba3aa0b10cfc3bdc4b",
+      "publishedBytes": 715,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/simulator-run.py",
+      "sourceSHA256": "21536ac473217e08fbff634d6a94124536da2269b052809aa252aa4b5191a78e",
+      "publicationPath": "apps/c67-local-server-lab/scripts/simulator-run.py",
+      "publishedSHA256": "21536ac473217e08fbff634d6a94124536da2269b052809aa252aa4b5191a78e",
+      "publishedBytes": 2235,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/start.py",
+      "sourceSHA256": "54c5581b499e6e227a7da9f40bc61f3ca927bc8c0171525c3b0afd60e14d1e39",
+      "publicationPath": "apps/c67-local-server-lab/scripts/start.py",
+      "publishedSHA256": "54c5581b499e6e227a7da9f40bc61f3ca927bc8c0171525c3b0afd60e14d1e39",
+      "publishedBytes": 1643,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/stop.py",
+      "sourceSHA256": "43abc7db06148adea149ca6a41273a69726acf63c34082c9f3d4f1591c45d600",
+      "publicationPath": "apps/c67-local-server-lab/scripts/stop.py",
+      "publishedSHA256": "43abc7db06148adea149ca6a41273a69726acf63c34082c9f3d4f1591c45d600",
+      "publishedBytes": 1043,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/test-auditor.py",
+      "sourceSHA256": "7a2f4b563b578deee90cd1387f77142b44be5b699d093064a7139a8868b7b65f",
+      "publicationPath": "apps/c67-local-server-lab/scripts/test-auditor.py",
+      "publishedSHA256": "7a2f4b563b578deee90cd1387f77142b44be5b699d093064a7139a8868b7b65f",
+      "publishedBytes": 1595,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/test-context-benchmark-auditors.py",
+      "sourceSHA256": "0c68cbc52c168cd32b684194b216bd6df3881fcb2907f513ef6db9ccb4df89c7",
+      "publicationPath": "apps/c67-local-server-lab/scripts/test-context-benchmark-auditors.py",
+      "publishedSHA256": "0c68cbc52c168cd32b684194b216bd6df3881fcb2907f513ef6db9ccb4df89c7",
+      "publishedBytes": 2627,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/scripts/test-place-context-http.py",
+      "sourceSHA256": "f935bd4fb91895431475ef967a5213dd2a1645f1cda78aa4348da7e59a4df719",
+      "publicationPath": "apps/c67-local-server-lab/scripts/test-place-context-http.py",
+      "publishedSHA256": "f935bd4fb91895431475ef967a5213dd2a1645f1cda78aa4348da7e59a4df719",
+      "publishedBytes": 3728,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/API.md",
+      "sourceSHA256": "042c388b3ffcc981210de6028eaeff52675ba31308331d3362c1dbce4553a74c",
+      "publicationPath": "apps/c67-local-server-lab/docs/API.md",
+      "publishedSHA256": "042c388b3ffcc981210de6028eaeff52675ba31308331d3362c1dbce4553a74c",
+      "publishedBytes": 5096,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "sourceSHA256": "6b4dc63435aa41ba7f338299550ef5d888f714c84e686cf7309f22ccea50ed47",
+      "publicationPath": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "publishedSHA256": "e909efa70d479d903b7daa10ec6c1ef07b5ffd71d3022d9dfe65be0ec17689f5",
+      "publishedBytes": 9247,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/BENCHMARK_PROTOCOL.md",
+      "sourceSHA256": "29579636470721600ffd39c729dea4416e1914ddd5ce1f581bc4c0702975f842",
+      "publicationPath": "apps/c67-local-server-lab/docs/BENCHMARK_PROTOCOL.md",
+      "publishedSHA256": "29579636470721600ffd39c729dea4416e1914ddd5ce1f581bc4c0702975f842",
+      "publishedBytes": 7024,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/CONTEXT_FIVE_PROTOCOL_2026-11-07.md",
+      "sourceSHA256": "08c1a50a88013b530d0a16d112d6deabb451bbfa5ef48f09dcc133cefebf3055",
+      "publicationPath": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_PROTOCOL_2026-11-07.md",
+      "publishedSHA256": "08c1a50a88013b530d0a16d112d6deabb451bbfa5ef48f09dcc133cefebf3055",
+      "publishedBytes": 9048,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "sourceSHA256": "25c3179d9efda076f5681e3dfe2f418c2c73fbdf5b97d4d036d414b9a9dcf8db",
+      "publicationPath": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "publishedSHA256": "6f995865fe7851c5ee743e6e611b5872fe5a62b1667244eda40d973fa84e2d24",
+      "publishedBytes": 9601,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/CONTEXT_PILOT_PROTOCOL_2026-11-07.md",
+      "sourceSHA256": "ed95ac18de97cf9ec1bc276e3d3bbb3eb90800b9c6d46a20734c83af66ec4397",
+      "publicationPath": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_PROTOCOL_2026-11-07.md",
+      "publishedSHA256": "ed95ac18de97cf9ec1bc276e3d3bbb3eb90800b9c6d46a20734c83af66ec4397",
+      "publishedBytes": 7007,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "sourceSHA256": "2f58bffc28ba359c56c8b3c054a0fa4cdd8f95830a097c09d95817eac7db8ecf",
+      "publicationPath": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "publishedSHA256": "8585cf56b6695096203dd39ce29e887319dd8710b6d437021da5b5f606a98a47",
+      "publishedBytes": 14457,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/DECISION_SEQUENCE_PROTOCOL_2026-11-07.md",
+      "sourceSHA256": "771abf08fabb5f452c24b26dcbd342abb0b3caf9e82ca12188433e5cae9b0b39",
+      "publicationPath": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_PROTOCOL_2026-11-07.md",
+      "publishedSHA256": "771abf08fabb5f452c24b26dcbd342abb0b3caf9e82ca12188433e5cae9b0b39",
+      "publishedBytes": 3510,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "sourceSHA256": "836c2e9c57b82f087eb44a817d253ea2c3d76cf35929f06fa1475af8b04b8001",
+      "publicationPath": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "publishedSHA256": "7f12645d17c5a29c5427e3d00c650fbaf9018e8cc36eef7d98723b609a981d92",
+      "publishedBytes": 14205,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_PROTOCOL_2026-11-07.md",
+      "sourceSHA256": "20b7155a556c91676032722e546d974355f06a80e0d32a279286c1523a1b493e",
+      "publicationPath": "apps/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_PROTOCOL_2026-11-07.md",
+      "publishedSHA256": "20b7155a556c91676032722e546d974355f06a80e0d32a279286c1523a1b493e",
+      "publishedBytes": 5816,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md",
+      "sourceSHA256": "587a072c8277dc2a6a562a3f20b68126fbd187ca691900bf9f46b11569561dc8",
+      "publicationPath": "apps/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md",
+      "publishedSHA256": "d22f8563e33ad95712343ebc3a9ee9c14448fca1305286ef92401e91a65db144",
+      "publishedBytes": 13177,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/FAST_D_PROTOCOL_2026-11-06.md",
+      "sourceSHA256": "f502ae9e78416e811a71b398c3a930828a13f39a8e5f4b1bc755f45acb663817",
+      "publicationPath": "apps/c67-local-server-lab/docs/FAST_D_PROTOCOL_2026-11-06.md",
+      "publishedSHA256": "f502ae9e78416e811a71b398c3a930828a13f39a8e5f4b1bc755f45acb663817",
+      "publishedBytes": 5113,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "sourceSHA256": "b4e021f68b20f085cf4253eb7a446bc3b0a5c3054cd19ff91389c15ef252eae0",
+      "publicationPath": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "publishedSHA256": "0caff75aba27dfe582f0802129e9bcff430976c33d619833d09421941fc61cc1",
+      "publishedBytes": 9816,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_LIVE_2026-11-07.md",
+      "sourceSHA256": "07b81c98932c1a41aaad2f98b921cc90a685a7fb7638d9a8fd7102f003260434",
+      "publicationPath": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_LIVE_2026-11-07.md",
+      "publishedSHA256": "e937c1ae7e443bf56dd5cf9d2d1ef64b4be8e525f373755af01a3cb283ec28f9",
+      "publishedBytes": 3913,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_SETUP.md",
+      "sourceSHA256": "98bc492aa523110291b0b05f76a28e375222f502c756bdb5e1065e1cb91bd770",
+      "publicationPath": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_SETUP.md",
+      "publishedSHA256": "8464f2affdd7f894bc6c26c13f30fd27eadbe8826aecc78d414b52b295378cec",
+      "publishedBytes": 9823,
+      "disposition": "included",
+      "transformations": [
+        "redacted original home paths or device identifiers"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_VERIFICATION_2026-11-07.md",
+      "sourceSHA256": "c7050092d6b1eebe5498f9eb343c33b8317bbac8aa9c1d2f3377e58ca3574e21",
+      "publicationPath": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_VERIFICATION_2026-11-07.md",
+      "publishedSHA256": "beb8b47a5585fdeabfb2301d73b01662bd3c63ed15d87bc9c734c33acd28f160",
+      "publishedBytes": 5096,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/INTERACTIVE_ROUTE_MAP_2026-11-09.md",
+      "sourceSHA256": "bd2ed13d821231f24e186ea6890c99a36932d22a4bc5b890811cee66fe83510f",
+      "publicationPath": "apps/c67-local-server-lab/docs/INTERACTIVE_ROUTE_MAP_2026-11-09.md",
+      "publishedSHA256": "bd2ed13d821231f24e186ea6890c99a36932d22a4bc5b890811cee66fe83510f",
+      "publishedBytes": 2010,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "sourceSHA256": "e9e54ad80820da176ae6cdf66f1aa2c7e3ded3a967e45e3b02a9b9a5f94cc1bb",
+      "publicationPath": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "publishedSHA256": "7d10e3299bbea502e3d8d3156080179641a8ac719a4c287a250888da28fac48d",
+      "publishedBytes": 11075,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/PERSONAL_RECOMMENDATION_PROTOCOL_2026-11-08.md",
+      "sourceSHA256": "ad8385ba9b520edba37df444371ff4a339d32edf447438f6fb8d25a38380e0dc",
+      "publicationPath": "apps/c67-local-server-lab/docs/PERSONAL_RECOMMENDATION_PROTOCOL_2026-11-08.md",
+      "publishedSHA256": "0f5d90885fad401aa35877a4c1aada2c34093552995dac318d828c8905e8027f",
+      "publishedBytes": 12435,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/PERSONAL_RECOMMENDATION_RESULTS_2026-11-08.md",
+      "sourceSHA256": "cc7dab82a68dc202eba11991d5e74c5a9574b9ac2042011e0d48e2861b03004e",
+      "publicationPath": "apps/c67-local-server-lab/docs/PERSONAL_RECOMMENDATION_RESULTS_2026-11-08.md",
+      "publishedSHA256": "cc7dab82a68dc202eba11991d5e74c5a9574b9ac2042011e0d48e2861b03004e",
+      "publishedBytes": 12617,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/PERSONAL_SIMPLIFIED_RESULTS_2026-11-09.md",
+      "sourceSHA256": "0a5bdfd70ce9b9578fb4b5180d9fcb512f6bd4e34e4f44587c4da5dab94ba1d2",
+      "publicationPath": "apps/c67-local-server-lab/docs/PERSONAL_SIMPLIFIED_RESULTS_2026-11-09.md",
+      "publishedSHA256": "0a5bdfd70ce9b9578fb4b5180d9fcb512f6bd4e34e4f44587c4da5dab94ba1d2",
+      "publishedBytes": 4181,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md",
+      "sourceSHA256": "854db80fb7324121b68080170c9644ccaa834265072fecff5ab3a149607693d2",
+      "publicationPath": "apps/c67-local-server-lab/docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md",
+      "publishedSHA256": "25584f4a9649e93dbf8b9f36186cd1d000b1434492fd3da0679e48696c826468",
+      "publishedBytes": 4482,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/REMEDIATION_PLAN_2026-11-09.md",
+      "sourceSHA256": "2c19f785145128a46fd6d4ed95a5ce509896a344c60074729e3d2dff07bcf135",
+      "publicationPath": "apps/c67-local-server-lab/docs/REMEDIATION_PLAN_2026-11-09.md",
+      "publishedSHA256": "2c19f785145128a46fd6d4ed95a5ce509896a344c60074729e3d2dff07bcf135",
+      "publishedBytes": 10901,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/REUSE.md",
+      "sourceSHA256": "83ae022fb0200314f18a39af024c538222c72ebca077ff4e53d7b9e99ab391cc",
+      "publicationPath": "apps/c67-local-server-lab/docs/REUSE.md",
+      "publishedSHA256": "83ae022fb0200314f18a39af024c538222c72ebca077ff4e53d7b9e99ab391cc",
+      "publishedBytes": 3979,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/SETUP.md",
+      "sourceSHA256": "9ffc0e5727601b5c002734f4638b9e0894e4a44dfc99a8dc0f728217e54447d3",
+      "publicationPath": "apps/c67-local-server-lab/docs/SETUP.md",
+      "publishedSHA256": "9ffc0e5727601b5c002734f4638b9e0894e4a44dfc99a8dc0f728217e54447d3",
+      "publishedBytes": 5549,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/SYNTHETIC_USER_PROTOCOL_2026-11-08.md",
+      "sourceSHA256": "3c8c377aaed6228d0a0d9dd6b61df6e22af208cd670e280597cac62c29952b06",
+      "publicationPath": "apps/c67-local-server-lab/docs/SYNTHETIC_USER_PROTOCOL_2026-11-08.md",
+      "publishedSHA256": "3c8c377aaed6228d0a0d9dd6b61df6e22af208cd670e280597cac62c29952b06",
+      "publishedBytes": 3823,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/SYNTHETIC_USER_RESULTS_2026-11-08.md",
+      "sourceSHA256": "f9af24b943ca80a58cc98575c10f53c4e6b2d7610ab33784d1e6bb84d9a78daf",
+      "publicationPath": "apps/c67-local-server-lab/docs/SYNTHETIC_USER_RESULTS_2026-11-08.md",
+      "publishedSHA256": "f9af24b943ca80a58cc98575c10f53c4e6b2d7610ab33784d1e6bb84d9a78daf",
+      "publishedBytes": 16023,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "sourceSHA256": "db58395a5e81fe9da8086f27ebe29b199385642848d9f6cd503cc6bf713cb85a",
+      "publicationPath": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "publishedSHA256": "8bd0fb12fe5abb2b3356e1870570bc5636481786230c7dfb4b26c4bd0506bfb7",
+      "publishedBytes": 11272,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/fixtures/google-context-request.example.json",
+      "sourceSHA256": "935fdb261bca6b3749a4d14187b8bf0431a2b76d8d53a21605776fd4ebe2efc8",
+      "publicationPath": "apps/c67-local-server-lab/fixtures/google-context-request.example.json",
+      "publishedSHA256": "935fdb261bca6b3749a4d14187b8bf0431a2b76d8d53a21605776fd4ebe2efc8",
+      "publishedBytes": 467,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/fixtures/original-source-manifest.json",
+      "sourceSHA256": "7ecdf4edf849cccbf74fce235da66b40086b2a8b8f8cc3fe4c003d8e8c546b87",
+      "publicationPath": "apps/c67-local-server-lab/fixtures/original-source-manifest.json",
+      "publishedSHA256": "7ecdf4edf849cccbf74fce235da66b40086b2a8b8f8cc3fe4c003d8e8c546b87",
+      "publishedBytes": 10751,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/ContextLabApp.swift",
+      "sourceSHA256": "695d6849a685c19929da0ecb7aac278c30a49f5a5f8b1c33e1cdc8195b26fcb2",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/ContextLabApp.swift",
+      "publishedSHA256": "874876074a79d28af581960b4e1cc1d384eeb1c4d5043559b007666c444c9f32",
+      "publishedBytes": 11326,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/ContextLabModel.swift",
+      "sourceSHA256": "7bbbe25799da6a54ebf45c3897425858dced534f444f13085b2bd88bf32849fc",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/ContextLabModel.swift",
+      "publishedSHA256": "07083d72155879c2c8ec32b249f0051fdb68d65d19ad7c667f697ac1acb3b926",
+      "publishedBytes": 14086,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/PersonalLabModel.swift",
+      "sourceSHA256": "c8d3bf031532796bf9fad2a1138b00cd9333fc9f6fbf6438ae33f62870343913",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/PersonalLabModel.swift",
+      "publishedSHA256": "b0e899b374ad424b603bff5fa347bc13225e76ba23c55615d193ea1a96d87c8d",
+      "publishedBytes": 22753,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/PersonalLabViews.swift",
+      "sourceSHA256": "3aecf8ca6776743d092337daee079ab53bab164ad437243edf0fe525bac8c073",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/PersonalLabViews.swift",
+      "publishedSHA256": "cc77c97edd1c5e520fe0529213fc65289f1080442bb8467c793a0cb4ab159e9b",
+      "publishedBytes": 19432,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/PersonalRouteMap.swift",
+      "sourceSHA256": "762ca97a5230a09fd5fd34af308f8b43096e5566644ea62d546901d7583017c8",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/PersonalRouteMap.swift",
+      "publishedSHA256": "592636c4a9e99cfa2184bc0ed7e7f375f5f9d27067b9ffc2cd00f977ae0bcf84",
+      "publishedBytes": 13454,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/App/SimplePersonalViews.swift",
+      "sourceSHA256": "c9bee6b3f7cc69d77aee9dce40b966de28307c926badbb5ba0a0b8a05b6df5f0",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/App/SimplePersonalViews.swift",
+      "publishedSHA256": "004e797819cd891bb7af44de5726e2e2a78ee643a06e932af5f7777c9457a3eb",
+      "publishedBytes": 23542,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/UITests/ContextLabUITests.swift",
+      "sourceSHA256": "c3ffb5c3bb3a62c2e89bb65230bd47a06b14137060fdb5ea0fa800fde6d269d4",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/UITests/ContextLabUITests.swift",
+      "publishedSHA256": "001eaed24facaf9b8a0fbb562c4ef136766b4e3cc68ef41c31d45691e2696f54",
+      "publishedBytes": 4152,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/UITests/PersonalRecommendationUITests.swift",
+      "sourceSHA256": "b2378307e701b7aee067f78a75d7fa46335d0ab4fa3b576ec09b15b30ba118ce",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/UITests/PersonalRecommendationUITests.swift",
+      "publishedSHA256": "701a32e1d1ab3ee13f314da01c3ac3f44da9adc1f2736255986034a07b5cd420",
+      "publishedBytes": 9325,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/UITests/SimplePersonalUITests.swift",
+      "sourceSHA256": "319c0bf3e46a52d13c87b870fc3da9a1a56fbb6c8f1979d80621c8a393193ce8",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/UITests/SimplePersonalUITests.swift",
+      "publishedSHA256": "ae5bd1952a04683ab4dfd689fa7d4176060dcf3ab2372a9ed85a74287922f6cb",
+      "publishedBytes": 12690,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/UITests/SyntheticUserUITests.swift",
+      "sourceSHA256": "f5c5d59b66b3f00eaf38f5e909dfc995774e479260cbdfc9df7f77148ec1d413",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/UITests/SyntheticUserUITests.swift",
+      "publishedSHA256": "1d3b00314ee66e3d37002e9bbd752a38cd8fcf87e8e89157d6b7a6e88b2a74f5",
+      "publishedBytes": 9768,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/project.pbxproj",
+      "sourceSHA256": "1e2d2c6153f9c3faf39a44535f75c8862607345b35a3295104b1a64a771aea95",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/project.pbxproj",
+      "publishedSHA256": "1e2d2c6153f9c3faf39a44535f75c8862607345b35a3295104b1a64a771aea95",
+      "publishedBytes": 15318,
+      "disposition": "generated-not-published",
+      "transformations": [
+        "Xcode project is regenerated from project.yml"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "sourceSHA256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "publishedSHA256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f",
+      "publishedBytes": 135,
+      "disposition": "generated-not-published",
+      "transformations": [
+        "Xcode project is regenerated from project.yml"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/xcshareddata/xcschemes/C67LocalServerHarness.xcscheme",
+      "sourceSHA256": "1f9590d1610b6558726e88e5212986289ead7cd5652d8dcc6982a000d91e47f7",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/C67LocalServerHarness.xcodeproj/xcshareddata/xcschemes/C67LocalServerHarness.xcscheme",
+      "publishedSHA256": "1f9590d1610b6558726e88e5212986289ead7cd5652d8dcc6982a000d91e47f7",
+      "publishedBytes": 3455,
+      "disposition": "generated-not-published",
+      "transformations": [
+        "Xcode project is regenerated from project.yml"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/HarnessApp.swift",
+      "sourceSHA256": "22a227440d8eec5af1460df5a69561b0a4d7691ba1dc9bb7f84e13972495d9b4",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/HarnessApp.swift",
+      "publishedSHA256": "77ebfa3f903a774ea640266b5450bb6605a23b43bfaf70434b691c603064600a",
+      "publishedBytes": 14643,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/Info.plist",
+      "sourceSHA256": "4b0cb930a503a78f6f8ffa4cf8f7b62b978e0bba5bf427c5801e9689fa7a1571",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/Info.plist",
+      "publishedSHA256": "4b0cb930a503a78f6f8ffa4cf8f7b62b978e0bba5bf427c5801e9689fa7a1571",
+      "publishedBytes": 989,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ClientHarness/project.yml",
+      "sourceSHA256": "76f4d23b7e171d775dcdaa1299069c6f2d2f8346cc96987c86b80ae721ddec9c",
+      "publicationPath": "apps/c67-local-server-lab/ClientHarness/project.yml",
+      "publishedSHA256": "76f4d23b7e171d775dcdaa1299069c6f2d2f8346cc96987c86b80ae721ddec9c",
+      "publishedBytes": 1573,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Package.swift",
+      "sourceSHA256": "e506c36bd2c92c45727b1aa17a3249280e809487608b58420a287d494e4699ad",
+      "publicationPath": "apps/c67-local-server-lab/Package.swift",
+      "publishedSHA256": "d4639055a7822bb3f0ebbbf2ae3f62c65b31aab979f3ec25cda62de49f567057",
+      "publishedBytes": 3940,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/Package.resolved",
+      "sourceSHA256": "19f1a62fa931588bbaec8a95518b94df61116c33177738f8173eb1b008f03016",
+      "publicationPath": "apps/c67-local-server-lab/Package.resolved",
+      "publishedSHA256": "19f1a62fa931588bbaec8a95518b94df61116c33177738f8173eb1b008f03016",
+      "publishedBytes": 9835,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/.env.example",
+      "sourceSHA256": "5bd1d372d61147e416b2c9de5c4effa7d8c8cd350abb00854867f5d4b6bd1159",
+      "publicationPath": "apps/c67-local-server-lab/.env.example",
+      "publishedSHA256": "5bd1d372d61147e416b2c9de5c4effa7d8c8cd350abb00854867f5d4b6bd1159",
+      "publishedBytes": 579,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/.gitignore",
+      "sourceSHA256": "b4bbf7c0af19b57a0f664ac233885434c9aa70a52cc017c1148a113ecec81adb",
+      "publicationPath": "apps/c67-local-server-lab/.gitignore",
+      "publishedSHA256": "9bfed6c036b0276fb80ea9e3a16ac12ebcc5522f4bd60a4addf37487193936b5",
+      "publishedBytes": 480,
+      "disposition": "included",
+      "transformations": [
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/README.md",
+      "sourceSHA256": "6aaa83c3a33af1cdd651f0fd84df75543ceb18a3762f532f44b0f115f28664c2",
+      "publicationPath": "apps/c67-local-server-lab/README.md",
+      "publishedSHA256": "f6cf0528d95e59ffc12d147e2970d0f074afcc782e68b63c439d6c8a9d78c400",
+      "publishedBytes": 7829,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately",
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/project.yml",
+      "sourceSHA256": "8088a776e94c122052647b14c22776aa081079b46517a40c29f9586111302285",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/project.yml",
+      "publishedSHA256": "8088a776e94c122052647b14c22776aa081079b46517a40c29f9586111302285",
+      "publishedBytes": 1756,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/ContextHarness/README.md",
+      "sourceSHA256": "665b0ef42e87658082ff330e6e3332f23dded04f7adecf2e9682caff9677f507",
+      "publicationPath": "apps/c67-local-server-lab/ContextHarness/README.md",
+      "publishedSHA256": "665b0ef42e87658082ff330e6e3332f23dded04f7adecf2e9682caff9677f507",
+      "publishedBytes": 7368,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/backend-live-audit.json",
+      "sourceSHA256": "a9c480fa6f4f0c6adf07e4f3b43badb10991f0d27a8534d40cf79edd267a1993",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/backend-live-audit.json",
+      "publishedSHA256": "a9c480fa6f4f0c6adf07e4f3b43badb10991f0d27a8534d40cf79edd267a1993",
+      "publishedBytes": 1182,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/simulator-live-audit.json",
+      "sourceSHA256": "2934e29f7eec51ba804285330343751d14506d1717ce5e58d65910e27098666c",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/simulator-live-audit.json",
+      "publishedSHA256": "2934e29f7eec51ba804285330343751d14506d1717ce5e58d65910e27098666c",
+      "publishedBytes": 775,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/c67-flow.html",
+      "sourceSHA256": "2c31c4f10b4ea23ca06a619aa5d5c29886e6bf2d6dd906cd63649428d4bcccb6",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/moment-sunset-2026-11-09/c67-flow.html",
+      "publishedSHA256": "2c31c4f10b4ea23ca06a619aa5d5c29886e6bf2d6dd906cd63649428d4bcccb6",
+      "publishedBytes": 9566,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-semua-ruas.png",
+      "sourceSHA256": "a3d834fad62618008e4d41c1d3e00ebdd1876a7c9e48812f63c9103581a7b8a6",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-semua-ruas.png",
+      "publishedSHA256": "a3d834fad62618008e4d41c1d3e00ebdd1876a7c9e48812f63c9103581a7b8a6",
+      "publishedBytes": 805723,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-sorot-ruas-pulang.png",
+      "sourceSHA256": "cc9954dcd7e8380024eb9fda7dfb1b3d08fe61e93a08b5c7902ac77a41279fbe",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-sorot-ruas-pulang.png",
+      "publishedSHA256": "cc9954dcd7e8380024eb9fda7dfb1b3d08fe61e93a08b5c7902ac77a41279fbe",
+      "publishedBytes": 839508,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-sorot-dari-nomor.png",
+      "sourceSHA256": "77a1a8a1eb67cb3a98bab4526d5fe9c1007ec4bfff72a0e36f2cbd6960be9673",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/interactive-route-map-2026-11-09/screenshots/peta-sorot-dari-nomor.png",
+      "publishedSHA256": "77a1a8a1eb67cb3a98bab4526d5fe9c1007ec4bfff72a0e36f2cbd6960be9673",
+      "publishedBytes": 780485,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/audit-summary.json",
+      "sourceSHA256": "e508be97d43ad0c2265d6396673abca99cc995be2d7bbecb1e68a7eede38235d",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/audit-summary.json",
+      "publishedSHA256": "e508be97d43ad0c2265d6396673abca99cc995be2d7bbecb1e68a7eede38235d",
+      "publishedBytes": 886,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/03-rencana-dan-rute-apple-maps.png",
+      "sourceSHA256": "6f14563ce44ca3f638929ccddd4ad8f9b1e9db4e9305aee6813ea3839523d830",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/03-rencana-dan-rute-apple-maps.png",
+      "publishedSHA256": "6f14563ce44ca3f638929ccddd4ad8f9b1e9db4e9305aee6813ea3839523d830",
+      "publishedBytes": 1251592,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/01-jelajah.png",
+      "sourceSHA256": "4c0e22bd134b63efc354c6d821245fd518b0ef8eedaa2f9ddd0e444c8dd0770f",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/01-jelajah.png",
+      "publishedSHA256": "4c0e22bd134b63efc354c6d821245fd518b0ef8eedaa2f9ddd0e444c8dd0770f",
+      "publishedBytes": 240082,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "poc/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/02-cari-lainnya-pilihan-tetap.png",
+      "sourceSHA256": "fcc3ee8a5a7bfb68ed684b7715b6cc15f49f56b5dce4cc35c590b917d341551c",
+      "publicationPath": "apps/c67-local-server-lab/artifacts/personal-simplified-2026-11-09/screenshots/02-cari-lainnya-pilihan-tetap.png",
+      "publishedSHA256": "fcc3ee8a5a7bfb68ed684b7715b6cc15f49f56b5dce4cc35c590b917d341551c",
+      "publishedBytes": 583006,
+      "disposition": "included",
+      "transformations": []
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "CBL.md",
+      "sourceSHA256": "7dc69b62d0f669b90ea2c1bd66bb61f45b73bb1f9036bafba84c5ce7bbbd94e5",
+      "publicationPath": "docs/source-records/CBL.md",
+      "publishedSHA256": "0901dd6a061c7536b70ac2766b4f2e78263997e98b4d92cda0a5c0a18bba8983",
+      "publishedBytes": 100344,
+      "disposition": "included",
+      "transformations": [
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately",
+        "reviewed repository layout or portability adjustment after import"
+      ]
+    },
+    {
+      "sourceRoot": "workspace",
+      "sourcePath": "BLINDSPOT.md",
+      "sourceSHA256": "0b63045f1b75e935232ddffc602be69099f45520d55e9b0a1fe26836e0bac6cb",
+      "publicationPath": "docs/source-records/BLINDSPOT.md",
+      "publishedSHA256": "8a0ba38d58341b1fe4079469a7d8e405b61bb6f858c88352f62d0c98ba20acf0",
+      "publishedBytes": 34332,
+      "disposition": "included",
+      "transformations": [
+        "redacted original home paths or device identifiers",
+        "rewrote existing links for public folder layout; unavailable evidence links recorded separately"
+      ]
+    }
+  ],
+  "excluded": [
+    "credentials and local connection resources",
+    "model weights and tokenizers restored by bootstrap",
+    "build products and raw xcresult bundles",
+    "unreviewed raw provider data and historical runtime logs"
+  ],
+  "unavailableLinks": [
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/instrumented.json",
+      "label": "[Instrumented observations]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/corrected-comparison.json",
+      "label": "[corrected observations]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/comparison-summary.json",
+      "label": "[comparison summary]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/trace-replay-before.json",
+      "label": "[Replay before]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/trace-replay-after.json",
+      "label": "[replay after]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/live-corrected30/live-report.json",
+      "label": "[Fresh report]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/live-corrected30/eta-trace.json",
+      "label": "[ETA trace]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/live-corrected30/independent-live-audit.json",
+      "label": "[audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/before-regressions.log",
+      "label": "[Failed regressions before correction]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/verified-tests.log",
+      "label": "[verified package tests]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/BENCHMARK_CODE_VALIDATION_2026-11-07.md",
+      "originalTarget": "../artifacts/benchmark-code-validation-2026-11-07/auditor-controls-final.json",
+      "label": "[auditor controls]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/grid-wait-analysis.json",
+      "label": "[Calculation]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/live-resolved/live-report.json",
+      "label": "[Primary report]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/live-resolved/independent-live-audit.json",
+      "label": "[independent live audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/fixture-audit.json",
+      "label": "[Independent fixture audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/independent-reference.json",
+      "label": "[reference]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-2026-11-07/verification.json",
+      "label": "[Verification and provider ledger]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-rerun-2026-11-07/summary.json",
+      "label": "[Comparison and control data]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-rerun-2026-11-07/eta-response-probe.json",
+      "label": "[HTTP and schema observations]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_FIVE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-five-rerun-2026-11-07/diagnostic60/independent-live-audit.json",
+      "label": "[Audited control]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/verification.json",
+      "label": "[All evidence]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/human-feedback.json",
+      "label": "[Feedback record]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/live/live-report.json",
+      "label": "[Primary report]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/cold-single/live-report.json",
+      "label": "[fresh-process report]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/fixture-audit.json",
+      "label": "[Full fixture audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/independent-reference.json",
+      "label": "[independent reference]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/CONTEXT_PILOT_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/context-pilot-2026-11-07/paired-budget-control/fixture-audit.json",
+      "label": "[paired budget control]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/fixture-manifest.json",
+      "label": "[Fixture identity]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/selection-locked.json",
+      "label": "[E3 selection lock]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/holdout-audit.json",
+      "label": "[Held-out audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/secondary-control-audit.json",
+      "label": "[secondary control audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/decision-summary.json",
+      "label": "[consolidated summary]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/fixture-metrics.csv",
+      "label": "[All fixture metrics CSV]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/live-metrics.csv",
+      "label": "[live metrics CSV]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/live-paired-quality.csv",
+      "label": "[paired live quality CSV]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/final-verification.json",
+      "label": "[final verification]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/controlled-audit-initial.json",
+      "label": "[that initial audit is preserved]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/discovery-summary.json",
+      "label": "[Discovery evidence]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/full-search-simulator/audit.json",
+      "label": "[full-search audit]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/external-catalogue-gate.json",
+      "label": "[External gate evidence]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DECISION_SEQUENCE_RESULTS_2026-11-07.md",
+      "originalTarget": "../artifacts/decision-sequence-2026-11-07/resource-summary.json",
+      "label": "[Resource summary]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md",
+      "originalTarget": "../artifacts/dynamic-context-simulator-2026-11-07/",
+      "label": "[artifact directory]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/fast-summary.json",
+      "label": "[Ringkasan live]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/fast-metrics.csv",
+      "label": "[CSV semua observasi]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/paired-quality.csv",
+      "label": "[CSV kualitas per pasangan]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/audit.json",
+      "label": "[Audit live]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/auditor-negative-controls.json",
+      "label": "[negative controls]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/live-manifest.json",
+      "label": "[Manifest sebelum live]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/manifest.json",
+      "label": "[source manifest]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/final-verification.json",
+      "label": "[Verifikasi final]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-live-2026-11-06/preflight-tests.log",
+      "label": "[log tes]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/FAST_D_RESULTS_2026-11-06.md",
+      "originalTarget": "../artifacts/fast-d-replay-2026-11-06/audit.json",
+      "label": "[Audit replay C/D]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_LIVE_2026-11-07.md",
+      "originalTarget": "../artifacts/google-context-live-2026-11-07/live-summary.json",
+      "label": "[Aggregate technical record]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_VERIFICATION_2026-11-07.md",
+      "originalTarget": "../artifacts/google-context-2026-11-07/full-tests.log",
+      "label": "[Full test log]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_VERIFICATION_2026-11-07.md",
+      "originalTarget": "../artifacts/google-context-2026-11-07/demo.json",
+      "label": "[Demo JSON]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/GOOGLE_PLACES_CONTEXT_VERIFICATION_2026-11-07.md",
+      "originalTarget": "../artifacts/google-context-2026-11-07/http-smoke.json",
+      "label": "[HTTP evidence]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/benchmark-summary.json",
+      "label": "[Ringkasan JSON]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/benchmark.csv",
+      "label": "[CSV per observasi]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/historical-comparison.csv",
+      "label": "[CSV historis]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/audit.json",
+      "label": "[Audit independen]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/selection-manifest.json",
+      "label": "[Aturan penggabungan blok]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/historical-input-comparison.json",
+      "label": "[Sumber pin historis yang identik]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/campaign-budget-ledger.json",
+      "label": "[Ledger budget]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/final-verification.json",
+      "label": "[Verifikasi sumber]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/resource-summary.json",
+      "label": "[Resource]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-initial/status.json",
+      "label": "[Raw E2E awal]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-controlled-r1/status.json",
+      "label": "[Raw blok terganggu]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-controlled-r1/host-sleep-wake.log",
+      "label": "[sleep/wake]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-controlled-r2/status.json",
+      "label": "[Raw kelanjutan33]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-controlled-r2/live-manifest.json",
+      "label": "[manifest kelanjutan]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../artifacts/simulator-live-2026-11-06-final/resume-complete.jpg",
+      "label": "[Layar kelanjutan selesai]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/LIVE_SIMULATOR_BENCHMARK_2026-11-06.md",
+      "originalTarget": "../../c67-performance-benchmark/REPORT.md",
+      "label": "[Benchmark iPhone sebelumnya]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/PERSONAL_SUNSET_MOMENT_2026-11-09.md",
+      "originalTarget": "../artifacts/moment-sunset-2026-11-09/screenshots/6CFB0BC6-9802-402A-A8F0-590B5CF7E9FF.png",
+      "label": "[Tangkapan layar]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/replay-final/manifest.json",
+      "label": "[Manifest CLI]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/replay-final/audit.json",
+      "label": "[audit CLI]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/replay-final/metrics.csv",
+      "label": "[CSV CLI]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-replay-verified/manifest.json",
+      "label": "[Manifest client final]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-replay-verified/audit.json",
+      "label": "[audit client final]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-replay-verified/metrics.csv",
+      "label": "[CSV client final]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-replay-final/audit.json",
+      "label": "[Replay simulator awal lengkap]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-replay-final/auditor-negative-controls.json",
+      "label": "[negative controls]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/http-contract-final.json",
+      "label": "[HTTP contract]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/verification/tests-final.log",
+      "label": "[tes Swift]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/simulator-server-resources.csv",
+      "label": "[Resource samples]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/phone-store-preservation.json",
+      "label": "[store preservation]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/preflight.json",
+      "label": "[Preflight]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/live-readiness.json",
+      "label": "[live readiness]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/ui/replay-complete.jpg",
+      "label": "[Layar selesai]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/ui/replay-running.jpg",
+      "label": "[progres]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/verification/maps-jwt-scope-fix-2026-11-06.json",
+      "label": "[catatan koreksi]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/verification/maps-jwt-scope-test.log",
+      "label": "[log tes]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/credentials-verification-2026-11-06T19-28-41-WIB/probe.json",
+      "label": "[hasil probe]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/docs/VERIFICATION_REPORT.md",
+      "originalTarget": "../artifacts/credentials-verification-2026-11-06T19-28-41-WIB/summary.json",
+      "label": "[ringkasan verifikasi]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/README.md",
+      "originalTarget": "../../docs/poc/itinerary-context-consolidation-2026-11-07.md",
+      "label": "[Ringkasan pemahaman dan pilot berikutnya]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/README.md",
+      "originalTarget": "../../docs/poc/local-server-itinerary-implementation-plan-2026-11-06.md",
+      "label": "[Rencana yang disetujui]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/README.md",
+      "originalTarget": "artifacts/replay-final/audit.json",
+      "label": "[Audit CLI]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/README.md",
+      "originalTarget": "artifacts/simulator-replay-verified/audit.json",
+      "label": "[audit simulator]"
+    },
+    {
+      "document": "apps/c67-local-server-lab/README.md",
+      "originalTarget": "artifacts/live-readiness.json",
+      "label": "[kesiapan live]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "poc/c67-trip-integration/docs/SIMPLE_UI_VERIFICATION_2026-11-06.md",
+      "label": "[Laporan v0.2]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "poc/c67-trip-integration/docs/DEVELOPMENT_OPTIONS_2026-11-06.md",
+      "label": "[Roadmap beserta dependensi dan batas]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "poc/c67-trip-integration/docs/SIMPLE_UI_VERIFICATION_2026-11-06.md",
+      "label": "[Hasil, kegagalan awal dan batas verifikasi]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "poc/c67-trip-integration/docs/DEVELOPMENT_OPTIONS_2026-11-06.md",
+      "label": "[Roadmap lengkap berisi 14 opsi, hipotesis, skenario, dependensi, kriteria adopsi dan batas]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "docs/history/before-ai-planning-2026-10-29/index.md",
+      "label": "[Snapshot konteks sebelum pembaruan]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "poc/c67-trip-integration/docs/DEVELOPMENT_OPTIONS_2026-11-06.md",
+      "label": "[Pilihan pengembangan PoC, dependensi dan rekomendasi fokus 6 November]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "docs/chat-index.md",
+      "label": "[indeks chat]"
+    },
+    {
+      "document": "docs/source-records/CBL.md",
+      "originalTarget": "docs/history/before-ai-planning-2026-10-29/index.md",
+      "label": "[Snapshot sebelum pembaruan]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md",
+      "label": "[Dynamic Context Simulator Results]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_RESULTS_2026-11-08.md",
+      "label": "[Laporan kampanye Simulator 7–8 November 2026]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/docs/DYNAMIC_CONTEXT_SIMULATOR_PROTOCOL_2026-11-07.md",
+      "label": "[Protokol eksperimen]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift",
+      "label": "[Context itinerary planner: ranking, anggaran, urutan, dan status hasil]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/Sources/PlaceContextEngine/VisitContext.swift",
+      "label": "[Visit context: jam, preferensi, paparan, cuaca, dan grid]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/Sources/DynamicTripEngine/DynamicTripService.swift",
+      "label": "[Dynamic service: pencarian, persiapan identitas, cuaca, dan perencanaan live]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/Sources/DynamicTripContracts/Contracts.swift",
+      "label": "[Kontrak input/output dinamis]"
+    },
+    {
+      "document": "docs/source-records/BLINDSPOT.md",
+      "originalTarget": "original-workspace>/poc/c67-local-server-lab/ContextHarness/README.md",
+      "label": "[Panduan Context Harness]"
+    }
+  ]
+}

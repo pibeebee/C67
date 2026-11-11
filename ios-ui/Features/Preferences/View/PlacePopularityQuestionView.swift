@@ -18,26 +18,26 @@ struct PlacePopularityQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q2 · Unselected") {
-    @Previewable @State var selection: PlacePopularityPreference?
-    PreferenceQuestionPreview {
-        PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q2 · Unselected") {
+        @Previewable @State var selection: PlacePopularityPreference?
+        PreferenceQuestionPreview {
+            PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q2 · Selected") {
-    @Previewable @State var selection: PlacePopularityPreference? = .both
-    PreferenceQuestionPreview {
-        PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q2 · Selected") {
+        @Previewable @State var selection: PlacePopularityPreference? = .both
+        PreferenceQuestionPreview {
+            PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q2 · Dark, large text") {
-    @Previewable @State var selection: PlacePopularityPreference? = .both
-    PreferenceQuestionPreview {
-        PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q2 · Dark, large text") {
+        @Previewable @State var selection: PlacePopularityPreference? = .both
+        PreferenceQuestionPreview {
+            PlacePopularityQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

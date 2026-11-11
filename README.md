@@ -1,6 +1,6 @@
 # C67
 
-The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Its apps and evidence are isolated from the production implementation described below.
+The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Start with [Journey Showcase](poc-journey/apps/c67-journey-showcase/README.md) for the guided itinerary UI; Trip Integration owns its shared engine. Its apps and evidence are isolated from the production implementation described below.
 
 C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
 
@@ -9,8 +9,8 @@ C67 plans personal trips from the traveller's places, preferences and available 
 ## Run the app
 
 1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
-2. On the Trip home screen, tap **+**. In default mock mode, review the sample places, adjust durations/time/preferences and tap **Plan my trip**.
-3. Review the synthetic proposal and **Save this trip**. Open the saved trip from Trip to start, manually confirm arrival, extend/finish a visit and recalculate. Completed trips appear in History.
+2. In default mock mode, tap the Home plus button and choose **Get Recommendations** or **Add Specific Place**. Complete the guided inputs and confirm the planner details.
+3. Review the synthetic itinerary and save it with a name. Open the saved trip to start, manually confirm arrivals, finish visits and inspect recalculation through Trip options. See the [Canvas and flow guide](ios-ui/README.md).
 
 Mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
 

@@ -53,19 +53,19 @@ struct BudgetQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q6 · Minimum") {
-    PreferenceQuestionPreview {
-        BudgetQuestionView(initialBudget: nil, next: { _ in }, skip: {})
+    #Preview("Q6 · Minimum") {
+        PreferenceQuestionPreview {
+            BudgetQuestionView(initialBudget: nil, next: { _ in }, skip: {})
+        }
+        .environment(\.locale, Locale(identifier: "id_ID"))
     }
-    .environment(\.locale, Locale(identifier: "id_ID"))
-}
 
-#Preview("Q6 · Dark, large text") {
-    PreferenceQuestionPreview {
-        BudgetQuestionView(initialBudget: 250_000, next: { _ in }, skip: {})
+    #Preview("Q6 · Dark, large text") {
+        PreferenceQuestionPreview {
+            BudgetQuestionView(initialBudget: 250_000, next: { _ in }, skip: {})
+        }
+        .environment(\.locale, Locale(identifier: "id_ID"))
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .environment(\.locale, Locale(identifier: "id_ID"))
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

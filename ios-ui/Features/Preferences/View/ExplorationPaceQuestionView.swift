@@ -18,26 +18,26 @@ struct ExplorationPaceQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q3 · Unselected") {
-    @Previewable @State var selection: ExplorationPace?
-    PreferenceQuestionPreview {
-        ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q3 · Unselected") {
+        @Previewable @State var selection: ExplorationPace?
+        PreferenceQuestionPreview {
+            ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q3 · Selected") {
-    @Previewable @State var selection: ExplorationPace? = .packed
-    PreferenceQuestionPreview {
-        ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q3 · Selected") {
+        @Previewable @State var selection: ExplorationPace? = .packed
+        PreferenceQuestionPreview {
+            ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q3 · Dark, large text") {
-    @Previewable @State var selection: ExplorationPace? = .packed
-    PreferenceQuestionPreview {
-        ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q3 · Dark, large text") {
+        @Previewable @State var selection: ExplorationPace? = .packed
+        PreferenceQuestionPreview {
+            ExplorationPaceQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

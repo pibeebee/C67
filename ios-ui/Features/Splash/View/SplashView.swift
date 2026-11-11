@@ -22,17 +22,17 @@ struct SplashView: View {
 }
 
 #if DEBUG
-/// Replays the animation every time the preview is tapped.
-private struct SplashReplayPreview: View {
-    @State private var startDate = Date.now
+    /// Replays the animation every time the preview is tapped.
+    private struct SplashReplayPreview: View {
+        @State private var startDate = Date.now
 
-    var body: some View {
-        SplashView(startDate: startDate)
-            .onTapGesture { startDate = .now }
+        var body: some View {
+            SplashView(startDate: startDate)
+                .onTapGesture { startDate = .now }
+        }
     }
-}
 
-#Preview("SPLASH · Animated (tap to replay)") {
-    SplashReplayPreview()
-}
+    #Preview("SPLASH · Animated (tap to replay)") {
+        SplashReplayPreview()
+    }
 #endif

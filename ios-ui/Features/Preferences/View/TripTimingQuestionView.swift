@@ -18,26 +18,26 @@ struct TripTimingQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q4 · Unselected") {
-    @Previewable @State var selection: TripTiming?
-    PreferenceQuestionPreview {
-        TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q4 · Unselected") {
+        @Previewable @State var selection: TripTiming?
+        PreferenceQuestionPreview {
+            TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q4 · Selected") {
-    @Previewable @State var selection: TripTiming? = .inAFewDays
-    PreferenceQuestionPreview {
-        TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q4 · Selected") {
+        @Previewable @State var selection: TripTiming? = .inAFewDays
+        PreferenceQuestionPreview {
+            TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q4 · Dark, large text") {
-    @Previewable @State var selection: TripTiming? = .inAFewDays
-    PreferenceQuestionPreview {
-        TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q4 · Dark, large text") {
+        @Previewable @State var selection: TripTiming? = .inAFewDays
+        PreferenceQuestionPreview {
+            TripTimingQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

@@ -1,0 +1,14 @@
+{
+  "image": "ghcr.io/valhalla/valhalla-scripted@sha256:f21f529beff825d5020183612c90a1630fdf00eb9f569570eebb815b06b1427c",
+  "version": "3.9.1-52228c4e0",
+  "sourceURL": "https://download.geofabrik.de/asia/indonesia/java-261109.osm.pbf",
+  "sourceDate": "2026-11-09",
+  "dockerContext": "colima-c67-routing",
+  "container": "c67-routing-valhalla",
+  "listen": "127.0.0.1:8002",
+  "cpus": 4,
+  "memoryGiB": 6,
+  "traffic": "Static OSM speeds; no traffic feed",
+  "licenseURL": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "OpenStreetMap contributors; Valhalla"
+}

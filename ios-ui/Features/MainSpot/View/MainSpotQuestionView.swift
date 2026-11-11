@@ -74,31 +74,31 @@ struct MainSpotQuestionView: View {
 }
 
 #if DEBUG
-#Preview("PLACES MAIN COURSE ADD") {
-    @Previewable @State var selection = MainSpotChoice.automatic
-    PreferenceQuestionPreview {
-        MainSpotQuestionView(
-            places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
-            selection: selection,
-            select: { selection = $0 },
-            next: {},
-            skip: {}
-        )
+    #Preview("PLACES MAIN COURSE ADD") {
+        @Previewable @State var selection = MainSpotChoice.automatic
+        PreferenceQuestionPreview {
+            MainSpotQuestionView(
+                places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
+                selection: selection,
+                select: { selection = $0 },
+                next: {},
+                skip: {}
+            )
+        }
     }
-}
 
-#Preview("Place picked · Dark, large text") {
-    @Previewable @State var selection = MainSpotChoice.place(RecommendationsPreviewData.ids[2])
-    PreferenceQuestionPreview {
-        MainSpotQuestionView(
-            places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
-            selection: selection,
-            select: { selection = $0 },
-            next: {},
-            skip: {}
-        )
+    #Preview("Place picked · Dark, large text") {
+        @Previewable @State var selection = MainSpotChoice.place(RecommendationsPreviewData.ids[2])
+        PreferenceQuestionPreview {
+            MainSpotQuestionView(
+                places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
+                selection: selection,
+                select: { selection = $0 },
+                next: {},
+                skip: {}
+            )
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

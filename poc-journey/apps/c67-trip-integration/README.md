@@ -117,3 +117,15 @@ The planner considers the nearest two published boarding coordinates within 800 
 Debug launch arguments are `--p3-busway` for interactive Blok M planning, `--p3-busway-replay` for synthetic walking/search/weather screen checks, and `--p3-busway-live-eval` for isolated signed-device provider evaluation. Device evidence is written under `Documents/P3BuswayEval/<run UUID>`. Existing stored car requests decode with their original car default. JSON and Markdown exports include transport components and CC BY 4.0 attribution. See the [POC report](docs/transjakarta/REPORT-2026-11-06.md).
 
 A fresh synthetic command from the repository root is `swift run --package-path poc-journey/apps/c67-trip-integration/Packages/TripIntegration p3-blok-m-eval --out NEW_DIRECTORY --baseline --replay --busway`. Use `--baseline --live-clock --live-routes --busway` for explicit live Mac routing checks. Signed iPhone execution remains the WeatherKit acceptance evidence.
+
+
+## Shared engine for Journey Showcase — 9 November 2026
+
+The sibling [Journey Showcase](../c67-journey-showcase/README.md) uses this package's combined city/Blok M catalog, confirmed custom origins, target-area constraints and direct/one-transfer TJ planning. Its attributed runtime feed contains 199 routes and 544 patterns. The diagnostic App/UITests in this folder retain current main; adding the shared engine does not add the Showcase controls to that older UI.
+
+Run `bash poc-journey/scripts/verify.sh packages` and `bash poc-journey/scripts/verify.sh transjakarta` from the repository root for deterministic package and TJ checks. The [prior improvement report](docs/transjakarta/IMPROVEMENTS-REPORT-2026-11-06.md) and [capability protocol](docs/transjakarta/CAPABILITY-TESTS.md) retain their historical dates and boundaries. See the [PR repair task](../../docs/tasks/pr12-journey-fixes-2026-11-09.md) for current scope and verification.
+
+
+## Diagnostic UI publication — 11 November 2026
+
+This workspace contribution also includes the explicit Blok M/busway Debug paths and their isolated replay/provider-evaluation storage described above. They are optional diagnostics beside Journey Showcase; historical PR #12 scope statements describe that earlier contribution.

@@ -33,41 +33,41 @@ struct TripInterestQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q1 · Unselected") {
-    @Previewable @State var selection: Set<TripInterest> = []
-    PreferenceQuestionPreview {
-        TripInterestQuestionView(
-            selection: selection,
-            toggle: { selection.formSymmetricDifference([$0]) },
-            next: {},
-            skip: {}
-        )
+    #Preview("Q1 · Unselected") {
+        @Previewable @State var selection: Set<TripInterest> = []
+        PreferenceQuestionPreview {
+            TripInterestQuestionView(
+                selection: selection,
+                toggle: { selection.formSymmetricDifference([$0]) },
+                next: {},
+                skip: {}
+            )
+        }
     }
-}
 
-#Preview("Q1 · Selected") {
-    @Previewable @State var selection: Set<TripInterest> = [.foodie, .culture]
-    PreferenceQuestionPreview {
-        TripInterestQuestionView(
-            selection: selection,
-            toggle: { selection.formSymmetricDifference([$0]) },
-            next: {},
-            skip: {}
-        )
+    #Preview("Q1 · Selected") {
+        @Previewable @State var selection: Set<TripInterest> = [.foodie, .culture]
+        PreferenceQuestionPreview {
+            TripInterestQuestionView(
+                selection: selection,
+                toggle: { selection.formSymmetricDifference([$0]) },
+                next: {},
+                skip: {}
+            )
+        }
     }
-}
 
-#Preview("Q1 · Dark, large text") {
-    @Previewable @State var selection: Set<TripInterest> = [.nature]
-    PreferenceQuestionPreview {
-        TripInterestQuestionView(
-            selection: selection,
-            toggle: { selection.formSymmetricDifference([$0]) },
-            next: {},
-            skip: {}
-        )
+    #Preview("Q1 · Dark, large text") {
+        @Previewable @State var selection: Set<TripInterest> = [.nature]
+        PreferenceQuestionPreview {
+            TripInterestQuestionView(
+                selection: selection,
+                toggle: { selection.formSymmetricDifference([$0]) },
+                next: {},
+                skip: {}
+            )
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

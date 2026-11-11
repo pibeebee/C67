@@ -2,7 +2,7 @@
 
 Read the repository root [instructions](../AGENTS.md) first, then [HANDOFF](HANDOFF.md), [STATUS](STATUS.md), and the relevant application's guide. This area contains experiments, not a new production architecture decision.
 
-- Start development from `apps/c67-trip-integration`; retain the other applications as working research history.
+- Choose the task's entry point: `apps/c67-local-server-lab` is the Context Lab experiment described in its [handoff](docs/context-lab-handoff-2026-11-09.md); `apps/c67-journey-showcase` is the guided TJ/itinerary UI backed by `apps/c67-trip-integration`. Preserve both experiments and their evidence.
 - Keep Foundation Lab and Trip Integration as siblings: their local Swift packages intentionally share implementations.
 - Do not merge the vendored routing adapter into the older native lab or port PoC code into production as an incidental cleanup.
 - Newly authored documentation and comments use English. Imported dated source records, prompts, fixtures, historical reports and user-facing Indonesian strings retain their original language and attribution. They are source material, not new English-language claims.

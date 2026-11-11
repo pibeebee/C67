@@ -18,26 +18,26 @@ struct TransportModeQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q7 · Unselected") {
-    @Previewable @State var selection: TransportMode?
-    PreferenceQuestionPreview {
-        TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q7 · Unselected") {
+        @Previewable @State var selection: TransportMode?
+        PreferenceQuestionPreview {
+            TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q7 · Selected") {
-    @Previewable @State var selection: TransportMode? = .motorcycle
-    PreferenceQuestionPreview {
-        TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q7 · Selected") {
+        @Previewable @State var selection: TransportMode? = .motorcycle
+        PreferenceQuestionPreview {
+            TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q7 · Dark, large text") {
-    @Previewable @State var selection: TransportMode? = .motorcycle
-    PreferenceQuestionPreview {
-        TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q7 · Dark, large text") {
+        @Previewable @State var selection: TransportMode? = .motorcycle
+        PreferenceQuestionPreview {
+            TransportModeQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif

@@ -1,5 +1,16 @@
 # Capability and verification status
 
+## Scoped PR #12 repairs — 9 November 2026
+
+Journey Showcase and its required shared TripIntegration engine are the contribution. Production code, Context Lab, and the standalone Foundation Lab/Trip Integration App and UITests retain current main. The development ledger now covers 12 maintained-source changes; immutable import hashes and historical reports are preserved. Earlier consolidation UI results describe the pre-scope-adjustment run, not a new test of the retained diagnostic UI. See the [repair task](docs/tasks/pr12-journey-fixes-2026-11-09.md) for the current checks and CI status.
+
+## Journey Showcase entry point — 9 November 2026
+
+Journey Showcase is the guided user UI for the TJ itinerary experiment; Trip Integration owns the shared engine and diagnostic app. The current POC includes custom origins, area/required-spot preferences, car/TJ routing, transfer details, road maps, proposal persistence and exports. See the [consolidation report](docs/consolidation-report-2026-11-09.md) for new-worktree verification and the [Showcase guide](apps/c67-journey-showcase/README.md) to run it.
+
+The following dated sections retain their historical scope; earlier corridor-1-only limitations describe those versions rather than the current network engine.
+
+
 ## Journey map controls and road paths — 6 November 2026
 
 Showcase maps provide zoom-in, zoom-out, route fitting and full-screen presentation. Walking and car overlays use MapKit road geometry with shared request ownership, cancellation, timeout, cache and retry behavior. The attributed TJ geometry sidecar supplies 542 of 544 imported patterns. Unavailable shapes have an explicit status.
@@ -14,7 +25,7 @@ Paired tests recovered the usable third platform in 200/200 adversarial inputs, 
 
 All 256 package test functions, 39 Python tests, 15 Showcase Simulator tests and the existing TJ review/accept UI test passed. Four native POC apps built for Simulator. The active 64-case suite uses v3 for compatibility, retaining legacy single-route gate probes separately from network coverage. The original 1,000 exact-platform inputs still yield 320 feasible legs and 680 expected access/service conflicts. Historical v1/v2 reports retain their baseline scope. Live-provider latency, field transfer access, holiday/accessibility facts and waiting calibration remain acceptance gaps. [Implementation and paired report](apps/c67-trip-integration/docs/transjakarta/IMPROVEMENTS-REPORT-2026-11-06.md)
 
-Snapshot date: **5 November 2026**. These are technical experiments with bounded data. There has been no participant study demonstrating satisfaction or reduced input effort.
+Snapshot date: **9 November 2026**. Context Lab v0.5 (5) is the active dynamic-context experiment; the table below retains original native/P3 milestones. See [Context Lab status and next steps](docs/context-lab-handoff-2026-11-09.md). These are technical experiments with bounded data. There has been no participant study demonstrating satisfaction or reduced input effort.
 
 | Capability / project | Original evidence | Limit |
 | --- | --- | --- |
@@ -36,7 +47,7 @@ The relocated copies passed 220 package tests, 55 CLI tests, 126 native fixture 
 
 ## Current development entry point
 
-Use Trip Integration, with the sibling Foundation Lab packages unchanged in responsibility. Keep the native lab and CLI as independent experiments. The main C67 application's iOS 18/VIPER/backend architecture has not been replaced.
+Use Context Lab for dynamic place context and its Mac-local backend; see [source export verification](evidence/context-lab-relocation-2026-11-09.md). Use Journey Showcase for the TJ itinerary flow and Trip Integration for its shared engine/diagnostics. The native lab and CLI remain independent experiments. The main C67 application's iOS 18/VIPER/backend architecture has not been replaced.
 
 ## Still open
 

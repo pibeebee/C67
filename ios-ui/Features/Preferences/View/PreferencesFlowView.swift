@@ -54,13 +54,13 @@ struct PreferencesFlowView: View {
 }
 
 #if DEBUG
-#Preview("Flow · Q1–Q7") {
-    PreferencesFlowView(cancel: {}, finish: { _ in })
-        .environment(\.locale, Locale(identifier: "id_ID"))
-}
+    #Preview("Flow · Q1–Q7") {
+        PreferencesFlowView(cancel: {}, finish: { _ in })
+            .environment(\.locale, Locale(identifier: "id_ID"))
+    }
 
-#Preview("Flow · Dark") {
-    PreferencesFlowView(cancel: {}, finish: { _ in })
-        .preferredColorScheme(.dark)
-}
+    #Preview("Flow · Dark") {
+        PreferencesFlowView(cancel: {}, finish: { _ in })
+            .preferredColorScheme(.dark)
+    }
 #endif

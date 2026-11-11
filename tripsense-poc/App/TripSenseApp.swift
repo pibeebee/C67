@@ -28,7 +28,7 @@ private struct OSMNetworkProbeView: View {
                     do {
                         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
                         try Data(report.utf8).write(to: folder.appendingPathComponent("osm-network-probe.txt"),
-                                                   options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+                                                    options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
                     } catch {
                         report += "\nReport export failed: \(type(of: error))"
                         print(report)

@@ -18,26 +18,26 @@ struct DayPartQuestionView: View {
 }
 
 #if DEBUG
-#Preview("Q5 · Unselected") {
-    @Previewable @State var selection: DayPart?
-    PreferenceQuestionPreview {
-        DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q5 · Unselected") {
+        @Previewable @State var selection: DayPart?
+        PreferenceQuestionPreview {
+            DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q5 · Selected") {
-    @Previewable @State var selection: DayPart? = .evening
-    PreferenceQuestionPreview {
-        DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q5 · Selected") {
+        @Previewable @State var selection: DayPart? = .evening
+        PreferenceQuestionPreview {
+            DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
     }
-}
 
-#Preview("Q5 · Dark, large text") {
-    @Previewable @State var selection: DayPart? = .evening
-    PreferenceQuestionPreview {
-        DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+    #Preview("Q5 · Dark, large text") {
+        @Previewable @State var selection: DayPart? = .evening
+        PreferenceQuestionPreview {
+            DayPartQuestionView(selection: selection, select: { selection = $0 }, skip: {})
+        }
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.accessibility2)
     }
-    .preferredColorScheme(.dark)
-    .dynamicTypeSize(.accessibility2)
-}
 #endif
