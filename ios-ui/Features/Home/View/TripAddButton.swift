@@ -5,21 +5,30 @@ struct TripAddButton: View {
     var addSpecificPlace: () -> Void = {}
 
     var body: some View {
-        if #available(iOS 26.0, *) {
-            menu
-                .menuStyle(.button)
-                .buttonStyle(.glassProminent)
-                .buttonBorderShape(.circle)
-                .controlSize(.large)
-                .accessibilityIdentifier("homeAddTrip")
-        } else {
+        #if compiler(>=6.2)
+            if #available(iOS 26.0, *) {
+                menu
+                    .menuStyle(.button)
+                    .buttonStyle(.glassProminent)
+                    .buttonBorderShape(.circle)
+                    .controlSize(.large)
+                    .accessibilityIdentifier("homeAddTrip")
+            } else {
+                menu
+                    .menuStyle(.button)
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.circle)
+                    .controlSize(.large)
+                    .accessibilityIdentifier("homeAddTrip")
+            }
+        #else
             menu
                 .menuStyle(.button)
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.circle)
                 .controlSize(.large)
                 .accessibilityIdentifier("homeAddTrip")
-        }
+        #endif
     }
 
     private var menu: some View {
