@@ -55,6 +55,13 @@ struct AddPlacesView: View {
                     .focused($searchFocused)
                     .autocorrectionDisabled()
                     .submitLabel(.search)
+                    .onSubmit { searchFocused = false }
+                    .onChange(of: query) { _, value in
+                        if value.contains("\n") {
+                            query = value.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
+                            searchFocused = false
+                        }
+                    }
                     .accessibilityIdentifier("addPlacesSearch")
                 if !query.isEmpty {
                     Button("Clear search", systemImage: "xmark.circle.fill") { query = "" }
