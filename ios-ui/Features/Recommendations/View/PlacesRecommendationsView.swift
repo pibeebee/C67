@@ -11,10 +11,12 @@ struct PlacesRecommendationsView: View {
     let refresh: @MainActor () async -> RecommendationsBatch?
     let continueWithoutSelection: (() -> Void)?
     let complete: @MainActor ([PlanningPlace]) -> Void
+    let maximumAdditions: Int
 
     init(batch: RecommendationsBatch, existing: [PlanningPlace], selected: [PlanningPlace] = [],
          refresh: @escaping @MainActor () async -> RecommendationsBatch?,
          continueWithoutSelection: (() -> Void)? = nil,
+         maximumAdditions: Int = 3,
          complete: @escaping @MainActor ([PlanningPlace]) -> Void) {
         _batch = State(initialValue: batch)
         _selected = State(initialValue: selected)
@@ -22,13 +24,14 @@ struct PlacesRecommendationsView: View {
         self.refresh = refresh
         self.continueWithoutSelection = continueWithoutSelection
         self.complete = complete
+        self.maximumAdditions = maximumAdditions
     }
 
     private var existingIDs: Set<UUID> { Set(existing.map(\.id)) }
     private var selectedIDs: Set<UUID> { Set(selected.map(\.id)) }
     private var selectionLimit: Int {
         let available = Set(batch.places.map(\.id)).subtracting(existingIDs).union(selectedIDs).count
-        return min(3, max(0, 6 - existing.count), available)
+        return min(maximumAdditions, max(0, 6 - existing.count), available)
     }
 
     var body: some View {

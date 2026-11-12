@@ -27,6 +27,9 @@ import C67Domain
     private let interactor: TripCreationInteractor
     private let basePreferences: String
     private var searchGeneration = 0
+    var missingVisitAvailability: Bool {
+        planning.supportsOnDevicePlanning && selected.contains { !$0.place.availabilityVerified && $0.place.visitConfirmation == nil }
+    }
 
     init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor) {
         self.planning = planning
@@ -40,7 +43,8 @@ import C67Domain
     var route: TripCreationRoute { path.last ?? root }
     var canConfirm: Bool {
         guard let input = planning.draftInput else { return false }
-        return !selected.isEmpty && (try? input.validate()) != nil
+        let purpose: PlanningPurpose = planning.supportsOnDevicePlanning && root != .places ? .suggest : .plan
+        return (try? input.validate(purpose: purpose)) != nil
     }
 
     func advance(_ step: PreferenceStep, skip: Bool = false) {
@@ -90,6 +94,7 @@ import C67Domain
     func confirm() async {
         syncPlaces()
         planning.preferences = preferenceText
+        syncEnginePreferences()
         planning.draftChanged()
         guard canConfirm else { error = PlanningError.invalidInput.localizedDescription; return }
         error = nil
@@ -132,7 +137,7 @@ import C67Domain
         let accepted = additional.compactMap { place -> RecommendedPlace? in
             guard let item = offeredCandidates[place.id], known.insert(place.id).inserted else { return nil }
             return item
-        }.prefix(min(3, max(0, 6 - recommendationBase.count)))
+        }.prefix(min(planning.supportsOnDevicePlanning ? 6 : 3, max(0, 6 - recommendationBase.count)))
         chosenRecommendations = accepted.map(\.place)
         selected = recommendationBase + accepted
         if let id = mainSpot.placeID, !selected.contains(where: { $0.id == id }) { mainSpot = .automatic; stay = nil }
@@ -148,10 +153,16 @@ import C67Domain
 
     func plan() async {
         guard !Task.isCancelled, !isProcessing, !planning.isBusy else { return }
+        if missingVisitAvailability || planning.enginePreferences.map({ $0.usesLuna && !$0.allowsAIProcessing }) == true {
+            error = "Review visit availability and schedule advice consent. Unknown hours are not treated as open."
+            push(.availability)
+            return
+        }
         if let id = mainSpot.placeID, let seconds = stay?.visitSeconds,
            let index = selected.firstIndex(where: { $0.id == id }) { selected[index].place.visitSeconds = seconds }
         syncPlaces()
         planning.preferences = preferenceText
+        syncEnginePreferences()
         planning.draftChanged()
         isProcessing = true; error = nil
         defer { isProcessing = false }
@@ -180,5 +191,29 @@ import C67Domain
             lines.append("Main spot preference: " + item.place.name + ". This does not pin the first stop.")
         }
         return lines.joined(separator: "\n")
+    }
+
+    func confirmVisit(_ id: UUID, opens: Date, closes: Date, publicAccess: Bool) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.visitConfirmation = .init(opensAt: opens, closesAt: closes, publicAccessConfirmed: publicAccess)
+        syncPlaces()
+    }
+    func clearVisitConfirmation(_ id: UUID) {
+        guard let index = selected.firstIndex(where: { $0.id == id }), selected[index].place.visitConfirmation != nil else { return }
+        selected[index].place.visitConfirmation = nil; syncPlaces()
+    }
+    func setVisitTiming(_ id: UUID, date: Date, timing: PlanningVisitTiming?) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.preferredAfter = timing == nil ? nil : date
+        selected[index].place.visitTiming = timing
+        syncPlaces()
+    }
+
+    private func syncEnginePreferences() {
+        guard planning.supportsOnDevicePlanning else { return }
+        var preferences = planning.enginePreferences ?? PlanningPreferences()
+        preferences.themes = Set(answers.interests.map(\.rawValue))
+        preferences.labels = answers.refinements
+        planning.enginePreferences = preferences
     }
 }

@@ -1,22 +1,26 @@
 # C67
 
+[PoC and experiment index](poc-journey/docs/apple-first-transition-2026-11-12.md) · [TestFlight handoff](docs/tasks/pocket-live-testflight-handoff.md)
+
+**Current native integration — 12 November 2026:** the default app uses Pocket Engine on device for matching and itinerary validation. The Hi-Fi UI sends structured themes/62 labels, consumes catalog/constrained Luna advice through a small server, and saves trips locally. Configure the connection in Account. See [setup](docs/pocket-engine-integration.md) and [verification](docs/tasks/pocket-ui-integration.md). Server deployment and TestFlight acceptance are separate.
+
 Development uses feature branches -> reviewed PRs to `dev` -> reviewed promotion to `main`. Start new work from default branch `dev`; run [local verification](docs/coding-conventions.md) before feature review. Automatic CI runs only on PRs targeting `main` and rejects promotion sources other than this repository's `dev`. Full regression and PoC workflows are manual. See [repository settings](docs/repository-settings.md).
 
 The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Start with [Journey Showcase](poc-journey/apps/c67-journey-showcase/README.md) for the guided itinerary UI; Trip Integration owns its shared engine. Its apps and evidence are isolated from the production implementation described below.
 
 C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
 
-**Repository implementation — 30 October 2026:** the default iOS flow is now Plan → review → My Trips → start/arrive/extend/recalculate. It includes synthetic mock adapters, a separate Node/TypeScript Planning API and worker, Apple Maps/Weather and hosted-model adapters, a bounded public-site reader, OpenAPI 0.6 and an additive SQL migration. This batch is local code, not a shared deployment or live-provider acceptance. Read [implementation/evidence](docs/tasks/ai-trip-planning-implementation.md), [planning design](docs/ai-trip-planning.md) and [ADR-0009](docs/decisions/0009-personal-planning-implementation.md).
+**Legacy HTTP planning implementation — 30 October 2026:** the default iOS flow is now Plan → review → My Trips → start/arrive/extend/recalculate. It includes synthetic mock adapters, a separate Node/TypeScript Planning API and worker, Apple Maps/Weather and hosted-model adapters, a bounded public-site reader, OpenAPI 0.6 and an additive SQL migration. This batch is local code, not a shared deployment or live-provider acceptance. Read [implementation/evidence](docs/tasks/ai-trip-planning-implementation.md), [planning design](docs/ai-trip-planning.md) and [ADR-0009](docs/decisions/0009-personal-planning-implementation.md).
 
 ## Run the app
 
 1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
-2. In default mock mode, tap the Home plus button and choose **Get Recommendations** or **Add Specific Place**. Complete the guided inputs and confirm the planner details.
-3. Review the synthetic itinerary and save it with a name. Open the saved trip to start, manually confirm arrivals, finish visits and inspect recalculation through Trip options. See the [Canvas and flow guide](ios-ui/README.md).
+2. In Pocket mode, choose a starting point, then tap the Home plus button and choose **Get Recommendations** or **Add Specific Place**. Complete the guided inputs and confirm the planner details.
+3. Review visit availability and schedule-advice consent, then save the itinerary with a name. Open the saved trip to start, manually confirm arrivals, finish visits and inspect recalculation through Trip options. See the [Canvas and flow guide](ios-ui/README.md).
 
-Mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
+Explicit mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
 
-Live planning requires a configured HTTPS Planning API, the new SQL migration, backend provider credentials and traveller sign-in. Existing Supabase/Auth deployment does not deploy this new service. See [planning setup](server/planning/README.md) and [getting started](docs/getting-started.md). Missing planning configuration leaves Account usable and reports an explicit planning error.
+Legacy `live` mode requires a configured HTTPS Planning API, the new SQL migration, backend provider credentials and traveller sign-in. Existing Supabase/Auth deployment does not deploy this new service. See [planning setup](server/planning/README.md) and [getting started](docs/getting-started.md). Missing planning configuration leaves Account usable and reports an explicit planning error.
 
 | Area | Responsibility | Entry point |
 |---|---|---|

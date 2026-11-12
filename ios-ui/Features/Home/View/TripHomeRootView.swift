@@ -66,7 +66,9 @@ struct TripHomeRootView: View {
             case .location:
                 PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
             case .account:
-                if let accountPresenter {
+                if presenter.supportsOnDevicePlanning {
+                    PocketConnectionView(presenter: presenter, dismiss: dismissSheet)
+                } else if let accountPresenter {
                     AccountView(presenter: accountPresenter)
                 } else {
                     NavigationStack {

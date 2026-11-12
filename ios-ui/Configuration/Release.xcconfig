@@ -1,6 +1,8 @@
 #include "Base.xcconfig"
 // Release requires its own explicit client configuration; missing values fail visibly at app startup.
-C67_DATA_MODE = live
+C67_DATA_MODE = pocket
+POCKET_SERVER_SCHEME = https
+POCKET_SERVER_HOST =
 SUPABASE_SCHEME = https
 SUPABASE_HOST =
 SUPABASE_CLIENT_KEY =

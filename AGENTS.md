@@ -2,7 +2,7 @@
 
 ## Start with the task and current code
 
-C67 targets AI-generated personal trip recommendations from user-selected places, preferences, weather and time; see [product context](docs/product-context.md) and [ADR-0008](docs/decisions/0008-ai-trip-planning-direction.md). Personal planning UI, a Node/TypeScript API/worker, provider adapters and an additive SQL aggregate are implemented locally; see [ADR-0009](docs/decisions/0009-personal-planning-implementation.md) and [task evidence](docs/tasks/ai-trip-planning-implementation.md). The new service/migration are not shared-deployed. The default mock flow is synthetic personal planning; the legacy Discovery example remains accessible. Supabase on the homelab is the shared development backend. The graph/discovery/planned-edit/private-journal server slice and image worker are deployed and verified; native email/password sessions and discovery/trip query adapters are implemented with their verification tracked separately.
+C67's default native mode is now Pocket on-device planning. See [ADR 0010](docs/decisions/0010-pocket-native-ui-integration.md) and [integration guide](docs/pocket-engine-integration.md). The existing Hi-Fi/VIPER UI uses C67Domain interfaces and C67Data adapters around the extracted Foundation-only core in `packages/PocketEngine`. The small Pocket server supplies independent catalog evidence and constrained Luna advice; this UI integration does not deploy it. Trips stay on device in Pocket mode. Explicit mock and earlier Supabase/Node live modes remain available; existing shared Supabase deployment and legacy migrations are unchanged.
 
 Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
@@ -13,7 +13,8 @@ Use [the AI workflow](docs/ai/workflow.md) and a task brief based on [the templa
 - `ios-ui/`: SwiftUI and VIPER View/Interactor/Presenter/Router/Assembly.
 - `ios-backend/`: on-device code. `C67Domain` owns shared entities/interfaces; `C67Data` implements them.
 - `server/`: Supabase SQL/RPCs and the separate `planning/` Node API/worker. The root server package pins Supabase tooling; planning has its own locked development dependencies.
-- `contracts/api/openapi.json`: authoritative wire contract. `contracts/fixtures/`: authoritative synthetic fixtures.
+- `packages/PocketEngine/`: maintained core extraction, taxonomy/resources, provenance and tests.
+- `contracts/api/openapi.json`: authoritative wire contract, with separate Pocket and legacy server/auth scopes. `contracts/fixtures/`: authoritative synthetic fixtures.
 - `docs/decisions/`: architecture decisions; update a relevant ADR when an approved decision changes.
 - [Design system](docs/design-system.md): the shared visual reference for UI work; the guide distinguishes documented specifications from implemented components.
 

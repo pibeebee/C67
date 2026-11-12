@@ -1,5 +1,7 @@
 # C67 PoC journey
 
+The [Apple-first transition index](docs/apple-first-transition-2026-11-12.md) locates the Pocket Engine, venue collection and Context Lab v2, preference and performance experiments.
+
 This folder hands over itinerary, recommendation, routing and weather experiments, with six project roots, fixtures/tests/runners, dated reports and a public evidence inventory. The production C67 app remains a separate implementation.
 
 **Start here:** choose the [Context Lab handoff](docs/context-lab-handoff-2026-11-09.md) for the Mac-local backend and dynamic context experiment, or [Journey Showcase](apps/c67-journey-showcase/README.md) for the guided TJ itinerary flow. See [status](STATUS.md) and the [experiment journey](JOURNEY.md) for their separate evidence.

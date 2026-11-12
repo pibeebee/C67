@@ -1,0 +1,156 @@
+[
+  {
+    "id": "q-reading",
+    "axis": "readingActivity",
+    "text": "Untuk membaca, mana yang Anda inginkan?",
+    "interests": [
+      "reading"
+    ],
+    "requiresAllInterests": false,
+    "choices": [
+      {
+        "id": "reading-onsite",
+        "value": "onsite",
+        "label": "Membaca di tempat",
+        "summary": "Membaca buku sendiri di tempat",
+        "english": "Read my own book at a venue"
+      },
+      {
+        "id": "reading-buy",
+        "value": "buy",
+        "label": "Mencari atau membeli buku",
+        "summary": "Mencari atau membeli buku",
+        "english": "Browse and buy books"
+      }
+    ]
+  },
+  {
+    "id": "q-coffee-reading",
+    "axis": "coffeeRelation",
+    "text": "Kopi dan membaca ingin dilakukan bagaimana?",
+    "interests": [
+      "coffee",
+      "reading"
+    ],
+    "requiresAllInterests": true,
+    "choices": [
+      {
+        "id": "coffee-reading-together",
+        "value": "together",
+        "label": "Dalam satu tempat",
+        "summary": "Kopi dan membaca dalam tempat yang sama",
+        "english": "Have coffee and read at the same venue"
+      },
+      {
+        "id": "coffee-reading-separate",
+        "value": "separate",
+        "label": "Di tempat berbeda",
+        "summary": "Membaca dan minum kopi boleh terpisah",
+        "english": "Visit separate places for reading and coffee"
+      }
+    ]
+  },
+  {
+    "id": "q-culture",
+    "axis": "cultureActivity",
+    "text": "Saat mengunjungi museum, apa yang paling menarik?",
+    "interests": [
+      "culture",
+      "architecture"
+    ],
+    "requiresAllInterests": false,
+    "choices": [
+      {
+        "id": "culture-exhibits",
+        "value": "exhibits",
+        "label": "Isi pamerannya",
+        "summary": "Menikmati koleksi dan pameran",
+        "english": "Explore museum exhibits and collections"
+      },
+      {
+        "id": "culture-building",
+        "value": "building",
+        "label": "Bangunan dan arsitekturnya",
+        "summary": "Menikmati arsitektur bangunan",
+        "english": "Explore architecture and historic buildings"
+      }
+    ]
+  },
+  {
+    "id": "q-outdoors",
+    "axis": "outdoorMoment",
+    "text": "Untuk kegiatan luar ruang kali ini?",
+    "interests": [
+      "outdoors"
+    ],
+    "requiresAllInterests": false,
+    "choices": [
+      {
+        "id": "outdoors-sunset",
+        "value": "sunset",
+        "label": "Menikmati suasana senja",
+        "summary": "Mengutamakan pengalaman saat senja",
+        "english": "Experience an outdoor sunset"
+      },
+      {
+        "id": "outdoors-daytime",
+        "value": "daytime",
+        "label": "Aktivitas saat terang",
+        "summary": "Mengutamakan kegiatan luar ruang saat terang",
+        "english": "Enjoy outdoor activities in daylight"
+      }
+    ]
+  },
+  {
+    "id": "q-spending",
+    "axis": "spending",
+    "text": "Untuk kegiatan kali ini, mana yang lebih cocok?",
+    "interests": [
+      "food",
+      "shopping"
+    ],
+    "requiresAllInterests": false,
+    "choices": [
+      {
+        "id": "spending-low",
+        "value": "low",
+        "label": "Pengeluaran lebih hemat",
+        "summary": "Mengutamakan pilihan lebih hemat; belum ada batas rupiah",
+        "english": "Prefer lower spending without an invented monetary cap"
+      },
+      {
+        "id": "spending-flexible",
+        "value": "flexible",
+        "label": "Pengeluaran fleksibel",
+        "summary": "Pengeluaran fleksibel untuk pengalaman yang disukai",
+        "english": "Flexible spending for a preferred experience"
+      }
+    ]
+  },
+  {
+    "id": "q-walking",
+    "axis": "walking",
+    "text": "Untuk berpindah dan menjelajah tempat?",
+    "interests": [
+      "entertainment",
+      "arts"
+    ],
+    "requiresAllInterests": false,
+    "choices": [
+      {
+        "id": "walking-low",
+        "value": "low",
+        "label": "Sedikit berjalan",
+        "summary": "Mengutamakan sedikit berjalan; belum ada batas jarak",
+        "english": "Prefer experiences requiring less walking"
+      },
+      {
+        "id": "walking-explore",
+        "value": "explore",
+        "label": "Banyak menjelajah boleh",
+        "summary": "Boleh lebih banyak berjalan dan menjelajah",
+        "english": "Comfortable with more walking and exploration"
+      }
+    ]
+  }
+]

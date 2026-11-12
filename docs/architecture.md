@@ -1,5 +1,8 @@
 # Architecture boundaries
 
+Current native planning uses [ADR 0010](decisions/0010-pocket-native-ui-integration.md): SwiftUI/VIPER -> C67Domain -> C67Data PocketPlanningRepository -> local PocketEngine core, with MapKit/WeatherKit and catalog/constrained Luna adapters. Trips are stored on device. The earlier HTTP service architecture below remains available only in explicit legacy live mode; its deployment status is not changed by native integration.
+
+
 Updated 30 October 2026. [ADR-0009](decisions/0009-personal-planning-implementation.md) records the implemented personal-planning slice. The new service and migration are prepared in the repository; the existing homelab deployment does not yet include them.
 
 ## Dependency direction

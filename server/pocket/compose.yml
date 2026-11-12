@@ -1,0 +1,18 @@
+services:
+  pocket:
+    build:
+      context: ../..
+      dockerfile: server/pocket/Dockerfile
+    env_file: .env
+    ports:
+      - "127.0.0.1:8792:8792"
+    volumes:
+      - pocket_data:/data
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    pids_limit: 64
+volumes:
+  pocket_data:

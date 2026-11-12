@@ -69,6 +69,10 @@ struct ItineraryListView: View {
                 }
 
                 ItineraryMapView(proposal: proposal)
+                if let seconds = proposal.returnTravelSeconds {
+                    Label("Return to starting point · \(Int(ceil(Double(seconds) / 60))) min · arrive by \(ItineraryFormatting.time(proposal.finishesAt, zone: proposal.input.timeZone, locale: .current))", systemImage: "arrow.uturn.backward")
+                        .font(.footnote)
+                }
 
                 if proposal.synthetic {
                     Text(isDesignPreview ? "Design preview · sample itinerary from Sketch" : "Synthetic demonstration · trips last until the app closes.")

@@ -22,7 +22,9 @@ targets:
     platform: iOS
     settings:
       base:
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        MARKETING_VERSION: 0.1.0
+        CURRENT_PROJECT_VERSION: 1
     sources:
       - App
       - Features
@@ -38,6 +40,7 @@ targets:
         SUPABASE_URL: $(SUPABASE_SCHEME)://$(SUPABASE_HOST)
         SUPABASE_CLIENT_KEY: $(SUPABASE_CLIENT_KEY)
         PLANNING_API_URL: $(PLANNING_SCHEME)://$(PLANNING_HOST)
+        POCKET_SERVER_URL: $(POCKET_SERVER_SCHEME)://$(POCKET_SERVER_HOST)
         CFBundleDisplayName: Travelant
         NSLocationWhenInUseUsageDescription: Your location is used to get your position on the map to improve the best itinerary for you
         UILaunchScreen:
@@ -48,9 +51,12 @@ targets:
       path: C67.entitlements
       properties:
         com.apple.developer.applesignin: [Default]
+        com.apple.developer.weatherkit: true
     attributes:
       SystemCapabilities:
         com.apple.SignInWithApple:
+          enabled: 1
+        com.apple.WeatherKit:
           enabled: 1
     configFiles:
       Debug: Configuration/Debug.xcconfig

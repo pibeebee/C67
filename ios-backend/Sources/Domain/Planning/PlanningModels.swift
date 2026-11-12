@@ -1,19 +1,19 @@
 import Foundation
 
-public enum PlanningMode: String, Equatable, Sendable, CaseIterable {
+public enum PlanningMode: String, Equatable, Codable, Sendable, CaseIterable {
     case walking
     case automobile
     case unknown
 }
 
-public enum PlanningPurpose: String, Equatable, Sendable, CaseIterable {
+public enum PlanningPurpose: String, Equatable, Codable, Sendable, CaseIterable {
     case plan
     case suggest
     case replan
     case unknown
 }
 
-public enum PlanningJobStatus: String, Equatable, Sendable, CaseIterable {
+public enum PlanningJobStatus: String, Equatable, Codable, Sendable, CaseIterable {
     case queued
     case running
     case succeeded
@@ -21,21 +21,21 @@ public enum PlanningJobStatus: String, Equatable, Sendable, CaseIterable {
     case unknown
 }
 
-public enum PersonalTripStatus: String, Equatable, Sendable, CaseIterable {
+public enum PersonalTripStatus: String, Equatable, Codable, Sendable, CaseIterable {
     case planned
     case active
     case completed
     case unknown
 }
 
-public enum PlanningEventKind: String, Equatable, Sendable, CaseIterable {
+public enum PlanningEventKind: String, Equatable, Codable, Sendable, CaseIterable {
     case start
     case arrive
     case completeStop = "complete_stop"
     case extendStay = "extend_stay"
 }
 
-public struct PlanningPoint: Equatable, Sendable {
+public struct PlanningPoint: Equatable, Codable, Sendable {
     public var latitude: Double
     public var longitude: Double
     public init(latitude: Double, longitude: Double) {
@@ -44,7 +44,7 @@ public struct PlanningPoint: Equatable, Sendable {
     }
 }
 
-public struct PlanningPlace: Equatable, Sendable, Identifiable {
+public struct PlanningPlace: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var name: String
     public var location: PlanningPoint
@@ -52,6 +52,11 @@ public struct PlanningPlace: Equatable, Sendable, Identifiable {
     public var website: URL?
     public var preferredAfter: Date?
     public var preferredBefore: Date?
+    public var sourceID: String? = nil
+    public var categories: [String] = []
+    public var visitConfirmation: PlanningVisitConfirmation? = nil
+    public var availabilityVerified = false
+    public var visitTiming: PlanningVisitTiming? = nil
     public init(id: UUID, name: String, location: PlanningPoint, visitSeconds: Int, website: URL? = nil, preferredAfter: Date? = nil, preferredBefore: Date? = nil) {
         self.id = id
         self.name = name
@@ -63,7 +68,7 @@ public struct PlanningPlace: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct PlanningInput: Equatable, Sendable {
+public struct PlanningInput: Equatable, Codable, Sendable {
     public var title: String
     public var origin: PlanningPoint
     public var places: [PlanningPlace]
@@ -74,6 +79,7 @@ public struct PlanningInput: Equatable, Sendable {
     public var mode: PlanningMode
     public var firstPlaceID: UUID?
     public var preservesPlaceOrder: Bool
+    public var enginePreferences: PlanningPreferences? = nil
     public init(title: String, origin: PlanningPoint, places: [PlanningPlace], preferences: String, startsAt: Date, finishBy: Date, timeZone: String, mode: PlanningMode, firstPlaceID: UUID? = nil, preservesPlaceOrder: Bool = false) {
         self.title = title
         self.origin = origin
@@ -88,7 +94,7 @@ public struct PlanningInput: Equatable, Sendable {
     }
 }
 
-public struct PlanningEvidence: Equatable, Sendable, Identifiable {
+public struct PlanningEvidence: Equatable, Codable, Sendable, Identifiable {
     public var id: String
     public var label: String
     public var url: URL?
@@ -109,7 +115,7 @@ public struct PlanningEvidence: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct ScheduledPlanningStop: Equatable, Sendable, Identifiable {
+public struct ScheduledPlanningStop: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var name: String
     public var location: PlanningPoint
@@ -118,6 +124,7 @@ public struct ScheduledPlanningStop: Equatable, Sendable, Identifiable {
     public var visitSeconds: Int
     public var travelSeconds: Int
     public var warnings: [String]
+    public var visitStartsAt: Date? = nil
     public init(id: UUID, name: String, location: PlanningPoint, arrivalAt: Date, departureAt: Date, visitSeconds: Int, travelSeconds: Int, warnings: [String]) {
         self.id = id
         self.name = name
@@ -130,7 +137,7 @@ public struct ScheduledPlanningStop: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct PlanProposal: Equatable, Sendable, Identifiable {
+public struct PlanProposal: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var input: PlanningInput
     public var stops: [ScheduledPlanningStop]
@@ -140,6 +147,8 @@ public struct PlanProposal: Equatable, Sendable, Identifiable {
     public var warnings: [String]
     public var evidence: [PlanningEvidence]
     public var synthetic: Bool
+    public var departureAt: Date? = nil
+    public var returnTravelSeconds: Int? = nil
     public init(id: UUID, input: PlanningInput, stops: [ScheduledPlanningStop], finishesAt: Date, feasible: Bool, explanation: String, warnings: [String], evidence: [PlanningEvidence], synthetic: Bool) {
         self.id = id
         self.input = input
@@ -153,7 +162,7 @@ public struct PlanProposal: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct PlanningResult: Equatable, Sendable {
+public struct PlanningResult: Equatable, Codable, Sendable {
     public var proposal: PlanProposal?
     public var candidates: [PlanningPlace]
     public var warnings: [String]
@@ -166,7 +175,7 @@ public struct PlanningResult: Equatable, Sendable {
     }
 }
 
-public struct PlanningRequest: Equatable, Sendable {
+public struct PlanningRequest: Equatable, Codable, Sendable {
     public var requestID: UUID
     public var purpose: PlanningPurpose
     public var input: PlanningInput
@@ -183,7 +192,7 @@ public struct PlanningRequest: Equatable, Sendable {
     }
 }
 
-public struct PlanningJob: Equatable, Sendable, Identifiable {
+public struct PlanningJob: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var status: PlanningJobStatus
     public var purpose: PlanningPurpose
@@ -206,7 +215,7 @@ public struct PlanningJob: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct PersonalPlanningTrip: Equatable, Sendable, Identifiable {
+public struct PersonalPlanningTrip: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var title: String
     public var revision: Int
@@ -233,7 +242,7 @@ public struct PersonalPlanningTrip: Equatable, Sendable, Identifiable {
     }
 }
 
-public struct PlanningEvent: Equatable, Sendable {
+public struct PlanningEvent: Equatable, Codable, Sendable {
     public var requestID: UUID
     public var expectedRevision: Int
     public var kind: PlanningEventKind
@@ -249,13 +258,18 @@ public struct PlanningEvent: Equatable, Sendable {
 }
 
 public extension PlanningInput {
-    func validate() throws {
+    func validate(purpose: PlanningPurpose = .plan) throws {
         guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, title.count <= 120,
-              preferences.count <= 2000, (1 ... 6).contains(places.count), Set(places.map(\.id)).count == places.count,
+              preferences.count <= 2000, ((purpose == .suggest && enginePreferences != nil ? 0 : 1) ... 6).contains(places.count), Set(places.map(\.id)).count == places.count,
               finishBy > startsAt, finishBy.timeIntervalSince(startsAt) <= 86400,
               TimeZone(identifier: timeZone) != nil, mode != .unknown,
               origin.latitude.isFinite, origin.longitude.isFinite,
               abs(origin.latitude) <= 90, abs(origin.longitude) <= 180 else { throw PlanningError.invalidInput }
+        if enginePreferences != nil, purpose != .suggest {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = TimeZone(identifier: "Asia/Jakarta")!
+            guard calendar.isDate(startsAt, inSameDayAs: finishBy) else { throw PlanningError.invalidInput }
+        }
         for place in places {
             guard !place.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, place.name.count <= 200, (0 ... 86400).contains(place.visitSeconds),
                   place.location.latitude.isFinite, place.location.longitude.isFinite,

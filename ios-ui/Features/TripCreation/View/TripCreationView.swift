@@ -57,7 +57,8 @@ struct TripCreationView: View {
                 PreferenceQuestionView(step: step, answers: presenter.answers,
                                        update: { presenter.answers = $0 },
                                        advance: { presenter.advance(step) },
-                                       skip: { presenter.advance(step, skip: true) })
+                                       skip: { presenter.advance(step, skip: true) },
+                                       refinementOptions: presenter.planning.preferenceLabels)
             case .places:
                 AddPlacesView(query: $presenter.query, results: presenter.results, selected: presenter.selected,
                               isSearching: presenter.isSearching, error: presenter.searchError,
@@ -67,11 +68,14 @@ struct TripCreationView: View {
                 }
             case .confirmation:
                 TripInputConfirmationView(presenter: presenter) { run { await presenter.confirm() } }
+            case .availability:
+                PocketVisitAvailabilityView(presenter: presenter) { run { await presenter.plan() } }
             case .recommendations:
                 PlacesRecommendationsView(batch: presenter.batch, existing: presenter.recommendationBase.map(\.place),
                                           selected: presenter.chosenRecommendations,
                                           refresh: { await presenter.suggest() },
-                                          continueWithoutSelection: { presenter.chooseRecommendations([]) },
+                                          continueWithoutSelection: presenter.recommendationBase.isEmpty ? nil : { presenter.chooseRecommendations([]) },
+                                          maximumAdditions: presenter.planning.supportsOnDevicePlanning ? 6 : 3,
                                           complete: presenter.chooseRecommendations)
             case .mainSpot:
                 MainSpotQuestionView(places: presenter.selected, selection: presenter.mainSpot,

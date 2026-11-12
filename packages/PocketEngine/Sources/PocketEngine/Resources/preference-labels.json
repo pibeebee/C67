@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "types": {
+    "makan_minum": {
+      "cafe": "Kafe atau kedai kopi untuk pengunjung.",
+      "restaurant": "Restoran yang menawarkan hidangan utama sebagai layanan inti.",
+      "bakery": "Toko yang berfokus pada penjualan roti atau pastri panggang.",
+      "dessert_shop": "Kedai khusus dessert atau es krim.",
+      "tea_house": "Kedai yang menjadikan teh sebagai sajian utama.",
+      "food_court": "Area dengan beberapa gerai makanan dan tempat duduk bersama.",
+      "street_food_area": "Sentra atau area yang menampung beberapa penjual jajanan kaki lima."
+    },
+    "alam_ruang_publik": {
+      "park": "Taman publik yang bisa dikunjungi untuk rekreasi.",
+      "botanical_garden": "Kebun botani yang menampilkan koleksi tumbuhan.",
+      "urban_forest": "Hutan kota yang memiliki area yang bisa dikunjungi.",
+      "public_square": "Plaza atau alun-alun yang terbuka bagi publik.",
+      "waterfront_walk": "Jalur publik untuk berjalan kaki di tepi sungai, danau, atau badan air."
+    },
+    "seni_budaya_hiburan": {
+      "museum": "Museum yang menampilkan koleksi atau pameran untuk pengunjung.",
+      "art_gallery": "Galeri dengan ruang untuk memamerkan karya seni.",
+      "cultural_center": "Pusat yang secara tetap menyelenggarakan kegiatan kebudayaan.",
+      "heritage_site": "Situs yang dikenal dan dapat dikunjungi karena nilai sejarahnya.",
+      "cinema": "Bioskop yang memutar film untuk penonton.",
+      "performance_venue": "Tempat yang berfungsi sebagai lokasi pertunjukan seperti teater atau tari.",
+      "live_music_venue": "Tempat yang rutin menyelenggarakan pertunjukan musik langsung.",
+      "karaoke": "Tempat yang menyediakan layanan atau ruangan karaoke."
+    },
+    "buku_belajar_berkarya": {
+      "library": "Perpustakaan atau ruang baca yang dapat diakses publik.",
+      "bookstore": "Toko yang menjual buku sebagai bagian utama usahanya.",
+      "coworking_space": "Tempat yang menyediakan ruang kerja bersama sebagai layanan.",
+      "creative_studio": "Studio yang menyediakan ruang atau peralatan untuk berkarya kreatif.",
+      "workshop_venue": "Tempat yang rutin menyelenggarakan lokakarya."
+    },
+    "belanja_koleksi": {
+      "shopping_mall": "Mal atau pusat perbelanjaan yang menjadi tujuan itu sendiri.",
+      "traditional_market": "Pasar tradisional dengan beberapa pedagang atau kios.",
+      "thrift_shop": "Toko yang fokus pada barang bekas atau barang vintage.",
+      "record_store": "Toko yang fokus pada musik dalam format fisik, seperti piringan hitam.",
+      "craft_shop": "Toko yang fokus pada produk kerajinan."
+    },
+    "olahraga_rekreasi": {
+      "sports_center": "Pusat yang menawarkan fasilitas olahraga sebagai fungsi utama.",
+      "swimming_pool": "Tempat berenang yang menjadi tujuan kunjungan itu sendiri.",
+      "climbing_gym": "Tempat dengan fasilitas khusus panjat atau bouldering.",
+      "bowling_alley": "Arena yang menyediakan lintasan bowling.",
+      "arcade": "Arena rekreasi yang menawarkan permainan arkade.",
+      "playground": "Taman bermain yang menjadi tujuan utama kunjungan.",
+      "cycling_track": "Lintasan yang memang disediakan untuk bersepeda."
+    }
+  },
+  "subtypes": {
+    "cafe": {
+      "specialty_coffee": "Kopi spesialti merupakan fokus utama kafe.",
+      "brunch_cafe": "Brunch merupakan fokus kafe atau alasan utama orang berkunjung.",
+      "dessert_cafe": "Dessert merupakan fokus kafe atau alasan utama orang berkunjung."
+    },
+    "restaurant": {
+      "indonesian_cuisine": "Masakan Indonesia merupakan fokus restoran.",
+      "japanese_cuisine": "Masakan Jepang merupakan fokus restoran.",
+      "korean_cuisine": "Masakan Korea merupakan fokus restoran."
+    },
+    "museum": {
+      "art_museum": "Koleksi atau pameran seni merupakan fokus utama museum.",
+      "history_museum": "Sejarah merupakan fokus utama museum.",
+      "science_museum": "Sains atau teknologi merupakan fokus utama museum."
+    },
+    "bookstore": {
+      "used_books": "Buku bekas merupakan fokus utama toko buku.",
+      "comics": "Komik merupakan fokus utama toko buku.",
+      "childrens_books": "Buku anak merupakan fokus utama toko buku."
+    }
+  },
+  "features": {
+    "area_pengunjung": {
+      "indoor": "Ada area tertutup di dalam ruangan yang tersedia untuk pengunjung.",
+      "outdoor": "Ada area terbuka di luar ruang yang tersedia untuk pengunjung.",
+      "semi_outdoor": "Ada area pengunjung beratap dengan sisi terbuka.",
+      "rooftop": "Pengunjung bisa menggunakan area di atap bangunan.",
+      "garden_seating": "Ada tempat duduk pengunjung di kebun atau taman tempat ini."
+    },
+    "daya_tarik": {
+      "nature": "Kebun, pepohonan, atau pemandangan alam merupakan bagian utama pengalaman.",
+      "heritage": "Sejarah atau warisan budaya menjadi daya tarik tempat ini.",
+      "architecture": "Desain bangunan atau arsitektur merupakan daya tarik tempat ini.",
+      "city_view": "Tempat menawarkan pemandangan kota sebagai daya tarik.",
+      "public_art": "Karya seni yang bisa dilihat publik merupakan daya tarik di tempat ini.",
+      "local_cuisine": "Hidangan khas daerah setempat merupakan daya tarik utama."
+    },
+    "fasilitas_rekreasi": {
+      "walking_path": "Ada jalur berjalan kaki yang disediakan bagi pengunjung.",
+      "children_play_area": "Ada area bermain anak sebagai fasilitas pengunjung."
+    }
+  }
+}

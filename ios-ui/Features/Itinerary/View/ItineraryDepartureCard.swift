@@ -15,11 +15,11 @@ struct ItineraryDepartureCard: View {
                 Text("Suggested departure")
             }
             .font(.subheadline)
-            Text(ItineraryFormatting.date(proposal.input.startsAt, zone: proposal.input.timeZone, locale: locale))
+            Text(ItineraryFormatting.date(proposal.departureAt ?? proposal.input.startsAt, zone: proposal.input.timeZone, locale: locale))
                 .font(.largeTitle.bold())
-            Text(ItineraryFormatting.time(proposal.input.startsAt, zone: proposal.input.timeZone, locale: locale))
+            Text(ItineraryFormatting.time(proposal.departureAt ?? proposal.input.startsAt, zone: proposal.input.timeZone, locale: locale))
                 .font(.title.bold())
-            Text(isDesignPreview ? "Set to beat the morning rush." : "Based on your selected departure time.")
+            Text(isDesignPreview ? "Set to beat the morning rush." : proposal.input.enginePreferences?.flexibleDeparture == true ? "Chosen within your available departure window." : "Based on your selected departure time.")
                 .font(.subheadline)
             if let weatherAdvice {
                 Label(weatherAdvice, systemImage: "sun.max")

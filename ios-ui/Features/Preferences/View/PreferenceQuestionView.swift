@@ -1,4 +1,5 @@
 import SwiftUI
+import C67Domain
 
 /// Shows the screen for one preference question and reports answers to the flow.
 struct PreferenceQuestionView: View {
@@ -7,6 +8,7 @@ struct PreferenceQuestionView: View {
     let update: (PreferenceAnswers) -> Void
     let advance: () -> Void
     let skip: () -> Void
+    var refinementOptions: [PlanningPreferenceLabel] = []
 
     var body: some View {
         switch step {
@@ -15,7 +17,10 @@ struct PreferenceQuestionView: View {
                 selection: answers.interests,
                 toggle: { interest in edit { $0.toggle(interest) } },
                 next: advance,
-                skip: skip
+                skip: skip,
+                refinements: refinementOptions,
+                selectedRefinements: answers.refinements,
+                toggleRefinement: { value in edit { $0.refinements.formSymmetricDifference([value]) } }
             )
         case .popularity:
             PlacePopularityQuestionView(

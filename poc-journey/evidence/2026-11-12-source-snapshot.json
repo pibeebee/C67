@@ -1,0 +1,824 @@
+{
+  "description": "Original allowlisted input file checksums, before publication sanitation and formatting. No local state or provider cache was copied.",
+  "files": [
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Info.plist",
+      "originalSha256": "e4601d662e93bd99c63a45b6dde08f1f2012bed06570036c66e026cc8c82f8b0"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/PocketEngine.entitlements",
+      "originalSha256": "bc9d6bb0600f07c0ec076654c8726ae9808596ba2e383a112380053300bf8706"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/AppleServices.swift",
+      "originalSha256": "4de03aaba6ac4ba1ca1e2322d39e735c0e51589a18f4aad5bf6597c8ea85431b"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/CatalogClient.swift",
+      "originalSha256": "1dbc43b4949bdd372d07f20428c23feeb8b9fc42fbc69ed6332daee4364be7c4"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/DiscoverViews.swift",
+      "originalSha256": "e93a7da0e675519f7e8d663415bbd63293f23bda8c7ffbf09d5d8c655c1d4f85"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/PlanViews.swift",
+      "originalSha256": "8a6a1e4a60893e91c57e006864758776841b8fb830a472c9f8cba8e820482725"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/PocketApp.swift",
+      "originalSha256": "19f242899019593634ce3482438737f16d7d1c8115de704f9d0c669ac57a2984"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/PocketModel.swift",
+      "originalSha256": "5d3f8058060a01a6abb6f0220cd359a11ef596fcbe8763792d3350eeabdbf7b4"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/SettingsView.swift",
+      "originalSha256": "ba992865e79030a75cfe127a6de302d2ce4609b8f74676d0c8788ddc9f50b0ce"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/SimulatorAcceptance.swift",
+      "originalSha256": "92b43745d7b334961f715a0d9b3b9428b0e3bd18d9823ab0e5bb0acaf88b72cd"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/SimulatorFlow.swift",
+      "originalSha256": "dce2bfd6cae0fef11347806fe01e28f0298ed58c20d1f3370866eed3d03ccba8"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/SimulatorRouting.swift",
+      "originalSha256": "68917d21bbef82600c27dfef39536ca44cd527b2328d6d3b90602efa5cf1159b"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/Sources/SimulatorVisitAdvice.swift",
+      "originalSha256": "427c64acd0bea6530444842fa1d6e3ed810ec3a958d6f2b0173cde334ade786d"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/App/project.yml",
+      "originalSha256": "b0da691974b88231e6ace3c8be2008dd1706fd4b132db49bf483dee5dcbfe173"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Benchmarks/Acceptance/Package.swift",
+      "originalSha256": "2fadc5de1bcba46bb86ce340f2cd6a34551e21d947f43439f1255685f1b87b72"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Benchmarks/Acceptance/Sources/AcceptanceBench/main.swift",
+      "originalSha256": "dfa38afedd2643f95c7b4324717d3ad9ebaf7ee192d343843140bbe932372f76"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Benchmarks/Acceptance/benchmark.py",
+      "originalSha256": "6356b6d7fca29215a9101a0a8b8ae8169139137bd9ba894738fc8e1eac0555d6"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Package.swift",
+      "originalSha256": "63eb89dd2ec71c3c5cd2e990277a00ca696beb7906bba4417e00f5dd2866a93a"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/README.md",
+      "originalSha256": "d52a4faab4742048236848bb4fca7528bc961439e563cd26ba3e4090cca787f4"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Scripts/compare-visit-advice.py",
+      "originalSha256": "10eab51461ad8e682767bcb5948049278446f4a657c0e50b5e2da057b9ce92e7"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Scripts/import-open-data.py",
+      "originalSha256": "960144f4cf85666bf56610e842e3c38dd74f67f4163d86a20fc3365e8593c32f"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Scripts/prepare-reviewed-catalog.py",
+      "originalSha256": "767fd06601552061b929b6c9a924f26f2bde4071144d48b6786d8ccc21be1a3b"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Server/.env.example",
+      "originalSha256": "4bce1c2af571290bed326e0552bdc65d290d4928e6ad0194f18d4ba94b8b78cc"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Server/CONTRACT.md",
+      "originalSha256": "0f6250cd21c8cb695651c68241de75cd09f8b0bb889014b858d86c34416779b7"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Server/server.py",
+      "originalSha256": "9648e11260a7e95ac133161142eb11b853eebdddec674ae63f7063f03be72c71"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Server/visit_advice.py",
+      "originalSha256": "fafd00b193c88af14521e735d482cc82dda89a45feb67d7911da1a09c3b1749c"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Discovery.swift",
+      "originalSha256": "286f0508df8c1e060ab73a03570e7e6c5e3c3e03e7760a367dce74913a32c986"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Domain.swift",
+      "originalSha256": "9b530462d9884464cd3988fce6659197885275a7978cb940095910dba1b86705"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Itinerary.swift",
+      "originalSha256": "2841f771fb23a0bfafd15db6ffb57781367e4e7b4d1c6ed3cbf5fd05ecc5f0f2"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Resources/catalog.json",
+      "originalSha256": "47eccc9298768fd88db1d995a9e13538011faffa85520af737be0180e1ac2a25"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Resources/jakarta-selatan.json",
+      "originalSha256": "eaf53643529010dcb9b229775f8082283bcf39f0c0fa22c398be2e82c74d16b7"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Resources/kemayoran.json",
+      "originalSha256": "6513c1fc6cbc4f6f03b40a47e9bd789241ad275b0b6a18a78a876c4ced8f4b90"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Resources/preference-labels.json",
+      "originalSha256": "3613e0bfaf235de666934de0c347ef507eed0b207a61b91a64bb7aaee8b3b500"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/Themes.swift",
+      "originalSha256": "240d758d36d1413eca118a559bb34e5ee2a33cbfcf5ab7995cf1ec5f0a8703cc"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Sources/PocketEngine/VisitAdvice.swift",
+      "originalSha256": "270c293ead1fc540c2c8fb37108b9354f178d699c161a99d6c9729a42dc31b4a"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/Tests/PocketEngineTests/EngineTests.swift",
+      "originalSha256": "c660572b2576d7f45493dc32f4e252de135bce97a459c80248865f328d441781"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/ACCEPTANCE_BENCHMARK_2026-11-11.md",
+      "originalSha256": "f9b10536ea832da7a4d9c9057d6598e4548772f2e7fd062ce0b24265816c6910"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/BUILD_STATUS.md",
+      "originalSha256": "4a63437ef033e521e752c804d675058529ce543d8daf0b37a27c4f36244634c0"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/ENGINE_BENCHMARK_2026-11-11.md",
+      "originalSha256": "e2b159119b2800fd541df49af53b3d26fef1d21d09942c2abf29d764e11d55be"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/FOLLOWUP_2026-11-12.md",
+      "originalSha256": "48ae61dcfe401654d4efaa9f7962ec322481119edab8f2d4d8f68214d5cd8c3c"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/HIFI_LUNA_IMPLEMENTATION_2026-11-12.md",
+      "originalSha256": "6f4c7c9407f19e8e575413a788da98c1b50f965699eed6ef68b4351df09f7f9a"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/LABEL_COMPARISON_62_2026-11-12.md",
+      "originalSha256": "6b8547b0c714927534d8a525dad46f2163cd74b6a48d7254951e18ddcc76540b"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/PLANNER_REVISION_2026-11-11.md",
+      "originalSha256": "0619f6429fe3bbb62e42e7e69f08b808109a8d92c09e09d21fdca1addcf115f4"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/RECOMMENDATION_AND_ITINERARY_IMPLEMENTATION_PLAN.md",
+      "originalSha256": "6954560a48a6b704be3d974d67f744d9d542fcd3bb685c9a1074260b9f7741de"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/SIMULATOR_ACCEPTANCE_2026-11-12.md",
+      "originalSha256": "ff447ff33c5e9569ff2f2878eff4cef4db0d37a129c47149dc366baf58336eb3"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/TEST_STATISTICS_2026-11-12.md",
+      "originalSha256": "c3ad9011250844252af265cdba0698cb56bb228cd74f0d8efb05e3eb12406d5f"
+    },
+    {
+      "path": "poc-journey/apps/c67-pocket-engine-lab/docs/VALIDATION_2026-11-11.md",
+      "originalSha256": "62cc4423cc8961b3f90268e5ad479eb2c6da082a55ed6a4db7b2eb18ba75851f"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/App/Sources/C67PreferenceLabApp.swift",
+      "originalSha256": "2c2b02640eb8770eb024772ce8e0e4ef1b6d057c00af1c03646a835c67810588"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/App/Sources/CatalogPlaceList.swift",
+      "originalSha256": "5c3b46aa07ab2bb07d03a62c3a6bfc1b3d8e9fb616cfea57947bf8be3fcd7f53"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/App/Sources/LivePlaceList.swift",
+      "originalSha256": "0074a90a318ff57feb09a454709774a9ab9a86133b5161639700076d4610aac2"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/App/UITests/PreferenceLabUITests.swift",
+      "originalSha256": "4040b93bb49e0abc8c5f6f452104e7b16af23757cf26c1d2982e73ba76badf19"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/App/project.yml",
+      "originalSha256": "75a606ff70ae23ef980a2280216fa5ae279d968768f394d8a4938ff6cf1c1e54"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Package.swift",
+      "originalSha256": "00560a4c0d19e03f6fd16cc4dffbe866af56e38477001ba225d7fb4ba107693c"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/README.md",
+      "originalSha256": "e4340a0cd2309f69a24e77975110d9a7e1e4ca3e52a04ddbe84f3166d9732acc"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/CATALOG_RESULTS_2026-11-10.md",
+      "originalSha256": "2a835ad229cc4116e9ba5859bb62e36bf97c823c157485db54eff95761be76ee"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/LIVE_PLACES_2026-11-09.md",
+      "originalSha256": "63ab0d7e98ce086c6a43d28d06dd50c803c4df943c21b1622ef1bebbd7a5a74e"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/RESULTS_2026-11-09.md",
+      "originalSha256": "ebceadc41d26969d296710859794d2ef5014c911b33280aabc54a97d7e4afe89"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceBench/main.swift",
+      "originalSha256": "4e3d05bf8c78e033642498c900413463b75c1a3da8ff2c0856a7a06e0ca58919"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/CatalogContracts.swift",
+      "originalSha256": "a72e0c9ff92b770fa077c165b16af7870472c513964242946413b25a0f8fce6b"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/LivePlaceContracts.swift",
+      "originalSha256": "45a23f11eef14a2b47f7328886562cf31bdd95a7d5ed37eea31c9cc5c2ab4546"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/PreferenceCore.swift",
+      "originalSha256": "cb82eba37111b3c0f4aac768bb2774a54af262a35f360b92192974af791659fa"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/Resources/cases.json",
+      "originalSha256": "c3023171487ca73a97ff0915abfd1a57baf0fe93fd971cd088d1729a5ec2d181"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/Resources/manifest.json",
+      "originalSha256": "9b1a8ae2b82dbba57e60ee0cb870f11c48516fd9861e80b49af09f4969ce94cf"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Sources/PreferenceCore/Resources/questions.json",
+      "originalSha256": "c5d953f87b5ff44a9489d6d6190cf59870183f76ac700eb4426d6985732ed976"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/Tests/PreferenceCoreTests/PreferenceCoreTests.swift",
+      "originalSha256": "939f135ca15ae3a23e5133b307dd85eaa8fed3ff84838a122a9e6065159b4c7f"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/README.md",
+      "originalSha256": "25e7c32d64cf6b4b3c575f55ec1420530332bd2e1702337d20023f31b3017c92"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/config.json",
+      "originalSha256": "4ed3c61075e0b1be8397dd799cd368a85ea1d739f1a34700f1274daebe1b459c"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/env.example",
+      "originalSha256": "c5bed95329f7ae388a43ff12039327753070fc76a1b09f4d7efec5992fc5c7d1"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/jev-label-examples.json",
+      "originalSha256": "3f9879d7f46204a7b0b78175d38b059dcd30af92595244b002d3e2f0e2a55038"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/osm-source.json",
+      "originalSha256": "702d3755ab9334a39080dbf1f5fbeb1f3c8d0a1ac3013931a6c6bb271863a220"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/place-labels.json",
+      "originalSha256": "3613e0bfaf235de666934de0c347ef507eed0b207a61b91a64bb7aaee8b3b500"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/catalog/requirements-labels.txt",
+      "originalSha256": "34e9661316d48efd8d4cb5776289d97c58177dad055f9f0661135d20b9770907"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/benchmark-catalog.py",
+      "originalSha256": "0696d62973d5a8685f768ad9e847fafd79d1707f7f376a9e0c308c7955d32174"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/benchmark-destination-scope.py",
+      "originalSha256": "8649696cfeb0602ace8d9f0bfeec162b41f7a56224223222df0e8382ecbad151"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/benchmark-google-jev.py",
+      "originalSha256": "0682c3328485b6683f25c6c4e58000e9562183ae4ea4142d574d8f5a27a57db2"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/benchmark-jev-evidence.py",
+      "originalSha256": "97fb97df0e3c3f329fa636e4cea8861465e45156579443900f93708cd1fe6157"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/benchmark-live-places.py",
+      "originalSha256": "f5ca02864de1aa6b6dd6d7e376ad8174565dd42933de96f7362c64a20fcbd6dd"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog-lab.py",
+      "originalSha256": "d61a9ca8413e504b08e4c97ed291d9cde97e2faaac2e924deb7b33108ecc36e2"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog_engine.py",
+      "originalSha256": "6b2bcb52f464b21ed3349a91839777fce6091e264a1bf13e1e2c83cce8022f6e"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog_fixtures.py",
+      "originalSha256": "9f2c98b2b0ac44b9e8c75501c42325b42b6c1942c1f6d686c3f62bfdc1dc4508"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog_llm.py",
+      "originalSha256": "009cea1e96e5a2735b6519371fb9dae9ce0d5abb2428798f1f339bf70ef5feaf"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog_models.py",
+      "originalSha256": "1d466158957a6b91c782689fd4dc6588796f264efedbb83468993012a3203248"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/catalog_sources.py",
+      "originalSha256": "68d62e3d13cd2bb63eceba99da1849f245f90f595358efe1b3de408abbde4898"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/collect-jakarta-jev.py",
+      "originalSha256": "a1b31ecd8d2b4f22160baf7fa36af493df86fd6618a1ecede81df1d0110546d6"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/control-current.py",
+      "originalSha256": "23c65fb90720d741aa240d5560029bf0c2b4e04efaddd7b5e34aac0cae490407"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/label-catalog-jev.py",
+      "originalSha256": "fea019f0f3dc3b66325963364e3c6a24df8424334ec3fee58020273613b84a86"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/live_places.py",
+      "originalSha256": "3479ce7e1a24367d5788b536133c6423febb5add31163e551f216950a6457e09"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/make-fixtures.py",
+      "originalSha256": "3992c5b99690e562c157c4576caf0ccc1417d663529e4e39c2f98302410d2095"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/match-catalog-place-ids.py",
+      "originalSha256": "664cf09710143328fd040d4fba5c4c577a3b7db415441af00808e325e4f03c4d"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/probe-openrouter-logprobs.py",
+      "originalSha256": "300f8493a0553e69fe2319c77aaad27602027a195dcc5f0bb433899aaef0449c"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/report.py",
+      "originalSha256": "6adc397701edb4ef14b565d13bf95b40cf94a15002ef42f526cebafd05fd7f04"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/server.py",
+      "originalSha256": "0eb639131a120eb6aaed5a2df6fe84697fa80e4e694d0f65c6b1a9ab0b86bbde"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/test_catalog.py",
+      "originalSha256": "563365ed4a4dd86b1cc166284bf490a682c47b4e7da709b1b12ed9c5c79969ac"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/test_catalog_llm.py",
+      "originalSha256": "5f0f3a2b80948143a8a132007b38baac596f268780b20312975cdbcfe5c4517e"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/test_destination_scope.py",
+      "originalSha256": "06e979aa44e50555eec99d366b67d855aa8d82498f39cfe1823bf47dc14615fe"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/test_live_places.py",
+      "originalSha256": "169d04f4784fb92d7432d7f6fc7afeafd87276fa042f4e0e0cb423fa5f1e9031"
+    },
+    {
+      "path": "poc-journey/apps/c67-preference-lab/scripts/test_server.py",
+      "originalSha256": "1c7e3db2321e2818fb8bead208fad629232ffd83b43c816c19eed7a5625d78e6"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/ContextLabApp.swift",
+      "originalSha256": "2658770ee7db9d7181ec7c956c31185f231bf07cb838bfc0aa39ee8ff06ae5b7"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/ContextLabModel.swift",
+      "originalSha256": "cc1dfcec73d7ee631322f1e38aa550276d00de378efee415271f7f256be211b3"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/PersonalLabModel.swift",
+      "originalSha256": "6248a052c18f5ef81c2c8291c5072f5fe8042883ad03bf4ef84816af8672e78f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/PersonalLabViews.swift",
+      "originalSha256": "6cb6a3733883a3ff001f286b6c11c8fc95ed3640c4d6ce29c259cf7c1bbf6721"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/PersonalRouteMap.swift",
+      "originalSha256": "da6cc65afc9a4a4f58b5d8be7e23666f08226159e1c1a18b6d125b1953732cfb"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/SimplePersonalViews.swift",
+      "originalSha256": "4931e6088b425cca8b78d2f5f39de1b600eac63e471cb6ed2672842f255359f8"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/App/VenueSearchMap.swift",
+      "originalSha256": "32620c94ff6155fa6b8dffdb9abfe22359168ea7def9bde3906e70de6c989aa2"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/RunConfig.example.json",
+      "originalSha256": "f31455e51ffa365673260f5faf75736994db688c674cbaa9f897c030d4c176bc"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/ContextHarness/project.yml",
+      "originalSha256": "6a2c15e34c8f2d26bec2709b4c385396484ab08fce1a50c392252408b7cf5606"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Package.resolved",
+      "originalSha256": "19f1a62fa931588bbaec8a95518b94df61116c33177738f8173eb1b008f03016"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Package.swift",
+      "originalSha256": "1b010f914956f0926c6c7f330a0a76a95c64a2407a0f944a27334d35cfbb383f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/README.md",
+      "originalSha256": "4cd7cb80d4ba658ab9acec78d5ccb12267171308ca15f34df1490dd87372c56e"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Scripts/benchmark-enrichment.py",
+      "originalSha256": "cf63fa0cd5c3a2cd2acd05d63d085a91d08eb483e151d09840c291536fa6a882"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Scripts/collector.test.cjs",
+      "originalSha256": "83c23069f73b41292f0fae25a985bfc98d746fad83d5a92dafff826e8e3ce00f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Scripts/package.json",
+      "originalSha256": "37969d8e824660fc0cda8c1312ac35a7d2610e7b6da4ec964bea04554d117965"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Scripts/playwright-collect.cjs",
+      "originalSha256": "8653bb84f3194de78b5ec8e5fcdf1c7e06c24c9bad50a96ff5d8599fab03c1f0"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/ContextPilotAdapters/AppleContextAdapters.swift",
+      "originalSha256": "b7768628ff9d55ecf99d0e5b1768482d651e4777cb26844506bc5110e7a4a5b3"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/DynamicTripContracts/Contracts.swift",
+      "originalSha256": "ebc24c31bec46ec2b17e95558d8cc9b9780e6a13addef22773e9912d6f8dc9fe"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/DynamicTripEngine/ContextExperiments.swift",
+      "originalSha256": "9777974c582a84f3d159ae16469181435d07e0197866c7a7f492bf6202ff22d1"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/DynamicTripEngine/DynamicTripService.swift",
+      "originalSha256": "4833d82acc3ffdb05f1ffc4cc46b4fb24b12c7c3b2b4d1d91f162ac509ba92e2"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlaceContextEngine/ContextItineraryPlanner.swift",
+      "originalSha256": "dfa861389885af2a84d6abdd47bb32bce5902d90bb4fdf6900ba96369e30bd43"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlaceContextEngine/OptionalItineraryPlanner.swift",
+      "originalSha256": "e3e19982d8f8077dca81eb42074b0ef803929d725cd117e8ff6dd72c2e3e2a34"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlaceContextEngine/VenuePlace.swift",
+      "originalSha256": "c0719494b45ae852ef5d6ea1f77638dafa8fea5b9b57856b50e42e84025092c4"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlaceContextEngine/VisitContext.swift",
+      "originalSha256": "ad669a1221fc9f3d16d4a4df0406d1583b81ee70a905d09a74d2b54eb5cc964c"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlaceContextEngine/VisitOpportunity.swift",
+      "originalSha256": "1f2b8a64ffcf7372dcf52b654e32f8a1053aabcbeaf94815d2f010d13f7b0deb"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerContracts/Campaign.swift",
+      "originalSha256": "0816a4c2761cff773672aceaf075f1ffc3da4279a9614541445f24000c849012"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerContracts/Contracts.swift",
+      "originalSha256": "dfcbcbf08ed279dca1e301be6af388de8aeea0bb4bfd96c116d61a918ddb34d2"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerContracts/LabClient.swift",
+      "originalSha256": "b85eb63645486dd6a103ccfccfc96834450fe139b8f90126a4f12b6f41c802b3"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Catalog.swift",
+      "originalSha256": "43383ce8a0293e4cddc9098d36b384f705d75201adc74c07b48a3fe0be6f0541"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Contracts.swift",
+      "originalSha256": "f73d3df01460842e426aa4063ac6db3737903f191b8a8ebfb483ebd2fa198b64"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/IntegrationPipeline.swift",
+      "originalSha256": "fbe0fde7a503aefb3804caabd4bf0446e44cbebe0e3a75d1f5dc197ce1f102ad"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabDiscoveryProbe.swift",
+      "originalSha256": "eff6b38ba10741accf02c8b96ee35b43ba85c4a0f5a742bda7159d75e66f172c"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabE5Embedding.swift",
+      "originalSha256": "00d254df57f57f8230484d555c4b887095f89204cc84ad5a193710050a975960"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabEmbeddingCache.swift",
+      "originalSha256": "12544643d7d5010e0740a6479d82f4c87cc2cd45be8a644dcd47a8605e609c2a"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabFastPlanner.swift",
+      "originalSha256": "e07d5252648bc95fdc4a2caeaeae892e1a758397255fc0c855c22723d13608fb"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabPinnedSearch.swift",
+      "originalSha256": "54f2b33a1a05493e2594f828f98513f5b527610fa0d965c4331818266374627f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabProvider.swift",
+      "originalSha256": "9f03b4e5363160980e7979ebec35a3e0f3e9dd7f185707ff8ffc3d2de97b4236"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabREST.swift",
+      "originalSha256": "d8a9eac8c00e9a5377105764e2252b945b155ed76b6423d3472c1ffb4df11f98"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabRuntime.swift",
+      "originalSha256": "a72f139cb9b505c39adbc0bf6baf08cda84abf8f4eac5f560060f264b6951579"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/LabSelectivePlanner.swift",
+      "originalSha256": "624dc74e062c734d088e8e5b415f114d048468e10710fb2883e0399b63e2ed57"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/PlaceResolver.swift",
+      "originalSha256": "8495ab613c0867d5b1899dd2b61e80bcbcd3e71979a53b884bb8568245314646"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/ReplayFixtures.swift",
+      "originalSha256": "4b050bb3f4a8db54fafd02ac0bcb658525878104f2788a484567853e7e34fc7e"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/E5-LICENSE.txt",
+      "originalSha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/NOTICE.md",
+      "originalSha256": "867c0dcf8acf9b9fa7849017583cfcae2222371a0956341fcc1ff6565049e82d"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/config.json",
+      "originalSha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/manifest.json",
+      "originalSha256": "e61ace3b1939553ba256c049bdbbb2e38dbeb58e0d1c15185f186fc30dd6d85f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/tokenizer_config.json",
+      "originalSha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/quality.json",
+      "originalSha256": "58002661cc9f5cf9fc53eba6af654bbc9ed9c4a34b84e456b785f8745924ef2f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Resources/timing.json",
+      "originalSha256": "c21e538a337ebb69f702232e8a61e52ba73493cac00bc6f70fee64b20f7c9ce8"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/Storage.swift",
+      "originalSha256": "9ee6560e649459b37a7770bd1f2283f009dfc5f7285a83c7c1f1656cb25055c7"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripAppleServices.swift",
+      "originalSha256": "c74085f2265fce9e621b9e9b1a4393f5b887636ebbc8029d7904cc821fc058b2"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripEngine.swift",
+      "originalSha256": "7348ed0698551bf02b81f1233d38eb18158931c198fbf2add4cf8a8832a1e2a5"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripInputSupport.swift",
+      "originalSha256": "3698e1166ec47a09f516c1549cd71589d65d6290fb64607a65155c775191ef94"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripLogStore.swift",
+      "originalSha256": "c922a3d3b1e1445203a043e612a6b435399a58fd0a0d25dabcfc47cdd1bb4b27"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripModels.swift",
+      "originalSha256": "d49ffbbd60f5a371b958afb59f9ab093511dbf8a17447f136469244f471c1977"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingBridge.swift",
+      "originalSha256": "fdcd8dfeed95ef7bb1ab949444d0fc6825d25d99777892cbd10790c07a62174a"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripRoutingCore.swift",
+      "originalSha256": "894f27063dbf88069095a5cfbdef6bbb3e2ea9e5f14061864c609d2faccc3f60"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripSearchSupport.swift",
+      "originalSha256": "85d37dfad43339b5389f66bfca023934615bf3614a5f209b6a0ab7bb1002063f"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripTimeAwarePlanner.swift",
+      "originalSha256": "c9a7c75f940f8ded80ee1c32f3eada162b4673d84b3abd6a70e591e8a29d4f18"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/VendorRouting/NativeTripWeatherSupport.swift",
+      "originalSha256": "c58a424a89447df8c093c3c2af8f77818f034fd8e0598fff6f8b198541cbc226"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerEngine/WeatherCoordinator.swift",
+      "originalSha256": "73a7857fc2827d746fbcfcca9cd88dab77e34af2be625844fbd2f3c440f077cf"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerServer/main.swift",
+      "originalSha256": "6daf1dd77b68257b732e51ec4207e2e3c16b1c694cd0e68a465f99924b3f05f0"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerStorage/JobStore.swift",
+      "originalSha256": "5bae4e08f679c298055a161fbc4ed66ae0ecb83ba2fa8240abeaafd27351d453"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/PlannerStorage/LabWorker.swift",
+      "originalSha256": "93fb891493636a9d502c50fe43faeae5086eea841fed775d83e12e0baaf58f09"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationContracts/PersonalContracts.swift",
+      "originalSha256": "cfbca0b4935d5a04a646770a43d5bb98eaabeee476fd282a391baea797e0ae47"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationContracts/PersonalEmbeddingText.swift",
+      "originalSha256": "098b8ff514b5004e489357a08b96f24af49313ea428485c75615ddfd3a969003"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationEngine/CandidatePolicy.swift",
+      "originalSha256": "30196bf6ec391fca696fac6be40ffaccdae6afa341160ea5d824b91c622570c0"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationEngine/OpenRouterClient.swift",
+      "originalSha256": "a4c2d52332c57e4d2e56fbafa2ad0c24e2ba0da6268a6178ed36670b25e3cb98"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationEngine/PersonalMomentReview.swift",
+      "originalSha256": "f8ad455d9f92c27013f055b31da7f5f413c8deb259bce8c097c2584c552a79b1"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/RecommendationEngine/RecommendationService.swift",
+      "originalSha256": "d5988a3d4ebf35709721210b07fabae62811747bc8713b4f60868aa9c8bfc4b9"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/EnrichmentProviders.swift",
+      "originalSha256": "9fe8022f26868d2286bcccfa9989f119b12d2eba0acc83cd150da73b4c879240"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/PlaywrightCollector.swift",
+      "originalSha256": "137d84c6234a85945183a81bd8a8624a1d75c9f52c10e78d16d1ef1d04db1562"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/ResearchDiagnostics.swift",
+      "originalSha256": "96b1f848b2ba842e791842970df77c0f78e7545252c99158ec88466e6701fe95"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/Resources/pilot-venues.json",
+      "originalSha256": "9048e9aaadb8d96d9fca38ee1a63a720a4cb38a6a0568f7860c490430234a2a1"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/StructuredVenueEvidence.swift",
+      "originalSha256": "40215df7d95cc398dea9914c0d952d4100938939f1d17905fced6c136ce6a4f9"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/VenueDirectory.swift",
+      "originalSha256": "3d820f2ab9a54eb6f5f69ffb9f742a7d6f5ad0761d591ea22d46981a6ffc7c5e"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/VenueEnrichment.swift",
+      "originalSha256": "f6711cc2176783b1a35a318121ec21c9c0a16a3b791a17d78d67ae0440bac951"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/VenueDiscovery/VenueEvidence.swift",
+      "originalSha256": "b5c2c8a5130a6db3c5ff8648a7b45bdaeb045d18e7d17b7b36977cca26fc93a1"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Tests/VenueDiscoveryTests/ResearchQualityTests.swift",
+      "originalSha256": "59d62237b6123a0dd192b8e98311ed2bb764ea908d5a946daf9e6118a7b86a17"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Tests/VenueDiscoveryTests/VenueEvidenceTests.swift",
+      "originalSha256": "0bf1c0ae432dee2ee9893c2ccb25e3336b8dbea13721b31aaba1bf9483a57032"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/.env.example",
+      "originalSha256": "02af301327fa235da5790c7d436d11fc4f230922df0e27d71ede458a1e429a4b"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/README.md",
+      "originalSha256": "eba651dd20cd076e48fc74eab42f601f5e4ab4c51df15043ac0ba0d79a18a6ab"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/compare.py",
+      "originalSha256": "c98545a9ca9fd63e2744ef94f32e060f642e40fd0c7427919458e81d44d30a1a"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/evaluate.py",
+      "originalSha256": "c24a2d978ca3039a6608d388286176204c0ab162ab19ae51973b28d34e8e8f02"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/openrouter.py",
+      "originalSha256": "0d04eca05612f2a900fe3a34230273561e9dfac3a10481455a95a77178d70d7e"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/pilot.py",
+      "originalSha256": "8aba7b965c568a92dc49b20261585ea43f0c368846f6e84ffd5e94f87b6117fb"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/summarize_campaign.py",
+      "originalSha256": "8deb47b467cb93a3c1d3d9d02d7c0dd00d168e4decbc65f0f0d2e13f4ff5fb8d"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/targets.json",
+      "originalSha256": "ab51b6f37eda92f6896d39fe58b8bb79b886e0c0156ed73c8a9dd239c5ed89cd"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/test_campaign.py",
+      "originalSha256": "5ab4bc685a722b9368e10e098a19e078bc4739f09722a08e2d3967ef653ed83c"
+    },
+    {
+      "path": "poc-journey/apps/c67-open-venue-pilot/test_openrouter.py",
+      "originalSha256": "ef1f410878e4aff6cb7199030bfd13abae5b98bd78255068c505a10fa587b377"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/Benchmark.entitlements",
+      "originalSha256": "4c7e5e88b9d593f0337bfa6c2a15b85626ddf6fcf164ea524c625b8cfcced83f"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/Benchmark.swift",
+      "originalSha256": "abc9874a7a63003d98c7f995ca428165aa26c63f6e3b399e3a09be16247f70aa"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/BenchmarkApp.swift",
+      "originalSha256": "67ebc9893d865424ac21ddcd0a88d63986c3b9982794bbcf691cb556e871e8a0"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/OriginalIntegrationModel.swift",
+      "originalSha256": "f8df262a3f0d301245a08325fb91173bfdda63ef9c5dacfc3481bad190078fa8"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/PROTOCOL.md",
+      "originalSha256": "7d4c610394a942f3c09c0569dbb9e97366be042d5ab6c4787941547dfece97eb"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/README.md",
+      "originalSha256": "0035d63be393f74c88eef0a559cc4d2356a84add82ea74fb614b08b3ab4fdc29"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/REPORT.md",
+      "originalSha256": "059412549b3aa061f70e8fb877d85a4f6d16f9debcc07a4e62b5e58cbc761b48"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/analyze.py",
+      "originalSha256": "051d00bf8985aeaf7bbbd1209768eb7d8f3cd72a4ca45abd2081b1a1f57a4a24"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/launch-when-unlocked.py",
+      "originalSha256": "16f49da3a058d406c625f5450ef3a4c0cd64a32624122ef00eadc92932318387"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/monitor-device.py",
+      "originalSha256": "9f1f6c4133e0502cc255f5790519eb6cf2ab2bdb3dc03aaabfbe7883bccdd933"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/project.yml",
+      "originalSha256": "12fdea080dbf2543f99612ebbe0d1870105551b37a9537d54f4b8eacc35fcacf"
+    },
+    {
+      "path": "poc-journey/apps/c67-performance-benchmark/run-replay.sh",
+      "originalSha256": "aad82a4bfe51f9cc35be1e4051df945edb79cf22c55f13ccb194093d3744d3a6"
+    },
+    {
+      "path": "poc-journey/evidence/open-venue-pilot/google-parity-982-2026-11-11/REPORT.md",
+      "originalSha256": "1d33a6ac40cd012e83dbe21f3948befc1ae24edfd18427912e81bb1f638d7369"
+    },
+    {
+      "path": "poc-journey/evidence/open-venue-pilot/jaksel-expansion-30-2026-11-10/REPORT.md",
+      "originalSha256": "f8b8c20efd228018e52b2e39261c287b18478e083342aca605d72f368bf7cebc"
+    },
+    {
+      "path": "poc-journey/evidence/open-venue-pilot/jev-branch-evidence-2026-11-10/REPORT.md",
+      "originalSha256": "2e462c700dde318774d746f9ac760523bef0566fe544fb4918950bd021d03775"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/CSQLite/shim.h",
+      "originalSha256": "b052d8e561e942f97b503033ecd2eaa2b35213bdbf374983efe9e68eabdfc024"
+    },
+    {
+      "path": "poc-journey/apps/c67-venue-context-lab/Sources/CSQLite/module.modulemap",
+      "originalSha256": "67bac33754b447a28e62d315c37dbd1bcc0a363e94375de0834c55f56a49ee39"
+    }
+  ],
+  "excludedLargeFiles": [
+    "c67-venue-context-lab/Sources/PlannerEngine/Resources/Model/tokenizer.json"
+  ]
+}

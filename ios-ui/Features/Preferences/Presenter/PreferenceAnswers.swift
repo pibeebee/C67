@@ -3,6 +3,7 @@ import Foundation
 /// The traveller's answers to the trip preference questions. `nil` means skipped or unanswered.
 struct PreferenceAnswers: Equatable, Sendable {
     var interests: Set<TripInterest> = []
+    var refinements: Set<String> = []
     var popularity: PlacePopularityPreference?
     var pace: ExplorationPace?
     var timing: TripTiming?
@@ -24,7 +25,7 @@ struct PreferenceAnswers: Equatable, Sendable {
     /// Removes the answer for a skipped question.
     mutating func clear(_ step: PreferenceStep) {
         switch step {
-        case .interests: interests = []
+        case .interests: interests = []; refinements = []
         case .popularity: popularity = nil
         case .pace: pace = nil
         case .timing: timing = nil

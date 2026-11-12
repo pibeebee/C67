@@ -26,8 +26,10 @@ for name, expected in manifest['files'].items():
 if errors:
     raise SystemExit('\n'.join(errors))
 # The server has its own Bundle.module resource directory.
-context_model = ROOT / 'apps/c67-local-server-lab/Sources/PlannerEngine/Resources/Model'
-if context_model.is_dir():
+for lab in ('c67-local-server-lab', 'c67-venue-context-lab'):
+    context_model = ROOT / 'apps' / lab / 'Sources/PlannerEngine/Resources/Model'
+    if not context_model.is_dir():
+        continue
     import shutil
     context_manifest = json.loads((context_model / 'manifest.json').read_text())
     for name, expected in context_manifest['files'].items():
