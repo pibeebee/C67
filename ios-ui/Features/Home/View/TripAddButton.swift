@@ -42,9 +42,9 @@ struct TripAddButton: View {
         #if compiler(>=6.2)
             if #available(iOS 27.0, *) { 30 }
             else if #available(iOS 26.0, *) { 24 }
-            else { 30 }
+            else { 20 }
         #else
-            30
+            20
         #endif
     }
 
@@ -52,9 +52,9 @@ struct TripAddButton: View {
         #if compiler(>=6.2)
             if #available(iOS 27.0, *) { 30 }
             else if #available(iOS 26.0, *) { 34 }
-            else { 30 }
+            else { 20 }
         #else
-            30
+            20
         #endif
     }
 

@@ -12,7 +12,10 @@ final class TripCreationUITests: XCTestCase {
         let target = handles.element(boundBy: 1)
         XCTAssertTrue(source.isHittable)
         XCTAssertTrue(target.isHittable)
-        source.press(forDuration: 0.8, thenDragTo: target)
+        // Drop on the destination card rather than its own drag handle.
+        let destination = target.coordinate(withNormalizedOffset: CGVector(dx: -2, dy: 0.5))
+        source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.8, thenDragTo: destination)
         let reordered = NSPredicate { _, _ in second.exists && first.exists && second.frame.midY < first.frame.midY }
         expectation(for: reordered, evaluatedWith: nil)
         waitForExpectations(timeout: 20)
