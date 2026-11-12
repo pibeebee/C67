@@ -44,7 +44,7 @@ final class TripCreationUITests: XCTestCase {
 
     @MainActor func testConfirmationContinueIsProminentAndOpensNextStep() {
         let app = launch()
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.buttons["addPlacesNext"].waitForExistence(timeout: 5))
         app.buttons["addPlacesNext"].tap()
@@ -60,14 +60,19 @@ final class TripCreationUITests: XCTestCase {
 
     @MainActor func testSpecificPlacesSelectionAndSheet() {
         let app = launch()
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 5))
         app.textFields["addPlacesSearch"].tap()
         app.textFields["addPlacesSearch"].typeText("pizza\n")
+        let keyboardDismissed = NSPredicate(format: "exists == false")
+        expectation(for: keyboardDismissed, evaluatedWith: app.keyboards.firstMatch)
+        waitForExpectations(timeout: 5)
         let add = app.buttons["Add Synthetic pizza place"]
         XCTAssertTrue(add.waitForExistence(timeout: 8))
         add.tap()
+        XCTAssertTrue(app.staticTexts["4 places selected"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["addPlacesSelection"].waitForExistence(timeout: 5))
         app.buttons["addPlacesSelection"].tap()
         let remove = app.scrollViews["selectedPlacesList"].buttons["Remove Synthetic pizza place"]
         XCTAssertTrue(remove.waitForExistence(timeout: 5))
@@ -96,9 +101,10 @@ final class TripCreationUITests: XCTestCase {
         let alert = app.alerts["Save Itinerary"]
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
         let field = alert.textFields.firstMatch
-        field.tap()
+        field.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
         let old = field.value as? String ?? ""
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + "Weekend plan")
+        XCTAssertEqual(field.value as? String, "Weekend plan")
         alert.buttons["Save"].tap()
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 10))
         scrollToTripControl(save, in: app)

@@ -13,9 +13,19 @@ extension XCTestCase {
         XCTAssertTrue(element.exists && element.isHittable, "Control should be reachable")
     }
 
+    @MainActor func openTripMenu(_ app: XCUIApplication) {
+        let button = app.buttons["homeAddTrip"]
+        let option = app.buttons["Get Recommendations"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+        button.tap()
+        if !option.waitForExistence(timeout: 5) {
+            button.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        }
+        XCTAssertTrue(option.waitForExistence(timeout: 5), "Trip menu should open")
+    }
+
     @MainActor func openMockCreation(_ app: XCUIApplication, recommendations: Bool = false) {
-        XCTAssertTrue(app.buttons["homeAddTrip"].waitForExistence(timeout: 10))
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons[recommendations ? "Get Recommendations" : "Add Specific Place"].tap()
         if recommendations {
             for _ in 0 ..< 7 {

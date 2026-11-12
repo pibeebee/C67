@@ -17,7 +17,7 @@ final class TripHomeUITests: XCTestCase {
         XCTAssertTrue(app.searchFields.firstMatch.exists)
         app.buttons["Cancel"].tap()
 
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons["Get Recommendations"].tap()
         XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
         app.buttons["Cancel"].tap()
@@ -41,7 +41,7 @@ final class TripHomeUITests: XCTestCase {
         XCTAssertTrue(app.buttons["homeAddTrip"].isHittable)
         XCTAssertTrue(app.buttons["homeLocation"].isHittable)
         capture(app, name: "HOME EMPTY - Accessibility XXXL")
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons["Get Recommendations"].tap()
         XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
     }
