@@ -9,6 +9,7 @@ Requirements: macOS, Xcode 16+ with an iOS Simulator runtime, Swift 6 language s
 ```sh
 git clone https://github.com/pibeebee/C67.git
 cd C67
+git switch dev
 open ios-ui/C67.xcodeproj
 ```
 

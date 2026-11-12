@@ -4,9 +4,13 @@ Use English for identifiers, comments, documentation, commit messages and PR tit
 
 ## Branches, commits and PRs
 
-Start each task from current `main` and name the branch `<initials>/<short-topic>` using lowercase letters, numbers and hyphens for the topic. Examples: `ab/discovery-search`, `cd/auth-session-refresh`, `ef/trip-copy-rpc`. Initials identify the contributor; a branch represents one task. Use additional short words when initials collide.
+Start each task from current `dev` and name the branch `<initials>/<short-topic>` using lowercase letters, numbers and hyphens for the topic. Examples: `ab/discovery-search`, `cd/auth-session-refresh`, `ef/trip-copy-rpc`. Initials identify the contributor; a branch represents one task. Use additional short words when initials collide.
 
-Use short-lived task branches. Open one focused PR to `main`, resolve review comments, wait for the required checks and one eligible teammate's approval, then squash merge and delete the task branch. A long-running branch per person or workstream is unnecessary. Pull the new `main` before starting another task. Do not rewrite someone else's branch.
+Use short-lived task branches. Run relevant local checks, attach the commit/toolchain/results to one focused PR to `dev`, resolve review comments and obtain one eligible teammate's approval. Squash feature PRs into `dev`. Feature PRs do not automatically run cloud CI. Pull the new `dev` before starting another task. Do not rewrite someone else's branch.
+
+When a reviewed integration batch is ready, open a same-repository `dev` -> `main` PR. Required `integration` and `ios-smoke` checks run on its merge result. Keep this PR closed until the batch is ready; every subsequent update to an open promotion can trigger CI again. Promote with a merge commit to preserve the ancestry of the two long-lived branches, then synchronize `main` back into `dev` through a reviewed PR. Do not delete or force-reset `dev`. See [repository settings](repository-settings.md).
+
+Use `bash scripts/verify_local.sh quick` for the local package/backend/contract/format checks, `ios-smoke` to include app unit tests and two critical mock UI flows, or `ios-full` for all mock app/UI tests. All modes record the commit, working-tree state, toolchain and log path. UI modes also produce a result bundle. Run tests specific to the changed behavior in addition to this baseline. Database migrations require isolated database checks; PoC/provider changes require their appropriate suites. The manual Full verification and PoC workflows retain those broader checks. TestFlight distribution remains a separate manual release action.
 
 Commit messages and the final PR title use `<type>(<scope>): <description>`. Scope is optional; use `ios-ui`, `ios-backend`, `server`, `contracts`, `docs` or `ci` when useful.
 
