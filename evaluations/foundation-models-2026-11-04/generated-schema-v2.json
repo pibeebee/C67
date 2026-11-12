@@ -1,0 +1,180 @@
+{
+  "$defs" : {
+    "Action" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "localTime" : {
+          "description" : "Explicitly requested absolute local time; otherwise null. Do not calculate new times.",
+          "type" : "string"
+        },
+        "minutes" : {
+          "description" : "Explicit requested duration in minutes; null when not applicable.",
+          "type" : "integer"
+        },
+        "proposalID" : {
+          "description" : "An existing valid proposal ID for proposal actions only; otherwise null. Never invent an ID.",
+          "type" : "string"
+        },
+        "query" : {
+          "description" : "Explicit search query for a supported action when relevant; otherwise null.",
+          "type" : "string"
+        },
+        "targetID" : {
+          "description" : "Existing explicitly requested target ID; null when not applicable.",
+          "type" : "string"
+        },
+        "type" : {
+          "enum" : [
+            "extend_current_visit",
+            "set_leave_time",
+            "skip_stop",
+            "set_deadline",
+            "mark_arrived",
+            "begin_visit",
+            "depart_visit",
+            "request_replan",
+            "apply_proposal",
+            "reject_proposal"
+          ],
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "type"
+      ],
+      "title" : "Action",
+      "type" : "object",
+      "x-order" : [
+        "type",
+        "targetID",
+        "minutes",
+        "localTime",
+        "proposalID",
+        "query"
+      ]
+    },
+    "Preference" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "key" : {
+          "enum" : [
+            "coffee",
+            "reading_friendly",
+            "quiet",
+            "indoor",
+            "outdoor",
+            "golden_hour",
+            "popular",
+            "walking_effort"
+          ],
+          "type" : "string"
+        },
+        "strength" : {
+          "enum" : [
+            "soft",
+            "hard"
+          ],
+          "type" : "string"
+        },
+        "value" : {
+          "enum" : [
+            "prefer",
+            "avoid",
+            "not_important"
+          ],
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "key",
+        "value",
+        "strength"
+      ],
+      "title" : "Preference",
+      "type" : "object",
+      "x-order" : [
+        "key",
+        "value",
+        "strength"
+      ]
+    }
+  },
+  "additionalProperties" : false,
+  "properties" : {
+    "actions" : {
+      "description" : "Exactly the explicitly requested supported changes, no inferred changes; empty for explanations and recommendations.",
+      "items" : {
+        "$ref" : "#\/$defs\/Action"
+      },
+      "maxItems" : 3,
+      "type" : "array"
+    },
+    "basedOnRevision" : {
+      "type" : "integer"
+    },
+    "candidateIDs" : {
+      "description" : "Only recommended candidate IDs from supplied candidate data; otherwise empty.",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "evidenceIDs" : {
+      "description" : "Only actual supporting evidence IDs from context or tool results; otherwise empty.",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "message" : {
+      "type" : "string"
+    },
+    "preferences" : {
+      "description" : "Explicit preference changes only; otherwise empty.",
+      "items" : {
+        "$ref" : "#\/$defs\/Preference"
+      },
+      "type" : "array"
+    },
+    "question" : {
+      "description" : "One question only for an unresolved ambiguity; otherwise null.",
+      "type" : "string"
+    },
+    "requiresConfirmation" : {
+      "type" : "boolean"
+    },
+    "status" : {
+      "enum" : [
+        "propose",
+        "clarify",
+        "explain",
+        "recommend",
+        "cannot_complete"
+      ],
+      "type" : "string"
+    }
+  },
+  "required" : [
+    "status",
+    "basedOnRevision",
+    "actions",
+    "preferences",
+    "candidateIDs",
+    "evidenceIDs",
+    "message",
+    "requiresConfirmation"
+  ],
+  "title" : "Suggestion",
+  "type" : "object",
+  "x-order" : [
+    "status",
+    "basedOnRevision",
+    "actions",
+    "preferences",
+    "candidateIDs",
+    "evidenceIDs",
+    "message",
+    "question",
+    "requiresConfirmation"
+  ]
+}

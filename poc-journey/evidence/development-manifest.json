@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "scope": "Reviewed maintained-source evolution; historical import manifest remains immutable",
   "changes": [
     {
@@ -188,9 +188,9 @@
     {
       "publicationPath": "apps/c67-trip-integration/README.md",
       "importedPublishedSHA256": "141e977f6ec151b04a43859c5638a9f51d47712fb9ab4c45c218754abf69a1df",
-      "currentSHA256": "1cec804ad0e3247816434c02890be684c0705a2a0ccfaf322b6981d841cb6f95",
-      "reason": "Document the Journey shared-engine extension while retaining current main for the standalone diagnostic UI.",
-      "verification": "docs/tasks/pr12-journey-fixes-2026-11-09.md"
+      "currentSHA256": "e244114a7e3f711ab4bdc8faf100aa764e3cb7b318156d297542d7aab2e590a0",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
     },
     {
       "publicationPath": "apps/c67-trip-integration/docs/VENDOR.md",
@@ -198,6 +198,48 @@
       "currentSHA256": "97febeb1fce473678c01471cd36a34fb685e994b41de20d2c89db217484cd7bf",
       "reason": "Document the evolved TJ/shared-engine capabilities and current application entry points.",
       "verification": "docs/tasks/poc-consolidation-2026-11-09.md"
+    },
+    {
+      "publicationPath": "apps/c67-foundation-lab/App/VisitTimingModel.swift",
+      "importedPublishedSHA256": "aee2b44ae43dcde92e106af47f3873f988c3b2ac96a1364db947266f8fb666b2",
+      "currentSHA256": "e5ae8445b1978900a75cdc5e53808c9524de618be04d7f1dda51776fb63ff1ec",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/UITests/IntegrationUITests.swift",
+      "importedPublishedSHA256": "f708bfe3b3f2e5544e13216370de0b59440d3d1483b304eae060137354d3f7b7",
+      "currentSHA256": "c2838e1cd8040809f2a99b5530b0d866b91336a8d2f226c845ad1aa8425299d1",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/App/LiveEvaluation.swift",
+      "importedPublishedSHA256": "02051e10e3ed28ae489113dd2fa74d93c364a27fcb63d8b4dd9057cec8b02e1b",
+      "currentSHA256": "84c021364f7c1bacbb70842e84d8e6844dcd789cc6d724c93fe31e3167e1dc9c",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/App/IntegrationHome.swift",
+      "importedPublishedSHA256": "3fa0aecd03bdc4530194f62b674a9723e21ad33c0bdc4993cf44bae3abf3fb33",
+      "currentSHA256": "1de1abec391fef1f7934ecf8af7a1c18fa8d8928c04584b346423c21f6a31c57",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/App/C67TripIntegrationApp.swift",
+      "importedPublishedSHA256": "6b763af0f80167ea713bd4f41f9fdd38de77a3a6aa22f645a238db8149db8273",
+      "currentSHA256": "1ee14bfa9224a191cce0d9e62ed31aa5ac796e3dbd91051e7508667ee28c372a",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "apps/c67-trip-integration/App/IntegrationModel.swift",
+      "importedPublishedSHA256": "e3e038a92163895746558b985c9d064051addea56c149e47b390eb0ee83d9a2a",
+      "currentSHA256": "0d08c10ced34a335e16cdb4c784d14a370d406125bb14c6906e88b19d5cbe857",
+      "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
+      "verification": "docs/tasks/workspace-publication-2026-11-11.md"
     }
   ]
 }

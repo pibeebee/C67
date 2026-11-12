@@ -47,7 +47,13 @@ if version != manifest["version"]:
 paths = subprocess.check_output(
     ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"], cwd=root
 ).decode().split("\0")
-sources = sorted({p for p in paths if p.endswith(".swift") and (root / p).is_file()})
+# Preserve the byte-identical evaluator sources referenced by the archived freeze.sha256.
+# Maintained app/package sources remain covered by the pinned formatter.
+frozen_sources = {
+    "evaluations/foundation-models-2026-11-04/focused-english/Focused.swift",
+    "evaluations/foundation-models-2026-11-04/focused-english/Support.swift",
+}
+sources = sorted({p for p in paths if p.endswith(".swift") and p not in frozen_sources and (root / p).is_file()})
 if not sources:
     raise SystemExit("No Swift source files found.")
 command = [str(binary), *sources, "--config", str(root / ".swiftformat"), "--cache", "ignore"]

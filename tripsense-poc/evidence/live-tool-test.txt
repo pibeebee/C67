@@ -1,0 +1,26 @@
+Building for debugging...
+[3 / 4] TripSenseCoreTests-product
+Build complete! (0,47 secs)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite LiveIntegrationTests started.
+􀟈  Test realModelToolCallReturnsRealMapKitResults() started.
+Availability: available
+English supported: true
+Indonesian supported: false
+Languages: da, de, en, en-AU, en-GB, en-IN, es, es-419, es-US, fr, fr-CA, it, ja, ko, nb, nl, pt, pt-PT, sv, tr, vi, zh, zh-HK, zh-TW
+Response: Here are two real museums in Central Jakarta:
+1. National Museum
+2. Museum Taman Prasasti
+Duration seconds: 4.233690023422241
+Actual successful tool calls: 1
+Actual MapKit names: ["National Museum", "Indonesia National Gallery", "Museum Taman Prasasti"]
+Transcript: Transcript(entries: [(Instructions) Use searchPlaces to look up museums in Central Jakarta. Only name places returned by the tool.
+Tool Definitions: [{"description":"Search Apple Maps for real museums in Central Jakarta. Returns place names.","name":"searchPlaces","parameters":{"additionalProperties":false,"properties":{"query":{"description":"A short museum search query","type":"string"}},"required":["query"],"title":"Arguments","type":"object","x-order":["query"]}}], (Prompt) Find two real museums in Central Jakarta. Call searchPlaces first.
+Response Format: <nil>, (ToolCalls) searchPlaces: {"query": "museums in Central Jakarta"}, (ToolOutput searchPlaces) MapKit results: National Museum; Indonesia National Gallery; Museum Taman Prasasti, (Response) Here are two real museums in Central Jakarta:
+1. National Museum
+2. Museum Taman Prasasti])
+􁁛  Test realModelToolCallReturnsRealMapKitResults() passed after 4.241 seconds.
+􁁛  Suite LiveIntegrationTests passed after 4.242 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 4.242 seconds.

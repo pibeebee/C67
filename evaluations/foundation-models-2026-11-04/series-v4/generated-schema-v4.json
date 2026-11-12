@@ -1,0 +1,208 @@
+{
+  "$defs" : {
+    "Action" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "localTime" : {
+          "$ref" : "#\/$defs\/NullableString",
+          "description" : "Explicitly requested absolute time, otherwise null; never calculate a time."
+        },
+        "minutes" : {
+          "$ref" : "#\/$defs\/NullableInteger",
+          "description" : "Explicit requested minutes, or null when not applicable."
+        },
+        "proposalID" : {
+          "$ref" : "#\/$defs\/NullableString",
+          "description" : "Existing valid proposal ID for a proposal action only; otherwise null."
+        },
+        "query" : {
+          "$ref" : "#\/$defs\/NullableString",
+          "description" : "Explicit search query if applicable, otherwise null."
+        },
+        "targetID" : {
+          "$ref" : "#\/$defs\/NullableString",
+          "description" : "Existing target ID, or null when not applicable."
+        },
+        "type" : {
+          "enum" : [
+            "extend_current_visit",
+            "set_leave_time",
+            "skip_stop",
+            "set_deadline",
+            "mark_arrived",
+            "begin_visit",
+            "depart_visit",
+            "request_replan",
+            "apply_proposal",
+            "reject_proposal"
+          ],
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "type",
+        "targetID",
+        "minutes",
+        "localTime",
+        "proposalID",
+        "query"
+      ],
+      "title" : "Action",
+      "type" : "object",
+      "x-order" : [
+        "type",
+        "targetID",
+        "minutes",
+        "localTime",
+        "proposalID",
+        "query"
+      ]
+    },
+    "NullableInteger" : {
+      "anyOf" : [
+        {
+          "type" : "integer"
+        },
+        {
+          "type" : "null"
+        }
+      ],
+      "title" : "NullableInteger"
+    },
+    "NullableString" : {
+      "anyOf" : [
+        {
+          "type" : "string"
+        },
+        {
+          "type" : "null"
+        }
+      ],
+      "title" : "NullableString"
+    },
+    "Preference" : {
+      "additionalProperties" : false,
+      "properties" : {
+        "key" : {
+          "enum" : [
+            "coffee",
+            "reading_friendly",
+            "quiet",
+            "indoor",
+            "outdoor",
+            "golden_hour",
+            "popular",
+            "walking_effort"
+          ],
+          "type" : "string"
+        },
+        "strength" : {
+          "enum" : [
+            "soft",
+            "hard"
+          ],
+          "type" : "string"
+        },
+        "value" : {
+          "enum" : [
+            "prefer",
+            "avoid",
+            "not_important"
+          ],
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "key",
+        "value",
+        "strength"
+      ],
+      "title" : "Preference",
+      "type" : "object",
+      "x-order" : [
+        "key",
+        "value",
+        "strength"
+      ]
+    }
+  },
+  "additionalProperties" : false,
+  "properties" : {
+    "actions" : {
+      "description" : "Exactly the explicitly requested supported changes; otherwise empty.",
+      "items" : {
+        "$ref" : "#\/$defs\/Action"
+      },
+      "maxItems" : 3,
+      "type" : "array"
+    },
+    "basedOnRevision" : {
+      "type" : "integer"
+    },
+    "candidateIDs" : {
+      "description" : "Only recommended candidate IDs from the supplied data; otherwise empty.",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "evidenceIDs" : {
+      "description" : "Only supplied supporting evidence IDs; otherwise empty.",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "message" : {
+      "type" : "string"
+    },
+    "preferences" : {
+      "description" : "Explicit preference changes only; otherwise empty.",
+      "items" : {
+        "$ref" : "#\/$defs\/Preference"
+      },
+      "type" : "array"
+    },
+    "question" : {
+      "$ref" : "#\/$defs\/NullableString",
+      "description" : "One question for an unresolved ambiguity, otherwise null."
+    },
+    "requiresConfirmation" : {
+      "type" : "boolean"
+    },
+    "status" : {
+      "enum" : [
+        "propose",
+        "clarify",
+        "explain",
+        "recommend",
+        "cannot_complete"
+      ],
+      "type" : "string"
+    }
+  },
+  "required" : [
+    "status",
+    "basedOnRevision",
+    "actions",
+    "preferences",
+    "candidateIDs",
+    "evidenceIDs",
+    "message",
+    "question",
+    "requiresConfirmation"
+  ],
+  "title" : "C67ModelSuggestion",
+  "type" : "object",
+  "x-order" : [
+    "status",
+    "basedOnRevision",
+    "actions",
+    "preferences",
+    "candidateIDs",
+    "evidenceIDs",
+    "message",
+    "question",
+    "requiresConfirmation"
+  ]
+}

@@ -82,8 +82,12 @@ import VisitTiming
                 }
                 try Task.checkCancellation()
                 guard revision == token else { return }
+                // UI fixtures retain their historical dates and use a matching authored clock.
+                // Explicit provider requests and ordinary app launches keep the real clock.
+                let fixtureClock = catalog.sources.map(\.checkedAt).max()?.addingTimeInterval(1) ?? Date.now
+                let now = ProcessInfo.processInfo.arguments.contains("--timing-ui") && !live ? fixtureClock : Date.now
                 var value = try VisitTimingEngine().evaluate(
-                    request, catalog: catalog, environment: environment)
+                    request, catalog: catalog, environment: environment, now: now)
                 if let acquisitionError {
                     value.warnings.append("Pengambilan konteks gagal: \(acquisitionError)")
                 }

@@ -1,0 +1,53 @@
+Another instance of SwiftPM (PID: 99503) is already running using '/Users/neuhendra/Developer/C67/tripsense-poc/.build', waiting until that process has finished execution...Building for debugging...
+[1 / 12]
+[3 / 8] TripSenseCoreTests-product
+[5 / 10] TripSenseCoreTests-product
+[9 / 12] TripSenseCoreTests-product
+[11 / 12] TripSenseCoreTests-product
+Build complete! (2,05 secs)
+Test Suite 'All tests' started at 2026-11-03 17:11:11.224.
+Test Suite 'All tests' passed at 2026-11-03 17:11:11.226.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite SchedulerTests started.
+􀟈  Suite LiveIntegrationTests started.
+􀟈  Test routeErrorNeverFallsBackToStraightLine() started.
+􀟈  Test verifiedHoursRejectClosedVisit() started.
+􀟈  Test modelUnavailabilityExplicitlyFails() started.
+􀟈  Test unknownHoursDoNotImplyOpen() started.
+􀟈  Test extraValidModelChoicesAreBoundedByDesiredCount() started.
+􀟈  Test rejectsUnrelatedModelChoiceAndUsesRetrievedThemeMatch() started.
+􀟈  Test invalidCoordinatesAndNaNRejected() started.
+􀟈  Test emptySearchResultsCannotBecomeSchedule() started.
+􀟈  Test insufficientDurationRejected() started.
+􀟈  Test categoryTagsDoNotUseModelClaimAsFact() started.
+􀟈  Test mixedThemeIncludesHistoryCultureNatureAndFood() started.
+􀟈  Test fixtureHoursRemainExplicitAndWaitUntilOpen() started.
+􀟈  Test removalRecalculatesRemainingLegs() started.
+􀟈  Test ordersNearbyPlacesAndUsesActualRouteTimes() started.
+􀙟  Test realModelToolCallReturnsRealMapKitResults() skipped.
+􀟈  Test mixedSelectionKeepsMuseumAndCoffeeVariety() started.
+􀟈  Test duplicateAndInvalidIDsRejectedBeforeRouting() started.
+􀟈  Test sameThemeSelectionExcludesUnrelatedFixtures() started.
+􁁛  Suite LiveIntegrationTests passed after 0.001 seconds.
+􁁛  Test unknownHoursDoNotImplyOpen() passed after 0.001 seconds.
+􁁛  Test ordersNearbyPlacesAndUsesActualRouteTimes() passed after 0.001 seconds.
+􁁛  Test removalRecalculatesRemainingLegs() passed after 0.001 seconds.
+􁁛  Test fixtureHoursRemainExplicitAndWaitUntilOpen() passed after 0.001 seconds.
+􁁛  Test invalidCoordinatesAndNaNRejected() passed after 0.001 seconds.
+􁁛  Test routeErrorNeverFallsBackToStraightLine() passed after 0.001 seconds.
+􁁛  Test verifiedHoursRejectClosedVisit() passed after 0.001 seconds.
+􁁛  Test insufficientDurationRejected() passed after 0.001 seconds.
+􁁛  Test emptySearchResultsCannotBecomeSchedule() passed after 0.001 seconds.
+􁁛  Test rejectsUnrelatedModelChoiceAndUsesRetrievedThemeMatch() passed after 0.001 seconds.
+􁁛  Test mixedSelectionKeepsMuseumAndCoffeeVariety() passed after 0.001 seconds.
+􁁛  Test modelUnavailabilityExplicitlyFails() passed after 0.001 seconds.
+􁁛  Test mixedThemeIncludesHistoryCultureNatureAndFood() passed after 0.001 seconds.
+􁁛  Test categoryTagsDoNotUseModelClaimAsFact() passed after 0.001 seconds.
+􁁛  Test sameThemeSelectionExcludesUnrelatedFixtures() passed after 0.001 seconds.
+􁁛  Test extraValidModelChoicesAreBoundedByDesiredCount() passed after 0.001 seconds.
+􁁛  Test duplicateAndInvalidIDsRejectedBeforeRouting() passed after 0.001 seconds.
+􁁛  Suite SchedulerTests passed after 0.001 seconds.
+􁁛  Test run with 18 tests in 2 suites passed after 0.001 seconds.

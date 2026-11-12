@@ -9,8 +9,8 @@ C67 plans personal trips from the traveller's places, preferences and available 
 ## Run the app
 
 1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
-2. In default mock mode, review the sample places, adjust durations/time/preferences and tap **Plan my trip**.
-3. Review the synthetic proposal and **Save this trip**. In My Trips, start, manually confirm arrival, extend/finish a visit and recalculate.
+2. In default mock mode, tap the Home plus button and choose **Get Recommendations** or **Add Specific Place**. Complete the guided inputs and confirm the planner details.
+3. Review the synthetic itinerary and save it with a name. Open the saved trip to start, manually confirm arrivals, finish visits and inspect recalculation through Trip options. See the [Canvas and flow guide](ios-ui/README.md).
 
 Mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
 
@@ -28,3 +28,7 @@ Live planning requires a configured HTTPS Planning API, the new SQL migration, b
 Existing creator/version trips, graph, planned edits, private journal/media and authentication retain their contracts. Personal planning has its own aggregate and does not bypass journal guards or invent creator IDs. Native email/password and Sign in with Apple retain their separately recorded [Auth/API](docs/tasks/ios-auth-api.md) and [Apple](docs/tasks/apple-auth.md) evidence; device lifecycle acceptance remains separate.
 
 For team work, start with [AGENTS.md](AGENTS.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md) and the [AI workflow](docs/ai/workflow.md). Synthetic integration success does not establish travel accuracy, product validation or production readiness.
+
+## Standalone native AI experiment
+
+[TripSense POC](tripsense-poc/README.md) is an isolated iOS 26+ Foundation Models/MapKit experiment with a separate Xcode project. Its [feasibility report](tripsense-poc/FEASIBILITY.md) separates actual Mac tool-call/routing evidence, synthetic tests and pending physical-iPhone acceptance. It does not replace the C67 app or change shared backend behavior.

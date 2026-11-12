@@ -1,0 +1,33 @@
+{
+  "frozenAt": "2026-11-04T07:32:33.176822+00:00",
+  "promptVersion": "package-v1/schema-v4-dynamic-nullable",
+  "note": "Follow-up after v2 evaluation was exposed; not a fresh holdout. Oracle was not read by model executable.",
+  "sha256": {
+    "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/series-v4/run_evaluation.py": "586952b5ad6d8df86f6d2c0c281ce3a810cea846638c57e189a4bed80aff6eef",
+    "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/series-v4/generated-schema-v4.json": "682feb680b35ddebf2ae364344669bc533fecd9e63ae77dfb20226da25fb330d",
+    "/tmp/c67-foundation-model-evaluator-v4": "dbaca40d7d8d57f6199f893d7178ab61fd686fa4a958946732d15301e6f77da0",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/inputs.jsonl": "d9026933684880851c3de450c3bd78edcface3f21e9b26d1f6f4821ac3079af5",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/model-instructions.txt": "b43b07c0d20751af0224d1285e4b19306e379ddf6d8451d538d221342842e19c",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/output-contract.json": "f7fbdff95af77c6c26beedb7022b0c2bdd3f4b3c8db69fd5c720da042ff6eda6",
+    "/Users/neuhendra/Downloads/foundation-models-evaluation-2026-11-04/local-tool-fixtures.json": "e50f1a7a6a8a83c18987ee0b303694cbe2ff24b45adfe3b80838b9882ee2c35e",
+    "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/series-v4/frozen-Evaluator.swift.txt": "e4e4a664820f34b5e0afafe98d922c89128d3a27b9b8cda83b9439bb8633767f"
+  },
+  "settings": {
+    "model": "SystemLanguageModel.default",
+    "samplingMode": "greedy",
+    "temperature": null,
+    "seed": null,
+    "maximumResponseTokens": 1400,
+    "maximumToolCalls": 2,
+    "timeoutSeconds": 20,
+    "network": "evaluator process sandbox denies network",
+    "sessions": "new process and session per run"
+  },
+  "sourceArchiveRelocation": {
+    "at": "2026-11-04T07:40:32.185967+00:00",
+    "reason": "Preserve exact frozen source bytes while formatting the working Swift copy.",
+    "originalPath": "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/series-v4/Evaluator.swift",
+    "archivePath": "/Users/neuhendra/Developer/C67/evaluations/foundation-models-2026-11-04/series-v4/frozen-Evaluator.swift.txt",
+    "sourceBytesChanged": false
+  }
+}

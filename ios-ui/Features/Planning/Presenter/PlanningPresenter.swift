@@ -17,11 +17,13 @@ final class PlanningPresenter {
     private(set) var job: PlanningJob?
     private(set) var isBusy = false
     private(set) var privateAccessBlocked = false
+    private(set) var needsFreshProposal = false
     private(set) var progress: String?
     var error: String?
     var openTripID: UUID?
     private let interactor: PlanningInteractor
     private var generation = 0
+    private(set) var sessionGeneration = 0
     private var sessionID: UUID?
     private var pendingRequest: PlanningRequest?
     private var pendingApply: (UUID, UUID)?
@@ -49,6 +51,8 @@ final class PlanningPresenter {
     func sessionDidChange(_ value: AuthenticationSnapshot) {
         let blocked = value.account == nil || value.requiresPasswordReset
         guard sessionID != value.sessionID || privateAccessBlocked != blocked else { return }
+        needsFreshProposal = false
+        sessionGeneration += 1
         privateAccessBlocked = blocked
         sessionID = value.sessionID; generation += 1; isBusy = false; progress = nil
         trips = []; job = nil; pendingRequest = nil; pendingApply = nil; pendingEvent = nil
@@ -96,7 +100,7 @@ final class PlanningPresenter {
     func request(_ purpose: PlanningPurpose = .plan, trip: PersonalPlanningTrip? = nil) async {
         guard !privateAccessBlocked else { error = PlanningError.authenticationRequired.localizedDescription; return }
         guard !isBusy else { return }
-        let ticket = generation; isBusy = true; error = nil; progress = "Preparing your request…"
+        let ticket = generation; isBusy = true; error = nil; needsFreshProposal = false; progress = "Preparing your request…"
         defer { if ticket == generation { isBusy = false; progress = nil } }
         do {
             guard let input = trip?.input ?? draftInput else { throw PlanningError.invalidInput }; try input.validate()
@@ -132,6 +136,23 @@ final class PlanningPresenter {
         }
         error = "Planning is still running. Refresh to read its status; your request has been preserved."
     }
+    /// A renamed draft must be regenerated and reviewed before it can be applied.
+    func saveReviewedProposal(named name: String) async {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !isBusy, !trimmed.isEmpty, trimmed.count <= 120,
+              let proposal = job?.result?.proposal, job?.input == draftInput else {
+            if !isBusy { error = PlanningError.invalidInput.localizedDescription }
+            return
+        }
+        if trimmed != proposal.input.title {
+            title = trimmed
+            draftChanged()
+            await request()
+        } else {
+            await apply()
+        }
+    }
+
     func apply() async {
         guard !isBusy, let job, job.result?.proposal?.feasible == true else { return }
         let ticket = generation; isBusy = true; error = nil
@@ -143,7 +164,12 @@ final class PlanningPresenter {
             upsert(trip); self.job = nil; pendingApply = nil; pendingRequest = nil
             if job.tripID == nil { openTripID = trip.id }
         } catch is CancellationError { }
-        catch { if ticket == generation { self.error = error.localizedDescription } }
+        catch {
+            if ticket == generation {
+                self.error = error.localizedDescription
+                needsFreshProposal = (error as? PlanningError) == .expired || (error as? PlanningError) == .revisionConflict
+            }
+        }
     }
     func event(_ kind: PlanningEventKind, trip: PersonalPlanningTrip, extraSeconds: Int? = nil) async {
         guard !isBusy else { return }

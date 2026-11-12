@@ -4,6 +4,8 @@
 <dict>
 	<key>C67_DATA_MODE</key>
 	<string>$(C67_DATA_MODE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Travelant</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -37,12 +39,17 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use your position as the starting point for a trip you choose to plan.</string>
+	<string>Your location is used to get your position on the map to improve the best itinerary for you</string>
 	<key>PLANNING_API_URL</key>
 	<string>$(PLANNING_SCHEME)://$(PLANNING_HOST)</string>
 	<key>SUPABASE_CLIENT_KEY</key>
 	<string>$(SUPABASE_CLIENT_KEY)</string>
 	<key>SUPABASE_URL</key>
 	<string>$(SUPABASE_SCHEME)://$(SUPABASE_HOST)</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>SplashGradientMiddle</string>
+	</dict>
 </dict>
 </plist>

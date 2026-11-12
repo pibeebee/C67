@@ -1,0 +1,121 @@
+Building for debugging...
+[1 / 12] TripSenseCoreTests-product
+[2 / 15] TripSenseCore
+[5 / 18] TripSenseCore
+[8 / 19] TripSenseCore
+[13 / 18] TripSenseCoreTests-product
+[15 / 20] TripSenseProbe-product
+[15 / 20] TripSenseCoreTests-product
+[19 / 22] TripSenseCoreTests-product
+[21 / 25] TripSenseCoreTests-product
+Build complete! (2,45 secs)
+Test Suite 'All tests' started at 2026-11-04 13:37:53.018.
+Test Suite 'All tests' passed at 2026-11-04 13:37:53.020.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2403
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite OverpassRequestTests started.
+􀟈  Test defaultSharedGateSurvivesProviderRecreation() started.
+􀟈  Suite LiveIntegrationTests started.
+􀟈  Suite OSMHoursTests started.
+􀟈  Test retryAfterAcceptsSecondsAndHTTPDate() started.
+􀟈  Test status406And429SuppressNewProviderRequestsUntilCooldownExpires() started.
+􀟈  Suite SchedulerTests started.
+􀟈  Test pastDateAndInvalidRetryHeaderStillPauseThirtySeconds() started.
+􀟈  Suite OptimizationTests started.
+􀟈  Test minimumCooldownAndLongerServerDelayAreHonored() started.
+􀟈  Test gatePreventsConcurrentRequestsOnTheSameHost() started.
+􀙟  Test realModelToolCallReturnsRealMapKitResults() skipped.
+􀟈  Test addressConflictCannotAttachAnotherBranch() started.
+􀟈  Test merges24HourWindowsForMidnightVisits() started.
+􀟈  Test requestUsesClearIdentityAndLongerTimeout() started.
+􀟈  Test parsesWeeklyIntervalsAndOvernight() started.
+􀟈  Test cancellationReleasesTheEndpointGate() started.
+􀟈  Test uniqueMatchReturnsSourcedHoursAndMetadata() started.
+􀟈  Test extraValidModelChoicesAreBoundedByDesiredCount() started.
+􀟈  Test invalidCoordinatesAndNaNRejected() started.
+􀟈  Test unsupportedRulesNeverPartiallyApply() started.
+􀟈  Test invalidResponseIsNotCached() started.
+􀟈  Test modelUnavailabilityExplicitlyFails() started.
+􀟈  Test sameThemeSelectionExcludesUnrelatedFixtures() started.
+􀟈  Test categoryTagsDoNotUseModelClaimAsFact() started.
+􀟈  Test routeErrorNeverFallsBackToStraightLine() started.
+􀟈  Test verifiedHoursRejectClosedVisit() started.
+􀟈  Test fixtureHoursRemainExplicitAndWaitUntilOpen() started.
+􀟈  Test emptySearchResultsCannotBecomeSchedule() started.
+􀟈  Test cachedResponseIsReusedAndWebsiteSurvivesUnknownHours() started.
+􀟈  Test ordersNearbyPlacesAndUsesActualRouteTimes() started.
+􀟈  Test sixPlacesExhausts720OrdersAndFindsKnownOptimum() started.
+􀟈  Test unknownHoursAllowedByDefaultAndExcludedInStrictMode() started.
+􀟈  Test throttlingIsReportedInsteadOfClaimingNoRoute() started.
+􀟈  Test mixedThemeIncludesHistoryCultureNatureAndFood() started.
+􀟈  Test invalidIDsAndTooManyLockedAreRejected() started.
+􀟈  Test directedUnavailableLegCanBeAvoidedButNetworkFailureStopsOptimization() started.
+􀟈  Test removalRecalculatesRemainingLegs() started.
+􀟈  Test duplicateAndInvalidIDsRejectedBeforeRouting() started.
+􀟈  Test exhaustiveOrderBeatsGreedyAndCountsDirectedMatrix() started.
+􀟈  Test ambiguousOrDistantMatchesStayUnknown() started.
+􀟈  Test invalidResponseAndOversizedDataStayUnknown() started.
+􀟈  Test realDepartureValidationCanChangeWinner() started.
+􀟈  Test insufficientDurationRejected() started.
+􀟈  Test unknownHoursDoNotImplyOpen() started.
+􀟈  Test mixedSelectionKeepsMuseumAndCoffeeVariety() started.
+􀟈  Test rejectsUnrelatedModelChoiceAndUsesRetrievedThemeMatch() started.
+􀟈  Test insufficientTimeAndClosedHoursAreNotPresentedAsFeasible() started.
+􀟈  Test cancellationStopsAnInFlightEstimate() started.
+􀟈  Test oneThroughSixStopsMatchIndependentHeapEnumeration() started.
+􀟈  Test candidateSelectionPreservesLockedAndChoosesFasterAlternative() started.
+􀟈  Test failedFinalRouteUsesAnotherValidatedSchedule() started.
+􁁛  Suite LiveIntegrationTests passed after 0.001 seconds.
+􁁛  Test addressConflictCannotAttachAnotherBranch() passed after 0.007 seconds.
+􁁛  Test uniqueMatchReturnsSourcedHoursAndMetadata() passed after 0.007 seconds.
+􁁛  Test fixtureHoursRemainExplicitAndWaitUntilOpen() passed after 0.007 seconds.
+􁁛  Test ordersNearbyPlacesAndUsesActualRouteTimes() passed after 0.009 seconds.
+􁁛  Test ambiguousOrDistantMatchesStayUnknown() passed after 0.009 seconds.
+􁁛  Test unknownHoursDoNotImplyOpen() passed after 0.009 seconds.
+􁁛  Test invalidResponseAndOversizedDataStayUnknown() passed after 0.010 seconds.
+􁁛  Test removalRecalculatesRemainingLegs() passed after 0.011 seconds.
+􁁛  Test invalidCoordinatesAndNaNRejected() passed after 0.014 seconds.
+􁁛  Test emptySearchResultsCannotBecomeSchedule() passed after 0.015 seconds.
+􁁛  Test verifiedHoursRejectClosedVisit() passed after 0.015 seconds.
+􁁛  Test routeErrorNeverFallsBackToStraightLine() passed after 0.015 seconds.
+􁁛  Test insufficientDurationRejected() passed after 0.065 seconds.
+􁁛  Test retryAfterAcceptsSecondsAndHTTPDate() passed after 0.066 seconds.
+􁁛  Test defaultSharedGateSurvivesProviderRecreation() passed after 0.066 seconds.
+􁁛  Test minimumCooldownAndLongerServerDelayAreHonored() passed after 0.066 seconds.
+􁁛  Test gatePreventsConcurrentRequestsOnTheSameHost() passed after 0.066 seconds.
+􁁛  Test pastDateAndInvalidRetryHeaderStillPauseThirtySeconds() passed after 0.066 seconds.
+􁁛  Test extraValidModelChoicesAreBoundedByDesiredCount() passed after 0.066 seconds.
+􁁛  Test merges24HourWindowsForMidnightVisits() passed after 0.066 seconds.
+􁁛  Test sameThemeSelectionExcludesUnrelatedFixtures() passed after 0.066 seconds.
+􁁛  Test categoryTagsDoNotUseModelClaimAsFact() passed after 0.066 seconds.
+􁁛  Test parsesWeeklyIntervalsAndOvernight() passed after 0.066 seconds.
+􁁛  Test modelUnavailabilityExplicitlyFails() passed after 0.066 seconds.
+􁁛  Test unsupportedRulesNeverPartiallyApply() passed after 0.066 seconds.
+􁁛  Test cachedResponseIsReusedAndWebsiteSurvivesUnknownHours() passed after 0.066 seconds.
+􁁛  Test mixedThemeIncludesHistoryCultureNatureAndFood() passed after 0.066 seconds.
+􁁛  Test requestUsesClearIdentityAndLongerTimeout() passed after 0.066 seconds.
+􁁛  Test duplicateAndInvalidIDsRejectedBeforeRouting() passed after 0.066 seconds.
+􁁛  Test mixedSelectionKeepsMuseumAndCoffeeVariety() passed after 0.066 seconds.
+􁁛  Test invalidResponseIsNotCached() passed after 0.066 seconds.
+􁁛  Test rejectsUnrelatedModelChoiceAndUsesRetrievedThemeMatch() passed after 0.066 seconds.
+􁁛  Suite OSMHoursTests passed after 0.066 seconds.
+􁁛  Suite SchedulerTests passed after 0.066 seconds.
+􁁛  Test sixPlacesExhausts720OrdersAndFindsKnownOptimum() passed after 0.066 seconds.
+􁁛  Test exhaustiveOrderBeatsGreedyAndCountsDirectedMatrix() passed after 0.066 seconds.
+􁁛  Test failedFinalRouteUsesAnotherValidatedSchedule() passed after 0.066 seconds.
+􁁛  Test realDepartureValidationCanChangeWinner() passed after 0.066 seconds.
+􁁛  Test candidateSelectionPreservesLockedAndChoosesFasterAlternative() passed after 0.066 seconds.
+􁁛  Test throttlingIsReportedInsteadOfClaimingNoRoute() passed after 0.066 seconds.
+􁁛  Test cancellationReleasesTheEndpointGate() passed after 0.067 seconds.
+􁁛  Test cancellationStopsAnInFlightEstimate() passed after 0.067 seconds.
+􁁛  Test directedUnavailableLegCanBeAvoidedButNetworkFailureStopsOptimization() passed after 0.067 seconds.
+􁁛  Test unknownHoursAllowedByDefaultAndExcludedInStrictMode() passed after 0.067 seconds.
+􁁛  Test invalidIDsAndTooManyLockedAreRejected() passed after 0.067 seconds.
+􁁛  Test insufficientTimeAndClosedHoursAreNotPresentedAsFeasible() passed after 0.067 seconds.
+􁁛  Test status406And429SuppressNewProviderRequestsUntilCooldownExpires() passed after 0.068 seconds.
+􁁛  Suite OverpassRequestTests passed after 0.068 seconds.
+􁁛  Test oneThroughSixStopsMatchIndependentHeapEnumeration() passed after 0.148 seconds.
+􁁛  Suite OptimizationTests passed after 0.149 seconds.
+􁁛  Test run with 47 tests in 5 suites passed after 0.149 seconds.
