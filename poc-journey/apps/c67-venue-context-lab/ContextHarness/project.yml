@@ -1,0 +1,50 @@
+name: C67VenueContextLab
+options:
+  deploymentTarget:
+    iOS: '26.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    DEVELOPMENT_TEAM: DP5XP7C2AM
+    MARKETING_VERSION: '2.0'
+    CURRENT_PROJECT_VERSION: '1'
+packages:
+  Lab:
+    path: ..
+  PreferenceLearning:
+    path: ../../c67-foundation-lab/Packages/PreferenceLearning
+targets:
+  C67VenueContextLab:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: RunConfig.json
+        buildPhase: resources
+    dependencies:
+      - package: Lab
+        product: DynamicTripContracts
+      - package: Lab
+        product: PlaceContextEngine
+      - package: Lab
+        product: RecommendationContracts
+      - package: PreferenceLearning
+        product: PreferenceLearning
+    info:
+      path: Info.plist
+      properties:
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: Connect to the local Venue Context Lab server.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: giovanchristoffel.c67-venue-context-lab
+        INFOPLIST_KEY_CFBundleDisplayName: C67 Venue Context Lab
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: '1,2'
+schemes:
+  C67VenueContextLab:
+    build:
+      targets:
+        C67VenueContextLab: all

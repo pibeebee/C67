@@ -1,6 +1,6 @@
 # Getting started
 
-**Current flow — 30 October 2026:** the default app runs personal planning in explicit synthetic mock mode. Live planning uses the separate [Planning service setup](../server/planning/README.md), the new additive migration and server-only provider credentials. Existing shared Supabase/Auth does not enable that service automatically. [Task evidence](tasks/ai-trip-planning-implementation.md) records build-only iOS verification for this batch.
+**Current native flow — 12 November 2026:** Pocket Engine is the default on-device planner. Configure catalog/Luna connectivity in Account and use [Pocket setup](pocket-engine-integration.md). Synthetic mock and legacy HTTP live modes remain explicit options; the older Supabase setup below does not configure the Pocket service.
 
 ## 1. Run the mock app
 
@@ -13,7 +13,7 @@ git switch dev
 open ios-ui/C67.xcodeproj
 ```
 
-Select **C67**, choose an iPhone Simulator, and Run. You should see **Mock • memory only** and sample places. Adjust the draft, tap **Plan my trip**, review and save the proposal, then start/arrive/extend/recalculate in My Trips. Relaunching clears mock trips. Launch with `--legacy-catalog` to inspect the earlier synthetic rundown example.
+Select **C67**, choose an iPhone Simulator and Run. Pocket mode opens the existing trip UI; choose an origin, preferences and destinations, review availability and advice consent, then save locally. For synthetic UI work, build with `C67_DATA_MODE=mock`. Mock trips remain memory-only. `--legacy-catalog` still opens the earlier sample, not Pocket discovery.
 
 The committed Xcode project is ready to open. XcodeGen is only needed when changing targets or source groups:
 

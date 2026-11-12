@@ -14,6 +14,9 @@ final class PlanningPresenter {
     var timeZone = TimeZone.current.identifier
     var mode: PlanningMode = .walking
     var preservesPlaceOrder = false
+    var enginePreferences: PlanningPreferences?
+    let supportsOnDevicePlanning: Bool
+    let preferenceLabels: [PlanningPreferenceLabel]
     private(set) var trips: [PersonalPlanningTrip] = []
     private(set) var job: PlanningJob?
     private(set) var isBusy = false
@@ -21,6 +24,9 @@ final class PlanningPresenter {
     private(set) var needsFreshProposal = false
     private(set) var progress: String?
     var error: String?
+    private(set) var pocketConnection: PlanningConnection?
+    private(set) var connectionError: String?
+    private(set) var isSavingConnection = false
     var openTripID: UUID?
     private let interactor: PlanningInteractor
     private var generation = 0
@@ -33,17 +39,37 @@ final class PlanningPresenter {
 
     init(interactor: PlanningInteractor, initialInput: PlanningInput? = nil) {
         self.interactor = interactor
+        supportsOnDevicePlanning = interactor.repository.supportsOnDevicePlanning
+        preferenceLabels = interactor.repository.preferenceLabels
+        if supportsOnDevicePlanning {
+            enginePreferences = PlanningPreferences(); timeZone = "Asia/Jakarta"
+            (startsAt, finishBy) = Self.defaultPocketWindow(after: .now)
+        }
         if let initialInput { setDraft(initialInput); originLabel = "Synthetic starting point" }
     }
+    private static func defaultPocketWindow(after now: Date) -> (Date, Date) {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Jakarta")!
+        let soon = calendar.dateInterval(of: .minute, for: now.addingTimeInterval(600))?.start ?? now
+        let soonEnd = soon.addingTimeInterval(4 * 3600)
+        if calendar.isDate(soon, inSameDayAs: soonEnd) { return (soon, soonEnd) }
+        let nextMorning = calendar.nextDate(after: soon, matching: DateComponents(hour: 9, minute: 0),
+                                            matchingPolicy: .nextTime) ?? soon
+        return (nextMorning, nextMorning.addingTimeInterval(4 * 3600))
+    }
+
     private func setDraft(_ value: PlanningInput) {
         title = value.title; origin = value.origin; places = value.places; preferences = value.preferences
         startsAt = value.startsAt; finishBy = value.finishBy; timeZone = value.timeZone; mode = value.mode
         preservesPlaceOrder = value.preservesPlaceOrder
+        enginePreferences = value.enginePreferences
     }
     var draftInput: PlanningInput? {
         guard let origin else { return nil }
-        return .init(title: title, origin: origin, places: places, preferences: preferences,
-                     startsAt: startsAt, finishBy: finishBy, timeZone: timeZone, mode: mode, preservesPlaceOrder: preservesPlaceOrder)
+        var input = PlanningInput(title: title, origin: origin, places: places, preferences: preferences,
+                                  startsAt: startsAt, finishBy: finishBy, timeZone: timeZone, mode: mode, preservesPlaceOrder: preservesPlaceOrder)
+        input.enginePreferences = enginePreferences
+        return input
     }
     func draftChanged() {
         guard !isBusy else { return }
@@ -60,13 +86,28 @@ final class PlanningPresenter {
         trips = []; job = nil; pendingRequest = nil; pendingApply = nil; pendingEvent = nil
         openTripID = nil; title = "My trip"; origin = nil; originLabel = "Choose a starting point"
         places = []; preferences = ""; preservesPlaceOrder = false; reportedPosition = nil; error = nil
+        enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
-        timeZone = TimeZone.current.identifier; mode = .walking
+        timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
+        if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
+        mode = .walking
     }
     func receivedLocation(_ point: PlanningPoint) {
         origin = point; originLabel = "Current device position"; reportedPosition = (point, Date())
     }
     func receivedReplanningLocation(_ point: PlanningPoint) { reportedPosition = (point, Date()) }
+    func loadPocketConnection() async { pocketConnection = await interactor.repository.engineConnection() }
+    func savePocketConnection(serverURL: String, token: String) async -> Bool {
+        guard !isSavingConnection, !isBusy else { return false }
+        isSavingConnection = true; connectionError = nil
+        defer { isSavingConnection = false }
+        do {
+            try await interactor.repository.updateEngineConnection(serverURL: serverURL, token: token)
+            pocketConnection = await interactor.repository.engineConnection()
+            draftChanged()
+            return true
+        } catch { connectionError = error.localizedDescription; return false }
+    }
     func load() async {
         guard !privateAccessBlocked else { error = PlanningError.authenticationRequired.localizedDescription; return }
         guard !isBusy else { return }
@@ -105,7 +146,7 @@ final class PlanningPresenter {
         let ticket = generation; isBusy = true; error = nil; needsFreshProposal = false; progress = "Preparing your request…"
         defer { if ticket == generation { isBusy = false; progress = nil } }
         do {
-            guard let input = trip?.input ?? draftInput else { throw PlanningError.invalidInput }; try input.validate()
+            guard let input = trip?.input ?? draftInput else { throw PlanningError.invalidInput }; try input.validate(purpose: purpose)
             let command: PlanningRequest
             if let pendingRequest, pendingRequest.purpose == purpose, pendingRequest.input == input,
                pendingRequest.tripID == trip?.id, pendingRequest.baseRevision == trip?.revision { command = pendingRequest }
@@ -119,7 +160,7 @@ final class PlanningPresenter {
             guard ticket == generation, !Task.isCancelled else { return }
             try await receive(value, ticket: ticket)
         } catch is CancellationError { }
-        catch { if ticket == generation { self.error = error.localizedDescription } }
+        catch { if ticket == generation { self.error = error.localizedDescription; if supportsOnDevicePlanning { pendingRequest = nil } } }
     }
     private func receive(_ value: PlanningJob, ticket: Int) async throws {
         var latest = value

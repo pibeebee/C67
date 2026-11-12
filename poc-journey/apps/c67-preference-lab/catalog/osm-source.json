@@ -1,0 +1,305 @@
+{
+  "provenance": "openstreetmap-odbl-v1",
+  "licenseURL": "https://www.openstreetmap.org/copyright",
+  "attribution": "© OpenStreetMap contributors · ODbL 1.0",
+  "fetchedAt": "2026-11-09T23:22:30.707563+00:00",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "sourceTimestamp": "2026-11-09T23:21:20Z",
+  "query": "[out:json][timeout:30];(nwr[amenity=cafe][name](-6.224,106.817,-6.173,106.854);nwr[amenity=library][name](-6.224,106.817,-6.173,106.854);nwr[shop=books][name](-6.224,106.817,-6.173,106.854););out center tags;",
+  "config": {
+    "version": 1,
+    "scopeLabel": "Menteng–Cikini · lingkup sementara",
+    "area": "Jakarta Pusat",
+    "bbox": [
+      -6.224,
+      106.817,
+      -6.173,
+      106.854
+    ],
+    "categories": [
+      "cafe",
+      "library",
+      "book_store"
+    ],
+    "excludedCategories": [
+      "hotel",
+      "convenience_store"
+    ],
+    "maxPlaces": 20,
+    "freshnessDays": 30,
+    "judgeModel": "Qwen/Qwen3-0.6B",
+    "judgeRevision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "judgeMinScore": 0.6,
+    "notice": "Label menggambarkan bukti yang tersedia. Ketentuan dan keadaan saat kunjungan masih dapat berubah."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 1091887771,
+      "lat": -6.1880434,
+      "lon": 106.823621,
+      "tags": {
+        "amenity": "cafe",
+        "cuisine": "international",
+        "name": "Titik Temu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6219120493,
+      "lat": -6.1889399,
+      "lon": 106.8393515,
+      "tags": {
+        "addr:city": "DKI Jakarta",
+        "addr:housenumber": "Taman Ismail Marzuki",
+        "addr:street": "Jalan Cikini Raya",
+        "amenity": "library",
+        "name": "Pusat Dokumentasi Sastra HB Jassin",
+        "phone": "+62 21 31936641"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3742385309,
+      "lat": -6.1952395,
+      "lon": 106.82023,
+      "tags": {
+        "brand": "Kinokuniya",
+        "brand:wikidata": "Q703227",
+        "name": "Kinokuniya",
+        "phone": "+62 21 2358 0100",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1912469553,
+      "lat": -6.2205601,
+      "lon": 106.8325505,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Cafe Al Tahrir"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6219136086,
+      "lat": -6.1898085,
+      "lon": 106.838484,
+      "tags": {
+        "addr:city": "Jakarta Pusat",
+        "addr:postcode": "10330",
+        "addr:street": "Jalan Cikini Raya No 73",
+        "amenity": "library",
+        "name": "Perpustakaan Umum Daerah DKI Jakarta",
+        "operator:type": "government",
+        "phone": "+62 21 3154087",
+        "tactile_paving": "yes",
+        "website": "https://perpustakaan.jakarta.go.id/",
+        "wheelchair": "yes",
+        "wikidata": "Q115783291"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6222921986,
+      "lat": -6.1812432,
+      "lon": 106.8392763,
+      "tags": {
+        "name": "BPK Gunung Mulia",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1912484629,
+      "lat": -6.2180374,
+      "lon": 106.8345492,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Daily Bread Bakery and Cafe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10277878810,
+      "lat": -6.212961,
+      "lon": 106.8298858,
+      "tags": {
+        "addr:city": "South Jakarta",
+        "addr:full": "Wisma Bakrie",
+        "addr:street": "Jalan Hajjah R. Rasuna Said",
+        "amenity": "library",
+        "name": "Perpustakaan Freedom",
+        "operator": "Freedom Institute",
+        "phone": "+62 21 31909226",
+        "wikidata": "Q117302350"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6222921988,
+      "lat": -6.1820253,
+      "lon": 106.8372079,
+      "tags": {
+        "addr:housenumber": "38",
+        "name": "Gunung Agung",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1912484635,
+      "lat": -6.2182454,
+      "lon": 106.8352645,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Kopi Luwak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10277896794,
+      "lat": -6.1899677,
+      "lon": 106.8312095,
+      "tags": {
+        "addr:city": "DKI Jakarta",
+        "addr:full": "Library of Goethe-Institut Jakarta",
+        "addr:postcode": "10350",
+        "addr:street": "Jalan Dokter Sam Ratulangi",
+        "amenity": "library",
+        "name": "Library of Goethe-Institut Jakarta",
+        "opening_hours": "Mo-Fr 11:00-21:00",
+        "operator": "Goethe-Institut Jakarta",
+        "phone": "+62 812 1882 9013",
+        "wheelchair": "limited",
+        "wikidata": "Q117305917"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6249771788,
+      "lat": -6.2029812,
+      "lon": 106.8491723,
+      "tags": {
+        "name": "Immanuel",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1912484639,
+      "lat": -6.2182606,
+      "lon": 106.8346496,
+      "tags": {
+        "addr:city": "South Jakarta",
+        "addr:province": "DKI Jakarta",
+        "amenity": "cafe",
+        "cuisine": "coffee_shop",
+        "name": "Pandav Coffee;pandav coffe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10277960609,
+      "lat": -6.1890921,
+      "lon": 106.8234652,
+      "tags": {
+        "addr:city": "DKI Jakarta",
+        "addr:street": "Jalan Mohammad Husni Thamrin",
+        "amenity": "library",
+        "name": "Mediatek IFI",
+        "operator": "Institut Francais Indonesia",
+        "website": "ifi-id.com/mediatek#"
+      }
+    },
+    {
+      "type": "way",
+      "id": 491283319,
+      "center": {
+        "lat": -6.1796907,
+        "lon": 106.8414479
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Toko Buku Gunung Agung",
+        "opening_hours": "Mo-Fr 08:30-20:00",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1912484641,
+      "lat": -6.2178663,
+      "lon": 106.8349406,
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Starbucks",
+        "brand:wikidata": "Q37158",
+        "brand:wikipedia": "en:Starbucks",
+        "cuisine": "coffee_shop",
+        "name": "Starbucks",
+        "official_name": "Starbucks Coffee",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10277962557,
+      "lat": -6.2229557,
+      "lon": 106.8343207,
+      "tags": {
+        "addr:city": "DKI Jakarta",
+        "addr:housenumber": "Gedung Nyi Ageng Serang Lt. 7&8",
+        "addr:street": "Jalan Epicentrum Selatan",
+        "amenity": "library",
+        "name": "Perpustakaan Umum Daerah DKI Jakarta",
+        "opening_hours": "Mo - Su 09:00 - 18:00",
+        "operator": "Dispusip DKI Jakarta",
+        "phone": "+62 21 5263249"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1386950561,
+      "center": {
+        "lat": -6.1794662,
+        "lon": 106.8415346
+      },
+      "tags": {
+        "addr:city": "Jakarta Pusat",
+        "addr:postcode": "10420",
+        "addr:province": "DKI Jakarta",
+        "addr:street": "Jalan Kramat Kwitang",
+        "building": "yes",
+        "name": "Toko Buku Restu",
+        "shop": "books"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2031799689,
+      "lat": -6.1859185,
+      "lon": 106.8252696,
+      "tags": {
+        "amenity": "cafe",
+        "name": "D'Marco Cafe",
+        "notes": "airconditioned",
+        "speciality": "martabak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10280510387,
+      "lat": -6.2029154,
+      "lon": 106.850977,
+      "tags": {
+        "amenity": "library",
+        "contact:phone": "+62 274 889398",
+        "name": "Perpustakaan UNUSIA",
+        "operator:type": "private",
+        "wikidata": "Q115795053"
+      }
+    }
+  ]
+}

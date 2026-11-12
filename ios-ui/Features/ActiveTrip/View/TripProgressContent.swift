@@ -70,7 +70,7 @@ struct TripProgressContent: View {
                                 Label("You’ve arrived", systemImage: "checkmark.circle.fill").font(.title.bold())
                                 Text("Stop \(number) of \(trip.plan.stops.count)").font(.subheadline)
                                 Text(stop.name).font(.title3.bold())
-                                Text("Planned visit · \(ItineraryFormatting.time(stop.arrivalAt, zone: trip.input.timeZone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: trip.input.timeZone, locale: locale))")
+                                Text("Planned visit · \(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: trip.input.timeZone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: trip.input.timeZone, locale: locale))")
                                 Divider().overlay(.white.opacity(0.5))
                                 if let upcoming {
                                     Text("UP NEXT").font(.caption)

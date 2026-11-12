@@ -1,5 +1,11 @@
 # Starter verification
 
+[Live Pocket and TestFlight handoff](tasks/pocket-live-testflight-handoff.md) records the later iPhone 18 Pro Max Simulator results with real venues, Apple ETA, Luna, the server container smoke check, and the remaining signing/HTTPS gates.
+
+## Native Pocket Engine integration — 12 November 2026
+
+[UI integration evidence](tasks/pocket-ui-integration.md) records the freshly pulled dev base, 62-label inputs, independent discovery, availability review, constrained Luna advice, real solver and local trip persistence. Local checks passed: shared-client/adapter package 47, extracted core 12, and focused app/Simulator selection 29 (zero failures/skips, 83.5 seconds), including both Pocket UI tests. Primary-checkout Release Simulator compilation and normal Debug build/install/launch passed without diagnostics; compiled Debug mode is pocket. Contract, pinned formatting and whitespace checks passed. End-to-end UI transport/venues/ETA/model responses were explicitly synthetic; the local core and adapter were real. Server deployment/live providers, WeatherKit provisioning, oldest-runtime/device/accessibility acceptance and signed TestFlight archive remain separate. No cloud CI was started.
+
 ## Native ITINERARY LIST — 11 November 2026
 
 [Itinerary evidence](tasks/itinerary-list-swiftui.md) records the HI-FI review screen, supplied thumbnail exports, native map/disclosures and real proposal integration. XcodeGen and Simulator builds passed with Xcode 27.2, retaining the iOS 18 minimum. The final iPhone 18 Pro / iOS 27.2 Light run passes 2 UI tests (sample preview and generated edit/regenerate/add-place-search/save/detail); Dark accessibility XXXL passes 1 preview/scroll/interaction test. Home's save/detail/back regression passed with the new review flow. Standard Light/Dark and iPad renders were inspected. All 18 touched Swift files pass formatting; the repository-wide check still finds the two unrelated existing issues. Sketch sample content stays in the DEBUG preview; generated proposals do not invent missing per-stop weather, categories, photos or distances. Device, manual VoiceOver, iOS 18 runtime and live providers remain separate acceptance.

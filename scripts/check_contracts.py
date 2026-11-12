@@ -8,6 +8,9 @@ from fixture_support import render_seed
 root = Path(__file__).resolve().parents[1]
 spec = json.loads((root / "contracts/api/openapi.json").read_text())
 validate(spec)
+Draft202012Validator({"$ref": "#/components/schemas/PocketCatalog", "components": spec["components"]},
+                     format_checker=FormatChecker()).validate(json.loads(
+    (root / "packages/PocketEngine/Sources/PocketEngine/Resources/catalog.json").read_text()))
 for filename, schema in [
     ("planning-input.json", {"$ref": "#/components/schemas/PlanningInput"}),
     ("planning-result.json", {"$ref": "#/components/schemas/PlanningResult"}),
@@ -33,4 +36,4 @@ assert source.read_bytes() == copy.read_bytes(), "Run scripts/sync_fixtures.py"
 for filename in ["planning-input.json", "planning-result.json", "planning-job.json", "personal-planning-trip.json"]:
     assert (root / "contracts/fixtures" / filename).read_bytes() == (root / "ios-backend/Sources/Data/Fixtures" / filename).read_bytes(), "Run scripts/sync_fixtures.py"
 assert (root / "server/supabase/seed.sql").read_text() == render_seed(json.loads(source.read_text())), "Run scripts/sync_fixtures.py"
-print("PASS: OpenAPI, fixture schemas, bundled fixture copy, and synthetic SQL seed")
+print("PASS: legacy and Pocket OpenAPI, fixture/catalog schemas, bundled fixture copy, and synthetic SQL seed")

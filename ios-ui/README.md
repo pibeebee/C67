@@ -1,5 +1,8 @@
 # iOS UI
 
+Current default: Pocket on-device planning, with the existing Hi-Fi screens connected to the extracted engine. See [connection, preferences and local storage](../docs/pocket-engine-integration.md). Explicit mock mode remains available for synthetic UI checks; legacy live mode still refers to the older HTTP planner. Earlier dated sections below retain their historical evidence.
+
+
 ## Xcode Canvas previews
 
 Open `Features/Home/View/TripHomeRootView.swift` for the full **HOME EMPTY** preview or `Features/Itinerary/View/ItineraryListView.swift` for **ITINERARY LIST**. Each file offers Light and Dark previews. In Xcode, choose **Editor → Canvas** and select **Resume** if prompted. These DEBUG previews use synthetic, in-memory or Sketch sample data; the itinerary map may need network access to load map tiles.

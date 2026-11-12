@@ -37,7 +37,7 @@ struct ItineraryStopCard: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(isEditable ? "Edit visit time for \(stop.name)" : "Visit time for \(stop.name)")
-                    .accessibilityValue("\(ItineraryFormatting.time(stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
+                    .accessibilityValue("\(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
                     .accessibilityIdentifier("itineraryEdit-\(stop.id)")
                 } else {
                     visitSummary.accessibilityElement(children: .combine)
@@ -100,7 +100,7 @@ struct ItineraryStopCard: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
             Label {
-                Text("\(ItineraryFormatting.time(stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
+                Text("\(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
             } icon: {
                 Image(systemName: isEditable ? "pencil" : "clock")
             }

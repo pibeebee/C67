@@ -1,6 +1,5 @@
-// Copy to Production.local.xcconfig and choose the intended deployed backend before distributing.
-C67_DATA_MODE = live
-SUPABASE_SCHEME = https
-SUPABASE_HOST = your-supabase-host.example
-SUPABASE_CLIENT_KEY = your-public-client-key
-// Never use a service-role key or a traveller session here.
+// Copy to Production.local.xcconfig. Put the read token in the app's Keychain via Account.
+C67_DATA_MODE = pocket
+POCKET_SERVER_SCHEME = https
+POCKET_SERVER_HOST = pocket.example.com
+// Never include a read token, write token, or provider key in this file or in the app bundle.

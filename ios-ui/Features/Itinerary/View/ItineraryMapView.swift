@@ -22,6 +22,16 @@ struct ItineraryMapView: View {
             }
             .frame(height: 200)
             .accessibilityLabel("Itinerary places on the map")
+            ForEach(proposal.evidence.filter { $0.kind == "weather" && $0.attributionLogoURL != nil }) { evidence in
+                if let url = evidence.url, let logo = evidence.attributionLogoURL, url.scheme == "https", logo.host == "weatherkit.apple.com" {
+                    Link(destination: url) {
+                        AsyncImage(url: logo) { image in image.resizable().scaledToFit() } placeholder: { Text("Apple Weather") }
+                            .frame(width: 120, height: 28)
+                            .padding(6).background(.white)
+                    }
+                    .accessibilityLabel("Apple Weather and data sources")
+                }
+            }
 
             DisclosureGroup("Behind the scenes of your plan") {
                 VStack(alignment: .leading, spacing: 12) {
