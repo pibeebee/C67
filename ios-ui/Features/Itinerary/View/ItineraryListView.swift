@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 import C67Domain
 
 struct ItineraryListView: View {
@@ -17,7 +18,7 @@ struct ItineraryListView: View {
     var retry: (() -> Void)?
     let edit: (UUID?) -> Void
     let save: () -> Void
-    var move: ((UUID, UUID) -> Void)? = nil
+    var move: (@MainActor @Sendable (UUID, UUID) -> Void)? = nil
     @State private var draggedStop: UUID?
 
     var body: some View {
@@ -51,12 +52,8 @@ struct ItineraryListView: View {
                                                  beginReorder: move == nil ? nil : { draggedStop = stop.id; return NSItemProvider(object: stop.id.uuidString as NSString) },
                                                  moveUp: index > 0 ? { move?(stop.id, proposal.stops[index - 1].id) } : nil,
                                                  moveDown: index + 1 < proposal.stops.count ? { move?(stop.id, proposal.stops[index + 1].id) } : nil)
-                                .dropDestination(for: String.self) { items, _ in
-                                    guard let source = draggedStop, source != stop.id,
-                                          items == [source.uuidString], let move else { return false }
-                                    draggedStop = nil
-                                    move(source, stop.id)
-                                    return true
+                                .onDrop(of: [UTType.plainText], isTargeted: nil) { providers in
+                                    acceptDrop(providers, onto: stop.id)
                                 }
                         }
                     }
@@ -110,6 +107,19 @@ struct ItineraryListView: View {
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("itineraryList")
+    }
+
+    private func acceptDrop(_ providers: [NSItemProvider], onto destination: UUID) -> Bool {
+        guard let source = draggedStop, source != destination,
+              let provider = providers.first, let move else { return false }
+        _ = provider.loadObject(ofClass: NSString.self) { value, _ in
+            guard value as? String == source.uuidString else { return }
+            DispatchQueue.main.async {
+                draggedStop = nil
+                move(source, destination)
+            }
+        }
+        return true
     }
 
     private func addPlace() { edit(nil) }
