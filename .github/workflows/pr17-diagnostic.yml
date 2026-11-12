@@ -15,5 +15,12 @@ jobs:
           destination=$(python3 scripts/simulator_destination.py)
           xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
             -destination "$destination" -derivedDataPath /tmp/c67-diagnostic \
+            -resultBundlePath /tmp/c67-reorder.xcresult \
             -only-testing:C67UITests/TripCreationUITests/testDraggingStopRecalculatesAndPreservesOrder \
             CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: reorder-result
+          path: /tmp/c67-reorder.xcresult
+          retention-days: 3
