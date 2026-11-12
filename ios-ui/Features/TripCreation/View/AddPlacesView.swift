@@ -50,7 +50,8 @@ struct AddPlacesView: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             HStack {
                 Image(systemName: "magnifyingglass").foregroundStyle(.secondary).accessibilityHidden(true)
-                TextField("Search place", text: $query)
+                TextField("Search place", text: $query, axis: .vertical)
+                    .lineLimit(1 ... 2)
                     .focused($searchFocused)
                     .autocorrectionDisabled()
                     .submitLabel(.search)

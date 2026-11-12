@@ -6,7 +6,7 @@ final class RecommendationsUITests: XCTestCase {
         app.launchArguments = ["--skip-splash"]
         app.launch()
         XCTAssertTrue(app.buttons["homeAddTrip"].waitForExistence(timeout: 10))
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         XCTAssertTrue(app.buttons["Get Recommendations"].waitForExistence(timeout: 5))
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.navigationBars["Add Specific Place"].waitForExistence(timeout: 5))

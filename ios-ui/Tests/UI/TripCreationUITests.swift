@@ -3,7 +3,7 @@ import XCTest
 final class TripCreationUITests: XCTestCase {
     @MainActor func testSpecificPlacesSelectionAndSheet() {
         let app = launch()
-        app.buttons["homeAddTrip"].tap()
+        openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 5))
         app.textFields["addPlacesSearch"].tap()
