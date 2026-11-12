@@ -20,6 +20,7 @@ struct ItineraryListView: View {
     let save: () -> Void
     var move: (@MainActor @Sendable (UUID, UUID) -> Void)? = nil
     @State private var draggedStop: UUID?
+    @State private var reorderDiagnostic = "idle"
 
     var body: some View {
         ScrollView {
@@ -49,7 +50,7 @@ struct ItineraryListView: View {
                                                  mode: proposal.input.mode, zone: proposal.input.timeZone,
                                                  details: details[stop.id], isEditable: allowsEditing, weatherEvidence: proposal.evidence.filter { $0.kind == "weather" },
                                                  edit: { edit(stop.id) },
-                                                 beginReorder: move == nil ? nil : { print("REORDER_DIAGNOSTIC drag \(stop.id)"); draggedStop = stop.id; return NSItemProvider(object: stop.id.uuidString as NSString) },
+                                                 beginReorder: move == nil ? nil : { reorderDiagnostic = "drag"; draggedStop = stop.id; return NSItemProvider(object: stop.id.uuidString as NSString) },
                                                  moveUp: index > 0 ? { move?(stop.id, proposal.stops[index - 1].id) } : nil,
                                                  moveDown: index + 1 < proposal.stops.count ? { move?(stop.id, proposal.stops[index + 1].id) } : nil)
                                 .onDrop(of: [UTType.plainText], isTargeted: nil) { providers in
@@ -102,6 +103,9 @@ struct ItineraryListView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
+        .overlay(alignment: .bottomLeading) {
+            Text("Reorder diagnostic \(reorderDiagnostic)").accessibilityIdentifier("reorderDiagnostic")
+        }
         .background(Color("TripCanvas"))
         .tint(Color("ItineraryAction"))
         .navigationTitle(navigationTitle)
@@ -110,11 +114,10 @@ struct ItineraryListView: View {
     }
 
     private func acceptDrop(_ providers: [NSItemProvider], onto destination: UUID) -> Bool {
-        print("REORDER_DIAGNOSTIC drop source=\(String(describing: draggedStop)) destination=\(destination) providers=\(providers.count)")
+        reorderDiagnostic = "drop"
         guard let source = draggedStop, source != destination,
               let provider = providers.first, let move else { return false }
         _ = provider.loadObject(ofClass: NSString.self) { value, _ in
-            print("REORDER_DIAGNOSTIC value=\(String(describing: value)) expected=\(source)")
             guard value as? String == source.uuidString else { return }
             DispatchQueue.main.async {
                 draggedStop = nil
