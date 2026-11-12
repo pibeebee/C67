@@ -17,3 +17,7 @@ Manual ordering is represented by the optional `preserve_place_order` planning i
 - OpenAPI and fixture checks, Swift formatting and generic Simulator build passed.
 
 Live provider acceptance requires deploying the updated planning service and testing against the intended environment separately. This local result does not establish live-provider operation, iOS 18 runtime behavior, physical-device drag interaction, or manual VoiceOver acceptance.
+
+## PR compatibility follow-up — 12 November 2026
+
+The focused drag, recalculation and saved-order scenario now also passes on iOS 18.5 / Xcode 16.4 in GitHub Actions. Drop handling uses a full-row content shape and validates the local item-provider payload. The UI test gives the drag time to lift and settle before release; its original ordering and save assertions are unchanged. The related unit and Home/creation UI suites passed 26/26 tests locally on iPhone 17e / iOS 27.2. See [CI repair and approval gate](pr17-ci-repair.md) for exact run evidence and remaining live/device boundaries.

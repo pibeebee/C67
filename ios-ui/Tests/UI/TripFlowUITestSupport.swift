@@ -18,9 +18,8 @@ extension XCTestCase {
         let option = app.buttons["Get Recommendations"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
         button.tap()
-        if !option.waitForExistence(timeout: 5) {
-            button.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
-        }
+        if option.waitForExistence(timeout: 5) { return }
+        button.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         XCTAssertTrue(option.waitForExistence(timeout: 5), "Trip menu should open")
     }
 
