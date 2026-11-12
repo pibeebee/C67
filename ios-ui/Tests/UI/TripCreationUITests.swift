@@ -12,6 +12,7 @@ final class TripCreationUITests: XCTestCase {
         let target = handles.element(boundBy: 1)
         XCTAssertTrue(source.isHittable)
         XCTAssertTrue(target.isHittable)
+        print("REORDER_DIAGNOSTIC source=\(source.frame) target=\(target.frame) screen=\(app.frame)")
         // Drop on the destination card rather than its own drag handle.
         let destination = target.coordinate(withNormalizedOffset: CGVector(dx: -2, dy: 0.5))
         source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))

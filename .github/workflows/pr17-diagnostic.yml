@@ -1,0 +1,19 @@
+name: Temporary PR 17 reorder diagnostic
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  reorder-diagnostic:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run focused iOS reorder test
+        shell: bash
+        run: |
+          destination=$(python3 scripts/simulator_destination.py)
+          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
+            -destination "$destination" -derivedDataPath /tmp/c67-diagnostic \
+            -only-testing:C67UITests/TripCreationUITests/testDraggingStopRecalculatesAndPreservesOrder \
+            CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock test
