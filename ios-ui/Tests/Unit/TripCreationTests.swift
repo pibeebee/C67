@@ -12,6 +12,30 @@ import C67Domain
                                      interactor: .init(searcher: SyntheticTripPlaceSearch()))
     }
 
+    @Test func rejectsPlannerThatIgnoresManualStopOrder() async throws {
+        let repository = TripFlowRepositoryStub()
+        await repository.setIgnoresManualOrder()
+        let model = try make(repository: repository)
+        model.planning.preservesPlaceOrder = true
+        model.planning.draftChanged()
+        await model.planning.request()
+        #expect(model.planning.job == nil)
+        #expect(model.planning.needsFreshProposal)
+        #expect(model.planning.error == PlanningError.invalidResponse.localizedDescription)
+    }
+
+    @Test func rejectsPlannerThatDropsManualOrderFlag() async throws {
+        let repository = TripFlowRepositoryStub()
+        await repository.setDropsManualOrderFlag()
+        let model = try make(repository: repository)
+        model.planning.preservesPlaceOrder = true
+        model.planning.draftChanged()
+        await model.planning.request()
+        #expect(model.planning.job == nil)
+        #expect(model.planning.needsFreshProposal)
+        #expect(model.planning.error == PlanningError.invalidResponse.localizedDescription)
+    }
+
     @Test func questionsKeepAnswersWhenGoingBackAndSkipClearsOnlyCurrentAnswer() throws {
         let model = try make(specific: false)
         model.answers.interests = [.art]

@@ -37,12 +37,14 @@ struct TripInputConfirmationView: View {
                     .font(.footnote).foregroundStyle(.secondary)
             }
             Section {
-                Button("Continue", action: confirm)
+                QuestionPrimaryButton("Continue", action: confirm)
                     .disabled(!presenter.canConfirm)
                     .accessibilityIdentifier("confirmTripInput")
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+            } footer: {
                 if !presenter.canConfirm {
                     Text("Choose a starting point and at least one place, a nonempty name, and a finish time within 24 hours of departure.")
-                        .font(.footnote).foregroundStyle(.secondary)
                 }
             }
         }
@@ -58,3 +60,16 @@ struct TripInputConfirmationView: View {
         }
     }
 }
+
+#if DEBUG
+    import C67Data
+
+    #Preview("Confirm your trip · Continue") {
+        let planning = PlanningPresenter(interactor: .init(repository: MockPlanningRepository()),
+                                         initialInput: try? MockPlanningRepository.sampleInput())
+        let presenter = TripCreationAssembly.makePresenter(planning: planning, mode: "Mock • memory only", specificPlace: true)
+        NavigationStack {
+            TripInputConfirmationView(presenter: presenter, confirm: {})
+        }
+    }
+#endif

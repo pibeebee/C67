@@ -25,6 +25,12 @@ Implemented:
 - Save-name regeneration/review, accepted itinerary detail, grouped populated Home, map/status and per-stop arrival/complete transitions. Existing active-trip options remain reachable.
 - Drafts survive sheet cancellation in memory and are cleared on account change or successful save. Late search/request results and duplicate taps are guarded.
 
+The confirmation screen's Continue action uses the shared native bordered-prominent capsule rather than a default Form row. Invalid inputs keep it disabled with the existing explanation in the section footer. A dedicated SwiftUI preview uses synthetic data. On 11 November 2026, a generic Simulator build and two mock UI tests passed on iPhone 18 Pro / iOS 27.0, including the confirmation action and the specific-place flow at accessibility XXXL. A standard-size screenshot was visually inspected; iOS 18 runtime and manual VoiceOver acceptance were not tested in this check.
+
+The trip-creation sheet now keeps the native Back control at the leading edge and places the accessible Cancel icon at the trailing edge on pushed screens; the root keeps its cancellation placement. The generic Simulator build and three iPhone 18 Pro / iOS 27.0 mock UI tests passed, including back, cancellation and accessibility XXXL navigation. The navigation test also passed on iPad Pro 11-inch (M5) / iOS 27.2. Light iPhone and Dark iPad captures were visually inspected; landscape, iOS 18 runtime and manual VoiceOver were not checked for this change.
+
+The selected-places remove control now matches the Sketch frame's 28-point circle at standard text size and has a minimum 44-point button hit area. The circle scales with Dynamic Type and retains a named destructive Button. A generic Simulator build and two recommendation UI tests passed on iPhone 18 Pro / iOS 27.0, verifying the hit area, removal and connected recommendation flow. The standard-size screenshot was visually compared with Sketch; iOS 18 runtime and manual VoiceOver were not checked for this change.
+
 Verification completed on Xcode 27.2 / iOS Simulator 27.2:
 - Generic Simulator build passed, including the final source state.
 - All 14 creation unit tests passed in `/tmp/c67-hi-fi-selection.xcresult`; its two recommendation UI cases also passed (16/16 total).

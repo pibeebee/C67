@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 import C67Domain
 
 struct ItineraryListView: View {
@@ -17,6 +18,8 @@ struct ItineraryListView: View {
     var retry: (() -> Void)?
     let edit: (UUID?) -> Void
     let save: () -> Void
+    var move: (@MainActor @Sendable (UUID, UUID) -> Void)? = nil
+    @State private var draggedStop: UUID?
 
     var body: some View {
         ScrollView {
@@ -44,9 +47,15 @@ struct ItineraryListView: View {
                             ItineraryTimelineRow(stop: stop, number: index + 1, isLast: next == nil,
                                                  nextStop: next, nextDistance: next.flatMap { details[$0.id]?.distance },
                                                  mode: proposal.input.mode, zone: proposal.input.timeZone,
-                                                 details: details[stop.id], isEditable: allowsEditing, weatherEvidence: proposal.evidence.filter { $0.kind == "weather" }) {
-                                edit(stop.id)
-                            }
+                                                 details: details[stop.id], isEditable: allowsEditing, weatherEvidence: proposal.evidence.filter { $0.kind == "weather" },
+                                                 edit: { edit(stop.id) },
+                                                 beginReorder: move == nil ? nil : { draggedStop = stop.id; return NSItemProvider(object: stop.id.uuidString as NSString) },
+                                                 moveUp: index > 0 ? { move?(stop.id, proposal.stops[index - 1].id) } : nil,
+                                                 moveDown: index + 1 < proposal.stops.count ? { move?(stop.id, proposal.stops[index + 1].id) } : nil)
+                                .contentShape(Rectangle())
+                                .onDrop(of: [UTType.plainText], isTargeted: nil) { providers in
+                                    acceptDrop(providers, onto: stop.id)
+                                }
                         }
                     }
                 }
@@ -99,6 +108,19 @@ struct ItineraryListView: View {
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("itineraryList")
+    }
+
+    private func acceptDrop(_ providers: [NSItemProvider], onto destination: UUID) -> Bool {
+        guard let source = draggedStop, source != destination,
+              let provider = providers.first, let move else { return false }
+        _ = provider.loadObject(ofClass: NSString.self) { value, _ in
+            guard value as? String == source.uuidString else { return }
+            DispatchQueue.main.async {
+                draggedStop = nil
+                move(source, destination)
+            }
+        }
+        return true
     }
 
     private func addPlace() { edit(nil) }

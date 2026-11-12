@@ -4536,6 +4536,10 @@
               "automobile"
             ]
           },
+          "preserve_place_order": {
+            "type": "boolean",
+            "description": "When true, calculate the itinerary using places in the provided order."
+          },
           "first_place_id": {
             "anyOf": [
               {

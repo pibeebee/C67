@@ -96,9 +96,11 @@ export async function schedule(
   // Bound provider concurrency. The maximum six-stop matrix has 36 edges.
   for (let index = 0; index < tasks.length; index += 4)
     await Promise.all(tasks.slice(index, index + 4).map((task) => task()));
-  const orders = permutations(ids).filter(
-    (order) => !input.first_place_id || order[0] === input.first_place_id,
-  );
+  const orders = input.preserve_place_order
+    ? [ids]
+    : permutations(ids).filter(
+        (order) => !input.first_place_id || order[0] === input.first_place_id,
+      );
   const evaluated = orders
     .map((order) => evaluate(input, order, routes, weatherWarnings))
     .sort((a, b) => a.score - b.score);

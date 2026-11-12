@@ -92,11 +92,23 @@ struct TripCreationView: View {
         .disabled(presenter.isProcessing)
         .toolbar(presenter.isProcessing ? .hidden : .automatic, for: .navigationBar)
         .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", action: dismiss)
-                    .disabled(presenter.isProcessing || presenter.planning.isBusy)
+            if presenter.path.isEmpty {
+                ToolbarItem(placement: .cancellationAction) {
+                    cancelButton
+                }
+            } else {
+                ToolbarItem(placement: .topBarTrailing) {
+                    cancelButton
+                }
             }
         }
+    }
+
+    private var cancelButton: some View {
+        Button("Cancel", systemImage: "xmark", action: dismiss)
+            .labelStyle(.iconOnly)
+            .disabled(presenter.isProcessing || presenter.planning.isBusy)
+            .accessibilityIdentifier("tripCreationCancel")
     }
 
     private func run(_ action: @escaping @MainActor () async -> Void) {

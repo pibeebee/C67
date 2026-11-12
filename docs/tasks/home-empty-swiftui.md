@@ -51,3 +51,13 @@ Generate the Xcode project from project.yml; run the Simulator build, targeted T
 - No contract or ADR changes. No commit, push or deployment; unrelated checkout changes were preserved.
 
 Preview follow-up: `TripHomeRootView.swift` now has named Light and Dark `#Preview` entries using a synthetic in-memory planning repository. The Light preview rendered in Xcode Canvas on iPhone 18 Pro; the generic iOS Simulator build and targeted formatting check passed. The Simulator app was not launched for this preview check.
+
+## Add button sizing correction — 11 November 2026
+
+The HOME EMPTY Sketch toolbar uses a 44-point prominent glass add button tinted Brand/Blue/500 (#356AE6). The earlier 44-point label was enlarged by native button-style padding. The label now leaves room for that padding, uses the brand tint and preserves a minimum 44-point layout area. iOS 26 and later retain the native glass-prominent style; iOS 18–25 use the native bordered-prominent fallback.
+
+The Liquid Glass references are also guarded at compile time for toolchains older than Swift 6.2, which use the system material and bordered-button fallbacks. This addresses the SDK 18 compilation error observed in PR #16; the older toolchain itself was not available for local verification.
+
+On 12 November 2026, the Home UI test passed on iPhone 17 Pro / iOS 26.4.1 after accounting for native glass-button padding on that runtime. The location-label render test also passed after separating the state-dependent label from the system material, which ImageRenderer could not reliably capture on that Simulator. The full app unit target and the selected-places removal test passed in the same run; the Home size assertion initially failed there and passed on the subsequent run. Simulator reported a UIKit reparenting runtime warning during the UI test.
+
+The generic Simulator build and two mock Home UI tests passed on iPhone 18 Pro / iOS 27.0. At the standard text size the test checks a 44–48-point accessible button frame, and the accessibility text-size test confirms the button and menu remain usable. The Light screenshot was visually compared with the Sketch frame. The older-OS fallback has not been tested on an iOS 18–25 runtime.

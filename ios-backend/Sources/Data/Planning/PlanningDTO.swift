@@ -45,6 +45,7 @@ struct PlanningInputDTO: Codable {
     let time_zone: String
     let mode: String
     let first_place_id: UUID?
+    let preserve_place_order: Bool?
     init(_ value: PlanningInput) {
         title = value.title
         origin = .init(value.origin)
@@ -55,9 +56,10 @@ struct PlanningInputDTO: Codable {
         time_zone = value.timeZone
         mode = value.mode.rawValue
         first_place_id = value.firstPlaceID
+        preserve_place_order = value.preservesPlaceOrder ? true : nil
     }
     var domain: PlanningInput {
-        .init(title: title, origin: origin.domain, places: places.map(\.domain), preferences: preferences, startsAt: starts_at, finishBy: finish_by, timeZone: time_zone, mode: PlanningMode(rawValue: mode) ?? .unknown, firstPlaceID: first_place_id)
+        .init(title: title, origin: origin.domain, places: places.map(\.domain), preferences: preferences, startsAt: starts_at, finishBy: finish_by, timeZone: time_zone, mode: PlanningMode(rawValue: mode) ?? .unknown, firstPlaceID: first_place_id, preservesPlaceOrder: preserve_place_order ?? false)
     }
 }
 

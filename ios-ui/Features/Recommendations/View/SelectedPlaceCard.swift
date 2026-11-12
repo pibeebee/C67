@@ -4,6 +4,7 @@ import C67Domain
 /// One place in the "Places" sheet (Sketch HI-FI `PLACES LIST ADDED LIST`): photo, name,
 /// category and area, with a native destructive remove button when the place can be removed.
 struct SelectedPlaceCard: View {
+    @ScaledMetric(relativeTo: .body) private var removeDiameter = 28
     let place: PlanningPlace
     let detail: RecommendedPlace?
     /// Nil for places already in the trip, which cannot be removed here.
@@ -33,14 +34,14 @@ struct SelectedPlaceCard: View {
             if let remove {
                 Button(role: .destructive, action: remove) {
                     Image(systemName: "minus")
-                        .fontWeight(.semibold)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.red)
+                        .frame(width: removeDiameter, height: removeDiameter)
+                        .background(.red.opacity(0.12), in: .circle)
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(.rect)
                 }
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.circle)
-                .controlSize(.small)
-                .tint(.red)
-                .frame(minWidth: 44, minHeight: 44)
-                .contentShape(.rect)
+                .buttonStyle(.plain)
                 .accessibilityLabel(Text("Remove \(place.name)"))
             } else {
                 Text("In your trip")

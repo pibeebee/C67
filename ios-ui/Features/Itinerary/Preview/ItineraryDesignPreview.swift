@@ -8,7 +8,8 @@
             NavigationStack {
                 ItineraryListView(proposal: ItineraryPreviewData.proposal, details: ItineraryPreviewData.details,
                                   departureWeather: "32° · Bring water for the walk", isDesignPreview: true,
-                                  edit: { _ in showsNotice = true }, save: { showsNotice = true })
+                                  edit: { _ in showsNotice = true }, save: { showsNotice = true },
+                                  move: { _, _ in showsNotice = true })
                     .toolbar(.hidden, for: .navigationBar)
                     .alert("Design preview", isPresented: $showsNotice) {
                         Button("OK", role: .cancel) { }

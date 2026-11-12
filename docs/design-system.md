@@ -136,7 +136,7 @@ The supplied Balaraja Sketch HI-FI `ITINERARY LIST` frame defines a screen-speci
 - `ItineraryAction` uses #356AE6 on Light surfaces and #8FB0FF for readable text/icon actions in Dark appearance. Filled save buttons retain the deeper blue with white text; the lighter Dark action color is not used as a white-text button fill.
 - System Dynamic Type styles preserve the source's hierarchy. Cards use a 14 pt corner radius, 48 pt decorative thumbnails when available, and a 26 pt hero radius. Time edits use the full place-summary hit region, preserving a 44 pt minimum without stretching a separate tiny time control. Number markers scale with text.
 - Dashed connectors identify travel gaps, not a verified route line. Map annotations locate the proposal's stops; native map attribution remains visible.
-- Production proposals omit unprovided metadata rather than inventing photos, categories, distances or forecasts. A DEBUG-only preview uses the supplied Sketch thumbnails and explicitly illustrative content. The source's reorder affordances become edit controls because arbitrary order changes are not yet supported by the planning contract.
+- Production proposals omit unprovided metadata rather than inventing photos, categories, distances or forecasts. A DEBUG-only preview uses the supplied Sketch thumbnails and explicitly illustrative content. The source's three-line handle reorders stops, then requests a fresh schedule in the selected order; visit-time editing remains on the stop summary. Saved itineraries remain read-only on this screen.
 - Native disclosure, navigation, scrolling and sheet behavior are intentional platform-specific variations from the static frame. See [implementation and evidence](tasks/itinerary-list-swiftui.md).
 
 

@@ -20,6 +20,7 @@ export type Input = {
   time_zone: string;
   mode: 'walking' | 'automobile';
   first_place_id?: string | null;
+  preserve_place_order?: boolean | null;
 };
 export type Evidence = {
   id: string;
@@ -180,6 +181,14 @@ export function validateInput(input: Input) {
     requireUUID(input.first_place_id);
     if (!ids.has(input.first_place_id.toLowerCase())) throw new Failure('INVALID_PLACE');
   }
+  if (input.preserve_place_order != null && typeof input.preserve_place_order !== 'boolean')
+    throw new Failure('INVALID_INPUT');
+  if (
+    input.preserve_place_order &&
+    input.first_place_id &&
+    input.places[0].id.toLowerCase() !== input.first_place_id.toLowerCase()
+  )
+    throw new Failure('INVALID_PLACE');
   if (
     !['walking', 'automobile'].includes(input.mode) ||
     !validInstant(input.starts_at) ||
@@ -222,6 +231,11 @@ export function assertProposal(proposal: Proposal, input: Input) {
   if (
     !proposal ||
     JSON.stringify(proposal.stops.map((stop) => stop.id).sort()) !== JSON.stringify(selected)
+  )
+    throw new Failure('INVALID_MODEL_OUTPUT', 502);
+  if (
+    input.preserve_place_order &&
+    proposal.stops.some((stop, i) => stop.id !== input.places[i].id)
   )
     throw new Failure('INVALID_MODEL_OUTPUT', 502);
   let prior = seconds(input.starts_at);

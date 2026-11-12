@@ -8,6 +8,9 @@ struct ItineraryStopCard: View {
     var isEditable = true
     let weatherEvidence: [PlanningEvidence]
     let edit: () -> Void
+    var beginReorder: (() -> NSItemProvider)? = nil
+    var moveUp: (() -> Void)? = nil
+    var moveDown: (() -> Void)? = nil
     @Environment(\.locale) private var locale
 
     var body: some View {
@@ -39,11 +42,17 @@ struct ItineraryStopCard: View {
                 } else {
                     visitSummary.accessibilityElement(children: .combine)
                 }
-                if isEditable {
-                    Button("Edit \(stop.name)", systemImage: "slider.horizontal.3", action: edit)
-                        .labelStyle(.iconOnly)
+                if let beginReorder {
+                    Image(systemName: "line.3.horizontal")
                         .foregroundStyle(.secondary)
                         .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(.rect)
+                        .onDrag(beginReorder)
+                        .accessibilityLabel("Reorder \(stop.name)")
+                        .accessibilityIdentifier("itineraryReorder-\(stop.id)")
+                        .accessibilityHint("Drag to another stop to change the visit order.")
+                        .accessibilityAction(named: "Move up") { moveUp?() }
+                        .accessibilityAction(named: "Move down") { moveDown?() }
                 }
             }
             .padding(.leading, 12)

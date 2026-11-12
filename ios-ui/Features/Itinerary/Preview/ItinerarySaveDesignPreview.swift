@@ -8,7 +8,7 @@
             NavigationStack {
                 ItineraryListView(proposal: ItineraryPreviewData.proposal, details: ItineraryPreviewData.details,
                                   departureWeather: "32° · Bring water for the walk", isDesignPreview: true,
-                                  edit: { _ in }, save: { showsName = true })
+                                  edit: { _ in }, save: { showsName = true }, move: { _, _ in })
                     .modifier(ItinerarySaveNameDialog(isPresented: $showsName, name: $name, originalName: "My Trip", save: {}))
             }
         }

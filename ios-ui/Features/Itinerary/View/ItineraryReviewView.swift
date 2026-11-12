@@ -7,6 +7,7 @@ struct ItineraryReviewView: View {
     @State private var showsSaveName = false
     @State private var saveName = ""
     @State private var editRoute: ItineraryEditRoute?
+    @State private var orderChanged = false
 
     private var proposal: PlanProposal { presenter.job?.result?.proposal ?? initialProposal }
     private var retryAction: (() -> Void)? {
@@ -19,10 +20,10 @@ struct ItineraryReviewView: View {
         ItineraryListView(proposal: proposal, isSaving: presenter.isBusy, error: presenter.error,
                           canSave: !presenter.needsFreshProposal && presenter.job?.result?.proposal != nil && presenter.draftInput == proposal.input,
                           retry: retryAction,
-                          edit: edit, save: { saveName = proposal.input.title; showsSaveName = true })
+                          edit: edit, save: { saveName = proposal.input.title; showsSaveName = true }, move: move)
             .modifier(ItinerarySaveNameDialog(isPresented: $showsSaveName, name: $saveName, originalName: proposal.input.title, save: save))
             .safeAreaInset(edge: .top, spacing: 0) {
-                if proposal.input.title != initialProposal.input.title {
+                if orderChanged || proposal.input.title != initialProposal.input.title {
                     Text("Updated itinerary. Review it before saving.")
                         .font(.footnote).padding().frame(maxWidth: .infinity).background(AppColor.surface)
                 }
@@ -63,6 +64,22 @@ struct ItineraryReviewView: View {
     private func add(_ place: PlanningPlace) {
         guard presenter.places.count < 6, !presenter.isBusy else { return }
         presenter.places.append(place)
+        regenerate()
+    }
+
+    private func move(_ source: UUID, _ destination: UUID) {
+        guard !presenter.isBusy, !presenter.needsFreshProposal,
+              presenter.draftInput == proposal.input,
+              let sourceIndex = proposal.stops.firstIndex(where: { $0.id == source }),
+              let targetIndex = proposal.stops.firstIndex(where: { $0.id == destination }) else { return }
+        var ordered = proposal.stops.map(\.id)
+        ordered.insert(ordered.remove(at: sourceIndex), at: targetIndex)
+        let places = Dictionary(uniqueKeysWithValues: presenter.places.map { ($0.id, $0) })
+        let reordered = ordered.compactMap { places[$0] }
+        guard reordered.count == presenter.places.count else { return }
+        presenter.places = reordered
+        presenter.preservesPlaceOrder = true
+        orderChanged = true
         regenerate()
     }
 
