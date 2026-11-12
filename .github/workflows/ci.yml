@@ -24,14 +24,16 @@ jobs:
       - run: npm run format:check --prefix server/planning
       - run: npm test --prefix server/planning
   style:
-    runs-on: macos-15
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
       - name: Pinned Swift layout check
         run: python3 scripts/swift_format.py --check
   ios:
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
       - name: Shared package tests

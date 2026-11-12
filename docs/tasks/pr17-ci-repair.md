@@ -16,6 +16,7 @@ References: [reordering behavior and service boundary](itinerary-stop-reordering
 - The iOS 18.5 drag test started a drag but did not change stop order. A wider drop region and the legacy item-provider drop API alone did not resolve the failure. Giving the gesture time to lift, moving slowly and holding over the destination before release resolved the focused iOS 18.5 test. Its original ordering and save assertions remain intact.
 - The menu helper no longer waits twice after a successful first open. The coordinate fallback and failure assertion remain.
 - Starter checks cancel superseded PR runs, bound the iOS job to 30 minutes and preserve the Simulator log and result bundle on failure. `pipefail` preserves the test exit status when logging through `tee`. Required job names and test selection are unchanged.
+- Production style and iOS checks use the standard `macos-15-intel` runner. The iOS job explicitly selects Xcode 16.4 so changing runner architecture does not silently replace the older-SDK compatibility check. Local iOS 27.2 checks still cover Apple Silicon. The separate Journey PoC runner is unchanged.
 - The temporary focused diagnostic workflow was removed after the successful iOS 18.5 check, avoiding a duplicate macOS test job on subsequent pushes.
 
 ## CI duration evidence
@@ -23,6 +24,8 @@ References: [reordering behavior and service boundary](itinerary-stop-reordering
 [Run 43197926095](https://github.com/pibeebee/C67/actions/runs/43197926095) used Xcode 16.4 / iOS 18.5 on `macos-15`. The iOS job lasted 18 minutes 1 second; the UI suite itself took 589.7 seconds. Only the reorder scenario failed, with two assertions reporting the same unchanged order. The shared package passed 36 tests; app unit tests passed. Separate focused runs also showed substantial variability before UI execution, so build and Simulator startup cannot be treated as constant overhead.
 
 The changes above reduce redundant waiting and superseded work; no fixed percentage speedup is claimed. Splitting UI suites would need a separate comparison of elapsed time, duplicate build cost and total macOS minutes before adoption. The PoC workflow is already path-filtered and is not triggered by this production UI PR.
+
+In [run 43233299843](https://github.com/pibeebee/C67/actions/runs/43233299843), the ARM style job was cancelled after 15 minutes 2 seconds without executing any steps. Its annotations state that a hosted runner could not acquire the job and warn of macOS ARM capacity constraints. The iOS job also waited about five minutes before starting. This is a runner-allocation failure, distinct from a test failure. Both production macOS jobs were therefore moved to the [documented standard Intel label](https://docs.github.com/en/actions/reference/runners/github-hosted-runners); [the Intel image inventory](https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md) includes Xcode 16.4 and iOS 18.5 Simulator. This avoids the affected ARM pool, without claiming a guaranteed queue time or faster test execution.
 
 ## Verification and handoff
 
