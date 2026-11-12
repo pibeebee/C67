@@ -302,6 +302,8 @@ The original checkout's pre-existing content and index were preserved. Unrelated
 
 ## PR 17 compatibility and CI repair — 12 November 2026
 
+Policy update: PR 17 now targets `dev` under the [local-first workflow](tasks/dev-main-ci-policy.md). Feature review uses local evidence; only dev/main promotions require the compact cloud gate. The earlier full-cloud runs were cancelled, not passed. Reconciliation preserved application/client/server/contract sources from `3f03dd1`; local quick verification passed 22 planning tests, 36 Swift package tests, four policy tests, contracts and formatting. Prior targeted Simulator results below remain dated evidence rather than a new full run.
+
 The focused itinerary drag, recalculation and saved-order test passed on GitHub's iOS 18.5 / Xcode 16.4 runner. Related creation unit tests and Home/creation UI suites passed 26/26 locally in mock mode on iPhone 17e / iOS 27.2. The earlier full iOS 18.5 run passed Home sizing after correcting native fallback padding but failed the drag scenario; that failure remains recorded rather than treated as a successful full run.
 
 The temporary diagnostic workflow was removed. Starter checks retain all existing suites, cancel superseded PR runs, avoid a duplicate successful menu wait and preserve failure logs/result bundles. A subsequent ARM style job was cancelled without running any steps because GitHub could not allocate a hosted runner; production style/iOS checks now select standard Intel runners, with Xcode 16.4 explicit for the compatibility suite. Final approval is gated on all checks for the final PR head. See the [repair evidence and acceptance gate](tasks/pr17-ci-repair.md); physical-device, manual VoiceOver and live planning-service acceptance remain separate.

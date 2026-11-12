@@ -1,5 +1,7 @@
 # C67
 
+Development uses feature branches -> reviewed PRs to `dev` -> reviewed promotion to `main`. Start new work from default branch `dev`; run [local verification](docs/coding-conventions.md) before feature review. Automatic CI runs only on PRs targeting `main` and rejects promotion sources other than this repository's `dev`. Full regression and PoC workflows are manual. See [repository settings](docs/repository-settings.md).
+
 The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Start with [Journey Showcase](poc-journey/apps/c67-journey-showcase/README.md) for the guided itinerary UI; Trip Integration owns its shared engine. Its apps and evidence are isolated from the production implementation described below.
 
 C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.

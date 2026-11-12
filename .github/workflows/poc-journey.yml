@@ -1,9 +1,5 @@
 name: PoC journey checks
 on:
-  pull_request:
-    paths:
-      - 'poc-journey/**'
-      - '.github/workflows/poc-journey.yml'
   workflow_dispatch:
 permissions:
   contents: read

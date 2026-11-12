@@ -1,6 +1,6 @@
 # PR 17 compatibility and CI repair
 
-Status: Ready for CI and review
+Status: Ready for dev review under the local-first integration policy
 Owner: Giovan / Codex
 Branch: `Feat/itinerary-polish-reorder`
 
@@ -32,5 +32,6 @@ In [run 43233299843](https://github.com/pibeebee/C67/actions/runs/43233299843), 
 - Repository SwiftFormat and whitespace checks passed during repair.
 - The revised drag gesture passed locally in mock mode on iPhone 17e / iOS 27.2, including recalculation and saved-order verification. The related creation unit tests and Home/creation UI suites then passed 26/26 tests in 283.6 seconds with the updated menu helper.
 - [Focused run 43231744897](https://github.com/pibeebee/C67/actions/runs/43231744897) passed on the older CI runtime, iOS 18.5 / Xcode 16.4, in 6 minutes 37 seconds. This result verifies the drag and save scenario, not the complete app suite.
-- Final approval requires successful `planning`, `style`, `ios`, `contracts` and `database` checks on the final PR head and no unresolved blocking review findings. The PR checks and approval record are authoritative for that final gate; the focused run alone does not satisfy it.
+- The earlier full-cloud gate was superseded by the user-approved [dev/main policy](dev-main-ci-policy.md). PR 17 targets dev with local evidence and review; only promotion to main requires `integration` and `ios-smoke`. The cancelled full runs are not counted as passing verification. Full regression is available manually and remains a pre-release check.
+- After merging the policy into the feature branch, application/client/server/contract sources were byte-identical to `3f03dd1`. The new local quick check passed four promotion-policy tests, 22 planning tests, 36 Swift package tests, contracts and formatting. This reconciliation did not rerun or claim a new full Simulator suite.
 - Physical-device interaction, manual VoiceOver and live planning-service acceptance are outside this verification. The updated planning service must be deployed before live manual reordering is available; incompatible responses remain rejected.
