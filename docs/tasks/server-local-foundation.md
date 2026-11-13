@@ -15,15 +15,15 @@ The existing Supabase starter can be built from migrations and synthetic seed, t
 - Environment: disposable local `c67-starter` only. Docker Desktop was started for this task; existing homelab services and credentials are separate.
 - Authorized actions: implement and verify foundation step 1, including rebuilding only the newly created fixture-only local database after inspecting its contents.
 - Deferred: new trip APIs, domain normalization, native app Auth, media, merge and shared deployment.
-- Later authorized scope: the approved homelab backup/restore/deployment and shared HTTP checks are complete. The user subsequently approved a Git/PR checkpoint before step 2. See [homelab results](../homelab-verification.md).
+- Later authorized scope: the approved homelab backup/restore/deployment and shared HTTP checks are complete. The user subsequently approved a Git/PR checkpoint before step 2. See [homelab results](../history/homelab-verification.md).
 
 ## References
 
 - [Server guide](../../server/README.md)
 - [Server instructions](../../server/AGENTS.md)
-- [Backend decision](../decisions/0002-server-architecture.md)
+- [Backend decision](../architecture/decisions/0002-server-architecture.md)
 - [Existing contract](../../contracts/README.md)
-- [Verification evidence](../verification.md#local-backend-foundation--23-october-2026)
+- [Verification evidence](../testing/verification.md#local-backend-foundation--23-october-2026)
 
 ## Acceptance criteria
 
@@ -40,7 +40,7 @@ The existing Supabase starter can be built from migrations and synthetic seed, t
 
 From `server/`: `npm ci`, `npm run start`, fixture-only preflight, `npm run db:reset`, `npm run db:test`, `npm run db:lint`, `npm run api:test`, then `npm run stop`.
 
-Database: 14 checks pass. HTTP: 27 checks pass. Lint: no public-schema errors. Root contract/fixture validation also passes. Detailed environment and limitations are in [Verification](../verification.md).
+Database: 14 checks pass. HTTP: 27 checks pass. Lint: no public-schema errors. Root contract/fixture validation also passes. Detailed environment and limitations are in [Verification](../testing/verification.md).
 
 ## Result and handoff
 

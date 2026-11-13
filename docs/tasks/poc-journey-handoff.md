@@ -11,14 +11,14 @@ A teammate can discover the current integrated experiment, run it from a new che
 
 ## Scope and dependencies
 
-- New `poc-journey/` with four project roots, local packages/runners, tests, fixtures, reports, public-safe evidence and setup/verification scripts.
+- New `research/poc-journey/` with four project roots, local packages/runners, tests, fixtures, reports, public-safe evidence and setup/verification scripts.
 - Small root README/team handoff links and a separate PoC CI workflow.
 - Preserve production app, backend, contracts, deployment state and unrelated feature checkout.
 - User explicitly authorized implementation, commit, push and opening a PR. No merge, deployment, branch-protection change, private credential publication or shared-data mutation is included.
 
 ## References
 
-[PoC README](../../poc-journey/README.md), [handoff](../../poc-journey/HANDOFF.md), [journey](../../poc-journey/JOURNEY.md), [root architecture](../architecture.md), [workflow](../ai/workflow.md).
+[PoC README](../../research/poc-journey/README.md), [handoff](../../research/poc-journey/HANDOFF.md), [journey](../../research/poc-journey/JOURNEY.md), [root architecture](../architecture/architecture.md), [workflow](../ai/workflow.md).
 
 ## Acceptance criteria
 
@@ -31,7 +31,7 @@ A teammate can discover the current integrated experiment, run it from a new che
 
 ## Result and handoff
 
-The [relocation verification](../../poc-journey/evidence/relocation-verification.md) records 220 package, 55 CLI, 126 native and 12 Simulator UI test executions passing, plus three unsigned builds. Pinned model bootstrap, public-file/link/package checks, imported hashes and root Swift layout passed. Original physical-device results are retained as historical evidence, not rerun or inherited automatically.
+The [relocation verification](../../research/poc-journey/evidence/relocation-verification.md) records 220 package, 55 CLI, 126 native and 12 Simulator UI test executions passing, plus three unsigned builds. Pinned model bootstrap, public-file/link/package checks, imported hashes and root Swift layout passed. Original physical-device results are retained as historical evidence, not rerun or inherited automatically.
 
 No production source, contracts, deployment configuration or unrelated feature checkout was changed. Original local sources remain intact. The scoped archive retains failed runs, marks unavailable external evidence and restores large model assets by pinned checksums rather than committing them.
 

@@ -1,0 +1,45 @@
+services:
+  pocket:
+    build:
+      context: ../../..
+      dockerfile: server/pocket/Dockerfile
+    env_file: ../../pocket/.env
+    expose: ["8792"]
+    volumes:
+      - pocket_data:/data
+    restart: unless-stopped
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    pids_limit: 64
+    healthcheck:
+      test: [CMD, curl, --fail, --silent, --max-time, "3", "http://127.0.0.1:8792/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  pocket-ingress:
+    image: nginx/nginx-unprivileged:stable-alpine
+    entrypoint: [nginx]
+    command: [-c, /etc/nginx/pocket.conf, -g, "daemon off;"]
+    depends_on:
+      pocket:
+        condition: service_healthy
+    expose: ["8080"]
+    networks:
+      default: {}
+      cf-tunnel:
+        aliases: [pocket-beta-ingress]
+    volumes:
+      - ./nginx.conf:/etc/nginx/pocket.conf:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m,mode=1777
+    read_only: true
+    restart: unless-stopped
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    pids_limit: 32
+networks:
+  cf-tunnel:
+    external: true
+volumes:
+  pocket_data:

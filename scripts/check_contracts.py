@@ -31,9 +31,9 @@ for filename, schema in [
     data = json.loads((root / "contracts/fixtures" / filename).read_text())
     Draft202012Validator(schema, format_checker=FormatChecker()).validate(data)
 source = root / "contracts/fixtures/rundowns.json"
-copy = root / "ios-backend/Sources/Data/Fixtures/rundowns.json"
+copy = root / "packages/C67Backend/Sources/Data/Fixtures/rundowns.json"
 assert source.read_bytes() == copy.read_bytes(), "Run scripts/sync_fixtures.py"
 for filename in ["planning-input.json", "planning-result.json", "planning-job.json", "personal-planning-trip.json"]:
-    assert (root / "contracts/fixtures" / filename).read_bytes() == (root / "ios-backend/Sources/Data/Fixtures" / filename).read_bytes(), "Run scripts/sync_fixtures.py"
+    assert (root / "contracts/fixtures" / filename).read_bytes() == (root / "packages/C67Backend/Sources/Data/Fixtures" / filename).read_bytes(), "Run scripts/sync_fixtures.py"
 assert (root / "server/supabase/seed.sql").read_text() == render_seed(json.loads(source.read_text())), "Run scripts/sync_fixtures.py"
 print("PASS: legacy and Pocket OpenAPI, fixture/catalog schemas, bundled fixture copy, and synthetic SQL seed")

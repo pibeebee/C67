@@ -11,7 +11,7 @@ Prevent repeated model search calls from discarding a usable retrieved catalogue
 
 ## Scope and dependencies
 
-- Standalone `tripsense-poc/` package/app, focused regression checks and documentation.
+- Standalone `research/tripsense-poc/` package/app, focused regression checks and documentation.
 - Keep the five-search limit, requested stop count, native ID/category validation and routing/availability rules.
 - Use one explicitly local, tool-free finishing attempt only when a wrapped search-budget failure follows sufficient retrieved candidates. Do not recover unrelated failures or fabricate places.
 - Preserve unrelated evaluation changes. No commit, push, deployment or physical-device installation is authorized by this task.
@@ -19,7 +19,7 @@ Prevent repeated model search calls from discarding a usable retrieved catalogue
 ## References
 
 - User's iPhone 17 screenshot of `SearchPlacesTool` wrapping `PlanningError.toolBudget`.
-- [POC guide](../../tripsense-poc/README.md) and existing CandidateSelector/MapServices implementation.
+- [POC guide](../../research/tripsense-poc/README.md) and existing CandidateSelector/MapServices implementation.
 
 ## Acceptance criteria
 
@@ -39,7 +39,7 @@ Use deterministic Swift Testing with the actual Foundation Models ToolCallError 
 - Added a production orchestration seam and reproduced the exact Foundation Models wrapped search-budget failure with synthetic retrieved places. The focused test failed before the recovery implementation and passed afterward.
 - Recovery: catch only searchPlaces + toolBudget, check cancellation and sufficient matching candidates, run one fresh explicitly on-device session with an empty tool list and a compact retrieved catalogue, then apply the existing native selector and optimizer. No extra search, fabricated places, count reduction or cloud fallback.
 - Added safe user-facing error mapping for generation/recalculation. Unknown errors use a generic message; tool state and coordinates are not shown. Diagnostic logs retain error types and recovery counts without dumping the tool.
-- `rtk swift test --package-path tripsense-poc/TripSenseKit`: 52 deterministic tests passed; one opt-in live test skipped (53 tests discovered). Six new regression tests cover recovery, insufficient candidates, unrelated wrapped failures, invalid recovered IDs, cancellation and redacted user messages.
+- `rtk swift test --package-path research/tripsense-poc/TripSenseKit`: 52 deterministic tests passed; one opt-in live test skipped (53 tests discovered). Six new regression tests cover recovery, insufficient candidates, unrelated wrapped failures, invalid recovered IDs, cancellation and redacted user messages.
 - `xcodebuild test` for TripSensePOC on iPhone 17 Pro Simulator / iOS 26.4, destination `platform=iOS Simulator,id=FBC5F4BA-CDB5-4B06-B86B-182FF71BAEE6`, ad hoc signing and `/tmp/tripsense-search-budget` derived data: build and all three fixture app tests passed. This does not exercise live model or MapKit behavior on iPhone.
 - Scoped pinned SwiftFormat passed for all five touched Swift files; `git diff --check` passed.
 - Existing evaluation documents/results remain unrelated and were preserved. No physical-device install, live-provider calls, commit, push or deployment performed. Rebuild the app on the user's iPhone and repeat the same input; inspect the redacted Diagnostics counts if it still stops.
