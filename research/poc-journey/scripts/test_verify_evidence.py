@@ -116,5 +116,28 @@ class EvidenceTests(unittest.TestCase):
         self.assertTrue(validate(self.root, self.manifest, ledger, additional_manifests=[context]))
 
 
+    def test_cbl_continuation_requires_ledger_without_unlocking_other_source_records(self):
+        for path, permitted in (("docs/source-records/CBL.md", True),
+                                ("docs/source-records/other-historical-record.md", False)):
+            with self.subTest(path=path):
+                target = self.root / path
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("original dated record")
+                baseline = self.digest(target)
+                context = {"files": [{"publicationPath": path, "disposition": "included",
+                                      "publishedSHA256": baseline}]}
+                target.write_text("original dated record\nreviewed continuation")
+                ledger = {"schemaVersion": 1, "changes": [{
+                    "publicationPath": path, "publicationManifest": "context-lab-publication.json",
+                    "importedPublishedSHA256": baseline, "currentSHA256": self.digest(target),
+                    "reason": "Document user-approved context continuation", "verification": "verification.md"}]}
+                self.assertTrue(validate(self.root, self.manifest, additional_manifests=[context]))
+                issues = validate(self.root, self.manifest, ledger, additional_manifests=[context])
+                self.assertEqual(not issues, permitted)
+                self.assertEqual(context["files"][0]["publishedSHA256"], baseline)
+                if permitted:
+                    target.write_text("subsequent unregistered edit")
+                    self.assertTrue(validate(self.root, self.manifest, ledger, additional_manifests=[context]))
+
 if __name__ == "__main__":
     unittest.main()

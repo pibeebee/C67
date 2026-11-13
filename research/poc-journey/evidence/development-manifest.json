@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-11",
+  "date": "2026-11-13",
   "scope": "Reviewed maintained-source evolution; historical import manifest remains immutable",
   "changes": [
     {
@@ -240,6 +240,14 @@
       "currentSHA256": "0d08c10ced34a335e16cdb4c784d14a370d406125bb14c6906e88b19d5cbe857",
       "reason": "Include the authorized pending diagnostic UI/replay paths and authored fixture-clock handling alongside current main; preserve the immutable import record.",
       "verification": "docs/tasks/workspace-publication-2026-11-11.md"
+    },
+    {
+      "publicationPath": "docs/source-records/CBL.md",
+      "publicationManifest": "context-lab-publication.json",
+      "importedPublishedSHA256": "0901dd6a061c7536b70ac2766b4f2e78263997e98b4d92cda0a5c0a18bba8983",
+      "currentSHA256": "36a4e8354d2c415ae761d64e30f01ba7d49145a4028b616fefcd68942ccf515c",
+      "reason": "User-requested continuation from the 9 November Context Lab checkpoint through the 13 November Pocket/UI/homelab/TestFlight, Jakarta catalogue and blind-spot discussions. Earlier checkpoint bodies and October history are preserved; proposals remain distinct from execution.",
+      "verification": "docs/tasks/cbl-context-continuation-2026-11-13.md"
     }
   ]
 }
