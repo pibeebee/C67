@@ -24,7 +24,9 @@ jobs:
           cache-dependency-path: scripts/requirements.txt
       - run: pip install -r scripts/requirements.txt
       - name: Validate contracts and fixtures
-        run: python3 scripts/check_contracts.py
+        run: |
+          python3 scripts/check_contracts.py
+          python3 -m unittest discover -s server/pocket/tests
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -47,7 +49,7 @@ jobs:
       - name: Swift format and shared package tests
         run: |
           python3 scripts/swift_format.py --check
-          swift test --package-path ios-backend
+          swift test --package-path packages/C67Backend
       - name: App unit tests and two critical UI flows
         shell: bash
         run: |
@@ -55,7 +57,7 @@ jobs:
           destination=$(python3 scripts/simulator_destination.py)
           xcodebuild -version
           echo "Simulator destination: $destination"
-          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
+          xcodebuild -project apps/ios/C67.xcodeproj -scheme C67 \
             -destination "$destination" -derivedDataPath "$RUNNER_TEMP/c67-smoke" \
             -resultBundlePath "$RUNNER_TEMP/ios-smoke.xcresult" \
             -only-testing:C67AppTests \

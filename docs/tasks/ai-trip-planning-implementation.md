@@ -47,7 +47,7 @@ The separate planning API/worker implements bounded model/order/scheduler/provid
 |---|---|
 | Planning backend | `npm run check`, `npm run format:check` and `npm test`: 21/21 Node tests/subtests pass. Directed 48-minute matrix, preferred-window/deadline conflicts, six-stop bounds, cancellation, live-adapter stub/signing/attribution, foreign reads, retries and active replan are covered. No real provider HTTP calls. |
 | New migration | Executed on disposable PGlite PostgreSQL 18.6 with simulated Auth roles/claims. Six lifecycle/authorization subtests cover owner isolation, denied direct/worker writes, changed-input identity, equivalent UUID/time/optional re-encoding, leases, invalid arithmetic, single apply, arrival/extension/stale results and completed-history preservation. No homelab mutation or shared data used. |
-| Shared Swift package | `swift build --package-path ios-backend`: pass. Build only; no package tests. |
+| Shared Swift package | `swift build --package-path packages/C67Backend`: pass. Build only; no package tests. |
 | Native app | Generic iOS Simulator-target `xcodebuild ... CODE_SIGNING_ALLOWED=NO C67_DATA_MODE=mock build`: pass with Xcode 27.1. Only the existing no-AppIntents metadata warning. No Simulator launched, UI interaction/device walkthrough or iOS test executed. |
 | Swift layout | Pinned formatter applied and checked. |
 | Contract/resources | OpenAPI validation, fixture schemas, exact bundled copies and unchanged original synthetic SQL seed pass. Python scripts compile. |
@@ -58,8 +58,8 @@ Full Supabase pgTAP/lint/Auth HTTP suites, matching-image PostgreSQL 17, new Doc
 
 ## Handoff
 
-- Open `ios-ui/C67.xcodeproj` in mock mode for the new default flow. Synthetic trips last only for the app session.
-- Use [planning setup](../../server/planning/README.md), [ADR-0009](../decisions/0009-personal-planning-implementation.md), [planning semantics](../ai-trip-planning.md) and [team handoff](../team-starter.md) for the implementation and next acceptance layers.
+- Open `apps/ios/C67.xcodeproj` in mock mode for the new default flow. Synthetic trips last only for the app session.
+- Use [planning setup](../../server/planning/README.md), [ADR-0009](../architecture/decisions/0009-personal-planning-implementation.md), [planning semantics](../architecture/ai-trip-planning.md) and [team handoff](../guides/team-starter.md) for the implementation and next acceptance layers.
 - New shared migration/service/gateway deployment needs a concrete matching-image recovery/operational scope. Existing deployed Auth/server/media evidence remains separate.
 - Live use needs private Apple/Maps/Weather and model credentials plus an explicit model, provider capability/attribution/data-sharing/storage review and measured cost/quality. No paid model selected or credentials configured.
 - Personal journal/album integration, destination editing within an existing trip, skip/partial completion, undo, background/automatic recalculation, multi-day/transit and production retention remain separately scoped work. No product differentiation, travel accuracy or field/device readiness claim follows from synthetic checks.

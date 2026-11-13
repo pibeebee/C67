@@ -1,10 +1,49 @@
 # Pocket catalog and Luna advice
 
-This beta service is separate from Supabase and the old Node planner. It serves the independent catalog and sends bounded, consented schedule-choice requests to Luna. The app chooses places, estimates Apple routes and validates the final schedule. See the [HTTP contract](../../contracts/api/openapi.json) and [maintained server source](../../poc-journey/apps/c67-pocket-engine-lab/Server/CONTRACT.md).
+The maintained Python service supplies independent place evidence and bounded schedule-choice advice. The iOS app performs preference matching, route estimation, schedule validation, and local trip storage. See the [wire contract](../../contracts/api/openapi.json) and [native integration](../../docs/guides/pocket-engine-integration.md).
 
-1. On the intended host, copy the provided env template into the ignored `.env`. Generate distinct random read/write tokens (at least 24 characters each). Set the provider HTTPS base including `/v1` and its key. Never embed the write token or provider key in the app. Keep the daily Luna cap small for internal beta; failed attempts also consume a reservation.
-2. From the repo root, run `docker compose -f server/pocket/compose.yml up -d --build`. The HTTP service binds to host loopback. It uses a persistent SQLite volume. Preserve the volume across upgrades; the bundled seed initializes missing IDs, it does not overwrite evidence.
-3. Put a trusted HTTPS reverse proxy in front. Expose only GET `/health`, GET `/v1/catalog` and POST `/v1/advice/visits`; default deny all other routes. Limit request body size to 80 KB and provider concurrency; set the proxy timeout above 95 seconds. Do not log Authorization or bodies. Import reviewed evidence locally with the server CLI.
-4. Verify public HTTPS health, 401 without a read token, a catalog schema check with one, and a single authorized Luna request. Use an invited-tester token in Account → Pocket settings. A shared read token is not a public multi-tenant authorization model.
+## Configure and run
 
-The host's SQLite volume and the signing account are independent. Local loopback testing does not show that a TestFlight install can reach the server. This deployment recipe has no host names or credentials committed.
+Python 3.11+ is sufficient for the standard-library server. Live Luna advice also uses `curl` and system TLS trust. The Docker image includes both.
+
+```sh
+cp server/pocket/.env.example server/pocket/.env
+# Set private tokens and provider settings before starting.
+python3 server/pocket/src/server.py
+```
+
+The process loads `server/pocket/.env` and defaults to loopback port 8792. Its default SQLite directory is `server/pocket/.local/server/`. Generate different read/write tokens of at least 24 characters. Set the provider HTTPS base including `/v1`, its API key, and the daily advice cap. Failed upstream attempts consume a reservation. Keep `.env` readable only by its owner.
+
+From the repository root, the local Docker recipe uses a persistent volume and host loopback.
+
+```sh
+docker compose -f server/pocket/compose.yml up -d --build
+```
+
+Use the [homelab deployment](../deploy/pocket/README.md) for Cloudflare Tunnel ingress. Preserve the SQLite volume across updates. Seed initialization inserts missing identities and preserves stored evidence.
+
+## Resources and endpoints
+
+The canonical seed and 62-label taxonomy live in `packages/PocketEngine/Sources/PocketEngine/Resources/`. Native execution resolves these files from the checkout independently of the working directory. Docker copies them into `/app/resources` and sets `POCKET_RESOURCE_DIR`. `POCKET_SEED_CATALOG` can point to a separate reviewed seed file.
+
+| Endpoint | Access |
+| --- | --- |
+| `GET /health` | Public health status |
+| `GET /v1/catalog` | Read bearer token |
+| `POST /v1/advice/visits` | Read bearer token, bounded quota/concurrency |
+| `POST /v1/evidence/import` | Write bearer token, local administration |
+| `POST /v1/providers/tomtom/search` | Optional provider configuration, excluded from the beta ingress |
+
+The beta ingress publishes only health, catalog, and advice. It limits request bodies to 80 KB and uses a timeout above the upstream time budget. Authorization headers, request bodies, and provider keys must stay out of logs. Import reviewed evidence locally with `--import-evidence`; use `--import-identities` for reviewed catalog identities.
+
+A shared read token serves invited beta testers. It is separate from the write token and provider key. The app stores it in Keychain through Account > Pocket settings.
+
+## Verification
+
+```sh
+python3 -m unittest discover -s server/pocket/tests
+```
+
+The suite checks resource relocation, the real local HTTP entry point, read authorization, and persistence without external providers. See [repository verification](../../docs/testing/verification.md) for Docker and client checks.
+
+The original experimental service remains a preserved [Pocket Lab snapshot](../../research/poc-journey/apps/c67-pocket-engine-lab/Server/). Product changes belong here.

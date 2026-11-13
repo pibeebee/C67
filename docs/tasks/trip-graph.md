@@ -31,12 +31,12 @@ Persist owner-scoped source/day/stop/leg rows and return them in one consistent 
 
 ## References
 
-- [Server roadmap](../server-roadmap.md)
-- [Architecture](../architecture.md)
+- [Server roadmap](../architecture/server-roadmap.md)
+- [Architecture](../architecture/architecture.md)
 - [Stage 3A](trip-model-foundation.md)
 - [Contract](../../contracts/README.md)
-- [ADR-0004](../decisions/0004-trip-graph.md)
-- [Prepared homelab plan](../homelab-trip-graph-plan.md)
+- [ADR-0004](../architecture/decisions/0004-trip-graph.md)
+- [Prepared homelab plan](../history/homelab-trip-graph-plan.md)
 
 ## Verification
 
@@ -44,6 +44,6 @@ Full disposable CI SQL/HTTP suites, contract fixtures and syntax/whitespace chec
 
 ## Result and handoff
 
-Graph implementation dd94b14 passed 141 SQL assertions and 66 HTTP checks with all four CI jobs, including Simulator, before the consolidated work. PR #4 was then closed at Giovan's request. The completed [backend batch](backend-completion.md) supersedes that graph-only checkpoint and is [deployed/shared-verified](../homelab-backend-completion-verification.md): persisted V1/V2 backfill/receipt checks, 167 isolated SQL assertions and 84 shared HTTP checks passed with exact cleanup. No native Swift source changed.
+Graph implementation dd94b14 passed 141 SQL assertions and 66 HTTP checks with all four CI jobs, including Simulator, before the consolidated work. PR #4 was then closed at Giovan's request. The completed [backend batch](backend-completion.md) supersedes that graph-only checkpoint and is [deployed/shared-verified](../history/homelab-backend-completion-verification.md): persisted V1/V2 backfill/receipt checks, 167 isolated SQL assertions and 84 shared HTTP checks passed with exact cleanup. No native Swift source changed.
 
 Source/day/stop/leg graph and explicit origin/landing/first-stop behavior are ready for iOS data adoption. Full multi-day creation, providers/optimizer and public creator/lifecycle policies remain separate contracts; planned source append/overlap editing and private journals are implemented under ADR-0005.

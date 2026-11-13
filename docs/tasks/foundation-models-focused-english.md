@@ -17,4 +17,4 @@ Test task-specific generation, minimal context, focused schemas, deterministic s
 
 ## Result
 
-See [focused evaluation report](../../evaluations/foundation-models-2026-11-04/focused-english/REPORT.md), raw runs, tool traces, provisional assessments, experimental guard tests and deterministic templates in the same directory. The experiment does not modify app behavior or prove end-to-end task routing. No deployment, commit, push, physical iPhone, real provider, independent human review or production guard test was performed.
+See [focused evaluation report](../../research/evaluations/foundation-models-2026-11-04/focused-english/REPORT.md), raw runs, tool traces, provisional assessments, experimental guard tests and deterministic templates in the same directory. The experiment does not modify app behavior or prove end-to-end task routing. No deployment, commit, push, physical iPhone, real provider, independent human review or production guard test was performed.

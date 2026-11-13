@@ -8,7 +8,7 @@ Branch: `Feat/itinerary-polish-reorder`
 
 Make the itinerary reordering and control polish in [PR 17](https://github.com/pibeebee/C67/pull/17) reviewable against main after PR 16 was squash-merged. Preserve the manual-order contract and the real drag, recalculation and saved-order assertions. The user authorized repairs, commits, pushes and approval when verified; merging and service deployment are separate actions.
 
-References: [reordering behavior and service boundary](itinerary-stop-reordering.md), [UI completion](hi-fi-ui-completion.md), [verification](../verification.md).
+References: [reordering behavior and service boundary](itinerary-stop-reordering.md), [UI completion](hi-fi-ui-completion.md), [verification](../testing/verification.md).
 
 ## Observed failures and changes
 

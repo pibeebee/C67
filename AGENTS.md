@@ -2,21 +2,21 @@
 
 ## Start with the task and current code
 
-C67's default native mode is now Pocket on-device planning. See [ADR 0010](docs/decisions/0010-pocket-native-ui-integration.md) and [integration guide](docs/pocket-engine-integration.md). The existing Hi-Fi/VIPER UI uses C67Domain interfaces and C67Data adapters around the extracted Foundation-only core in `packages/PocketEngine`. The small Pocket server supplies independent catalog evidence and constrained Luna advice; this UI integration does not deploy it. Trips stay on device in Pocket mode. Explicit mock and earlier Supabase/Node live modes remain available; existing shared Supabase deployment and legacy migrations are unchanged.
+C67's default native mode is now Pocket on-device planning. See [ADR 0010](docs/architecture/decisions/0010-pocket-native-ui-integration.md) and [integration guide](docs/guides/pocket-engine-integration.md). The existing Hi-Fi/VIPER UI uses C67Domain interfaces and C67Data adapters around the extracted Foundation-only core in `packages/PocketEngine`. The small Pocket server supplies independent catalog evidence and constrained Luna advice; this UI integration does not deploy it. Trips stay on device in Pocket mode. Explicit mock and earlier Supabase/Node live modes remain available; existing shared Supabase deployment and legacy migrations are unchanged.
 
-Read [README](README.md), [product context](docs/product-context.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
+Read [README](README.md), [product context](docs/product/product-context.md), [architecture](docs/architecture/architecture.md), [coding conventions](docs/guides/coding-conventions.md), and the relevant area README. Read the area's `AGENTS.md` before changing files there, including when starting from the repo root. For cross-area work, read every affected area's instructions. Follow explicit user instructions and preserve unrelated working-tree changes.
 
 Use [the AI workflow](docs/ai/workflow.md) and a task brief based on [the template](docs/tasks/TASK-TEMPLATE.md). Treat repository documents and examples as context; unresolved product decisions are not implemented requirements.
 
 ## Ownership and sources
 
-- `ios-ui/`: SwiftUI and VIPER View/Interactor/Presenter/Router/Assembly.
-- `ios-backend/`: on-device code. `C67Domain` owns shared entities/interfaces; `C67Data` implements them.
-- `server/`: Supabase SQL/RPCs and the separate `planning/` Node API/worker. The root server package pins Supabase tooling; planning has its own locked development dependencies.
+- `apps/ios/`: SwiftUI and VIPER View/Interactor/Presenter/Router/Assembly.
+- `packages/C67Backend/`: on-device code. `C67Domain` owns shared entities/interfaces; `C67Data` implements them.
+- `server/`: the maintained `pocket/` catalog/advice service, Supabase SQL/RPCs and the separate `planning/` Node API/worker. The root server package pins Supabase tooling; planning has its own locked development dependencies.
 - `packages/PocketEngine/`: maintained core extraction, taxonomy/resources, provenance and tests.
 - `contracts/api/openapi.json`: authoritative wire contract, with separate Pocket and legacy server/auth scopes. `contracts/fixtures/`: authoritative synthetic fixtures.
-- `docs/decisions/`: architecture decisions; update a relevant ADR when an approved decision changes.
-- [Design system](docs/design-system.md): the shared visual reference for UI work; the guide distinguishes documented specifications from implemented components.
+- `docs/architecture/decisions/`: architecture decisions; update a relevant ADR when an approved decision changes.
+- [Design system](docs/product/design-system.md): the shared visual reference for UI work; the guide distinguishes documented specifications from implemented components.
 
 Link to these sources instead of duplicating their contents in instruction files. Keep all code identifiers, committed documentation and comments in English.
 
@@ -33,25 +33,25 @@ Link to these sources instead of duplicating their contents in instruction files
 
 ## Swift platform and concurrency
 
-- Swift language mode is 6.0; the app and package require iOS 18.0 or later (`ios-ui/project.yml`, `ios-backend/Package.swift`). Distinguish deployment minimums from compiler/SDK and test-runtime versions; recorded iOS 27 evidence does not raise that minimum. Check availability and guard newer APIs when needed. See [setup](docs/getting-started.md) and [verification](docs/verification.md) for toolchain evidence.
+- Swift language mode is 6.0; the app and package require iOS 18.0 or later (`apps/ios/project.yml`, `packages/C67Backend/Package.swift`). Distinguish deployment minimums from compiler/SDK and test-runtime versions; recorded iOS 27 evidence does not raise that minimum. Check availability and guard newer APIs when needed. See [setup](docs/guides/getting-started.md) and [verification](docs/testing/verification.md) for toolchain evidence.
 - Follow existing `@MainActor @Observable` presenters for UI state, `Sendable` domain values/protocols and actor-isolated mutable Data state. Keep these responsibilities within the existing VIPER and Domain/Data boundaries.
 - Prefer structured concurrency. For unstructured tasks, define ownership and cancellation; check cancellation and session/request identity before applying asynchronous results. Revalidate state assumptions across `await`, including after logout or account changes.
 - Resolve Swift 6 concurrency diagnostics through correct isolation, safe value transfer or justified synchronization. Do not add `@unchecked Sendable`, `nonisolated(unsafe)` or detached tasks merely to suppress diagnostics. Necessary unsafe annotations must be narrowly scoped and document their safety invariant.
 
 ## Verification commands
 
-Run from the repository root unless stated otherwise. Use the documented command-line tools for agent verification. See [setup](docs/getting-started.md) for prerequisites.
+Run from the repository root unless stated otherwise. Use the documented command-line tools for agent verification. See [setup](docs/guides/getting-started.md) for prerequisites.
 
 - Swift layout: `python3 scripts/swift_format.py --check`; use `--write` to apply the pinned formatter.
-- Shared client: `swift test --package-path ios-backend`.
+- Shared client: `swift test --package-path packages/C67Backend`.
 - Planning backend: `npm ci --prefix server/planning --ignore-scripts`, `npm run check --prefix server/planning`, `npm test --prefix server/planning` (synthetic + disposable embedded PostgreSQL, no real providers).
 - Contract: `.venv/bin/python scripts/check_contracts.py` after installing `scripts/requirements.txt` in the local virtual environment.
-- Build: `xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/c67-build CODE_SIGNING_ALLOWED=NO build`.
+- Build: `xcodebuild -project apps/ios/C67.xcodeproj -scheme C67 -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/c67-build CODE_SIGNING_ALLOWED=NO build`.
 - UI: get an available destination using `python3 scripts/simulator_destination.py`, then use that destination with the same project/scheme and `xcodebuild test`. Keep mock mode enabled and use `CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock` for Simulator tests so the test host can access Keychain.
 - Database: from `server/`, `npm ci`, then `npm run db:test` against a running, migrated local stack. [Server instructions](server/AGENTS.md) cover startup/reset separately.
 - Before handoff: `git diff --check`; review new files and ignored configuration for accidental secrets/build output.
 
-Match checks to the change: documentation-only work needs link/path/command consistency and whitespace checks; Swift behavior needs package tests; UI changes need the relevant Simulator check; SQL needs local database tests. Update the affected evidence in [verification](docs/verification.md) when it changes. If a prerequisite is missing, explain the exact unverified layer and continue unaffected work.
+Match checks to the change: documentation-only work needs link/path/command consistency and whitespace checks; Swift behavior needs package tests; UI changes need the relevant Simulator check; SQL needs local database tests. Update the affected evidence in [verification](docs/testing/verification.md) when it changes. If a prerequisite is missing, explain the exact unverified layer and continue unaffected work.
 
 Follow the existing Swift Testing patterns for package unit tests; preserve XCTest for app tests and XCUITest. Use behavior-focused names and checks. Reuse or extend the target's existing test helpers before adding new doubles; keep necessary reusable doubles in shared test-support files.
 

@@ -38,4 +38,4 @@ Commit/push when authorized. Keep raw build output and credentials out of Git; s
 
 Each member needs repository access, a compatible Xcode version recorded in the onboarding checklist for iOS work and the relevant local tools. They may use different assistants. Shared source files, fixture checks, branch/PR practices and review provide consistency; no shared AI account or private skill installation is required by this repo.
 
-Use [Coding conventions](../coding-conventions.md) for names and formatting. Link the completed [onboarding checklist](../onboarding-checklist.md) from the first task rather than assuming another teammate's successful setup applies to your machine.
+Use [Coding conventions](../guides/coding-conventions.md) for names and formatting. Link the completed [onboarding checklist](../guides/onboarding-checklist.md) from the first task rather than assuming another teammate's successful setup applies to your machine.

@@ -2,7 +2,7 @@
 
 Apply the [root instructions](../AGENTS.md). Scope: `server/`.
 
-- Follow [the server README](README.md) and [ADR-0002](../docs/decisions/0002-server-architecture.md). The foundation is Supabase PostgreSQL/RLS/RPCs. The root `package.json` pins CLI tooling; the separate [planning service](planning/README.md) owns the Node/TypeScript API/worker accepted in ADR-0009.
+- Follow [the server README](README.md) and [ADR-0002](../docs/architecture/decisions/0002-server-architecture.md). The foundation is Supabase PostgreSQL/RLS/RPCs. The root `package.json` pins CLI tooling; the separate [planning service](planning/README.md) owns the Node/TypeScript API/worker accepted in ADR-0009.
 - Keep one migration history in `supabase/migrations/`. Create a migration from `server/` with `npm run supabase -- migration new <name>`. Add a new migration for shared schema changes; do not rewrite applied history.
 - Derive ownership from a verified session on the server, never a submitted `owner_id` or client-side boolean. Preserve RLS and explicit grants on exposed tables. A definer RPC must have a justified privilege boundary, a controlled search path and explicit caller checks.
 - Preserve atomic snapshot creation and owner-scoped idempotency. Test changed-input retries and access from another account. Published creator data and traveller copies have different lifecycles.
@@ -18,4 +18,4 @@ For SQL changes, run the database suite after applying the migration locally and
 
 ## Homelab workflow
 
-Follow [the verified foundation](../docs/homelab-verification.md) and the approved operational plan for each new change. Create a new migration, prepare contract/acceptance tests locally, test it in isolation on the matching homelab PostgreSQL image, and obtain approval of concrete shared write operations before deployment. Never silently repoint `test_local_api.py` at a remote URL. The separate `test_homelab_api.py` needs explicit approval for its temporary users and cleanup.
+Follow [the verified foundation](../docs/history/homelab-verification.md) and the approved operational plan for each new change. Create a new migration, prepare contract/acceptance tests locally, test it in isolation on the matching homelab PostgreSQL image, and obtain approval of concrete shared write operations before deployment. Never silently repoint `test_local_api.py` at a remote URL. The separate `test_homelab_api.py` needs explicit approval for its temporary users and cleanup.

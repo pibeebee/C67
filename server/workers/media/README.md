@@ -14,4 +14,4 @@ Raw JPEG/PNG must be ≤5MiB and decode within 20MP/20 seconds; processed JPEG f
 
 Cleanup processes only SQL-provided exact candidate paths, deletes through the Storage API, and only then purges eligible session rows. Committed journals with leftover raw input get reconciled. Removed accounts/trips make jobs eligible for byte cleanup. A rejected/expired owned session is retained for 24 hours for client status/recovery. No SQL mutation of storage.objects is used.
 
-See [ADR-0005](../../../docs/decisions/0005-backend-mvp.md), [operations runbook](../../../docs/backend-operations.md) and the separately approved deployment plan. Local acceptance does not authorize running this worker on a shared service.
+See [ADR-0005](../../../docs/architecture/decisions/0005-backend-mvp.md), [operations runbook](../../../docs/operations/backend-operations.md) and the separately approved deployment plan. Local acceptance does not authorize running this worker on a shared service.
