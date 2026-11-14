@@ -42,6 +42,12 @@ targets:
         PLANNING_API_URL: $(PLANNING_SCHEME)://$(PLANNING_HOST)
         POCKET_SERVER_URL: $(POCKET_SERVER_SCHEME)://$(POCKET_SERVER_HOST)
         CFBundleDisplayName: Travelant
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        "UISupportedInterfaceOrientations~ipad":
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
         NSLocationWhenInUseUsageDescription: Your location is used to get your position on the map to improve the best itinerary for you
         UILaunchScreen:
           UIColorName: SplashGradientMiddle
