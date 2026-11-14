@@ -1,8 +1,8 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Diperbarui:** 9 November 2026, Asia/Jakarta (WIB).
+**Updated:** 13 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Status:** fokus eksperimen terbaru adalah **C67 Context Lab v0.5 build 5** di `poc/c67-local-server-lab`, dengan aplikasi Simulator dan backend Swift/Vapor lokal Mac. Alurnya sudah mencakup preferensi terstruktur, discovery Google Places di luar katalog, E5 lokal dengan input Inggris, ranking OpenRouter, perencanaan berdasarkan jam buka/cuaca/ETA, satu pilot momen menjelang sunset, serta peta interaktif di dalam aplikasi. Hasil teknis dan batasnya dirangkum pada **bagian 0I**. Jalur native, Foundation Lab dan Trip Integration pada bagian 0–0H merupakan checkpoint terdahulu. Manfaat terhadap selera, beban interaksi dan pengalaman perjalanan masih perlu penilaian manusia serta uji lapangan.
+**Current status:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
 
 **Catatan teknis 3 November 2026:** pengguna mengunci **hybrid adaptif** untuk routing PoC: baseline tervalidasi terlebih dahulu, kemudian cheapest insertion + multi-start local search secara selektif. Implementasi dan pengujian lokal tersedia pada [laporan PoC native](../../apps/native-routing-lab/docs/verification/ADAPTIVE_ROUTING_REPORT_2026-11-03.md). Ini memperbarui status eksperimen routing; integrasi AI dan recalculation perjalanan aktif tetap mempunyai lingkup dan bukti tersendiri.
 
@@ -474,13 +474,277 @@ Batas pilot saat ini adalah Jakarta/WIB, satu hari, mobil, maksimal enam tujuan 
 
 Dokumen ini menjadi sumber konteks dan status untuk lanjutan kerja. Source, laporan ringkas dan bukti yang telah ditinjau sudah dipush ke branch `gi/context-lab-checkpoint` melalui [C67 PR #11](https://github.com/pibeebee/C67/pull/11). Folder aktif di GitHub adalah `poc-journey/apps/c67-local-server-lab`, dan CBL publik berada di `poc-journey/docs/source-records/CBL.md`. Verifikasi salinan ekspor menjalankan 106 tes lulus dengan satu benchmark opsional dilewati, XcodeGen, build unsigned Simulator, format Swift, tautan lokal dan checksum publikasi. Merge menunggu review repository. Rekaman lama dan ketidaktersediaan artefak dicatat; kredensial, token, model unduhan, log privat serta binary lokal tidak disertakan dalam commit.
 
-## 1. Konsep aktif dan cara membaca sumber
+## 0J. Preference evidence and the retired Google/Jev baseline — 10 November 2026
 
-Aplikasi membantu pengguna menemukan dan memilih tempat, lalu menyusun urutan serta jam kunjungan sesuai minat, waktu tersedia, kondisi dan kesempatan pengalaman. **Jalur yang sedang dikembangkan adalah Context Lab v0.5 dengan backend lokal Mac, E5 perangkat, Google Places, OpenRouter dan layanan Apple**, sebagaimana bagian 0I. Kemampuan native tanpa backend AI, penyimpanan dan replanning aktif pada bagian 0–0H tetap merupakan hasil historis dengan implementasinya sendiri.
+This continuation was documented on **13 November 2026, Asia/Jakarta**, from the inspected chat history, retained reports and current code. Sections 0–0I retain their original dates and experiment boundaries. New explanatory text is English under the repository instructions; the earlier Indonesian source record is preserved.
 
-Pengalaman yang dituju berkesinambungan dari minat/tujuan hingga rencana, kunjungan dan penyesuaian. Pada Context Lab saat ini, bukti terbaru mencakup discovery sampai itinerary dan peta. Pembaruan trip aktif yang andal serta manfaat perjalanan masih memerlukan integrasi dan evaluasi lanjutan.
+### What the earlier dataset actually represented
 
-**Cara membaca riwayat:** bagian 2–9 mempertahankan rincian konsep dan keputusan 29 Oktober. Status lama tentang model, ketergantungan server, browser dan implementasi perlu dibaca bersama bagian 0I. Tanggal dan hasil setiap jalur tetap penting agar hasil native, Foundation Models, Trip Integration dan Context Lab tidak tertukar.
+The historical collection grew from 500 to **982 unique Google Place IDs** after 482 additional records. The combined report recorded **545 accepted destinations**, of which **488 had at least one accepted label and 57 had none**. The new batch contributed 262 accepted destinations, including 250 with labels and 12 without. Of the 482 new records, 19 were outside the boundary or not geographically verified; 463 reached the eligibility classifier. Unique provider IDs did not prove unique physical venues. Eligibility, having a label, matching a traveller's preference, and being visitable on a particular date were separate questions.
+
+These figures come from the dated local Jakarta-wide/Jev report inspected for this update. Its raw provider dataset remains excluded from this publication. **This is historical lineage only: none of these 982 records, their Jev labels, or their venue list is an input or acceptance oracle for the replacement engine.**
+
+The user requested fair comparisons with Context Lab, including broader briefs and speed. Comparable inputs and validators mattered, but controlled candidate matching, live discovery, model ranking and itinerary construction had different work boundaries. Fast matching against a prepared catalogue did not establish a faster end-to-end application. Unlabelled cases and failed requests could not be dropped to improve the result.
+
+An earlier 60-place diagnostic varied the evidence supplied to Jev: categories/status, then amenities, then editorial text, then visitor reviews. Status agreement increased from 20/60 to 48/60 across the first and last bundles; accepted reference destinations increased from 2/33 to 29/33, and reference labels surviving both gates from 0/80 to 55/80. The sample was purposive and only selected labels were scored. The lesson was that evidence content affected labels; it was not a measurement of personal recommendation accuracy or a reason to continue Google usage.
+
+### Evidence extraction, judgement and browsing are different capabilities
+
+Preference Lab also compared source rules, hosted extraction and actual local AnyJev. On 12 authored cases with 72 labels, source-guarded LLM and source-guarded LLM plus AnyJev both reached 72/72 policy agreement; the literal rule baseline also reached 72/72. AnyJev did not add a demonstrated benefit on that structured vocabulary. The tested hosted endpoint did not expose the token scores needed by that AnyJev adapter; the local Qwen judge was not the hosted Luna model.
+
+The accompanying 20-entity real-source sample had 7 supported and 113 unknown claims out of 120. Model execution did not fill missing evidence for reading one's own book while drinking coffee in the same area. See [Preference Lab methods and results](../../apps/c67-preference-lab/CATALOG_RESULTS_2026-11-10.md). This remains a separate experiment from the production recommender.
+
+## 0K. Independent discovery, web enrichment and the no-Google decision — 10–11 November 2026
+
+### Open-venue pilot and provider changes
+
+The user explored OSM/Overture plus web evidence as a cheaper replacement for Google Places. A separate pilot first used the requested DavidAU Qwen3.5 9B GGUF model at 4-bit quantization, then Nemotron through OpenRouter, then the user's `ai.giovanc.com` provider. The later hosted configuration requested **`cx/gpt-6-luna(max)`**; the returned model name was **`gpt-6-luna(max)`**. These are requested/reported identities, not verification of the provider's internal upstream.
+
+The same 24 candidates and frozen source excerpts were used in the three extraction runs. Seventeen candidates had source material; seven had none. Nine reference venues reaching inference supplied 63 scored fields:
+
+| Measure | Local Qwen Q4 | OpenRouter Nemotron | Hosted Luna configuration |
+| --- | ---: | ---: | ---: |
+| Completed extractions | 17/17 | 17/17 | 17/17 |
+| Status agreement | 60/63 | 57/63 | 57/63 |
+| Supported reference facts recovered | 17/20 | 19/20 | 20/20 |
+| Non-unknown claims where reference was unknown | 0 | 5 | 6 |
+| Median processing per venue, including retries | 14.70 s | 3.30 s | 36.11 s |
+| Attempts / retries | 17 / 0 | 18 / 1 | 34 / 17 |
+
+The hosted run recovered more supported claims but also overreached on branch identity, opening times and historical activity. It was not universally more accurate. Output caps and provider wrappers differed. Hosted cost was not reported, so its cost remained unknown. See the [pilot comparison and limitations](../../apps/c67-open-venue-pilot/README.md).
+
+**The model did not independently browse in this extraction comparison.** The assistant supplied initial official-page links, the collector fetched evidence, and the model read supplied excerpts. A model endpoint without search/browser tools is not a browsing agent. URL discovery, page retrieval, extraction, semantic verification and venue eligibility must be measured independently.
+
+A later 30-candidate expansion reported 23 extractions, seven `no_source` outcomes and 65 proposed supported fields, with 13 issues found in partial review. Proposals remained in a review queue; successful extraction did not make all 30 venues application-ready. The pilot README retains this dated summary; some raw/local campaign attachments were not included in the public export.
+
+### Explicit boundary: stop Google Places
+
+After receiving a bill, the user explicitly stopped further Google Places API use. The subsequent fresh engine effort also excludes the old 982-place dataset and labels. Requests to compare equal-sized catalogues before this decision do not authorize new Google requests or reuse that dataset in the new engine. Preserve earlier reports as history, not as a live dependency.
+
+The user requested Apple-first technology, with OSM/Overture and independent public evidence as complements. A separate **C67 Venue Context Lab** was created rather than replacing Context Lab in place. It experimented with Apple search/ETA, independent candidate identities, Firecrawl or Playwright retrieval, hosted extraction, validation and a 30-day cache.
+
+### Firecrawl and Playwright: executed results and their limits
+
+| Campaign | Observed result | What it did not establish |
+| --- | --- | --- |
+| Firecrawl connectivity | Authentication and balance reading succeeded before collection | A valid key did not establish useful retrieval |
+| Firecrawl three-venue smoke | 10 of 12 reserved credits used; 0/9 facts verified; 0/3 ready to schedule | No full replacement for Places; Apple matching was unconfirmed |
+| Playwright three-venue smoke | 1/9 facts verified; no Firecrawl credits | Official URLs also changed, so the collector's isolated effect was unknown |
+| Playwright 30-venue run | One verified fact, 68 unknown fields, seven venues without a fact result | Technical failures were not evidence that the venues lacked those attributes |
+| Strengthened retrieval replay on that roster | Three accepted facts, 72 unknown fields, five inaccessible venues | Still no venue with the complete hours/access evidence needed by that pilot |
+
+The three accepted items in the strengthened run were regular hours for One Fifteenth Kemang and Periplus Lotte, and a literacy-event hall at Perpustakaan Nyi Ageng Serang. They were heterogeneous fields, not three complete venue profiles. The strengthened run reported 16 Swift tests and three browser tests passing; repeating after restart caused no new retrieval or extraction. These are dated results, not reruns performed while documenting this continuation.
+
+See [Venue Context Lab behaviour, configuration and diagnostics](../../apps/c67-venue-context-lab/README.md). That lab's request-triggered background enrichment remains experimental. It is **not** the agreed trigger for the new development-time catalogue pipeline described in section 0P.
+
+## 0L. Pocket Engine scope, product rules and benchmarks — 11–12 November 2026
+
+### Fresh architecture and the six-part product flow
+
+The user requested a fresh Apple-first design, a separate PoC and initially compilation only, followed by explicit testing. **Pocket Engine** keeps preference matching, bounded scheduling, MapKit ETA, WeatherKit handling and trip storage on device. A small server supplies independent catalogue evidence and constrained hosted advice. This is not an iPhone-only system, and it does not move itinerary ownership to a model.
+
+The intended product remains:
+
+1. Collect traveller preferences.
+2. Recommend places matching those preferences.
+3. Suggest visit order, timing and routes using operational and travel constraints.
+4. Let the traveller adjust the proposal.
+5. Recalculate timing/routes while preserving the traveller's requested order.
+6. Present and save the final result.
+
+Much of the replacement effort concerns step 2 and the facts required by step 3. Preference input alone is not the unresolved discovery problem. Earlier routing, weather, active-trip and manual-adjustment experiments remain separate evidence until integrated and tested in the actual product path.
+
+### Product decisions to preserve
+
+| Topic | Agreed direction and important boundary |
+| --- | --- |
+| Preference vocabulary | Keep the seven Hi-Fi themes and 62 existing labels. A refinement such as Japanese cuisine narrows Foodie; it must not become an OR with any restaurant. |
+| Required / liked / avoided | Required needs supporting evidence on the correct branch; liked affects ranking; avoided excludes a supported avoided attribute. Unknown, contradicted, expired and conflicting evidence are distinguishable. |
+| Minimum recommendations | A recommendation list requires at least three distinct valid places. This is different from named-place search or the number of visits in an accepted shortened itinerary. |
+| Multiple interests | Prefer a different place for each representable interest. The earlier implementation plan allowed at least three results with an explicit missing-interest warning; the current production adapter instead suppresses the list when any interest is absent. Reconcile this documented policy difference before changing behaviour. |
+| Departure window | An 08.00–19.00 window can mean departure at any time within it, not mandatory departure at 08.00. Keep fixed departure as a separate mode. |
+| Dinner as the final visit | Keep the restaurant last. Do not silently define dinner as 17.00–18.00. Propose/confirm a lower time bound, distinguish required from preferred time, and include the return leg before the deadline. |
+| Required visit time | A requested 14.00 may be preferred or required according to the traveller's choice. Do not silently turn a preference into a hard appointment or ignore an actual appointment. |
+| Place absent from Apple name search | A sourced, verified coordinate can be routed to and given the application's venue name. Apple text-search success is not a prerequisite for a valid independent destination. |
+| Too many visits for the window | Offer a shorter validated proposal, preserve mandatory visits/times and return constraints, explain omissions, and ask before applying the reduction. Do not claim maximum/global optimality when search is truncated. |
+| Rain / waiting / ETA failure | Try permitted alternatives and bounded transient retries. Never invent ETA or weather; seek consent for extra waiting. A missing required leg or return leg blocks a valid itinerary. |
+| Model selection | Prefer accuracy over speed. Use the configured Luna model without a fallback model; failures must be visible. The newer bounded production proxy is not an infinite retry loop. |
+| Acceptance target | At least 10 of 12 new evidence-backed briefs should return at least three valid recommendations. Required-condition violations are separately blocking. Repetitions and expected rejections are not extra successful user briefs. |
+
+The [implementation plan](../../apps/c67-pocket-engine-lab/docs/RECOMMENDATION_AND_ITINERARY_IMPLEMENTATION_PLAN.md) records the earlier grill-me decisions and subsequent work. Testing used delegated Terra Medium agents when requested; the main agent retained implementation and evaluation responsibility. An agent's completion report alone was not treated as acceptance evidence.
+
+### Failures that changed the planner
+
+The user's Echigoya brief used 15 November 2026, an 08.00–19.00 window, South Jakarta, food/Japanese cuisine and Echigoya as dinner/final stop. A second brief used 14 November, animal/art/garden, Museum MACAN around 14.00 and five places. The user explicitly rejected assistant-composed answers as a substitute for actual engine output, relaxed departure/visit-time assumptions, and allowed routing to independent coordinates. Initial failures were retained rather than filled with a manually authored itinerary.
+
+The broader synthetic acceptance suite initially passed **11/18** cases. It exposed fixed-only departure, dinner in the wrong position/time, ignored museum timing, early-closing search failure, failure to wait for improving weather, and no transient ETA retry. After the planner revision the same fixture suite reached **18/18**, with an independent invariant checker. See [initial failures](../../apps/c67-pocket-engine-lab/docs/ACCEPTANCE_BENCHMARK_2026-11-11.md) and [revision](../../apps/c67-pocket-engine-lab/docs/PLANNER_REVISION_2026-11-11.md). ETA, weather and venue availability in this comparison were synthetic. The fix did not verify Echigoya or MACAN's actual future availability.
+
+### Measurement boundaries and model comparison
+
+The early [Pocket versus Context engine replay](../../apps/c67-pocket-engine-lab/docs/ENGINE_BENCHMARK_2026-11-11.md) used the same synthetic 10-minute legs and bounded request budget, but different scheduling policies: arrival-based timing versus Context's 15-minute grid/first-feasible search. For three loose-window stops the recorded medians were 0.150 ms and 1.003 ms respectively. These were local computation timings without network calls, not application latency or a fair isolation of identical algorithms. Both engines could exhaust search budgets; one six-stop early-closing case had a Context solution that Pocket initially missed.
+
+The expanded model comparison used the same 12 authored cases, reference, evidence and output validator: Foundation Models returned the expected decision on **3/12**, Luna Max on **12/12**. Both returned readable IDs on 12/12. Median times were **432.61 ms** and **2610.82 ms**. This supported the user's preference for Luna on that task despite latency. It did not establish general factual accuracy, browsing ability, or added value over the deterministic planner's first valid option.
+
+Apple Maps, OSRM and Valhalla were also compared separately. OSRM/Valhalla used the same local OSM extract; Apple was remote and had different traffic/profile information. Three itinerary runs completed in 2764.94 ms, 42.48 ms and 141.74 ms respectively, but this local-versus-remote topology and differing ETA inputs did not identify the most accurate engine. No observed travel-time ground truth was collected. Apple remained the primary product route provider; Valhalla was not adopted solely from this comparison.
+
+The final standalone integration took **35.22 s**, including a 14,835-identity catalogue sync, 16 real Apple ETA requests and about 5.24 s for Luna. Three venues were preselected, hours/access were hypothetical, weather was unavailable, the last stop equalled the origin, and search was truncated. Only five identities in that large seed had any facts and none had structured hours. It was not automatic destination-selection acceptance. The [complete statistics](../../apps/c67-pocket-engine-lab/docs/TEST_STATISTICS_2026-11-12.md) preserve the three preceding integration failures, synthetic controls, model results and release replay build failure.
+
+## 0M. Native UI integration, live places and CI policy — 12–13 November 2026
+
+### UI and application integration
+
+After pulling `origin/dev` at `26cf144`, branch `gi/pocket-ui` connected the existing Hi-Fi/VIPER UI through C67Domain/C67Data to the extracted Foundation-only `packages/PocketEngine`. The production app keeps its iOS 18 minimum; newer Simulator/SDK evidence does not raise that deployment target. The initial integrated path was **preferences → recommendations → visit confirmation → itinerary → local save/history**, with explicit mock and legacy modes retained.
+
+The UI exposes seven themes and 62 refinements. Synthetic integration verified Foodie/Japanese cuisine excluding a Korean-only candidate; a required quiet condition without evidence yielded no recommendations; missing access/hours blocked scheduling until a trip-specific user confirmation was supplied. Such confirmation does not become public verified catalogue evidence. Initial checks passed 47 shared-client/adapter tests, 12 core tests and 29 app/Simulator tests, plus Debug/Release builds, contracts and formatting. Those were synthetic integration checks, not live recommendation acceptance.
+
+The later live test used **iPhone 18 Pro Max Simulator** and actual places without initial destinations or Google data. Recorded corrected candidate counts were:
+
+| Brief | First → corrected | Evidence limit |
+| --- | ---: | --- |
+| South Jakarta, Nature + Park | 12 → 12 | Three top parks gained published hours/access evidence |
+| South Jakarta, Japanese cuisine | 0 → 3 | Sushi Hiro Senopati; Sushiro Gandaria City and PIM 1; hours/access still unconfirmed |
+| South Jakarta, Culture + Art | 5 → 5 | Independent catalogue only when Apple search failed; visit readiness unconfirmed |
+| Kemayoran, Nature + Park | 11 → 7 | Obvious parking/home false positives removed; remaining Apple-only candidates still required review |
+
+The normal UI displayed Taman Bendera Pusaka, Tebet Eco Park and Taman Literasi Martha Tiahahu for Nature. A separate actual engine run from Blok M on 13 November, 09.00–18.00, driving with flexible departure and return to origin produced:
+
+| Stop | Visit WIB | Incoming Apple ETA |
+| --- | --- | ---: |
+| Taman Bendera Pusaka | 09:02:59–09:47:59 | 179 s |
+| Tebet Eco Park | 10:12:25–10:57:25 | 1466 s |
+| Taman Literasi Martha Tiahahu | 11:28:09–12:13:09 | 1844 s |
+| Return | About 12:13:30 | 21 s |
+
+One run took 125.85 s with repeated WeatherKit authentication failures; after cooldown handling a replay took **6.82 s** for planning, including 15 successful ETA calls and 3.83 s at the Luna proxy. These are two observations on an amended diagnostic scenario, not a p50/p95 distribution or a held-out success rate. Weather was unknown after HTTP 401. Enabling the later WeatherKit capability/profile did not itself prove runtime weather recovery.
+
+The final bundled catalogue grew to **36 identities**, with only **three venues containing facts and hours**. Do not confuse it with the separate 14,835-identity standalone seed or the full homelab database. The source [live report at the integration revision](https://github.com/pibeebee/C67/blob/ac0a211/docs/tasks/pocket-live-testflight-handoff.md) retains earlier signing/public-HTTPS blockers; section 0N records the later progress instead of rewriting those historical claims.
+
+### GitHub and verification workflow
+
+PR 16 was repaired for SDK compatibility, Search behaviour and UI tests, then approved and squash-merged to `main` as `06f9d9c` after eight passing checks on head `3057876`. PR 17's manual-order/recalculation work encountered iOS 18 drag/accessibility issues and long Simulator runs. The user paused it to reduce CI overhead, then requested active runs be cancelled. Cancelled jobs are not passed jobs.
+
+The agreed replacement workflow uses feature PRs to **`dev`**, local scoped checks first, and automatic compact cloud gates only on same-repository **`dev` → `main`** promotion PRs. Required promotion checks are `integration` and `ios-smoke`; full suites and PoC checks remain manual. Do not keep a promotion PR open throughout frequent dev updates. CI does not automatically deploy the server or upload TestFlight builds.
+
+PR 17 was reconciled with dev and approved after local checks (22 planning tests, 36 Swift tests, policy/contracts/format); it was included in the dev revision pulled before UI integration. Later, the user authorized a `MorpKnight` review-requirement bypass for self-owned PRs. GitHub still disallows formal self-approval: a bypass-enabled merge is not a fabricated APPROVED review. Preserve the other branch protections and check current remote settings before relying on this dated observation. See [policy](https://github.com/pibeebee/C67/blob/c978e7de371c8eb0acc22428e2100a95a3b6d491/docs/tasks/dev-main-ci-policy.md).
+
+## 0N. Homelab, encryption and external TestFlight — 13 November 2026
+
+### Deployed service: last verified observation
+
+The user authorized a dedicated `c67-pocket-beta` homelab deployment and manually configured the Cloudflare Tunnel route. The observed path was **iPhone HTTPS → Cloudflare → cloudflared → `cf-tunnel` → Nginx proxy → Pocket service**. Only the proxy joins the tunnel network; Pocket/SQLite remain on the project network, with no published host ports. Read and write tokens are different and private; Luna initially had a shared 20-attempt daily cap.
+
+At verification, public health returned 200, catalogue returned 401 without a token and 200 with a read token for 36 venues. Public import and TomTom endpoints returned 404. One Luna request for Tebet Eco Park returned 200, reported `gpt-6-luna(max)`, selected 09.00–09.45 from supplied options and took 4.21 s through Cloudflare. An initial file-permission startup failure was corrected. Default Python user-agent traffic was blocked by Cloudflare while curl and an iOS-like test agent worked. Actual TestFlight-client connectivity remained a separate check. This documentation update does not recheck server health or deploy anything.
+
+The maintained service/deployment entry points after restructuring are [Pocket service](https://github.com/pibeebee/C67/tree/c978e7de371c8eb0acc22428e2100a95a3b6d491/server/pocket) and [homelab deployment](https://github.com/pibeebee/C67/tree/c978e7de371c8eb0acc22428e2100a95a3b6d491/server/deploy/pocket). Do not incidentally redeploy or mutate the existing tunnel when continuing catalogue work.
+
+### Release submission is not external availability
+
+The user logged into Xcode and Apple, authorized WeatherKit activation/profile regeneration and supplied review contact information directly. Travelant **0.1.0, build 1**, bundle **`io.pibeebee.c67.starter`**, was signed, exported, validated and uploaded. The first validation found missing iPad orientation declarations; local configuration was corrected for the uploaded IPA. The user deferred those iPad source changes from PR 18, which they merged themselves. A new release must reconcile its source revision/local differences rather than assume the current checkout exactly reproduces build 1.
+
+The user explicitly approved the export-compliance choice for Apple system cryptography and sharing the Pocket read token privately with the Apple reviewer. The beta uses no traveller username/password login. The token is for catalogue sync/Luna, not a prerequisite for bundled-catalogue plus Apple recommendations. Never copy it into this record or public test instructions.
+
+The external group **Travelant External Beta** was prepared for up to **20 compatible iPhone testers**. The last observed build status in this chat was **Waiting for Review**; its invitation was not accepting testers. Automatic distribution was off. After approval, **Start Testing and verify invitation/device availability** remain necessary. This is a historical status, not a fresh App Store Connect check. Upload, passing Apple validation, review submission and external publication are separate milestones. See [release procedure](https://github.com/pibeebee/C67/blob/c978e7de371c8eb0acc22428e2100a95a3b6d491/docs/operations/testflight.md).
+
+### Encryption and access boundaries
+
+- Release requires HTTPS and blocks redirects; Cloudflare Tunnel transport is encrypted, while the internal Docker origin connections use HTTP.
+- The read token uses Apple Keychain `AfterFirstUnlockThisDeviceOnly`. Saved trips use iOS `completeFileProtectionUntilFirstUserAuthentication` and atomic writes.
+- CryptoKit SHA-256 supplies hashes; it does not encrypt itinerary content. There is no application-level end-to-end encryption: Cloudflare and the service process request contents.
+- Homelab disk/backup encryption and restore reliability were not verified. Per-tester access/revocation, shared quota management and backup/restore remain operational work.
+- Reassess Apple's encryption declaration if a later build changes cryptography. The previously approved answer is not a permanent declaration for unknown future implementations.
+
+## 0O. Repository layout and reproducibility — 13 November 2026
+
+The user approved a separate layout worktree and README rewrite using `create-readme`, followed by commit/push/PR. Commit **`c978e7de371c8eb0acc22428e2100a95a3b6d491`**, branch **`gi/repository-layout`**, was published as [PR 19](https://github.com/pibeebee/C67/pull/19) targeting dev. Its last observed state was open, ready for review and without merge conflicts; no merge of PR 19 is asserted here.
+
+| Previous checkout path | Restructured path |
+| --- | --- |
+| `ios-ui/` | `apps/ios/` |
+| `ios-backend/` | `packages/C67Backend/` |
+| PoC-contained Pocket server | `server/pocket/src/` with tests and deployment recipes |
+| `poc-journey/` | `research/poc-journey/` |
+| `tripsense-poc/`, `evaluations/` | `research/tripsense-poc/`, `research/evaluations/` |
+| `Claude outputs/` | `design/branding/` |
+| Flat documentation | `docs/product`, `architecture`, `guides`, `operations`, `testing`, `tasks`, `history` |
+
+Swift module names remain C67Domain, C67Data and PocketEngine. Production Pocket no longer imports its live service code from an experimental snapshot. Moving folders did not redeploy the existing server or change the already uploaded binary. Ignored client configurations need deliberate relocation; preserve the original checkout's unrelated iPad edits.
+
+Executed layout checks passed: 12 core tests, 47 shared-client tests, four Python Pocket HTTP/CLI tests, four promotion-policy tests, 66 research Python tests, 22 planning tests, contracts, formatting, Compose parsing and Docker smoke checks. The recorded iPhone 18 Pro Max layout smoke runtime was **iOS 27.0**, distinct from the earlier iOS 27.2 live campaign. Two selected UI flows passed; two opt-in live cases were skipped. These counts are separate suites, not a recommendation-accuracy percentage.
+
+The restructure preserved hashes for 3415 imported files and 32 existing maintained-source evolutions. Sixty-one missing historical attachments were reproduced before the move and registered as exact exceptions, not replaced with invented evidence. See the [layout task](https://github.com/pibeebee/C67/blob/c978e7de371c8eb0acc22428e2100a95a3b6d491/docs/tasks/repository-layout.md) and [migration guide](https://github.com/pibeebee/C67/blob/c978e7de371c8eb0acc22428e2100a95a3b6d491/docs/guides/repository-layout.md).
+
+## 0P. Priority 1, Jakarta-only expansion and blind-spot review — 13 November 2026
+
+### Latest user direction and the corrected scope
+
+The latest discussion returned to **priority 1: reliable venue data and preference matching**. The intended catalogue stores branch-specific places paired with the existing labels, plus identity, coordinates, access, hours, sources, quotes and verification dates. A place may have several labels; unproven claims remain unknown.
+
+**For the present phase, collection/enrichment is a batch development activity before publication, outside individual traveller recommendation requests.** Runtime recommendations use the prepared catalogue plus the existing Apple session search. Automatic crawling on every recommendation request is not an agreed requirement. The earlier request-shaped priority-1 diagram was clarified by this decision.
+
+The user expanded the intended scope from South Jakarta/Kemayoran to **Jakarta only**, excluding Tangerang, Bekasi, Depok and Bogor destinations. This expansion is approved direction, **not implemented coverage**. At inspection the UI picker, repository guard and bundled area registry still support only the two original areas.
+
+OSM extracts and Overture files can be processed on the server without a per-query monthly vendor quota once downloaded; their public API endpoints and infrastructure still have limits/costs. OSM public Nominatim is not a bulk all-POI discovery service. Overture release dates and OSM snapshot freshness do not prove that each venue was recently checked. Apple Maps Server API/MapKit JS's documented shared 25,000 service calls per day per team must not be applied as a monthly native MapKit allowance; native services can still throttle. See [Apple server API](https://developer.apple.com/documentation/applemapsserverapi), [Nominatim policy](https://operations.osmfoundation.org/policies/nominatim/), [Overpass shared-service guidance](https://dev.overpass-api.de/overpass-doc/en/preface/commons.html), and [Overture Places](https://docs.overturemaps.org/guides/places/).
+
+The user manually found no useful Japanese-restaurant information in their OSM/Overture Blok M search. That observation is a coverage warning, not proof that neither dataset contains any such venues. Audit extraction/schema, names, taxonomy and geographic filters, but **do not keep OSM/Overture membership as a mandatory discovery gate**. Web sources, official branch locators, operator/menu pages and relevant official directories need their own candidate-discovery path. OSM/Overture are complements, not completeness guarantees. Coordinates must be sourced or reviewed; never guessed by a model.
+
+Jakarta's administrative scope includes five cities and Kepulauan Seribu. Catalogue inclusion and supported transport are distinct: current walking/driving cannot establish an inter-island itinerary. Mark unsupported travel explicitly rather than silently removing the islands from the meaning of Jakarta. Destination boundaries, an origin/return point outside Jakarta and a road route crossing a boundary are also separate policies to resolve. See [Jakarta's official overview](https://www.jakarta.go.id/tentang-jakarta).
+
+### Consolidated blind spots: findings are not completed fixes
+
+| Finding at inspection | Consequence | Proposed work within priority 1 / Jakarta expansion |
+| --- | --- | --- |
+| Importer accepts only `osm-`/`overture-` IDs | Web-discovered independent places cannot enter without those source IDs | Internal branch ID with optional external IDs and reviewed identity/coordinate provenance |
+| Known-URL retrieval is not candidate discovery | A successful crawler can still miss entire venue clusters | Separate and measure candidate/URL discovery, page reading, extraction and acceptance |
+| 62 selectable labels, limited underlying evidence/category mapping | UI completeness can conceal empty label/region coverage | Track region × label coverage and supported/unknown/contradicted claims; audit source-to-taxonomy mapping |
+| `reviewed: true`, HTTPS host and branch quote are structural guards | The current importer does not prove the quote occurs in the fetched document or entails the claim | Retain source excerpts/hash; validate quote occurrence, semantic support, branch and date; review uncertain claims |
+| Name/alias plus distance ≤125 m drives merging | Nearby branches/tenants may merge; aliases may leave duplicates | Use branch address/unit/source IDs; quarantine ambiguity; preserve and resolve conflicting hours |
+| Base categories have no freshness gate comparable to facts/hours | Old categories can continue producing matches after evidence expires | Version/category provenance and separate snapshot/fetch/verification/expiry times |
+| Fresh entries are skipped until expiry | Known mistakes or verified closure corrections can be held for the cache lifetime | Propose an auditable correction/invalidation path distinct from routine refetch; this policy refinement is not yet approved |
+| Matching a category is not visit readiness | Recommendations can fail later on access, booking, sessions or hours | Separate recommendation eligibility from itinerary readiness; consider last entry, split hours and date exceptions |
+| One area-wide Apple rectangle, at most eight interest queries, no distance term in current relevance ranking | Wider boundaries can concentrate results or scatter them too far apart | Search bounded geographic clusters, deduplicate, then assess origin/time feasibility; expose truncation rather than infer absence |
+| Maximum matching is attempted but the adapter's final coverage check uses the union of interests | Overlapping interests need explicit distinct-representative acceptance; partial-interest policy also differs from the earlier plan | Add a focused regression and enforce the agreed assignment/missing-interest behaviour; static concern, not a reproduced new runtime failure |
+| Full catalogue fetch, client limits 20,000 venues / 30 MB | Expansion increases transfer and memory; the size check happens after downloading | Versioned/conditional sync and local cache, then region partitions or deltas if measurements justify them |
+| Historical source rules, licences and web permissions vary | A renamed internal record does not remove source obligations | Retain per-source provenance/licensing; assess permitted retention/redistribution and keep Apple session material separate |
+| Page count, supported proposals and candidate availability are weak success metrics alone | High collection volume can hide wrong pins, unsupported labels and unusable recommendations | Measure accepted correct venues, branch/pin errors, required-condition violations, recommendation readiness and cost per accepted usable venue |
+| Current beta shares access and provider quota | A public invite is not per-tester authorization or operational reliability | Plan revocable tester access, usage caps and verified backup/restore as a separate operational slice |
+
+The licensing distinction is explicit in [Overture's attribution page](https://docs.overturemaps.org/attribution/) and [Places guide](https://docs.overturemaps.org/guides/places/): Places and OSM-derived themes do not all share the same licence. Review the actual combination; do not assume an internal database cancels original obligations.
+
+The audit read maintained `Domain.swift`, `Discovery.swift`, `Themes.swift`, `PocketPlanningRepository.swift`, `PocketAppleServices.swift`, `PocketServices.swift`, `server/pocket/src/server.py`, the area picker and resources at layout revision c978e7d. It ran no new live benchmark or mass ingestion. The 36/3/3 catalogue count is a checkout resource count, not a current homelab inventory. A model choosing a valid schedule ID is not proof of preference relevance or knowledge about the place.
+
+### Proposed implementation order; not started by the final discussion
+
+1. **Catalogue foundation:** internal branch identity, optional provider references, per-field provenance, review/publication status, freshness and an explicit correction policy. Keep immutable source/run manifests and resumable progress.
+2. **Jakarta boundary integration:** sourced Polygon/MultiPolygon boundaries consistently across ingestion, core validation and UI. Test border cases and distinguish unsupported island transport. Settle origins/return/cross-boundary route semantics explicitly.
+3. **Development-time batch pipeline:** multi-source candidate discovery → retrieve official/appropriate sources → Luna extraction → identity/quote/schema/semantic validation → review queue → publish a versioned catalogue. Preserve the no-Google/no-982 boundary.
+4. **Representative pilot:** include Blok M Japanese dining and other neighbourhoods/interests across the five mainland cities. Do not equate Blok M success with Jakarta coverage. Maintain accepted / needs review / rejected outcomes with reasons; missing source is not a negative attribute.
+5. **Matching and shortlist quality:** validate distinct-interest representation, resolve the partial-interest policy, preserve required conditions, distinguish data readiness, and consider geographic/time feasibility without changing the whole planner or replacing providers prematurely.
+6. **Independent acceptance:** freeze 12 new briefs and reviewer references before tuning; keep those references out of model inputs. Retain the 10/12 target but report results by region/interest, retrieval versus ranking, readiness, conflicts, provider failure, latency and cost. Expected rejection/unsupported controls are separate from successful real recommendations.
+
+Use persisted cache and per-source rate/concurrency/page/token/credit budgets. Retry technical failures with bounded backoff and checkpoints; do not cache a network failure as a factual 30-day unknown or retry endlessly. Reuse unchanged source material instead of repeated model extraction. Record the actual Firecrawl balance/pricing and provider usage before a future authorized live batch; no remaining balance, account-limit percentage or reset time is assumed from an earlier run.
+
+### Handoff for the next chat
+
+<a id="current-handoff"></a>
+
+**Current objective:** prepare a trustworthy, independently sourced Jakarta catalogue for the existing 62-label Pocket recommender, through offline development batches, while keeping Apple-first runtime search/routing. **Do not start a batch, change architecture, deploy, commit or push merely because this document contains a plan.** The last authorized action in this chat was documentation.
+
+- Read this section first, then 0L–0O and the linked reports. Sections 0–0I and 2–9 are dated history. Do not resume Google Places, import the 982-place dataset, or reactivate E5/AnyJev/Context Lab as a production requirement.
+- Inspect current Git status, branch, PR 19 and the actual layout before editing. The named source checkout still has `poc-journey/`, `ios-ui/`, `ios-backend/`; the layout worktree uses `research/poc-journey/`, `apps/ios/`, `packages/C67Backend/`. Preserve local iPad/configuration edits and secrets. This CBL update is local until explicitly committed/pushed.
+- The seven themes/62 labels and native UI are already connected. The latest approved geographic direction is Jakarta only; implementation still accepts only South Jakarta/Kemayoran. The web batch pipeline and blind-spot fixes above are proposed and unimplemented.
+- The live park example proves bounded technical plumbing. No independent 10/12 recommendation gate, physical TestFlight journey, observed ETA accuracy or full weather recovery is claimed. Do not sum synthetic tests, reruns and live briefs into one accuracy percentage.
+- Last observed external TestFlight status was Waiting for Review. Verify current Apple state before taking any distribution action. Public service health likewise needs a fresh read-only check if operational work resumes.
+- Confirm the multi-interest/partial-result policy and the exceptional correction policy before dependent behavioural changes. Keep routine 30-day reuse, source expiry, date-specific availability and technical backoff distinct.
+- Continue with a bounded implementation brief for the catalogue foundation and Jakarta expansion, then tests proportional to that change. User-side preference input is not a reason to rewrite the UI or replace the scheduling engine again.
+
+Documentation provenance: the 9 November Context Lab checkpoint; inspected 10–12 November pilot/benchmark reports; the preceding Pocket Engine and venue-enrichment chats; and this chat's PR, UI, homelab, TestFlight, catalogue and Jakarta/blind-spot discussions through 13 November. Missing raw/local attachments stay explicitly missing. This update records those observations and decisions; it does not repeat their experiments.
+
+
+## 1. Current concept and source precedence — updated 13 November 2026
+
+The app helps travellers choose places, review a feasible order/timing proposal, adjust it and save the trip. The current native product uses Pocket Engine through C67Domain/C67Data with MapKit, WeatherKit and optional catalogue/Luna services. Read sections 0J–0P and the [current handoff](#current-handoff) for the latest decisions, implementation, observed results and unresolved policies. Context Lab, Foundation Lab, E5 and earlier routing experiments retain their own dated evidence and are not automatically active production dependencies.
+
+Sections 2–9 below preserve the 29 October concept and open questions. Later explicit user decisions take precedence. In particular, do not resume Google Places, assume browsing exists merely because an LLM is configured, or treat a TestFlight submission as external publication. The latest catalogue work is proposed offline development-time collection for Jakarta; it has not been executed by this documentation task.
 
 Klarifikasi eksplisit terbaru pengguna mengungguli dokumen lama. Urutan baca:
 

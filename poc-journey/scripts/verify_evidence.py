@@ -17,6 +17,9 @@ def maintained_path(path, owner="publication-manifest.json"):
     if not parts or PurePosixPath(path).is_absolute() or ".." in parts:
         return False
     if owner == "context-lab-publication.json":
+        # The user maintains this decision log; other imported source records stay archival.
+        if path == "docs/source-records/CBL.md":
+            return True
         prefix = "apps/c67-local-server-lab/"
         if not path.startswith(prefix):
             return False
