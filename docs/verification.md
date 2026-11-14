@@ -2,6 +2,14 @@
 
 [Live Pocket and TestFlight handoff](tasks/pocket-live-testflight-handoff.md) records the later iPhone 18 Pro Max Simulator results with real venues, Apple ETA, Luna, the server container smoke check, and the remaining signing/HTTPS gates.
 
+## Recommendations before trip configuration — 14 November 2026
+
+The [flow-change evidence](tasks/recommendations-first-flow.md) records passing Debug Simulator and unsigned iOS device Release compilation with Xcode 27.2 / Swift 6.4.2. Focused hosted model tests pass 36 tests across creation/preference suites on iPhone 18 Pro Max / iOS 27.2; backend tests pass 47 and Pocket Engine tests pass 12. All 660 Swift files pass pinned formatting; plist/entitlements and whitespace checks pass. Fixed the old recommendation initializer call that caused a SwiftUI type-check failure, a compiler warning, and stale recommendation-error handling. Selections above six reach the later configuration intact; the existing planner still rejects unsupported counts. UI/render tests, manual interaction, live MapKit quality, physical devices, signing and TestFlight were excluded. A nonblocking Xcode App Intents metadata warning remains; this app does not depend on AppIntents.
+
+## Travelant TestFlight preparation — 13 November 2026
+
+Travelant 0.1.0 (build 1) archived for a generic iOS device with Xcode 27.2, exported with App Store distribution signing, and passed Xcode’s App Store Connect validation. Apple initially rejected the missing iPad orientation declarations. XcodeGen now declares all four iPad orientations and portrait on iPhone. The exported bundle was verified to include the Pocket HTTPS URL and WeatherKit entitlement. The app record exists in App Store Connect. Build upload, physical device testing, and a live WeatherKit request from this build remain pending.
+
 ## Native Pocket Engine integration — 12 November 2026
 
 [UI integration evidence](tasks/pocket-ui-integration.md) records the freshly pulled dev base, 62-label inputs, independent discovery, availability review, constrained Luna advice, real solver and local trip persistence. Local checks passed: shared-client/adapter package 47, extracted core 12, and focused app/Simulator selection 29 (zero failures/skips, 83.5 seconds), including both Pocket UI tests. Primary-checkout Release Simulator compilation and normal Debug build/install/launch passed without diagnostics; compiled Debug mode is pocket. Contract, pinned formatting and whitespace checks passed. End-to-end UI transport/venues/ETA/model responses were explicitly synthetic; the local core and adapter were real. Server deployment/live providers, WeatherKit provisioning, oldest-runtime/device/accessibility acceptance and signed TestFlight archive remain separate. No cloud CI was started.

@@ -17,13 +17,26 @@ struct TripInputConfirmationView: View {
                 Text(planning.originLabel)
                 Button("Choose starting point", systemImage: "location.magnifyingglass") { searchesOrigin = true }
             }
-            Section(planning.supportsOnDevicePlanning ? "Places to keep" : "Required places") {
+            Section("Selected places") {
                 ForEach(presenter.selected) { item in Text(item.place.name) }
                 if planning.supportsOnDevicePlanning && !presenter.selected.isEmpty {
                     Button("Visit times and availability") { presenter.push(.availability) }
                 }
-                Button(presenter.selected.isEmpty ? (planning.supportsOnDevicePlanning ? "Add a specific place" : "Choose at least one place") : "Edit places", systemImage: "plus") { presenter.push(.places) }
-                Text(planning.supportsOnDevicePlanning ? "You can request recommendations without a required place. Select the places to visit before planning." : "Choose one to six places. Recommendations are optional additions.").font(.footnote)
+                Button("Edit places", systemImage: "plus") { presenter.push(.places) }
+                if let message = presenter.planningHandoffMessage {
+                    Text(message).font(.footnote).foregroundStyle(.secondary)
+                }
+            }
+            Section("Main spot") {
+                if let id = presenter.mainSpot.placeID,
+                   let item = presenter.selected.first(where: { $0.id == id }) {
+                    Text(item.place.name)
+                    Text(presenter.stay.map { String(localized: $0.title) } ?? "Flexible")
+                        .foregroundStyle(.secondary)
+                } else {
+                    Text("Let Travelant decide")
+                }
+                Button("Change main spot") { presenter.push(.mainSpot) }
             }
             Section("Trip details") {
                 TextField("Trip name", text: $planning.title)
@@ -50,7 +63,9 @@ struct TripInputConfirmationView: View {
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets())
             } footer: {
-                if !presenter.canConfirm {
+                if presenter.planningHandoffMessage != nil {
+                    Text("You can go back to keep choosing places. Your selection has not been shortened.")
+                } else if !presenter.canConfirm {
                     Text(planning.supportsOnDevicePlanning
                         ? "Choose a starting point, a trip name, and a departure and finish time. Plan visits on a single day in Jakarta time."
                         : "Choose a starting point and at least one place, a nonempty name, and a finish time within 24 hours of departure.")

@@ -1,6 +1,6 @@
 import C67Domain
 
-struct RecommendationsBatch {
+struct RecommendationsBatch: Sendable {
     let places: [RecommendedPlace]
     let warnings: [String]
     let synthetic: Bool

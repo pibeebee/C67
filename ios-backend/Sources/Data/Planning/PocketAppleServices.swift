@@ -132,8 +132,7 @@
             let parkWords: Set<String> = ["park", "taman", "rptra", "garden", "kebun", "hutan", "rimba", "forest"]
             let conflictingWords: Set<String> = ["parkir", "parking", "rumah", "residence", "apartment", "apartemen"]
             let parkLike = !parkWords.isDisjoint(with: words) && conflictingWords.isDisjoint(with: words)
-            return
-            switch value {
+            return switch value {
             case .restaurant: "restaurant"
             case .cafe: "cafe"
             case .bakery: "bakery"

@@ -18,7 +18,7 @@ struct PreferenceQuestionView: View {
                 toggle: { interest in edit { $0.toggle(interest) } },
                 next: advance,
                 skip: skip,
-                refinements: refinementOptions,
+                supportedRefinements: refinementOptions,
                 selectedRefinements: answers.refinements,
                 toggleRefinement: { value in edit { $0.refinements.formSymmetricDifference([value]) } }
             )

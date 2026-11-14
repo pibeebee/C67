@@ -2,7 +2,7 @@ import Foundation
 import C67Domain
 
 /// Optional display metadata is supplied only when it is actually available.
-struct RecommendedPlace: Identifiable, Equatable {
+struct RecommendedPlace: Identifiable, Equatable, Sendable {
     var place: PlanningPlace
     var category: String?
     var address: String?

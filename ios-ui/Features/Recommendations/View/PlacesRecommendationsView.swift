@@ -2,84 +2,75 @@ import SwiftUI
 import C67Domain
 
 struct PlacesRecommendationsView: View {
-    @State private var batch: RecommendationsBatch
-    @State private var selected: [PlanningPlace]
-    @State private var isRefreshing = false
-    @State private var refreshFailed = false
+    let batch: RecommendationsBatch
+    let selected: [RecommendedPlace]
+    var isLoading = false
+    var error: String?
+    /// The older planning editor still follows its existing six-place contract.
+    /// The recommendations-first creation flow leaves this nil.
+    var maximumSelection: Int?
+    let load: @MainActor () async -> Void
+    let refresh: @MainActor () async -> Void
+    let cancel: () -> Void
+    let toggle: (RecommendedPlace) -> Void
+    let findPlace: () -> Void
+    let complete: () -> Void
     @State private var showsSelected = false
-    let existing: [PlanningPlace]
-    let refresh: @MainActor () async -> RecommendationsBatch?
-    let continueWithoutSelection: (() -> Void)?
-    let complete: @MainActor ([PlanningPlace]) -> Void
-    let maximumAdditions: Int
+    @State private var retryTask: Task<Void, Never>?
 
-    init(batch: RecommendationsBatch, existing: [PlanningPlace], selected: [PlanningPlace] = [],
-         refresh: @escaping @MainActor () async -> RecommendationsBatch?,
-         continueWithoutSelection: (() -> Void)? = nil,
-         maximumAdditions: Int = 3,
-         complete: @escaping @MainActor ([PlanningPlace]) -> Void) {
-        _batch = State(initialValue: batch)
-        _selected = State(initialValue: selected)
-        self.existing = existing
-        self.refresh = refresh
-        self.continueWithoutSelection = continueWithoutSelection
-        self.complete = complete
-        self.maximumAdditions = maximumAdditions
-    }
-
-    private var existingIDs: Set<UUID> { Set(existing.map(\.id)) }
     private var selectedIDs: Set<UUID> { Set(selected.map(\.id)) }
-    private var selectionLimit: Int {
-        let available = Set(batch.places.map(\.id)).subtracting(existingIDs).union(selectedIDs).count
-        return min(maximumAdditions, max(0, 6 - existing.count), available)
+    private var selectedPlaces: Binding<[PlanningPlace]> {
+        Binding(get: { selected.map(\.place) }, set: { remaining in
+            let ids = Set(remaining.map(\.id))
+            for item in selected where !ids.contains(item.id) { toggle(item) }
+        })
     }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Text("Here’s what we \(Text("found").foregroundStyle(AppColor.accent)) for you")
+                Text("Fantastic! Here’s what we \(Text("found").foregroundStyle(AppColor.accent)) for you")
                     .font(.title.bold())
                     .accessibilityAddTraits(.isHeader)
                 Text("Pull down to refresh recommendations")
-                    .font(.body)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)
 
-                if batch.places.isEmpty {
+                if isLoading { ProgressView("Finding places…").frame(maxWidth: .infinity).padding() }
+                if batch.places.isEmpty && !isLoading {
                     ContentUnavailableView {
                         Label("No recommendations yet", systemImage: "mappin.and.ellipse")
                     } description: {
-                        Text("Try refreshing or choose a place yourself.")
+                        Text("Try refreshing, adjust your preferences, or search for a place.")
                     } actions: {
                         Button("Try again", action: retry)
-                    }
-                } else {
-                    LazyVStack(spacing: 10) {
-                        ForEach(batch.places) { item in
-                            RecommendationPlaceRow(item: item, isSelected: selectedIDs.contains(item.id),
-                                                   isExisting: existingIDs.contains(item.id),
-                                                   isDisabled: !selectedIDs.contains(item.id) && selected.count >= selectionLimit) {
-                                toggle(item.place)
-                            }
-                        }
+                        Button("Search for a place", action: findPlace)
                     }
                 }
-
-                if refreshFailed {
-                    Label("Recommendations couldn’t be refreshed. Your selection is still here.",
-                          systemImage: "exclamationmark.circle")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    Button("Try again", action: retry)
-                        .disabled(isRefreshing)
+                LazyVStack(spacing: 10) {
+                    ForEach(batch.places) { item in
+                        RecommendationPlaceRow(item: item, isSelected: selectedIDs.contains(item.id),
+                                               isExisting: false,
+                                               isDisabled: !selectedIDs.contains(item.id) && maximumSelection.map { selected.count >= $0 } == true) { toggle(item) }
+                    }
+                }
+                if let error {
+                    Label(error, systemImage: "exclamationmark.circle")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    Button("Try again", action: retry).disabled(isLoading)
                 }
                 ForEach(batch.warnings, id: \.self) { warning in
                     Text(warning).font(.footnote).foregroundStyle(.secondary)
                 }
                 if batch.synthetic {
                     Text("Synthetic recommendations for demonstration.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .font(.footnote).foregroundStyle(.secondary)
+                } else if !batch.places.isEmpty {
+                    Text("Check opening hours and any facilities you need before visiting.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    TripRecommendationsMap(places: batch.places)
+                        .frame(height: 180)
+                        .clipShape(.rect(cornerRadius: 20))
                 }
             }
             .padding(.horizontal, 16)
@@ -88,36 +79,30 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
-        .refreshable { await refreshPlaces() }
+        .task { await load() }
+        .refreshable { await refresh() }
+        .onDisappear { retryTask?.cancel(); cancel() }
         .background(AppColor.canvas.ignoresSafeArea())
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 12) {
                 ViewThatFits(in: .horizontal) {
                     HStack {
-                        Text("\(selected.count) of \(selectionLimit) places selected")
+                        Text("\(selected.count) places selected")
                         Spacer()
                         Button("My Places") { showsSelected = true }
                     }
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("\(selected.count) of \(selectionLimit) places selected")
+                        Text("\(selected.count) places selected")
                         Button("My Places") { showsSelected = true }
                     }
                 }
-                .font(.body)
-                Button(action: finish) {
-                    Text("Next")
-                        .frame(maxWidth: .infinity, minHeight: 34)
+                Button("Search for a place", action: findPlace)
+                if let maximumSelection {
+                    Text("Choose up to \(maximumSelection) additional places.").font(.footnote).foregroundStyle(.secondary)
                 }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .tint(AppColor.brand)
-                .frame(maxWidth: .infinity)
-                .disabled(selected.isEmpty || isRefreshing)
-                .accessibilityIdentifier("recommendationsNext")
-                if let continueWithoutSelection {
-                    Button("Continue with my places", action: continueWithoutSelection)
-                        .disabled(isRefreshing)
-                }
+                QuestionPrimaryButton("Next", action: complete)
+                    .disabled(selected.isEmpty)
+                    .accessibilityIdentifier("recommendationsNext")
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
@@ -125,40 +110,19 @@ struct PlacesRecommendationsView: View {
             .background(AppColor.surface)
         }
         .sheet(isPresented: $showsSelected) {
-            SelectedPlacesView(
-                existing: existing,
-                selected: $selected,
-                details: Dictionary(batch.places.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-            )
+            SelectedPlacesView(existing: [], selected: selectedPlaces,
+                               details: Dictionary(selected.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }))
         }
         .navigationTitle("Recommendations")
         .navigationBarTitleDisplayMode(.inline)
         .tint(AppColor.accent)
     }
 
-    private func toggle(_ place: PlanningPlace) {
-        if selectedIDs.contains(place.id) {
-            selected.removeAll { $0.id == place.id }
-        } else if selected.count < selectionLimit && !existingIDs.contains(place.id) {
-            selected.append(place)
-        }
+    private func retry() {
+        guard !isLoading else { return }
+        retryTask?.cancel()
+        retryTask = Task { await refresh() }
     }
-
-    private func retry() { Task { await refreshPlaces() } }
-
-    private func refreshPlaces() async {
-        guard !isRefreshing else { return }
-        isRefreshing = true
-        defer { isRefreshing = false }
-        if let updated = await refresh() {
-            batch = updated
-            refreshFailed = false
-        } else {
-            refreshFailed = true
-        }
-    }
-
-    private func finish() { complete(selected) }
 }
 
 #if DEBUG

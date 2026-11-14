@@ -11,8 +11,8 @@ struct PreferenceAnswers: Equatable, Sendable {
     var budget: Double?
     var transport: TransportMode?
 
-    /// Q1 continues only after at least one interest is chosen.
-    var canContinueFromInterests: Bool { !interests.isEmpty }
+    /// Q1 can continue with a theme, a detailed preference, or both.
+    var canContinueFromInterests: Bool { !interests.isEmpty || !refinements.isEmpty }
 
     mutating func toggle(_ interest: TripInterest) {
         if interests.contains(interest) {

@@ -1,16 +1,16 @@
 import SwiftUI
 
-/// Capsule toggle with an SF Symbol, used for multi-select answers.
+/// Capsule toggle for multi-select answers, with an optional SF Symbol.
 struct ChoiceChip: View {
     let title: LocalizedStringResource
-    let systemImage: String
+    var systemImage: String? = nil
     let isSelected: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: 4) {
-                Image(systemName: systemImage)
+                if let systemImage { Image(systemName: systemImage) }
                 Text(title)
             }
         }

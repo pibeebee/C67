@@ -103,6 +103,8 @@ struct PlanningEditorView: View {
     @State private var showsRecommendations = false
     @State private var recommendations: PlanningResult?
     @State private var recommendationsInput: PlanningInput?
+    @State private var selectedRecommendations: [RecommendedPlace] = []
+    @State private var recommendationError: String?
     @State private var didOpenPlaceSearch = false
     let mode: String
     var usesItineraryReview = false
@@ -201,8 +203,13 @@ struct PlanningEditorView: View {
         }
         .navigationDestination(isPresented: $showsRecommendations) {
             if let recommendations {
-                PlacesRecommendationsView(batch: .init(result: recommendations), existing: presenter.places,
-                                          refresh: refreshRecommendations, complete: addRecommendations)
+                PlacesRecommendationsView(batch: .init(result: recommendations), selected: selectedRecommendations,
+                                          isLoading: isProcessingRecommendations, error: recommendationError,
+                                          maximumSelection: max(0, 6 - presenter.places.count), load: {},
+                                          refresh: { await refreshRecommendations() }, cancel: {},
+                                          toggle: toggleRecommendation,
+                                          findPlace: { searchPurpose = .destination },
+                                          complete: { addRecommendations(selectedRecommendations.map(\.place)) })
             }
         }
         .task {
@@ -225,6 +232,8 @@ struct PlanningEditorView: View {
             isProcessingRecommendations = false
             guard let result = currentRecommendations(), let input = presenter.draftInput else { return }
             recommendations = result
+            selectedRecommendations = []
+            recommendationError = nil
             recommendationsInput = input
             showsRecommendations = true
         }
@@ -237,11 +246,25 @@ struct PlanningEditorView: View {
         return job.result
     }
 
-    private func refreshRecommendations() async -> RecommendationsBatch? {
-        guard !presenter.isBusy, presenter.draftInput == recommendationsInput else { return nil }
+    private func refreshRecommendations() async {
+        guard !presenter.isBusy, !isProcessingRecommendations, presenter.draftInput == recommendationsInput else { return }
+        isProcessingRecommendations = true
+        defer { isProcessingRecommendations = false }
         await presenter.request(.suggest)
-        guard presenter.draftInput == recommendationsInput, let result = currentRecommendations() else { return nil }
-        return RecommendationsBatch(result: result)
+        guard presenter.draftInput == recommendationsInput, let result = currentRecommendations() else {
+            if !Task.isCancelled { recommendationError = "Recommendations could not be refreshed. Your selection is kept." }
+            return
+        }
+        recommendations = result
+        recommendationError = nil
+    }
+
+    private func toggleRecommendation(_ item: RecommendedPlace) {
+        if selectedRecommendations.contains(where: { $0.id == item.id }) {
+            selectedRecommendations.removeAll { $0.id == item.id }
+        } else if !presenter.places.contains(where: { $0.id == item.id }), selectedRecommendations.count < max(0, 6 - presenter.places.count) {
+            selectedRecommendations.append(item)
+        }
     }
 
     private func addRecommendations(_ places: [PlanningPlace]) {

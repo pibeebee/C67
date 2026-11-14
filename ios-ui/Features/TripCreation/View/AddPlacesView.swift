@@ -34,7 +34,7 @@ struct AddPlacesView: View {
                                            description: Text(query.isEmpty ? "Search for a place or address to add it to your trip." : "Try a different name or area."))
                 }
                 ForEach(displayed) { item in
-                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: selected.count >= 6) { toggle(item) }
+                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false) { toggle(item) }
                 }
                 if synthetic {
                     Text("Synthetic place search · demonstration only")

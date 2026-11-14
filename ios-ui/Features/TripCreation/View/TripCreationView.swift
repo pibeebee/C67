@@ -20,7 +20,7 @@ struct TripCreationView: View {
             if let error = presenter.error, !presenter.isProcessing {
                 VStack(alignment: .leading, spacing: 8) {
                     Label(error, systemImage: "exclamationmark.circle").font(.footnote)
-                    if presenter.route == .mainSpot || presenter.route == .stay {
+                    if presenter.route == .confirmation || presenter.route == .availability {
                         Button("Try again") { run { await presenter.plan() } }
                     }
                 }
@@ -31,11 +31,8 @@ struct TripCreationView: View {
         .overlay {
             if presenter.isProcessing {
                 ZStack(alignment: .bottom) {
-                    if presenter.isSuggesting { RecommendationsProcessingView() }
-                    else {
-                        TripProcessingView(advances: false, messageOverride: presenter.mode.hasPrefix("Mock")
-                            ? "Building your synthetic itinerary…" : "Putting your trip together…")
-                    }
+                    TripProcessingView(advances: false, messageOverride: presenter.mode.hasPrefix("Mock")
+                        ? "Building your synthetic itinerary…" : "Putting your trip together…")
                     Button { operation?.cancel(); dismiss() } label: {
                         Text("Cancel").frame(minWidth: 44, minHeight: 44)
                     }
@@ -45,8 +42,10 @@ struct TripCreationView: View {
             }
         }
         .interactiveDismissDisabled(presenter.isProcessing || presenter.planning.isBusy)
-        .onChange(of: presenter.planning.sessionGeneration) { _, _ in operation?.cancel(); dismiss() }
-        .onDisappear { operation?.cancel() }
+        .onChange(of: presenter.planning.sessionGeneration) { _, _ in
+            operation?.cancel(); presenter.cancelRecommendations(); dismiss()
+        }
+        .onDisappear { operation?.cancel(); presenter.cancelRecommendations() }
         .tint(AppColor.accent)
     }
 
@@ -64,29 +63,30 @@ struct TripCreationView: View {
                               isSearching: presenter.isSearching, error: presenter.searchError,
                               synthetic: presenter.mode.hasPrefix("Mock"), search: { await presenter.search() }, toggle: presenter.toggle) {
                     if presenter.path.contains(.confirmation) { presenter.path.removeLast() }
-                    else { presenter.push(.confirmation) }
+                    else if presenter.path.contains(.recommendations) { presenter.path.removeLast() }
+                    else { presenter.finishChoosingPlaces() }
                 }
             case .confirmation:
                 TripInputConfirmationView(presenter: presenter) { run { await presenter.confirm() } }
             case .availability:
                 PocketVisitAvailabilityView(presenter: presenter) { run { await presenter.plan() } }
             case .recommendations:
-                PlacesRecommendationsView(batch: presenter.batch, existing: presenter.recommendationBase.map(\.place),
-                                          selected: presenter.chosenRecommendations,
-                                          refresh: { await presenter.suggest() },
-                                          continueWithoutSelection: presenter.recommendationBase.isEmpty ? nil : { presenter.chooseRecommendations([]) },
-                                          maximumAdditions: presenter.planning.supportsOnDevicePlanning ? 6 : 3,
-                                          complete: presenter.chooseRecommendations)
+                PlacesRecommendationsView(batch: presenter.batch, selected: presenter.selected,
+                                          isLoading: presenter.isSuggesting, error: presenter.recommendationError,
+                                          load: { await presenter.loadRecommendationsIfNeeded() },
+                                          refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
+                                          toggle: presenter.toggle,
+                                          findPlace: { presenter.push(.places) }, complete: presenter.finishChoosingPlaces)
             case .mainSpot:
                 MainSpotQuestionView(places: presenter.selected, selection: presenter.mainSpot,
                                      select: { presenter.mainSpot = $0; presenter.stay = nil },
                                      next: { run { await presenter.finishMainSpot() } },
-                                     skip: { presenter.mainSpot = .automatic; run { await presenter.plan() } })
+                                     skip: { presenter.mainSpot = .automatic; presenter.stay = nil; presenter.finishSurvey() })
             case .stay:
                 StayDurationQuestionView(placeName: presenter.selected.first(where: { $0.id == presenter.mainSpot.placeID })?.place.name ?? "your main spot",
                                          selection: presenter.stay,
-                                         select: { value in presenter.stay = value; run { await presenter.plan() } },
-                                         skip: { presenter.stay = nil; run { await presenter.plan() } })
+                                         select: { value in presenter.stay = value; presenter.finishSurvey() },
+                                         skip: { presenter.stay = nil; presenter.finishSurvey() })
             case .review:
                 if let proposal = presenter.reviewProposal {
                     ItineraryReviewView(presenter: presenter.planning, initialProposal: proposal)
