@@ -1,5 +1,6 @@
 #if DEBUG
     import SwiftUI
+    import C67Domain
 
     struct RecommendationsDesignPreview: View {
         let addedCount: Int
@@ -13,8 +14,8 @@
 
         var body: some View {
             NavigationStack {
-                PlacesRecommendationsView(batch: RecommendationsPreviewData.batch, selected: selected,
-                                          load: {}, refresh: {}, cancel: {}, toggle: { item in
+                PlacesRecommendationsView(batch: RecommendationsPreviewData.batch, selected: selected, usesDeviceLocation: false,
+                                          previewLocation: .init(latitude: -6.2, longitude: 106.84), load: {}, refresh: {}, cancel: {}, toggle: { item in
                                               if selected.contains(where: { $0.id == item.id }) {
                                                   selected.removeAll { $0.id == item.id }
                                               } else { selected.append(item) }

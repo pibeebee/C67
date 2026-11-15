@@ -1,11 +1,19 @@
 import SwiftUI
+import C67Domain
 
 struct RecommendationPlaceRow: View {
     let item: RecommendedPlace
+    var userLocation: PlanningPoint?
     let isSelected: Bool
     let isExisting: Bool
     let isDisabled: Bool
     let action: () -> Void
+
+    private var accessibilityValue: String {
+        let state = isExisting ? String(localized: "Already in your trip") : isSelected ? String(localized: "Added") : String(localized: "Not selected")
+        guard item.straightLineDistance(from: userLocation) != nil else { return state }
+        return "\(item.distanceDescription(from: userLocation)), \(state)"
+    }
 
     var body: some View {
         Button(action: action) {
@@ -19,8 +27,8 @@ struct RecommendationPlaceRow: View {
                     Text(item.poiPresentation?.label ?? item.category ?? String(localized: "Suggested place"))
                         .font(.footnote)
                         .foregroundStyle(.secondary)
-                    if let address = item.address {
-                        Text(address)
+                    if item.straightLineDistance(from: userLocation) != nil {
+                        Text(item.distanceDescription(from: userLocation))
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -47,7 +55,7 @@ struct RecommendationPlaceRow: View {
         .buttonStyle(.plain)
         .disabled(isDisabled || isExisting)
         .accessibilityLabel(item.place.name)
-        .accessibilityValue(isExisting ? Text("Already in your trip") : isSelected ? Text("Added") : Text("Not selected"))
+        .accessibilityValue(Text(accessibilityValue))
         .accessibilityHint(isSelected ? Text("Remove from selection") : Text("Add to selection"))
         .accessibilityIdentifier("recommendation-\(item.id)")
     }

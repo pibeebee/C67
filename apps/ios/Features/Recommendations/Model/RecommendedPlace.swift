@@ -1,5 +1,6 @@
 import Foundation
 import MapKit
+import CoreLocation
 import C67Domain
 
 /// Optional display metadata is supplied only when it is actually available.
@@ -10,6 +11,27 @@ struct RecommendedPlace: Identifiable, Equatable, Sendable {
     var previewImage: String?
 
     var id: UUID { place.id }
+
+    func straightLineDistance(from origin: PlanningPoint?) -> CLLocationDistance? {
+        guard let origin else { return nil }
+        let source = CLLocationCoordinate2D(latitude: origin.latitude, longitude: origin.longitude)
+        let destination = CLLocationCoordinate2D(latitude: place.location.latitude, longitude: place.location.longitude)
+        guard CLLocationCoordinate2DIsValid(source), CLLocationCoordinate2DIsValid(destination) else { return nil }
+        return CLLocation(latitude: source.latitude, longitude: source.longitude)
+            .distance(from: CLLocation(latitude: destination.latitude, longitude: destination.longitude))
+    }
+
+    func distanceDescription(from origin: PlanningPoint?) -> String {
+        guard let meters = straightLineDistance(from: origin), meters.isFinite else {
+            return String(localized: "Distance unavailable")
+        }
+        if meters < 1_000 {
+            let rounded = Int((meters / 10).rounded() * 10)
+            return String(localized: "≈ \(rounded) m away")
+        }
+        let kilometers = (meters / 1_000).formatted(.number.precision(.fractionLength(1)))
+        return String(localized: "≈ \(kilometers) km away")
+    }
 
     var poiPresentation: (label: String, symbol: String)? {
         guard let raw = place.categories.first else { return nil }

@@ -18,6 +18,7 @@ import C67Domain
     private(set) var isSearching = false
     private(set) var searchError: String?
     private(set) var isProcessing = false
+    private(set) var isShowingCompletion = false
     private(set) var isSuggesting = false
     private(set) var recommendationError: String?
     private(set) var batch = RecommendationsBatch(places: [], warnings: [], synthetic: false)
@@ -225,6 +226,7 @@ import C67Domain
             error = planning.error ?? "Your itinerary could not be prepared. Try again."
             return
         }
+        guard await showCompletion() else { return }
         reviewProposal = job.result?.proposal
         push(.review)
     }
@@ -255,6 +257,7 @@ import C67Domain
         guard !Task.isCancelled, !planning.privateAccessBlocked, route == routeBeforeRequest else { return }
         if planning.error == nil, let job = planning.job, job.purpose == .firstItinerary,
            let proposal = job.result?.proposal {
+            guard await showCompletion(), route == routeBeforeRequest else { return }
             availabilityIDs = []
             reviewProposal = proposal
             push(.review)
@@ -266,6 +269,18 @@ import C67Domain
             if !availabilityPlaces.isEmpty, route != .availability { push(.availability) }
             error = planning.error ?? result?.warnings.prefix(3).joined(separator: "\n") ?? "Your itinerary could not be prepared. Try again."
         }
+    }
+
+    private func showCompletion() async -> Bool {
+        let session = planning.sessionGeneration
+        isShowingCompletion = true
+        defer { isShowingCompletion = false }
+        do {
+            try await Task.sleep(for: .seconds(1.5))
+        } catch {
+            return false
+        }
+        return !Task.isCancelled && session == planning.sessionGeneration && !planning.privateAccessBlocked
     }
 
     var preferenceText: String {

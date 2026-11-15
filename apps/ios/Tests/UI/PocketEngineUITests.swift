@@ -2,6 +2,27 @@ import CoreLocation
 import XCTest
 
 final class PocketEngineUITests: XCTestCase {
+    @MainActor func testRecommendationDistanceUsesSimulatedDeviceLocation() {
+        continueAfterFailure = false
+        XCUIDevice.shared.location = XCUILocation(location: CLLocation(latitude: -6.25, longitude: 106.8))
+        defer { XCUIDevice.shared.location = nil }
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash", "--pocket-integration-fixture"]
+        app.launch()
+        openTripMenu(app)
+        app.buttons["Get Recommendations"].tap()
+        XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
+        app.buttons["Skip"].tap()
+        let permission = app.alerts.buttons["Allow While Using App"]
+        if permission.waitForExistence(timeout: 3) { permission.tap() }
+        let row = app.buttons["Fixture Japanese 1"]
+        XCTAssertTrue(row.waitForExistence(timeout: 15), app.debugDescription)
+        let hasDistance = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (row.value as? String)?.contains("away") == true
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [hasDistance], timeout: 20), .completed, app.debugDescription)
+    }
+
     @MainActor func testFirstItineraryKeepsUnknownPlacesAndSavesTheRecommendation() {
         continueAfterFailure = false
         let app = openFixtureRecommendations()
@@ -24,6 +45,9 @@ final class PocketEngineUITests: XCTestCase {
             return
         }
         XCTAssertFalse(app.navigationBars["Visit availability"].exists)
+        let weather = app.staticTexts["itineraryDepartureWeather"]
+        XCTAssertTrue(weather.waitForExistence(timeout: 5))
+        XCTAssertTrue(weather.label.contains("Weather forecast unavailable"))
         XCTAssertTrue(app.staticTexts["Fixture Japanese 1"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Japanese 2"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Unknown Hours"].exists)

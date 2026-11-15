@@ -1,5 +1,33 @@
 # Starter verification
 
+## Itinerary map and weather display — 15 November 2026
+
+[Verification and source audit](../tasks/itinerary-weather-map-adjustments.md) cover full-screen map interaction and forecast display. WeatherKit-first ordering remains unimplemented.
+
+## Full-page trip creation — 15 November 2026
+
+[Full-page navigation verification](../tasks/trip-creation-full-page.md) covers the synthetic Simulator flows and remaining live recovery limit.
+
+## Pocket UI handoff — 15 November 2026
+
+Pocket-mode Debug build and launch succeeded on iPhone 18 Pro Max / iOS 27.2; the installed configuration was verified as Pocket. A synthetic Pocket integration UI test passed through itinerary generation, reordering, and saving. SwiftFormat passed for all 662 Swift files. The Simulator requested location permission but a successful device position was not observed. No live Luna order or physical-device GPS was validated in this handoff.
+
+## Recommendation device distance — 15 November 2026
+
+[Verification and GPS limits](../tasks/recommendation-device-distance.md) cover simulated Core Location, device-distance display, and the remaining physical-device verification.
+
+## Preference quick-pick selection — 15 November 2026
+
+[Verification](../tasks/preference-quick-pick-selection.md) covers selection and removal in the mock Simulator.
+
+## Itinerary time display — 15 November 2026
+
+[Verification](../tasks/itinerary-24-hour-time.md) covers fixed 24-hour formatting and a synthetic Simulator preview.
+
+## Trip processing Hi-Fi — 15 November 2026
+
+[Task and verification notes](../tasks/trip-processing-hifi.md) cover the two processing states, mock Simulator walkthrough, and remaining live-recovery checks.
+
 ## Runtime visit research and Luna — 14 November 2026
 
 [Current implementation and evidence](../tasks/pocket-runtime-visit-resolution.md): native catalog fallback and geographic allowlists removed; selected places are researched by the server with actual Luna. Backend 53, core 14 and Python resolver 24 checks pass. Targeted Simulator fixtures pass 36 checks; the live five-place UI path also passes, but schedules only 1/5 places. Six HTTP 524 responses, conflicting hours and ambiguous branch identity remain material coverage limits. A focused fresh-source/batched-Luna park test passes. The smaller-batch Perpusnas experiment also returned unresolved after HTTP 524. A real native Responses extraction completed, but final server/advice acceptance failed with URLError and work stopped at the user’s requested boundary. No shared server deployment or physical-iPhone/TestFlight acceptance is implied.

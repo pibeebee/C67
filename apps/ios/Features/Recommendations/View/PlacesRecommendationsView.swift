@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import C67Domain
 
 struct PlacesRecommendationsView: View {
@@ -7,6 +8,8 @@ struct PlacesRecommendationsView: View {
     var isLoading = false
     var error: String?
     var areaDescription: LocalizedStringResource?
+    var usesDeviceLocation = true
+    var previewLocation: PlanningPoint?
     /// The older planning editor still follows its existing six-place contract.
     /// The recommendations-first creation flow leaves this nil.
     var maximumSelection: Int?
@@ -16,6 +19,9 @@ struct PlacesRecommendationsView: View {
     let toggle: (RecommendedPlace) -> Void
     let findPlace: () -> Void
     let complete: () -> Void
+    @State private var location = PlanningLocation()
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openURL) private var openURL
     @State private var showsSelected = false
     @State private var retryTask: Task<Void, Never>?
 
@@ -45,6 +51,27 @@ struct PlacesRecommendationsView: View {
                     Text(areaDescription).font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
                 }
 
+                if usesDeviceLocation && location.point == nil {
+                    if location.isRequesting {
+                        Label("Finding your location…", systemImage: "location")
+                            .font(.footnote).foregroundStyle(.secondary)
+                    } else if location.permissionDenied {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Enable location access to see distances.")
+                                .font(.footnote).foregroundStyle(.secondary)
+                            Button("Open Settings") {
+                                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                            }
+                        }
+                    } else if location.error != nil {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Couldn’t get your location. Try again to see distances.")
+                                .font(.footnote).foregroundStyle(.secondary)
+                            Button("Try location again") { location.request() }
+                        }
+                    }
+                }
+
                 if isLoading { ProgressView("Finding places…").frame(maxWidth: .infinity).padding() }
                 if let error {
                     Label(error, systemImage: "exclamationmark.circle")
@@ -67,7 +94,7 @@ struct PlacesRecommendationsView: View {
                 }
                 LazyVStack(spacing: 10) {
                     ForEach(batch.places) { item in
-                        RecommendationPlaceRow(item: item, isSelected: selectedIDs.contains(item.id),
+                        RecommendationPlaceRow(item: item, userLocation: usesDeviceLocation ? location.point : previewLocation, isSelected: selectedIDs.contains(item.id),
                                                isExisting: false,
                                                isDisabled: !selectedIDs.contains(item.id) && maximumSelection.map { selected.count >= $0 } == true) { toggle(item) }
                     }
@@ -89,14 +116,25 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
-        .task { await load() }
+        .task {
+            if usesDeviceLocation { location.request() }
+            await load()
+        }
         .overlay {
             if isLoading && batch.places.isEmpty {
                 RecommendationsProcessingView()
             }
         }
-        .refreshable { await refresh() }
-        .onDisappear { retryTask?.cancel(); cancel() }
+        .refreshable {
+            if usesDeviceLocation { location.request() }
+            await refresh()
+        }
+        .onDisappear { location.cancel(); retryTask?.cancel(); cancel() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active && usesDeviceLocation && location.permissionDenied {
+                location.request()
+            }
+        }
         .background(AppColor.canvas.ignoresSafeArea())
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 12) {
@@ -135,6 +173,7 @@ struct PlacesRecommendationsView: View {
 
     private func retry() {
         guard !isLoading else { return }
+        if usesDeviceLocation { location.request() }
         retryTask?.cancel()
         retryTask = Task { await refresh() }
     }

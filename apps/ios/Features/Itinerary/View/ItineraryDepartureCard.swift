@@ -43,9 +43,9 @@ struct ItineraryDepartureCard: View {
                     .font(.subheadline.weight(.semibold))
                 Text(ItineraryFormatting.time(departure, zone: proposal.input.timeZone, locale: locale))
                     .font(.largeTitle.bold())
-                if let weather = experienceWeather(at: departure) {
-                    Label(weather, systemImage: "cloud.sun").font(.footnote).padding(.top, 6)
-                }
+                Text(experienceWeather())
+                    .font(.footnote).padding(.top, 6)
+                    .accessibilityIdentifier("itineraryDepartureWeather")
                 Text(proposal.hasExperienceTravelFallback ? "Driving estimates include defaults" : "Driving times are estimates")
                     .font(.caption).padding(.top, 4)
             } else {
@@ -89,11 +89,13 @@ struct ItineraryDepartureCard: View {
         .accessibilityIdentifier("itineraryDeparture")
     }
 
-    private func experienceWeather(at departure: Date) -> String? {
-        guard let first = proposal.stops.first,
+    private func experienceWeather() -> String {
+        guard let first = proposal.stopsWithExperienceEstimates.first,
+              let visitTime = first.visitStartsAt ?? first.arrivalAt,
               let hour = proposal.experiencePlan?.weatherSources.first(where: { $0.placeID == first.id })?
-                  .hourlySamples.first(where: { $0.start <= departure && departure < $0.end }) else { return nil }
-        return String(localized: "Rain chance near first stop · \(hour.precipitationChance.formatted(.percent.precision(.fractionLength(0))))")
+                  .hourlySamples.first(where: { $0.start <= visitTime && visitTime < $0.end }) else {
+            return String(localized: "Weather forecast unavailable for the first stop")
+        }
+        return String(localized: "First stop · \(hour.precipitationChance.formatted(.percent.precision(.fractionLength(0)))) chance of rain")
     }
-
 }

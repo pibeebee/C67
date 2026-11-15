@@ -21,6 +21,36 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["0 selected"].exists)
     }
 
+    @MainActor func testSelectedQuickPickMovesAndReturnsWhenRemoved() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash"]
+        app.launch()
+        XCTAssertTrue(app.buttons["homePlanTrip"].waitForExistence(timeout: 10))
+        app.buttons["homePlanTrip"].tap()
+        let quickPick = app.buttons["pocketLabel-matcha"]
+        let selected = app.buttons["selectedPreference-matcha"]
+        XCTAssertTrue(quickPick.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.tabBars.firstMatch.exists)
+        quickPick.tap()
+        XCTAssertTrue(selected.waitForExistence(timeout: 5))
+        XCTAssertFalse(quickPick.exists)
+        XCTAssertTrue(app.staticTexts["1 selected"].exists)
+        selected.tap()
+        XCTAssertTrue(quickPick.waitForExistence(timeout: 5))
+        XCTAssertFalse(selected.exists)
+        XCTAssertTrue(app.staticTexts["0 selected"].exists)
+    }
+
+    @MainActor func testRecommendationShowsDistanceInsteadOfAddress() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--recommendations-added-preview"]
+        app.launch()
+        let first = app.buttons["ALDI’S BURGER"]
+        XCTAssertTrue(first.waitForExistence(timeout: 10))
+        XCTAssertTrue((first.value as? String ?? "").contains("away"))
+        XCTAssertFalse(app.staticTexts["Jl. Cemp. Putih Tim. 12 No.8A"].exists)
+    }
+
     @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {
         let app = XCUIApplication()
         app.launchArguments = ["--recommendations-added-preview"]

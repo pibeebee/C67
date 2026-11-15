@@ -19,11 +19,10 @@ struct TripCreationView: View {
             screen(presenter.root)
                 .navigationDestination(for: TripCreationRoute.self) { screen($0) }
         }
-        .overlay {
-            if presenter.isProcessing {
-                ZStack(alignment: .bottom) {
-                    TripProcessingView(advances: false, messageOverride: presenter.mode.hasPrefix("Mock")
-                        ? "Building your synthetic itinerary…" : "Luna is arranging your places…")
+        .fullScreenCover(isPresented: Binding(get: { presenter.isProcessing }, set: { _ in })) {
+            ZStack(alignment: .bottom) {
+                TripProcessingView(advances: false, isReady: presenter.isShowingCompletion)
+                if !presenter.isShowingCompletion {
                     Button { operation?.cancel(); dismiss() } label: {
                         Text(presenter.planning.supportsOnDevicePlanning ? "Continue later" : "Cancel")
                             .frame(minWidth: 44, minHeight: 44)
@@ -32,6 +31,7 @@ struct TripCreationView: View {
                     .padding(20)
                 }
             }
+            .interactiveDismissDisabled()
         }
         .interactiveDismissDisabled(presenter.isProcessing || presenter.planning.isBusy)
         .onChange(of: presenter.planning.sessionGeneration) { _, _ in

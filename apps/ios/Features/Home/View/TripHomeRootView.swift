@@ -11,10 +11,12 @@ struct TripHomeRootView: View {
     @State private var selectedTab: TripHomeTab = .trip
     @State private var creation: TripCreationPresenter?
     @State private var sheet: TripHomeSheet?
+    @State private var showsCreation = false
     @State private var tripPath: [UUID] = []
     @State private var historyPath: [UUID] = []
     @State private var location = PlanningLocation()
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(presenter: PlanningPresenter, mode: String, accountPresenter: AccountPresenter?) {
         _presenter = State(initialValue: presenter)
@@ -23,6 +25,63 @@ struct TripHomeRootView: View {
     }
 
     var body: some View {
+        Group {
+            if showsCreation {
+                TripCreationSheet(presenter: $creation, dismiss: dismissCreation, openPocketSettings: showAccount)
+                    .transition(.move(edge: .trailing))
+            } else {
+                homeTabs
+                    .transition(.move(edge: .leading))
+            }
+        }
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: showsCreation)
+        .tint(.blue)
+        .sheet(item: $sheet) { route in
+            switch route {
+            case .location:
+                PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
+            case .account:
+                if presenter.supportsOnDevicePlanning {
+                    PocketConnectionView(presenter: presenter, dismiss: dismissSheet)
+                } else if let accountPresenter {
+                    AccountView(presenter: accountPresenter)
+                } else {
+                    NavigationStack {
+                        ContentUnavailableView("Sign-in needs live mode", systemImage: "person.crop.circle",
+                                               description: Text("Mock mode uses synthetic data and memory-only trips."))
+                            .toolbar {
+                                ToolbarItem(placement: .confirmationAction) {
+                                    Button("Done", action: dismissSheet)
+                                }
+                            }
+                    }
+                }
+            }
+        }
+        .modifier(AppleCredentialRevocationModifier { Task { await accountPresenter?.restore() } })
+        .task { await accountPresenter?.observe() }
+        .task(id: scenePhase) { await restoreWhenActive() }
+        .onChange(of: accountPresenter?.account?.id) { _, _ in accountChanged() }
+        .onChange(of: presenter.openTripID) { _, id in
+            if let id {
+                sheet = nil
+                showsCreation = false
+                creation = nil
+                selectedTab = .trip
+                tripPath = [id]
+                presenter.openTripID = nil
+            }
+        }
+        .onChange(of: location.point) { _, point in
+            if let point, presenter.origin == nil, presenter.firstItineraryJob == nil {
+                presenter.receivedLocation(point)
+                presenter.draftChanged()
+            }
+        }
+        .onOpenURL(perform: handleCallback)
+    }
+
+    private var homeTabs: some View {
         TabView(selection: $selectedTab) {
             Tab("Trip", systemImage: "location", value: .trip) {
                 NavigationStack(path: $tripPath) {
@@ -39,7 +98,7 @@ struct TripHomeRootView: View {
                                     resumeCreation(job)
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .disabled(presenter.isBusy || sheet != nil)
+                                .disabled(presenter.isBusy || sheet != nil || showsCreation)
                                 .padding(8)
                                 .accessibilityIdentifier("resumeItineraryDraft")
                             }
@@ -69,51 +128,6 @@ struct TripHomeRootView: View {
                 }
             }
         }
-        .tint(.blue)
-        .sheet(item: $sheet) { route in
-            switch route {
-            case .planning, .specificPlace:
-                TripCreationSheet(presenter: $creation, dismiss: dismissSheet, openPocketSettings: showAccount)
-            case .location:
-                PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
-            case .account:
-                if presenter.supportsOnDevicePlanning {
-                    PocketConnectionView(presenter: presenter, dismiss: dismissSheet)
-                } else if let accountPresenter {
-                    AccountView(presenter: accountPresenter)
-                } else {
-                    NavigationStack {
-                        ContentUnavailableView("Sign-in needs live mode", systemImage: "person.crop.circle",
-                                               description: Text("Mock mode uses synthetic data and memory-only trips."))
-                            .toolbar {
-                                ToolbarItem(placement: .confirmationAction) {
-                                    Button("Done", action: dismissSheet)
-                                }
-                            }
-                    }
-                }
-            }
-        }
-        .modifier(AppleCredentialRevocationModifier { Task { await accountPresenter?.restore() } })
-        .task { await accountPresenter?.observe() }
-        .task(id: scenePhase) { await restoreWhenActive() }
-        .onChange(of: accountPresenter?.account?.id) { _, _ in accountChanged() }
-        .onChange(of: presenter.openTripID) { _, id in
-            if let id {
-                sheet = nil
-                creation = nil
-                selectedTab = .trip
-                tripPath.append(id)
-                presenter.openTripID = nil
-            }
-        }
-        .onChange(of: location.point) { _, point in
-            if let point, presenter.origin == nil, presenter.firstItineraryJob == nil {
-                presenter.receivedLocation(point)
-                presenter.draftChanged()
-            }
-        }
-        .onOpenURL(perform: handleCallback)
     }
 
     private func addTrip() { beginCreation(specificPlace: false) }
@@ -124,19 +138,20 @@ struct TripHomeRootView: View {
         if creation?.root != root {
             creation = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: specificPlace)
         }
-        sheet = specificPlace ? .specificPlace : .planning
+        showsCreation = true
     }
     private func resumeCreation(_ job: PlanningJob) {
         location.cancel()
         let draft = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: true)
         draft.openFirstItinerary(job)
         creation = draft
-        sheet = .specificPlace
+        showsCreation = true
     }
 
     private func chooseLocation() { sheet = .location }
     private func showAccount() { sheet = .account }
     private func dismissSheet() { sheet = nil }
+    private func dismissCreation() { showsCreation = false }
 
     /// Sketch HI-FI `HOME LOCATION PERMIS`: with no starting point yet, Home asks for the
     /// device position. The system shows its own permission alert the first time; the location
@@ -164,6 +179,7 @@ struct TripHomeRootView: View {
     private func accountChanged() {
         creation = nil
         sheet = nil
+        showsCreation = false
         tripPath = []
         historyPath = []
         reload()

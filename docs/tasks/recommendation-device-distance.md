@@ -1,0 +1,5 @@
+# Recommendation distance from device
+
+- Outcome: recommendation rows show approximate straight-line distance from the device instead of the address. Missing distances are omitted. While locating, the list shows one status; denied access offers Settings, and a failed fix offers a retry. Refreshing also retries. A manually chosen planning origin is not treated as the user's location.
+- Existing GPS: Home requests a one-shot Core Location fix only when there is no planning origin; a manual or restored origin can bypass this. Foreground trip navigation has its own location manager. Recommendations request a fresh one-shot fix when opened, subject to iOS authorization.
+- Verification: iPhone 18 Pro Max / iOS 27.2: targeted UI test injected a simulated device coordinate, exercised the Pocket fixture flow and observed a computed distance; the recommendation preview UI test also passed. Earlier tests covered known coordinates, missing location and invalid coordinates. Pocket Debug build and launch succeeded. Permission-denied and recovery controls, a successful physical-device fix, and the cause of the reported iPhone failure remain unverified on the physical device.

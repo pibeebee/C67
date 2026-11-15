@@ -14,6 +14,35 @@ import C67Domain
                                      interactor: .init(searcher: searcher ?? SyntheticTripPlaceSearch()))
     }
 
+    @Test func recommendationDistanceUsesDevicePointAndRejectsInvalidCoordinates() throws {
+        let location = PlanningPoint(latitude: -6.20, longitude: 106.84)
+        let place = PlanningPlace(id: UUID(), name: "Synthetic place",
+                                  location: .init(latitude: -6.19, longitude: 106.84), visitSeconds: 1800)
+        var item = RecommendedPlace(place: place)
+        let distance = try #require(item.straightLineDistance(from: location))
+        #expect((1_000 ... 1_300).contains(distance))
+        #expect(item.straightLineDistance(from: nil) == nil)
+        #expect(item.distanceDescription(from: nil) == "Distance unavailable")
+        item.place.location.latitude = 100
+        #expect(item.straightLineDistance(from: location) == nil)
+    }
+
+    @Test func itineraryTimesUse24HourClockInTripTimeZone() throws {
+        let parser = ISO8601DateFormatter()
+        let samples = [
+            ("2026-11-15T17:00:00Z", "00:00"),
+            ("2026-11-16T01:00:00Z", "08:00"),
+            ("2026-11-16T05:00:00Z", "12:00"),
+            ("2026-11-16T08:14:00Z", "15:14"),
+        ]
+        for (value, expected) in samples {
+            let date = try #require(parser.date(from: value))
+            for locale in [Locale(identifier: "en_US"), Locale(identifier: "id_ID")] {
+                #expect(ItineraryFormatting.time(date, zone: "Asia/Jakarta", locale: locale) == expected)
+            }
+        }
+    }
+
     @Test func rejectsPlannerThatIgnoresManualStopOrder() async throws {
         let repository = TripFlowRepositoryStub()
         await repository.setIgnoresManualOrder()

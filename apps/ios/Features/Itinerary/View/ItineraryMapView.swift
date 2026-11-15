@@ -6,29 +6,22 @@ struct ItineraryMapView: View {
     let proposal: PlanProposal
     @State private var routes: [MKRoute] = []
     @State private var routeUnavailable = false
+    @State private var showsFullMap = false
 
     var body: some View {
         VStack(spacing: 0) {
-            Map(interactionModes: [.pan, .zoom]) {
-                ForEach(Array(routes.enumerated()), id: \.offset) { _, route in
-                    MapPolyline(route.polyline).stroke(Color.blue, lineWidth: 4)
-                }
-                ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
-                    Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
-                        Group {
-                            if proposal.experiencePlan != nil { Image(systemName: "mappin").font(.footnote.bold()) }
-                            else { Text(index + 1, format: .number).font(.footnote.bold()) }
-                        }
-                        .foregroundStyle(.white)
-                        .padding(8)
-                        .background(proposal.experiencePlan == nil ? Color("ItineraryBlue") : Color.red, in: .circle)
-                        .overlay(Circle().stroke(.white, lineWidth: 2))
-                        .accessibilityLabel("Stop \(index + 1): \(stop.name)")
+            routeMap
+                .frame(height: 200)
+                .overlay(alignment: .topTrailing) {
+                    Button { showsFullMap = true } label: {
+                        Image(systemName: "arrow.up.left.and.arrow.down.right")
+                            .frame(width: 44, height: 44)
+                            .background(.regularMaterial, in: .circle)
                     }
+                    .accessibilityLabel("Expand map")
+                    .accessibilityIdentifier("itineraryExpandMap")
+                    .padding(8)
                 }
-            }
-            .frame(height: 200)
-            .accessibilityLabel("Itinerary places on the map")
             if routeUnavailable {
                 Text("Some driving routes could not be loaded.")
                     .font(.footnote).foregroundStyle(.secondary).padding(8)
@@ -88,6 +81,42 @@ struct ItineraryMapView: View {
         .background(Color("ItinerarySurface"))
         .clipShape(.rect(cornerRadius: 14))
         .task(id: proposal.input) { await loadRoutes() }
+        .fullScreenCover(isPresented: $showsFullMap) {
+            NavigationStack {
+                routeMap
+                    .ignoresSafeArea(edges: .bottom)
+                    .navigationTitle("Itinerary map")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") { showsFullMap = false }
+                                .accessibilityIdentifier("itineraryCloseMap")
+                        }
+                    }
+            }
+        }
+    }
+
+    private var routeMap: some View {
+        Map(interactionModes: [.pan, .zoom]) {
+            ForEach(Array(routes.enumerated()), id: \.offset) { _, route in
+                MapPolyline(route.polyline).stroke(Color.blue, lineWidth: 4)
+            }
+            ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
+                Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
+                    Group {
+                        if proposal.experiencePlan != nil { Image(systemName: "mappin").font(.footnote.bold()) }
+                        else { Text(index + 1, format: .number).font(.footnote.bold()) }
+                    }
+                    .foregroundStyle(.white)
+                    .padding(8)
+                    .background(proposal.experiencePlan == nil ? Color("ItineraryBlue") : Color.red, in: .circle)
+                    .overlay(Circle().stroke(.white, lineWidth: 2))
+                    .accessibilityLabel("Stop \(index + 1): \(stop.name)")
+                }
+            }
+        }
+        .accessibilityLabel("Itinerary places on the map")
     }
 
     private func loadRoutes() async {

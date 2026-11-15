@@ -9,11 +9,17 @@ final class ItineraryUITests: XCTestCase {
             app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         }
         app.launch()
-        XCTAssertTrue(app.staticTexts["All set! Here’s your itinerary"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.otherElements["itineraryDeparture"].waitForExistence(timeout: 10))
         capture(app, name: "ITINERARY LIST - Departure")
         let first = app.staticTexts["ALDI’S BURGER"]
         scrollTo(first, in: app)
         XCTAssertTrue(first.exists)
+        let expandMap = app.buttons["itineraryExpandMap"]
+        scrollTo(expandMap, in: app)
+        expandMap.tap()
+        XCTAssertTrue(app.navigationBars["Itinerary map"].waitForExistence(timeout: 5))
+        app.buttons["itineraryCloseMap"].tap()
+        XCTAssertTrue(expandMap.waitForExistence(timeout: 5))
         let context = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Behind the scenes of your plan")).firstMatch
         scrollTo(context, in: app)
         context.tap()

@@ -16,11 +16,12 @@ enum ItineraryFormatting {
         return date.formatted(style)
     }
 
-    static func time(_ date: Date?, zone: String, locale: Locale) -> String {
+    static func time(_ date: Date?, zone: String, locale _: Locale) -> String {
         guard let date else { return String(localized: "Not scheduled") }
-        var style = Date.FormatStyle(date: .omitted, time: .shortened)
-        style.timeZone = TimeZone(identifier: zone) ?? .current
-        style.locale = locale
-        return date.formatted(style)
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(identifier: zone) ?? .current
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
 }

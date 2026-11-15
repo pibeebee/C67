@@ -37,23 +37,31 @@ final class PlanningPlaceSearch {
 final class PlanningLocation: NSObject, @preconcurrency CLLocationManagerDelegate {
     private(set) var point: PlanningPoint?
     private(set) var isRequesting = false
+    private(set) var permissionDenied = false
     var error: String?
     @ObservationIgnored private let manager = CLLocationManager()
 
     override init() { super.init(); manager.delegate = self; manager.desiredAccuracy = kCLLocationAccuracyHundredMeters }
     func request() {
         point = nil; error = nil; isRequesting = true
+        permissionDenied = false
         switch manager.authorizationStatus {
         case .notDetermined: manager.requestWhenInUseAuthorization()
         case .authorizedAlways, .authorizedWhenInUse: manager.requestLocation()
-        default: isRequesting = false; error = "Location is unavailable. Choose a starting point with place search."
+        default:
+            isRequesting = false
+            permissionDenied = true
+            error = "Location is unavailable. Choose a starting point with place search."
         }
     }
     func cancel() { isRequesting = false; manager.stopUpdatingLocation() }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         guard isRequesting else { return }
         if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways { manager.requestLocation() }
-        else if manager.authorizationStatus != .notDetermined { isRequesting = false; error = "Location permission was not granted. Choose a starting point manually." }
+        else if manager.authorizationStatus != .notDetermined {
+            isRequesting = false; permissionDenied = true
+            error = "Location permission was not granted. Choose a starting point manually."
+        }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard isRequesting else { return }; isRequesting = false
