@@ -51,6 +51,21 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertFalse(app.staticTexts["Jl. Cemp. Putih Tim. 12 No.8A"].exists)
     }
 
+    @MainActor func testSearchIsAvailableFromSelectedPlaces() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash"]
+        app.launch()
+        openMockCreation(app, recommendations: true)
+        XCTAssertTrue(app.navigationBars["Recommendations"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["Search for a place"].exists)
+        app.buttons["My Places"].tap()
+        let search = app.buttons["selectedPlacesSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["3 places selected"].exists)
+    }
+
     @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {
         let app = XCUIApplication()
         app.launchArguments = ["--recommendations-added-preview"]

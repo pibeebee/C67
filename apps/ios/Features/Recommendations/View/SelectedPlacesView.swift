@@ -10,6 +10,7 @@ struct SelectedPlacesView: View {
     @Binding var selected: [PlanningPlace]
     /// Photo, category and area for each recommendation, when available.
     var details: [UUID: RecommendedPlace] = [:]
+    var searchForPlace: (() -> Void)?
 
     @Environment(\.dismiss) private var dismiss
 
@@ -39,6 +40,15 @@ struct SelectedPlacesView: View {
                         .padding(.top, 8)
                         .padding(.bottom, 24)
                     }
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if let searchForPlace {
+                    Button("Search for a place", action: searchForPlace)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .padding(.vertical, 8)
+                        .background(AppColor.surface)
+                        .accessibilityIdentifier("selectedPlacesSearch")
                 }
             }
             .navigationTitle("Places")

@@ -1,5 +1,9 @@
 # Starter verification
 
+## Recommendation search entry — 15 November 2026
+
+In mock mode on iPhone 18 Pro Max / iOS 27.2, a focused UI test verified that the recommendation footer omits Search for a place, My Places provides the action, and opening search preserves the selected count.
+
 ## Itinerary map and weather display — 15 November 2026
 
 [Verification and source audit](../tasks/itinerary-weather-map-adjustments.md) cover full-screen map interaction and forecast display. WeatherKit-first ordering remains unimplemented.

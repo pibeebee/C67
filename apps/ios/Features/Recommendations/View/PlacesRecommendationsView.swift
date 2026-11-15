@@ -23,6 +23,7 @@ struct PlacesRecommendationsView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
     @State private var showsSelected = false
+    @State private var searchAfterDismiss = false
     @State private var retryTask: Task<Void, Never>?
 
     private var selectedIDs: Set<UUID> { Set(selected.map(\.id)) }
@@ -149,7 +150,6 @@ struct PlacesRecommendationsView: View {
                         Button("My Places") { showsSelected = true }
                     }
                 }
-                Button("Search for a place", action: findPlace)
                 if let maximumSelection {
                     Text("Choose up to \(maximumSelection) additional places.").font(.footnote).foregroundStyle(.secondary)
                 }
@@ -162,9 +162,15 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: .infinity)
             .background(AppColor.surface)
         }
-        .sheet(isPresented: $showsSelected) {
+        .sheet(isPresented: $showsSelected, onDismiss: {
+            if searchAfterDismiss {
+                searchAfterDismiss = false
+                findPlace()
+            }
+        }) {
             SelectedPlacesView(existing: [], selected: selectedPlaces,
-                               details: Dictionary(selected.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }))
+                               details: Dictionary(selected.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }),
+                               searchForPlace: { searchAfterDismiss = true; showsSelected = false })
         }
         .navigationTitle("Recommendations")
         .navigationBarTitleDisplayMode(.inline)
