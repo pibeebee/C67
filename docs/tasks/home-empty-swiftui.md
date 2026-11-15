@@ -24,7 +24,7 @@ Slice Balaraja Sketch → HI-FI → HOME EMPTY into the C67 app using native Swi
 - Sketch document: Balaraja Sketch (`AE5D7AB1-6866-4AC8-9BC8-94334C18ED6B`).
 - HI-FI source frame: `2743A274-C2E2-42E5-A96A-D9F345F05213`, 402 × 874. Duplicate `7D92AF5D-96C0-45B3-A9B2-D35319A2979A` has the same hierarchy/copy.
 - Source inspection: SF Pro 20 pt semibold title, 17 pt regular body, 4 pt gap; adaptive system grouped background (Light #F2F2F7); native glass controls and tab bar.
-- [UI guide](../../ios-ui/README.md), [design system](../design-system.md), [architecture](../architecture.md).
+- [UI guide](../../apps/ios/README.md), [design system](../product/design-system.md), [architecture](../architecture/architecture.md).
 
 ## Acceptance criteria
 
@@ -46,7 +46,7 @@ Generate the Xcode project from project.yml; run the Simulator build, targeted T
 - Final Light run: 3 tests passed (Home navigation plus preserved Account-mode and Discovery/detail/save smoke tests). No expected failures, skipped tests or runtime warnings in either final result bundle.
 - Result bundles: `/tmp/c67-home-dark-tests.xcresult` and `/tmp/c67-home-light-final.xcresult`. Earlier save-test failure was an automation gesture being consumed by the native map; the helper now scrolls the form at its trailing edge, with the same app behavior.
 - Visually inspected standard Light/Dark and accessibility XXXL iPhone captures, plus iPad Pro 11-inch (M5), iOS 27.2. On iPad the native tabs relocate to the top. Screenshots are exported outside Git at `/Users/neuhendra/Documents/PBB/exports/c67-home-empty/`.
-- Targeted pinned SwiftFormat check passed: 0/14 changed/new Swift files require formatting. Whole-repository `python3 scripts/swift_format.py --check` remains blocked by pre-existing formatting in `evaluations/foundation-models-2026-11-04/focused-english/Support.swift:168` and `tripsense-poc/App/TripSenseApp.swift:31`; neither file was changed. `git diff --check` passed.
+- Targeted pinned SwiftFormat check passed: 0/14 changed/new Swift files require formatting. Whole-repository `python3 scripts/swift_format.py --check` remains blocked by pre-existing formatting in `research/evaluations/foundation-models-2026-11-04/focused-english/Support.swift:168` and `research/tripsense-poc/App/TripSenseApp.swift:31`; neither file was changed. `git diff --check` passed.
 - Physical device, iOS 18 runtime/material fallback, manual VoiceOver, RTL and iPad multitasking/folding-device acceptance remain unverified. No live planning/search/authentication acceptance is claimed.
 - No contract or ADR changes. No commit, push or deployment; unrelated checkout changes were preserved.
 

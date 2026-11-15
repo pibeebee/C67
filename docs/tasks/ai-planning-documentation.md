@@ -14,13 +14,13 @@ The team can read one consistent product direction: AI-generated recommendations
 
 - Allowed: Markdown context, architecture, roadmap, handoff, ADR and contract documentation, plus dated source snapshots in the research workspace.
 - Deferred: Swift/HTML/JS/CSS, model/browser setup, OpenAPI/schema/fixtures, migrations, live services and deployment.
-- Decisions: the user's 29 October clarification, recorded in [product context](../product-context.md) and [ADR-0008](../decisions/0008-ai-trip-planning-direction.md).
+- Decisions: the user's 29 October clarification, recorded in [product context](../product/product-context.md) and [ADR-0008](../architecture/decisions/0008-ai-trip-planning-direction.md).
 - Environment: local documentation only. No provider or shared backend requests.
 - External actions authorized: none. No commit, push, PR or deployment requested.
 
 ## References
 
-[AI target](../ai-trip-planning.md), [architecture](../architecture.md), [roadmap](../server-roadmap.md), [current contract](../../contracts/README.md), and [existing backend decision](../decisions/0005-backend-mvp.md).
+[AI target](../architecture/ai-trip-planning.md), [architecture](../architecture/architecture.md), [roadmap](../architecture/server-roadmap.md), [current contract](../../contracts/README.md), and [existing backend decision](../architecture/decisions/0005-backend-mvp.md).
 
 ## Acceptance criteria
 

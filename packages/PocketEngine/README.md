@@ -6,4 +6,4 @@ There is no SwiftUI app, Foundation Models dependency, credential, HTTP server, 
 
 Integration changes: Swift formatting; expose the 13 existing feature labels alongside 49 venue/subtype labels (62 selectable labels plus four compatibility aliases in `Interests.all`); preserve requested manual order and an optional first stop; revalidate both after model selection. Original test scenarios are retained, with the taxonomy count expanded for the existing features.
 
-Run `swift test --package-path packages/PocketEngine`. Adapter tests are in `ios-backend/Tests/Starter/PocketPlanningRepositoryTests.swift`. See [integration boundaries](../../docs/pocket-engine-integration.md).
+Run `swift test --package-path packages/PocketEngine`. Adapter tests are in `packages/C67Backend/Tests/Starter/PocketPlanningRepositoryTests.swift`. See [integration boundaries](../../docs/guides/pocket-engine-integration.md).

@@ -1,14 +1,26 @@
 # Server
 
+## Services
+
+| Component | Role | Guide |
+| --- | --- | --- |
+| Pocket | Catalog evidence and optional bounded Luna advice for the current native app | [Pocket setup](pocket/README.md) |
+| Planning API | Earlier HTTP planning mode and worker | [Planner setup](planning/README.md) |
+| Supabase | Existing Auth, RPC, RLS and additive migration history | [Native Auth setup](../docs/guides/native-auth.md) |
+| Media worker | Existing private image-processing worker | [Media guide](workers/media/README.md) |
+| Deployment recipes | Service-specific reviewed configuration | [Pocket](deploy/pocket/README.md), [media](deploy/media/media-worker.compose.yml), [planning](deploy/planning/planning-api.compose.yml) |
+
+The current Travelant default is Pocket. The sections below preserve the dated Supabase/HTTP planning setup and its operational evidence. See the [repository layout](../docs/guides/repository-layout.md) before updating older deployment commands.
+
 ## Current addition — personal planning, 30 October 2026
 
 [`planning/`](planning/README.md) is the separate Node/TypeScript Planning API and leased worker. The root `package.json` remains Supabase tooling. It adds hosted-model/Apple/weather/site adapters, bounded scheduling, owner RPCs and a new independent trip aggregate through `20261029235123_add_personal_ai_planning.sql`. The native app now defaults to this personal-planning flow in synthetic mock mode.
 
-Run `npm ci --prefix planning --ignore-scripts`, `npm run check --prefix planning` and `npm test --prefix planning` from here. These checks use no real providers or shared database; the new migration is checked on disposable embedded PostgreSQL 18 with simulated roles/claims. Full pgTAP/PostgREST/GoTrue and matching-image PostgreSQL 17 acceptance are separate. No new migration/service was deployed by this batch. See [ADR-0009](../docs/decisions/0009-personal-planning-implementation.md) and [task evidence](../docs/tasks/ai-trip-planning-implementation.md).
+Run `npm ci --prefix planning --ignore-scripts`, `npm run check --prefix planning` and `npm test --prefix planning` from here. These checks use no real providers or shared database; the new migration is checked on disposable embedded PostgreSQL 18 with simulated roles/claims. Full pgTAP/PostgREST/GoTrue and matching-image PostgreSQL 17 acceptance are separate. No new migration/service was deployed by this batch. See [ADR-0009](../docs/architecture/decisions/0009-personal-planning-implementation.md) and [task evidence](../docs/tasks/ai-trip-planning-implementation.md).
 
 The sections below retain the older Supabase/media setup and dated evidence. Their native-planning gaps describe that earlier slice, rather than overriding the current implementation above.
 
-Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed, private trip reads and V2 model foundation have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/homelab-verification.md) and [private read verification](../docs/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
+Supabase is the backend foundation. Local commands below use a separate disposable stack. The starter migration/seed, private trip reads and V2 model foundation have been applied to the shared homelab through explicitly approved procedures; see [foundation verification](../docs/history/homelab-verification.md) and [private read verification](../docs/history/homelab-trip-reads-verification.md). Local scripts do not deploy there automatically.
 
 ```text
 server/
@@ -54,7 +66,7 @@ The suite expects the authoritative catalog fixture to match the local seed. It 
 
 The local gateway allows anonymous access to the public synthetic catalog even without an API-key header. Trip authorization is verified using real traveller JWTs, grants and RLS. Client-key enforcement on a shared/production gateway is outside these local results; callers still follow the published contract and send `apikey`.
 
-See [Getting started](../docs/getting-started.md), [Verification](../docs/verification.md), and the [foundation task](../docs/tasks/server-local-foundation.md). These checks do not implement the native iOS sign-in flow or deploy the schema to the homelab.
+See [Getting started](../docs/guides/getting-started.md), [Verification](../docs/testing/verification.md), and the [foundation task](../docs/tasks/server-local-foundation.md). These checks do not implement the native iOS sign-in flow or deploy the schema to the homelab.
 
 References: [Supabase migrations](https://supabase.com/docs/guides/local-development/database-migrations), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security).
 
@@ -66,37 +78,37 @@ References: [Supabase migrations](https://supabase.com/docs/guides/local-develop
 .venv/bin/python server/scripts/test_homelab_api.py --help
 ```
 
-Actual execution additionally requires `--approved-shared-test` and prior authorization for two temporary confirmed Auth users, test trips/draft and cleanup. It is never run automatically in CI. It reuses the local behavioral suite without weakening that suite's loopback guard. Shared Auth confirmation stays enabled; temporary accounts are provisioned through the admin API without sending emails. See the [approved procedure](../docs/homelab-execution-plan.md) and [results](../docs/homelab-verification.md).
+Actual execution additionally requires `--approved-shared-test` and prior authorization for two temporary confirmed Auth users, test trips/draft and cleanup. It is never run automatically in CI. It reuses the local behavioral suite without weakening that suite's loopback guard. Shared Auth confirmation stays enabled; temporary accounts are provisioned through the admin API without sending emails. See the [approved procedure](../docs/history/homelab-execution-plan.md) and [results](../docs/history/homelab-verification.md).
 
 ## Private trip reads (step 2)
 
-The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations and passed CI: 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks. See [verification evidence](../docs/verification.md). Shared deployment and cleanup are complete under the [approved operational plan](../docs/homelab-trip-reads-plan.md): 40/40 isolated homelab SQL assertions and 40/40 shared HTTP checks passed. The native Swift adapter and UI do not call these RPCs yet.
+The additive migration adds `list_my_trips` and `get_trip_snapshot` with the existing Trip shape. See the [wire contract](../contracts/README.md) and [task](../docs/tasks/private-trip-reads.md). The updated suites target both migrations and passed CI: 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks. See [verification evidence](../docs/testing/verification.md). Shared deployment and cleanup are complete under the [approved operational plan](../docs/history/homelab-trip-reads-plan.md): 40/40 isolated homelab SQL assertions and 40/40 shared HTTP checks passed. The native Swift adapter and UI do not call these RPCs yet.
 
 ## Trip model foundation (stage 3A)
 
-The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. The [approved shared execution](../docs/homelab-trip-model-verification.md) is complete: both databases restored, persisted legacy backfill verified, 79/79 isolated SQL assertions and 55/55 shared HTTP checks passed; original data/services preserved and temporary records/container removed.
+The next additive migration separates curated rundown root/version identity and adds server-derived destination date, explicit IANA zone, revision and planned status. `create_trip_v2` / `get_trip_snapshot_v2` return the opt-in V2 shape; all existing RPC shapes remain compatible. See [ADR-0003](../docs/architecture/decisions/0003-trip-model-foundation.md), [contract](../contracts/README.md) and [task](../docs/tasks/trip-model-foundation.md). Implementation `d9d90f3` passed 79/79 pgTAP assertions, clean SQL lint and 54/54 HTTP checks in CI, plus contract validation. The [approved shared execution](../docs/history/homelab-trip-model-verification.md) is complete: both databases restored, persisted legacy backfill verified, 79/79 isolated SQL assertions and 55/55 shared HTTP checks passed; original data/services preserved and temporary records/container removed.
 
 ## Normalized graph (stage 3B)
 
-The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification completed under the [consolidated plan](../docs/homelab-backend-completion-plan.md).
+The next migration adds immutable owner-scoped source/day/stop/leg rows and opt-in create_trip_v3/get_trip_graph plus published get_rundown_route. Existing RPC shapes remain compatible. See [ADR-0004](../docs/architecture/decisions/0004-trip-graph.md) and [task](../docs/tasks/trip-graph.md). Implementation dd94b14 passes CI: 141/141 pgTAP assertions, clean SQL lint and 66/66 HTTP checks. Matching-image/shared verification completed under the [consolidated plan](../docs/history/homelab-backend-completion-plan.md).
 
 ## Backend completion batch (stages 3B–7)
 
 PR #4 was closed at Giovan's request. Work stays on `gi/trip-graph`; branch CI runs on pushes without a PR. One new review PR is opened only after the agreed batch is complete and verified. See [completion task](../docs/tasks/backend-completion.md).
 
-The batch adds discovery, immutable creation/apply receipts, planned preview/apply edits and explicit merge choices, private session/Storage/journal/album APIs, and the image worker with operational tooling. No native UI/Auth, public creator publishing, completed/skip/ended_early policy or automatic route/weather provider is introduced. [ADR-0005](../docs/decisions/0005-backend-mvp.md) records the human-approved product boundaries.
+The batch adds discovery, immutable creation/apply receipts, planned preview/apply edits and explicit merge choices, private session/Storage/journal/album APIs, and the image worker with operational tooling. No native UI/Auth, public creator publishing, completed/skip/ended_early policy or automatic route/weather provider is introduced. [ADR-0005](../docs/architecture/decisions/0005-backend-mvp.md) records the human-approved product boundaries.
 
 The database CI additionally installs/tests the locked media worker, runs `scripts/test_backend_completion.py`, the read-only `scripts/ops_status.py`, and `scripts/test_worker_container.py`. The container check is Linux/disposable-CI-only and does not start Mac Docker. Shared equivalents require the refreshed concrete plan and explicit approval; do not infer shared verification from CI.
 
-Worker configuration: [media README](workers/media/README.md), [Compose](deploy/media-worker.compose.yml), [operations runbook](../docs/backend-operations.md). Copy real env into private server configuration with mode 600; the `.env.example` has no credential values. Source/API handlers never print secrets, response bodies or personal records.
+Worker configuration: [media README](workers/media/README.md), [Compose](deploy/media/media-worker.compose.yml), [operations runbook](../docs/operations/backend-operations.md). Copy real env into private server configuration with mode 600; the `.env.example` has no credential values. Source/API handlers never print secrets, response bodies or personal records.
 
-The consolidated batch has now completed [approved shared deployment and verification](../docs/homelab-backend-completion-verification.md): 167 isolated SQL assertions, 84 shared HTTP checks, private Storage and healthy restricted worker. The earlier pending notes describe implementation checkpoints; shared verification is no longer pending. Native integration remains a separate handoff.
+The consolidated batch has now completed [approved shared deployment and verification](../docs/history/homelab-backend-completion-verification.md): 167 isolated SQL assertions, 84 shared HTTP checks, private Storage and healthy restricted worker. The earlier pending notes describe implementation checkpoints; shared verification is no longer pending. Native integration remains a separate handoff.
 
 
 ## Native Auth/session operations
 
 The existing GoTrue service supplies native email/password lifecycle; no custom Auth server or SQL
-migration was added. [Native Auth setup](../docs/native-auth.md) covers PKCE callbacks, local config,
+migration was added. [Native Auth setup](../docs/guides/native-auth.md) covers PKCE callbacks, local config,
 isolated mail verification and exact shared synthetic-account cleanup. The approved 28 October Auth
 config deployment changed only callback/minimum-password/refresh settings with private backup and
 rollback. See [the current task](../docs/tasks/ios-auth-api.md) for passed API evidence and unresolved
@@ -105,7 +117,7 @@ interactive UI acceptance. Existing SMTP credentials and confirmation requiremen
 ## Native Apple provider
 
 The app's Apple ID-token adapter uses standard GoTrue sessions and existing RLS. Shared provider
-activation was approved and deployed on 28 October 2026: [exact plan](../docs/homelab-apple-auth-plan.md),
-[setup and acceptance](../docs/apple-auth.md). The guarded helper defaults to read-only plan and
+activation was approved and deployed on 28 October 2026: [exact plan](../docs/history/homelab-apple-auth-plan.md),
+[setup and acceptance](../docs/guides/apple-auth.md). The guarded helper defaults to read-only plan and
 requires separate approval plus its reviewed fingerprint for an Auth-only configuration/restart.
 No Apple OAuth client secret is needed for this native-only flow.

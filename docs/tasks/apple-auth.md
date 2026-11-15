@@ -45,7 +45,7 @@ state/expiry/token-validation tests and revoked-vs-temporary-error session check
 Final live UI run: **3/3 passed** with Accessibility XXXL text. It verifies the official Apple
 button is present and email signup/recovery plus system callback rejection remain functional.
 Screenshots were exported and inspected. The UI tests do not press the Apple authorization button,
-exchange a real Apple token or submit email. See [verification](../verification.md).
+exchange a real Apple token or submit email. See [verification](../testing/verification.md).
 
 Read-only homelab preflight: GoTrue v2.197.0 healthy, external Compose project `supabase`, Apple
 provider/client IDs were unset at preflight. After explicit approval, the three reviewed settings
@@ -55,7 +55,7 @@ permissions passed; .env and tunnel Compose are byte-identical to their backups.
 Backup: `/home/giovan/backups/c67/before-apple-auth-2026-10-28T061902Z`. No database operation was issued.
 No matching local provisioning profile
 for the C67 bundle was found; no Apple Developer portal registration/permission change was made.
-The [deployment record](../homelab-apple-auth-plan.md) retains the approved scope and rollback steps.
+The [deployment record](../history/homelab-apple-auth-plan.md) retains the approved scope and rollback steps.
 
 ## Remaining acceptance
 
@@ -71,7 +71,7 @@ Supabase account from an existing email/password account; no custom merge or tri
 implemented. Native Apple sign-in does not require a web Services ID, `.p8` key or six-month OAuth
 client-secret rotation. Web OAuth, account deletion and transfer migration are separate scopes.
 
-See [Apple setup](../apple-auth.md) and [ADR-0007](../decisions/0007-native-apple-auth.md).
+See [Apple setup](../guides/apple-auth.md) and [ADR-0007](../architecture/decisions/0007-native-apple-auth.md).
 
 ## Subsequent live observation and review authorization
 

@@ -26,8 +26,8 @@ SQL RPCs, additive OpenAPI 0.2/fixtures, database and HTTP acceptance checks, se
 
 - [Contract](../../contracts/README.md)
 - [Migration](../../server/supabase/migrations/20261023100158_add_private_trip_reads.sql)
-- [Deployed foundation](../homelab-verification.md)
-- [Prepared homelab plan](../homelab-trip-reads-plan.md)
+- [Deployed foundation](../history/homelab-verification.md)
+- [Prepared homelab plan](../history/homelab-trip-reads-plan.md)
 
 ## Handoff
 
@@ -35,4 +35,4 @@ The server adds list_my_trips and get_trip_snapshot without changing Trip JSON. 
 
 ## Verification
 
-Implementation `fa274b1`: [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257), 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks on disposable PostgreSQL 17.11. Contract/fixture, Python syntax and whitespace checks pass. All four CI jobs passed at documentation checkpoint `4a425bb`. The approved homelab execution restored both databases on the exact PostgreSQL 17.6 image, passed 40/40 isolated pgTAP checks, applied the one new official migration without seed reload, and passed 40/40 shared HTTP checks. The original account/catalog were preserved and temporary data/container removed. See [deployed verification](../homelab-trip-reads-verification.md).
+Implementation `fa274b1`: [CI run 39937332257](https://github.com/pibeebee/C67/actions/runs/39937332257), 40/40 pgTAP assertions, clean SQL lint and 39/39 HTTP checks on disposable PostgreSQL 17.11. Contract/fixture, Python syntax and whitespace checks pass. All four CI jobs passed at documentation checkpoint `4a425bb`. The approved homelab execution restored both databases on the exact PostgreSQL 17.6 image, passed 40/40 isolated pgTAP checks, applied the one new official migration without seed reload, and passed 40/40 shared HTTP checks. The original account/catalog were preserved and temporary data/container removed. See [deployed verification](../history/homelab-trip-reads-verification.md).

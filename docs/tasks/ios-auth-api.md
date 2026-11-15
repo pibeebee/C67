@@ -60,7 +60,7 @@ both fixture networks, private files and the task SSH tunnel were removed.
 
 ## Evidence
 
-- `swift test --package-path ios-backend`: **29 passed** after the final Auth changes.
+- `swift test --package-path packages/C67Backend`: **29 passed** after the final Auth changes.
 - Earlier native unit/integration checkpoint, iPhone 18 Pro / iOS 27.0: **9 passed, 1 skipped**. It includes
   actual Keychain operations, form validation, Account state, private-state reset and real GoTrue
   signup/email/resend/PKCE/relaunch/refresh/recovery/password change/logout against the isolated
@@ -100,8 +100,8 @@ it was removed from the tests. Dark appearance remains unverified, with no claim
 
 Physical-device/iOS 18 runtime, external SMTP inbox delivery and a full accessibility audit are
 unverified. Web OAuth, MFA, account deletion, native My Trips/search/graph screens and journal
-integration are separate scopes. See [native Auth guide](../native-auth.md) and
-[ADR-0006](../decisions/0006-native-auth-session.md).
+integration are separate scopes. See [native Auth guide](../guides/native-auth.md) and
+[ADR-0006](../architecture/decisions/0006-native-auth-session.md).
 
 Native Apple authentication was subsequently implemented alongside this uncommitted work.
 [Apple task](apple-auth.md) tracks its separate provider/signing/real-authorization acceptance gates.
@@ -113,5 +113,5 @@ The shared Swift package passed 34/34 tests and the live Account UI test passed 
 the Apple button and email form. Formatting and whitespace checks passed. Xcode was opened
 on the primary checkout and showed the retained signing team and Sign In with Apple capability.
 Both auxiliary worktrees were removed after backup and destination-content verification.
-See [verification](../verification.md) for the consolidation record. Commit/push/PR were authorized
+See [verification](../testing/verification.md) for the consolidation record. Commit/push/PR were authorized
 after that checkpoint.

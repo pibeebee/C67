@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Shared package tests
-        run: swift test --package-path ios-backend
+        run: swift test --package-path packages/C67Backend
       - name: Mock Simulator and session tests
         shell: bash
         run: |
@@ -42,7 +42,7 @@ jobs:
           destination=$(python3 scripts/simulator_destination.py)
           xcodebuild -version
           echo "Simulator destination: $destination"
-          xcodebuild -project ios-ui/C67.xcodeproj -scheme C67 \
+          xcodebuild -project apps/ios/C67.xcodeproj -scheme C67 \
             -destination "$destination" -derivedDataPath /tmp/c67-ci \
             -resultBundlePath "$RUNNER_TEMP/ios-tests.xcresult" \
             CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- C67_DATA_MODE=mock test \

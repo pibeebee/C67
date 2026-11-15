@@ -50,8 +50,8 @@ paths = subprocess.check_output(
 # Preserve the byte-identical evaluator sources referenced by the archived freeze.sha256.
 # Maintained app/package sources remain covered by the pinned formatter.
 frozen_sources = {
-    "evaluations/foundation-models-2026-11-04/focused-english/Focused.swift",
-    "evaluations/foundation-models-2026-11-04/focused-english/Support.swift",
+    "research/evaluations/foundation-models-2026-11-04/focused-english/Focused.swift",
+    "research/evaluations/foundation-models-2026-11-04/focused-english/Support.swift",
 }
 sources = sorted({p for p in paths if p.endswith(".swift") and p not in frozen_sources and (root / p).is_file()})
 if not sources:

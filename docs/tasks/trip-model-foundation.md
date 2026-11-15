@@ -19,11 +19,11 @@ Separate curated rundown identity from version identity and persist an explicit 
 
 ## References
 
-- [Architecture](../architecture.md)
+- [Architecture](../architecture/architecture.md)
 - [Contract](../../contracts/README.md)
 - [Previous slice](private-trip-reads.md)
-- [Server roadmap](../server-roadmap.md)
-- [Prepared homelab plan](../homelab-trip-model-plan.md)
+- [Server roadmap](../architecture/server-roadmap.md)
+- [Prepared homelab plan](../history/homelab-trip-model-plan.md)
 
 ## Acceptance criteria
 
@@ -47,4 +47,4 @@ Revision starts at 1 and privileged database updates increment it; no client edi
 
 Implementation `d9d90f3` passed the database/contracts/style jobs in [CI run 39988491177](https://github.com/pibeebee/C67/actions/runs/39988491177). Actual backend output: 79/79 pgTAP assertions, no schema lint errors, 54/54 HTTP checks and successful temporary-data cleanup. Contract/fixture validation, Python syntax and documentation/whitespace checks pass locally. All four CI jobs also passed at documentation checkpoint c9164b4; no native source changed.
 
-[Draft PR #3](https://github.com/pibeebee/C67/pull/3) contains the additive model and handoff. Shared deployment is complete: the matching-image restore gate proved backfill of a persisted legacy fixture, 79/79 isolated SQL assertions passed, and the deployed API passed 55/55 checks. Original account/catalog and shared containers were preserved; temporary data/container were removed. See [actual evidence](../homelab-trip-model-verification.md). Next server model work is stage 3B: normalized stop/day/source and explicit route-leg data, under a separate contract. Native V2 adoption belongs to the iOS data owner.
+[Draft PR #3](https://github.com/pibeebee/C67/pull/3) contains the additive model and handoff. Shared deployment is complete: the matching-image restore gate proved backfill of a persisted legacy fixture, 79/79 isolated SQL assertions passed, and the deployed API passed 55/55 checks. Original account/catalog and shared containers were preserved; temporary data/container were removed. See [actual evidence](../history/homelab-trip-model-verification.md). Next server model work is stage 3B: normalized stop/day/source and explicit route-leg data, under a separate contract. Native V2 adoption belongs to the iOS data owner.

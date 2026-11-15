@@ -7,12 +7,12 @@ Branch: Feat/itinerary-list-ui
 
 ## Outcome
 
-Implement Balaraja Sketch → HI-FI → ITINERARY LIST in ios-ui/C67.xcodeproj as the personal-plan review screen before saving.
+Implement Balaraja Sketch → HI-FI → ITINERARY LIST in apps/ios/C67.xcodeproj as the personal-plan review screen before saving.
 
 ## Scope and references
 
 - Source frame `8133F462-4F8A-4A9D-B23A-346FDA26C78F`, 402 × 1282, document `AE5D7AB1-6866-4AC8-9BC8-94334C18ED6B`.
-- [UI instructions](../../ios-ui/AGENTS.md), [shared design guidance](../design-system.md), [Home task](home-empty-swiftui.md), [planning architecture](../architecture.md).
+- [UI instructions](../../apps/ios/AGENTS.md), [shared design guidance](../product/design-system.md), [Home task](home-empty-swiftui.md), [planning architecture](../architecture/architecture.md).
 - Reuse Planning presenter/domain/repository and existing place/duration editors. No contract or backend changes.
 - Native Map, disclosure controls, navigation, sheets and buttons; retain iOS 18 deployment target and Swift language mode.
 - Optional presentation metadata never invents category, photos, distance or per-stop weather for generated proposals. Source photos and weather/distance examples are isolated in DEBUG preview (`--itinerary-preview` / Xcode preview).
@@ -37,7 +37,7 @@ Implement Balaraja Sketch → HI-FI → ITINERARY LIST in ios-ui/C67.xcodeproj a
 - Dark accessibility XXXL preview passed after the final adaptive-header fix in `/tmp/c67-itinerary-final-dark-large.xcresult` (1 test). At large sizes the departure label switches to a readable sentence-case fallback; cards, text and save remain scrollable/reachable. These final runs report no failures, skips or runtime warnings. No live search query or routing/weather provider acceptance was performed.
 - Standard Light/Dark, large text, and iPad Pro 11-inch (M5) / iOS 27.2 renders were visually inspected. Captures are outside Git at `/Users/neuhendra/Documents/PBB/exports/c67-itinerary-list/`. Native date/time formatting follows locale and time zone, so punctuation can differ from Sketch.
 - A final Dark surface check found the system background style blending cards into the black canvas. `ItinerarySurface` now uses white / #1C1C1E appearance variants; its final Simulator rebuild and Dark screenshot check passed. The change leaves Light geometry and interaction behavior unchanged.
-- Changed/new Swift files pass the pinned formatter: 0/18 require formatting. The full repository check reports the same two pre-existing issues in `evaluations/foundation-models-2026-11-04/focused-english/Support.swift:168` and `tripsense-poc/App/TripSenseApp.swift:31` (2/334); those files remain untouched. `git diff --check` passed.
+- Changed/new Swift files pass the pinned formatter: 0/18 require formatting. The full repository check reports the same two pre-existing issues in `research/evaluations/foundation-models-2026-11-04/focused-english/Support.swift:168` and `research/tripsense-poc/App/TripSenseApp.swift:31` (2/334); those files remain untouched. `git diff --check` passed.
 - Physical-device, iOS 18 runtime, manual VoiceOver, RTL, iPad multitasking and arbitrary stop reordering remain unverified or outside this task. The error/retry rendering is implemented; forced provider failures were not exercised in UI tests.
 - No backend/domain contract change, commit, push or deployment. Prior Home and unrelated changes were preserved.
 

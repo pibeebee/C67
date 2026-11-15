@@ -19,7 +19,7 @@ Luna/max metadata. The older alias chat transport remains for legacy operations.
 Provider metadata establishes the reported identity, not upstream implementation.
 WeatherKit REST is not wired into ordering; Open-Meteo is the authorized current
 fallback. Weather failures do not block an order. Solar calculations do not prove
-viewpoint access, visibility or arrival feasibility. See [integration](../../docs/pocket-engine-integration.md).
+viewpoint access, visibility or arrival feasibility. See [integration](../../docs/guides/pocket-engine-integration.md).
 
 ## Legacy timed planning
 
@@ -36,10 +36,10 @@ The server asks Luna for focused search queries, searches through DDGS, retrieve
 Create a Python 3.12 virtual environment, install `requirements.txt`, and run `python -m playwright install chromium`. Copy `.env.example` into ignored `.env`, supply a random read token of at least 24 characters and the provider key (or its private env-file pointer). Never put the provider key in the app. Then run from the repo root:
 
 ```sh
-python server/pocket/server.py --env-file server/pocket/.env --data-dir .local/visit-resolution
+python server/pocket/src/server.py --env-file server/pocket/.env --data-dir .local/visit-resolution
 ```
 
-Default bind is `127.0.0.1:8793`. The current default transport is `POCKET_LLM_PROTOCOL=responses`; it requires a completed native response with reported Luna model and reasoning effort `max`. `chat-completions` retains the earlier tested alias transport. The current ordering acceptance is recorded separately from historical research/advice acceptance. `POCKET_HOST`, `POCKET_PORT`, and optional `C67_BROWSER` override the bind and local Chromium executable. Set the app's Pocket settings URL and read token. Release connections require trusted HTTPS. No provider key is sent to the iPhone.
+Default bind is `127.0.0.1:8792`. The current default transport is `POCKET_LLM_PROTOCOL=responses`; it requires a completed native response with reported Luna model and reasoning effort `max`. `chat-completions` retains the earlier tested alias transport. The current ordering acceptance is recorded separately from historical research/advice acceptance. `POCKET_HOST`, `POCKET_PORT`, and optional `C67_BROWSER` override the bind and local Chromium executable. Set the app's Pocket settings URL and read token. Release connections require trusted HTTPS. No provider key is sent to the iPhone.
 
 The Docker recipe packages this maintained resolver and the existing provider credential helper, with no catalog resources. `docker compose -f server/pocket/compose.yml up -d --build` is a deployment action, separate from local source/test work. Put a trusted HTTPS proxy in front, permit health plus the ordering/job and legacy research/advice routes, permit JSON bodies up to 200 KB, and allow over 310 seconds for synchronous schedule advice. Ordering/research jobs poll independently of generation/crawl duration. Do not log Authorization or request bodies. The crawler checks robots policies and rejects private network URLs/redirects; sites may still block access. No free crawler guarantees access to every source.
 

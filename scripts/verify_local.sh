@@ -9,7 +9,7 @@ case "$C67_VERIFY_MODE" in
 esac
 C67_CONTRACT_PYTHON=${C67_CONTRACT_PYTHON:-.venv/bin/python}
 if [[ ! -x "$C67_CONTRACT_PYTHON" ]]; then
-  echo 'Create .venv and install scripts/requirements.txt, or set C67_CONTRACT_PYTHON.' >&2
+  echo 'Create .venv and install scripts/requirements.txt and server/pocket/requirements.txt, or set C67_CONTRACT_PYTHON.' >&2
   exit 2
 fi
 C67_VERIFY_DIR=${C67_VERIFY_DIR:-$(mktemp -d "${TMPDIR:-/tmp}/c67-verify.XXXXXX")}
@@ -27,11 +27,13 @@ npm ci --prefix server/planning --ignore-scripts
 npm run check --prefix server/planning
 npm run format:check --prefix server/planning
 npm test --prefix server/planning
-swift test --package-path ios-backend
+"$C67_CONTRACT_PYTHON" -m unittest discover -s server/pocket/tests
+swift test --package-path packages/PocketEngine
+swift test --package-path packages/C67Backend
 git diff --check
 if [[ "$C67_VERIFY_MODE" != quick ]]; then
   C67_VERIFY_DESTINATION=${C67_SIMULATOR_DESTINATION:-$(python3 scripts/simulator_destination.py)}
-  C67_VERIFY_COMMAND=(xcodebuild -project ios-ui/C67.xcodeproj -scheme C67
+  C67_VERIFY_COMMAND=(xcodebuild -project apps/ios/C67.xcodeproj -scheme C67
     -destination "$C67_VERIFY_DESTINATION" -derivedDataPath "${C67_VERIFY_DERIVED_DATA:-/tmp/c67-local-checks}"
     -resultBundlePath "$C67_VERIFY_DIR/ios-tests.xcresult")
   if [[ "$C67_VERIFY_MODE" == ios-smoke ]]; then

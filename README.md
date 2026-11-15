@@ -1,40 +1,114 @@
-# C67
+<div align="center">
+  <img src="apps/ios/Resources/Brand.xcassets/AppIcon.appiconset/AppIcon.png" width="96" alt="Travelant app icon">
+  <h1>Travelant</h1>
+  <p>Plan a day out around your interests, places, and available time.</p>
+  <p><a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#repository-map">Repository map</a> · <a href="#verification">Verification</a> · <a href="docs/README.md">Documentation</a></p>
+</div>
 
-[PoC and experiment index](poc-journey/docs/apple-first-transition-2026-11-12.md) · [TestFlight handoff](docs/tasks/pocket-live-testflight-handoff.md)
+Travelant is an Apple-first iOS trip planner. Choose interests, discover places, review visit availability, and save an itinerary you can adjust during your trip. The current beta focuses on South Jakarta and Kemayoran.
 
-**Current native integration — 12 November 2026:** the default app uses Pocket Engine on device for matching and itinerary validation. The Hi-Fi UI sends structured themes/62 labels, consumes catalog/constrained Luna advice through a small server, and saves trips locally. Configure the connection in Account. See [setup](docs/pocket-engine-integration.md) and [verification](docs/tasks/pocket-ui-integration.md). Server deployment and TestFlight acceptance are separate.
+The repository is named **C67**. The app is named **Travelant**, and its on-device recommendation and scheduling core is **Pocket Engine**.
 
-Development uses feature branches -> reviewed PRs to `dev` -> reviewed promotion to `main`. Start new work from default branch `dev`; run [local verification](docs/coding-conventions.md) before feature review. Automatic CI runs only on PRs targeting `main` and rejects promotion sources other than this repository's `dev`. Full regression and PoC workflows are manual. See [repository settings](docs/repository-settings.md).
+> [!NOTE]
+> Travelant is a beta. Existing Simulator and provider checks are documented separately from physical-device testing and real-world recommendation quality. Start with the [verification record](docs/testing/verification.md).
 
-The separate [PoC journey](poc-journey/README.md) contains the itinerary/routing/weather/Foundation Models/embeddings experiments and [teammate handoff](poc-journey/HANDOFF.md). Start with [Journey Showcase](poc-journey/apps/c67-journey-showcase/README.md) for the guided itinerary UI; Trip Integration owns its shared engine. Its apps and evidence are isolated from the production implementation described below.
+## What you can do
 
-C67 plans personal trips from the traveller's places, preferences and available time. AI recommends optional additions and a visit order using route, weather and venue context. The traveller reviews a proposal before saving it and can recalculate remaining visits during the trip.
+- Choose from seven interest themes and refine them with 62 labels and supported conditions.
+- Discover places through Apple MapKit and an independent OSM/Overture catalog.
+- Review visit durations, opening/access evidence, preferred times, required stops, and the finish-by time.
+- Generate a walking or driving itinerary using Apple route estimates and optional Apple Weather context.
+- Let Luna Max choose among locally validated schedule options after you consent to AI processing.
+- Review, reorder, save, and reopen trips on your device, then recalculate remaining visits when needed.
 
-**Legacy HTTP planning implementation — 30 October 2026:** the default iOS flow is now Plan → review → My Trips → start/arrive/extend/recalculate. It includes synthetic mock adapters, a separate Node/TypeScript Planning API and worker, Apple Maps/Weather and hosted-model adapters, a bounded public-site reader, OpenAPI 0.6 and an additive SQL migration. This batch is local code, not a shared deployment or live-provider acceptance. Read [implementation/evidence](docs/tasks/ai-trip-planning-implementation.md), [planning design](docs/ai-trip-planning.md) and [ADR-0009](docs/decisions/0009-personal-planning-implementation.md).
+Missing hours, access information, weather, and route data remain visible in the planning flow. The [integration guide](docs/guides/pocket-engine-integration.md) explains the current constraints and data boundaries.
 
-## Run the app
+## Get started
 
-1. Open `ios-ui/C67.xcodeproj`, select **C67** and an iPhone Simulator, then Run.
-2. In Pocket mode, choose a starting point, then tap the Home plus button and choose **Get Recommendations** or **Add Specific Place**. Complete the guided inputs and confirm the planner details.
-3. Review visit availability and schedule-advice consent, then save the itinerary with a name. Open the saved trip to start, manually confirm arrivals, finish visits and inspect recalculation through Trip options. See the [Canvas and flow guide](ios-ui/README.md).
+### Requirements
 
-Explicit mock mode uses no AI or weather providers; trips remain in memory until the app closes. Place search and requesting current location use Apple platform services only when invoked. The legacy catalog example remains available with the launch argument `--legacy-catalog`.
+- macOS with Xcode and an installed iPhone Simulator runtime. The app targets **iOS 18+**, uses Swift 6 language mode, and was most recently checked with Xcode 27.2.
+- XcodeGen 2.44+ when editing the project specification.
+- Python 3.11+ for repository checks. Node 22.18+ is needed for the earlier HTTP planning service.
 
-Legacy `live` mode requires a configured HTTPS Planning API, the new SQL migration, backend provider credentials and traveller sign-in. Existing Supabase/Auth deployment does not deploy this new service. See [planning setup](server/planning/README.md) and [getting started](docs/getting-started.md). Missing planning configuration leaves Account usable and reports an explicit planning error.
+```sh
+git clone https://github.com/pibeebee/C67.git
+cd C67
+git switch dev
+open apps/ios/C67.xcodeproj
+```
 
-| Area | Responsibility | Entry point |
-|---|---|---|
-| `ios-ui/` | SwiftUI/VIPER planning, MapKit search, requested location and Account | [UI guide](ios-ui/README.md) |
-| `ios-backend/` | Domain models/protocols, mock/live repositories and session handling | [Client guide](ios-backend/README.md) |
-| `server/planning/` | Planning HTTP API/worker, scheduler, model and data adapters | [Planning guide](server/planning/README.md) |
-| `server/supabase/` | One additive migration history, RPCs, jobs, receipts and RLS | [Server guide](server/README.md) |
-| `contracts/` | Authoritative wire contract and synthetic fixtures | [Contract guide](contracts/README.md) |
-| `docs/` | Product context, decisions, setup and verification | [Team handoff](docs/team-starter.md) |
+Select the **C67** scheme and an iPhone Simulator. Choose a starting point on the Trip screen, tap **+ → Get Recommendations**, and complete the preferences. Review the selected places and visit availability before saving the itinerary.
 
-Existing creator/version trips, graph, planned edits, private journal/media and authentication retain their contracts. Personal planning has its own aggregate and does not bypass journal guards or invent creator IDs. Native email/password and Sign in with Apple retain their separately recorded [Auth/API](docs/tasks/ios-auth-api.md) and [Apple](docs/tasks/apple-auth.md) evidence; device lifecycle acceptance remains separate.
+The default mode is `pocket`. With no read token, discovery can use bundled independent records and Apple search. Catalog sync and optional Luna advice use the Pocket service. Enter the HTTPS URL and invited-beta read token in **Account → Pocket settings**. The token is stored in Keychain.
 
-For team work, start with [AGENTS.md](AGENTS.md), [architecture](docs/architecture.md), [coding conventions](docs/coding-conventions.md) and the [AI workflow](docs/ai/workflow.md). Synthetic integration success does not establish travel accuracy, product validation or production readiness.
+For isolated UI work, select explicit `mock` mode as described in [Getting started](docs/guides/getting-started.md). Its sample trips stay in memory.
 
-## Standalone native AI experiment
+### Pocket service
 
-[TripSense POC](tripsense-poc/README.md) is an isolated iOS 26+ Foundation Models/MapKit experiment with a separate Xcode project. Its [feasibility report](tripsense-poc/FEASIBILITY.md) separates actual Mac tool-call/routing evidence, synthetic tests and pending physical-iPhone acceptance. It does not replace the C67 app or change shared backend behavior.
+The maintained Python service lives in `server/pocket/src/`. It serves catalog evidence and constrained Luna advice. Configure its ignored environment file from `.env.example`, then follow the [server guide](server/pocket/README.md).
+
+```sh
+cp server/pocket/.env.example server/pocket/.env
+# Fill the private tokens and provider settings before starting.
+docker compose -f server/pocket/compose.yml up -d --build
+```
+
+For the homelab, use the [Cloudflare Tunnel deployment](server/deploy/pocket/README.md). Release builds require an explicit HTTPS host in ignored `apps/ios/Configuration/Production.local.xcconfig`.
+
+> [!IMPORTANT]
+> Provider API keys and write tokens stay on the server. Put only client-safe settings in Xcode configuration. Use the read token in Pocket settings, and keep real credentials out of Git and test fixtures.
+
+## How it works
+
+```text
+SwiftUI / VIPER
+    → C67Domain interfaces
+    → C67Data adapters
+    → Pocket Engine matching and schedule validation on device
+        ├── Apple MapKit / WeatherKit
+        └── Pocket server → independent catalog / optional Luna advice
+```
+
+Trips are saved on the device. The model receives bounded schedule options and returns a selection ID for local revalidation. The [architecture guide](docs/architecture/architecture.md) describes the current native path and the earlier HTTP planning mode.
+
+## Repository map
+
+| Directory | Contents |
+| --- | --- |
+| [`apps/ios/`](apps/ios/README.md) | Travelant app, XcodeGen specification, UI, assets, and app/UI tests |
+| [`packages/C67Backend/`](packages/C67Backend/README.md) | On-device Domain/Data package and adapters |
+| [`packages/PocketEngine/`](packages/PocketEngine/README.md) | Recommendation core, scheduling, taxonomy, and independent catalog resources |
+| [`server/`](server/README.md) | Pocket service, earlier HTTP planner, Supabase, media worker, and deployment recipes |
+| [`contracts/`](contracts/README.md) | Shared API specification and authoritative synthetic fixtures |
+| [`research/`](research/README.md) | PoCs, model evaluations, source records, and historical evidence |
+| [`design/`](design/README.md) | Branding sources and design exports |
+| [`docs/`](docs/README.md) | Product, architecture, guides, operations, testing, and task records |
+| `scripts/` / `tools/` | Repository checks and pinned tool manifests |
+
+The [layout guide](docs/guides/repository-layout.md) maps earlier paths to their current locations. Imported experiment reports retain their original dates, hashes, and historical commands.
+
+## Verification
+
+Run from the repository root.
+
+```sh
+swift test --package-path packages/PocketEngine
+swift test --package-path packages/C67Backend
+python3 -m unittest discover -s server/pocket/tests
+python3 -m venv .venv
+.venv/bin/pip install -r scripts/requirements.txt
+.venv/bin/python scripts/check_contracts.py
+```
+
+`bash scripts/verify_local.sh quick` runs the local feature checks. Use `ios-smoke` for app unit tests and two mock UI flows, or `ios-full` for the full mock app/UI suite. PoC verification has its own [entry point](research/README.md).
+
+Work branches target **dev**. Automatic CI runs on **dev → main** promotion PRs. Broader regression and PoC workflows are manual. See [repository settings](docs/operations/repository-settings.md) and [coding conventions](docs/guides/coding-conventions.md).
+
+## Explore the project
+
+- [Product context and planning boundaries](docs/product/product-context.md)
+- [Pocket configuration and local storage](docs/guides/pocket-engine-integration.md)
+- [PoC and Apple-first transition index](research/poc-journey/docs/apple-first-transition-2026-11-12.md)
+- [Live test evidence and beta handoff](docs/tasks/pocket-live-testflight-handoff.md)
+- [Release and TestFlight procedure](docs/operations/testflight.md)

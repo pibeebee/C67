@@ -14,7 +14,7 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 import uuid
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from resolution import Resolver, public_url, WebReader, MODEL
 from server import Handler, Jobs, ThreadingHTTPServer, stream_response, responses_stream
 
