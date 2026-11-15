@@ -383,7 +383,7 @@ private struct PlanningProposalSections: View {
                     }
                 }
                 if proposal.evidence.contains(where: { $0.kind == "weather" }) {
-                    Text("Weather data: Apple Weather. Forecasts and estimates can change.").font(.footnote)
+                    Text("Forecast sources are listed with the plan. Forecasts and estimates can change.").font(.footnote)
                 }
             }
         }
@@ -396,8 +396,10 @@ private struct PlanningStopRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(stop.name).font(.headline)
-            Text("\(PlanningTime.text(stop.arrivalAt, zone: zone)) – \(PlanningTime.text(stop.departureAt, zone: zone))").font(.subheadline)
-            Text("Travel \(stop.travelSeconds / 60) min · visit \(stop.visitSeconds / 60) min").font(.caption).foregroundStyle(.secondary)
+            if stop.arrivalAt != nil {
+                Text("\(PlanningTime.text(stop.arrivalAt, zone: zone)) – \(PlanningTime.text(stop.departureAt, zone: zone))").font(.subheadline)
+                Text("Travel \(stop.travelSeconds / 60) min · visit \(stop.visitSeconds / 60) min").font(.caption).foregroundStyle(.secondary)
+            } else { Text("Experience order · arrival time not scheduled").font(.caption).foregroundStyle(.secondary) }
             ForEach(stop.warnings, id: \.self) { Text($0).font(.footnote).foregroundStyle(.secondary) }
         }
     }
@@ -456,7 +458,8 @@ struct ActivePlanningTripView: View {
 }
 
 private enum PlanningTime {
-    static func text(_ value: Date, zone: String) -> String {
+    static func text(_ value: Date?, zone: String) -> String {
+        guard let value else { return String(localized: "Not scheduled") }
         var style = Date.FormatStyle(date: .abbreviated, time: .shortened)
         style.timeZone = TimeZone(identifier: zone) ?? .current
         return value.formatted(style)

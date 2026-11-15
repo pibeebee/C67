@@ -1,6 +1,33 @@
 import XCTest
 
 extension XCTestCase {
+    /// Tap the trailing edge before deleting, including when a long value scrolls horizontally.
+    @MainActor func replaceTripName(_ field: XCUIElement, with name: String) {
+        XCTAssertTrue(field.waitForExistence(timeout: 5))
+        let empty = NSPredicate { _, _ in
+            (field.value as? String ?? "").isEmpty || field.value as? String == field.placeholderValue
+        }
+        for _ in 0 ..< 8 {
+            let value = field.value as? String ?? ""
+            if empty.evaluate(with: nil) { break }
+            field.coordinate(withNormalizedOffset: .init(dx: 0.98, dy: 0.5)).tap()
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: value.utf16.count))
+        }
+        let cleared = XCTNSPredicateExpectation(predicate: empty, object: nil)
+        guard XCTWaiter.wait(for: [cleared], timeout: 3) == .completed else {
+            let screenshot = XCTAttachment(screenshot: field.screenshot())
+            screenshot.name = "Trip name field after clearing"
+            screenshot.lifetime = .keepAlways
+            add(screenshot)
+            XCTFail("Trip name was not cleared: value=\(String(describing: field.value)), placeholder=\(String(describing: field.placeholderValue))")
+            return
+        }
+        guard !name.isEmpty else { return }
+        field.tap()
+        field.typeText(name)
+        XCTAssertEqual(field.value as? String, name, "Verify the exact name before saving")
+    }
+
     @MainActor func scrollToTripControl(_ element: XCUIElement, in app: XCUIApplication) {
         for _ in 0 ..< 18 {
             if element.exists && element.isHittable { return }
@@ -27,18 +54,12 @@ extension XCTestCase {
         openTripMenu(app)
         app.buttons[recommendations ? "Get Recommendations" : "Add Specific Place"].tap()
         if recommendations {
-            for _ in 0 ..< 7 {
-                XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
-                app.buttons["Skip"].tap()
-            }
+            XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
+            app.buttons["Skip"].tap()
         } else {
             XCTAssertTrue(app.buttons["addPlacesNext"].waitForExistence(timeout: 5))
             app.buttons["addPlacesNext"].tap()
         }
-        let confirm = app.buttons["confirmTripInput"]
-        scrollToTripControl(confirm, in: app)
-        XCTAssertTrue(confirm.isEnabled)
-        confirm.tap()
     }
 
     @MainActor func reviewMockItinerary(_ app: XCUIApplication) {

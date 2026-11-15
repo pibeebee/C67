@@ -13,14 +13,19 @@ public struct TripInput: Sendable {
     public var minimumStops: Int
     public var preservesOrder: Bool
     public var firstVenueID: String?
+    public var endPoint: Coordinate?
+    public var preferredVenueID: String?
+    public var automaticTiming: Bool
     public init(departure: Date, deadline: Date, origin: Coordinate, returnToOrigin: Bool,
                 maxWaitMinutes: Int, avoidRain: Bool, latestDeparture: Date? = nil,
                 lastVenueID: String? = nil, minimumStops: Int = 1, maximumStops: Int = 6,
-                preservesOrder: Bool = false, firstVenueID: String? = nil) {
+                preservesOrder: Bool = false, firstVenueID: String? = nil,
+                endPoint: Coordinate? = nil, preferredVenueID: String? = nil, automaticTiming: Bool = false) {
         self.departure = departure; self.deadline = deadline; self.origin = origin
         self.returnToOrigin = returnToOrigin; self.maxWaitMinutes = maxWaitMinutes; self.avoidRain = avoidRain
         self.latestDeparture = latestDeparture; self.lastVenueID = lastVenueID; self.minimumStops = minimumStops; self.maximumStops = maximumStops
         self.preservesOrder = preservesOrder; self.firstVenueID = firstVenueID
+        self.endPoint = endPoint; self.preferredVenueID = preferredVenueID; self.automaticTiming = automaticTiming
     }
 }
 public struct LegQuote: Sendable {
@@ -58,12 +63,14 @@ public struct Itinerary: Codable, Identifiable, Sendable {
     public var finish: Date
     public var origin: Coordinate
     public var returnToOrigin: Bool
+    public var endPoint: Coordinate? = nil
     public var returnSeconds: Double
     public var stops: [ScheduledStop]
     public var omitted: [String]
     public var warnings: [String]
     public var etaRequests: Int
     public var searchTruncated: Bool
+    public var providerThrottled: Bool? = nil
 }
 
 public enum PlanningEvent: Sendable {
@@ -89,9 +96,9 @@ public enum ItineraryPlanner {
                                    report: @escaping @Sendable (PlanningEvent) -> Void = { _ in }) async throws -> [Itinerary] {
         let started = ContinuousClock.now
         defer { report(.finished(started.duration(to: .now))) }
-        guard input.origin.valid, input.deadline > input.departure,
+        guard input.origin.valid, input.endPoint?.valid ?? true, input.deadline > input.departure,
               TripClock.day(input.departure) == TripClock.day(input.deadline),
-              (0 ... 120).contains(input.maxWaitMinutes), !choices.isEmpty, choices.count <= 6,
+              (0 ... 120).contains(input.maxWaitMinutes), !choices.isEmpty, choices.count <= (input.automaticTiming ? 12 : 6),
               (1 ... choices.count).contains(input.minimumStops),
               (input.minimumStops ... 6).contains(input.maximumStops),
               Set(choices.map(\.venueID)).count == choices.count, (1 ... 120).contains(budget),
@@ -175,16 +182,22 @@ private actor PlanningSearch {
             if calls >= budget { truncated = true; break }
             interrupted = false
             let remainingStarts = departures.count - index
-            let legCount = max(required.count, input.minimumStops) + (input.returnToOrigin ? 1 : 0)
-            callLimit = min(budget, calls + max(legCount, (budget - calls) / remainingStarts))
+            let stopCount = input.automaticTiming ? min(pairs.count, input.maximumStops) : max(required.count, input.minimumStops)
+            // A partial proposal also needs a return quote before it can be retained.
+            let legCount = stopCount * (input.automaticTiming && input.returnToOrigin ? 2 : 1)
+                + (!input.automaticTiming && input.returnToOrigin ? 1 : 0)
+            let spareForOtherStarts = input.automaticTiming && remainingStarts > 1 ? 2 : 0
+            callLimit = min(budget - spareForOtherStarts, calls + max(legCount, (budget - calls) / remainingStarts))
+            if callLimit <= calls { continue }
             try await visit(path: [], used: [], location: input.origin, time: departure, departure: departure)
-            if best?.stops.count == min(pairs.count, input.maximumStops) && bestTimingPenalty == 0 && departures.count > 1 {
+            if best?.stops.count == min(pairs.count, input.maximumStops) && bestTimingPenalty == 0 && departures.count > 1, !input.automaticTiming {
                 if remainingStarts > 1 { truncated = true }
                 break
             }
         }
         try Task.checkCancellation()
         guard var result = best else {
+            if throttled && input.automaticTiming { throw TravelQuoteError.throttled }
             let details = failures.sorted().prefix(6).joined(separator: "\n")
             let limit = truncated ? "\nBatas pencarian tercapai; ini bukan bukti tidak ada solusi." : ""
             throw EngineError.invalid("Belum ditemukan jadwal yang memenuhi seluruh tujuan wajib dan batas perjalanan.\n" + details + limit)
@@ -198,7 +211,10 @@ private actor PlanningSearch {
         result.warnings = ["ETA adalah perkiraan Apple Maps pada waktu tiap ruas; kondisi nyata dapat berubah.",
                            "Jam reguler belum membuktikan pengecualian hari libur atau slot reservasi."]
         if truncated { result.warnings.append("Sebagian alternatif belum diperiksa; maksimum \(budget) permintaan ETA dan 800 cabang.") }
-        if throttled { result.warnings.append("Apple Maps membatasi permintaan ETA; alternatif belum diperiksa.") }
+        if throttled {
+            result.providerThrottled = true
+            result.warnings.append("Apple Maps membatasi permintaan ETA; alternatif belum diperiksa.")
+        }
         for (choice, venue) in pairs {
             guard case .preferred(let minute) = choice.timing,
                   let visit = result.stops.first(where: { $0.venueID == venue.id }),
@@ -209,6 +225,7 @@ private actor PlanningSearch {
         return options.filter { $0.plan.stops.count == result.stops.count }.map { entry in
             var option = entry.plan
             option.etaRequests = calls; option.searchTruncated = truncated
+            option.providerThrottled = result.providerThrottled
             let selected = Set(option.stops.map(\.venueID))
             option.omitted = pairs.filter { !selected.contains($0.1.id) }.map { pair in
                 failures.sorted().first { $0.hasPrefix(pair.1.name + ":") } ?? pair.1.name + ": tidak terpilih dalam pencarian terbatas."
@@ -248,10 +265,14 @@ private actor PlanningSearch {
             for lead in [15, 30, 5] { add(target.addingTimeInterval(-Double((preceding + lead) * 60))) }
         }
         add(input.departure)
-        let openings = pairs.filter { required.contains($0.1.id) }.compactMap { choice, venue in
-            openingWindows(choice, venue).first { $0.end > input.departure }?.start
-        }.sorted()
-        for opening in openings.prefix(2) { add(opening.addingTimeInterval(-900)) }
+        let openings = pairs.filter { input.automaticTiming || required.contains($0.1.id) }.flatMap { choice, venue in
+            let future = openingWindows(choice, venue).filter { $0.end > input.departure }
+            return input.automaticTiming ? future.map(\.start) : Array(future.prefix(1)).map(\.start)
+        }
+        let openingCandidates = input.automaticTiming ? Array(Set(openings)).sorted() : openings.sorted()
+        for opening in openingCandidates.prefix(input.automaticTiming ? 4 : 2) {
+            add(opening.addingTimeInterval(-900))
+        }
         let span = latest.timeIntervalSince(input.departure)
         for fraction in [0.5, 0.75] { add(input.departure.addingTimeInterval(span * fraction)) }
         add(latest)
@@ -319,15 +340,11 @@ private actor PlanningSearch {
             let visit = path.first { $0.venueID == pair.1.id }
             return partial + (visit.map { abs($0.visitStart.timeIntervalSince(at(minute))) } ?? 86_400)
         }
-        if let best {
-            guard path.count > best.stops.count ||
-                path.count == best.stops.count && (penalty < bestTimingPenalty ||
-                    penalty == bestTimingPenalty && time < best.finish) else { return }
-        }
+        if let best, !outranks(path, penalty: penalty, finish: time, incumbent: best, incumbentPenalty: bestTimingPenalty) { return }
         var finish = time
         var back = 0.0
         if input.returnToOrigin {
-            guard let last = try await quote(from: location, to: input.origin, at: time) else { return }
+            guard let last = try await quote(from: location, to: input.endPoint ?? input.origin, at: time) else { return }
             finish = time.addingTimeInterval(last.seconds)
             back = last.seconds
         }
@@ -336,7 +353,7 @@ private actor PlanningSearch {
             return
         }
         let candidate = Itinerary(id: UUID(), generatedAt: checkedAt, departure: departure, finish: finish,
-                                  origin: input.origin, returnToOrigin: input.returnToOrigin, returnSeconds: back, stops: path,
+                                  origin: input.origin, returnToOrigin: input.returnToOrigin, endPoint: input.endPoint, returnSeconds: back, stops: path,
                                   omitted: [], warnings: [], etaRequests: calls, searchTruncated: false)
         let signature = path.map { $0.venueID + "@" + String($0.visitStart.timeIntervalSince1970) }.joined(separator: "|")
         if !options.contains(where: { entry in
@@ -344,25 +361,30 @@ private actor PlanningSearch {
         }) {
             options.append((candidate, penalty))
             options.sort {
-                if $0.plan.stops.count != $1.plan.stops.count { return $0.plan.stops.count > $1.plan.stops.count }
-                if $0.penalty != $1.penalty { return $0.penalty < $1.penalty }
-                return $0.plan.finish < $1.plan.finish
+                outranks($0.plan.stops, penalty: $0.penalty, finish: $0.plan.finish,
+                         incumbent: $1.plan, incumbentPenalty: $1.penalty)
             }
             options = Array(options.prefix(6))
         }
-        if let best {
-            guard path.count > best.stops.count ||
-                path.count == best.stops.count && (penalty < bestTimingPenalty ||
-                    penalty == bestTimingPenalty && finish < best.finish) else { return }
-        }
+        if let best, !outranks(path, penalty: penalty, finish: finish, incumbent: best, incumbentPenalty: bestTimingPenalty) { return }
         if best == nil { report(.firstSchedule(started.duration(to: .now))) }
         bestTimingPenalty = penalty
         best = Itinerary(id: UUID(), generatedAt: checkedAt, departure: departure, finish: finish,
-                         origin: input.origin, returnToOrigin: input.returnToOrigin, returnSeconds: back, stops: path,
+                         origin: input.origin, returnToOrigin: input.returnToOrigin, endPoint: input.endPoint, returnSeconds: back, stops: path,
                          omitted: [], warnings: [], etaRequests: calls, searchTruncated: false)
-        if path.count == min(pairs.count, input.maximumStops) && penalty == 0 {
+        if !input.automaticTiming, path.count == min(pairs.count, input.maximumStops) && penalty == 0 {
             callLimit = min(callLimit, calls + 12)
         }
+    }
+
+    func outranks(_ stops: [ScheduledStop], penalty: Double, finish: Date, incumbent: Itinerary, incumbentPenalty: Double) -> Bool {
+        if let preferred = input.preferredVenueID {
+            let includes = stops.contains { $0.venueID == preferred }
+            if includes != incumbent.stops.contains(where: { $0.venueID == preferred }) { return includes }
+        }
+        if stops.count != incumbent.stops.count { return stops.count > incumbent.stops.count }
+        if penalty != incumbentPenalty { return penalty < incumbentPenalty }
+        return finish < incumbent.finish
     }
 
     func visit(path: [ScheduledStop], used: Set<String>, location: Coordinate, time: Date, departure: Date) async throws {
@@ -390,9 +412,11 @@ private actor PlanningSearch {
         }.sorted {
             // Try an untimed stop before a later appointment, while keeping the other order searchable.
             if $0.3 != $1.3 { return $0.3 }
-            let aRequired = required.contains($0.1.id), bRequired = required.contains($1.1.id)
-            if aRequired != bRequired { return aRequired }
+            let aRequired = required.contains($0.1.id) || $0.1.id == input.preferredVenueID
+            let bRequired = required.contains($1.1.id) || $1.1.id == input.preferredVenueID
+            if !input.automaticTiming, aRequired != bRequired { return aRequired }
             if $0.2 != $1.2 { return $0.2 < $1.2 }
+            if aRequired != bRequired { return aRequired }
             let a = location.distance(to: $0.1.coordinate), b = location.distance(to: $1.1.coordinate)
             return a == b ? $0.1.id < $1.1.id : a < b
         }
@@ -416,6 +440,14 @@ private actor PlanningSearch {
             guard venue.status(.publicAccess, at: input.departure) == .supported || manual?.publicAccessConfirmed == true else {
                 failures.insert(venue.name + ": akses pengunjung umum belum didukung bukti atau konfirmasi perjalanan."); continue
             }
+            let duration = Double(choice.durationMinutes) * 60
+            let hours = venue.hours.flatMap { $0.fresh(at: input.departure) ? $0 : nil }
+            guard manual != nil || hours?.reservationRequired != true,
+                  hours?.closedDates?.contains(TripClock.day(input.departure)) != true,
+                  hours?.maximumVisitMinutes.map({ choice.durationMinutes <= $0 }) ?? true else {
+                failures.insert(venue.name + ": reservation or maximum visit duration needs review.")
+                continue
+            }
             let intervals = openingWindows(choice, venue)
             guard !intervals.isEmpty else {
                 failures.insert(venue.name + ": jam kunjungan belum tersedia, kedaluwarsa, atau tidak ada interval buka.")
@@ -426,10 +458,9 @@ private actor PlanningSearch {
                 failures.insert(venue.name + ": ETA menuju tempat tidak tersedia."); continue
             }
             let arrival = time.addingTimeInterval(eta.seconds)
-            let duration = Double(choice.durationMinutes) * 60
             let outdoor = venue.status(.outdoor, at: arrival) == .supported
             let starts = visitStarts(choice, arrival: arrival, duration: duration, intervals: intervals,
-                                     checkLaterWeather: input.avoidRain && outdoor)
+                                     checkLaterWeather: input.avoidRain && outdoor, latestEntry: hours?.lastEntryMinute.map(at))
             guard !starts.isEmpty else {
                 failures.insert(venue.name + ": durasi penuh atau jam wajib tidak muat pada jam buka, batas menunggu, atau batas pulang.")
                 continue
@@ -473,13 +504,13 @@ private actor PlanningSearch {
     }
 
     func visitStarts(_ choice: StopChoice, arrival: Date, duration: Double, intervals: [DateInterval],
-                     checkLaterWeather: Bool) -> [Date] {
+                     checkLaterWeather: Bool, latestEntry: Date?) -> [Date] {
         var starts = Set<Date>()
         for window in intervals {
             var earliest = max(arrival, window.start)
             if case .notBefore(let minute) = choice.timing { earliest = max(earliest, at(minute)) }
             let latest = min(arrival.addingTimeInterval(Double(input.maxWaitMinutes) * 60),
-                             min(window.end, input.deadline).addingTimeInterval(-duration))
+                             min(window.end, input.deadline).addingTimeInterval(-duration), latestEntry ?? .distantFuture)
             guard earliest <= latest else { continue }
             if case .required(let minute) = choice.timing {
                 let fixed = at(minute)
@@ -494,7 +525,11 @@ private actor PlanningSearch {
                     starts.insert(boundary)
                 }
             }
-            if choice.timing == nil && !checkLaterWeather { break }
+            if input.automaticTiming, !checkLaterWeather, latest > earliest {
+                starts.insert(min(earliest.addingTimeInterval(15 * 60), latest))
+                starts.insert(latest)
+            }
+            if !input.automaticTiming && choice.timing == nil && !checkLaterWeather { break }
         }
         if case .preferred(let minute) = choice.timing {
             let target = at(minute)
@@ -537,9 +572,11 @@ private actor PlanningSearch {
 extension HoursEvidence {
     public func windows(on day: Date) -> [DateInterval] {
         let cal = TripClock.calendar, base = cal.startOfDay(for: day)
+        if closedDates?.contains(TripClock.day(base)) == true { return [] }
         return [-1, 0].flatMap { offset -> [DateInterval] in
             let date = cal.date(byAdding: .day, value: offset, to: base)!
             let key = TripClock.day(date), weekday = cal.component(.weekday, from: date)
+            if closedDates?.contains(key) == true { return [] }
             let specific = intervals.filter { $0.date == key }
             let rows = specific.isEmpty ? intervals.filter { $0.date == nil && $0.weekday == weekday } : specific
             return rows.map { .init(start: date.addingTimeInterval(Double($0.startMinute) * 60), end: date.addingTimeInterval(Double($0.endMinute) * 60)) }

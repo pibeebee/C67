@@ -1,0 +1,171 @@
+{
+  "test": "Fresh source refetch and real Luna, using discovery URLs recorded in the native live run",
+  "result": {
+    "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+    "snapshotID": "1ed456df3ce7b398dade1fafe67d4a10069043421641cb8ab50d6433a69cd5df",
+    "status": "ready",
+    "requestedModel": "cx/gpt-6-luna(max)",
+    "reportedModel": "gpt-6-luna(max)",
+    "sources": [
+      {
+        "id": "source-71d4a8c8f9687cf25f28",
+        "finalURL": "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+        "retrievedAt": "2026-11-14T12:06:00Z",
+        "contentHash": "45ee80feb0ae18bf085001ed3e76f5bbe296c033dedd70498ffa1b1ab7fe6566"
+      },
+      {
+        "id": "source-1744209efb8ee957d3a3",
+        "finalURL": "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+        "retrievedAt": "2026-11-14T12:06:01Z",
+        "contentHash": "156fdff0e7190c171653349db2246b9b7537948c222e91c9fd9dc98470d559d1"
+      }
+    ],
+    "venue": {
+      "id": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+      "name": "Taman Bendera Pusaka",
+      "branch": "Taman Bendera Pusaka",
+      "address": "",
+      "coordinate": {
+        "latitude": -6.245659,
+        "longitude": 106.793781
+      },
+      "categories": [
+        "park",
+        "walking",
+        "children's play",
+        "sports"
+      ],
+      "aliases": [],
+      "sourceURLs": [
+        "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+        "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl"
+      ],
+      "operatorURLs": [],
+      "license": "Source-attributed visit evidence retrieved for this request",
+      "facts": [
+        {
+          "field": "publicAccess",
+          "status": "supported",
+          "value": "walk_in",
+          "sourceURL": "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+          "quote": "Taman Bendera Pusaka di Jakarta Selatan dapat dikunjungi masyarakat selama 24 jam penuh",
+          "checkedAt": "2026-11-14T12:14:20Z",
+          "expiresAt": "2026-11-21T12:14:20Z"
+        }
+      ],
+      "hours": {
+        "intervals": [
+          {
+            "weekday": 2,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 3,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 4,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 5,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 6,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 7,
+            "startMinute": 0,
+            "endMinute": 1440
+          },
+          {
+            "weekday": 1,
+            "startMinute": 0,
+            "endMinute": 1440
+          }
+        ],
+        "checkedAt": "2026-11-14T12:14:20Z",
+        "expiresAt": "2026-11-21T12:14:20Z",
+        "sourceURL": "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+        "quote": "Taman ini menjadi salah satu dari lima taman di Jakarta yang dibuka selama 24 jam sejak 16 Mei 2025.",
+        "closedDates": [],
+        "reservationRequired": false
+      }
+    }
+  },
+  "checkedAt": "2026-11-14T12:14:20Z",
+  "fields": {
+    "identity": {
+      "value": "Taman Bendera Pusaka",
+      "sourceID": "source-1744209efb8ee957d3a3",
+      "quote": "Hal itu menjadi salah satu tantangan pengelolaan Taman Langsat, Jakarta Selatan, yang kini dikenal dengan nama Taman Bendera Pusaka."
+    },
+    "weekly": {
+      "value": [
+        {
+          "days": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "intervals": [
+            [
+              "00:00",
+              "24:00"
+            ]
+          ]
+        }
+      ],
+      "sourceID": "source-1744209efb8ee957d3a3",
+      "quote": "Taman ini menjadi salah satu dari lima taman di Jakarta yang dibuka selama 24 jam sejak 16 Mei 2025."
+    },
+    "access": {
+      "value": "walk_in",
+      "sourceID": "source-71d4a8c8f9687cf25f28",
+      "quote": "Taman Bendera Pusaka di Jakarta Selatan dapat dikunjungi masyarakat selama 24 jam penuh"
+    },
+    "closures": {
+      "value": [],
+      "sourceID": "source-1744209efb8ee957d3a3",
+      "quote": "Taman ini menjadi salah satu dari lima taman di Jakarta yang dibuka selama 24 jam sejak 16 Mei 2025."
+    },
+    "categories": {
+      "value": [
+        "park",
+        "walking",
+        "children's play",
+        "sports"
+      ],
+      "sourceID": "source-1744209efb8ee957d3a3",
+      "quote": "Fasilitas taman juga cukup beragam. Ada jalur pejalan kaki, jembatan, area bermain anak, perpustakaan, lapangan olahraga, musala, toilet, hingga paviliun yang dilengkapi sejumlah fasilitas penunjang."
+    }
+  },
+  "requestedModel": "cx/gpt-6-luna(max)",
+  "reportedModel": "gpt-6-luna(max)",
+  "extractionPasses": 3,
+  "sources": [
+    {
+      "id": "source-71d4a8c8f9687cf25f28",
+      "finalURL": "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+      "retrievedAt": "2026-11-14T12:06:00Z",
+      "contentHash": "45ee80feb0ae18bf085001ed3e76f5bbe296c033dedd70498ffa1b1ab7fe6566"
+    },
+    {
+      "id": "source-1744209efb8ee957d3a3",
+      "finalURL": "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+      "retrievedAt": "2026-11-14T12:06:01Z",
+      "contentHash": "156fdff0e7190c171653349db2246b9b7537948c222e91c9fd9dc98470d559d1"
+    }
+  ]
+}

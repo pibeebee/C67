@@ -11,6 +11,7 @@ struct SavedTripView: View {
         Group {
             if let trip = presenter.trips.first(where: { $0.id == tripID }) {
                 SavedItineraryContent(trip: trip, isBusy: presenter.isBusy, error: presenter.error,
+                                      refreshRoute: trip.status == .planned && trip.plan.hasExperienceTravelFallback ? { refreshRoute() } : nil,
                                       primary: { primary(trip) })
                     .navigationDestination(isPresented: $showsProgress) {
                         TripProgressView(tripID: tripID, presenter: presenter)
@@ -26,12 +27,22 @@ struct SavedTripView: View {
                             .labelStyle(.iconOnly)
                         }
                     }
+                    .task {
+                        if presenter.consumeStartRequest(for: tripID) { primary(trip) }
+                        else if trip.status == .planned, trip.plan.experiencePlan != nil, trip.plan.experienceRouteCheckedAt == nil {
+                            await presenter.refreshSavedExperienceRoute(tripID: tripID)
+                        }
+                    }
                     .refreshable { await presenter.load() }
             } else {
                 ContentUnavailableView("Trip unavailable", systemImage: "map",
                                        description: Text("Return to Home and refresh your trips."))
             }
         }
+    }
+
+    private func refreshRoute() {
+        Task { await presenter.refreshSavedExperienceRoute(tripID: tripID) }
     }
 
     private func primary(_ trip: PersonalPlanningTrip) {

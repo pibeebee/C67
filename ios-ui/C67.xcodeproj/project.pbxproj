@@ -45,6 +45,7 @@
 		41CCF009021A16BE232EDBA3 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3843810F4D9FB9CCB238DF8 /* AccountView.swift */; };
 		4384AF502221DD9F72A2B2E8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03434F9077C5BFC8CDDC0E /* SplashView.swift */; };
 		44350C905E8B74A47D32B018 /* ItineraryTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1379F1AA52AFB1B1DFD43 /* ItineraryTimelineRow.swift */; };
+		44853ECFD078162DF0B65A91 /* PocketEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 8942D2655C09BFDCF3A9872C /* PocketEngine */; };
 		450F7DDBBE37D2F0785B0591 /* QuestionPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0887B0A9629FEA13F3309F5 /* QuestionPrimaryButton.swift */; };
 		46EE6F5E8C4825FE3CCE2B24 /* QuestionScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9895893E9A08B8A20E022C4F /* QuestionScaffold.swift */; };
 		4742065383B28FB32ADED729 /* BudgetQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF68C1C928FBEC824C86B55 /* BudgetQuestionView.swift */; };
@@ -103,7 +104,6 @@
 		99C77301685F2B92097C8B98 /* ChoiceChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A8A72E1F56419E5166A79 /* ChoiceChip.swift */; };
 		9B4AF2B0BD9A21CA86AD943C /* PocketEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9361F94A00866537D9203D /* PocketEngineUITests.swift */; };
 		9E54FF14ADE853C76462C606 /* TripHomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8377EA4B3447D3E33B0DFDC /* TripHomeTab.swift */; };
-		A05DA57D27D0B3F37EB51318 /* TripInputConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B380122761CBB125B950C /* TripInputConfirmationView.swift */; };
 		A3D9DE252E6CBB21DBE5085E /* CheckmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BCAFB82159499E612934D8 /* CheckmarkRow.swift */; };
 		A527A73FCDCB7923FD68A6E2 /* ItinerarySaveDesignPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D6C1F4719F5EE22CD1FBD2 /* ItinerarySaveDesignPreview.swift */; };
 		A5532CEDA5EAB9DF97B15D51 /* SelectedPlaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236560FC3DFAF3847B9606C /* SelectedPlaceCard.swift */; };
@@ -204,7 +204,6 @@
 		0D5CF2939D7E03B74DDDFD52 /* ItineraryDepartureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDepartureCard.swift; sourceTree = "<group>"; };
 		0DC0579F95B27882FD51FF06 /* PreferenceOptionCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceOptionCatalogTests.swift; sourceTree = "<group>"; };
 		0E5586A7B7835DC85A711D86 /* SplashAndLocationPermissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAndLocationPermissionTests.swift; sourceTree = "<group>"; };
-		117B380122761CBB125B950C /* TripInputConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInputConfirmationView.swift; sourceTree = "<group>"; };
 		130A2F36854232E11B96725B /* TripCreationDesignPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCreationDesignPreview.swift; sourceTree = "<group>"; };
 		14D05EFD5CD984C724BBFEE8 /* PlanningPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPresenter.swift; sourceTree = "<group>"; };
 		15350656F1C0BA539E073FA7 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
@@ -302,6 +301,7 @@
 		7D19E62BFF2B6B3381AE885E /* TripHomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHomeRootView.swift; sourceTree = "<group>"; };
 		7E34AC0602574C6A2FAF12DB /* StayDurationQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayDurationQuestionView.swift; sourceTree = "<group>"; };
 		80EABA14B4E0F377A51CE149 /* TripProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProcessingView.swift; sourceTree = "<group>"; };
+		813FF06D1BDDCAEDBB1C20A6 /* PocketEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PocketEngine; path = ../packages/PocketEngine; sourceTree = SOURCE_ROOT; };
 		817B51999F8AF4A81CE9B184 /* TripHomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHomeHeader.swift; sourceTree = "<group>"; };
 		81E5AB63A31257C022842BB9 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		825DF3C4ACEC7FAF833753CB /* ChoiceChipButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceChipButtonStyle.swift; sourceTree = "<group>"; };
@@ -412,6 +412,7 @@
 			files = (
 				544B54CC2B305ACBB004DC56 /* C67Domain in Frameworks */,
 				59E55D938EACB44043295669 /* C67Data in Frameworks */,
+				44853ECFD078162DF0B65A91 /* PocketEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				77A3ADE36F15D32A75792710 /* ios-backend */,
+				813FF06D1BDDCAEDBB1C20A6 /* PocketEngine */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -682,7 +684,6 @@
 				735C4B517FA559D9D723455D /* PocketVisitAvailabilityView.swift */,
 				C37C7EF33D2F0FB406AE6D38 /* TripCreationSheet.swift */,
 				F1FEADF08C2DE82C009A82A3 /* TripCreationView.swift */,
-				117B380122761CBB125B950C /* TripInputConfirmationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1504,6 +1505,7 @@
 			packageProductDependencies = (
 				B961506357355BAFEDE834E6 /* C67Domain */,
 				A68E4C7D6CA709DB817A9B3F /* C67Data */,
+				8942D2655C09BFDCF3A9872C /* PocketEngine */,
 			);
 			productName = C67AppTests;
 			productReference = 742F58F18F0E29C7A28C4A9F /* C67AppTests.xctest */;
@@ -1564,7 +1566,7 @@
 					AFB87CDC7E88910B63887A84 = {
 						DevelopmentTeam = DP5XP7C2AM;
 						ProvisioningStyle = Automatic;
-						SystemCapabilities = "[\"com.apple.WeatherKit\": [\"enabled\": 1], \"com.apple.SignInWithApple\": [\"enabled\": 1]]";
+						SystemCapabilities = "[\"com.apple.SignInWithApple\": [\"enabled\": 1], \"com.apple.WeatherKit\": [\"enabled\": 1]]";
 					};
 					D4B46FD83A419D45F1B6CF50 = {
 						DevelopmentTeam = DP5XP7C2AM;
@@ -1584,6 +1586,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BE86442731DDCC504A69D705 /* XCLocalSwiftPackageReference "../ios-backend" */,
+				0101D87C9D18BC433AD1B3B0 /* XCLocalSwiftPackageReference "../packages/PocketEngine" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1A265A94AFC6DA18C69CA3E1 /* Products */;
@@ -1777,7 +1780,6 @@
 				CFF4BAEF84E2B240280E0103 /* TripHomeRow.swift in Sources */,
 				F8F8E40F0F5738B006527162 /* TripHomeSheet.swift in Sources */,
 				9E54FF14ADE853C76462C606 /* TripHomeTab.swift in Sources */,
-				A05DA57D27D0B3F37EB51318 /* TripInputConfirmationView.swift in Sources */,
 				3DCDDB26BEFEE13525370969 /* TripInterest.swift in Sources */,
 				C841D98BF7C1858054736C80 /* TripInterestQuestionView.swift in Sources */,
 				6315144F88993C02856FBD9E /* TripLocationButton.swift in Sources */,
@@ -2084,6 +2086,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		0101D87C9D18BC433AD1B3B0 /* XCLocalSwiftPackageReference "../packages/PocketEngine" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../packages/PocketEngine;
+		};
 		BE86442731DDCC504A69D705 /* XCLocalSwiftPackageReference "../ios-backend" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../ios-backend";
@@ -2098,6 +2104,10 @@
 		4B4556FBE0CA79AB53FD72F1 /* C67Data */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = C67Data;
+		};
+		8942D2655C09BFDCF3A9872C /* PocketEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PocketEngine;
 		};
 		A68E4C7D6CA709DB817A9B3F /* C67Data */ = {
 			isa = XCSwiftPackageProductDependency;

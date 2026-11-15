@@ -28,35 +28,33 @@ private func pocketTestInput(_ catalog: Catalog, count: Int = 3) -> PlanningInpu
     return input
 }
 private func pocketTestRepository(catalog: Catalog, counter: PocketCallCounter = PocketCallCounter(), selection: String = "S1", model: String = "gpt-6-luna(max)", storageURL: URL? = nil) throws -> PocketPlanningRepository {
-    let services = PocketPlanningServices(catalog: { catalog }, discover: { _, _ in [] },
-                                          travel: { _, _, _, _ in await counter.route(); return .init(seconds: 120, meters: 500) },
+    let services = PocketPlanningServices(travel: { _, _, _, _ in await counter.route(); return .init(seconds: 120, meters: 500) },
                                           weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic weather unavailable") },
                                           advise: { _ in
                                               await counter.advised()
                                               return .init(slotID: selection, requestedModel: "cx/gpt-6-luna(max)", reportedModel: model)
-                                          })
+                                          }, resolve: { input, _ in PocketIntegrationFixture.resolution(input, catalog: catalog) })
     return try PocketPlanningRepository(services: services, connection: PocketTestConnection(), storageURL: storageURL, synthetic: true)
 }
 
-@Test func pocketStructuredPreferencesDiscoverWithoutRequiredPlaceAndKeepTaxonomy() async throws {
-    let catalog = try PocketIntegrationFixture.catalog(), repository = try pocketTestRepository(catalog: catalog)
+@Test func pocketPlanningRequiresSelectedPlacesInsteadOfCatalogSuggestions() async throws {
+    let catalog = try PocketIntegrationFixture.catalog(), counter = PocketCallCounter()
+    let repository = try pocketTestRepository(catalog: catalog, counter: counter)
     let input = pocketTestInput(catalog, count: 0)
-    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .suggest, input: input))
-    #expect(job.result?.candidates.count == 3)
-    #expect(job.result?.candidates.allSatisfy { $0.categories.contains("japanese_cuisine") } == true)
+    await #expect(throws: (any Error).self) {
+        try await repository.requestPlan(.init(requestID: UUID(), purpose: .suggest, input: input))
+    }
+    #expect(await counter.routes == 0)
+    #expect(await counter.advice == 0)
     #expect(repository.preferenceLabels.count == 62)
-    #expect(Set(repository.preferenceLabels.map(\.id)).count == 62)
-    #expect(job.input.enginePreferences?.labels == ["japanese_cuisine"])
-    #expect(job.result?.synthetic == true)
 }
 
-@Test func pocketUnknownRequiredEvidenceDoesNotBecomeARecommendation() async throws {
+@Test func pocketUnknownRequiredEvidenceCannotProduceAVisit() async throws {
     let catalog = try PocketIntegrationFixture.catalog(), repository = try pocketTestRepository(catalog: catalog)
-    var input = pocketTestInput(catalog, count: 0)
+    var input = pocketTestInput(catalog, count: 1)
     input.enginePreferences?.conditions["quiet"] = .required
-    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .suggest, input: input))
-    #expect(job.result?.candidates.isEmpty == true)
-    #expect(job.result?.warnings.contains(where: { $0.contains("Fewer than three") }) == true)
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(job.result?.proposal == nil)
 }
 
 @Test func pocketManualOrderReturnLegAndLunaAreRevalidated() async throws {
@@ -69,7 +67,7 @@ private func pocketTestRepository(catalog: Catalog, counter: PocketCallCounter =
     let proposal = try #require(job.result?.proposal)
     #expect(proposal.stops.map(\.id) == input.places.map(\.id))
     #expect(proposal.returnTravelSeconds == 120)
-    #expect(proposal.finishesAt.timeIntervalSince(input.startsAt) == 143 * 60)
+    #expect((try #require(proposal.finishesAt)).timeIntervalSince(input.startsAt) == 143 * 60)
     #expect(await counter.advice == 1)
     #expect(await counter.routes <= 60)
     #expect(proposal.input == input)
@@ -139,9 +137,9 @@ func pocketBadLunaResponseNeverFallsBack(_ selection: String, _ model: String) a
 }
 
 @Test func pocketServerURLRejectsCredentialsAndNonLocalPlainHTTP() throws {
-    #expect(throws: (any Error).self) { try PocketCatalogClient.validatedURL("https://user:password@example.com") }
-    #expect(throws: (any Error).self) { try PocketCatalogClient.validatedURL("http://example.com") }
-    #expect(try PocketCatalogClient.validatedURL("https://example.com/pocket").host == "example.com")
+    #expect(throws: (any Error).self) { try PocketResearchClient.validatedURL("https://user:password@example.com") }
+    #expect(throws: (any Error).self) { try PocketResearchClient.validatedURL("http://example.com") }
+    #expect(try PocketResearchClient.validatedURL("https://example.com/pocket").host == "example.com")
 }
 
 @Test func pocketApplyRetryCannotRollBackAnActiveSavedTrip() async throws {
@@ -155,13 +153,14 @@ func pocketBadLunaResponseNeverFallsBack(_ selection: String, _ model: String) a
     #expect(active.revision == 2 && active.status == .active)
 }
 
-@Test func pocketUnrepresentedInterestRequiresUserAdjustment() async throws {
-    let catalog = try PocketIntegrationFixture.catalog(), repository = try pocketTestRepository(catalog: catalog)
-    var input = pocketTestInput(catalog, count: 0)
-    input.enginePreferences?.themes.insert("culture")
-    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .suggest, input: input))
-    #expect(job.result?.candidates.isEmpty == true)
-    #expect(job.result?.warnings.contains(where: { $0.contains("no interest was removed automatically") }) == true)
+@Test func pocketResolvedVisitsOutsideFormerAdministrativeAreasAreScheduled() async throws {
+    var catalog = try PocketIntegrationFixture.catalog()
+    catalog.venues[0].coordinate = .init(latitude: -6.191242, longitude: 106.675692)
+    let repository = try pocketTestRepository(catalog: catalog)
+    let input = pocketTestInput(catalog, count: 1)
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(job.result?.proposal?.stops.count == 1)
+    #expect(job.result?.proposal?.unscheduledPlaces?.isEmpty == true)
 }
 
 @Test func pocketTravelArrivalAndVisitStartKeepWaitingSeparate() async throws {
@@ -176,5 +175,124 @@ func pocketBadLunaResponseNeverFallsBack(_ selection: String, _ model: String) a
     #expect(stop.travelSeconds == 120)
     #expect(stop.arrivalAt == input.startsAt.addingTimeInterval(120))
     #expect(stop.visitStartsAt == input.startsAt.addingTimeInterval(600))
-    #expect(stop.departureAt.timeIntervalSince(stop.visitStartsAt!) == 2700)
+    #expect((try #require(stop.departureAt)).timeIntervalSince(stop.visitStartsAt!) == 2700)
+}
+
+@Test func firstPocketItineraryKeepsLargeSelectionAndSavesOnlyVerifiedStops() async throws {
+    let catalog = try PocketIntegrationFixture.catalog(), counter = PocketCallCounter()
+    let repository = try pocketTestRepository(catalog: catalog, counter: counter)
+    var input = pocketTestInput(catalog, count: 6)
+    let main = try #require(input.places.last)
+    let unknown = PlanningPlace(id: UUID(), name: "Unknown branch", location: main.location, visitSeconds: 2700)
+    input.places.insert(unknown, at: 0)
+    input.enginePreferences?.mainSpotID = main.id
+    input.enginePreferences?.allowsAIProcessing = false
+
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let proposal = try #require(job.result?.proposal)
+    #expect(input.places.count == 7)
+    #expect(job.originalInput == input)
+    #expect(Set(proposal.stops.map(\.id)) == Set(input.places.dropFirst().map(\.id)))
+    #expect(proposal.input.places.count == 6)
+    #expect(proposal.stops.first(where: { $0.id == main.id })?.visitSeconds == 75 * 60)
+    #expect(proposal.unscheduledPlaces == ["Unknown branch: Visit information is still unresolved after web research."])
+    #expect(proposal.returnTravelSeconds == 120)
+    #expect(await counter.routes <= 840)
+    #expect(await counter.advice == 1)
+    let trip = try await repository.applyProposal(jobID: job.id, expectedRevision: nil, requestID: UUID())
+    #expect(trip.input == proposal.input)
+    #expect(trip.plan.stops == proposal.stops)
+}
+
+@Test func firstPocketItineraryEnforcesVisitRulesAndUsesCustomEndPoint() async throws {
+    var catalog = try PocketIntegrationFixture.catalog()
+    catalog.venues[0].hours?.maximumVisitMinutes = 30
+    catalog.venues[0].hours?.lastEntryMinute = 9 * 60 + 12
+    catalog.venues[0].hours?.intervals = (1 ... 7).flatMap {
+        [OpeningInterval(weekday: $0, startMinute: 9 * 60, endMinute: 10 * 60),
+         OpeningInterval(weekday: $0, startMinute: 14 * 60, endMinute: 16 * 60)]
+    }
+    let tomorrow = PocketIntegrationFixture.input().startsAt
+    catalog.venues[0].hours?.closedDates = [TripClock.day(tomorrow)]
+    catalog.venues[1].hours?.reservationRequired = true
+    let fixtureCatalog = catalog
+    let end = PlanningPoint(latitude: -6.27, longitude: 106.81)
+    let services = PocketPlanningServices(travel: { _, to, _, _ in .init(seconds: to.latitude == end.latitude ? 420 : 120, meters: 300) },
+                                          weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic") },
+                                          advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") },
+                                          resolve: { input, _ in PocketIntegrationFixture.resolution(input, catalog: fixtureCatalog) })
+    let repository = try PocketPlanningRepository(services: services, connection: PocketTestConnection(), storageURL: nil, synthetic: true)
+    var input = pocketTestInput(catalog, count: 2)
+    input.enginePreferences?.mainSpotID = input.places[0].id
+    input.enginePreferences?.endPoint = end
+
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let proposal = try #require(job.result?.proposal)
+    let stop = try #require(proposal.stops.first)
+    let visit = try #require(stop.visitStartsAt)
+    #expect(proposal.stops.map(\.id) == [input.places[0].id])
+    #expect(TripClock.day(visit) != TripClock.day(tomorrow))
+    #expect(TripClock.calendar.component(.hour, from: visit) == 9)
+    #expect(TripClock.calendar.component(.minute, from: visit) <= 12)
+    #expect(stop.visitSeconds == 1800)
+    #expect(proposal.returnTravelSeconds == 420)
+    #expect(proposal.unscheduledPlaces?.first?.contains("reservation") == true)
+}
+
+@Test func firstPocketItineraryRejectsMissingReturnETAAndStopsWhenThrottled() async throws {
+    let catalog = try PocketIntegrationFixture.catalog()
+    let input = pocketTestInput(catalog, count: 1), counter = PocketCallCounter()
+    let services = PocketPlanningServices(travel: { _, to, _, _ in
+                                              await counter.route()
+                                              if to.latitude == input.origin.latitude { throw TravelQuoteError.throttled }
+                                              return .init(seconds: 120, meters: 300)
+                                          },
+                                          weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic") },
+                                          advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") },
+                                          resolve: { input, _ in PocketIntegrationFixture.resolution(input, catalog: catalog) })
+    let repository = try PocketPlanningRepository(services: services, connection: PocketTestConnection(), storageURL: nil, synthetic: true)
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(job.result?.proposal == nil)
+    #expect(job.result?.candidates.isEmpty == true)
+    #expect(job.result?.warnings.first?.contains("limited route requests") == true)
+    #expect(await counter.routes == 2)
+}
+
+@Test func firstPocketItineraryDoesNotUseKnownConflictingCatalogHours() async throws {
+    let catalog = try Catalog.bundled(), counter = PocketCallCounter()
+    let venue = try #require(catalog.venues.first { $0.name == "Tebet Eco Park" })
+    #expect(venue.hours?.conflictingSources?.count == 2)
+    let repository = try pocketTestRepository(catalog: catalog, counter: counter)
+    var input = PocketIntegrationFixture.input()
+    input.places = [.init(id: PocketPlanningRepository.identity(venue.id), name: venue.name,
+                          location: .init(latitude: venue.coordinate.latitude, longitude: venue.coordinate.longitude),
+                          visitSeconds: 2700)]
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(job.result?.proposal == nil)
+    #expect(job.result?.warnings == ["Tebet Eco Park: Published opening hours disagree."])
+    #expect(await counter.routes == 0)
+}
+
+@Test func firstPocketItineraryRejectsAnUnlistedSlotEvenIfItLooksLikeAnIndex() async throws {
+    let catalog = try PocketIntegrationFixture.catalog()
+    let repository = try pocketTestRepository(catalog: catalog, selection: "S01")
+    await #expect(throws: PlanningError.invalidResponse) {
+        try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: pocketTestInput(catalog, count: 1)))
+    }
+}
+
+@Test func pocketNativeResponsesRequireTheActualReportedMaxEffort() throws {
+    let requested = "cx/gpt-6-luna(max)"
+    #expect(try PocketAdviceSelection(slotID: "S1", requestedModel: requested, reportedModel: "gpt-6-luna",
+                                      reportedReasoningEffort: "max", providerProtocol: "responses").validated().reportedModel == "gpt-6-luna")
+    for effort in [String?.none, "low", "high"] {
+        #expect(throws: PlanningError.invalidResponse) {
+            try PocketAdviceSelection(slotID: "S1", requestedModel: requested, reportedModel: "gpt-6-luna",
+                                      reportedReasoningEffort: effort, providerProtocol: "responses").validated()
+        }
+    }
+    #expect(throws: PlanningError.invalidResponse) {
+        try PocketAdviceSelection(slotID: "S1", requestedModel: requested, reportedModel: "gpt-6-luna",
+                                  reportedReasoningEffort: "max").validated()
+    }
 }

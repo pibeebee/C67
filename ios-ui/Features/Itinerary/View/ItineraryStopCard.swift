@@ -8,6 +8,7 @@ struct ItineraryStopCard: View {
     var isEditable = true
     let weatherEvidence: [PlanningEvidence]
     let edit: () -> Void
+    var showsEstimatedTimes = false
     var beginReorder: (() -> NSItemProvider)? = nil
     var moveUp: (() -> Void)? = nil
     var moveDown: (() -> Void)? = nil
@@ -15,7 +16,7 @@ struct ItineraryStopCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .top, spacing: 10) {
+            HStack(alignment: .center, spacing: 10) {
                 Group {
                     if let asset = details?.photoAsset {
                         Image(asset).resizable().scaledToFill()
@@ -27,7 +28,7 @@ struct ItineraryStopCard: View {
                             .background(.tint.opacity(0.1))
                     }
                 }
-                .frame(width: 48, height: 48)
+                .frame(width: showsEstimatedTimes ? 72 : 48, height: showsEstimatedTimes ? 72 : 48)
                 .clipShape(.rect(cornerRadius: 8))
                 .accessibilityHidden(true)
 
@@ -36,14 +37,14 @@ struct ItineraryStopCard: View {
                         visitSummary
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel(isEditable ? "Edit visit time for \(stop.name)" : "Visit time for \(stop.name)")
-                    .accessibilityValue("\(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
+                    .accessibilityLabel(showsEstimatedTimes ? "Edit visit length for \(stop.name)" : "Edit visit time for \(stop.name)")
+                    .accessibilityValue(visitRange)
                     .accessibilityIdentifier("itineraryEdit-\(stop.id)")
                 } else {
                     visitSummary.accessibilityElement(children: .combine)
                 }
                 if let beginReorder {
-                    Image(systemName: "line.3.horizontal")
+                    Image(systemName: showsEstimatedTimes ? "circle.grid.3x3" : "line.3.horizontal")
                         .foregroundStyle(.secondary)
                         .frame(minWidth: 44, minHeight: 44)
                         .contentShape(.rect)
@@ -59,34 +60,24 @@ struct ItineraryStopCard: View {
             .padding(.top, 10)
             .padding(.bottom, 8)
 
-            Divider()
-            DisclosureGroup {
-                VStack(alignment: .leading, spacing: 8) {
-                    if let advice = details?.weatherAdvice {
-                        Text(advice)
-                    } else {
-                        Text("No stop-specific forecast was supplied with this plan.")
+            if !showsEstimatedTimes {
+                Divider()
+                DisclosureGroup {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(details?.weatherAdvice ?? String(localized: "No stop-specific forecast was supplied with this plan."))
+                        ForEach(stop.warnings, id: \.self) { Text($0) }
+                        ForEach(weatherEvidence) { evidence in Text(evidence.summary) }
                     }
-                    ForEach(stop.warnings, id: \.self) { Text($0) }
-                    ForEach(weatherEvidence) { evidence in
-                        Text(evidence.summary)
-                    }
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .padding(.vertical, 8)
+                } label: {
+                    Label(details?.weatherAdvice ?? String(localized: "Weather context"), systemImage: details?.weatherSymbol ?? "cloud.sun")
+                        .font(.footnote)
+                        .foregroundStyle(.primary)
                 }
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .padding(.vertical, 8)
-            } label: {
-                Label {
-                    Text(details?.weatherAdvice ?? String(localized: "Weather context"))
-                } icon: {
-                    Image(systemName: details?.weatherSymbol ?? "cloud.sun")
-                        .foregroundStyle(Color("ItineraryAction"))
-                }
-                .font(.footnote)
-                .foregroundStyle(Color.primary)
+                .padding(12)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 12)
         }
         .background(Color("ItinerarySurface"), in: .rect(cornerRadius: 14))
     }
@@ -99,16 +90,18 @@ struct ItineraryStopCard: View {
             Text(details?.category ?? String(localized: "Selected place"))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-            Label {
-                Text("\(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale))")
-            } icon: {
-                Image(systemName: isEditable ? "pencil" : "clock")
-            }
-            .font(.footnote)
-            .foregroundStyle(Color("ItineraryAction"))
+            Label(visitRange, systemImage: isEditable ? "pencil" : "clock")
+                .font(.footnote)
+                .foregroundStyle(Color("ItineraryAction"))
+                .accessibilityIdentifier(showsEstimatedTimes ? "estimatedVisitWindow" : "visitWindow")
         }
         .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
         .contentShape(.rect)
     }
 
+    private var visitRange: String {
+        let start = ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale)
+        let end = ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale)
+        return showsEstimatedTimes ? "≈ \(start)–\(end)" : "\(start)–\(end)"
+    }
 }

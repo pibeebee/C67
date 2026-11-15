@@ -1,8 +1,6 @@
 #include "Base.xcconfig"
-// Release requires its own explicit client configuration; missing values fail visibly at app startup.
+// Release uses the Pocket HTTPS URL from Base. Other live modes require their own client configuration.
 C67_DATA_MODE = pocket
-POCKET_SERVER_SCHEME = https
-POCKET_SERVER_HOST =
 SUPABASE_SCHEME = https
 SUPABASE_HOST =
 SUPABASE_CLIENT_KEY =

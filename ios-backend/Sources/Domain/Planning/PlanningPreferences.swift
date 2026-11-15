@@ -21,6 +21,11 @@ public struct PlanningPreferences: Equatable, Codable, Sendable {
     public var usesLuna = true
     public var allowsAIProcessing = false
     public var lastPlaceID: UUID?
+    public var automaticFirstPlan: Bool?
+    public var reasonableOrdering: Bool?
+    public var mainSpotID: UUID?
+    public var endPoint: PlanningPoint?
+    public var endPointName: String?
     public init() {}
 }
 

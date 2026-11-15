@@ -10,13 +10,15 @@ struct ItineraryMapView: View {
             Map(interactionModes: [.pan, .zoom]) {
                 ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
                     Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
-                        Text(index + 1, format: .number)
-                            .font(.footnote.bold())
-                            .foregroundStyle(.white)
-                            .padding(8)
-                            .background(Color("ItineraryBlue"), in: .circle)
-                            .overlay(Circle().stroke(.white, lineWidth: 2))
-                            .accessibilityLabel("Stop \(index + 1): \(stop.name)")
+                        Group {
+                            if proposal.experiencePlan != nil { Image(systemName: "mappin").font(.footnote.bold()) }
+                            else { Text(index + 1, format: .number).font(.footnote.bold()) }
+                        }
+                        .foregroundStyle(.white)
+                        .padding(8)
+                        .background(proposal.experiencePlan == nil ? Color("ItineraryBlue") : Color.red, in: .circle)
+                        .overlay(Circle().stroke(.white, lineWidth: 2))
+                        .accessibilityLabel("Stop \(index + 1): \(stop.name)")
                     }
                 }
             }
@@ -35,8 +37,16 @@ struct ItineraryMapView: View {
 
             DisclosureGroup("Behind the scenes of your plan") {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text(proposal.explanation)
-                    ForEach(proposal.warnings, id: \.self) { Text($0) }
+                    if proposal.experiencePlan == nil {
+                        Text(proposal.explanation)
+                        ForEach(proposal.warnings, id: \.self) { Text($0) }
+                    } else {
+                        Text(proposal.synthetic ? "Driving times and distances are synthetic examples." : "Driving times and road distances are estimated by Apple Maps. Travel conditions can change.")
+                        if proposal.hasExperienceTravelFallback {
+                            Text("Legs without a driving estimate use a \(PlanProposal.defaultExperienceTravelSeconds / 60)-minute default. Their road distance is unavailable.")
+                        }
+                        Text("Opening hours have not been verified.")
+                    }
                     ForEach(proposal.evidence) { evidence in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(evidence.label).fontWeight(.semibold)

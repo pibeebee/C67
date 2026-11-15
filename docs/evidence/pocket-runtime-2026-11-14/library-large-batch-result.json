@@ -1,0 +1,149 @@
+{
+  "jobID": "1955650c-d4fa-4d16-b25a-c761066a1413",
+  "status": "succeeded",
+  "request": {
+    "dates": [
+      "2026-11-15",
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19",
+      "2026-11-20",
+      "2026-11-21"
+    ],
+    "places": [
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "location": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "name": "National Library of Indonesia",
+        "visitSeconds": 2700
+      }
+    ],
+    "preferences": "A varied car trip with reading, Japanese food, coffee and an evening market. Let the app recommend the visit times.",
+    "requestID": "1955650c-d4fa-4d16-b25a-c761066a1413"
+  },
+  "result": {
+    "resolvedAt": "2026-11-14T12:25:10Z",
+    "records": [
+      {
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "status": "unresolved",
+        "reason": "Web research or Luna extraction could not finish for this place.",
+        "sources": [
+          {
+            "url": "https://www.perpusnas.go.id/",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://perpusnas.go.id/?lang=en",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://maps.apple.com/place?place-id=I286E80E04C4E63E9",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://travel.kompas.com/read/2023/05/25/173800827/perpustakan-nasional-ri--jam-buka-dan-syarat-berkunjung-terbaru",
+            "finalURL": "https://travel.kompas.com/read/2023/05/25/173800827/perpustakan-nasional-ri--jam-buka-dan-syarat-berkunjung-terbaru",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:04Z",
+            "id": "source-871ace37abb446b82a3b",
+            "contentHash": "8b492747ee9842cd9465defe477e44c533c0f6c8565d59d3443f3a643263c7f7"
+          },
+          {
+            "url": "https://news.detik.com/berita/d-6190949/perpustakaan-nasional-buka-jam-berapa-cek-di-sini",
+            "finalURL": "https://news.detik.com/berita/d-6190949/perpustakaan-nasional-buka-jam-berapa-cek-di-sini",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:05Z",
+            "id": "source-77a89f2d9b02812390b8",
+            "contentHash": "5c354e20b5714264aa0134089327c2e1db004d012308288701dd4f3c896fc57b"
+          },
+          {
+            "url": "https://www.detik.com/edu/detikpedia/d-7768117/perpusnas-tetap-buka-weekend-pada-sabtu-minggu-catat-jadwalnya",
+            "finalURL": "https://www.detik.com/edu/detikpedia/d-7768117/perpusnas-tetap-buka-weekend-pada-sabtu-minggu-catat-jadwalnya",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:06Z",
+            "id": "source-85ebfd38d92aa3ad5109",
+            "contentHash": "fb8fd898520591e0ab1bf8edd1b6ab04b494c143e10b7d2a7ec5a4e31f95358d"
+          },
+          {
+            "url": "https://www.detik.com/tag/jadwal-operasional/",
+            "finalURL": "https://www.detik.com/tag/jadwal-operasional/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:06Z",
+            "id": "source-ef807ec85257ae1e0a60",
+            "contentHash": "072ce81b49eee86ca1d4f840adbcb231faa6f8271397048bed6cdfc39d370fbe"
+          },
+          {
+            "url": "https://www.detik.com/tag/foto/jadwal-operasional/",
+            "finalURL": "https://www.detik.com/tag/foto/jadwal-operasional/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:19:12Z",
+            "id": "source-55dfecdb940f15b40995",
+            "contentHash": "f4ed806b2d191ede0ececbd7c003f3bb13949281254dcb7205143545fe380782"
+          },
+          {
+            "url": "https://www.detik.com/tag/news/jadwal-operasional/",
+            "finalURL": "https://www.detik.com/tag/news/jadwal-operasional/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:13Z",
+            "id": "source-6706cf07a008d38c273a",
+            "contentHash": "64e64879a8b40393452819d881256c1a4b57f22d340bbe071232f593bad26126"
+          },
+          {
+            "url": "https://www.detik.com/edu/detikpedia/d-7767719/kepala-perpusnas-minta-maaf-jadwal-operasional-berubah-imbas-efisiensi-anggaran",
+            "finalURL": "https://www.detik.com/edu/detikpedia/d-7767719/perpusnas-anulir-perubahan-jadwal-operasional",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:13Z",
+            "id": "source-6debce4ef0f9b0001ab6",
+            "contentHash": "74cfdeebde3bdca89cd06ff81e445a515179a06020d30a4d9fa5b67628bf9e6b"
+          },
+          {
+            "url": "https://www.semuabis.com/national-library-of-indonesia_3l",
+            "finalURL": "https://www.semuabis.com/national-library-of-indonesia_3l",
+            "state": "unreadable",
+            "status": 403,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:14Z"
+          },
+          {
+            "url": "https://travel.kompas.com/read/2023/05/25/203700627/cara-berkunjung-ke-perpusatakaan-nasional-bikin-kartu-anggota-dulu",
+            "finalURL": "https://travel.kompas.com/read/2023/05/25/203700627/cara-berkunjung-ke-perpusatakaan-nasional-bikin-kartu-anggota-dulu",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:19:14Z",
+            "id": "source-fbd3df5e8a7902dc2778",
+            "contentHash": "5084be2f4d47975b2c507ef59c0b470c446fed0c3676319682fcbc4e369a6652"
+          }
+        ],
+        "errorKind": "OSError",
+        "snapshotID": "3cf80c4f471a9d982f58b237ce585495a585dbb150b97b8678e4b725e18db85a",
+        "recommendedMinutes": 60,
+        "recommendationReason": "Allow an unhurried reading visit; a morning start suits a varied day. Current access details are unverified.",
+        "preferredMinute": 600
+      }
+    ],
+    "requestedModel": "cx/gpt-6-luna(max)",
+    "reportedModel": "gpt-6-luna(max)"
+  }
+}

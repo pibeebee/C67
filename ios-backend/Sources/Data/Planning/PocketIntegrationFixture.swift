@@ -3,7 +3,7 @@
     import C67Domain
     import PocketEngine
 
-    /// Explicit synthetic transport around the real recommender and solver, only for local integration tests.
+    /// Explicit synthetic transport around the real repository, only for local integration tests.
     public enum PocketIntegrationFixture {
         private actor Connection: PocketConnectionProviding {
             func credentials() -> PocketCredentials { .init(serverURL: "https://fixture.invalid", token: "synthetic-fixture-token") }
@@ -35,12 +35,60 @@
                                                                    "attribution": "Synthetic Pocket integration fixture", "venues": venues])
             return try Codec.decoder().decode(Catalog.self, from: data).validated()
         }
+        public static func searchablePlaces() throws -> [PlanningPlace] {
+            var places = try catalog().venues.map { venue in
+                PlanningPlace(id: PocketPlanningRepository.identity(venue.id), name: venue.name,
+                              location: .init(latitude: venue.coordinate.latitude, longitude: venue.coordinate.longitude),
+                              visitSeconds: 2700)
+            }
+            places.insert(.init(id: PocketPlanningRepository.identity("fixture-unknown"), name: "Fixture Unknown Hours",
+                                location: .init(latitude: -6.2515, longitude: 106.8), visitSeconds: 2700), at: 2)
+            return places
+        }
+
+        public static func resolution(_ input: PlanningInput, catalog: Catalog) -> PocketVisitResolution {
+            let records = input.places.map { place -> PocketVisitResolution.Record in
+                let venue = catalog.venues.first {
+                    $0.id == place.sourceID || PocketPlanningRepository.identity($0.id) == place.id
+                }
+                return .init(placeID: place.id, status: venue == nil ? "unresolved" : "ready",
+                             reason: venue == nil ? "Visit information is still unresolved after web research." : nil,
+                             venue: venue, recommendedMinutes: place.id == input.enginePreferences?.mainSpotID ? 75 : 45,
+                             preferredMinute: nil, recommendationReason: "Synthetic fixture", snapshotID: "synthetic-fixture")
+            }
+            return .init(resolvedAt: .now, records: records, requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)")
+        }
+
         public static func repository(storageURL: URL? = nil) throws -> PocketPlanningRepository {
-            let services = PocketPlanningServices(catalog: { try catalog() }, discover: { _, _ in [] },
-                                                  travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
+            let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic test; no live weather") },
-                                                  advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") })
+                                                  advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") },
+                                                  resolve: { input, _ in resolution(input, catalog: try catalog()) },
+                                                  order: { input, _ in try experience(input) })
             return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL, synthetic: true)
+        }
+
+        public static func experience(_ input: PlanningInput) throws -> PlanningExperiencePlan {
+            let main = input.enginePreferences?.mainSpotID
+            let stops: [[String: Any]] = input.places.map { place in
+                let unknown = place.name.contains("Unknown")
+                return ["placeID": place.id.uuidString,
+                        "activity": ["suggestion": "Synthetic suggested activity", "basis": "unknown"],
+                        "role": place.id == main ? "main" : "supporting",
+                        "duration": unknown ? NSNull() : ["minMinutes": 30, "maxMinutes": 60, "rationale": "Synthetic experience estimate", "basis": "experience_estimate"] as Any,
+                        "durationUnknownReason": unknown ? "Synthetic unknown activity" : NSNull(),
+                        "preferredDayPart": "flexible", "reason": "Synthetic ordering explanation",
+                        "weather": ["status": "unavailable", "sourceRefs": [], "advice": "Synthetic fixture has no forecast"],
+                        "light": ["windowRef": NSNull(), "priority": "unknown", "advice": "Synthetic fixture has no light context"],
+                        "uncertainties": ["Synthetic demonstration, not verified venue facts"]]
+            }
+            let object: [String: Any] = ["status": "proposed", "orderedIDs": input.places.map { $0.id.uuidString },
+                                         "tripRationale": "Synthetic experience order; no arrival times or operational hours were invented.",
+                                         "stops": stops, "alternativeOrder": NSNull(), "tradeoffs": [], "uncertainties": ["Synthetic fixture only"],
+                                         "generatedAt": ISO8601DateFormatter().string(from: .now), "candidateDate": TripClock.day(input.startsAt), "timeZone": input.timeZone,
+                                         "requestedModel": "cx/gpt-6-luna(max)", "reportedModel": "gpt-6-luna(max)",
+                                         "weatherSources": [], "solarWindows": [], "contextWarnings": []]
+            return try PocketOrderCodec.decoder().decode(PlanningExperiencePlan.self, from: JSONSerialization.data(withJSONObject: object))
         }
     }
 #endif

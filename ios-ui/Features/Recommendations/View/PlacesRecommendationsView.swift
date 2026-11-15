@@ -6,6 +6,7 @@ struct PlacesRecommendationsView: View {
     let selected: [RecommendedPlace]
     var isLoading = false
     var error: String?
+    var areaDescription: LocalizedStringResource?
     /// The older planning editor still follows its existing six-place contract.
     /// The recommendations-first creation flow leaves this nil.
     var maximumSelection: Int?
@@ -32,11 +33,28 @@ struct PlacesRecommendationsView: View {
                 Text("Fantastic! Here’s what we \(Text("found").foregroundStyle(AppColor.accent)) for you")
                     .font(.title.bold())
                     .accessibilityAddTraits(.isHeader)
-                Text("Pull down to refresh recommendations")
-                    .foregroundStyle(.secondary)
-                    .padding(.bottom, 16)
+                HStack {
+                    Text("Pull down to refresh recommendations").foregroundStyle(.secondary)
+                    Spacer(minLength: 8)
+                    Button("Refresh", systemImage: "arrow.clockwise", action: retry)
+                        .labelStyle(.iconOnly).frame(minWidth: 44, minHeight: 44)
+                        .disabled(isLoading)
+                        .accessibilityIdentifier("refreshRecommendations")
+                }
+                if let areaDescription {
+                    Text(areaDescription).font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
+                }
 
                 if isLoading { ProgressView("Finding places…").frame(maxWidth: .infinity).padding() }
+                if let error {
+                    Label(error, systemImage: "exclamationmark.circle")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    Button("Try again", action: retry).disabled(isLoading)
+                }
+                ForEach(batch.warnings, id: \.self) { warning in
+                    Label(warning, systemImage: "exclamationmark.circle")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
                 if batch.places.isEmpty && !isLoading {
                     ContentUnavailableView {
                         Label("No recommendations yet", systemImage: "mappin.and.ellipse")
@@ -53,14 +71,6 @@ struct PlacesRecommendationsView: View {
                                                isExisting: false,
                                                isDisabled: !selectedIDs.contains(item.id) && maximumSelection.map { selected.count >= $0 } == true) { toggle(item) }
                     }
-                }
-                if let error {
-                    Label(error, systemImage: "exclamationmark.circle")
-                        .font(.footnote).foregroundStyle(.secondary)
-                    Button("Try again", action: retry).disabled(isLoading)
-                }
-                ForEach(batch.warnings, id: \.self) { warning in
-                    Text(warning).font(.footnote).foregroundStyle(.secondary)
                 }
                 if batch.synthetic {
                     Text("Synthetic recommendations for demonstration.")

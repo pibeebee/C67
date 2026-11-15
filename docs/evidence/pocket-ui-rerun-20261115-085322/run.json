@@ -1,0 +1,25 @@
+{
+  "result_bundle": "/private/tmp/c67-ui-rerun-20261115-085322.xcresult",
+  "mode": "mock",
+  "scenario": "TripCreationUITests/testSaveRenameRequiresSecondReviewAndArrivalKeepsTripActive",
+  "command": [
+    "xcodebuild",
+    "-project",
+    "ios-ui/C67.xcodeproj",
+    "-scheme",
+    "C67",
+    "-destination",
+    "platform=iOS Simulator,id=A548563C-F35D-45E9-92C8-C323A38033D1",
+    "-derivedDataPath",
+    "/private/tmp/c67-redo-final-ui",
+    "-resultBundlePath",
+    "/private/tmp/c67-ui-rerun-20261115-085322.xcresult",
+    "CODE_SIGNING_ALLOWED=YES",
+    "CODE_SIGN_IDENTITY=-",
+    "C67_DATA_MODE=mock",
+    "-parallel-testing-enabled",
+    "NO",
+    "-only-testing:C67UITests/TripCreationUITests/testSaveRenameRequiresSecondReviewAndArrivalKeepsTripActive",
+    "test"
+  ]
+}

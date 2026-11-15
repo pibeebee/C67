@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import MapKit
 import C67Data
 import C67Domain
 @testable import C67
@@ -97,8 +98,111 @@ import C67Domain
         model.finishChoosingPlaces()
         #expect(model.route == .mainSpot)
         await model.finishMainSpot()
-        #expect(model.route == .confirmation)
-        #expect(model.planning.job == nil)
+        #expect(model.route == .review)
+        #expect(model.planning.job?.purpose == .plan)
+    }
+
+    @Test func reasonableOrderRenameSavesExactTitleAndOpensTheSameRecommendation() async throws {
+        let repository = try PocketIntegrationFixture.repository()
+        var input = PocketIntegrationFixture.input()
+        input.places = Array(try PocketIntegrationFixture.searchablePlaces().prefix(5))
+        let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: input)
+        await planning.request(.firstItinerary)
+        let before = try #require(planning.job?.result?.proposal?.experiencePlan)
+        await planning.saveReviewedProposal(named: "  Live order acceptance  ")
+        #expect(planning.error == nil)
+        let trip = try #require(planning.trips.first)
+        #expect(trip.title == "Live order acceptance")
+        #expect(trip.input.title == trip.title)
+        #expect(trip.plan.input.title == trip.title)
+        #expect(trip.plan.experiencePlan == before)
+        #expect(planning.openTripID == trip.id)
+        #expect(planning.job == nil)
+        #expect(await repository.personalTrips().count == 1)
+    }
+
+    private func orderedPlanning(_ repository: TripFlowRepositoryStub) async throws -> PlanningPresenter {
+        var input = PocketIntegrationFixture.input()
+        input.places = Array(try PocketIntegrationFixture.searchablePlaces().prefix(5))
+        let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: input)
+        await planning.request(.firstItinerary)
+        _ = try #require(planning.job?.result?.proposal?.experiencePlan)
+        return planning
+    }
+
+    @Test func duplicateSaveWhileRenamingDoesNotApplyOrRenameTwice() async throws {
+        let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true, base: try PocketIntegrationFixture.repository())
+        let planning = try await orderedPlanning(repo)
+        await repo.holdRename()
+        let save = Task { await planning.saveReviewedProposal(named: "First name") }
+        while !(await repo.renameStarted) { await Task.yield() }
+        #expect(planning.isBusy)
+        await planning.saveReviewedProposal(named: "Second name")
+        await planning.apply()
+        #expect(await repo.renameCalls == 1)
+        #expect(await repo.applyCalls == 0)
+        await repo.releaseRename()
+        await save.value
+        #expect(planning.trips.first?.title == "First name")
+        #expect(await repo.applyCalls == 1)
+        #expect(!planning.isBusy)
+    }
+
+    @Test func sessionChangeDuringRenameDoesNotOpenOrApplyStaleTrip() async throws {
+        let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true, base: try PocketIntegrationFixture.repository())
+        let planning = try await orderedPlanning(repo)
+        await repo.holdRename()
+        let save = Task { await planning.saveReviewedProposal(named: "Stale name") }
+        while !(await repo.renameStarted) { await Task.yield() }
+        planning.sessionDidChange(.init(account: nil, sessionID: UUID()))
+        await repo.releaseRename()
+        await save.value
+        #expect(planning.trips.isEmpty)
+        #expect(planning.openTripID == nil)
+        #expect(planning.job == nil)
+        #expect(planning.error == nil)
+        #expect(await repo.applyCalls == 0)
+        #expect(!planning.isBusy)
+    }
+
+    @Test func saveFailureRetainsRenamedRecommendationForRetry() async throws {
+        let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true, base: try PocketIntegrationFixture.repository())
+        let planning = try await orderedPlanning(repo)
+        let plan = planning.job?.result?.proposal?.experiencePlan
+        await repo.setApplyError(.unavailable)
+        await planning.saveReviewedProposal(named: "Retry name")
+        #expect(planning.error != nil)
+        #expect(planning.trips.isEmpty)
+        #expect(planning.job?.input.title == "Retry name")
+        #expect(planning.job?.result?.proposal?.experiencePlan == plan)
+        #expect(!planning.isBusy)
+        await repo.setApplyError(nil)
+        await planning.apply()
+        #expect(planning.error == nil)
+        #expect(planning.trips.first?.title == "Retry name")
+        #expect(planning.trips.first?.plan.experiencePlan == plan)
+        #expect(await repo.renameCalls == 1)
+    }
+
+    @Test func failedRenameCanRetryTheRequestedNameWithoutSavingTheOldTitle() async throws {
+        let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true, base: try PocketIntegrationFixture.repository())
+        let planning = try await orderedPlanning(repo)
+        let original = try #require(planning.job)
+        await repo.setRenameError(.unavailable)
+        await planning.saveReviewedProposal(named: "Requested name")
+        #expect(planning.error != nil)
+        #expect(planning.job == original)
+        #expect(planning.trips.isEmpty)
+        #expect(await repo.applyCalls == 0)
+        #expect(!planning.isBusy)
+
+        await repo.setRenameError(nil)
+        await planning.saveReviewedProposal(named: "Requested name")
+        #expect(planning.error == nil)
+        #expect(planning.trips.first?.title == "Requested name")
+        #expect(planning.trips.first?.plan.experiencePlan == original.result?.proposal?.experiencePlan)
+        #expect(await repo.renameCalls == 2)
+        #expect(await repo.applyCalls == 1)
     }
 
     @Test func changingNameRequiresReviewAndNeverAppliesOldProposal() async throws {
@@ -281,31 +385,30 @@ extension TripCreationTests {
         #expect(await repo.started == false)
     }
 
-    @Test func surveyDefersPlanningAndEditingItReturnsToExistingConfiguration() async throws {
+    @Test func surveyDirectlyProcessesDurationAndFlexibleRestoresTheOriginal() async throws {
         let repo = TripFlowRepositoryStub()
         let model = try make(repository: repo)
         let chosen = try #require(model.selected.first)
         model.finishChoosingPlaces()
-        await model.finishMainSpot()
-        #expect(model.route == .confirmation)
-        let originalPath = model.path
-        model.push(.mainSpot)
         model.mainSpot = .place(chosen.id)
         await model.finishMainSpot()
         #expect(model.route == .stay)
+        #expect(model.planning.job == nil)
         model.stay = .ninetyMinutes
-        model.finishSurvey()
-        #expect(model.path == originalPath)
+        await model.finishSurvey()
+        #expect(model.route == .review)
         #expect(model.planning.places.first(where: { $0.id == chosen.id })?.visitSeconds == 5400)
         #expect(model.selected.first(where: { $0.id == chosen.id })?.place.visitSeconds == chosen.place.visitSeconds)
+        model.path.removeLast()
         model.stay = .flexible
-        model.finishSurvey()
+        await model.finishSurvey()
+        #expect(model.route == .review)
         #expect(model.planning.places.first(where: { $0.id == chosen.id })?.visitSeconds == chosen.place.visitSeconds)
-        #expect(model.planning.job == nil)
-        #expect(await repo.started == false)
+        #expect(model.planning.job?.input.firstPlaceID == nil)
+        #expect(await repo.started == true)
     }
 
-    @Test func largerSelectionReachesConfigurationWithoutTruncationOrPlannerRequest() async throws {
+    @Test func largerSelectionStopsAtPlannerBoundaryWithoutTruncationOrPlannerRequest() async throws {
         let repo = TripFlowRepositoryStub()
         let model = try make(specific: false, repository: repo)
         model.advance(.interests)
@@ -314,11 +417,10 @@ extension TripCreationTests {
         let ids = model.selected.map(\.id)
         model.finishChoosingPlaces()
         await model.finishMainSpot()
-        #expect(model.route == .confirmation)
+        #expect(model.route == .mainSpot)
         #expect(model.selected.count > 6)
-        #expect(!model.canConfirm)
+        #expect(!model.canPlan)
         #expect(model.planningHandoffMessage != nil)
-        await model.confirm()
         #expect(model.selected.map(\.id) == ids)
         #expect(model.planning.places.map(\.id) == ids)
         #expect(model.error == model.planningHandoffMessage)
@@ -408,13 +510,131 @@ extension TripCreationTests {
 
     @Test func recommendationGroupsInterleaveAndDeduplicatePlaceIdentity() async throws {
         let search = TripSearchStub()
-        let shared = RecommendedPlace(place: .init(id: UUID(), name: "Shared place", location: .init(latitude: 0, longitude: 0), visitSeconds: 1800))
-        let second = RecommendedPlace(place: .init(id: UUID(), name: "Second place", location: .init(latitude: 0, longitude: 0), visitSeconds: 1800))
-        let third = RecommendedPlace(place: .init(id: UUID(), name: "Third place", location: .init(latitude: 0, longitude: 0), visitSeconds: 1800))
+        let shared = RecommendedPlace(place: .init(id: UUID(), name: "Shared place", location: TripDiscoveryArea.center, visitSeconds: 1800))
+        let second = RecommendedPlace(place: .init(id: UUID(), name: "Second place", location: TripDiscoveryArea.center, visitSeconds: 1800))
+        let third = RecommendedPlace(place: .init(id: UUID(), name: "Third place", location: TripDiscoveryArea.center, visitSeconds: 1800))
         search.placesByQuery = ["first": [shared, second], "second": [shared, third]]
         let batch = try await TripCreationInteractor(searcher: search).recommend(queries: ["first", "second"], near: nil, synthetic: true)
         #expect(batch.places.map(\.id) == [shared.id, second.id, third.id])
         #expect(batch.warnings.isEmpty)
         #expect(batch.synthetic)
+    }
+
+    @Test func unrelatedPreferencesSearchSeparatelyRatherThanAsOneCombinedVenue() async throws {
+        let search = TripSearchStub()
+        let model = try make(specific: false, searcher: search)
+        model.answers.refinements = ["ramen", "independent_bookstore", "jogging"]
+        model.advance(.interests)
+        await model.loadRecommendationsIfNeeded()
+        #expect(Set(search.queries.map { $0.lowercased() }) == ["ramen shop", "independent bookstore", "jogging park"])
+        #expect(model.batch.places.count == 3)
+        #expect(Set(model.batch.places.map(\.place.name)) == Set(search.queries))
+    }
+
+    @Test func searchResultsAreNotLimitedByCountryOrFormerPlanningAreas() async throws {
+        let search = TripSearchStub()
+        let local = RecommendedPlace(place: .init(id: UUID(), name: "Synthetic Jakarta bookstore", location: TripDiscoveryArea.center, visitSeconds: 1800))
+        let foreign = RecommendedPlace(place: .init(id: UUID(), name: "Synthetic Australian bookstore", location: .init(latitude: -37.8136, longitude: 144.9631), visitSeconds: 1800))
+        search.placesByQuery = ["bookstore": [foreign, local]]
+        let interactor = TripCreationInteractor(searcher: search)
+        let manual = try await interactor.search("bookstore", near: foreign.place.location)
+        let batch = try await interactor.recommend(queries: ["bookstore"], near: foreign.place.location, synthetic: true)
+        #expect(manual.map(\.id) == [foreign.id, local.id])
+        #expect(batch.places.map(\.id) == [foreign.id, local.id])
+        search.placesByQuery = ["bookstore": [foreign]]
+        let empty = try await interactor.recommend(queries: ["bookstore"], near: nil, synthetic: true)
+        #expect(empty.places.map(\.id) == [foreign.id])
+        #expect(empty.warnings.isEmpty)
+    }
+
+    @Test func searchAcceptsAnyValidCoordinatesAndRejectsInvalidCoordinates() {
+        for point in [TripDiscoveryArea.center, .init(latitude: -37.8136, longitude: 144.9631), .init(latitude: -8.65, longitude: 115.2), .init(latitude: -6.1783, longitude: 106.6319),
+                      .init(latitude: -6.4025, longitude: 106.7942), .init(latitude: -6.2383, longitude: 106.9756),
+                      .init(latitude: -6.595, longitude: 106.8166)] {
+            #expect(TripDiscoveryArea.contains(point))
+        }
+        for point in [PlanningPoint(latitude: .nan, longitude: 106.84), .init(latitude: -6.2, longitude: .infinity),
+                      .init(latitude: 91, longitude: 106.84)] {
+            #expect(!TripDiscoveryArea.contains(point))
+        }
+        let delta = 180 / Double.pi / 6_371_000
+        #expect(TripDiscoveryArea.contains(.init(latitude: TripDiscoveryArea.center.latitude + 59_000 * delta, longitude: TripDiscoveryArea.center.longitude)))
+        #expect(TripDiscoveryArea.contains(.init(latitude: TripDiscoveryArea.center.latitude + 61_000 * delta, longitude: TripDiscoveryArea.center.longitude)))
+        #expect(TripDiscoveryArea.contains(TripDiscoveryArea.center, countryCode: "ID"))
+        #expect(TripDiscoveryArea.contains(TripDiscoveryArea.center, countryCode: "AU"))
+    }
+
+    @Test func missingStartingPointDoesNotInventAnOriginAndCanResumeProcessing() async throws {
+        let repo = TripFlowRepositoryStub()
+        let model = try make(repository: repo)
+        model.planning.origin = nil
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        #expect(model.route == .mainSpot)
+        #expect(model.error?.contains("starting point") == true)
+        #expect(model.planning.origin == nil)
+        #expect(await repo.started == false)
+        model.planning.origin = TripDiscoveryArea.center
+        await model.plan()
+        #expect(model.route == .review)
+    }
+
+    @Test func directProcessingBuildsUntimedRecommendationWithoutAvailabilityForm() async throws {
+        let repository = try PocketIntegrationFixture.repository()
+        let model = try make(repository: repository)
+        model.selected = [.init(place: .init(id: UUID(), name: "Unverified trip selection",
+                                             location: .init(latitude: -6.2515, longitude: 106.8), visitSeconds: 2700))]
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        #expect(model.route == .review)
+        #expect(model.planning.job?.purpose == .firstItinerary)
+        let proposal = try #require(model.planning.job?.result?.proposal)
+        #expect(proposal.experiencePlan != nil)
+        #expect(proposal.stops.map(\.id) == model.selected.map { $0.place.id })
+        #expect(proposal.stops.allSatisfy { $0.arrivalAt == nil && $0.departureAt == nil })
+        #expect(model.availabilityPlaces.isEmpty)
+        #expect(model.error == nil)
+        #expect(model.planning.enginePreferences?.allowsAIProcessing == true)
+    }
+
+    @Test func previouslySelectedForeignPlaceCanReachThePlanner() async throws {
+        let repo = TripFlowRepositoryStub()
+        let model = try make(repository: repo)
+        let foreign = RecommendedPlace(place: .init(id: UUID(), name: "Synthetic earlier overseas selection",
+                                                    location: .init(latitude: -37.8136, longitude: 144.9631), visitSeconds: 1800))
+        model.selected.append(foreign)
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        #expect(model.selected.contains(foreign))
+        #expect(model.error == nil)
+        #expect(model.planning.job?.result?.proposal != nil)
+        #expect(await repo.started == true)
+    }
+
+    @Test func correctingSelectionAfterCountFailureClearsErrorAndCanProceed() async throws {
+        let model = try make(specific: false)
+        model.advance(.interests)
+        await model.loadRecommendationsIfNeeded()
+        let extras = Array(model.batch.places.prefix(4))
+        for item in extras { model.toggle(item) }
+        #expect(model.selected.count == 7)
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        #expect(model.error == model.planningHandoffMessage)
+        model.path.removeLast()
+        for item in extras { model.toggle(item) }
+        #expect(model.selected.count == 3)
+        #expect(model.error == nil)
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        #expect(model.route == .review)
+        #expect(model.planning.job?.input.places.count == 3)
+    }
+
+    @Test func emptyAppleSearchIsDifferentFromProviderOutageOrThrottling() {
+        #expect(MapKitTripPlaceSearch.isEmptyResult(NSError(domain: MKErrorDomain, code: Int(MKError.Code.placemarkNotFound.rawValue))))
+        #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: MKErrorDomain, code: Int(MKError.Code.loadingThrottled.rawValue))))
+        #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: MKErrorDomain, code: Int(MKError.Code.serverFailure.rawValue))))
+        #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: NSURLErrorDomain, code: Int(MKError.Code.placemarkNotFound.rawValue))))
     }
 }

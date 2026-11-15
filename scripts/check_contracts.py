@@ -36,4 +36,18 @@ assert source.read_bytes() == copy.read_bytes(), "Run scripts/sync_fixtures.py"
 for filename in ["planning-input.json", "planning-result.json", "planning-job.json", "personal-planning-trip.json"]:
     assert (root / "contracts/fixtures" / filename).read_bytes() == (root / "ios-backend/Sources/Data/Fixtures" / filename).read_bytes(), "Run scripts/sync_fixtures.py"
 assert (root / "server/supabase/seed.sql").read_text() == render_seed(json.loads(source.read_text())), "Run scripts/sync_fixtures.py"
+runtime_evidence = root / "docs/evidence/pocket-runtime-2026-11-14/native-five-place-resolution.json"
+if runtime_evidence.is_file():
+    captured = json.loads(runtime_evidence.read_text())
+    for part, name in [("request", "PocketResolutionRequest"), ("result", "PocketResolution")]:
+        Draft202012Validator({"$ref": "#/components/schemas/" + name, "components": spec["components"]},
+                             format_checker=FormatChecker()).validate(captured[part])
+    print("PASS: recorded native five-place research request and response")
 print("PASS: legacy and Pocket OpenAPI, fixture/catalog schemas, bundled fixture copy, and synthetic SQL seed")
+
+# Synthetic untimed fixtures are independent of the legacy timed planner.
+for filename, name in [("pocket-order-request.json", "PocketOrderRequest"), ("pocket-order-result.json", "PocketOrderResult")]:
+    data = json.loads((root / "contracts/fixtures" / filename).read_text())
+    Draft202012Validator({"$ref": "#/components/schemas/" + name, "components": spec["components"]},
+                         format_checker=FormatChecker()).validate(data)
+print("PASS: synthetic untimed ordering request and response")

@@ -1,6 +1,17 @@
 import Foundation
 import C67Domain
 
+/// Validate coordinates without restricting discovery to an administrative region.
+enum TripDiscoveryArea {
+    static let center = PlanningPoint(latitude: -6.20, longitude: 106.84)
+    static let description: LocalizedStringResource = "Places matching your preferences"
+
+    static func contains(_ point: PlanningPoint, countryCode: String? = nil) -> Bool {
+        point.latitude.isFinite && point.longitude.isFinite
+            && (-90 ... 90).contains(point.latitude) && (-180 ... 180).contains(point.longitude)
+    }
+}
+
 @MainActor protocol TripPlaceSearching {
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace]
     func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace]
@@ -67,7 +78,7 @@ extension TripPlaceSearching {
     let searcher: any TripPlaceSearching
 
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
-        try await searcher.search(query, near: origin)
+        try await searcher.search(query, near: origin).filter { TripDiscoveryArea.contains($0.place.location) }
     }
 
     /// A small session search, independent of trip dates, the catalog and itinerary planning.
@@ -79,8 +90,9 @@ extension TripPlaceSearching {
             try Task.checkCancellation()
             do {
                 let found = try await searcher.recommendations(query, near: origin)
+                    .filter { TripDiscoveryArea.contains($0.place.location) }
                 groups.append(found)
-                if found.isEmpty { warnings.append("No results for \"\(query)\". Try another preference or refresh.") }
+                if found.isEmpty { warnings.append("No places found for \"\(query)\". Try another preference or refresh.") }
             } catch {
                 try Task.checkCancellation()
                 if error is CancellationError { throw error }

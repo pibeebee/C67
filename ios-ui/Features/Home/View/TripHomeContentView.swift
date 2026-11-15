@@ -17,7 +17,7 @@ struct TripHomeContentView: View {
                 if presenter.isBusy && presenter.trips.isEmpty {
                     ProgressView("Loading trips…")
                         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
-                } else if let error = presenter.error {
+                } else if let error = presenter.error, presenter.firstItineraryJob == nil {
                     ContentUnavailableView {
                         Label("Trips couldn’t be loaded", systemImage: "exclamationmark.arrow.trianglehead.2.clockwise.rotate.90")
                     } description: {
@@ -62,7 +62,7 @@ struct TripHomeContentView: View {
                         .padding()
                 }
             }
-            .refreshable { await presenter.load() }
+            .refreshable { await presenter.load(waitForFirstItinerary: false) }
         }
     }
 

@@ -10,6 +10,7 @@ struct MainSpotQuestionView: View {
     let select: (MainSpotChoice) -> Void
     let next: () -> Void
     let skip: () -> Void
+    var researchesWithLuna = false
 
     private var cardShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: 26, style: .continuous)
@@ -24,7 +25,7 @@ struct MainSpotQuestionView: View {
             VStack(alignment: .leading, spacing: 0) {
                 CheckmarkRow(
                     title: Text("Let Travelant decide"),
-                    subtitle: Text("Adjust based on route and opening hours"),
+                    subtitle: Text(researchesWithLuna ? "Let Luna arrange your experience" : "Adjust based on route and opening hours"),
                     isSelected: selection == .automatic
                 ) {
                     select(.automatic)
@@ -54,6 +55,7 @@ struct MainSpotQuestionView: View {
                                 PlaceThumbnail(imageName: item.previewImage, size: 48)
                             }
                             .padding(.vertical, 5)
+                            .accessibilityIdentifier("mainSpot-\(item.id)")
 
                             if item.id != places.last?.id {
                                 Divider()
@@ -68,7 +70,14 @@ struct MainSpotQuestionView: View {
             }
             .sensoryFeedback(.selection, trigger: selection)
         } footer: {
-            QuestionPrimaryButton("Next", action: next)
+            VStack(spacing: 12) {
+                if researchesWithLuna {
+                    Text("Your selected places, pins and preferences are sent to the Pocket server and Luna to suggest an order and visit lengths. Weather may use Open-Meteo. Recommendations are estimates.")
+                        .font(AppFont.footnote)
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+                QuestionPrimaryButton("Next", action: next)
+            }
         }
     }
 }

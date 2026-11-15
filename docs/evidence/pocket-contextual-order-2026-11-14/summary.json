@@ -1,0 +1,1651 @@
+{
+  "attempted": 10,
+  "completed": 10,
+  "structurePassed": 10,
+  "latencySeconds": {
+    "minimum": 65.065,
+    "median": 93.87950000000001,
+    "maximum": 136.013
+  },
+  "providerReportedTotalTokens": 108033,
+  "phaseC": {
+    "phase": "C",
+    "status": "not_run_missing_dependency",
+    "requiredConfiguration": [
+      "APPLE_TEAM_ID",
+      "APPLE_WEATHER_KEY_ID",
+      "APPLE_WEATHER_PRIVATE_KEY",
+      "APPLE_WEATHER_SERVICE_ID"
+    ],
+    "finding": "No complete WeatherKit REST configuration was found in the current process or inspected C67/project and related local lab env files. A team ID alone is insufficient. No credential values were printed or saved.",
+    "appleWeatherRequests": 0,
+    "lunaCalls": 0,
+    "otherWeatherProviderUsed": false,
+    "unusedLunaSlots": 2,
+    "boundary": "Actual WeatherKit retrieval and the two source-grounded Luna calls remain unverified. Do not relabel synthetic weather as live, register services, deploy, or use another provider to fill this gap."
+  },
+  "pairedComparisons": {
+    "durationIntent": {
+      "library": {
+        "immersiveEstimate": {
+          "minMinutes": 90,
+          "maxMinutes": 150,
+          "rationale": "Estimasi pengalaman untuk membaca dengan santai dan mendalam; bukan batas operator atau jaminan durasi.",
+          "basis": "experience_estimate"
+        },
+        "shortEstimate": {
+          "minMinutes": 20,
+          "maxMinutes": 35,
+          "rationale": "Estimasi untuk membaca singkat, bukan sesi mendalam; akses dan fasilitas tidak diasumsikan.",
+          "basis": "experience_estimate"
+        },
+        "bothShortBoundsLower": true
+      },
+      "coffee": {
+        "immersiveEstimate": {
+          "minMinutes": 45,
+          "maxMinutes": 75,
+          "rationale": "Estimasi pengalaman untuk jeda santai; bukan batas operator atau jaminan durasi.",
+          "basis": "experience_estimate"
+        },
+        "shortEstimate": {
+          "minMinutes": 15,
+          "maxMinutes": 30,
+          "rationale": "Estimasi pengalaman singkat untuk minum kopi, bukan sesi bersantai lama.",
+          "basis": "experience_estimate"
+        },
+        "bothShortBoundsLower": true
+      }
+    },
+    "photographyPriority": {
+      "A3-clear-photo": {
+        "windowRef": "L1-morning",
+        "priority": "relevant",
+        "advice": "L1-morning adalah peluang astronomi terhitung, bukan jaminan cahaya terlihat atau akses. Sampel W1 tidak mencakup seluruh jendela; awan dapat mengurangi kepastian cahaya langsung."
+      },
+      "A6-photo-deprioritized": {
+        "windowRef": null,
+        "priority": "not_relevant",
+        "advice": "Fotografi bukan prioritas; peluang cahaya terhitung tidak menjamin cahaya aktual, pandangan, atau akses."
+      }
+    },
+    "cloudChangeKeepsCalculatedSolarWindows": true,
+    "repeat": {
+      "identicalRequest": true,
+      "identicalOrder": true,
+      "durations": {
+        "park": {
+          "first": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk eksplorasi santai dan sesi fotografi, bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "repeat": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk bergerak santai dan mencoba beberapa komposisi foto; bukan waktu ukur atau aturan venue.",
+            "basis": "experience_estimate"
+          }
+        },
+        "sushi": {
+          "first": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan untuk pengalaman makan omakase; bukan durasi layanan yang diketahui.",
+            "basis": "experience_estimate"
+          },
+          "repeat": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan pengalaman untuk menikmati makan dengan ritme santai, bukan durasi layanan yang diketahui.",
+            "basis": "experience_estimate"
+          }
+        },
+        "library": {
+          "first": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Perkiraan untuk sesi membaca yang tidak terburu-buru; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "repeat": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Perkiraan pengalaman agar membaca dapat berlangsung fokus dan tidak terburu-buru; bukan batas atau waktu kunjungan terukur.",
+            "basis": "experience_estimate"
+          }
+        },
+        "market": {
+          "first": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Perkiraan untuk singgah santai dan melihat-lihat; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "repeat": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk melihat-lihat dengan santai, bukan durasi operasi atau batas tinggal.",
+            "basis": "experience_estimate"
+          }
+        },
+        "coffee": {
+          "first": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Perkiraan untuk jeda kopi santai; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "repeat": {
+            "minMinutes": 40,
+            "maxMinutes": 70,
+            "rationale": "Perkiraan pengalaman untuk beristirahat sejenak, bukan waktu layanan atau batas tinggal yang diketahui.",
+            "basis": "experience_estimate"
+          }
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": "A1-no-context",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 75.774,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 7796,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Estimasi pengalaman untuk fotografi santai; bukan batas operator atau jaminan durasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca untuk tempat ini; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "relevant",
+            "advice": "Tidak ada jendela surya yang tersedia; cahaya fotografi dan kondisi di lokasi tidak dapat dipastikan."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Estimasi pengalaman untuk menikmati satu sesi makan; bukan batas operator atau jaminan durasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca untuk tempat ini; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang tersedia; kondisi cahaya tidak dapat dinilai."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Estimasi pengalaman untuk membaca dengan santai dan mendalam; bukan batas operator atau jaminan durasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca untuk tempat ini; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang tersedia; kondisi cahaya tidak dapat dinilai."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Estimasi pengalaman untuk menjelajah singkat; bukan batas operator atau jaminan durasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca untuk tempat ini; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang tersedia; kondisi cahaya tidak dapat dinilai."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "break",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Estimasi pengalaman untuk jeda santai; bukan batas operator atau jaminan durasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca untuk tempat ini; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang tersedia; kondisi cahaya tidak dapat dinilai."
+          }
+        }
+      ]
+    },
+    {
+      "case": "A2-shorter-visits",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 75.389,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 7794,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk memberi ruang bagi fotografi tanpa menganggap kondisi atau akses tertentu.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca yang disediakan; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "relevant",
+            "advice": "Fotografi relevan, tetapi tidak ada jendela surya atau bukti kondisi cahaya dan pemandangan."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "break",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Estimasi pengalaman makan; format sajian dan durasi layanan tidak diketahui.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca yang disediakan; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan; cahaya tidak menjadi fokus kegiatan yang diusulkan."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 20,
+            "maxMinutes": 35,
+            "rationale": "Estimasi untuk membaca singkat, bukan sesi mendalam; akses dan fasilitas tidak diasumsikan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca yang disediakan; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan; cahaya tidak menjadi fokus kegiatan yang diusulkan."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 50,
+            "rationale": "Estimasi pengalaman untuk kunjungan singkat; jenis dagangan dan aktivitas aktual tidak diketahui.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca yang disediakan; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Fotografi dapat menjadi pilihan, tetapi tidak ada jendela surya atau bukti suasana dan cahaya."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 15,
+            "maxMinutes": 30,
+            "rationale": "Estimasi pengalaman singkat untuk minum kopi, bukan sesi bersantai lama.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada sampel cuaca yang disediakan; kondisi selama kunjungan tidak diketahui.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan; cahaya tidak menjadi fokus kegiatan yang diusulkan."
+          }
+        }
+      ]
+    },
+    {
+      "case": "A3-clear-photo",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 89.327,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 11219,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk eksplorasi santai dan sesi fotografi, bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "W1 adalah prakiraan sintetis dengan sampel terpilih saja; jam yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "L1-morning adalah peluang astronomi terhitung, bukan jaminan cahaya terlihat atau akses. Sampel W1 tidak mencakup seluruh jendela; awan dapat mengurangi kepastian cahaya langsung."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "break",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan untuk pengalaman makan omakase; bukan durasi layanan yang diketahui.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "W2 bersifat sintetis dan hanya mencakup sampel terpilih; periode lain tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela surya bersumber untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Perkiraan untuk sesi membaca yang tidak terburu-buru; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "W3 bersifat sintetis dan hanya mencakup sampel terpilih; periode lain tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela surya bersumber untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Perkiraan untuk singgah santai dan melihat-lihat; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "W4 bersifat sintetis dan hanya mencakup sampel terpilih; periode lain tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela surya bersumber untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Perkiraan untuk jeda kopi santai; bukan batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "W5 bersifat sintetis dan hanya mencakup sampel terpilih; periode lain tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela surya bersumber untuk tempat ini."
+          }
+        }
+      ]
+    },
+    {
+      "case": "A4-rainy-afternoon",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 136.013,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 13774,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 100,
+            "rationale": "Estimasi pengalaman untuk sesi foto yang santai dan terfokus; bukan durasi terukur atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "Cuplikan sintetis menunjukkan indikasi hujan lebih rendah pada sampel pagi dan lebih tinggi pada sampel sore serta malam. Ini bukan kepastian dan tidak mencakup waktu yang tak tersampel.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "Jendela ini peluang surya terhitung, bukan prediksi cahaya aktual atau jaminan akses maupun kedatangan. Sampel pagi tidak memastikan langit cerah; awan pada sampel sore dapat mengurangi keyakinan akan cahaya keemasan langsung."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "break",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Estimasi pengalaman untuk menikmati satu sesi makan dengan santai; bukan durasi terukur atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "Cuplikan sintetis menunjukkan indikasi hujan lebih rendah pada sampel pagi dan lebih tinggi pada sampel sore serta malam. Ini bukan kepastian dan tidak mencakup waktu yang tak tersampel.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya terhitung untuk tempat ini dalam sumber; kondisi fotografi tidak diketahui."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Estimasi pengalaman untuk membaca dengan fokus dan jeda seperlunya; bukan durasi terukur atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "Cuplikan sintetis menunjukkan indikasi hujan lebih rendah pada sampel pagi dan lebih tinggi pada sampel sore serta malam. Ini bukan kepastian dan tidak mencakup waktu yang tak tersampel.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya terhitung untuk tempat ini dalam sumber; kondisi fotografi tidak diketahui."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Estimasi pengalaman untuk menjelajah dengan santai; bukan durasi terukur atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "Sampel malam pada cuplikan sintetis menunjukkan indikasi hujan dan tutupan awan lebih tinggi. Ini bukan kepastian atau gambaran waktu yang tak tersampel.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya terhitung untuk tempat ini dalam sumber; kondisi fotografi tidak diketahui."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Estimasi pengalaman untuk menikmati jeda kopi dengan santai; bukan durasi terukur atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "Cuplikan sintetis menunjukkan indikasi hujan lebih rendah pada sampel pagi dan lebih tinggi pada sampel sore serta malam. Ini bukan kepastian dan tidak mencakup waktu yang tak tersampel.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya terhitung untuk tempat ini dalam sumber; kondisi fotografi tidak diketahui."
+          }
+        }
+      ]
+    },
+    {
+      "case": "A5-dry-cloudy",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 126.854,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 13206,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk sesi foto santai dengan waktu mengamati suasana; bukan batas operator atau lama terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "Sampel sintetis terbatas menunjukkan peluang hujan rendah dan awan tebal pada waktu yang dicuplik; bukan kepastian, sela waktu tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "Peluang matahari terhitung untuk lokasi ini, bukan jaminan cahaya tampak atau akses; sampel cuaca tidak mencakup jendela tersebut."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "break",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan untuk pengalaman bersantap omakase tanpa mengasumsikan durasi layanan tempat.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "Sampel sintetis terbatas menunjukkan peluang hujan rendah dan awan tebal pada waktu yang dicuplik; bukan kepastian, sela waktu tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya yang dipasok untuk lokasi ini; foto tambahan opsional, tanpa klaim kondisi cahaya."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 120,
+            "maxMinutes": 180,
+            "rationale": "Perkiraan untuk memberi ruang bagi sesi baca mendalam; bukan batas kunjungan atau lama terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "afternoon",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "Sampel sintetis terbatas menunjukkan peluang hujan rendah dan awan tebal pada waktu yang dicuplik; bukan kepastian, sela waktu tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya yang dipasok untuk lokasi ini; foto tambahan opsional, tanpa klaim kondisi cahaya."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk menjelajah dengan santai, bukan lama operasi atau batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "Sampel sintetis terbatas menunjukkan peluang hujan rendah dan awan tebal pada waktu yang dicuplik; bukan kepastian, sela waktu tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya yang dipasok untuk lokasi ini; foto tambahan opsional, tanpa klaim kondisi cahaya."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 60,
+            "rationale": "Perkiraan untuk jeda santai, tanpa mengasumsikan tempat duduk atau lama layanan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "Sampel sintetis terbatas menunjukkan peluang hujan rendah dan awan tebal pada waktu yang dicuplik; bukan kepastian, sela waktu tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "optional",
+            "advice": "Tidak ada jendela surya yang dipasok untuk lokasi ini; foto tambahan opsional, tanpa klaim kondisi cahaya."
+          }
+        }
+      ]
+    },
+    {
+      "case": "A6-photo-deprioritized",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 100.929,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 11868,
+      "orderedIDs": [
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Tatemukai Signature Omakase Sushi",
+        "Taman Bendera Pusaka",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "opening",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Rentang pengalaman untuk makan dengan santai, bukan batas atau durasi layanan tempat.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "Sampel prakiraan sintetis menunjukkan indikasi hujan rendah dan curah tercatat nihil pada sampel. Cakupan hanya beberapa waktu terpilih; ini bukan kepastian cuaca selama kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi bukan prioritas pengguna; tidak memilih jendela cahaya."
+          }
+        },
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Perkiraan untuk jeda santai singkat, bukan batas operator atau waktu tinggal terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "Sampel prakiraan sintetis menunjukkan indikasi hujan rendah dan curah tercatat nihil pada sampel. Cakupan hanya beberapa waktu terpilih; ini bukan kepastian cuaca selama kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi bukan prioritas; peluang cahaya terhitung tidak menjamin cahaya aktual, pandangan, atau akses."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 120,
+            "rationale": "Rentang pengalaman untuk membaca tanpa terburu-buru, bukan ukuran fasilitas atau batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "Sampel prakiraan sintetis menunjukkan indikasi hujan rendah dan curah tercatat nihil pada sampel. Cakupan hanya beberapa waktu terpilih; ini bukan kepastian cuaca selama kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi bukan prioritas pengguna; tidak memilih jendela cahaya."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "break",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Perkiraan untuk singgah santai, bukan batas tinggal atau jaminan pasar beroperasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "Sampel prakiraan sintetis menunjukkan indikasi hujan rendah dan curah tercatat nihil pada sampel. Cakupan hanya beberapa waktu terpilih; ini bukan kepastian cuaca selama kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi bukan prioritas pengguna; tidak memilih jendela cahaya."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Rentang pengalaman untuk jeda kopi santai, bukan durasi layanan atau batas tinggal.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "Sampel prakiraan sintetis menunjukkan indikasi hujan rendah dan curah tercatat nihil pada sampel. Cakupan hanya beberapa waktu terpilih; ini bukan kepastian cuaca selama kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi bukan prioritas pengguna; tidak memilih jendela cahaya."
+          }
+        }
+      ]
+    },
+    {
+      "case": "B7-weather-unavailable",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 65.065,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 7622,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan pengalaman untuk berjalan santai dan mencoba beberapa komposisi foto.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada data cuaca yang disediakan untuk lokasi ini.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "Peluang solar terhitung untuk lokasi ini; tidak memastikan cuaca, pandangan, akses, atau cahaya yang terlihat."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan pengalaman untuk menikmati satu sesi makan tanpa mengasumsikan durasi layanan tempat.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada data cuaca yang disediakan untuk lokasi ini.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada peluang solar khusus lokasi ini yang disediakan."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Perkiraan pengalaman untuk membaca dengan tenang dan memberi waktu menyelami bacaan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada data cuaca yang disediakan untuk lokasi ini.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada peluang solar khusus lokasi ini yang disediakan."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk melihat-lihat dan menikmati suasana pasar.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada data cuaca yang disediakan untuk lokasi ini.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada peluang solar khusus lokasi ini yang disediakan."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 75,
+            "rationale": "Perkiraan pengalaman untuk jeda kopi santai, bukan batas tinggal tempat.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [],
+            "advice": "Tidak ada data cuaca yang disediakan untuk lokasi ini.",
+            "status": "unavailable"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada peluang solar khusus lokasi ini yang disediakan."
+          }
+        }
+      ]
+    },
+    {
+      "case": "B8-ambiguous-setting",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 135.154,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 13715,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Tempat pilihan 1",
+        "Tatemukai Signature Omakase Sushi",
+        "Tempat pilihan 4",
+        "Tempat pilihan 3",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Estimasi pengalaman untuk sesi foto terarah bila tempat dan aksesnya mendukung; bukan durasi aktual lokasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan dan tutupan awan lebih rendah; sampel siang dan sore menunjukkan kondisi lebih berpotensi hujan dan berawan. Data sintetis ini hanya untuk jam sampel, bukan gambaran sepanjang kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "Ini peluang cahaya hasil kalkulasi, bukan kepastian matahari terlihat, kondisi taman, akses, atau kedatangan. Sampel cuaca pagi tidak mencakup jendela cahaya tersebut."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Estimasi pengalaman untuk bersantap omakase; bukan lama layanan atau batas tinggal operator.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan dan tutupan awan lebih rendah; sampel siang dan sore menunjukkan kondisi lebih berpotensi hujan dan berawan. Data sintetis ini hanya untuk jam sampel, bukan gambaran sepanjang kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela matahari terhitung yang disediakan untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "break",
+          "duration": null,
+          "durationUnknownReason": "Jenis tempat dan aktivitas yang tersedia tidak diketahui, sehingga durasi pengalaman belum dapat diperkirakan.",
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan dan tutupan awan lebih rendah; sampel siang dan sore menunjukkan kondisi lebih berpotensi hujan dan berawan. Data sintetis ini hanya untuk jam sampel, bukan gambaran sepanjang kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela matahari terhitung yang disediakan untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": null,
+          "durationUnknownReason": "Tidak ada nama deskriptif atau atribut venue yang cukup untuk memperkirakan durasi pengalaman.",
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan dan tutupan awan lebih rendah; sampel siang dan sore menunjukkan kondisi lebih berpotensi hujan dan berawan. Data sintetis ini hanya untuk jam sampel, bukan gambaran sepanjang kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "unknown",
+            "advice": "Tidak ada jendela matahari terhitung yang disediakan untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 120,
+            "rationale": "Estimasi pengalaman untuk kopi dan sesi membaca fokus bila kondisi tempat mendukung; bukan fasilitas atau durasi tinggal yang terverifikasi.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan dan tutupan awan lebih rendah; sampel siang dan sore menunjukkan kondisi lebih berpotensi hujan dan berawan. Data sintetis ini hanya untuk jam sampel, bukan gambaran sepanjang kunjungan.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela matahari terhitung yang disediakan untuk tempat ini."
+          }
+        }
+      ]
+    },
+    {
+      "case": "B9-competing-light",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 71.852,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 9375,
+      "orderedIDs": [
+        "fixture-A",
+        "fixture-C",
+        "fixture-B"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Uji A (fiksi)",
+        "Kafe Uji C (fiksi)",
+        "Taman Uji B (fiksi)"
+      ],
+      "stops": [
+        {
+          "placeID": "fixture-A",
+          "role": "main",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Estimasi pengalaman untuk eksplorasi fotografi santai, bukan batas kunjungan atau durasi terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "Sumber sintetis hanya mencakup sampel terpilih; sampel berawan rendah tidak menjamin langit cerah, dan periode lain tidak terwakili.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "Peluang surya hasil perhitungan, bukan jaminan cahaya terlihat, akses, atau kondisi lokasi."
+          }
+        },
+        {
+          "placeID": "fixture-C",
+          "role": "break",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Estimasi pengalaman untuk jeda santai, bukan batas kunjungan atau durasi terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "afternoon",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "Sumber sintetis hanya mencakup sampel terpilih; cuaca pada periode yang tidak disampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak tersedia jendela surya untuk tempat ini."
+          }
+        },
+        {
+          "placeID": "fixture-B",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Estimasi pengalaman untuk eksplorasi fotografi santai, bukan batas kunjungan atau durasi terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "Sumber sintetis hanya mencakup sampel terpilih; sampel berawan rendah tidak menjamin langit cerah, dan periode lain tidak terwakili.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L2-evening",
+            "priority": "relevant",
+            "advice": "Peluang surya hasil perhitungan, bukan jaminan cahaya terlihat, akses, atau kondisi lokasi."
+          }
+        }
+      ]
+    },
+    {
+      "case": "B10-exact-repeat",
+      "completed": true,
+      "httpStatus": "200",
+      "elapsedSeconds": 98.432,
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "reportedTokens": 11664,
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8"
+      ],
+      "namesVisibleToModelInOrder": [
+        "Taman Bendera Pusaka",
+        "Tatemukai Signature Omakase Sushi",
+        "National Library of Indonesia",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ],
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "role": "main",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk bergerak santai dan mencoba beberapa komposisi foto; bukan waktu ukur atau aturan venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "weather": {
+            "sourceRefs": [
+              "W1"
+            ],
+            "advice": "W1 adalah prakiraan sintetis dengan sampel terbatas: peluang hujan rendah, estimasi jumlah nihil, dan awan sedikit pada sampel. Ini bukan kepastian cuaca cerah; waktu yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": "L1-morning",
+            "priority": "relevant",
+            "advice": "L1-morning adalah peluang surya terhitung, bukan jaminan cahaya, pemandangan, akses, atau tercapainya kunjungan. Sampel awan pagi tidak mengonfirmasi kondisi pada peluang ini."
+          }
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 75,
+            "maxMinutes": 120,
+            "rationale": "Perkiraan pengalaman untuk menikmati makan dengan ritme santai, bukan durasi layanan yang diketahui.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W2"
+            ],
+            "advice": "W2 adalah prakiraan sintetis dengan sampel terbatas: peluang hujan rendah, estimasi jumlah nihil, dan awan sedikit pada sampel. Ini bukan kepastian cuaca cerah; waktu yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan untuk tempat ini; kondisi cahaya tidak diketahui."
+          }
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 90,
+            "maxMinutes": 150,
+            "rationale": "Perkiraan pengalaman agar membaca dapat berlangsung fokus dan tidak terburu-buru; bukan batas atau waktu kunjungan terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "afternoon",
+          "weather": {
+            "sourceRefs": [
+              "W3"
+            ],
+            "advice": "W3 adalah prakiraan sintetis dengan sampel terbatas: peluang hujan rendah, estimasi jumlah nihil, dan awan sedikit pada sampel. Ini bukan kepastian cuaca cerah; waktu yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan untuk tempat ini; kondisi cahaya tidak diketahui."
+          }
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan pengalaman untuk melihat-lihat dengan santai, bukan durasi operasi atau batas tinggal.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "weather": {
+            "sourceRefs": [
+              "W4"
+            ],
+            "advice": "W4 adalah prakiraan sintetis dengan sampel terbatas: peluang hujan rendah, estimasi jumlah nihil, dan awan sedikit pada sampel. Ini bukan kepastian cuaca cerah; waktu yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan untuk tempat ini; kondisi cahaya tidak diketahui."
+          }
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "role": "closing",
+          "duration": {
+            "minMinutes": 40,
+            "maxMinutes": 70,
+            "rationale": "Perkiraan pengalaman untuk beristirahat sejenak, bukan waktu layanan atau batas tinggal yang diketahui.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "flexible",
+          "weather": {
+            "sourceRefs": [
+              "W5"
+            ],
+            "advice": "W5 adalah prakiraan sintetis dengan sampel terbatas: peluang hujan rendah, estimasi jumlah nihil, dan awan sedikit pada sampel. Ini bukan kepastian cuaca cerah; waktu yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Tidak ada jendela surya yang disediakan untuk tempat ini; kondisi cahaya tidak diketahui."
+          }
+        }
+      ]
+    }
+  ],
+  "inputsSHA256": "13922be4764bdd97f76418a14a68b7d5f187e5f87370ff09fcf695928eef9c2f"
+}

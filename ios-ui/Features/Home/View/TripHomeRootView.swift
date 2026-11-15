@@ -33,6 +33,17 @@ struct TripHomeRootView: View {
                                            isBusy: presenter.isBusy,
                                            isLocating: location.isRequesting)
                         }
+                        .safeAreaInset(edge: .bottom) {
+                            if let job = presenter.firstItineraryJob {
+                                Button(job.status == .succeeded ? "Review recommendation" : "Resume itinerary draft") {
+                                    resumeCreation(job)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .disabled(presenter.isBusy || sheet != nil)
+                                .padding(8)
+                                .accessibilityIdentifier("resumeItineraryDraft")
+                            }
+                        }
                         .task { locateWhenNeeded() }
                         .background(Color("TripCanvas"))
                         .toolbar(.hidden, for: .navigationBar)
@@ -62,7 +73,7 @@ struct TripHomeRootView: View {
         .sheet(item: $sheet) { route in
             switch route {
             case .planning, .specificPlace:
-                TripCreationSheet(presenter: $creation, dismiss: dismissSheet)
+                TripCreationSheet(presenter: $creation, dismiss: dismissSheet, openPocketSettings: showAccount)
             case .location:
                 PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
             case .account:
@@ -97,7 +108,7 @@ struct TripHomeRootView: View {
             }
         }
         .onChange(of: location.point) { _, point in
-            if let point {
+            if let point, presenter.origin == nil, presenter.firstItineraryJob == nil {
                 presenter.receivedLocation(point)
                 presenter.draftChanged()
             }
@@ -115,6 +126,14 @@ struct TripHomeRootView: View {
         }
         sheet = specificPlace ? .specificPlace : .planning
     }
+    private func resumeCreation(_ job: PlanningJob) {
+        location.cancel()
+        let draft = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: true)
+        draft.openFirstItinerary(job)
+        creation = draft
+        sheet = .specificPlace
+    }
+
     private func chooseLocation() { sheet = .location }
     private func showAccount() { sheet = .account }
     private func dismissSheet() { sheet = nil }
@@ -137,7 +156,7 @@ struct TripHomeRootView: View {
     private func restoreWhenActive() async {
         guard scenePhase == .active else { return }
         await accountPresenter?.restore()
-        await presenter.load()
+        await presenter.load(waitForFirstItinerary: false)
     }
 
     private func reload() { Task { await presenter.load() } }

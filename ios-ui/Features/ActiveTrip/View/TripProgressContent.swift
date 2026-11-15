@@ -70,7 +70,15 @@ struct TripProgressContent: View {
                                 Label("You’ve arrived", systemImage: "checkmark.circle.fill").font(.title.bold())
                                 Text("Stop \(number) of \(trip.plan.stops.count)").font(.subheadline)
                                 Text(stop.name).font(.title3.bold())
-                                Text("Planned visit · \(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: trip.input.timeZone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: trip.input.timeZone, locale: locale))")
+                                if trip.plan.experiencePlan != nil {
+                                    if trip.input.places.first(where: { $0.id == stop.id })?.durationOverridden == true {
+                                        Text("Your visit length · \(stop.visitSeconds / 60) min")
+                                    } else if let duration = trip.plan.experiencePlan?.stop(stop.id)?.duration {
+                                        Text("Suggested visit · \(duration.minMinutes)–\(duration.maxMinutes) min")
+                                    } else { Text("Default visit · \(PlanProposal.defaultExperienceVisitSeconds / 60) min") }
+                                } else {
+                                    Text("Planned visit · \(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: trip.input.timeZone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: trip.input.timeZone, locale: locale))")
+                                }
                                 Divider().overlay(.white.opacity(0.5))
                                 if let upcoming {
                                     Text("UP NEXT").font(.caption)
@@ -78,18 +86,20 @@ struct TripProgressContent: View {
                                         PlaceThumbnail(imageName: details[upcoming.id]?.photoAsset, size: 48)
                                         VStack(alignment: .leading, spacing: 4) {
                                             Text(upcoming.name).font(.headline)
-                                            Text("\(upcoming.travelSeconds / 60) min · planned travel").font(.subheadline)
+                                            Text(trip.plan.experiencePlan == nil ? "\(upcoming.travelSeconds / 60) min · planned travel" : ItineraryFormatting.drivingEstimate(upcoming))
+                                                .font(.subheadline)
                                         }
                                     }
                                 }
-                                action(upcoming == nil ? "Finish last visit" : "Walk to next stop", action: completeVisit)
+                                action(upcoming == nil ? "Finish last visit" : "Continue to next stop", action: completeVisit)
                                     .accessibilityIdentifier("completeTripVisit")
                             } else {
                                 HStack(alignment: .firstTextBaseline) {
                                     if let previewDistance { Text(previewDistance).font(.largeTitle.bold()) }
                                     else { Text(stop.name).font(.title2.bold()) }
                                     Spacer()
-                                    Text(isDesignPreview ? "6 min" : "\(stop.travelSeconds / 60) min").font(.title.bold())
+                                    Text(trip.plan.experiencePlan == nil ? (isDesignPreview ? "6 min" : "\(stop.travelSeconds / 60) min") : ItineraryFormatting.drivingEstimate(stop))
+                                        .font(.title.bold())
                                 }
                                 if isDesignPreview {
                                     HStack { Text("Remaining"); Spacer(); Text("Walking") }.font(.subheadline)
@@ -106,7 +116,7 @@ struct TripProgressContent: View {
                                         action("End walk", action: returnToTrip)
                                     }
                                 } else {
-                                    Text("Stop \(number) of \(trip.plan.stops.count) · planned travel estimate").font(.subheadline)
+                                    Text(trip.plan.experiencePlan == nil ? "Stop \(number) of \(trip.plan.stops.count) · planned travel estimate" : "Stop \(number) of \(trip.plan.stops.count) · suggested experience order").font(.subheadline)
                                     action("Open in Maps", action: openDirections)
                                     action("I’m here", action: arrive).accessibilityIdentifier("confirmTripArrival")
                                     Text("Confirm arrival yourself when you reach the place.").font(.footnote)

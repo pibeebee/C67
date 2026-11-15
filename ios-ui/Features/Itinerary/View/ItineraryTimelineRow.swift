@@ -13,6 +13,7 @@ struct ItineraryTimelineRow: View {
     let details: ItineraryStopDetails?
     var isEditable = true
     let weatherEvidence: [PlanningEvidence]
+    var orderingOnly = false
     let edit: () -> Void
     var beginReorder: (() -> NSItemProvider)? = nil
     var moveUp: (() -> Void)? = nil
@@ -42,10 +43,16 @@ struct ItineraryTimelineRow: View {
             }
             VStack(alignment: .leading, spacing: 0) {
                 ItineraryStopCard(stop: stop, zone: zone, details: details, isEditable: isEditable, weatherEvidence: weatherEvidence, edit: edit,
+                                  showsEstimatedTimes: orderingOnly,
                                   beginReorder: beginReorder, moveUp: moveUp, moveDown: moveDown)
                 if let nextStop {
                     Label {
-                        Text("\(nextStop.travelSeconds / 60) min\(nextDistance.map { " · " + $0 } ?? "")")
+                        if orderingOnly {
+                            Text(ItineraryFormatting.drivingEstimate(nextStop) + (nextDistance.map { " · " + $0 } ?? ""))
+                        } else {
+                            let minutes = String(localized: "\(nextStop.travelSeconds / 60) min")
+                            Text(minutes + (nextDistance.map { " · " + $0 } ?? ""))
+                        }
                     } icon: {
                         Image(systemName: mode == .automobile ? "car" : "figure.walk")
                     }

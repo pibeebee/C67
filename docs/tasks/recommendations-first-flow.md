@@ -4,6 +4,8 @@ Status: Ready for review; compilation and non-UI tests pass, UI verification exc
 Owner: Codex
 Branch: gi/pocket-ui
 
+Historical checkpoint: this task records the implementation committed as `b71eae3`. The later [Jakarta/direct-processing follow-up](jakarta-discovery-direct-processing.md) supersedes its region-hint behavior and post-survey configuration screen. Earlier check counts below remain evidence for that checkpoint.
+
 ## Outcome
 
 Preferences → recommendations → main spot → optional duration → trip configuration. Selecting a main spot or duration does not start itinerary processing.

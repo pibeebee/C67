@@ -1,0 +1,29 @@
+{
+  "reviewer": "Implementing Codex agent, unblinded; no traveller or mentor ratings collected",
+  "scope": "All ten completed answers read against their exact request context. Original outputs were not repaired.",
+  "criticalFabricatedVenueFactsFound": false,
+  "inventedNumericWeatherOrSolarValuesFound": false,
+  "unsupportedArrivalGuaranteesFound": false,
+  "selectionLossFound": false,
+  "cases": [
+    {"case":"A1-no-context","finding":"Proposes all five with experience estimates; weather remains unavailable and light references null. Durations are suggestions, not operator rules or actual dwell-time evidence."},
+    {"case":"A2-shorter-visits","finding":"Reading and coffee ranges both shorten following the explicit wish. This demonstrates responsiveness, not empirical accuracy or a universal duration standard."},
+    {"case":"A3-clear-photo","finding":"Selects morning opportunity for the photo main spot and explicitly states the weather samples do not cover that solar window. Weather advice is cautious and somewhat generic."},
+    {"case":"A4-rainy-afternoon","finding":"Describes the changed rain/cloud regime without replacing places or asserting certainty. Uses malam for source period evening, whose actual sample is 17:00-18:00 local: terminology/time-period ambiguity requiring normalization."},
+    {"case":"A5-dry-cloudy","finding":"Correctly distinguishes low rain from high cloud and preserves the calculated solar opportunity. Reading duration grows despite an unchanged deep-reading wish; variation is not justified by verified operator facts."},
+    {"case":"A6-photo-deprioritized","finding":"No solar window selected and light priority becomes not_relevant when photography is deprioritized. Calls a synthetic forecast amount curah tercatat, an avoidable observation-like wording. Park remains role main because its input anchor was unchanged, creating tension with prose prioritizing reading/food."},
+    {"case":"B7-weather-unavailable","finding":"Retains calculated light opportunity while explicitly leaving weather unknown. No fabricated clear-sky or dry-weather claim."},
+    {"case":"B8-ambiguous-setting","finding":"No invented indoor seating or shelter; unknown market/library activity durations are null with reasons. Conditional reading at the cafe is explicitly contingent on appropriate seating; it is not asserted as a facility fact."},
+    {"case":"B9-competing-light","finding":"Uses fictional supplied outdoor/photo attributes only for the fictional parks. Proposes morning A and evening B with an alternative order and no promise that both windows can be reached. Because both morning/evening options were supplied, this is not a forced same-window impossibility test."},
+    {"case":"B10-exact-repeat","finding":"Exact request repeats the order but not all estimated ranges: market max changes 75 to 90, coffee changes 45-75 to 40-70, library daypart changes flexible to afternoon. Exact deterministic estimates or dayparts are not established."}
+  ],
+  "requiredBeforeProductUse": [
+    "Normalize daypart labels against explicit local-time intervals; do not let evening ambiguously imply night.",
+    "Use forecast language such as diprakirakan, not wording suggesting observed future rainfall.",
+    "Keep duration ranges labelled estimates and decide how proposal persistence/regeneration should handle variation.",
+    "Define how main-spot anchoring interacts with a later changed activity priority.",
+    "Reduce repeated warnings without removing material uncertainties.",
+    "Obtain human evaluation and real-source integration evidence; neither is completed by this experiment."
+  ],
+  "acceptance": "Bounded model capability demonstrated; production, empirical-duration, road/timing and real-weather acceptance not established."
+}

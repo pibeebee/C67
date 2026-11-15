@@ -37,3 +37,7 @@ Read CBL section 0P first. Latest agreed geography is Jakarta only; code still a
 - `git diff --check` passed for this work in both layouts. CBL, development ledger, focused test and task copies were compared byte-for-byte. Each checkout's validator retained its own existing root/path handling.
 - Final CBL SHA-256: `a0d10a3fe952390b0f237d1686bf6ff79c986f784d1295ac70107e9176b997f0`. The original publication baseline remains `0901dd6a061c7536b70ac2766b4f2e78263997e98b4d92cda0a5c0a18bba8983`.
 - The original checkout still contains the three pre-existing iPad/verification modifications, untouched. No commit, push, deployment, account change, provider request, new benchmark or app/device test was performed by this documentation task.
+
+## 14 November continuation
+
+CBL section [0Q](../source-records/CBL.md#current-handoff) records the closure of the local preferences, recommendations and survey-handoff scope. The [Simulator and test evidence](../../../docs/tasks/jakarta-discovery-direct-processing.md) is the basis for the new checkpoint. The ledger records the new document hash while the previous validation and import hashes remain available above.

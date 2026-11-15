@@ -6,6 +6,8 @@ options:
 packages:
   C67Backend:
     path: ../ios-backend
+  PocketEngine:
+    path: ../packages/PocketEngine
 settings:
   base:
     SWIFT_VERSION: "6.0"
@@ -83,6 +85,8 @@ targets:
         product: C67Domain
       - package: C67Backend
         product: C67Data
+      - package: PocketEngine
+        product: PocketEngine
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: io.pibeebee.c67.starter.apptests

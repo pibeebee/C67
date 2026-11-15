@@ -1,6 +1,21 @@
 # Starter verification
 
+## Runtime visit research and Luna — 14 November 2026
+
+[Current implementation and evidence](tasks/pocket-runtime-visit-resolution.md): native catalog fallback and geographic allowlists removed; selected places are researched by the server with actual Luna. Backend 53, core 14 and Python resolver 24 checks pass. Targeted Simulator fixtures pass 36 checks; the live five-place UI path also passes, but schedules only 1/5 places. Six HTTP 524 responses, conflicting hours and ambiguous branch identity remain material coverage limits. A focused fresh-source/batched-Luna park test passes. The smaller-batch Perpusnas experiment also returned unresolved after HTTP 524. A real native Responses extraction completed, but final server/advice acceptance failed with URLError and work stopped at the user’s requested boundary. No shared server deployment or physical-iPhone/TestFlight acceptance is implied.
+
+
 [Live Pocket and TestFlight handoff](tasks/pocket-live-testflight-handoff.md) records the later iPhone 18 Pro Max Simulator results with real venues, Apple ETA, Luna, the server container smoke check, and the remaining signing/HTTPS gates.
+
+## First Pocket itinerary — 14 November 2026
+
+The [implementation and verification record](tasks/pocket-first-itinerary.md) covers direct planning from selected destinations, conditional availability confirmation, editable timing and endpoints, and retaining omitted destinations with reasons. Package suites passed 14 solver tests and 51 backend tests. The final focused run passed 33 presenter and 3 UI tests on iPhone 18 Pro Max Simulator. A preceding broader run passed 12 additional recommendation and trip-creation UI tests. One opt-in live MapKit test passed after choosing the origin and destination through search. The first itinerary used live automobile ETA and bundled venue evidence.
+
+## Jakarta discovery boundary and direct processing — 14 November 2026
+
+The [follow-up evidence](tasks/jakarta-discovery-direct-processing.md) records 42 passing hosted model/presenter tests and a successful unsigned iOS device Release build using Xcode 27.2 / Swift 6.4.2. All 659 remaining Swift files pass pinned formatting; whitespace and plist checks pass. The Australian-bookstore regression is covered with stubbed mixed local/foreign responses plus coordinate/country/radius checks, not a live provider run. Unrelated preferences remain separate queries, and completing the main-spot/duration survey directly attempts planning without Confirm trip. Missing origin, personal availability/consent, larger selections and the unchanged narrower planner areas still have explicit gates. No UI/render/manual tests, live provider queries, physical-device test, deployment or TestFlight action ran. Earlier counts below belong to their respective checkpoints.
+
+The subsequent Simulator walkthrough verified selection recovery, a one-hour main spot in the mock itinerary, and the direct handoff to availability review with live destinations. A live partial result kept the selected place after Refresh. The exact independent-bookstore query remained empty within Jakarta's search radius. The latest Release build and 44 selected unit tests passed after fixing the planning banner and reporting MapKit's no-result case separately. Details and remaining quality gaps are in the same task record.
 
 ## Recommendations before trip configuration — 14 November 2026
 
@@ -321,3 +336,47 @@ Policy update: PR 17 now targets `dev` under the [local-first workflow](tasks/de
 The focused itinerary drag, recalculation and saved-order test passed on GitHub's iOS 18.5 / Xcode 16.4 runner. Related creation unit tests and Home/creation UI suites passed 26/26 locally in mock mode on iPhone 17e / iOS 27.2. The earlier full iOS 18.5 run passed Home sizing after correcting native fallback padding but failed the drag scenario; that failure remains recorded rather than treated as a successful full run.
 
 The temporary diagnostic workflow was removed. Starter checks retain all existing suites, cancel superseded PR runs, avoid a duplicate successful menu wait and preserve failure logs/result bundles. A subsequent ARM style job was cancelled without running any steps because GitHub could not allocate a hosted runner; production style/iOS checks now select standard Intel runners, with Xcode 16.4 explicit for the compatibility suite. Final approval is gated on all checks for the final PR head. See the [repair evidence and acceptance gate](tasks/pr17-ci-repair.md); physical-device, manual VoiceOver and live planning-service acceptance remain separate.
+
+## Reasonable Luna ordering integration — 15 November 2026
+
+The new untimed Pocket path passed 39 Python service tests, 63 shared Swift tests,
+44 creation/preference app unit cases and three synthetic UI cases on iPhone 18
+Pro Max / iOS 27.2, Xcode 27.2. Contract fixtures and the pinned 662-file formatting
+check passed. Review/save retains unknown places, nullable duration, source context
+and request identity without ETA/hours prerequisites. One actual five-place
+request fetched five Open-Meteo records and ten calculated light windows, then
+failed at Luna with HTTP 524 after about 125 seconds. Selection/error handling was
+observed; successful live generation/review/save is not claimed. No automatic
+provider retry or substitute answer was used. See [full evidence](evidence/pocket-order-integration-2026-11-15/README.md)
+and [scope](tasks/pocket-reasonable-order-integration.md). Shared deployment,
+physical-device/TestFlight and later Hi-Fi work remain separate.
+
+## Pocket ordering save diagnosis — 15 November 2026
+
+The live retest reached a saved trip detail titled `Live order acceptanceacceptance`; the test expected `Live order acceptance`. The test's cursor-relative deletion left a suffix. The replacement helper now selects the entire value and verifies exact text before Save. The untimed save dialog now describes retaining the recommendation. App unit suite: 34 passed; repository rename/save/reload/start regression: 1 passed; formatting and whitespace checks passed. No new UI interaction test or provider call was run. The native selection menu and final exact-title UI assertion remain pending the next acceptance run. See [diagnosis, changes and logs](tasks/pocket-order-save-debug.md).
+
+## Second save-name correction — 15 November 2026
+
+The next live UI acceptance failed on the Select All menu's semantic tap. The helper now taps the menu center coordinate and retains exact text assertions. Adjacent review also fixed the presenter's rename busy-state and stale-session response gaps. 37 app unit tests and all 63 package tests passed; app/UI test targets compiled; formatting and whitespace checks passed. No UI interaction tests or provider calls were executed in this correction. Menu interaction and complete UI save remain pending. See [full diagnosis and logs](tasks/pocket-order-save-debug.md#second-correction-after-the-0844-live-ui-run).
+
+
+## Connected trip-flow repair and live acceptance — 15 November 2026
+
+The unstable rename test interaction was replaced with trailing-edge taps and verified clearing, retaining exact-name assertions. The itinerary retry path now retries the requested name instead of applying an old title after a rename failure. The full connected UI run passed 16/16, and a separate actual server/Luna five-place UI acceptance passed 1/1 through exact rename/save, all five saved stops, trip start and manual first arrival on iPhone 18 Pro Max / iOS 27.2. The live run logged one Luna request, 104.884 seconds, reported `gpt-6-luna` / `max` / Responses; saving and starting did not regenerate the recommendation.
+
+App unit definitions: 110 passed, 4 external opt-ins skipped, 0 failed. Client package: 63 passed. Pocket synthetic server: 39 passed. Contracts, all 662 Swift files' pinned formatting check and whitespace check passed. The earlier failed UI attempts are retained and distinguished from the final passing run. Live input pins are fixed public test data; actual server/model processing uses in-memory trip storage, while package tests separately exercise persistence. No physical-device, full VoiceOver, iOS 18 runtime, provider dashboard or deployment acceptance is implied. See [the task](tasks/pocket-order-save-debug.md) and [complete logs, request/result and screenshots](evidence/pocket-flow-repair-2026-11-15/README.md).
+
+
+## Pocket ordering recovery on the normal app — 15 November 2026
+
+The normal Pocket app reported the missing development read token and opened settings on the existing five-place draft. A separate live test used the app’s Keychain and local Pocket server, left processing with Continue later, relaunched the app and recovered all five places with one server job and one Luna call (136.155 seconds). Both focused UI tests passed on iPhone 18 Pro Max Simulator with iOS 27.2. The Swift package passed 64 tests. See [the repair and evidence](tasks/pocket-order-recovery.md).
+
+
+## Homelab Pocket ordering and itinerary update — 15 November 2026
+
+Pocket Beta v3 runs in the existing homelab Compose project behind `https://pocket.giovanc.com`. The existing volume and connection credential were preserved. A live authenticated order returned all three selected public test places in 78.8 seconds, and a repeated submission reused the job. Three focused synthetic Simulator UI tests, 65 Swift package tests and 39 Python server tests passed. See [deployment, rollback and UI evidence](tasks/pocket-homelab-itinerary-hifi.md).
+
+
+## Pocket driving ETAs and local reorder — 15 November 2026
+
+The device now quotes actual automobile ETA and road distance from MapKit. Manual reorder preserves the original Luna response and reroutes without a new ordering request. 67 package tests and two focused synthetic Simulator UI cases passed. The production MapKit adapter separately returned real Jakarta quotes before and after reorder on macOS with a synthetic order fixture. See [checks and evidence](tasks/pocket-mapkit-driving-eta.md).

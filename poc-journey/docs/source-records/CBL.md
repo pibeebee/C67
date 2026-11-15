@@ -1,8 +1,8 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Updated:** 13 November 2026, Asia/Jakarta (WIB).
+**Updated:** 14 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Current status:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
+**Current status:** The user closed the local preference-to-recommendation flow after verifying place selection, refresh, the Jakarta search boundary, and the handoff from the main-spot survey. The current checkout uses native MapKit with an expanded preference vocabulary and a temporary 60 km search radius around central Jakarta. Pocket still handles itinerary planning under its existing area and stop limits. E5 is the chosen model for future preference matching and remains outside the app integration in this checkpoint. Read [the current handoff](#current-handoff) in section 0Q. Sections 0–0P retain the earlier experiments and decisions.
 
 **Catatan teknis 3 November 2026:** pengguna mengunci **hybrid adaptif** untuk routing PoC: baseline tervalidasi terlebih dahulu, kemudian cheapest insertion + multi-start local search secara selektif. Implementasi dan pengujian lokal tersedia pada [laporan PoC native](../../apps/native-routing-lab/docs/verification/ADAPTIVE_ROUTING_REPORT_2026-11-03.md). Ini memperbarui status eksperimen routing; integrasi AI dan recalculation perjalanan aktif tetap mempunyai lingkup dan bukti tersendiri.
 
@@ -725,7 +725,7 @@ Use persisted cache and per-source rate/concurrency/page/token/credit budgets. R
 
 ### Handoff for the next chat
 
-<a id="current-handoff"></a>
+<a id="catalogue-handoff-2026-11-13"></a>
 
 **Current objective:** prepare a trustworthy, independently sourced Jakarta catalogue for the existing 62-label Pocket recommender, through offline development batches, while keeping Apple-first runtime search/routing. **Do not start a batch, change architecture, deploy, commit or push merely because this document contains a plan.** The last authorized action in this chat was documentation.
 
@@ -740,9 +740,31 @@ Use persisted cache and per-source rate/concurrency/page/token/credit budgets. R
 Documentation provenance: the 9 November Context Lab checkpoint; inspected 10–12 November pilot/benchmark reports; the preceding Pocket Engine and venue-enrichment chats; and this chat's PR, UI, homelab, TestFlight, catalogue and Jakarta/blind-spot discussions through 13 November. Missing raw/local attachments stay explicitly missing. This update records those observations and decisions; it does not repeat their experiments.
 
 
-## 1. Current concept and source precedence — updated 13 November 2026
+## 0Q. Preferences, Jakarta discovery and trip handoff — 14 November 2026
 
-The app helps travellers choose places, review a feasible order/timing proposal, adjust it and save the trip. The current native product uses Pocket Engine through C67Domain/C67Data with MapKit, WeatherKit and optional catalogue/Luna services. Read sections 0J–0P and the [current handoff](#current-handoff) for the latest decisions, implementation, observed results and unresolved policies. Context Lab, Foundation Lab, E5 and earlier routing experiments retain their own dated evidence and are not automatically active production dependencies.
+### Decisions and implementation
+
+This chat focused on turning user preferences into relevant place candidates. Earlier catalogue, routing, homelab and TestFlight work remains in its own checkpoint. The app presents seven broad themes and an expanded set of detailed preferences. E5 was selected for the next model integration step. This version translates selected preferences into deterministic English MapKit queries.
+
+- Unrelated preferences generate separate searches. The example of Ramen shop, Independent bookstore and Jogging produced `Ramen shop`, `Independent bookstore` and `jogging park`. The app interleaves and deduplicates their candidates. Each load runs up to four queries, with additional terms rotated on refresh.
+- Discovery and manual destination search use a temporary 60 km radius around central Jakarta. The app requires the enclosing MapKit region and filters candidates by coordinates and country code when supplied. The radius is a product boundary. The administrative DKI boundary and expansion of Pocket's itinerary area are separate work.
+- The flow is preferences → recommendations → place selection → main spot → optional duration → planning attempt. Refresh retains the selection. My Places lets the user remove places without a selection cap. The survey hands off directly after the removal of Confirm trip. A missing starting point, visit availability or applicable consent can still require input. The planner currently accepts at most six places and supports its existing Jakarta Selatan and Kemayoran areas.
+
+Implementation details and verification are recorded in the [recommendations checkpoint](../../../docs/tasks/recommendations-first-flow.md) and [Jakarta discovery and direct processing](../../../docs/tasks/jakarta-discovery-direct-processing.md).
+
+### Observed results and closure
+
+On iPhone 18 Pro Max Simulator running iOS 27.2, the mock flow retained seven selections in My Places and when returning from the survey. The walkthrough found a stale planner message that continued to cover Next after the selection was reduced. The banner was moved to the planning screens and clears when the selection changes. A retest reduced seven places to three and passed through to a mock itinerary with a one-hour main-spot visit.
+
+In the live MapKit walkthrough, the sample returned Jakarta ramen venues and a jogging result in an apartment complex. Public access to the jogging result remained unknown. The exact Independent bookstore query returned no local candidates. A separate native diagnostic returned 24 results for the broader `bookstore` query, with independence unverified. The app now presents an empty local result separately from a provider error. In a live partial-result retry, Refresh retained the selected place. The live walkthrough reached Visit availability after the survey. The unsigned Release build, 44 selected unit tests and two targeted mock UI tests passed. [Verification evidence](../../../docs/tasks/jakarta-discovery-direct-processing.md#simulator-walkthrough)
+
+<a id="current-handoff"></a>
+
+The user accepted empty results as expected when MapKit has no match and closed this implementation scope. That closes the selection, geographic filtering, empty-state and survey-handoff work in this chat. E5 integration, accuracy and freshness across preferences, iPhone performance and routing validation remain separate. The base recommendation flow was pushed as `b71eae3` on `gi/pocket-ui`. The Jakarta boundary, direct processing, and walkthrough fixes were verified in the local checkout.
+
+## 1. Current concept and source precedence — updated 14 November 2026
+
+The app helps travellers choose places, review a feasible order/timing proposal, adjust it and save the trip. The current local discovery flow uses native MapKit and hands selected places to Pocket Engine. Read [the current handoff](#current-handoff) for the 14 November closure and sections 0J–0P for prior catalogue, platform and release evidence.
 
 Sections 2–9 below preserve the 29 October concept and open questions. Later explicit user decisions take precedence. In particular, do not resume Google Places, assume browsing exists merely because an LLM is configured, or treat a TestFlight submission as external publication. The latest catalogue work is proposed offline development-time collection for Jakarta; it has not been executed by this documentation task.
 

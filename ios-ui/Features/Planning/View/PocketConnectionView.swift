@@ -14,7 +14,7 @@ struct PocketConnectionView: View {
                     TextField("Server URL", text: $serverURL)
                         .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
                         .accessibilityIdentifier("pocketServerURL")
-                    SecureField(presenter.pocketConnection?.hasToken == true ? "New read token (leave empty to keep)" : "Catalog read token", text: $token)
+                    SecureField(presenter.pocketConnection?.hasToken == true ? "New read token (leave empty to keep)" : "Pocket read token", text: $token)
                         .textInputAutocapitalization(.never).autocorrectionDisabled()
                         .accessibilityIdentifier("pocketReadToken")
                     Button(presenter.isSavingConnection ? "Saving…" : "Save connection") {
@@ -29,7 +29,7 @@ struct PocketConnectionView: View {
                     if let error = presenter.connectionError { Text(error).foregroundStyle(.red) }
                 }
                 Section("How your trip is processed") {
-                    Text("Preferences, matching and schedule validation run on this device. The server supplies the independent catalog and, when you allow it, Luna Max schedule advice.")
+                    Text("The Pocket server sends your selected places and preferences to Luna for itinerary recommendations.")
                     Text("Your saved trips stay in this app on this device. Account sync is not enabled in Pocket mode.")
                     Text("Use HTTPS for TestFlight. API provider keys and the server write token must stay on the server.")
                 }

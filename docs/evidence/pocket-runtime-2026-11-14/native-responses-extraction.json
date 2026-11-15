@@ -1,0 +1,65 @@
+{
+  "test": "Real native Responses Luna extraction from recorded public source text; not a fresh crawl",
+  "elapsedSeconds": 122.71,
+  "requestedModel": "cx/gpt-6-luna(max)",
+  "reportedModel": "gpt-6-luna",
+  "reportedReasoningEffort": "max",
+  "providerProtocol": "responses",
+  "answer": {
+    "identity": {
+      "value": "National Library of Indonesia",
+      "sourceID": "source-653e020788a773e11bd6",
+      "quote": "National Library of Indonesia reopens with new health protocols"
+    },
+    "weekly": null,
+    "access": null,
+    "lastEntryMinute": null,
+    "maximumVisitMinutes": null,
+    "closures": null,
+    "reservation": null,
+    "categories": {
+      "value": [
+        "library"
+      ],
+      "sourceID": "source-653e020788a773e11bd6",
+      "quote": "National Library of Indonesia reopens with new health protocols"
+    },
+    "notices": [
+      {
+        "value": "A report published in June 2020 described Monday-Friday hours of 08:00-15:30; these historical hours do not confirm the schedule for the requested dates.",
+        "sourceID": "source-653e020788a773e11bd6",
+        "quote": "the library will be open from Monday to Friday from 8 a.m. to 3:30 p.m."
+      },
+      {
+        "value": "The June 2020 reopening report said visitors had to register online beforehand; this does not establish the current access or reservation policy.",
+        "sourceID": "source-653e020788a773e11bd6",
+        "quote": "Those who wish to visit the library are required to register online beforehand to receive QR Codes that will be scanned when they enter and exit the building."
+      },
+      {
+        "value": "The June 2020 reopening report described a limit of 1,000 visitors per day; this does not establish a current limit.",
+        "sourceID": "source-653e020788a773e11bd6",
+        "quote": "It will limit the number of visitors to 1,000 people per day."
+      }
+    ],
+    "missingReasons": {
+      "weekly": "The only hours provided are from a June 2020 reopening report and do not establish a recurring schedule for the requested dates. Resolve with a current branch-published schedule.",
+      "access": "The only access procedure provided is the historical online registration requirement from 2020. Resolve with current branch visitor instructions.",
+      "lastEntryMinute": "No operator-set last-entry restriction is stated. Resolve with current branch entry rules.",
+      "maximumVisitMinutes": "No operator-set maximum visit duration is stated. Resolve with current visitor rules.",
+      "closures": "No current closure or explicitly dated ISO closure is provided; the historical reopening report does not establish closure status for the requested dates. Resolve with a current branch notice.",
+      "reservation": "The 2020 online registration requirement does not establish the current reservation policy. Resolve with current booking instructions."
+    }
+  },
+  "sources": [
+    {
+      "id": "source-abdb4636df6a6b2eaa35",
+      "finalURL": "https://smartcity.jakarta.go.id/en/blog/berwisata-ke-perpustakaan-nasional-ri/",
+      "contentHash": "265a7e07aaff27c13083b712f7820574e9ed2c291479402e12e97d126df28b43"
+    },
+    {
+      "id": "source-653e020788a773e11bd6",
+      "finalURL": "https://www.thejakartapost.com/life/2020/06/11/national-library-of-indonesia-reopens-with-new-health-protocols",
+      "contentHash": "b88a85b6d90ef66692aa0ba009f553070db2f624a23ce8ddf98bee9245156568"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "test": "Real Luna re-review of recorded source claims with recurring-day scope, not a new full-place resolution",
+  "result": {
+    "accepted": [
+      "weekly"
+    ],
+    "reasons": {
+      "weekly": "The exact quoted Wanderlog schedule matches the claimed weekday and weekend hours for the identified National Library. The 2020 weekday-only hours describe a historical reopening and do not establish a competing current schedule."
+    },
+    "caveat": "The quoted recurring schedule does not specify how long it will remain in effect."
+  },
+  "requestedModel": "cx/gpt-6-luna(max)",
+  "reportedModel": "gpt-6-luna(max)",
+  "originalSnapshot": "2026-11-14T12:39:28Z",
+  "claim": {
+    "value": [
+      {
+        "days": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "intervals": [
+          [
+            "08:00",
+            "19:00"
+          ]
+        ]
+      },
+      {
+        "days": [
+          6,
+          7
+        ],
+        "intervals": [
+          [
+            "09:00",
+            "15:30"
+          ]
+        ]
+      }
+    ],
+    "sourceID": "source-755dca76530828414314",
+    "quote": "Hours Su Sunday: 9AM–3:30PM Mo Monday: 8AM–7PM Tu Tuesday: 8AM–7PM We Wednesday: 8AM–7PM Th Thursday: 8AM–7PM Fr Friday: 8AM–7PM Sa Saturday: 9AM–3:30PM"
+  },
+  "sourceURL": "https://wanderlog.com/place/details/127580/national-library-of-the-republic-of-indonesia",
+  "sourceCount": 4
+}

@@ -73,7 +73,7 @@ public actor HTTPPlanningRepository: PlanningRepository {
     }
 
     public func requestPlan(_ request: PlanningRequest) async throws -> PlanningJob {
-        guard request.input.enginePreferences == nil else { throw PlanningError.invalidInput }
+        guard request.input.enginePreferences == nil, request.purpose != .firstItinerary else { throw PlanningError.invalidInput }
         return try await submit(request, authorization: authorize())
     }
     private func submit(_ request: PlanningRequest, authorization: Authorization) async throws -> PlanningJob {

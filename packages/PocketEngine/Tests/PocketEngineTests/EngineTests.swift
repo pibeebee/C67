@@ -137,6 +137,54 @@ final class EngineTests: XCTestCase {
         XCTAssertEqual(plan.returnSeconds, 600)
     }
 
+    func testAutomaticTimingDelaysFirstVisitToRespectWaitingAtTheNextStop() async throws {
+        let venues = Array(try Catalog.bundled().venues.prefix(2))
+        let start = TripClock.calendar.date(bySettingHour: 9, minute: 0, second: 0, of: Date().addingTimeInterval(86400))!
+        let input = TripInput(departure: start, deadline: start.addingTimeInterval(3 * 3600),
+                              origin: venues[0].coordinate, returnToOrigin: true, maxWaitMinutes: 45,
+                              avoidRain: false, minimumStops: 2, maximumStops: 2, automaticTiming: true)
+        let day = TripClock.day(start)
+        let choices = [
+            StopChoice(venueID: venues[0].id, required: false, durationMinutes: 30,
+                       override: .init(day: day, opens: 540, closes: 660, publicAccessConfirmed: true)),
+            StopChoice(venueID: venues[1].id, required: false, durationMinutes: 30,
+                       override: .init(day: day, opens: 640, closes: 720, publicAccessConfirmed: true)),
+        ]
+        let plan = try await ItineraryPlanner.make(input: input, choices: choices, venues: venues, profile: Profile(),
+                                                   travel: { _, _, _ in .init(seconds: 300, meters: 1000) },
+                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic") }, budget: 20)
+        XCTAssertEqual(plan.stops.map(\.venueID), venues.map(\.id))
+        XCTAssertEqual(plan.stops[0].visitStart.timeIntervalSince(start), 1200)
+        XCTAssertEqual(plan.stops[1].visitStart.timeIntervalSince(plan.stops[1].arrival), 2700)
+        try ItineraryPlanner.validateSelection(plan, input: input, choices: choices, venues: venues, profile: Profile())
+    }
+
+    func testAutomaticTimingTriesDeparturesNearAFridayAfternoonSession() async throws {
+        var venue = try XCTUnwrap(Catalog.bundled().venues.first)
+        let start = TripClock.calendar.nextDate(after: Date(), matching: DateComponents(hour: 9, weekday: 6),
+                                                matchingPolicy: .nextTime)!
+        let day = TripClock.day(start)
+        let opening = HoursEvidence(intervals: [.init(weekday: 6, startMinute: 600, endMinute: 630, date: day),
+                                                .init(weekday: 6, startMinute: 835, endMinute: 880, date: day)],
+                                    checkedAt: .now, expiresAt: start.addingTimeInterval(86400),
+                                    sourceURL: "https://fixture.invalid/friday", quote: "Synthetic Friday split hours")
+        venue.hours = opening
+        venue.facts = [.init(field: .publicAccess, status: .supported, value: "Synthetic",
+                             sourceURL: opening.sourceURL, quote: opening.quote,
+                             checkedAt: opening.checkedAt, expiresAt: opening.expiresAt)]
+        let choices = [StopChoice(venueID: venue.id, required: false, durationMinutes: 40)]
+        let input = TripInput(departure: start, deadline: start.addingTimeInterval(11 * 3600),
+                              origin: venue.coordinate, returnToOrigin: true, maxWaitMinutes: 45, avoidRain: false,
+                              latestDeparture: start.addingTimeInterval(8 * 3600), minimumStops: 1, maximumStops: 1,
+                              automaticTiming: true)
+        let plan = try await ItineraryPlanner.make(input: input, choices: choices, venues: [venue], profile: Profile(),
+                                                   travel: { _, _, _ in .init(seconds: 300, meters: 500) },
+                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic") }, budget: 20)
+        XCTAssertEqual(plan.departure.timeIntervalSince(start), 280 * 60)
+        XCTAssertEqual(try XCTUnwrap(plan.stops.first).visitStart.timeIntervalSince(start), 295 * 60)
+        try ItineraryPlanner.validateSelection(plan, input: input, choices: choices, venues: [venue], profile: Profile())
+    }
+
     func testRestoredLabelOptionsAndReviewedCategory() throws {
         XCTAssertEqual(Interests.all.count, 66)
         XCTAssertTrue(Interests.all.contains("outdoor"))

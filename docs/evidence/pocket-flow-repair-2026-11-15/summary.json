@@ -1,0 +1,29 @@
+{
+  "simulator": "iPhone 18 Pro Max",
+  "runtime": "iOS 27.2",
+  "app_unit_passed": 110,
+  "app_unit_skipped": 4,
+  "app_unit_failed": 0,
+  "ui_passed": 16,
+  "ui_failed": 0,
+  "live_ui_passed": 1,
+  "live_ui_failed": 0,
+  "swift_package_passed": 63,
+  "server_synthetic_passed": 39,
+  "live_server_jobs": 1,
+  "luna_logged_requests": 1,
+  "luna_request_elapsed_seconds": 104.884,
+  "requested_model": "cx/gpt-6-luna(max)",
+  "reported_model": "gpt-6-luna",
+  "reasoning_effort": "max",
+  "provider_protocol": "responses",
+  "selected_places": 5,
+  "ordered_places": 5,
+  "weather_source_count": 5,
+  "solar_window_count": 10,
+  "result_bundles": {
+    "final_ui": "/private/tmp/c67-flow-final-ui-20261115.xcresult",
+    "live_ui": "/private/tmp/c67-flow-live-final-20261115.xcresult",
+    "initial_units_and_ui": "/private/tmp/c67-flow-repair-synthetic-20261115.xcresult"
+  }
+}

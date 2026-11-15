@@ -1,0 +1,1127 @@
+[
+  {
+    "id": "c6ffb1bd-cff8-4bf1-b55b-3a4e9585236f",
+    "status": "succeeded",
+    "request": {
+      "candidateDate": "2026-11-16",
+      "endpoint": {
+        "latitude": -6.2443,
+        "longitude": 106.7985
+      },
+      "origin": {
+        "latitude": -6.2443,
+        "longitude": 106.7985
+      },
+      "places": [
+        {
+          "categories": [],
+          "id": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "location": {
+            "latitude": -6.245659,
+            "longitude": 106.793781
+          },
+          "name": "Taman Bendera Pusaka"
+        },
+        {
+          "categories": [],
+          "id": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "location": {
+            "latitude": -6.236787,
+            "longitude": 106.807696
+          },
+          "name": "Tatemukai Signature Omakase Sushi"
+        },
+        {
+          "categories": [],
+          "id": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "location": {
+            "latitude": -6.181447,
+            "longitude": 106.8269647
+          },
+          "name": "National Library of Indonesia"
+        },
+        {
+          "categories": [],
+          "id": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "location": {
+            "latitude": -6.194465,
+            "longitude": 106.820578
+          },
+          "name": "Night market"
+        },
+        {
+          "categories": [],
+          "id": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "location": {
+            "latitude": -6.191242,
+            "longitude": 106.675692
+          },
+          "name": "Memorial Coffee Cipondoh"
+        }
+      ],
+      "preferences": "Trip santai dengan kopi, membaca, makanan, taman dan pasar malam. Utamakan urutan aktivitas yang masuk akal; semua tempat yang dipilih tetap masuk.",
+      "preservesPlaceOrder": false,
+      "requestID": "C6FFB1BD-CFF8-4BF1-B55B-3A4E9585236F",
+      "timeZone": "Asia/Jakarta"
+    },
+    "result": {
+      "status": "proposed",
+      "orderedIDs": [
+        "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C"
+      ],
+      "tripRationale": "Mulai dari taman yang dekat titik asal, lalu sisipkan kopi di Cipondoh sebelum bergerak kembali ke klaster perpustakaan, sushi, dan pasar. Pasar menjadi penutup sesuai keinginan berkunjung malam hari. Perhitungkan perpindahan ke barat sebagai tradeoff; ini urutan pengalaman dan geografi, bukan jaminan semua tempat muat atau tersedia dalam satu hari.",
+      "stops": [
+        {
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "activity": {
+            "suggestion": "Jalan santai menikmati suasana taman.",
+            "basis": "name_inference"
+          },
+          "role": "opening",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Perkiraan untuk kunjungan taman yang ringan, bukan batas atau durasi terukur.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "reason": "Cocok sebagai awal santai dekat titik asal sebelum perjalanan ke barat.",
+          "weather": {
+            "sourceRefs": [
+              "OM1"
+            ],
+            "advice": "Sampel pagi memuat beberapa interval tanpa hujan terprediksi, tetapi awan tebal; sampel siang dan sore memuat hujan. Periode yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi tidak dinyatakan sebagai prioritas; peluang matahari terhitung bukan jaminan cahaya, pandangan, atau akses."
+          },
+          "uncertainties": [
+            "Fasilitas, akses, dan kondisi taman tidak diketahui; tidak ada jaminan kedatangan atau ketersediaan."
+          ]
+        },
+        {
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "activity": {
+            "suggestion": "Singgah untuk kopi sebagai jeda santai.",
+            "basis": "user_preference"
+          },
+          "role": "break",
+          "duration": {
+            "minMinutes": 30,
+            "maxMinutes": 60,
+            "rationale": "Perkiraan untuk jeda kopi singkat, tanpa mengasumsikan layanan atau tempat duduk.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "morning",
+          "reason": "Memenuhi keinginan minum kopi; lokasinya menjadi sisipan ke barat sebelum menuju pusat.",
+          "weather": {
+            "sourceRefs": [
+              "OM5"
+            ],
+            "advice": "Sampel pagi menunjukkan peluang hujan kecil, tetapi juga memuat hujan terprediksi; sampel siang dan sore memuat interval hujan. Periode yang tidak tersampel tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi tidak dinyatakan sebagai prioritas; peluang matahari terhitung bukan jaminan cahaya, pandangan, atau akses."
+          },
+          "uncertainties": [
+            "Layanan, fasilitas, akses, dan kondisi tempat tidak diketahui; tidak ada jaminan kedatangan atau ketersediaan."
+          ]
+        },
+        {
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "activity": {
+            "suggestion": "Membaca santai jika akses memungkinkan.",
+            "basis": "user_preference"
+          },
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 120,
+            "rationale": "Memberi ruang untuk sesi membaca santai; bukan perkiraan aturan atau batas kunjungan.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "afternoon",
+          "reason": "Jeda tenang setelah perjalanan dan sesuai keinginan membaca.",
+          "weather": {
+            "sourceRefs": [
+              "OM3"
+            ],
+            "advice": "Sampel pagi memuat peluang hujan kecil tetapi juga hujan terprediksi; sampel siang hingga malam mencakup interval hujan. Periode yang tidak tersampel tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi tidak dinyatakan sebagai prioritas; peluang matahari terhitung bukan jaminan cahaya, pandangan, atau akses."
+          },
+          "uncertainties": [
+            "Akses, koleksi yang tersedia, fasilitas, dan kondisi perpustakaan tidak diketahui; tidak ada jaminan kedatangan atau ketersediaan."
+          ]
+        },
+        {
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "activity": {
+            "suggestion": "Santap sushi, sesuai inferensi dari nama tempat.",
+            "basis": "name_inference"
+          },
+          "role": "supporting",
+          "duration": {
+            "minMinutes": 60,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk satu pengalaman bersantap santai, bukan durasi layanan atau batas venue.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "evening",
+          "reason": "Menempatkan makanan sebelum pasar malam sebagai transisi menuju penutup.",
+          "weather": {
+            "sourceRefs": [
+              "OM2"
+            ],
+            "advice": "Sampel pagi memuat beberapa interval tanpa hujan terprediksi; sampel siang dan sore hingga malam memuat hujan. Periode yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi tidak dinyatakan sebagai prioritas; peluang matahari terhitung bukan jaminan cahaya, pandangan, atau akses."
+          },
+          "uncertainties": [
+            "Menu, layanan, akses, dan kondisi tempat tidak diketahui; tidak ada jaminan kedatangan atau ketersediaan."
+          ]
+        },
+        {
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "activity": {
+            "suggestion": "Sebagai inferensi dari nama, menelusuri suasana pasar malam dengan santai.",
+            "basis": "name_inference"
+          },
+          "role": "closing",
+          "duration": {
+            "minMinutes": 45,
+            "maxMinutes": 90,
+            "rationale": "Perkiraan untuk kunjungan pasar yang santai; bukan batas atau jaminan pengalaman.",
+            "basis": "experience_estimate"
+          },
+          "durationUnknownReason": null,
+          "preferredDayPart": "night",
+          "reason": "Menjadi penutup yang sesuai dengan keinginan mengunjungi pasar malam.",
+          "weather": {
+            "sourceRefs": [
+              "OM4"
+            ],
+            "advice": "Sampel malam masih memuat peluang hujan; interval tanpa hujan terprediksi tidak memastikan kondisi kering. Periode yang tidak tersampel tetap tidak diketahui.",
+            "status": "available"
+          },
+          "light": {
+            "windowRef": null,
+            "priority": "not_relevant",
+            "advice": "Fotografi tidak dinyatakan sebagai prioritas; peluang matahari terhitung bukan jaminan cahaya, pandangan, atau akses."
+          },
+          "uncertainties": [
+            "Kegiatan, fasilitas, akses, dan kondisi pasar tidak diketahui; tidak ada jaminan kedatangan atau ketersediaan."
+          ]
+        }
+      ],
+      "alternativeOrder": null,
+      "tradeoffs": [
+        "Kopi di Cipondoh menyimpang ke barat dari kelompok tempat lain, sehingga urutan ini mengutamakan alur kegiatan daripada menghindari perpindahan.",
+        "Sampel cuaca bersifat per jam dan tidak mencakup seluruh waktu kunjungan; hujan dapat memengaruhi aktivitas luar ruang."
+      ],
+      "uncertainties": [
+        "Jam buka, akses, fasilitas, layanan, dan ketersediaan semua tempat tidak diberikan; urutan ini bukan jadwal kedatangan dan tidak menjamin tempat dapat dikunjungi.",
+        "Prakiraan hanya mencakup sampel interval tertentu, bukan cuaca sepanjang hari atau selama kunjungan."
+      ],
+      "generatedAt": "2026-11-15T02:23:30.588933+00:00",
+      "candidateDate": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "requestedModel": "cx/gpt-6-luna(max)",
+      "reportedModel": "gpt-6-luna",
+      "reportedReasoningEffort": "max",
+      "providerProtocol": "responses",
+      "weatherSources": [
+        {
+          "id": "OM1",
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "coordinates": {
+            "latitude": -6.245659,
+            "longitude": 106.793781
+          },
+          "gridCoordinates": {
+            "latitude": -6.221441,
+            "longitude": 106.78094
+          },
+          "source": "Open-Meteo forecast (CC BY 4.0)",
+          "url": "https://open-meteo.com/",
+          "checkedAt": "2026-11-15T02:21:45.699349+00:00",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "kind": "live_forecast",
+          "hourlySamples": [
+            {
+              "start": "2026-11-16T04:00:00+07:00",
+              "end": "2026-11-16T05:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.04,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.9,
+              "cloudCoverValidAt": "2026-11-16T05:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T05:00:00+07:00",
+              "end": "2026-11-16T06:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T06:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T06:00:00+07:00",
+              "end": "2026-11-16T07:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.06,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.77,
+              "cloudCoverValidAt": "2026-11-16T07:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T07:00:00+07:00",
+              "end": "2026-11-16T08:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T08:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T09:00:00+07:00",
+              "end": "2026-11-16T10:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.1,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.97,
+              "cloudCoverValidAt": "2026-11-16T10:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T12:00:00+07:00",
+              "end": "2026-11-16T13:00:00+07:00",
+              "period": "siang",
+              "precipitationChance": 0.71,
+              "precipitationAmountMM": 1.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.26,
+              "cloudCoverValidAt": "2026-11-16T13:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T15:00:00+07:00",
+              "end": "2026-11-16T16:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.94,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T16:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T16:00:00+07:00",
+              "end": "2026-11-16T17:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.95,
+              "precipitationAmountMM": 0.4,
+              "precipitationType": "rain",
+              "cloudCover": 0.93,
+              "cloudCoverValidAt": "2026-11-16T17:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T17:00:00+07:00",
+              "end": "2026-11-16T18:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.93,
+              "precipitationAmountMM": 1.0,
+              "precipitationType": "rain",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T18:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T18:00:00+07:00",
+              "end": "2026-11-16T19:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.86,
+              "precipitationAmountMM": 0.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.59,
+              "cloudCoverValidAt": "2026-11-16T19:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T19:00:00+07:00",
+              "end": "2026-11-16T20:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.73,
+              "precipitationAmountMM": 0.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.33,
+              "cloudCoverValidAt": "2026-11-16T20:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T20:00:00+07:00",
+              "end": "2026-11-16T21:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.55,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.84,
+              "cloudCoverValidAt": "2026-11-16T21:00:00+07:00"
+            }
+          ],
+          "coverage": "Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
+          "fallbackReason": "Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+          "typeSemantics": "none means zero predicted amount, not zero probability"
+        },
+        {
+          "id": "OM2",
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "coordinates": {
+            "latitude": -6.236787,
+            "longitude": 106.807696
+          },
+          "gridCoordinates": {
+            "latitude": -6.221441,
+            "longitude": 106.78094
+          },
+          "source": "Open-Meteo forecast (CC BY 4.0)",
+          "url": "https://open-meteo.com/",
+          "checkedAt": "2026-11-15T02:21:45.699349+00:00",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "kind": "live_forecast",
+          "hourlySamples": [
+            {
+              "start": "2026-11-16T04:00:00+07:00",
+              "end": "2026-11-16T05:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.04,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.9,
+              "cloudCoverValidAt": "2026-11-16T05:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T05:00:00+07:00",
+              "end": "2026-11-16T06:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T06:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T06:00:00+07:00",
+              "end": "2026-11-16T07:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.06,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.77,
+              "cloudCoverValidAt": "2026-11-16T07:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T07:00:00+07:00",
+              "end": "2026-11-16T08:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T08:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T09:00:00+07:00",
+              "end": "2026-11-16T10:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.1,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.97,
+              "cloudCoverValidAt": "2026-11-16T10:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T12:00:00+07:00",
+              "end": "2026-11-16T13:00:00+07:00",
+              "period": "siang",
+              "precipitationChance": 0.71,
+              "precipitationAmountMM": 1.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.26,
+              "cloudCoverValidAt": "2026-11-16T13:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T15:00:00+07:00",
+              "end": "2026-11-16T16:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.94,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T16:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T16:00:00+07:00",
+              "end": "2026-11-16T17:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.95,
+              "precipitationAmountMM": 0.4,
+              "precipitationType": "rain",
+              "cloudCover": 0.93,
+              "cloudCoverValidAt": "2026-11-16T17:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T17:00:00+07:00",
+              "end": "2026-11-16T18:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.93,
+              "precipitationAmountMM": 1.0,
+              "precipitationType": "rain",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T18:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T18:00:00+07:00",
+              "end": "2026-11-16T19:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.86,
+              "precipitationAmountMM": 0.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.59,
+              "cloudCoverValidAt": "2026-11-16T19:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T19:00:00+07:00",
+              "end": "2026-11-16T20:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.73,
+              "precipitationAmountMM": 0.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.33,
+              "cloudCoverValidAt": "2026-11-16T20:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T20:00:00+07:00",
+              "end": "2026-11-16T21:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.55,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.84,
+              "cloudCoverValidAt": "2026-11-16T21:00:00+07:00"
+            }
+          ],
+          "coverage": "Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
+          "fallbackReason": "Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+          "typeSemantics": "none means zero predicted amount, not zero probability"
+        },
+        {
+          "id": "OM3",
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "coordinates": {
+            "latitude": -6.181447,
+            "longitude": 106.8269647
+          },
+          "gridCoordinates": {
+            "latitude": -6.151142,
+            "longitude": 106.8421
+          },
+          "source": "Open-Meteo forecast (CC BY 4.0)",
+          "url": "https://open-meteo.com/",
+          "checkedAt": "2026-11-15T02:21:45.699349+00:00",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "kind": "live_forecast",
+          "hourlySamples": [
+            {
+              "start": "2026-11-16T04:00:00+07:00",
+              "end": "2026-11-16T05:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.04,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.88,
+              "cloudCoverValidAt": "2026-11-16T05:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T05:00:00+07:00",
+              "end": "2026-11-16T06:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.89,
+              "cloudCoverValidAt": "2026-11-16T06:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T06:00:00+07:00",
+              "end": "2026-11-16T07:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.06,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.75,
+              "cloudCoverValidAt": "2026-11-16T07:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T07:00:00+07:00",
+              "end": "2026-11-16T08:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.1,
+              "precipitationType": "rain",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T08:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T09:00:00+07:00",
+              "end": "2026-11-16T10:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.1,
+              "precipitationAmountMM": 0.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.52,
+              "cloudCoverValidAt": "2026-11-16T10:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T12:00:00+07:00",
+              "end": "2026-11-16T13:00:00+07:00",
+              "period": "siang",
+              "precipitationChance": 0.71,
+              "precipitationAmountMM": 0.5,
+              "precipitationType": "rain",
+              "cloudCover": 0.2,
+              "cloudCoverValidAt": "2026-11-16T13:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T15:00:00+07:00",
+              "end": "2026-11-16T16:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.94,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.81,
+              "cloudCoverValidAt": "2026-11-16T16:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T16:00:00+07:00",
+              "end": "2026-11-16T17:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.95,
+              "precipitationAmountMM": 0.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.97,
+              "cloudCoverValidAt": "2026-11-16T17:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T17:00:00+07:00",
+              "end": "2026-11-16T18:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.93,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 0.92,
+              "cloudCoverValidAt": "2026-11-16T18:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T18:00:00+07:00",
+              "end": "2026-11-16T19:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.86,
+              "precipitationAmountMM": 0.5,
+              "precipitationType": "rain",
+              "cloudCover": 0.27,
+              "cloudCoverValidAt": "2026-11-16T19:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T19:00:00+07:00",
+              "end": "2026-11-16T20:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.73,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.54,
+              "cloudCoverValidAt": "2026-11-16T20:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T20:00:00+07:00",
+              "end": "2026-11-16T21:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.55,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T21:00:00+07:00"
+            }
+          ],
+          "coverage": "Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
+          "fallbackReason": "Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+          "typeSemantics": "none means zero predicted amount, not zero probability"
+        },
+        {
+          "id": "OM4",
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "coordinates": {
+            "latitude": -6.194465,
+            "longitude": 106.820578
+          },
+          "gridCoordinates": {
+            "latitude": -6.221441,
+            "longitude": 106.856186
+          },
+          "source": "Open-Meteo forecast (CC BY 4.0)",
+          "url": "https://open-meteo.com/",
+          "checkedAt": "2026-11-15T02:21:45.699349+00:00",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "kind": "live_forecast",
+          "hourlySamples": [
+            {
+              "start": "2026-11-16T04:00:00+07:00",
+              "end": "2026-11-16T05:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.04,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.8,
+              "cloudCoverValidAt": "2026-11-16T05:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T05:00:00+07:00",
+              "end": "2026-11-16T06:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.87,
+              "cloudCoverValidAt": "2026-11-16T06:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T06:00:00+07:00",
+              "end": "2026-11-16T07:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.06,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.79,
+              "cloudCoverValidAt": "2026-11-16T07:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T07:00:00+07:00",
+              "end": "2026-11-16T08:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.99,
+              "cloudCoverValidAt": "2026-11-16T08:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T09:00:00+07:00",
+              "end": "2026-11-16T10:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.1,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.67,
+              "cloudCoverValidAt": "2026-11-16T10:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T12:00:00+07:00",
+              "end": "2026-11-16T13:00:00+07:00",
+              "period": "siang",
+              "precipitationChance": 0.71,
+              "precipitationAmountMM": 1.3,
+              "precipitationType": "rain",
+              "cloudCover": 0.2,
+              "cloudCoverValidAt": "2026-11-16T13:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T15:00:00+07:00",
+              "end": "2026-11-16T16:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.94,
+              "precipitationAmountMM": 0.7,
+              "precipitationType": "rain",
+              "cloudCover": 0.87,
+              "cloudCoverValidAt": "2026-11-16T16:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T16:00:00+07:00",
+              "end": "2026-11-16T17:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.95,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 0.8,
+              "cloudCoverValidAt": "2026-11-16T17:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T17:00:00+07:00",
+              "end": "2026-11-16T18:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.93,
+              "precipitationAmountMM": 0.5,
+              "precipitationType": "rain",
+              "cloudCover": 0.92,
+              "cloudCoverValidAt": "2026-11-16T18:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T18:00:00+07:00",
+              "end": "2026-11-16T19:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.86,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 0.49,
+              "cloudCoverValidAt": "2026-11-16T19:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T19:00:00+07:00",
+              "end": "2026-11-16T20:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.73,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.25,
+              "cloudCoverValidAt": "2026-11-16T20:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T20:00:00+07:00",
+              "end": "2026-11-16T21:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.55,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.73,
+              "cloudCoverValidAt": "2026-11-16T21:00:00+07:00"
+            }
+          ],
+          "coverage": "Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
+          "fallbackReason": "Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+          "typeSemantics": "none means zero predicted amount, not zero probability"
+        },
+        {
+          "id": "OM5",
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "coordinates": {
+            "latitude": -6.191242,
+            "longitude": 106.675692
+          },
+          "gridCoordinates": {
+            "latitude": -6.221441,
+            "longitude": 106.70568
+          },
+          "source": "Open-Meteo forecast (CC BY 4.0)",
+          "url": "https://open-meteo.com/",
+          "checkedAt": "2026-11-15T02:21:45.699349+00:00",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "kind": "live_forecast",
+          "hourlySamples": [
+            {
+              "start": "2026-11-16T04:00:00+07:00",
+              "end": "2026-11-16T05:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.04,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.94,
+              "cloudCoverValidAt": "2026-11-16T05:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T05:00:00+07:00",
+              "end": "2026-11-16T06:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.91,
+              "cloudCoverValidAt": "2026-11-16T06:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T06:00:00+07:00",
+              "end": "2026-11-16T07:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.06,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.73,
+              "cloudCoverValidAt": "2026-11-16T07:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T07:00:00+07:00",
+              "end": "2026-11-16T08:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.05,
+              "precipitationAmountMM": 0.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.85,
+              "cloudCoverValidAt": "2026-11-16T08:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T09:00:00+07:00",
+              "end": "2026-11-16T10:00:00+07:00",
+              "period": "pagi",
+              "precipitationChance": 0.1,
+              "precipitationAmountMM": 0.4,
+              "precipitationType": "rain",
+              "cloudCover": 0.62,
+              "cloudCoverValidAt": "2026-11-16T10:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T12:00:00+07:00",
+              "end": "2026-11-16T13:00:00+07:00",
+              "period": "siang",
+              "precipitationChance": 0.71,
+              "precipitationAmountMM": 1.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.32,
+              "cloudCoverValidAt": "2026-11-16T13:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T15:00:00+07:00",
+              "end": "2026-11-16T16:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.94,
+              "precipitationAmountMM": 0.3,
+              "precipitationType": "rain",
+              "cloudCover": 1.0,
+              "cloudCoverValidAt": "2026-11-16T16:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T16:00:00+07:00",
+              "end": "2026-11-16T17:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.95,
+              "precipitationAmountMM": 3.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.99,
+              "cloudCoverValidAt": "2026-11-16T17:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T17:00:00+07:00",
+              "end": "2026-11-16T18:00:00+07:00",
+              "period": "sore",
+              "precipitationChance": 0.93,
+              "precipitationAmountMM": 1.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.94,
+              "cloudCoverValidAt": "2026-11-16T18:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T18:00:00+07:00",
+              "end": "2026-11-16T19:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.86,
+              "precipitationAmountMM": 0.2,
+              "precipitationType": "rain",
+              "cloudCover": 0.63,
+              "cloudCoverValidAt": "2026-11-16T19:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T19:00:00+07:00",
+              "end": "2026-11-16T20:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.73,
+              "precipitationAmountMM": 0.1,
+              "precipitationType": "rain",
+              "cloudCover": 0.34,
+              "cloudCoverValidAt": "2026-11-16T20:00:00+07:00"
+            },
+            {
+              "start": "2026-11-16T20:00:00+07:00",
+              "end": "2026-11-16T21:00:00+07:00",
+              "period": "malam",
+              "precipitationChance": 0.55,
+              "precipitationAmountMM": 0.0,
+              "precipitationType": "none",
+              "cloudCover": 0.74,
+              "cloudCoverValidAt": "2026-11-16T21:00:00+07:00"
+            }
+          ],
+          "coverage": "Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
+          "fallbackReason": "Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+          "typeSemantics": "none means zero predicted amount, not zero probability"
+        }
+      ],
+      "solarWindows": [
+        {
+          "id": "L1-morning",
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T05:11:36.146418+07:00",
+          "end": "2026-11-16T05:53:50.960458+07:00",
+          "coordinates": {
+            "latitude": -6.245659,
+            "longitude": 106.793781
+          },
+          "period": "morning",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L1-evening",
+          "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T17:21:11.724137+07:00",
+          "end": "2026-11-16T18:03:28.880008+07:00",
+          "coordinates": {
+            "latitude": -6.245659,
+            "longitude": 106.793781
+          },
+          "period": "evening",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L2-morning",
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T05:11:33.556888+07:00",
+          "end": "2026-11-16T05:53:48.325303+07:00",
+          "coordinates": {
+            "latitude": -6.236787,
+            "longitude": 106.807696
+          },
+          "period": "morning",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L2-evening",
+          "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T17:21:07.674176+07:00",
+          "end": "2026-11-16T18:03:24.783644+07:00",
+          "coordinates": {
+            "latitude": -6.236787,
+            "longitude": 106.807696
+          },
+          "period": "evening",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L3-morning",
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T05:11:33.610130+07:00",
+          "end": "2026-11-16T05:53:48.096244+07:00",
+          "coordinates": {
+            "latitude": -6.181447,
+            "longitude": 106.8269647
+          },
+          "period": "morning",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L3-evening",
+          "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T17:20:58.621467+07:00",
+          "end": "2026-11-16T18:03:15.443779+07:00",
+          "coordinates": {
+            "latitude": -6.181447,
+            "longitude": 106.8269647
+          },
+          "period": "evening",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L4-morning",
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T05:11:34.042766+07:00",
+          "end": "2026-11-16T05:53:48.595063+07:00",
+          "coordinates": {
+            "latitude": -6.194465,
+            "longitude": 106.820578
+          },
+          "period": "morning",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L4-evening",
+          "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T17:21:01.196089+07:00",
+          "end": "2026-11-16T18:03:18.085725+07:00",
+          "coordinates": {
+            "latitude": -6.194465,
+            "longitude": 106.820578
+          },
+          "period": "evening",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L5-morning",
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T05:12:09.088549+07:00",
+          "end": "2026-11-16T05:54:23.626000+07:00",
+          "coordinates": {
+            "latitude": -6.191242,
+            "longitude": 106.675692
+          },
+          "period": "morning",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        },
+        {
+          "id": "L5-evening",
+          "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+          "date": "2026-11-16",
+          "timeZone": "Asia/Jakarta",
+          "start": "2026-11-16T17:21:35.717384+07:00",
+          "end": "2026-11-16T18:03:52.591884+07:00",
+          "coordinates": {
+            "latitude": -6.191242,
+            "longitude": 106.675692
+          },
+          "period": "evening",
+          "kind": "calculated_solar_opportunity",
+          "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+        }
+      ],
+      "contextWarnings": []
+    }
+  }
+]

@@ -17,14 +17,6 @@ private struct PocketTripOptionFields: View {
     let places: [PlanningPlace]
     let labels: [PlanningPreferenceLabel]
     var body: some View {
-        Section("Visit area") {
-            Picker("Area", selection: $options.area) {
-                Text("Jakarta Selatan").tag("jakarta-selatan")
-                Text("Kemayoran").tag("kemayoran")
-            }
-            .accessibilityIdentifier("pocketArea")
-            Text("Recommendations and selected destinations stay inside this area's sourced boundary.").font(.footnote)
-        }
         Section("Schedule constraints") {
             Toggle("Depart any time within the window", isOn: $options.flexibleDeparture)
             Toggle("Return to the starting point by finish time", isOn: $options.returnToOrigin)
@@ -48,15 +40,9 @@ private struct PocketTripOptionFields: View {
                 Text("Required conditions need current evidence. Unknown values do not count as a match.").font(.footnote)
             }
         }
-        Section("Schedule advice") {
-            Toggle("Use Luna Max", isOn: $options.usesLuna)
-                .accessibilityIdentifier("pocketUseLuna")
-            if options.usesLuna {
-                Toggle("Allow sharing place names and schedule options", isOn: $options.allowsAIProcessing)
-                    .accessibilityIdentifier("pocketAIConsent")
-                Text("The configured Pocket server sends your selected places, interests and schedule options to the configured Luna Max provider. Your starting-point coordinates and server token are not included in the model request. Luna can select an existing valid schedule; it cannot supply new venue facts or route times.")
-                    .font(.footnote)
-            }
+        Section("Visit research") {
+            Text("Travelant researches the selected place names, pins, available branch details and preferences using the Pocket server and Luna. Opening hours and entry rules require retrieved sources; suggested durations remain estimates. Apple provides driving times.")
+                .font(.footnote)
         }
     }
 }

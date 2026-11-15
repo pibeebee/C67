@@ -1,0 +1,122 @@
+{
+  "jobID": "2568a294-859f-423a-940d-8c27eac5eec1",
+  "status": "succeeded",
+  "request": {
+    "dates": [
+      "2026-11-15",
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19",
+      "2026-11-20",
+      "2026-11-21"
+    ],
+    "places": [
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "location": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "name": "National Library of Indonesia",
+        "visitSeconds": 2700
+      }
+    ],
+    "preferences": "A varied car trip with reading, Japanese food, coffee and an evening market. Let the app recommend the visit times.",
+    "requestID": "2568a294-859f-423a-940d-8c27eac5eec1"
+  },
+  "result": {
+    "resolvedAt": "2026-11-14T12:55:22Z",
+    "records": [
+      {
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "status": "unresolved",
+        "reason": "Web research or Luna extraction could not finish for this place.",
+        "sources": [
+          {
+            "url": "https://www.perpusnas.go.id/",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://www.perpusnas.go.id/Inspektorat",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://virtual-tour.perpusnas.go.id/",
+            "finalURL": "https://virtual-tour.perpusnas.go.id/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:39:44Z",
+            "id": "source-36fb2e503f4d63d740c4",
+            "contentHash": "4c7fad74a9544bd9a6d9aa3cbc2ba6892571b98b85dae14d52d3bc073bdd33a6"
+          },
+          {
+            "url": "https://opac.perpusnas.go.id/",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://pujasintara.perpusnas.go.id/layanan/informasi",
+            "finalURL": "https://pujasintara.perpusnas.go.id/layanan/informasi",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:39:45Z",
+            "id": "source-ed9f187a63d3a45de996",
+            "contentHash": "e1824c278c0415374b2c12b9c2b17cfb81e03c8273ea3e1e07b675bab712171f"
+          },
+          {
+            "url": "https://pujasintara.perpusnas.go.id/kontak-kami",
+            "finalURL": "https://pujasintara.perpusnas.go.id/kontak-kami",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:39:45Z",
+            "id": "source-7c1630d8c39f701973bc",
+            "contentHash": "37d07b555c9bf76fca2cfb552ae9c36c367c5df02f15b5e9b442d55cf7826ead"
+          },
+          {
+            "url": "https://data.perpusnas.go.id/",
+            "finalURL": "https://data.perpusnas.go.id/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:39:46Z",
+            "id": "source-1314cb2b42ec77c30b03",
+            "contentHash": "e48ab5ac66659459587212adcaca0227864022c215375eb868d189d407318e9a"
+          },
+          {
+            "url": "https://data.perpusnas.go.id/public/faq",
+            "finalURL": "https://data.perpusnas.go.id/public/faq",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:39:47Z",
+            "id": "source-26b303942c111e1210f1",
+            "contentHash": "0295f91c29073c88c1944ee68484d190cef85579c34345ef431822f0e995d6ae"
+          },
+          {
+            "url": "https://pujasintara.perpusnas.go.id/",
+            "finalURL": "https://pujasintara.perpusnas.go.id/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:39:48Z",
+            "id": "source-a04021335f2cefdf2c17",
+            "contentHash": "4af43fe3d4544bb1fd61c972176b13a68698571e58efb15e9a1200f9e91a99be"
+          }
+        ],
+        "errorKind": "OSError",
+        "snapshotID": "f9c2dc18fb9e99c248ff4fe43cb64aba8a0256d8de6bab1b94b8fe2b281646a9",
+        "previousSnapshotID": "7a48c733c7fc62cc4cb1d4d3fab9d6f79de51a8cb6b4fa26ab7a7af0dee28c9d",
+        "recommendedMinutes": 45,
+        "recommendationReason": "Allow about 45 minutes for a reading stop; a 10:00 start suits a daytime break in the varied trip. Hours and access are unverified, so check before going.",
+        "preferredMinute": 600
+      }
+    ],
+    "requestedModel": "cx/gpt-6-luna(max)",
+    "reportedModel": "gpt-6-luna(max)"
+  }
+}

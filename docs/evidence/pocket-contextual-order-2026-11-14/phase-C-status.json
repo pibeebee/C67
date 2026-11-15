@@ -1,0 +1,11 @@
+{
+  "phase": "C",
+  "status": "not_run_missing_dependency",
+  "requiredConfiguration": ["APPLE_TEAM_ID", "APPLE_WEATHER_KEY_ID", "APPLE_WEATHER_PRIVATE_KEY", "APPLE_WEATHER_SERVICE_ID"],
+  "finding": "No complete WeatherKit REST configuration was found in the current process or inspected C67/project and related local lab env files. A team ID alone is insufficient. No credential values were printed or saved.",
+  "appleWeatherRequests": 0,
+  "lunaCalls": 0,
+  "otherWeatherProviderUsed": false,
+  "unusedLunaSlots": 2,
+  "boundary": "Actual WeatherKit retrieval and the two source-grounded Luna calls remain unverified. Do not relabel synthetic weather as live, register services, deploy, or use another provider to fill this gap."
+}

@@ -16,6 +16,6 @@ import C67Domain
         if query == "old" { try? await Task.sleep(for: .milliseconds(80)) }
         if failing || failedQueries.contains(query) { throw PlanningError.unavailable }
         if let places = placesByQuery[query] { return places }
-        return [.init(place: .init(id: UUID(), name: query, location: .init(latitude: 0, longitude: 0), visitSeconds: 1800))]
+        return [.init(place: .init(id: UUID(), name: query, location: TripDiscoveryArea.center, visitSeconds: 1800))]
     }
 }

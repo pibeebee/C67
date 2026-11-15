@@ -5,8 +5,9 @@ import SwiftUI
 struct TripCreationSheet: View {
     @Binding var presenter: TripCreationPresenter?
     let dismiss: () -> Void
+    var openPocketSettings: (() -> Void)?
 
     var body: some View {
-        if let presenter { TripCreationView(presenter: presenter, dismiss: dismiss) }
+        if let presenter { TripCreationView(presenter: presenter, dismiss: dismiss, openPocketSettings: openPocketSettings) }
     }
 }

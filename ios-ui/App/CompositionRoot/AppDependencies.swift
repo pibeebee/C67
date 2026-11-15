@@ -11,6 +11,19 @@ struct AppDependencies {
 
     @MainActor static func make() throws -> AppDependencies {
         #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--pocket-runtime-acceptance") {
+                let env = ProcessInfo.processInfo.environment
+                guard let url = env["C67_LIVE_URL"], let token = env["C67_LIVE_READ_TOKEN"],
+                      let encoded = env["C67_LIVE_INPUT"]?.data(using: .utf8), !token.isEmpty else {
+                    throw RepositoryError.invalidConfiguration
+                }
+                let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
+                let input = try decoder.decode(PlanningInput.self, from: encoded)
+                let connection = RuntimePocketConnection(url: url, token: token)
+                let repository = try PocketPlanningRepository(services: .live(connection: connection), connection: connection, storageURL: nil)
+                return .init(repository: try MockRundownRepository(), planningRepository: repository, planningInitialInput: input,
+                             mode: "Pocket • live runtime acceptance", authentication: nil)
+            }
             if ProcessInfo.processInfo.arguments.contains("--pocket-integration-fixture") {
                 return .init(repository: try MockRundownRepository(), planningRepository: try PocketIntegrationFixture.repository(),
                              planningInitialInput: PocketIntegrationFixture.input(), mode: "Pocket • synthetic integration fixture", authentication: nil)
@@ -55,3 +68,13 @@ struct AppDependencies {
         }
     }
 }
+
+#if DEBUG
+    // Opt-in harness: public selected pins are inputs; all visit facts, Luna and ETA remain live.
+    private struct RuntimePocketConnection: PocketConnectionProviding {
+        let url: String
+        let token: String
+        func credentials() async -> PocketCredentials { .init(serverURL: url, token: token) }
+        func update(serverURL: String, token: String) async throws { throw PlanningError.unavailable }
+    }
+#endif

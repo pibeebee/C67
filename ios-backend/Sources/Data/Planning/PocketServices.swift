@@ -29,8 +29,11 @@ public actor PocketConnectionStore: PocketConnectionProviding {
         return .init(serverURL: UserDefaults.standard.string(forKey: namespace + ".url") ?? defaultURL, token: token)
     }
     public func update(serverURL: String, token: String) throws {
-        let url = try PocketCatalogClient.validatedURL(serverURL)
+        let url = try PocketResearchClient.validatedURL(serverURL)
         let old = credentials()
+        guard !token.isEmpty || !old.token.isEmpty else {
+            throw PlanningError.failed("POCKET_CONNECTION_REQUIRED")
+        }
         if !old.token.isEmpty, let previous = URL(string: old.serverURL),
            (previous.host != url.host || previous.port != url.port || previous.scheme != url.scheme), token.isEmpty {
             throw EngineError.invalid("Enter a read token for the new server. The previous server's token was not transferred.")
@@ -57,35 +60,62 @@ public struct PocketAdviceSelection: Sendable {
     public var slotID: String
     public var requestedModel: String
     public var reportedModel: String
-    public init(slotID: String, requestedModel: String, reportedModel: String) {
+    public var explanation: String?
+    public var reportedReasoningEffort: String?
+    public var providerProtocol: String?
+    public init(slotID: String, requestedModel: String, reportedModel: String, explanation: String? = nil, reportedReasoningEffort: String? = nil, providerProtocol: String? = nil) {
+        self.reportedReasoningEffort = reportedReasoningEffort; self.providerProtocol = providerProtocol
+        self.explanation = explanation
         self.slotID = slotID; self.requestedModel = requestedModel; self.reportedModel = reportedModel
     }
     public func validated() throws -> Self {
         guard requestedModel == "cx/gpt-6-luna(max)",
-              ["cx/gpt-6-luna(max)", "gpt-6-luna(max)"].contains(reportedModel) else { throw PlanningError.invalidResponse }
+              (["cx/gpt-6-luna(max)", "gpt-6-luna(max)"].contains(reportedModel)
+                  || (reportedModel == "gpt-6-luna" && reportedReasoningEffort == "max" && providerProtocol == "responses")) else { throw PlanningError.invalidResponse }
         return self
     }
 }
 
+public struct PocketVisitResolution: Codable, Sendable {
+    public struct Record: Codable, Sendable {
+        public var placeID: UUID
+        public var status: String
+        public var reason: String?
+        public var venue: Venue?
+        public var recommendedMinutes: Int?
+        public var preferredMinute: Int?
+        public var recommendationReason: String?
+        public var snapshotID: String?
+    }
+    public var reportedReasoningEffort: String? = nil
+    public var providerProtocol: String? = nil
+    public var resolvedAt: Date
+    public var records: [Record]
+    public var requestedModel: String
+    public var reportedModel: String
+}
+
 public struct PocketPlanningServices: Sendable {
-    public var catalog: @Sendable () async throws -> Catalog
-    public var discover: @Sendable (Profile, VisitArea) async throws -> [Venue]
     public var travel: @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote
     public var weather: ItineraryPlanner.Weather
     public var advise: @Sendable (VisitAdviceRequest) async throws -> PocketAdviceSelection
+    public var resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)?
+    public var order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)?
     public var attribution: @Sendable () async throws -> PlanningEvidence?
-    public init(catalog: @escaping @Sendable () async throws -> Catalog,
-                discover: @escaping @Sendable (Profile, VisitArea) async throws -> [Venue],
-                travel: @escaping @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote,
+    public init(travel: @escaping @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote,
                 weather: @escaping ItineraryPlanner.Weather,
                 advise: @escaping @Sendable (VisitAdviceRequest) async throws -> PocketAdviceSelection,
+                resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)? = nil,
+                order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)? = nil,
                 attribution: @escaping @Sendable () async throws -> PlanningEvidence? = { nil }) {
-        self.catalog = catalog; self.discover = discover; self.travel = travel; self.weather = weather; self.advise = advise
+        self.travel = travel; self.weather = weather; self.advise = advise
         self.attribution = attribution
+        self.resolve = resolve
+        self.order = order
     }
 }
 
-public actor PocketCatalogClient {
+public actor PocketResearchClient {
     private final class RedirectGuard: NSObject, URLSessionTaskDelegate, Sendable {
         func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
                         newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
@@ -96,13 +126,13 @@ public actor PocketCatalogClient {
         self.connection = connection
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil; configuration.httpCookieStorage = nil
-        configuration.timeoutIntervalForRequest = 25; configuration.timeoutIntervalForResource = 100
+        configuration.timeoutIntervalForRequest = 25; configuration.timeoutIntervalForResource = 420
         session = URLSession(configuration: configuration, delegate: RedirectGuard(), delegateQueue: nil)
     }
     public static func validatedURL(_ raw: String) throws -> URL {
         guard let url = URL(string: raw), let host = url.host, !host.isEmpty,
               url.user == nil, url.password == nil, url.query == nil, url.fragment == nil else {
-            throw EngineError.invalid("Enter the catalog server URL without credentials, query or fragment.")
+            throw EngineError.invalid("Enter the visit research server URL without credentials, query or fragment.")
         }
         #if DEBUG
             let permittedLocal = url.scheme == "http" && ["localhost", "127.0.0.1", "[::1]"].contains(host.lowercased())
@@ -112,33 +142,91 @@ public actor PocketCatalogClient {
         guard url.scheme == "https" || permittedLocal else { throw EngineError.invalid("Use HTTPS for the Pocket server.") }
         return url
     }
-    private func fetch(_ path: String, body: Data? = nil) async throws -> Data {
+    func fetch(_ path: String, body: Data? = nil) async throws -> Data {
         let credentials = await connection.credentials()
+        let isOrdering = path.hasPrefix("v1/order")
         guard !credentials.serverURL.isEmpty, !credentials.token.isEmpty else {
-            throw EngineError.invalid("Configure the Pocket catalog server and read token in Account before using Luna.")
+            if isOrdering { throw PlanningError.failed("POCKET_CONNECTION_REQUIRED") }
+            throw EngineError.invalid("Configure the visit research server and read token in Account.")
         }
-        var request = URLRequest(url: try Self.validatedURL(credentials.serverURL).appending(path: path))
+        let url: URL
+        do { url = try Self.validatedURL(credentials.serverURL) }
+        catch {
+            if isOrdering { throw PlanningError.failed("POCKET_CONNECTION_REQUIRED") }
+            throw error
+        }
+        var request = URLRequest(url: url.appending(path: path))
         request.setValue("Bearer " + credentials.token, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         if let body {
-            request.httpMethod = "POST"; request.httpBody = body; request.timeoutInterval = 95
+            request.httpMethod = "POST"; request.httpBody = body; request.timeoutInterval = 360
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         let (data, response) = try await session.data(for: request)
         try Task.checkCancellation()
-        guard let http = response as? HTTPURLResponse, (200 ..< 300).contains(http.statusCode), data.count <= 30_000_000 else {
-            throw EngineError.invalid("Pocket server request failed. Check the connection and retry; no replacement AI result was used.")
+        guard let http = response as? HTTPURLResponse, data.count <= 30_000_000 else { throw PlanningError.invalidResponse }
+        if isOrdering {
+            switch http.statusCode {
+            case 400: throw PlanningError.failed("ORDER_REQUEST_REJECTED")
+            case 401, 403: throw PlanningError.failed("POCKET_CONNECTION_REJECTED")
+            case 404 where body != nil: throw PlanningError.failed("POCKET_ORDER_ENDPOINT_MISSING")
+            case 404: throw PlanningError.failed("ORDER_JOB_MISSING")
+            default: break
+            }
         }
+        if http.statusCode == 408 || http.statusCode == 429 || http.statusCode >= 500 { throw PlanningError.unavailable }
+        guard (200 ..< 300).contains(http.statusCode) else { throw EngineError.invalid("Pocket server request failed. Check the connection and token; no replacement AI result was used.") }
         return data
     }
-    public func catalog() async throws -> Catalog {
-        let credentials = await connection.credentials()
-        if credentials.serverURL.isEmpty || credentials.token.isEmpty { return try Catalog.bundled().validated() }
-        return try Codec.decoder().decode(Catalog.self, from: await fetch("v1/catalog")).validated()
+    public func resolve(_ input: PlanningInput, requestID: UUID) async throws -> PocketVisitResolution {
+        struct Body: Encodable {
+            var requestID: UUID
+            var places: [PlanningPlace]
+            var preferences: String
+            var mainSpotID: UUID?
+            var dates: [String]
+        }
+        struct Job: Decodable {
+            var id: UUID
+            var status: String
+            var result: PocketVisitResolution?
+        }
+        struct Status: Decodable { var id: UUID; var status: String }
+        let days = (1 ... 7).compactMap { TripClock.calendar.date(byAdding: .day, value: $0, to: Date()) }.map(TripClock.day)
+        let body = Body(requestID: requestID, places: input.places, preferences: input.preferences,
+                        mainSpotID: input.enginePreferences?.mainSpotID, dates: days)
+        let data = try await fetch("v1/visits/resolve", body: Codec.encoder().encode(body))
+        let initial = try JSONDecoder().decode(Status.self, from: data)
+        guard initial.id == requestID else { throw PlanningError.invalidResponse }
+        var status = initial
+        while status.status == "running" || status.status == "queued" {
+            try Task.checkCancellation()
+            try await Task.sleep(for: .seconds(2))
+            let data = try await fetch("v1/visits/jobs/" + initial.id.uuidString.lowercased())
+            status = try JSONDecoder().decode(Status.self, from: data)
+            if status.status == "succeeded" {
+                let job = try Codec.decoder().decode(Job.self, from: data)
+                guard let result = job.result,
+                      Set(result.records.map(\.placeID)) == Set(input.places.map(\.id)),
+                      result.records.count == input.places.count else { throw PlanningError.invalidResponse }
+                _ = try PocketAdviceSelection(slotID: "", requestedModel: result.requestedModel, reportedModel: result.reportedModel, reportedReasoningEffort: result.reportedReasoningEffort, providerProtocol: result.providerProtocol).validated()
+                return result
+            }
+        }
+        if status.status == "succeeded" {
+            let completed = try await fetch("v1/visits/jobs/" + initial.id.uuidString.lowercased())
+            guard let result = try Codec.decoder().decode(Job.self, from: completed).result,
+                  Set(result.records.map(\.placeID)) == Set(input.places.map(\.id)),
+                  result.records.count == input.places.count else { throw PlanningError.invalidResponse }
+            _ = try PocketAdviceSelection(slotID: "", requestedModel: result.requestedModel, reportedModel: result.reportedModel, reportedReasoningEffort: result.reportedReasoningEffort, providerProtocol: result.providerProtocol).validated()
+            return result
+        }
+        throw EngineError.invalid("Web research or Luna could not finish. Retry your selected places.")
     }
+
     public func advise(_ value: VisitAdviceRequest) async throws -> PocketAdviceSelection {
-        struct Response: Decodable { var slotID: String; var requestedModel: String; var reportedModel: String }
+        struct Response: Decodable { var slotID: String; var requestedModel: String; var reportedModel: String; var explanation: String?; var reportedReasoningEffort: String?; var providerProtocol: String? }
         let response = try JSONDecoder().decode(Response.self, from: await fetch("v1/advice/visits", body: JSONEncoder().encode(value)))
-        return try PocketAdviceSelection(slotID: response.slotID, requestedModel: response.requestedModel, reportedModel: response.reportedModel).validated()
+        return try PocketAdviceSelection(slotID: response.slotID, requestedModel: response.requestedModel, reportedModel: response.reportedModel, explanation: response.explanation, reportedReasoningEffort: response.reportedReasoningEffort, providerProtocol: response.providerProtocol).validated()
     }
 }

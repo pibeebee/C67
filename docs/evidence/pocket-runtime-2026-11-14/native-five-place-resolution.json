@@ -1,0 +1,763 @@
+{
+  "jobID": "ff27ab3c-0a95-43ee-b27f-0c7b2b2c5519",
+  "status": "succeeded",
+  "request": {
+    "dates": [
+      "2026-11-15",
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19",
+      "2026-11-20",
+      "2026-11-21"
+    ],
+    "places": [
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "location": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "name": "Taman Bendera Pusaka",
+        "visitSeconds": 2700
+      },
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "location": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "name": "Tatemukai Signature Omakase Sushi",
+        "visitSeconds": 2700
+      },
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "location": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "name": "National Library of Indonesia",
+        "visitSeconds": 2700
+      },
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "location": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "name": "Night market",
+        "visitSeconds": 2700
+      },
+      {
+        "availabilityVerified": false,
+        "categories": [],
+        "id": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "location": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "name": "Memorial Coffee Cipondoh",
+        "visitSeconds": 2700
+      }
+    ],
+    "preferences": "A varied car trip with reading, Japanese food, coffee and an evening market. Let the app recommend the visit times.",
+    "requestID": "FF27AB3C-0A95-43EE-B27F-0C7B2B2C5519"
+  },
+  "result": {
+    "resolvedAt": "2026-11-14T12:15:38Z",
+    "records": [
+      {
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "snapshotID": "75d4d4da73b7e4cce6fca352b5f08339243481cd9dd6b4f51a171e17537d49ef",
+        "status": "ready",
+        "requestedModel": "cx/gpt-6-luna(max)",
+        "reportedModel": "gpt-6-luna(max)",
+        "sources": [
+          {
+            "id": "source-6147007bbbb50022d3a5",
+            "finalURL": "https://www.idntimes.com/travel/destination/lokasi-fasilitas-dan-harga-tiket-masuk-taman-bendera-pusaka-jakarta-c1c2-01-5fz5v-1jccx8",
+            "retrievedAt": "2026-11-14T11:59:01Z",
+            "contentHash": "d6de27b66dee465e7bcc3a04a68c4a7a879e217825975eb829a5414931861e74"
+          },
+          {
+            "id": "source-a6c0678de6523e4396f3",
+            "finalURL": "https://www.idntimes.com/info/contact-us",
+            "retrievedAt": "2026-11-14T11:59:05Z",
+            "contentHash": "79f97f27d9a75526781640c516fba3fb55c2892eab6367990c58ff5198e1cc1e"
+          },
+          {
+            "id": "source-d4b3f516e626da51996a",
+            "finalURL": "https://travel.kompas.com/read/2026/03/19/110000827/sejengkal-dari-blok-m-taman-bendera-pusaka-resmi-dibuka-24-jam",
+            "retrievedAt": "2026-11-14T11:59:05Z",
+            "contentHash": "edc4c578fea1f3a45133126692cd22acdba406ac576e13e0efe42aae7445e57a"
+          },
+          {
+            "id": "source-dfe93130baad7222782d",
+            "finalURL": "https://www.idntimes.com/news/indonesia/buka-24-jam-ini-fasilitas-taman-bendera-pusaka-yang-baru-dibuka-pramono-00-jkxzp-4hmm9x",
+            "retrievedAt": "2026-11-14T11:59:05Z",
+            "contentHash": "5fd9c7d2b2d6ef77b9557e58e1c15b8cc0b339eb4aed9631167a33fda26c48d8"
+          },
+          {
+            "id": "source-71d4a8c8f9687cf25f28",
+            "finalURL": "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+            "retrievedAt": "2026-11-14T11:59:06Z",
+            "contentHash": "45ee80feb0ae18bf085001ed3e76f5bbe296c033dedd70498ffa1b1ab7fe6566"
+          },
+          {
+            "id": "source-3e56eecae9f998c7fa16",
+            "finalURL": "https://www.inkeki.com/info/taman-bendera-pusaka-jakarta-resmi-dibuka-ruang-hijau-24-jam-baru-di-kebayoran-baru",
+            "retrievedAt": "2026-11-14T11:59:11Z",
+            "contentHash": "0dac2a72855f1144ed032a213e931a9d5d0dcbbf4eaaad05069651d9036fdc72"
+          },
+          {
+            "id": "source-c04734302a8a16ca983a",
+            "finalURL": "https://smartcity.jakarta.go.id/id/blog/taman-bendera-pusaka-rth-di-jakarta-yang-menyatu/",
+            "retrievedAt": "2026-11-14T11:59:15Z",
+            "contentHash": "34498c38eb289b391cd6f7a234eb567db5cb3c4b69bd31c831b1aaf2088e4f20"
+          },
+          {
+            "id": "source-c377c0e0a1b69400858a",
+            "finalURL": "https://news.detik.com/berita/d-8401281/cara-ke-taman-bendera-pusaka-naik-transj-krl-dan-mrt-jakarta",
+            "retrievedAt": "2026-11-14T11:59:17Z",
+            "contentHash": "d3867112a668ffba66b62087d090c27704dcc0c6092f1620e3895b88e066d2ad"
+          },
+          {
+            "id": "source-8e8328994675a9daec4e",
+            "finalURL": "https://travel.kompas.com/read/2026/03/19/213835227/jalan-jalan-ke-taman-bendera-pusaka-jangan-lupa-catat-6-hal-ini",
+            "retrievedAt": "2026-11-14T11:59:17Z",
+            "contentHash": "42ceb710938b4f72b3a8320b44e779802acf09512ddfb476218ae16b7e5cdf8b"
+          },
+          {
+            "id": "source-09dff63b785faf7ac0ec",
+            "finalURL": "https://id.alongwalker.co/z/264985.html",
+            "retrievedAt": "2026-11-14T11:59:18Z",
+            "contentHash": "3007e19726270ef750a68ba6ce53726a62b31497005922d9785efa5a165f5f05"
+          },
+          {
+            "id": "source-1744209efb8ee957d3a3",
+            "finalURL": "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+            "retrievedAt": "2026-11-14T11:59:20Z",
+            "contentHash": "156fdff0e7190c171653349db2246b9b7537948c222e91c9fd9dc98470d559d1"
+          }
+        ],
+        "venue": {
+          "id": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+          "name": "Taman Bendera Pusaka",
+          "branch": "Taman Bendera Pusaka",
+          "address": "",
+          "coordinate": {
+            "latitude": -6.245659,
+            "longitude": 106.793781
+          },
+          "categories": [
+            "park",
+            "jogging",
+            "sports",
+            "playground"
+          ],
+          "aliases": [],
+          "sourceURLs": [
+            "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+            "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+            "https://www.idntimes.com/travel/destination/lokasi-fasilitas-dan-harga-tiket-masuk-taman-bendera-pusaka-jakarta-c1c2-01-5fz5v-1jccx8"
+          ],
+          "operatorURLs": [],
+          "license": "Source-attributed visit evidence retrieved for this request",
+          "facts": [
+            {
+              "field": "publicAccess",
+              "status": "supported",
+              "value": "walk_in",
+              "sourceURL": "https://www.cnnindonesia.com/gaya-hidup/20260327125948-269-1341772/cara-kunjungi-taman-bendera-pusaka-naik-transjakarta-mrt-dan-krl",
+              "quote": "Taman Bendera Pusaka di Jakarta Selatan dapat dikunjungi masyarakat selama 24 jam penuh",
+              "checkedAt": "2026-11-14T12:03:38Z",
+              "expiresAt": "2026-11-21T12:03:38Z"
+            }
+          ],
+          "hours": {
+            "intervals": [
+              {
+                "weekday": 2,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 3,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 4,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 5,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 6,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 7,
+                "startMinute": 0,
+                "endMinute": 1440
+              },
+              {
+                "weekday": 1,
+                "startMinute": 0,
+                "endMinute": 1440
+              }
+            ],
+            "checkedAt": "2026-11-14T12:03:38Z",
+            "expiresAt": "2026-11-21T12:03:38Z",
+            "sourceURL": "https://megapolitan.kompas.com/read/2026/11/04/05100001/taman-di-jakarta-buka-24-jam-begini-cara-pengelola-menjaganya",
+            "quote": "Taman ini menjadi salah satu dari lima taman di Jakarta yang dibuka selama 24 jam sejak 16 Mei 2025. Sejak diresmikan kembali sebagai Taman Bendera Pusaka pada 14 Maret 2026, aktivitas pengunjung berlangsung sejak pagi hingga malam hari.",
+            "closedDates": [],
+            "reservationRequired": false
+          }
+        },
+        "recommendedMinutes": 60,
+        "recommendationReason": "Allow about an hour for a park walk or jog; a morning start suits a relaxed outdoor stop, and public access is reported as 24 hours.",
+        "preferredMinute": 540
+      },
+      {
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "snapshotID": "fe229da0c784a83ba89b2cbadd6b8fc92375372948d641488478893260792ba8",
+        "status": "conditional",
+        "reason": "Confirm reservation required for this trip.",
+        "requestedModel": "cx/gpt-6-luna(max)",
+        "reportedModel": "gpt-6-luna(max)",
+        "sources": [
+          {
+            "id": "source-6264f1a28d1166f726d7",
+            "finalURL": "https://tatemukaisignature.com/",
+            "retrievedAt": "2026-11-14T11:59:01Z",
+            "contentHash": "270c29a6c6a92fc9ea746c0ec4e9c980848229179f2265c1432443169911b863"
+          },
+          {
+            "id": "source-caf9f92d3d900e44d1f3",
+            "finalURL": "https://tatemukaisignature.com/reservation/",
+            "retrievedAt": "2026-11-14T11:59:06Z",
+            "contentHash": "78f419f556a004e99be09d2486c596aa69a8f4372e00f4adeee5a00b4864807f"
+          },
+          {
+            "id": "source-58b53a17e304b2be07ae",
+            "finalURL": "https://idalamat.com/alamat/tatemukai-signature-omakase-sushi-666929",
+            "retrievedAt": "2026-11-14T11:59:06Z",
+            "contentHash": "b257b153032bd90ce91a960fa9e6474982ae556015587ebf66b6766ae51eab0d"
+          },
+          {
+            "id": "source-c897bfe1a3e2e71b9273",
+            "finalURL": "https://www.chope.co/jakarta-restaurants/restaurant/tatemukai-signature",
+            "retrievedAt": "2026-11-14T11:59:08Z",
+            "contentHash": "598d44b346d3eaaa2dd646e4200ee434068c60afc3e3f07b4d79f4322017cb44"
+          },
+          {
+            "id": "source-e903c9d41232821e7a10",
+            "finalURL": "https://www.chope.co/jakarta-restaurants/restaurant-search/location/Senopati-1652",
+            "retrievedAt": "2026-11-14T11:59:08Z",
+            "contentHash": "7bcb8084f84791d5a692645d43514a542c9b0f33a6ced54526d7204ecb8f2b94"
+          },
+          {
+            "id": "source-ad550ef588c26d0530e9",
+            "finalURL": "https://www.waze.com/live-map/directions/id/daerah-khusus-ibukota-jakarta/tatemukai-signature-omakase-sushi?to=place.ChIJFXPrnY_xaS4R_J2umvydQmA",
+            "retrievedAt": "2026-11-14T11:59:10Z",
+            "contentHash": "c04e8746cad04a8da04cbc93d41e0c31efebfbe39e6b8f0b65b5cc7f26dd4da1"
+          },
+          {
+            "id": "source-f068266b7fd2ad101aa1",
+            "finalURL": "https://restaurantguru.com/Tatemukai-Signature-Omakase-Sushi-South-Jakarta",
+            "retrievedAt": "2026-11-14T11:59:12Z",
+            "contentHash": "39c420073207f79fff036a5c70e8015e0fa696cf5b595d69608881b3fd1e9993"
+          },
+          {
+            "id": "source-6d7ec4d02f5763894423",
+            "finalURL": "https://restaurantguru.com/contactus",
+            "retrievedAt": "2026-11-14T11:59:16Z",
+            "contentHash": "84218710a96ad44eebafb85ae222ff2a6e8f4bcbd096146df26d1b05e7ab2453"
+          }
+        ],
+        "venue": {
+          "id": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+          "name": "Tatemukai Signature Omakase Sushi",
+          "branch": "Tatemukai Signature Omakase",
+          "address": "",
+          "coordinate": {
+            "latitude": -6.236787,
+            "longitude": 106.807696
+          },
+          "categories": [],
+          "aliases": [],
+          "sourceURLs": [
+            "https://tatemukaisignature.com/",
+            "https://www.waze.com/live-map/directions/id/daerah-khusus-ibukota-jakarta/tatemukai-signature-omakase-sushi?to=place.ChIJFXPrnY_xaS4R_J2umvydQmA"
+          ],
+          "operatorURLs": [],
+          "license": "Source-attributed visit evidence retrieved for this request",
+          "facts": [
+            {
+              "field": "publicAccess",
+              "status": "supported",
+              "value": "reservation_required",
+              "sourceURL": "https://tatemukaisignature.com/",
+              "quote": "THE COUNTER / BY RESERVATION ONLY",
+              "checkedAt": "2026-11-14T12:03:11Z",
+              "expiresAt": "2026-11-21T12:03:11Z"
+            }
+          ],
+          "hours": {
+            "intervals": [
+              {
+                "weekday": 2,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 2,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 3,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 3,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 4,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 4,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 5,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 5,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 6,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 6,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 7,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 7,
+                "startMinute": 1020,
+                "endMinute": 1320
+              },
+              {
+                "weekday": 1,
+                "startMinute": 660,
+                "endMinute": 840
+              },
+              {
+                "weekday": 1,
+                "startMinute": 1020,
+                "endMinute": 1320
+              }
+            ],
+            "checkedAt": "2026-11-14T12:03:11Z",
+            "expiresAt": "2026-11-21T12:03:11Z",
+            "sourceURL": "https://www.waze.com/live-map/directions/id/daerah-khusus-ibukota-jakarta/tatemukai-signature-omakase-sushi?to=place.ChIJFXPrnY_xaS4R_J2umvydQmA",
+            "quote": "Open now Sunday 11:00 - 14:00 17:00 - 22:00 Monday 11:00 - 14:00 17:00 - 22:00 Tuesday 11:00 - 14:00 17:00 - 22:00 Wednesday 11:00 - 14:00 17:00 - 22:00 Thursday 11:00 - 14:00 17:00 - 22:00 Friday 11:00 - 14:00 17:00 - 22:00 Saturday 11:00 - 14:00 17:00 - 22:00",
+            "reservationRequired": true
+          }
+        },
+        "recommendedMinutes": 120,
+        "recommendationReason": "Allow about two hours for an omakase meal; 19:00 fits the reported evening service period. The counter is by reservation only.",
+        "preferredMinute": 1140
+      },
+      {
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "status": "unresolved",
+        "reason": "Web research or Luna extraction could not finish for this place.",
+        "sources": [
+          {
+            "url": "https://perpusnas.go.id/ppuk",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://perpusnas.go.id/?lang=en",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://maps.apple.com/place?place-id=I286E80E04C4E63E9",
+            "state": "source_access_unavailable"
+          },
+          {
+            "url": "https://travel.detik.com/travel-news/d-8123836/perpusnas-jakarta-tarif-masuk-gratis-cek-rute-dan-tipsnya",
+            "finalURL": "https://travel.detik.com/travel-news/d-8123836/perpusnas-jakarta-tarif-masuk-gratis-cek-rute-dan-tipsnya",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:03:18Z",
+            "id": "source-3dca8f2fe24e1ae1fe38",
+            "contentHash": "5c82ec1216b9d0f0beef0eaf1639ecda18e2fca046a5e1c9591ff56fed378da2"
+          },
+          {
+            "url": "https://atourin.com/destination/jakarta/perpustakaan-nasional-republik-indonesia",
+            "finalURL": "https://atourin.com/destination/jakarta/perpustakaan-nasional-republik-indonesia",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:03:22Z",
+            "id": "source-09935035ddde44f0d459",
+            "contentHash": "6dfea5f161ba437fbf9f7dc812123cea8e28e4d9faa1acfd89ecd3ee0bcbd5eb"
+          },
+          {
+            "url": "https://atourin.com/contact",
+            "finalURL": "https://atourin.com/contact",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:03:25Z",
+            "id": "source-ab395fbb5f4282f6d91d",
+            "contentHash": "8e80119a0d18c38ca6fe565f2b8fdcf0123dfae2cd51fc76c373b57591dc6f84"
+          },
+          {
+            "url": "https://atourin.com/en/contact",
+            "finalURL": "https://atourin.com/en/contact",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:03:28Z",
+            "id": "source-8f7e687ef8d9cc214032",
+            "contentHash": "6a6b0f5d1a521d6770575bcedbeedc57cb298461fcce1b05dd135aabf3bf5ccd"
+          },
+          {
+            "url": "https://atourin.com/faq",
+            "finalURL": "https://atourin.com/faq",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:03:31Z",
+            "id": "source-8579598a144c3b873e57",
+            "contentHash": "f2612a8c6190be6aad28c89a5d87da8baa52b1a809b68516a9eee947b408d5b5"
+          },
+          {
+            "url": "https://smartcity.jakarta.go.id/en/blog/berwisata-ke-perpustakaan-nasional-ri/",
+            "finalURL": "https://smartcity.jakarta.go.id/en/blog/berwisata-ke-perpustakaan-nasional-ri/",
+            "state": "retrieved",
+            "status": 200,
+            "method": "playwright",
+            "retrievedAt": "2026-11-14T12:03:34Z",
+            "id": "source-abdb4636df6a6b2eaa35",
+            "contentHash": "265a7e07aaff27c13083b712f7820574e9ed2c291479402e12e97d126df28b43"
+          },
+          {
+            "url": "https://gopay.co.id/blog/perpustakaan-nasional-republik-indonesia",
+            "finalURL": "https://gopay.co.id/blog/perpustakaan-nasional-republik-indonesia",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:03:36Z",
+            "id": "source-5620d66029eacb14be71",
+            "contentHash": "bcb6ada0b8820bf60e39ea9367d189a46adb211d36e5a58896d4ff627b5ba709"
+          },
+          {
+            "url": "https://travel.kompas.com/read/2023/05/25/203700627/cara-berkunjung-ke-perpusatakaan-nasional-bikin-kartu-anggota-dulu",
+            "finalURL": "https://travel.kompas.com/read/2023/05/25/203700627/cara-berkunjung-ke-perpusatakaan-nasional-bikin-kartu-anggota-dulu",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:03:37Z",
+            "id": "source-fbd3df5e8a7902dc2778",
+            "contentHash": "5084be2f4d47975b2c507ef59c0b470c446fed0c3676319682fcbc4e369a6652"
+          },
+          {
+            "url": "https://lipsus.kompas.com/elnino/read/2023/05/31/121200827/panduan-lengkap-ke-perpustakaan-nasional-simak-sebelum-berkunjung",
+            "finalURL": "https://lipsus.kompas.com/elnino/read/2023/05/31/121200827/panduan-lengkap-ke-perpustakaan-nasional-simak-sebelum-berkunjung",
+            "state": "retrieved",
+            "status": 200,
+            "method": "http",
+            "retrievedAt": "2026-11-14T12:03:39Z",
+            "id": "source-72108a2b14e9748718b9",
+            "contentHash": "8e85e12cbb464a2beb847f8a2f19bddab5e59aaaa290645946099f95260921e1"
+          }
+        ],
+        "errorKind": "OSError",
+        "snapshotID": "052059e586913e31f2154951003b5840ab037718cc457927ce883ca3947e76f7",
+        "recommendedMinutes": 90,
+        "recommendationReason": "About 90 minutes gives you time for a reading visit. 10:00 is a suggested reading period, not confirmed opening time; current access and hours were unresolved.",
+        "preferredMinute": 600
+      },
+      {
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "snapshotID": "7afee7c96bf25f10b3089aeabf62401a8f0930bf091c3afc2a8055182f9a6f6a",
+        "status": "unresolved",
+        "reason": "The selected branch could not be established from the retrieved sources.",
+        "requestedModel": "cx/gpt-6-luna(max)",
+        "reportedModel": "gpt-6-luna(max)",
+        "sources": [
+          {
+            "id": "source-981eae267835720b9c05",
+            "finalURL": "https://www.pikiran-rakyat.com/news/pr-0110304904/mimpi-pram-buka-night-market-24-jam-di-tengah-pusat-kota-jakarta",
+            "retrievedAt": "2026-11-14T12:03:43Z",
+            "contentHash": "f2ede71f03f4dd2b572a6be07613507d4930f169ffdd65b9ddd613a5e43377bb"
+          },
+          {
+            "id": "source-ea738f90ac81a2e5c64f",
+            "finalURL": "https://www.pikiran-rakyat.com/faq",
+            "retrievedAt": "2026-11-14T12:03:43Z",
+            "contentHash": "1151202bec4e5abd6c4ca3e7c3d200a10a82615efec6b54518075ef456f490ce"
+          },
+          {
+            "id": "source-c0a33ba6f3481f6ae4c8",
+            "finalURL": "https://www.pikiran-rakyat.com/kontak",
+            "retrievedAt": "2026-11-14T12:03:45Z",
+            "contentHash": "4686dbe7350bb530bcbb1fcc2bd4e664207877494af63689b0f15fe80c8470ac"
+          },
+          {
+            "id": "source-fd68982c0f84d16d2871",
+            "finalURL": "https://www.beritasatu.com/dki-jakarta/3007737/pramono-segera-bangun-pasar-malam-buka-selama-12-jam-di-jakarta",
+            "retrievedAt": "2026-11-14T12:03:47Z",
+            "contentHash": "bfd009516c0e8787ad909dd61a06f3c70edba8ede0eb4a4e25eb8e0dbe3a2cfe"
+          },
+          {
+            "id": "source-8dcbae957a4907d32440",
+            "finalURL": "https://www.tiktok.com/@jennaaccesories/video/7638221093123214613",
+            "retrievedAt": "2026-11-14T12:03:52Z",
+            "contentHash": "12d82bd00ced7f9e13758f73fb31108233b2b4326a575a1ff6aa3c90476a89be"
+          },
+          {
+            "id": "source-7cde6fb11d362ac108bb",
+            "finalURL": "https://travel.kompas.com/read/2026/06/19/090900427/ada-jakarta-night-market-glodok-20-juni-2026-bisa-wisata-kuliner-malam",
+            "retrievedAt": "2026-11-14T12:03:52Z",
+            "contentHash": "9999d555155b980308c62e90d5978287c1773dd9edc52590a058629337a9e4de"
+          },
+          {
+            "id": "source-54bf1a78ea7fb02299d8",
+            "finalURL": "https://wanderlog.com/place/details/5093309/night-market-bkt",
+            "retrievedAt": "2026-11-14T12:03:54Z",
+            "contentHash": "b95b0c912563c668361908d1d0e486f7afb19b0ed19093009df2918535a11545"
+          },
+          {
+            "id": "source-2f3bdca46bafc0b7b037",
+            "finalURL": "https://www.jakartatourism.org/jakarta-night-food-markets/",
+            "retrievedAt": "2026-11-14T12:03:54Z",
+            "contentHash": "a7d5ab999be3fc2e11982c151f760b5a64259ca06b1dd3e06558972d1c02de5b"
+          },
+          {
+            "id": "source-650b56214f091f138d1e",
+            "finalURL": "https://www.jakartatourism.org/contact/",
+            "retrievedAt": "2026-11-14T12:03:54Z",
+            "contentHash": "e45fb77393ba1ff37d8266de2c5c587acdd9bd5173126db8e61cc6b2cd0ba161"
+          },
+          {
+            "id": "source-55a6b0158895225538eb",
+            "finalURL": "https://hoteliet.com/attractions/jakarta-night-market-district",
+            "retrievedAt": "2026-11-14T12:03:56Z",
+            "contentHash": "b4e9ea554fdf171c58aaf623d04cea38d5b8cdb4eda415f0ac32f2929c750db0"
+          },
+          {
+            "id": "source-bb62b3d3101d7c66c516",
+            "finalURL": "https://www.jakartatourism.org/jakarta-late-night-eats/",
+            "retrievedAt": "2026-11-14T12:05:41Z",
+            "contentHash": "a8bd6b8bd4e551ac46d30c529a4e66b0fcaae280ae327859e43d2e5aa400f196"
+          },
+          {
+            "id": "source-56b9841e74e5694bdaf2",
+            "finalURL": "https://www.jakartatourism.org/things-to-do-jakarta-at-night/",
+            "retrievedAt": "2026-11-14T12:05:41Z",
+            "contentHash": "fe435a4a04437fb13476fa016045affdc9d1c0a5976e431fd5c2f7fbb9034fc4"
+          },
+          {
+            "id": "source-111867ed93488c516df5",
+            "finalURL": "https://www.jakartatourism.org/jakarta-food-markets-guide/",
+            "retrievedAt": "2026-11-14T12:05:41Z",
+            "contentHash": "1598dd100843dba3f7b3b6839b87031e6224c27a7c74cf278388984b530b2546"
+          },
+          {
+            "id": "source-702c3df331e4e14e250f",
+            "finalURL": "https://www.jakartatourism.org/traditional-markets-jakarta/",
+            "retrievedAt": "2026-11-14T12:05:42Z",
+            "contentHash": "ecc4a5dd4952aa10bfb7ee77b593e8515ae103b903b98f634c388cd783328d4a"
+          },
+          {
+            "id": "source-d4c4cff636970b85010f",
+            "finalURL": "https://www.jakartatourism.org/blok-m-shopping-jakarta/",
+            "retrievedAt": "2026-11-14T12:05:42Z",
+            "contentHash": "4df0b9a8d96eab11d8e970ab74bf114610f219a021f8476707765ab441540787"
+          },
+          {
+            "id": "source-f911094bc02102aa6402",
+            "finalURL": "https://www.jakartatourism.org/jakarta-food-guide/",
+            "retrievedAt": "2026-11-14T12:05:42Z",
+            "contentHash": "dcdcecebd78469d326af7dd58064449df1cb777ab160a7293c995d1127b9af2e"
+          },
+          {
+            "id": "source-cf7dfba11c12de9ac6da",
+            "finalURL": "https://www.jakartatourism.org/best-street-food-jakarta/",
+            "retrievedAt": "2026-11-14T12:05:42Z",
+            "contentHash": "a7189def8a3fccbb17c68f57fb84e77ce580065e7ef346a8887dc68d638a67f4"
+          },
+          {
+            "id": "source-6ee411661ffdcaf8b376",
+            "finalURL": "https://www.jakartatourism.org/best-malls-jakarta/",
+            "retrievedAt": "2026-11-14T12:05:43Z",
+            "contentHash": "154455c9ad11039e2ca9111bd1338142b873e8dd4df3c1fd657a2a29043e361f"
+          },
+          {
+            "id": "source-8102d466c6dfaec84b57",
+            "finalURL": "https://www.jakartatourism.org/events-festivals-jakarta/",
+            "retrievedAt": "2026-11-14T12:05:43Z",
+            "contentHash": "6fc3c3896ae30da6a8a3bfdaf8cb214b1bda36a6aa76e33eb14e136936a3f7c7"
+          },
+          {
+            "id": "source-7916059cebbce78fee12",
+            "finalURL": "https://www.jakartatourism.org/jakarta-nightlife-guide/",
+            "retrievedAt": "2026-11-14T12:05:43Z",
+            "contentHash": "32cacec61106c412e83edb0d536e48d213b8151af81e3510d342b2d2184a5150"
+          }
+        ],
+        "missingFields": [
+          "identity",
+          "weekly",
+          "access"
+        ],
+        "missingReasons": {
+          "identity": "The target is only labeled “Night market,” and no source ties the pin to a specific market. The report about a planned central-city market says its location had not been announced. A venue or operator source naming the market and matching the pin or address would resolve this.",
+          "weekly": "No current recurring schedule is established for a market at this pin. The reported 17:00–05:00 hours concern a planned market whose location was undisclosed; the Glodok market report concerns a separate dated event. A current operator schedule for the identified venue would resolve this.",
+          "access": "No source establishes the entry method for the specific pinned venue. An operator notice describing walk-in entry, tickets, membership, or required bookings would resolve this.",
+          "lastEntryMinute": "No source states an operator-imposed last-entry restriction for the specific venue. An operator policy specifying last entry would resolve this.",
+          "maximumVisitMinutes": "No source states an operator-imposed maximum visit duration for the specific venue. An operator policy specifying a visit limit would resolve this.",
+          "closures": "No source explicitly lists closed dates for the specific pinned venue. A dated closure notice from the venue or responsible operator would resolve this.",
+          "reservation": "No source establishes whether reservations are required, recommended, or unnecessary for the specific venue. An operator booking policy would resolve this.",
+          "categories": "The specific market is not identified, so the activity categories of the pinned venue cannot be established. A venue or operator listing matching the pin and describing its activities would resolve this."
+        },
+        "previousSnapshotID": "9a99b80d417eb2fa7af18602ea0cfbf3f85b3710324f54dbdbed04f8b2ddea96",
+        "recommendedMinutes": 75,
+        "recommendationReason": "A 75-minute evening stop fits your market preference; 19:00 is only a suggested start, since this pin’s identity, schedule, and access were not established.",
+        "preferredMinute": 1140
+      },
+      {
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "snapshotID": "695f0271cc0d0b80018e5cb14469ed40eba7c6a18701cbcac993880c34895a10",
+        "status": "unresolved",
+        "reason": "Current opening hours or access remain unresolved.",
+        "requestedModel": "cx/gpt-6-luna(max)",
+        "reportedModel": "gpt-6-luna(max)",
+        "sources": [
+          {
+            "id": "source-da2b6d50c169b9d70e6b",
+            "finalURL": "https://memorialcoffee.co.id/",
+            "retrievedAt": "2026-11-14T12:06:39Z",
+            "contentHash": "678cfce049412a607e71264da50504270a453fb4fabf2f8b6b5af778f07dc376"
+          },
+          {
+            "id": "source-2c71cee5a429ac08501f",
+            "finalURL": "https://www.foodierate.com/listing/memorial-coffee-cipondoh",
+            "retrievedAt": "2026-11-14T12:06:41Z",
+            "contentHash": "1a8ce3aaa2b8e1c78154783c8e7a2bb9a6e7aaefa78cf50f4860883e7ca855f3"
+          },
+          {
+            "id": "source-add8e7893f1d975a07bb",
+            "finalURL": "https://www.foodierate.com/contact_us",
+            "retrievedAt": "2026-11-14T12:06:45Z",
+            "contentHash": "2512c6a55a272b51f6c3a328a292f317b4b80b89178ad19cab3541f4de091cc2"
+          },
+          {
+            "id": "source-6b19ab57c58f33ca587e",
+            "finalURL": "https://www.carikulinerindonesia.com/10977501/memorial-coffee-cipondoh",
+            "retrievedAt": "2026-11-14T12:06:47Z",
+            "contentHash": "c61b8b21a1a345c4f673b68bcdce76d56be643d679752dbf1db596b0108440da"
+          },
+          {
+            "id": "source-6cbba46295c835302f56",
+            "finalURL": "https://www.carikulinerindonesia.com/kontak.php",
+            "retrievedAt": "2026-11-14T12:06:50Z",
+            "contentHash": "963f522c694620c82a32f333a5aa83b087ed9384f73a0dea576c128fa9951d1e"
+          },
+          {
+            "id": "source-6c84f59f92b3a7e1bc57",
+            "finalURL": "https://www.foodierate.com/listing/memorial-coffee-cipondoh/inforeport",
+            "retrievedAt": "2026-11-14T12:06:51Z",
+            "contentHash": "4673e3802fe0c1fac629882e6939a2da6ca013996b5fc64120d0537b9714e256"
+          },
+          {
+            "id": "source-c5ee30e0d965ea76cab6",
+            "finalURL": "https://www.ulyn.fun/gems/7030",
+            "retrievedAt": "2026-11-14T12:06:53Z",
+            "contentHash": "f88268d3b0828d4d6a8bf5019fbdc5968dc617fed1e19d37387362bb081e582e"
+          },
+          {
+            "id": "source-feed1d76a9cd6cfd401e",
+            "finalURL": "https://www.ulyn.fun/contact-us",
+            "retrievedAt": "2026-11-14T12:06:54Z",
+            "contentHash": "dc2a937eb0f4d23e2c35aad37136105c20d116f07d12464bdd4b79f8898eefe5"
+          },
+          {
+            "id": "source-0f4d0ec936eeef80d04e",
+            "finalURL": "https://absen.memorialcoffee.co.id/login",
+            "retrievedAt": "2026-11-14T12:11:04Z",
+            "contentHash": "c6549dcd04dd4cd5dd82f39d547704dbaed9ef148b1c088461c0e7e8cc2dd846"
+          },
+          {
+            "id": "source-85c2a9685cde25848e42",
+            "finalURL": "https://pos.memorialcoffee.co.id/login",
+            "retrievedAt": "2026-11-14T12:11:08Z",
+            "contentHash": "c6549dcd04dd4cd5dd82f39d547704dbaed9ef148b1c088461c0e7e8cc2dd846"
+          },
+          {
+            "id": "source-c5d21f68590bc8c92974",
+            "finalURL": "https://absen.memorialcoffee.co.id/forgot-password",
+            "retrievedAt": "2026-11-14T12:11:11Z",
+            "contentHash": "66cc2c7547b38507dc30728a8554c8454d2035bb3c1eec289809e7e27cbf651f"
+          }
+        ],
+        "missingFields": [
+          "weekly",
+          "access"
+        ],
+        "missingReasons": {
+          "weekly": "The official site gives outlet hours of 08:00–23:00 without specifying days, while branch listings give conflicting schedules (Foodierate and Cari Kuliner Indonesia). A current, day-by-day schedule for the Cipondoh branch from the operator would resolve this.",
+          "access": "The sources identify the venue as a coffee shop but do not establish whether customers may enter without a reservation or other condition. An explicit statement of walk-in access or entry requirements would resolve this.",
+          "lastEntryMinute": "No operator restriction on the latest entry time is stated. An explicit last-entry policy from the branch would resolve this.",
+          "maximumVisitMinutes": "No operator-enforced maximum visit duration is stated. An explicit visit-duration limit from the branch would resolve this.",
+          "closures": "No explicitly closed dates or dated closure notice for this branch are provided. A current, branch-specific closure notice or confirmation of dates closed would resolve this.",
+          "reservation": "The official site mentions group reservations but does not establish whether reservations are required, recommended, or unnecessary for ordinary visits. The branch's reservation policy for regular customers would resolve this."
+        },
+        "previousSnapshotID": "139cdf7becbbc07838a2570270f2741c73d222059edd30d3c6491c693982fae2",
+        "recommendedMinutes": 60,
+        "recommendationReason": "Allow about an hour for a coffee break; 15:00 is a suggested afternoon pause. Current branch hours and access were not confirmed, so check before going.",
+        "preferredMinute": 900
+      }
+    ],
+    "requestedModel": "cx/gpt-6-luna(max)",
+    "reportedModel": "gpt-6-luna(max)"
+  }
+}

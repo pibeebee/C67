@@ -45,8 +45,8 @@ import C67Domain
     var previous = input.startsAt
     for stop in proposal.stops {
         #expect(stop.arrivalAt == previous.addingTimeInterval(Double(stop.travelSeconds)))
-        #expect(stop.departureAt == stop.arrivalAt.addingTimeInterval(Double(stop.visitSeconds)))
-        previous = stop.departureAt
+        #expect(stop.departureAt == (try #require(stop.arrivalAt)).addingTimeInterval(Double(stop.visitSeconds)))
+        previous = try #require(stop.departureAt)
     }
     #expect(proposal.finishesAt == previous)
 }

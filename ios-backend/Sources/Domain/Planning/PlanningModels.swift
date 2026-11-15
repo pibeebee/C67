@@ -8,6 +8,7 @@ public enum PlanningMode: String, Equatable, Codable, Sendable, CaseIterable {
 
 public enum PlanningPurpose: String, Equatable, Codable, Sendable, CaseIterable {
     case plan
+    case firstItinerary
     case suggest
     case replan
     case unknown
@@ -50,6 +51,8 @@ public struct PlanningPlace: Equatable, Codable, Sendable, Identifiable {
     public var location: PlanningPoint
     public var visitSeconds: Int
     public var website: URL?
+    public var address: String? = nil
+    public var phoneNumber: String? = nil
     public var preferredAfter: Date?
     public var preferredBefore: Date?
     public var sourceID: String? = nil
@@ -57,6 +60,7 @@ public struct PlanningPlace: Equatable, Codable, Sendable, Identifiable {
     public var visitConfirmation: PlanningVisitConfirmation? = nil
     public var availabilityVerified = false
     public var visitTiming: PlanningVisitTiming? = nil
+    public var durationOverridden: Bool? = nil
     public init(id: UUID, name: String, location: PlanningPoint, visitSeconds: Int, website: URL? = nil, preferredAfter: Date? = nil, preferredBefore: Date? = nil) {
         self.id = id
         self.name = name
@@ -119,13 +123,14 @@ public struct ScheduledPlanningStop: Equatable, Codable, Sendable, Identifiable 
     public var id: UUID
     public var name: String
     public var location: PlanningPoint
-    public var arrivalAt: Date
-    public var departureAt: Date
+    public var arrivalAt: Date?
+    public var departureAt: Date?
     public var visitSeconds: Int
     public var travelSeconds: Int
+    public var roadDistanceMeters: Double? = nil
     public var warnings: [String]
     public var visitStartsAt: Date? = nil
-    public init(id: UUID, name: String, location: PlanningPoint, arrivalAt: Date, departureAt: Date, visitSeconds: Int, travelSeconds: Int, warnings: [String]) {
+    public init(id: UUID, name: String, location: PlanningPoint, arrivalAt: Date?, departureAt: Date?, visitSeconds: Int, travelSeconds: Int, warnings: [String]) {
         self.id = id
         self.name = name
         self.location = location
@@ -141,7 +146,7 @@ public struct PlanProposal: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var input: PlanningInput
     public var stops: [ScheduledPlanningStop]
-    public var finishesAt: Date
+    public var finishesAt: Date?
     public var feasible: Bool
     public var explanation: String
     public var warnings: [String]
@@ -149,7 +154,11 @@ public struct PlanProposal: Equatable, Codable, Sendable, Identifiable {
     public var synthetic: Bool
     public var departureAt: Date? = nil
     public var returnTravelSeconds: Int? = nil
-    public init(id: UUID, input: PlanningInput, stops: [ScheduledPlanningStop], finishesAt: Date, feasible: Bool, explanation: String, warnings: [String], evidence: [PlanningEvidence], synthetic: Bool) {
+    public var firstItinerary: Bool? = nil
+    public var unscheduledPlaces: [String]? = nil
+    public var experiencePlan: PlanningExperiencePlan? = nil
+    public var experienceRouteCheckedAt: Date? = nil
+    public init(id: UUID, input: PlanningInput, stops: [ScheduledPlanningStop], finishesAt: Date?, feasible: Bool, explanation: String, warnings: [String], evidence: [PlanningEvidence], synthetic: Bool) {
         self.id = id
         self.input = input
         self.stops = stops
@@ -196,6 +205,8 @@ public struct PlanningJob: Equatable, Codable, Sendable, Identifiable {
     public var id: UUID
     public var status: PlanningJobStatus
     public var purpose: PlanningPurpose
+    public var originalInput: PlanningInput?
+    public var command: PlanningRequest? = nil
     public var input: PlanningInput
     public var tripID: UUID?
     public var baseRevision: Int?
@@ -259,8 +270,10 @@ public struct PlanningEvent: Equatable, Codable, Sendable {
 
 public extension PlanningInput {
     func validate(purpose: PlanningPurpose = .plan) throws {
+        let validCount = purpose == .firstItinerary || enginePreferences?.reasonableOrdering == true ? !places.isEmpty
+            : ((purpose == .suggest && enginePreferences != nil ? 0 : 1) ... 6).contains(places.count)
         guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, title.count <= 120,
-              preferences.count <= 2000, ((purpose == .suggest && enginePreferences != nil ? 0 : 1) ... 6).contains(places.count), Set(places.map(\.id)).count == places.count,
+              preferences.count <= 2000, validCount, Set(places.map(\.id)).count == places.count,
               finishBy > startsAt, finishBy.timeIntervalSince(startsAt) <= 86400,
               TimeZone(identifier: timeZone) != nil, mode != .unknown,
               origin.latitude.isFinite, origin.longitude.isFinite,
@@ -291,7 +304,7 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
     case revisionConflict, requestConflict, unavailable, rateLimited, expired, failed(String)
     public var errorDescription: String? {
         switch self {
-        case .invalidInput: "Choose one to six places, valid visit durations, and a finish time within 24 hours of departure."
+        case .invalidInput: "Check your selected places, visit details and trip settings."
         case .configurationRequired: "Live planning is not configured. Set the planning API URL and configure the backend providers."
         case .authenticationRequired: "Sign in to plan and save a personal trip."
         case .invalidResponse: "The planner returned an unexpected result. Your current plan is unchanged."
@@ -303,6 +316,15 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
         case .expired: "This proposal expired. Request a fresh plan."
         case .failed(let code):
             switch code {
+            case "POCKET_CONNECTION_REQUIRED": "Enter the Pocket server URL and read token in Account. Your selected places are kept."
+            case "POCKET_CONNECTION_REJECTED": "The Pocket server rejected the connection. Check the URL and read token in Account."
+            case "POCKET_ORDER_ENDPOINT_MISSING": "This Pocket server does not support itinerary recommendations. Check the server URL in Account."
+            case "ORDER_REQUEST_REJECTED": "The Pocket server rejected the trip details. Your selected places are kept."
+            case "ORDER_JOB_MISSING": "The Pocket server could not find this request. Try again to start a new recommendation."
+            case "ORDER_SERVER_INTERRUPTED": "The Pocket server stopped processing this request. Try again to start a new recommendation."
+            case "ORDER_CONNECTION_INTERRUPTED": "The app lost contact with the Pocket server. Check the same request when the connection is back."
+            case "ORDER_RESPONSE_INVALID": "The app could not verify the recommendation. Your selected places are kept."
+            case "ORDER_GENERATION_FAILED": "The Pocket server could not complete the recommendation. Your selected places are kept. Try again."
             case "PROVIDER_CONFIGURATION_REQUIRED": "Live AI or Apple data is not configured on the planning server."
             case "ROUTE_UNAVAILABLE": "A route estimate is unavailable. No travel time was invented."
             case "MODEL_CONTEXT_LIMIT": "This request contains too much context. Try fewer places."

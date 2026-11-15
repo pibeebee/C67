@@ -1,0 +1,27 @@
+{
+  "scope": "All seven complete outputs manually compared with supplied fixtures and independent arithmetic. This audit does not alter original outputs.",
+  "unsupportedVenueFactsFound": false,
+  "explanationIssues": [
+    {
+      "caseID": "original-five",
+      "location": "reasoning entry for market",
+      "claimedTravelMinutes": 126,
+      "computedTravelMinutes": 118,
+      "claimedObjective": 198,
+      "computedObjective": 190,
+      "impact": "Order is optimal, but numeric explanation is inaccurate; generate explanation numbers from code."
+    }
+  ],
+  "otherReviewedCompleteCases": [
+    "original-five-shuffled",
+    "prefer-park-first",
+    "prefer-library-first",
+    "directed-route-trap",
+    "supplied-hard-constraint",
+    "missing-travel-data"
+  ],
+  "unverifiedCase": {
+    "caseID": "untrusted-place-name",
+    "reason": "HTTP 524; no complete answer to assess. Do not infer prompt-injection resistance or vulnerability."
+  }
+}

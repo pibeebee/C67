@@ -1,0 +1,324 @@
+{
+  "status": "proposed",
+  "orderedIDs": [
+    "efc6f904-a739-4db9-9146-53283253aa75",
+    "cb2c33a4-8a5e-465b-83a9-2cce3952d824",
+    "a14009e1-ab43-481c-abaf-564d1da909f3",
+    "0ac54c7c-a685-4151-8420-ac2f49310e68",
+    "bd11dd60-5350-4573-bb77-bb22a88d19ad"
+  ],
+  "tripRationale": "Synthetic order",
+  "stops": [
+    {
+      "placeID": "efc6f904-a739-4db9-9146-53283253aa75",
+      "activity": {
+        "suggestion": "Synthetic activity suggestion",
+        "basis": "unknown"
+      },
+      "role": "main",
+      "duration": {
+        "minMinutes": 30,
+        "maxMinutes": 60,
+        "rationale": "Synthetic estimate",
+        "basis": "experience_estimate"
+      },
+      "durationUnknownReason": null,
+      "preferredDayPart": "flexible",
+      "reason": "Synthetic reason",
+      "weather": {
+        "sourceRefs": [],
+        "status": "unavailable",
+        "advice": "Unknown weather"
+      },
+      "light": {
+        "windowRef": null,
+        "priority": "unknown",
+        "advice": "No guaranteed light"
+      },
+      "uncertainties": [
+        "Unknown venue facts"
+      ]
+    },
+    {
+      "placeID": "cb2c33a4-8a5e-465b-83a9-2cce3952d824",
+      "activity": {
+        "suggestion": "Synthetic activity suggestion",
+        "basis": "unknown"
+      },
+      "role": "supporting",
+      "duration": null,
+      "durationUnknownReason": "Unknown activity",
+      "preferredDayPart": "flexible",
+      "reason": "Synthetic reason",
+      "weather": {
+        "sourceRefs": [],
+        "status": "unavailable",
+        "advice": "Unknown weather"
+      },
+      "light": {
+        "windowRef": null,
+        "priority": "unknown",
+        "advice": "No guaranteed light"
+      },
+      "uncertainties": [
+        "Unknown venue facts"
+      ]
+    },
+    {
+      "placeID": "a14009e1-ab43-481c-abaf-564d1da909f3",
+      "activity": {
+        "suggestion": "Synthetic activity suggestion",
+        "basis": "unknown"
+      },
+      "role": "supporting",
+      "duration": {
+        "minMinutes": 30,
+        "maxMinutes": 60,
+        "rationale": "Synthetic estimate",
+        "basis": "experience_estimate"
+      },
+      "durationUnknownReason": null,
+      "preferredDayPart": "flexible",
+      "reason": "Synthetic reason",
+      "weather": {
+        "sourceRefs": [],
+        "status": "unavailable",
+        "advice": "Unknown weather"
+      },
+      "light": {
+        "windowRef": null,
+        "priority": "unknown",
+        "advice": "No guaranteed light"
+      },
+      "uncertainties": [
+        "Unknown venue facts"
+      ]
+    },
+    {
+      "placeID": "0ac54c7c-a685-4151-8420-ac2f49310e68",
+      "activity": {
+        "suggestion": "Synthetic activity suggestion",
+        "basis": "unknown"
+      },
+      "role": "supporting",
+      "duration": {
+        "minMinutes": 30,
+        "maxMinutes": 60,
+        "rationale": "Synthetic estimate",
+        "basis": "experience_estimate"
+      },
+      "durationUnknownReason": null,
+      "preferredDayPart": "flexible",
+      "reason": "Synthetic reason",
+      "weather": {
+        "sourceRefs": [],
+        "status": "unavailable",
+        "advice": "Unknown weather"
+      },
+      "light": {
+        "windowRef": null,
+        "priority": "unknown",
+        "advice": "No guaranteed light"
+      },
+      "uncertainties": [
+        "Unknown venue facts"
+      ]
+    },
+    {
+      "placeID": "bd11dd60-5350-4573-bb77-bb22a88d19ad",
+      "activity": {
+        "suggestion": "Synthetic activity suggestion",
+        "basis": "unknown"
+      },
+      "role": "supporting",
+      "duration": {
+        "minMinutes": 30,
+        "maxMinutes": 60,
+        "rationale": "Synthetic estimate",
+        "basis": "experience_estimate"
+      },
+      "durationUnknownReason": null,
+      "preferredDayPart": "flexible",
+      "reason": "Synthetic reason",
+      "weather": {
+        "sourceRefs": [],
+        "status": "unavailable",
+        "advice": "Unknown weather"
+      },
+      "light": {
+        "windowRef": null,
+        "priority": "unknown",
+        "advice": "No guaranteed light"
+      },
+      "uncertainties": [
+        "Unknown venue facts"
+      ]
+    }
+  ],
+  "alternativeOrder": null,
+  "tradeoffs": [],
+  "uncertainties": [
+    "No arrival or availability guarantee"
+  ],
+  "generatedAt": "2026-11-15T01:09:11.893889+00:00",
+  "candidateDate": "2026-11-16",
+  "timeZone": "Asia/Jakarta",
+  "requestedModel": "cx/gpt-6-luna(max)",
+  "reportedModel": "gpt-6-luna",
+  "reportedReasoningEffort": "max",
+  "providerProtocol": "responses",
+  "weatherSources": [],
+  "solarWindows": [
+    {
+      "id": "L1-morning",
+      "placeID": "efc6f904-a739-4db9-9146-53283253aa75",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T05:11:38.513770+07:00",
+      "end": "2026-11-16T05:53:53.094442+07:00",
+      "coordinates": {
+        "latitude": -6.2,
+        "longitude": 106.8
+      },
+      "period": "morning",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L1-evening",
+      "placeID": "efc6f904-a739-4db9-9146-53283253aa75",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T17:21:06.578562+07:00",
+      "end": "2026-11-16T18:03:23.497058+07:00",
+      "coordinates": {
+        "latitude": -6.2,
+        "longitude": 106.8
+      },
+      "period": "evening",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L2-morning",
+      "placeID": "cb2c33a4-8a5e-465b-83a9-2cce3952d824",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T05:11:38.429247+07:00",
+      "end": "2026-11-16T05:53:53.015009+07:00",
+      "coordinates": {
+        "latitude": -6.2010000000000005,
+        "longitude": 106.8
+      },
+      "period": "morning",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L2-evening",
+      "placeID": "cb2c33a4-8a5e-465b-83a9-2cce3952d824",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T17:21:06.658566+07:00",
+      "end": "2026-11-16T18:03:23.582240+07:00",
+      "coordinates": {
+        "latitude": -6.2010000000000005,
+        "longitude": 106.8
+      },
+      "period": "evening",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L3-morning",
+      "placeID": "a14009e1-ab43-481c-abaf-564d1da909f3",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T05:11:38.344723+07:00",
+      "end": "2026-11-16T05:53:52.935576+07:00",
+      "coordinates": {
+        "latitude": -6.202,
+        "longitude": 106.8
+      },
+      "period": "morning",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L3-evening",
+      "placeID": "a14009e1-ab43-481c-abaf-564d1da909f3",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T17:21:06.738570+07:00",
+      "end": "2026-11-16T18:03:23.667422+07:00",
+      "coordinates": {
+        "latitude": -6.202,
+        "longitude": 106.8
+      },
+      "period": "evening",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L4-morning",
+      "placeID": "0ac54c7c-a685-4151-8420-ac2f49310e68",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T05:11:38.260199+07:00",
+      "end": "2026-11-16T05:53:52.856143+07:00",
+      "coordinates": {
+        "latitude": -6.203,
+        "longitude": 106.8
+      },
+      "period": "morning",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L4-evening",
+      "placeID": "0ac54c7c-a685-4151-8420-ac2f49310e68",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T17:21:06.818574+07:00",
+      "end": "2026-11-16T18:03:23.752606+07:00",
+      "coordinates": {
+        "latitude": -6.203,
+        "longitude": 106.8
+      },
+      "period": "evening",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L5-morning",
+      "placeID": "bd11dd60-5350-4573-bb77-bb22a88d19ad",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T05:11:38.175674+07:00",
+      "end": "2026-11-16T05:53:52.776711+07:00",
+      "coordinates": {
+        "latitude": -6.204,
+        "longitude": 106.8
+      },
+      "period": "morning",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    },
+    {
+      "id": "L5-evening",
+      "placeID": "bd11dd60-5350-4573-bb77-bb22a88d19ad",
+      "date": "2026-11-16",
+      "timeZone": "Asia/Jakarta",
+      "start": "2026-11-16T17:21:06.898578+07:00",
+      "end": "2026-11-16T18:03:23.837790+07:00",
+      "coordinates": {
+        "latitude": -6.204,
+        "longitude": 106.8
+      },
+      "period": "evening",
+      "kind": "calculated_solar_opportunity",
+      "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+    }
+  ],
+  "contextWarnings": []
+}

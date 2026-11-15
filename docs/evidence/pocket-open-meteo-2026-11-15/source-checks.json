@@ -1,0 +1,39 @@
+{
+  "passed": 7,
+  "checks": [
+    "date/zone/location/probability/range/reference context checks pass",
+    "same actual forecast snapshot in both preference variants",
+    "actual provider sunrise/sunset sanity comparison within predeclared 300s tolerance at all five pins",
+    "precipitation intervals cover both solar windows; cloud remains an end-of-interval instantaneous forecast",
+    "wrong provider probability units rejected",
+    "missing sample probability rejected; no imputation",
+    "wrong provider timezone rejected"
+  ],
+  "solarComparisons": [
+    {
+      "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+      "sunriseDifferenceSeconds": 2.541,
+      "sunsetDifferenceSeconds": 15.357
+    },
+    {
+      "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+      "sunriseDifferenceSeconds": 0.067,
+      "sunsetDifferenceSeconds": 19.435
+    },
+    {
+      "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+      "sunriseDifferenceSeconds": 8.876,
+      "sunsetDifferenceSeconds": 7.662
+    },
+    {
+      "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+      "sunriseDifferenceSeconds": 18.334,
+      "sunsetDifferenceSeconds": 7.046
+    },
+    {
+      "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+      "sunriseDifferenceSeconds": 17.374,
+      "sunsetDifferenceSeconds": 9.534
+    }
+  ]
+}

@@ -32,7 +32,7 @@ struct TripInterestQuestionView: View {
             .sensoryFeedback(.selection, trigger: selection)
             TripPreferenceGroups(
                 selected: selectedRefinements,
-                hasUnmatchedSelection: !selectedRefinements.isSubset(of: Set(supportedRefinements.map(\.id))),
+                hasUnmatchedSelection: !selectedRefinements.isSubset(of: TripPreferenceCatalog.ids),
                 search: { showsRefinements = true },
                 toggle: toggleRefinement
             )

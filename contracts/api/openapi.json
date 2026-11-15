@@ -3121,7 +3121,9 @@
           {
             "pocketReadToken": []
           }
-        ]
+        ],
+        "deprecated": true,
+        "description": "Historical lab contract. Not served by the maintained request-time resolver; not used by the native Pocket flow."
       },
       "servers": [
         {
@@ -3188,6 +3190,210 @@
           }
         }
       ]
+    },
+    "/v1/visits/resolve": {
+      "servers": [
+        {
+          "url": "https://{host}",
+          "variables": {
+            "host": {
+              "default": "pocket.example.invalid"
+            }
+          }
+        }
+      ],
+      "post": {
+        "operationId": "resolveSelectedVisits",
+        "description": "Request-time source discovery, retrieval, quote-grounded Luna extraction, independent claim review and duration reasoning. No catalog seed or geographic allowlist. Repeating an unchanged request ID resumes its existing job.",
+        "security": [
+          {
+            "pocketReadToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PocketResolutionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Research accepted; poll this job",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PocketResolutionJob"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid read token"
+          },
+          "422": {
+            "description": "Invalid body or request ID reused with different selections"
+          },
+          "503": {
+            "description": "Storage or upstream unavailable"
+          }
+        }
+      }
+    },
+    "/v1/visits/jobs/{jobID}": {
+      "servers": [
+        {
+          "url": "https://{host}",
+          "variables": {
+            "host": {
+              "default": "pocket.example.invalid"
+            }
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getVisitResolution",
+        "security": [
+          {
+            "pocketReadToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "jobID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current research state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PocketResolutionJob"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid read token"
+          },
+          "404": {
+            "description": "Unknown job"
+          }
+        }
+      }
+    },
+    "/v1/order": {
+      "servers": [
+        {
+          "url": "https://{host}",
+          "variables": {
+            "host": {
+              "default": "pocket.example.invalid"
+            }
+          }
+        }
+      ],
+      "post": {
+        "operationId": "requestPocketOrder",
+        "description": "Authenticated asynchronous Luna generation. No catalog, area gate, hours or ETA prerequisite. Repeated identical IDs read the same result; changed input returns 422. Failed/interrupted jobs require an explicit new request ID. Estimates are suggestions, not verified visit availability.",
+        "security": [
+          {
+            "pocketReadToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PocketOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Research accepted; poll this job",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PocketOrderJob"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid read token"
+          },
+          "422": {
+            "description": "Invalid body or request ID reused with different selections"
+          },
+          "503": {
+            "description": "Storage or upstream unavailable"
+          }
+        },
+        "summary": "Propose an untimed experience order for all selected places"
+      }
+    },
+    "/v1/order/jobs/{jobID}": {
+      "servers": [
+        {
+          "url": "https://{host}",
+          "variables": {
+            "host": {
+              "default": "pocket.example.invalid"
+            }
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getPocketOrderJob",
+        "security": [
+          {
+            "pocketReadToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "jobID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current research state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PocketOrderJob"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid read token"
+          },
+          "404": {
+            "description": "Unknown job"
+          }
+        },
+        "summary": "Read a persisted ordering job without model regeneration"
+      }
     }
   },
   "components": {
@@ -5652,14 +5858,7 @@
               "properties": {
                 "slotID": {
                   "type": "string",
-                  "enum": [
-                    "S1",
-                    "S2",
-                    "S3",
-                    "S4",
-                    "S5",
-                    "S6"
-                  ]
+                  "pattern": "^S[1-8]$"
                 },
                 "departure": {
                   "type": "string"
@@ -5713,6 +5912,10 @@
                   },
                   "minItems": 1,
                   "maxItems": 6
+                },
+                "day": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
                 }
               },
               "required": [
@@ -5724,7 +5927,13 @@
               "additionalProperties": false
             },
             "minItems": 1,
-            "maxItems": 6
+            "maxItems": 8
+          },
+          "userPreferences": {
+            "type": "string"
+          },
+          "mainSpotID": {
+            "type": "string"
           }
         },
         "required": [
@@ -5732,7 +5941,6 @@
           "refinements",
           "preferences",
           "preferredVisitMinutes",
-          "day",
           "options"
         ],
         "additionalProperties": false
@@ -5742,14 +5950,7 @@
         "properties": {
           "slotID": {
             "type": "string",
-            "enum": [
-              "S1",
-              "S2",
-              "S3",
-              "S4",
-              "S5",
-              "S6"
-            ]
+            "pattern": "^S[1-8]$"
           },
           "requestedModel": {
             "type": "string",
@@ -5759,12 +5960,28 @@
             "type": "string",
             "enum": [
               "cx/gpt-6-luna(max)",
-              "gpt-6-luna(max)"
+              "gpt-6-luna(max)",
+              "gpt-6-luna"
             ]
           },
           "elapsedMS": {
             "type": "number",
             "minimum": 0
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "reportedReasoningEffort": {
+            "type": "string",
+            "enum": [
+              "max"
+            ]
+          },
+          "providerProtocol": {
+            "type": "string",
+            "enum": [
+              "responses"
+            ]
           }
         },
         "required": [
@@ -5772,6 +5989,1018 @@
           "requestedModel",
           "reportedModel",
           "elapsedMS"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "reportedModel": {
+                  "const": "gpt-6-luna"
+                }
+              },
+              "required": [
+                "reportedModel"
+              ]
+            },
+            "then": {
+              "required": [
+                "reportedReasoningEffort",
+                "providerProtocol"
+              ]
+            }
+          }
+        ]
+      },
+      "PocketResolutionRequest": {
+        "type": "object",
+        "properties": {
+          "requestID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "places": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PocketSelectedPlace"
+            }
+          },
+          "preferences": {
+            "type": "string"
+          },
+          "mainSpotID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        },
+        "required": [
+          "requestID",
+          "places",
+          "preferences",
+          "dates"
+        ]
+      },
+      "PocketResolutionRecord": {
+        "type": "object",
+        "properties": {
+          "placeID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "conditional",
+              "unresolved"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "venue": {
+            "$ref": "#/components/schemas/PocketVenue"
+          },
+          "recommendedMinutes": {
+            "type": "integer",
+            "minimum": 15,
+            "maximum": 240
+          },
+          "preferredMinute": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1439
+          },
+          "recommendationReason": {
+            "type": "string"
+          },
+          "snapshotID": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "placeID",
+          "status"
+        ]
+      },
+      "PocketResolution": {
+        "type": "object",
+        "properties": {
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PocketResolutionRecord"
+            }
+          },
+          "requestedModel": {
+            "type": "string"
+          },
+          "reportedModel": {
+            "type": "string",
+            "enum": [
+              "cx/gpt-6-luna(max)",
+              "gpt-6-luna(max)",
+              "gpt-6-luna"
+            ]
+          },
+          "reportedReasoningEffort": {
+            "type": "string",
+            "enum": [
+              "max"
+            ]
+          },
+          "providerProtocol": {
+            "type": "string",
+            "enum": [
+              "responses"
+            ]
+          }
+        },
+        "required": [
+          "resolvedAt",
+          "records",
+          "requestedModel",
+          "reportedModel"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "reportedModel": {
+                  "const": "gpt-6-luna"
+                }
+              },
+              "required": [
+                "reportedModel"
+              ]
+            },
+            "then": {
+              "required": [
+                "reportedReasoningEffort",
+                "providerProtocol"
+              ]
+            }
+          }
+        ]
+      },
+      "PocketResolutionJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed",
+              "interrupted"
+            ]
+          },
+          "result": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PocketResolution"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  },
+                  "errorKind": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "result"
+        ]
+      },
+      "PocketSelectedPlace": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location": {
+            "$ref": "#/components/schemas/PlanningPoint"
+          },
+          "visitSeconds": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "website": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "preferredAfter": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "preferredBefore": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sourceID": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "availabilityVerified": {
+            "type": "boolean"
+          },
+          "visitTiming": {
+            "type": "string",
+            "enum": [
+              "preferred",
+              "required",
+              "notBefore"
+            ]
+          },
+          "visitConfirmation": {
+            "type": "object",
+            "properties": {
+              "opensAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "closesAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publicAccessConfirmed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "opensAt",
+              "closesAt",
+              "publicAccessConfirmed"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "location",
+          "visitSeconds",
+          "categories",
+          "availabilityVerified"
+        ]
+      },
+      "PocketOrderPlace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "location"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderRequest": {
+        "type": "object",
+        "properties": {
+          "requestID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "places": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderPlace"
+            }
+          },
+          "preferences": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "origin": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "endpoint": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "mainSpotID": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "firstPlaceID": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preservesPlaceOrder": {
+            "type": "boolean"
+          },
+          "candidateDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requestID",
+          "places",
+          "preferences",
+          "origin",
+          "candidateDate",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderDuration": {
+        "type": "object",
+        "properties": {
+          "minMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maxMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "experience_estimate"
+            ]
+          }
+        },
+        "required": [
+          "minMinutes",
+          "maxMinutes",
+          "rationale",
+          "basis"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderStop": {
+        "type": "object",
+        "properties": {
+          "placeID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "activity": {
+            "type": "object",
+            "properties": {
+              "suggestion": {
+                "type": "string"
+              },
+              "basis": {
+                "type": "string",
+                "enum": [
+                  "name_inference",
+                  "user_preference",
+                  "fixture_attribute",
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "suggestion",
+              "basis"
+            ],
+            "additionalProperties": false
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "opening",
+              "main",
+              "break",
+              "closing",
+              "supporting"
+            ]
+          },
+          "duration": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PocketOrderDuration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "durationUnknownReason": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferredDayPart": {
+            "type": "string",
+            "enum": [
+              "morning",
+              "afternoon",
+              "evening",
+              "night",
+              "flexible",
+              "unknown"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "weather": {
+            "type": "object",
+            "properties": {
+              "sourceRefs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "advice": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "available",
+                  "unavailable"
+                ]
+              }
+            },
+            "required": [
+              "sourceRefs",
+              "advice",
+              "status"
+            ],
+            "additionalProperties": false
+          },
+          "light": {
+            "type": "object",
+            "properties": {
+              "windowRef": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "relevant",
+                  "optional",
+                  "not_relevant",
+                  "unknown"
+                ]
+              },
+              "advice": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "windowRef",
+              "priority",
+              "advice"
+            ],
+            "additionalProperties": false
+          },
+          "uncertainties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "placeID",
+          "activity",
+          "role",
+          "duration",
+          "durationUnknownReason",
+          "preferredDayPart",
+          "reason",
+          "weather",
+          "light",
+          "uncertainties"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderWeatherHour": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "period": {
+            "type": "string"
+          },
+          "precipitationChance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "precipitationAmountMM": {
+            "type": "number",
+            "minimum": 0
+          },
+          "precipitationType": {
+            "type": "string",
+            "enum": [
+              "none",
+              "rain",
+              "snow",
+              "mixed"
+            ]
+          },
+          "cloudCover": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "cloudCoverValidAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "period",
+          "precipitationChance",
+          "precipitationAmountMM",
+          "precipitationType",
+          "cloudCover",
+          "cloudCoverValidAt"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderWeatherSource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "placeID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "coordinates": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "hourlySamples": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderWeatherHour"
+            }
+          },
+          "coverage": {
+            "type": "string"
+          },
+          "fallbackReason": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "placeID",
+          "source",
+          "url",
+          "checkedAt",
+          "date",
+          "timeZone",
+          "coordinates",
+          "hourlySamples",
+          "coverage"
+        ],
+        "additionalProperties": true
+      },
+      "PocketOrderLightWindow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "placeID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "period": {
+            "type": "string",
+            "enum": [
+              "morning",
+              "evening"
+            ]
+          },
+          "method": {
+            "type": "string"
+          },
+          "coordinates": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "additionalProperties": false
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "calculated_solar_opportunity"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "placeID",
+          "date",
+          "timeZone",
+          "start",
+          "end",
+          "period",
+          "method"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed"
+            ]
+          },
+          "orderedIDs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "tripRationale": {
+            "type": "string"
+          },
+          "stops": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderStop"
+            }
+          },
+          "alternativeOrder": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tradeoffs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uncertainties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "candidateDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "requestedModel": {
+            "type": "string"
+          },
+          "reportedModel": {
+            "type": "string"
+          },
+          "reportedReasoningEffort": {
+            "type": "string"
+          },
+          "providerProtocol": {
+            "type": "string"
+          },
+          "weatherSources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderWeatherSource"
+            }
+          },
+          "solarWindows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderLightWindow"
+            }
+          },
+          "contextWarnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "orderedIDs",
+          "tripRationale",
+          "stops",
+          "alternativeOrder",
+          "tradeoffs",
+          "uncertainties",
+          "generatedAt",
+          "candidateDate",
+          "timeZone",
+          "requestedModel",
+          "reportedModel",
+          "weatherSources",
+          "solarWindows",
+          "contextWarnings"
+        ],
+        "additionalProperties": false
+      },
+      "PocketOrderJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed",
+              "interrupted"
+            ]
+          },
+          "result": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PocketOrderResult"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  },
+                  "errorKind": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error",
+                  "errorKind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "result"
         ],
         "additionalProperties": false
       }

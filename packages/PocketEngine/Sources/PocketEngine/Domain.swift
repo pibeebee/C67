@@ -97,8 +97,16 @@ public struct HoursEvidence: Codable, Sendable {
     public var expiresAt: Date
     public var sourceURL: String
     public var quote: String
+    public var lastEntryMinute: Int? = nil
+    public var maximumVisitMinutes: Int? = nil
+    public var reservationRequired: Bool? = nil
+    public var closedDates: Set<String>? = nil
+    public var conflictingSources: [String]? = nil
     public func fresh(at date: Date) -> Bool {
-        !intervals.isEmpty && intervals.allSatisfy(\.valid) && checkedAt <= date && date < min(expiresAt, checkedAt.addingTimeInterval(30 * 86400))
+        (conflictingSources?.isEmpty ?? true) && !intervals.isEmpty && intervals.allSatisfy(\.valid)
+            && (lastEntryMinute.map { (0 ... 1440).contains($0) } ?? true)
+            && (maximumVisitMinutes.map { $0 > 0 } ?? true)
+            && checkedAt <= date && date < min(expiresAt, checkedAt.addingTimeInterval(30 * 86400))
     }
 }
 public struct Venue: Codable, Identifiable, Sendable {

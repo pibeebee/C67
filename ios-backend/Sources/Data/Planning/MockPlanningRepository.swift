@@ -25,6 +25,7 @@ public actor MockPlanningRepository: PlanningRepository {
         return try encoder.encode(value)
     }
     public func requestPlan(_ request: PlanningRequest) throws -> PlanningJob {
+        guard request.purpose != .firstItinerary else { throw PlanningError.invalidInput }
         try request.input.validate()
         let fingerprint = try encoded(PlanningRequestDTO(request))
         if let previous = receipts[request.requestID] {
@@ -44,7 +45,7 @@ public actor MockPlanningRepository: PlanningRepository {
                 input.firstPlaceID = atCurrent ? first.id : nil
                 input.places = remaining.compactMap { stop in
                     guard var place = trip.input.places.first(where: { $0.id == stop.id }) else { return nil }
-                    place.visitSeconds = atCurrent && stop.id == first.id ? max(0, Int(ceil(first.departureAt.timeIntervalSinceNow))) : stop.visitSeconds
+                    place.visitSeconds = atCurrent && stop.id == first.id ? max(0, Int(ceil(first.departureAt?.timeIntervalSinceNow ?? 0))) : stop.visitSeconds
                     return place
                 }
             }
@@ -114,7 +115,7 @@ public actor MockPlanningRepository: PlanningRepository {
             guard trip.status == .active, next?.id == event.stopID, trip.currentStopID == event.stopID,
                   let extra = event.extraSeconds, (1 ... 7200).contains(extra),
                   let index = trip.plan.stops.firstIndex(where: { $0.id == event.stopID }) else { throw PlanningError.invalidInput }
-            trip.plan.stops[index].departureAt = max(Date(), trip.plan.stops[index].departureAt).addingTimeInterval(Double(extra))
+            trip.plan.stops[index].departureAt = max(Date(), trip.plan.stops[index].departureAt ?? Date()).addingTimeInterval(Double(extra))
         }
         trip.revision += 1; trips[trip.id] = trip; receipts[event.requestID] = (fingerprint, .trip(trip)); return trip
     }

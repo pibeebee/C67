@@ -6,6 +6,7 @@ public struct VisitAdviceRequest: Codable, Sendable {
         public var slotID: String
         public var departure: String
         public var finish: String
+        public var day: String?
         public var visits: [Visit]
     }
     public struct Visit: Codable, Sendable {
@@ -17,11 +18,13 @@ public struct VisitAdviceRequest: Codable, Sendable {
         public var supportedAttributes: [String]
         public var weather: String
     }
+    public var mainSpotID: String?
+    public var userPreferences: String?
     public var interests: [String]
     public var refinements: [String]
     public var preferences: [String: String]
     public var preferredVisitMinutes: [String: Int]
-    public var day: String
+    public var day: String?
     public var options: [Option]
     public init(plans: [Itinerary], venues: [Venue], profile: Profile, choices: [StopChoice] = []) {
         interests = profile.interests.sorted().map(Interests.title)
@@ -33,7 +36,7 @@ public struct VisitAdviceRequest: Codable, Sendable {
             return (choice.venueID, minute)
         })
         options = plans.enumerated().map { index, plan in
-            Option(slotID: "S\(index + 1)", departure: TripClock.time(plan.departure), finish: TripClock.time(plan.finish), visits: plan.stops.map { stop in
+            Option(slotID: "S\(index + 1)", departure: TripClock.time(plan.departure), finish: TripClock.time(plan.finish), day: TripClock.day(plan.departure), visits: plan.stops.map { stop in
                 let venue = venues.first { $0.id == stop.venueID }
                 return Visit(venueID: stop.venueID, name: stop.name, start: TripClock.time(stop.visitStart), end: TripClock.time(stop.visitEnd),
                              categories: venue?.effectiveCategories(at: stop.visitStart) ?? [],
@@ -57,7 +60,7 @@ extension ItineraryPlanner {
         guard plan.departure >= input.departure, plan.departure >= now.addingTimeInterval(-60), plan.finish <= input.deadline,
               plan.departure <= (input.latestDeparture ?? input.departure),
               plan.stops.count >= input.minimumStops, plan.stops.count <= input.maximumStops,
-              plan.returnToOrigin == input.returnToOrigin, plan.origin == input.origin,
+              plan.returnToOrigin == input.returnToOrigin, plan.origin == input.origin, plan.endPoint == input.endPoint,
               Set(plan.stops.map(\.venueID)).count == plan.stops.count,
               input.lastVenueID.map({ $0 == plan.stops.last?.venueID }) ?? true else { try reject() }
         let ids = Set(plan.stops.map(\.venueID))
@@ -79,6 +82,11 @@ extension ItineraryPlanner {
                 value.day == TripClock.day(stop.visitStart) && value.publicAccessConfirmed && value.opens >= 0 && value.closes <= 1440 && value.closes > value.opens ? value : nil
             }
             let day = TripClock.calendar.startOfDay(for: stop.visitStart)
+            let hours = venue.hours.flatMap { $0.fresh(at: stop.visitStart) ? $0 : nil }
+            guard manual != nil || hours?.reservationRequired != true,
+                  hours?.closedDates?.contains(TripClock.day(stop.visitStart)) != true,
+                  hours?.maximumVisitMinutes.map({ choice.durationMinutes <= $0 }) ?? true,
+                  hours?.lastEntryMinute.map({ stop.visitStart <= day.addingTimeInterval(Double($0 * 60)) }) ?? true else { try reject() }
             let intervals: [DateInterval]
             if let manual {
                 intervals = [DateInterval(start: day.addingTimeInterval(Double(manual.opens * 60)), end: day.addingTimeInterval(Double(manual.closes * 60)))]

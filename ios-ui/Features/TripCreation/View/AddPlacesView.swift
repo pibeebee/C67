@@ -21,6 +21,7 @@ struct AddPlacesView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 14) {
+                Text(TripDiscoveryArea.description).font(.footnote).foregroundStyle(.secondary)
                 if isSearching { ProgressView("Searching places…").padding() }
                 if let error {
                     ContentUnavailableView {
@@ -31,7 +32,7 @@ struct AddPlacesView: View {
                 } else if displayed.isEmpty && !isSearching {
                     ContentUnavailableView(query.isEmpty ? "Find your places" : "No places found",
                                            systemImage: "magnifyingglass",
-                                           description: Text(query.isEmpty ? "Search for a place or address to add it to your trip." : "Try a different name or area."))
+                                           description: Text(query.isEmpty ? "Search for a place to add it to your trip." : "Try a different name or location."))
                 }
                 ForEach(displayed) { item in
                     AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false) { toggle(item) }

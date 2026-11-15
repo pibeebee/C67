@@ -91,11 +91,23 @@ struct ScheduledPlanningStopDTO: Codable {
     let id: UUID
     let name: String
     let location: PlanningPointDTO
-    let arrival_at: Date
-    let departure_at: Date
+    let arrival_at: Date?
+    let departure_at: Date?
     let visit_seconds: Int
     let travel_seconds: Int
     let warnings: [String]
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        location = try values.decode(PlanningPointDTO.self, forKey: .location)
+        // The legacy HTTP contract still requires a timed schedule.
+        arrival_at = try values.decode(Date.self, forKey: .arrival_at)
+        departure_at = try values.decode(Date.self, forKey: .departure_at)
+        visit_seconds = try values.decode(Int.self, forKey: .visit_seconds)
+        travel_seconds = try values.decode(Int.self, forKey: .travel_seconds)
+        warnings = try values.decode([String].self, forKey: .warnings)
+    }
     init(_ value: ScheduledPlanningStop) {
         id = value.id
         name = value.name
@@ -115,12 +127,24 @@ struct PlanProposalDTO: Codable {
     let id: UUID
     let input: PlanningInputDTO
     let stops: [ScheduledPlanningStopDTO]
-    let finishes_at: Date
+    let finishes_at: Date?
     let feasible: Bool
     let explanation: String
     let warnings: [String]
     let evidence: [PlanningEvidenceDTO]
     let synthetic: Bool
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        input = try values.decode(PlanningInputDTO.self, forKey: .input)
+        stops = try values.decode([ScheduledPlanningStopDTO].self, forKey: .stops)
+        finishes_at = try values.decode(Date.self, forKey: .finishes_at)
+        feasible = try values.decode(Bool.self, forKey: .feasible)
+        explanation = try values.decode(String.self, forKey: .explanation)
+        warnings = try values.decode([String].self, forKey: .warnings)
+        evidence = try values.decode([PlanningEvidenceDTO].self, forKey: .evidence)
+        synthetic = try values.decode(Bool.self, forKey: .synthetic)
+    }
     init(_ value: PlanProposal) {
         id = value.id
         input = .init(value.input)

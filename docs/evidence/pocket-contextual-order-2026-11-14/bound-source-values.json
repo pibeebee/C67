@@ -1,0 +1,1676 @@
+{
+  "A1-no-context": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": []
+  },
+  "A2-shorter-visits": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": []
+  },
+  "A3-clear-photo": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ]
+  },
+  "A4-rainy-afternoon": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ]
+  },
+  "A5-dry-cloudy": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ]
+  },
+  "A6-photo-deprioritized": {
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ]
+  },
+  "B7-weather-unavailable": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": []
+  },
+  "B8-ambiguous-setting": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.85,
+            "cloudCover": 0.95,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 2.0
+          }
+        ]
+      }
+    ]
+  },
+  "B9-competing-light": {
+    "fixture-A": [
+      {
+        "id": "W1",
+        "placeID": "fixture-A",
+        "coordinates": {
+          "latitude": -6.25,
+          "longitude": 106.8
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "fixture-A",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:33.009665+07:00",
+        "end": "2026-11-15T05:53:44.015791+07:00",
+        "coordinates": {
+          "latitude": -6.25,
+          "longitude": 106.8
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "fixture-C": [
+      {
+        "id": "W3",
+        "placeID": "fixture-C",
+        "coordinates": {
+          "latitude": -6.22,
+          "longitude": 106.9
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "fixture-B": [
+      {
+        "id": "W2",
+        "placeID": "fixture-B",
+        "coordinates": {
+          "latitude": -6.2,
+          "longitude": 107.05
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      },
+      {
+        "id": "L2-evening",
+        "placeID": "fixture-B",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T17:19:50.730551+07:00",
+        "end": "2026-11-15T18:02:03.834571+07:00",
+        "coordinates": {
+          "latitude": -6.2,
+          "longitude": 107.05
+        },
+        "period": "evening",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ]
+  },
+  "B10-exact-repeat": {
+    "4F51B715-7095-4737-BB13-1052E0D45AF8": [
+      {
+        "id": "W1",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      },
+      {
+        "id": "L1-morning",
+        "placeID": "4F51B715-7095-4737-BB13-1052E0D45AF8",
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "start": "2026-11-15T05:11:34.864020+07:00",
+        "end": "2026-11-15T05:53:45.848025+07:00",
+        "coordinates": {
+          "latitude": -6.245659,
+          "longitude": 106.793781
+        },
+        "period": "morning",
+        "kind": "calculated_solar_opportunity",
+        "method": "Astral 3.2; PhotoPills -4 to +6 degrees; default refraction; no visibility prediction"
+      }
+    ],
+    "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065": [
+      {
+        "id": "W2",
+        "placeID": "8B247A3C-6900-4F2E-B7B8-1DAB3FC27065",
+        "coordinates": {
+          "latitude": -6.236787,
+          "longitude": 106.807696
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "EEC62C05-D6CA-437B-965D-4E38FE6C13DA": [
+      {
+        "id": "W3",
+        "placeID": "EEC62C05-D6CA-437B-965D-4E38FE6C13DA",
+        "coordinates": {
+          "latitude": -6.181447,
+          "longitude": 106.8269647
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C": [
+      {
+        "id": "W4",
+        "placeID": "5123D19F-9A2E-451E-B73D-3DBC49DCAD3C",
+        "coordinates": {
+          "latitude": -6.194465,
+          "longitude": 106.820578
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ],
+    "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8": [
+      {
+        "id": "W5",
+        "placeID": "CDBEE19A-ABE8-4B38-A173-9EAB93712FF8",
+        "coordinates": {
+          "latitude": -6.191242,
+          "longitude": 106.675692
+        },
+        "date": "2026-11-15",
+        "timeZone": "Asia/Jakarta",
+        "source": "Explicit synthetic weather fixture, NOT Apple Weather",
+        "kind": "synthetic_forecast",
+        "retrievedAt": "2026-11-14T14:49:58.158220+00:00",
+        "expiresAt": "2026-11-14T20:49:58.158220+00:00",
+        "coverage": "selected_one_hour_samples_only; unsampled hours unknown",
+        "hourlySamples": [
+          {
+            "period": "morning",
+            "start": "2026-11-15T09:00:00+07:00",
+            "end": "2026-11-15T10:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "afternoon",
+            "start": "2026-11-15T15:00:00+07:00",
+            "end": "2026-11-15T16:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          },
+          {
+            "period": "evening",
+            "start": "2026-11-15T17:00:00+07:00",
+            "end": "2026-11-15T18:00:00+07:00",
+            "precipitationChance": 0.1,
+            "cloudCover": 0.15,
+            "precipitationType": "rain",
+            "precipitationAmountMM": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}

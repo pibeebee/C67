@@ -1,0 +1,64 @@
+{
+  "openMeteoHTTPRequests": 1,
+  "forecastHTTPStatus": "200",
+  "forecastLocations": 5,
+  "modelRequests": 2,
+  "modelCompleted": 1,
+  "structurePassed": 1,
+  "reportedTokensForCompleted": 18202,
+  "failedCallTokenUsage": "unknown",
+  "checks": [
+    "C11-photo-priority: payload, normalization and output replay match",
+    "C12-reading-food: payload, normalization and output replay match"
+  ],
+  "cases": [
+    {
+      "experimentCaseID": "C11-photo-priority",
+      "httpStatus": "000",
+      "curlExit": 28,
+      "elapsedSeconds": 82.74,
+      "transportError": "Provider call failed; no retry or substitute.",
+      "provider": null,
+      "validation": {
+        "structurePassed": false,
+        "errors": [
+          "No complete JSON object"
+        ],
+        "reviewFlags": []
+      },
+      "reportedTokens": null
+    },
+    {
+      "experimentCaseID": "C12-reading-food",
+      "httpStatus": "200",
+      "curlExit": 0,
+      "elapsedSeconds": 133.409,
+      "transportError": null,
+      "provider": {
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "max",
+          "context": "all_turns",
+          "summary": null,
+          "mode": "standard"
+        },
+        "providerProtocol": "responses",
+        "completionStatus": "completed"
+      },
+      "validation": {
+        "structurePassed": true,
+        "errors": [],
+        "reviewFlags": []
+      },
+      "reportedTokens": 18202,
+      "orderedNames": [
+        "National Library of Indonesia",
+        "Tatemukai Signature Omakase Sushi",
+        "Taman Bendera Pusaka",
+        "Night market",
+        "Memorial Coffee Cipondoh"
+      ]
+    }
+  ],
+  "rawForecastSHA256": "6fb3f421bc70e9a8cb913740688077844ac74d0b28a90d66d110bf620e22ed2b"
+}
