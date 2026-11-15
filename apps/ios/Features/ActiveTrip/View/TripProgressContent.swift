@@ -65,7 +65,7 @@ struct TripProgressContent: View {
                     .padding(24)
                     .frame(maxWidth: 640, alignment: .leading)
                     .foregroundStyle(.white)
-                    .background(brandGradient, in: .rect(cornerRadius: 32))
+                    .background(AppColor.brand, in: .rect(cornerRadius: 32))
                     .padding(.horizontal, 16)
                 }
             }
@@ -78,8 +78,15 @@ struct TripProgressContent: View {
                             action("Back to trip", action: returnToTrip)
                         } else if let stop {
                             if arrived {
-                                Label("You’ve arrived", systemImage: "checkmark.circle.fill").font(.title.bold())
-                                Text("Stop \(number) of \(trip.plan.stops.count)").font(.subheadline)
+                                HStack(alignment: .top, spacing: 12) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title).foregroundStyle(.green)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("You’ve arrived").font(.title.bold())
+                                        Text("Stop \(number) of \(trip.plan.stops.count)")
+                                            .font(.subheadline).foregroundStyle(.secondary)
+                                    }
+                                }
                                 Text(stop.name).font(.title3.bold())
                                 if trip.plan.experiencePlan != nil {
                                     if trip.input.places.first(where: { $0.id == stop.id })?.durationOverridden == true {
@@ -90,7 +97,7 @@ struct TripProgressContent: View {
                                 } else {
                                     Text("Planned visit · \(ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: trip.input.timeZone, locale: locale))–\(ItineraryFormatting.time(stop.departureAt, zone: trip.input.timeZone, locale: locale))")
                                 }
-                                Divider().overlay(.white.opacity(0.5))
+                                Divider()
                                 if let upcoming {
                                     Text("UP NEXT").font(.caption)
                                     HStack(spacing: 12) {
@@ -120,10 +127,10 @@ struct TripProgressContent: View {
                                             Text("Stop \(number) of \(trip.plan.stops.count)").font(.caption)
                                         }
                                     }
-                                    Divider().overlay(.white.opacity(0.5))
+                                    Divider()
                                     HStack {
-                                        action("Pause", action: openDirections)
-                                        action("End walk", action: returnToTrip)
+                                        action("End trip", tint: .red, action: returnToTrip)
+                                        action("Pause trip", tint: .blue, action: openDirections)
                                     }
                                 } else {
                                     Text(trip.plan.experiencePlan == nil ? "Stop \(number) of \(trip.plan.stops.count) · planned travel estimate" : "Stop \(number) of \(trip.plan.stops.count) · suggested experience order").font(.subheadline)
@@ -137,16 +144,16 @@ struct TripProgressContent: View {
                                         Text(locationError).font(.footnote)
                                         action("Try again", action: openDirections)
                                     } else {
-                                        ProgressView("Finding directions…").tint(.white)
+                                        ProgressView("Finding directions…").tint(AppColor.brand)
                                     }
                                     Text("Arrival is detected using your current location while this screen is open.").font(.footnote)
                                 }
                             }
                         }
-                        if isDesignPreview { Text("Design preview · sample directions and estimates").font(.caption) }
+                        if isDesignPreview { Text("Design preview · sample directions and estimates").font(.caption).foregroundStyle(.secondary) }
                         else if trip.synthetic { Text("Synthetic trip · estimates are demonstration data").font(.caption) }
                         if let error { Label(error, systemImage: "exclamationmark.circle").font(.footnote) }
-                        if isBusy { ProgressView("Updating trip…").tint(.white) }
+                        if isBusy { ProgressView("Updating trip…").tint(AppColor.brand) }
                     }
                     .padding(24)
                     .frame(maxWidth: 640, alignment: .leading)
@@ -155,12 +162,14 @@ struct TripProgressContent: View {
                 .frame(height: min(geometry.size.height * (dynamicTypeSize.isAccessibilitySize ? 0.62 : arrived ? 0.55 : 0.43), 520))
                 .clipped()
                 .accessibilityIdentifier("tripProgressPanel")
-                .foregroundStyle(.white)
-                .background(brandGradient, in: .rect(cornerRadius: 32))
+                .foregroundStyle(.primary)
+                .modifier(TripProgressGlassPanel())
+                .padding(.horizontal, 8)
+                .padding(.bottom, 8)
             }
         }
         .background(AppColor.canvas)
-        .navigationTitle(trip.status == .completed ? "Completed" : arrived ? "Arrival" : "On your way")
+        .navigationTitle(arrived ? "Arrival" : "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(.hidden, for: .tabBar)
     }
@@ -169,18 +178,39 @@ struct TripProgressContent: View {
         LinearGradient(colors: [AppColor.brand, AppColor.brandGradientEnd], startPoint: .bottomLeading, endPoint: .topTrailing)
     }
 
-    private func action(_ title: String, action: @escaping () -> Void) -> some View {
+    private func action(_ title: String, tint: Color = AppColor.brand, action: @escaping () -> Void) -> some View {
         Button(action: action) { Text(title).frame(maxWidth: .infinity, minHeight: 44) }
             .buttonStyle(.borderedProminent)
-            .tint(.white).foregroundStyle(AppColor.brand)
+            .tint(tint).foregroundStyle(.white)
             .buttonBorderShape(.capsule)
             .disabled(isBusy)
+    }
+}
+
+private struct TripProgressGlassPanel: ViewModifier {
+    func body(content: Content) -> some View {
+        #if compiler(>=6.2)
+            if #available(iOS 26.0, *) {
+                content.glassEffect(.regular, in: .rect(cornerRadius: 32))
+            } else {
+                fallback(content)
+            }
+        #else
+            fallback(content)
+        #endif
+    }
+
+    private func fallback(_ content: Content) -> some View {
+        content
+            .background(.regularMaterial, in: .rect(cornerRadius: 32))
+            .overlay { RoundedRectangle(cornerRadius: 32).strokeBorder(.white.opacity(0.7)) }
     }
 }
 
 private struct TripCompletedContent: View {
     let trip: PersonalPlanningTrip
     let done: () -> Void
+    @Environment(\.locale) private var locale
 
     var body: some View {
         ScrollView {
@@ -189,6 +219,8 @@ private struct TripCompletedContent: View {
                 Text("Trip complete").font(.largeTitle.bold())
                 Text("All \(trip.completedStopIDs.count) stops visited").foregroundStyle(.secondary)
                 Text(trip.title).font(.title3.bold()).padding(.top, 12)
+                Text(ItineraryFormatting.date(trip.input.startsAt, zone: trip.input.timeZone, locale: locale))
+                    .font(.subheadline).foregroundStyle(.secondary)
                 Text("Visited stops").font(.headline).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 20)
                 VStack(spacing: 0) {
                     ForEach(trip.plan.stops.filter { trip.completedStopIDs.contains($0.id) }) { stop in
@@ -208,7 +240,7 @@ private struct TripCompletedContent: View {
             .padding(24).frame(maxWidth: 640).frame(maxWidth: .infinity)
         }
         .background(AppColor.canvas)
-        .navigationTitle("Completed")
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("tripCompletedSummary")
     }

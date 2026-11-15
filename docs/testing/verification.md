@@ -1,5 +1,13 @@
 # Starter verification
 
+## Active-trip Liquid Glass — 15 November 2026
+
+The moving/arrival panel uses native regular Liquid Glass on iOS 26+, with a regular material fallback on iOS 18–25. Mock Debug build succeeded and the moving preview was visually inspected on iPhone 18 Pro Max Simulator / iOS 27.2. The fallback and physical-device appearance were not verified.
+
+## Active-trip Hi-Fi alignment — 15 November 2026
+
+Mock iPhone 18 Pro Max / iOS 27.2 build and Hi-Fi preview UI checks completed. The moving and arrival previews were visually inspected; the route instruction and pause/end controls in the moving preview remain synthetic. Live moving-route behavior, physical-device arrival, and complete-screen visual acceptance were not verified.
+
 ## Recommendation search entry — 15 November 2026
 
 In mock mode on iPhone 18 Pro Max / iOS 27.2, a focused UI test verified that the recommendation footer omits Search for a place, My Places provides the action, and opening search preserves the selected count.
