@@ -168,7 +168,8 @@ struct ItineraryListView: View {
         let isExperience = proposal.experiencePlan != nil
         let place = proposal.input.places.first { $0.id == stop.id }
         var stopDetails = details[stop.id] ?? ItineraryStopDetails()
-        if stopDetails.category == nil { stopDetails.category = place?.categories.first }
+        let poi = place.flatMap { RecommendedPlace(place: $0).poiPresentation }
+        if stopDetails.category == nil { stopDetails.category = poi?.label }
         let distance = next.flatMap { next in
             if let meters = next.roadDistanceMeters { return formattedDistance(meters) }
             return isExperience ? nil : details[next.id]?.distance
@@ -184,7 +185,7 @@ struct ItineraryListView: View {
                                     mode: proposal.input.mode, zone: proposal.input.timeZone,
                                     details: stopDetails, isEditable: allowsEditing,
                                     weatherEvidence: proposal.evidence.filter { $0.kind == "weather" },
-                                    orderingOnly: isExperience, edit: { edit(stop.id) },
+                                    orderingOnly: isExperience, symbol: poi?.symbol, edit: { edit(stop.id) },
                                     beginReorder: reorder, moveUp: up, moveDown: down)
             .contentShape(Rectangle())
             .onDrop(of: [UTType.plainText], isTargeted: nil) { providers in

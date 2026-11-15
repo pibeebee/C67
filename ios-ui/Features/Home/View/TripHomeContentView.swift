@@ -6,6 +6,7 @@ struct TripHomeContentView: View {
     var isHistory = false
     let mode: String
     let showAccount: () -> Void
+    var planTrip: () -> Void = {}
 
     private var trips: [PersonalPlanningTrip] {
         presenter.trips.filter { ($0.status == .completed) == isHistory }
@@ -36,7 +37,7 @@ struct TripHomeContentView: View {
                                                description: Text("Your completed trips will appear here."))
                             .frame(minHeight: geometry.size.height)
                     } else {
-                        TripEmptyView()
+                        TripEmptyView(planTrip: planTrip)
                             .frame(maxWidth: .infinity, minHeight: geometry.size.height)
                     }
                 } else {

@@ -75,6 +75,12 @@ enum SplashTimeline {
     static let wordDuration = 0.5
     /// When the last element has settled.
     static let duration = 7.1
+    /// Preserve the original animation sequence while playing it faster at launch.
+    static let playbackDuration = 2.2
+
+    static func playbackTime(elapsed: TimeInterval) -> TimeInterval {
+        min(max(elapsed, 0) / playbackDuration, 1) * duration
+    }
 
     struct RelayBall: Equatable, Sendable {
         /// Center in lockup points.

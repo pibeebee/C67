@@ -26,7 +26,7 @@ struct TripHomeRootView: View {
         TabView(selection: $selectedTab) {
             Tab("Trip", systemImage: "location", value: .trip) {
                 NavigationStack(path: $tripPath) {
-                    TripHomeContentView(presenter: presenter, mode: mode, showAccount: showAccount)
+                    TripHomeContentView(presenter: presenter, mode: mode, showAccount: showAccount, planTrip: addTrip)
                         .safeAreaInset(edge: .top, spacing: 0) {
                             TripHomeHeader(locationTitle: presenter.originLabel,
                                            chooseLocation: chooseLocation, addTrip: addTrip, addSpecificPlace: addSpecificPlace,

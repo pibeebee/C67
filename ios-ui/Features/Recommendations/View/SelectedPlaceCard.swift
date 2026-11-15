@@ -12,13 +12,13 @@ struct SelectedPlaceCard: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            PlaceThumbnail(imageName: detail?.previewImage, size: 76)
+            PlaceThumbnail(imageName: nil, size: 76, systemImage: detail?.poiPresentation?.symbol ?? "mappin.and.ellipse")
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(verbatim: place.name)
                     .font(AppFont.subheadline.bold())
                     .foregroundStyle(AppColor.primaryText)
-                if let category = detail?.category {
+                if let category = detail?.poiPresentation?.label ?? detail?.category {
                     Text(verbatim: category)
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)

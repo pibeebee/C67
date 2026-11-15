@@ -30,7 +30,7 @@ struct PlacesRecommendationsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Text("Fantastic! Here’s what we \(Text("found").foregroundStyle(AppColor.accent)) for you")
+                Text("List of \(Text("Places").foregroundStyle(AppColor.accent))")
                     .font(.title.bold())
                     .accessibilityAddTraits(.isHeader)
                 HStack {
@@ -90,6 +90,11 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: .infinity)
         }
         .task { await load() }
+        .overlay {
+            if isLoading && batch.places.isEmpty {
+                RecommendationsProcessingView()
+            }
+        }
         .refreshable { await refresh() }
         .onDisappear { retryTask?.cancel(); cancel() }
         .background(AppColor.canvas.ignoresSafeArea())

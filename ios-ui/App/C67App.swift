@@ -5,7 +5,9 @@ struct C67App: App {
     var body: some Scene {
         WindowGroup {
             #if DEBUG
-                if ProcessInfo.processInfo.arguments.contains("--add-places-preview") {
+                if ProcessInfo.processInfo.arguments.contains("--completed-trip-preview") {
+                    TripProgressDesignPreview(completed: true)
+                } else if ProcessInfo.processInfo.arguments.contains("--add-places-preview") {
                     AddPlacesDesignPreview()
                 } else if ProcessInfo.processInfo.arguments.contains("--add-places-selected-preview") {
                     AddPlacesDesignPreview(addedCount: 4)

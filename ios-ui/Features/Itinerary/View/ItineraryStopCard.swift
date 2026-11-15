@@ -9,6 +9,7 @@ struct ItineraryStopCard: View {
     let weatherEvidence: [PlanningEvidence]
     let edit: () -> Void
     var showsEstimatedTimes = false
+    var symbol: String?
     var beginReorder: (() -> NSItemProvider)? = nil
     var moveUp: (() -> Void)? = nil
     var moveDown: (() -> Void)? = nil
@@ -21,7 +22,7 @@ struct ItineraryStopCard: View {
                     if let asset = details?.photoAsset {
                         Image(asset).resizable().scaledToFill()
                     } else {
-                        Image(systemName: "mappin.and.ellipse")
+                        Image(systemName: symbol ?? "mappin.and.ellipse")
                             .font(.title2)
                             .foregroundStyle(.tint)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -8,6 +8,12 @@ import UIKit
 /// and the "Ball relay" wordmark option.
 @Suite("Splash animation timeline")
 struct SplashTimelineTests {
+    @Test("Playback reaches the final frame in the shorter launch duration")
+    func shortenedPlayback() {
+        #expect(SplashTimeline.playbackTime(elapsed: 0) == 0)
+        #expect(SplashTimeline.playbackTime(elapsed: SplashTimeline.playbackDuration) == SplashTimeline.duration)
+        #expect(SplashTimeline.playbackTime(elapsed: 60) == SplashTimeline.duration)
+    }
     @Test("The route starts at the tail tip and ends on the ring's lower right")
     func routeEndpoints() {
         let start = TravelantMarkGeometry.point(at: 0)

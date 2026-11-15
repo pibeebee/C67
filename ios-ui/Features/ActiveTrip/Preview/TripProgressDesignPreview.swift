@@ -3,10 +3,11 @@
 
     struct TripProgressDesignPreview: View {
         var arrived = false
+        var completed = false
         @State private var notice = false
         var body: some View {
             NavigationStack {
-                TripProgressContent(trip: TripDesignPreviewData.trip(status: .active, arrived: arrived),
+                TripProgressContent(trip: TripDesignPreviewData.trip(status: completed ? .completed : .active, arrived: arrived),
                                     details: ItineraryPreviewData.details, isDesignPreview: true,
                                     previewInstruction: "80 m", previewDistance: "450 m",
                                     openDirections: { notice = true }, arrive: { notice = true },

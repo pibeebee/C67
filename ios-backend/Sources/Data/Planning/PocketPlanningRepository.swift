@@ -636,7 +636,15 @@ public actor PocketPlanningRepository: PlanningRepository {
             guard let zone = TimeZone(identifier: proposal.input.timeZone) else { throw PlanningError.invalidInput }
             var calendar = Calendar(identifier: .gregorian)
             calendar.timeZone = zone
-            guard calendar.isDate(departure, inSameDayAs: proposal.input.startsAt) else { throw PlanningError.invalidInput }
+            if !calendar.isDate(departure, inSameDayAs: proposal.input.startsAt) {
+                let oldDay = calendar.startOfDay(for: proposal.input.startsAt)
+                let newDay = calendar.startOfDay(for: departure)
+                guard let days = calendar.dateComponents([.day], from: oldDay, to: newDay).day,
+                      let start = calendar.date(byAdding: .day, value: days, to: proposal.input.startsAt),
+                      let finish = calendar.date(byAdding: .day, value: days, to: proposal.input.finishBy) else { throw PlanningError.invalidInput }
+                proposal.input.startsAt = start
+                proposal.input.finishBy = finish
+            }
             proposal.departureAt = departure
         }
         if let orderedIDs {

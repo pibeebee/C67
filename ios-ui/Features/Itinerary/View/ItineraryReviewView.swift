@@ -199,12 +199,14 @@ private struct ExperienceDepartureEditor: View {
     var body: some View {
         NavigationStack {
             Form {
-                DatePicker("Departure time", selection: $departure, displayedComponents: .hourAndMinute)
-                Text("This time updates your estimated itinerary for the suggested day.")
+                DatePicker("Date", selection: $departure, in: Calendar.current.startOfDay(for: .now)..., displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                DatePicker("Time", selection: $departure, displayedComponents: .hourAndMinute)
+                Text("Changing departure recalculates driving estimates. Weather and daylight information may not cover the new date.")
                     .font(.footnote).foregroundStyle(.secondary)
             }
             .environment(\.timeZone, TimeZone(identifier: timeZone) ?? .current)
-            .navigationTitle("Departure time")
+            .navigationTitle("Edit departure")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }

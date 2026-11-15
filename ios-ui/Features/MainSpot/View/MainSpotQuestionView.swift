@@ -46,13 +46,13 @@ struct MainSpotQuestionView: View {
                         ForEach(places) { item in
                             CheckmarkRow(
                                 title: Text(verbatim: item.place.name),
-                                subtitle: item.category.map { Text(verbatim: $0) },
+                                subtitle: (item.poiPresentation?.label ?? item.category).map { Text(verbatim: $0) },
                                 titleFont: AppFont.headline,
                                 isSelected: selection == .place(item.id)
                             ) {
                                 select(.place(item.id))
                             } leading: {
-                                PlaceThumbnail(imageName: item.previewImage, size: 48)
+                                PlaceThumbnail(imageName: nil, size: 48, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
                             }
                             .padding(.vertical, 5)
                             .accessibilityIdentifier("mainSpot-\(item.id)")

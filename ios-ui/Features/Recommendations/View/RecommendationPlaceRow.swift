@@ -10,26 +10,13 @@ struct RecommendationPlaceRow: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 14) {
-                Group {
-                    if let image = item.previewImage {
-                        Image(image).resizable().scaledToFill()
-                    } else {
-                        Image(systemName: "mappin.and.ellipse")
-                            .font(.title2)
-                            .foregroundStyle(AppColor.accent)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(AppColor.tertiaryFill)
-                    }
-                }
-                .frame(width: 76, height: 76)
-                .clipShape(.rect(cornerRadius: 12))
-                .accessibilityHidden(true)
+                PlaceThumbnail(imageName: nil, size: 76, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.place.name)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.primary)
-                    Text(item.category ?? String(localized: "Suggested place"))
+                    Text(item.poiPresentation?.label ?? item.category ?? String(localized: "Suggested place"))
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                     if let address = item.address {

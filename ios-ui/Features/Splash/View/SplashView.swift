@@ -16,7 +16,7 @@ struct SplashView: View {
         TimelineView(.animation(paused: reduceMotion)) { context in
             SplashFrameView(frame: reduceMotion
                 ? SplashTimeline.finalFrame
-                : SplashTimeline.frame(at: context.date.timeIntervalSince(startDate)))
+                : SplashTimeline.frame(at: SplashTimeline.playbackTime(elapsed: context.date.timeIntervalSince(startDate))))
         }
     }
 }

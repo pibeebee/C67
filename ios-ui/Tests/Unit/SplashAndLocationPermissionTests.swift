@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreLocation
 import Testing
 import UIKit
 @testable import C67
@@ -6,6 +7,21 @@ import UIKit
 @MainActor
 @Suite("Splash and location permission match Sketch HI-FI")
 struct SplashAndLocationPermissionTests {
+    @Test("Arrival requires a recent and sufficiently accurate nearby fix")
+    func arrivalFixValidation() {
+        let now = Date()
+        let coordinate = CLLocationCoordinate2D(latitude: -6.2, longitude: 106.8)
+        let target = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        func fix(accuracy: Double, age: TimeInterval) -> CLLocation {
+            CLLocation(coordinate: coordinate, altitude: 0, horizontalAccuracy: accuracy,
+                       verticalAccuracy: 10, timestamp: now.addingTimeInterval(-age))
+        }
+        #expect(TripNavigation.isArrivalSample(fix(accuracy: 10, age: 1), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 100, age: 1), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 10, age: 30), target: target, now: now))
+        let far = CLLocation(latitude: -6.21, longitude: 106.8)
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 10, age: 1), target: far, now: now))
+    }
     @Test("Splash gradient colors are bundled", arguments: [
         "SplashGradientTop", "SplashGradientMiddle", "SplashGradientBottom", "SplashTagline", "SplashShadow",
     ])

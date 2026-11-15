@@ -1,10 +1,27 @@
 import Foundation
 import Testing
 import UIKit
+import MapKit
+import C67Domain
 @testable import C67
 
 @Suite("Preference options match Sketch HI-FI")
 struct PreferenceOptionCatalogTests {
+    @Test("MapKit POI categories provide available symbols and unknown categories remain unknown")
+    func poiCategorySymbols() {
+        let categories: [MKPointOfInterestCategory] = [.restaurant, .cafe, .bakery, .museum, .library, .park, .beach,
+                                                       .movieTheater, .theater, .amusementPark, .aquarium, .zoo, .store, .nightlife]
+        for category in categories {
+            var place = PlanningPlace(id: UUID(), name: "Test", location: .init(latitude: -6.2, longitude: 106.8), visitSeconds: 1800)
+            place.categories = [category.rawValue]
+            let result = RecommendedPlace(place: place).poiPresentation
+            #expect(result != nil)
+            if let result { #expect(UIImage(systemName: result.symbol) != nil, "Missing symbol: \(result.symbol)") }
+        }
+        var unknown = PlanningPlace(id: UUID(), name: "Test", location: .init(latitude: -6.2, longitude: 106.8), visitSeconds: 1800)
+        unknown.categories = ["unknown"]
+        #expect(RecommendedPlace(place: unknown).poiPresentation == nil)
+    }
     @Test("Q1 interests")
     func interests() {
         #expect(TripInterest.allCases.map(\.titleText) == [

@@ -4,10 +4,15 @@ import C67Domain
 
 struct ItineraryMapView: View {
     let proposal: PlanProposal
+    @State private var routes: [MKRoute] = []
+    @State private var routeUnavailable = false
 
     var body: some View {
         VStack(spacing: 0) {
             Map(interactionModes: [.pan, .zoom]) {
+                ForEach(Array(routes.enumerated()), id: \.offset) { _, route in
+                    MapPolyline(route.polyline).stroke(Color.blue, lineWidth: 4)
+                }
                 ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
                     Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
                         Group {
@@ -24,6 +29,10 @@ struct ItineraryMapView: View {
             }
             .frame(height: 200)
             .accessibilityLabel("Itinerary places on the map")
+            if routeUnavailable {
+                Text("Some driving routes could not be loaded.")
+                    .font(.footnote).foregroundStyle(.secondary).padding(8)
+            }
             ForEach(proposal.evidence.filter { $0.kind == "weather" && $0.attributionLogoURL != nil }) { evidence in
                 if let url = evidence.url, let logo = evidence.attributionLogoURL, url.scheme == "https", logo.host == "weatherkit.apple.com" {
                     Link(destination: url) {
@@ -78,5 +87,26 @@ struct ItineraryMapView: View {
         }
         .background(Color("ItinerarySurface"))
         .clipShape(.rect(cornerRadius: 14))
+        .task(id: proposal.input) { await loadRoutes() }
+    }
+
+    private func loadRoutes() async {
+        routes = []; routeUnavailable = false
+        guard !proposal.synthetic else { return }
+        var origin = proposal.input.origin
+        for stop in proposal.stops {
+            guard !Task.isCancelled else { return }
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: origin.latitude, longitude: origin.longitude)))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)))
+            request.transportType = .automobile
+            let directions = MKDirections(request: request)
+            do {
+                let result = try await withTaskCancellationHandler { try await directions.calculate() } onCancel: { directions.cancel() }
+                guard !Task.isCancelled else { return }
+                if let route = result.routes.first { routes.append(route) } else { routeUnavailable = true }
+            } catch { if !Task.isCancelled { routeUnavailable = true } }
+            origin = stop.location
+        }
     }
 }

@@ -1,11 +1,22 @@
 import XCTest
 
 final class TripHomeUITests: XCTestCase {
+    @MainActor func testCompletedTripShowsVisitedStops() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--completed-trip-preview"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Trip complete"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["All 3 stops visited"].exists)
+        XCTAssertTrue(app.staticTexts["Visited stops"].exists)
+        XCTAssertTrue(app.buttons["Done"].exists)
+        capture(app, name: "Trip complete summary")
+    }
     @MainActor func testEmptyHomeNavigationAndPlanningEntry() {
         let app = XCUIApplication()
         app.launchArguments += ["--skip-splash"]
         app.launch()
         XCTAssertTrue(app.staticTexts["homeEmptyState"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["homePlanTrip"].isHittable)
         XCTAssertGreaterThanOrEqual(app.buttons["homeAddTrip"].frame.width, 44)
         XCTAssertGreaterThanOrEqual(app.buttons["homeAddTrip"].frame.height, 44)
         XCTAssertLessThanOrEqual(app.buttons["homeAddTrip"].frame.width, 48)
@@ -17,8 +28,7 @@ final class TripHomeUITests: XCTestCase {
         XCTAssertTrue(app.searchFields.firstMatch.exists)
         app.buttons["Cancel"].tap()
 
-        openTripMenu(app)
-        app.buttons["Get Recommendations"].tap()
+        app.buttons["homePlanTrip"].tap()
         XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
         app.buttons["Cancel"].tap()
         XCTAssertTrue(app.staticTexts["homeEmptyState"].waitForExistence(timeout: 5))

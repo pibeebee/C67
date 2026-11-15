@@ -4,6 +4,7 @@ import SwiftUI
 struct PlaceThumbnail: View {
     let imageName: String?
     var size: CGFloat = 48
+    var systemImage: String = "mappin.and.ellipse"
 
     var body: some View {
         Group {
@@ -12,7 +13,7 @@ struct PlaceThumbnail: View {
                     .resizable()
                     .scaledToFill()
             } else {
-                Image(systemName: "mappin.and.ellipse")
+                Image(systemName: systemImage)
                     .font(.title3)
                     .foregroundStyle(AppColor.accent)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

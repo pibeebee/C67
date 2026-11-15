@@ -24,7 +24,7 @@ struct ItineraryDepartureCard: View {
                     Spacer(minLength: 8)
                     if editDeparture != nil || editEndpoints != nil {
                         Menu {
-                            if let editDeparture { Button("Departure time", action: editDeparture) }
+                            if let editDeparture { Button("Departure date and time", action: editDeparture) }
                             if let editEndpoints {
                                 Button("Starting point") { editEndpoints(.startingPoint) }
                                 Button("End point") { editEndpoints(.endPoint) }

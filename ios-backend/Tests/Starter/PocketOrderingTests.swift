@@ -149,11 +149,15 @@ private func finished(_ repository: PocketPlanningRepository, id: UUID) async th
     #expect(stops.last?.visitSeconds == 1800)
     #expect(original.stops.allSatisfy { $0.arrivalAt == nil })
 
-    let edited = departure.addingTimeInterval(3600)
+    let edited = departure.addingTimeInterval(25 * 3600)
     let changed = try await repository.setExperienceDeparture(jobID: started.id, departure: edited)
     #expect(changed.result?.proposal?.experiencePlan == original.experiencePlan)
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = try #require(TimeZone(identifier: changed.input.timeZone))
+    #expect(calendar.isDate(changed.input.startsAt, inSameDayAs: edited))
     let saved = try await repository.applyProposal(jobID: started.id, expectedRevision: nil, requestID: UUID())
     #expect(saved.plan.estimatedExperienceDeparture == edited)
+    #expect(saved.input.startsAt == changed.input.startsAt)
     #expect(saved.plan.stopsWithExperienceEstimates.first?.arrivalAt == edited.addingTimeInterval(360))
     #expect(await counter.ids == [command.requestID])
 }

@@ -3,8 +3,8 @@ import SwiftUI
 struct RecommendationsProcessingView: View {
     var body: some View {
         ProcessingStatusView(
-            title: Text("Hang tight!"),
-            message: Text("Curating the \(QuestionTitle.highlight("best spots")) for your trip…"),
+            title: Text("We’ve got you."),
+            message: Text("Searching for places for your \(QuestionTitle.highlight("trip"))…"),
             accessibilityLabel: Text("Finding recommendations")
         )
         .accessibilityIdentifier("recommendationsProcessing")

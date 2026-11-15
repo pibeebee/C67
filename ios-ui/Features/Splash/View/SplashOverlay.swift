@@ -18,8 +18,9 @@ struct SplashOverlay: ViewModifier {
             }
             .task {
                 guard isVisible else { return }
-                try? await Task.sleep(for: .seconds(reduceMotion ? 1 : SplashTimeline.duration))
-                withAnimation(reduceMotion ? nil : .easeOut(duration: 0.35)) {
+                do { try await Task.sleep(for: .seconds(reduceMotion ? 0.7 : SplashTimeline.playbackDuration)) }
+                catch { return }
+                withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) {
                     isVisible = false
                 }
             }

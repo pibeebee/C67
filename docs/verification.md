@@ -380,3 +380,21 @@ Pocket Beta v3 runs in the existing homelab Compose project behind `https://pock
 ## Pocket driving ETAs and local reorder — 15 November 2026
 
 The device now quotes actual automobile ETA and road distance from MapKit. Manual reorder preserves the original Luna response and reroutes without a new ordering request. 67 package tests and two focused synthetic Simulator UI cases passed. The production MapKit adapter separately returned real Jakarta quotes before and after reorder on macOS with a synthetic order fixture. See [checks and evidence](tasks/pocket-mapkit-driving-eta.md).
+
+## Home and recommendation Hi-Fi refresh — 15 November 2026
+
+The empty Home screen now presents a plan action wired to the existing recommendation flow, and the recommendations list heading follows the supplied Hi-Fi. The map symbol is a system placeholder for the reference illustration. Preference selection limits, departure date editing and active navigation behavior were not changed.
+
+On iPhone 18 Pro Max Simulator (iOS 27.2), eight mock UI tests for Home and recommendations passed, including large text, selection removal and saving. A final targeted Home test passed after correcting the button label color. Results: `/tmp/c67-hifi-update-tests.xcresult` and `/tmp/c67-hifi-home-final.xcresult`. SwiftFormat and `git diff --check` passed. This does not establish physical-device or live-provider behavior.
+
+## Preference and POI presentation — 15 November 2026
+
+Preference search and quick picks use their parent group symbols. MapKit POI categories are mapped to display labels and SF Symbols in recommendations, selected places and main spot; unknown categories use a generic pin. On iPhone 18 Pro Max Simulator (iOS 27.2), six synthetic recommendation UI tests passed, including search, selection and removal. After a symbol availability test found an unsupported symbol, it was replaced; eight preference/catalog tests and two focused UI tests passed on rerun. Results: `/tmp/c67-hifi-poi-20261115.xcresult` and `/tmp/c67-hifi-poi-verified.xcresult`; the failed diagnostic remains in `/tmp/c67-hifi-poi-final-20261115.xcresult`. Live MapKit discovery and physical-device display were not checked in this pass.
+
+## Itinerary departure date — 15 November 2026
+
+Experience itineraries support selecting a departure date and time and recalculate driving estimates while preserving the Luna order. POI icons and labels use the same MapKit category mapping as recommendations. The 67 Swift package tests passed, including date persistence and no additional order request; the focused synthetic iPhone 18 Pro Max Simulator UI test passed for opening/cancelling the editor, reordering and saving. The first UI attempt failed because the test matched two Cancel buttons, and the corrected rerun passed. UI interaction with a different date, live MapKit after a date change and physical-device validation remain untested. Result: `/tmp/c67-itinerary-date-final-20261115.xcresult`.
+
+## Foreground route and completion UI — 15 November 2026
+
+Itinerary maps request MapKit road geometry, and active trips show a MapKit route and route steps in-app. Foreground GPS arrival requires two distinct recent fixes with accuracy at most 50 m and distance plus uncertainty at most 100 m. Completion shows recorded stop names without invented visit timestamps. Pocket Simulator build passed, as did seven location/splash unit tests and a synthetic completion-preview UI test (`/tmp/c67-route-validation-20261115.xcresult`). Real route rendering, GPS arrival, denied/reduced permission, rerouting, movement and end-to-end completion have not been verified on device or with simulated movement. Existing UI tests that tap the former manual arrival button require updating for the GPS flow. This is not verified live turn-by-turn navigation.

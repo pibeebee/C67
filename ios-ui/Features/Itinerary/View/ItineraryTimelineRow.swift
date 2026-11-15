@@ -14,6 +14,7 @@ struct ItineraryTimelineRow: View {
     var isEditable = true
     let weatherEvidence: [PlanningEvidence]
     var orderingOnly = false
+    var symbol: String?
     let edit: () -> Void
     var beginReorder: (() -> NSItemProvider)? = nil
     var moveUp: (() -> Void)? = nil
@@ -43,7 +44,7 @@ struct ItineraryTimelineRow: View {
             }
             VStack(alignment: .leading, spacing: 0) {
                 ItineraryStopCard(stop: stop, zone: zone, details: details, isEditable: isEditable, weatherEvidence: weatherEvidence, edit: edit,
-                                  showsEstimatedTimes: orderingOnly,
+                                  showsEstimatedTimes: orderingOnly, symbol: symbol,
                                   beginReorder: beginReorder, moveUp: moveUp, moveDown: moveDown)
                 if let nextStop {
                     Label {

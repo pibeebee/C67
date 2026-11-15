@@ -1,6 +1,26 @@
 import XCTest
 
 final class RecommendationsUITests: XCTestCase {
+    @MainActor func testPreferenceSearchAndSelectionRemainAvailable() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash"]
+        app.launch()
+        XCTAssertTrue(app.buttons["homePlanTrip"].waitForExistence(timeout: 10))
+        app.buttons["homePlanTrip"].tap()
+        let search = app.textFields["preferenceSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("museum")
+        let option = app.buttons["pocketLabel-museum"]
+        XCTAssertTrue(option.waitForExistence(timeout: 5))
+        option.tap()
+        XCTAssertTrue(app.staticTexts["1 selected"].exists)
+        app.buttons["Clear search"].tap()
+        XCTAssertTrue(app.buttons["selectedPreference-museum"].waitForExistence(timeout: 5))
+        app.buttons["selectedPreference-museum"].tap()
+        XCTAssertTrue(app.staticTexts["0 selected"].exists)
+    }
+
     @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {
         let app = XCUIApplication()
         app.launchArguments = ["--recommendations-added-preview"]
