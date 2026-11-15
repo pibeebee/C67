@@ -1,6 +1,21 @@
 import XCTest
 
 final class HiFiPreviewUITests: XCTestCase {
+    @MainActor func testNavigationAndArrivalControlsAreVisible() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--active-trip-preview", "-AppleInterfaceStyle", "Light"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["450 m"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["End trip"].isHittable)
+        XCTAssertTrue(app.buttons["Pause trip"].isHittable)
+        app.terminate()
+
+        app.launchArguments = ["--arrival-preview", "-AppleInterfaceStyle", "Light"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["You’ve arrived"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["completeTripVisit"].isHittable)
+    }
+
     @MainActor func testNewSketchStatesRender() {
         let arguments = ["--add-places-preview", "--add-places-selected-preview", "--places-sheet-preview",
                          "--home-added-preview", "--saved-trip-preview", "--active-trip-preview", "--arrival-preview", "--save-name-preview"]

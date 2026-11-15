@@ -97,6 +97,48 @@ import C67Domain
         #expect(model.planning.places.count == model.selected.count)
     }
 
+    @Test func newTripClearsPreviousSelectionAndPreservesStartingPoint() throws {
+        let previous = try make()
+        let planning = previous.planning
+        let origin = planning.origin
+        let originLabel = planning.originLabel
+        let oldIDs = Set(previous.selected.map(\.id))
+        previous.mainSpot = .place(try #require(previous.selected.first).id)
+        previous.stay = .ninetyMinutes
+        planning.preferences = "Previous preferences"
+        planning.enginePreferences?.mainSpotID = previous.mainSpot.placeID
+
+        planning.startNewTrip()
+        let next = TripCreationAssembly.makePresenter(planning: planning, mode: "Mock • memory only", specificPlace: false)
+        #expect(next.selected.isEmpty)
+        #expect(planning.places.isEmpty)
+        #expect(planning.preferences.isEmpty)
+        #expect(planning.enginePreferences?.mainSpotID == nil)
+        #expect(planning.origin == origin)
+        #expect(planning.originLabel == originLabel)
+        #expect(next.mainSpot == .automatic)
+        #expect(next.stay == nil)
+
+        let place = RecommendedPlace(place: .init(id: UUID(), name: "New place",
+                                                  location: .init(latitude: -6.2, longitude: 106.8), visitSeconds: 1800))
+        next.toggle(place)
+        next.finishChoosingPlaces()
+        #expect(next.route == .mainSpot)
+        #expect(next.selected.map(\.id) == [place.id])
+        #expect(planning.draftInput?.places.map(\.id) == [place.id])
+        #expect(oldIDs.isDisjoint(with: Set(planning.places.map(\.id))))
+    }
+
+    @Test func loadingDuringNewTripDoesNotRestoreThePreviousPendingJob() async throws {
+        let model = try make()
+        await model.planning.request()
+        #expect(model.planning.job != nil)
+        model.planning.startNewTrip()
+        await model.planning.load()
+        #expect(model.planning.job == nil)
+        #expect(model.planning.places.isEmpty)
+    }
+
     @Test func mainSpotDurationDoesNotPinFirstStop() async throws {
         let model = try make()
         let chosen = try #require(model.selected.last)

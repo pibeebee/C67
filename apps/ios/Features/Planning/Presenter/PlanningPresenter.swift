@@ -31,6 +31,7 @@ final class PlanningPresenter {
     private var tripToStartID: UUID?
     private let interactor: PlanningInteractor
     private var generation = 0
+    private var ignoresPreviousPendingJob = false
     private(set) var sessionGeneration = 0
     private var sessionID: UUID?
     private var pendingRequest: PlanningRequest?
@@ -77,10 +78,23 @@ final class PlanningPresenter {
         if let job, job.tripID == nil, job.input == draftInput || (job.command != nil && job.command?.input == draftInput) { return }
         generation += 1; job = nil; pendingRequest = nil; pendingApply = nil; error = nil
     }
+    /// Start a separate creation session without changing saved trips or the starting point.
+    func startNewTrip() {
+        guard !isBusy else { return }
+        generation += 1
+        ignoresPreviousPendingJob = true
+        job = nil; pendingRequest = nil; pendingApply = nil; needsFreshProposal = false; error = nil
+        title = "My trip"; places = []; preferences = ""; preservesPlaceOrder = false
+        enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
+        startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
+        timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
+        if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
+        mode = .walking
+    }
     func sessionDidChange(_ value: AuthenticationSnapshot) {
         let blocked = value.account == nil || value.requiresPasswordReset
         guard sessionID != value.sessionID || privateAccessBlocked != blocked else { return }
-        needsFreshProposal = false
+        needsFreshProposal = false; ignoresPreviousPendingJob = false
         sessionGeneration += 1
         privateAccessBlocked = blocked
         sessionID = value.sessionID; generation += 1; isBusy = false; progress = nil
@@ -136,7 +150,7 @@ final class PlanningPresenter {
                 }
                 return
             }
-            if job == nil, let resumed = try await interactor.resume() {
+            if job == nil, !ignoresPreviousPendingJob, let resumed = try await interactor.resume() {
                 guard ticket == generation, !Task.isCancelled else { return }
                 if let tripID = resumed.tripID {
                     guard saved.first(where: { $0.id == tripID })?.revision == resumed.baseRevision else { return }

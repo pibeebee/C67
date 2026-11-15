@@ -14,6 +14,7 @@ struct TripProgressContent: View {
     var route: MKRoute?
     var locationError: String?
     let openDirections: () -> Void
+    var openMaps: () -> Void = {}
     let arrive: () -> Void
     let completeVisit: () -> Void
     let returnToTrip: () -> Void
@@ -41,12 +42,20 @@ struct TripProgressContent: View {
             Map {
                 UserAnnotation()
                 if let route { MapPolyline(route.polyline).stroke(.blue, lineWidth: 5) }
-                ForEach(trip.plan.stops) { item in
-                    Annotation(item.name, coordinate: .init(latitude: item.location.latitude, longitude: item.location.longitude)) {
-                        Image(systemName: item.id == stop?.id && arrived ? "checkmark.circle.fill" : "mappin.circle.fill")
-                            .font(item.id == stop?.id ? .largeTitle : .title2)
-                            .foregroundStyle(item.id == stop?.id && arrived ? .green : AppColor.brand)
-                            .padding(6).background(.background, in: .circle)
+                ForEach(trip.plan.stops.filter { $0.id == stop?.id }) { item in
+                    Annotation("", coordinate: .init(latitude: item.location.latitude, longitude: item.location.longitude)) {
+                        VStack(spacing: 12) {
+                            if arrived {
+                                Text(item.name).font(.caption.bold()).lineLimit(1)
+                                    .padding(.horizontal, 24).padding(.vertical, 8)
+                                    .background(.background, in: .capsule)
+                            }
+                            Image(systemName: arrived ? "checkmark.circle.fill" : "mappin.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundStyle(arrived ? .green : AppColor.brand)
+                                .padding(6).background(.background, in: .circle)
+                        }
+                        .accessibilityLabel(item.name)
                     }
                 }
             }
@@ -62,7 +71,8 @@ struct TripProgressContent: View {
                         }
                         Spacer(minLength: 0)
                     }
-                    .padding(24)
+                    .padding(.horizontal, 24)
+                    .frame(minHeight: 154)
                     .frame(maxWidth: 640, alignment: .leading)
                     .foregroundStyle(.white)
                     .background(AppColor.brand, in: .rect(cornerRadius: 32))
@@ -71,7 +81,7 @@ struct TripProgressContent: View {
             }
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: arrived ? 16 : 8) {
                         if trip.status == .completed {
                             Label("Trip completed", systemImage: "checkmark.circle.fill").font(.title.bold())
                             Text("All \(trip.plan.stops.count) visits are complete.")
@@ -87,7 +97,7 @@ struct TripProgressContent: View {
                                             .font(.subheadline).foregroundStyle(.secondary)
                                     }
                                 }
-                                Text(stop.name).font(.title3.bold())
+                                Text(stop.name).font(.system(size: 20, weight: .semibold))
                                 if trip.plan.experiencePlan != nil {
                                     if trip.input.places.first(where: { $0.id == stop.id })?.durationOverridden == true {
                                         Text("Your visit length · \(stop.visitSeconds / 60) min")
@@ -109,44 +119,42 @@ struct TripProgressContent: View {
                                         }
                                     }
                                 }
-                                action(upcoming == nil ? "Finish last visit" : "Continue to next stop", action: completeVisit)
+                                action(upcoming == nil ? "Finish last visit" : (isDesignPreview ? "Walk to next stop" : "Continue to next stop"), action: completeVisit)
                                     .accessibilityIdentifier("completeTripVisit")
                             } else {
-                                HStack(alignment: .firstTextBaseline) {
-                                    if let previewDistance { Text(previewDistance).font(.largeTitle.bold()) }
-                                    else { Text(stop.name).font(.title2.bold()) }
+                                HStack(alignment: .top) {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(previewDistance ?? route.map { Self.distance($0.distance) } ?? "—")
+                                            .font(.system(size: 34, weight: .bold))
+                                        Text("Remaining").font(.subheadline)
+                                    }
                                     Spacer()
-                                    if isDesignPreview { Text("6 min").font(.title.bold()) }
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        HStack(spacing: 8) {
+                                            Image(systemName: "car.fill").font(.title3)
+                                            Text(isDesignPreview ? "6 min" : route.map { "\(Int(ceil($0.expectedTravelTime / 60))) min" } ?? "—")
+                                                .font(.system(size: 34, weight: .bold))
+                                        }
+                                        Text("Driving · estimate").font(.subheadline)
+                                    }
                                 }
-                                if isDesignPreview {
-                                    HStack { Text("Remaining"); Spacer(); Text("Walking") }.font(.subheadline)
-                                    HStack(spacing: 12) {
-                                        PlaceThumbnail(imageName: details[stop.id]?.photoAsset, size: 48)
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(stop.name).font(.headline)
-                                            Text("Stop \(number) of \(trip.plan.stops.count)").font(.caption)
-                                        }
+                                HStack(spacing: 12) {
+                                    PlaceThumbnail(imageName: details[stop.id]?.photoAsset, size: 48)
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(stop.name).font(.headline)
+                                        Text("Stop \(number) of \(trip.plan.stops.count)").font(.caption)
                                     }
-                                    Divider()
-                                    HStack {
-                                        action("End trip", tint: .red, action: returnToTrip)
-                                        action("Pause trip", tint: .blue, action: openDirections)
-                                    }
-                                } else {
-                                    Text(trip.plan.experiencePlan == nil ? "Stop \(number) of \(trip.plan.stops.count) · planned travel estimate" : "Stop \(number) of \(trip.plan.stops.count) · suggested experience order").font(.subheadline)
-                                    if let route {
-                                        Text("Driving route · \(Int(ceil(route.expectedTravelTime / 60))) min estimated")
-                                        Text("Route steps").font(.headline)
-                                        ForEach(Array(route.steps.filter { !$0.instructions.isEmpty }.enumerated()), id: \.offset) { _, step in
-                                            Text(step.instructions).font(.footnote)
-                                        }
-                                    } else if let locationError {
-                                        Text(locationError).font(.footnote)
-                                        action("Try again", action: openDirections)
-                                    } else {
-                                        ProgressView("Finding directions…").tint(AppColor.brand)
-                                    }
-                                    Text("Arrival is detected using your current location while this screen is open.").font(.footnote)
+                                }
+                                Divider()
+                                if let locationError, !isDesignPreview {
+                                    Text(locationError).font(.footnote)
+                                    action("Try again", action: openDirections)
+                                } else if route == nil && !isDesignPreview {
+                                    ProgressView("Finding directions…").tint(AppColor.brand)
+                                }
+                                HStack {
+                                    action(isDesignPreview ? "End trip" : "Back to trip", tint: .red, action: returnToTrip)
+                                    action(isDesignPreview ? "Pause trip" : "Open in Maps", tint: .blue, action: isDesignPreview ? openDirections : openMaps)
                                 }
                             }
                         }
@@ -155,11 +163,11 @@ struct TripProgressContent: View {
                         if let error { Label(error, systemImage: "exclamationmark.circle").font(.footnote) }
                         if isBusy { ProgressView("Updating trip…").tint(AppColor.brand) }
                     }
-                    .padding(24)
+                    .padding(arrived ? 30 : 21)
                     .frame(maxWidth: 640, alignment: .leading)
                     .frame(maxWidth: .infinity)
                 }
-                .frame(height: min(geometry.size.height * (dynamicTypeSize.isAccessibilitySize ? 0.62 : arrived ? 0.55 : 0.43), 520))
+                .frame(height: min(geometry.size.height * (dynamicTypeSize.isAccessibilitySize ? 0.62 : arrived ? 0.49 : 0.30), 520))
                 .clipped()
                 .accessibilityIdentifier("tripProgressPanel")
                 .foregroundStyle(.primary)
@@ -171,7 +179,14 @@ struct TripProgressContent: View {
         .background(AppColor.canvas)
         .navigationTitle(arrived ? "Arrival" : "")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(arrived ? .visible : .hidden, for: .navigationBar)
+        .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
+    }
+
+    private static func distance(_ meters: CLLocationDistance) -> String {
+        if meters < 1000 { return "\(Int((meters / 10).rounded() * 10)) m" }
+        return Measurement(value: meters / 1000, unit: UnitLength.kilometers).formatted(.measurement(width: .abbreviated, numberFormatStyle: .number.precision(.fractionLength(1))))
     }
 
     private var brandGradient: LinearGradient {

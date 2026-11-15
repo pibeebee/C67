@@ -13,6 +13,8 @@ struct TripProgressView: View {
                                 route: navigation.route, locationError: navigation.error,
                                 openDirections: {
                                     if let next = trip.nextStop { navigation.start(to: next.location) }
+                                }, openMaps: {
+                                    if let next = trip.nextStop { PlanningDirections.open(next, mode: .automobile) }
                                 }, arrive: { send(.arrive, trip: trip) },
                                 completeVisit: { send(.completeStop, trip: trip) }, returnToTrip: { dismiss() })
                 .refreshable { await presenter.load() }

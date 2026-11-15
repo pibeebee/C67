@@ -134,10 +134,9 @@ struct TripHomeRootView: View {
     private func addSpecificPlace() { beginCreation(specificPlace: true) }
 
     private func beginCreation(specificPlace: Bool) {
-        let root: TripCreationRoute = specificPlace ? .places : .question(.interests)
-        if creation?.root != root {
-            creation = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: specificPlace)
-        }
+        guard !presenter.isBusy else { return }
+        presenter.startNewTrip()
+        creation = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: specificPlace)
         showsCreation = true
     }
     private func resumeCreation(_ job: PlanningJob) {

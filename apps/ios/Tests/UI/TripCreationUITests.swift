@@ -1,6 +1,32 @@
 import XCTest
 
 final class TripCreationUITests: XCTestCase {
+    @MainActor func testNewTripDoesNotReusePreviousPlaceSelection() {
+        let app = launch()
+        openTripMenu(app)
+        app.buttons["Add Specific Place"].tap()
+        let search = app.textFields["addPlacesSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("coffee\n")
+        let oldPlace = app.buttons["Add Synthetic coffee shop"]
+        XCTAssertTrue(oldPlace.waitForExistence(timeout: 8))
+        oldPlace.tap()
+        app.buttons["tripCreationCancel"].tap()
+
+        openTripMenu(app)
+        app.buttons["Add Specific Place"].tap()
+        XCTAssertTrue(app.staticTexts["0 places selected"].waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("museum\n")
+        let newPlace = app.buttons["Add Synthetic museum"]
+        XCTAssertTrue(newPlace.waitForExistence(timeout: 8))
+        newPlace.tap()
+        app.buttons["addPlacesNext"].tap()
+        XCTAssertTrue(app.staticTexts["Synthetic museum"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.staticTexts["Synthetic coffee shop"].exists)
+    }
+
     @MainActor func testDraggingStopRecalculatesAndPreservesOrder() {
         let app = launch()
         reviewMockItinerary(app)
