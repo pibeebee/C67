@@ -46,6 +46,54 @@ private actor DriveCounter {
     }
 }
 
+private actor SuspendedOrder {
+    private var continuation: CheckedContinuation<Void, Never>?
+    private var startWaiter: CheckedContinuation<Void, Never>?
+    private var starts = 0
+
+    func wait() async {
+        starts += 1
+        startWaiter?.resume()
+        startWaiter = nil
+        await withCheckedContinuation { continuation = $0 }
+    }
+
+    func waitUntilStarted(_ count: Int) async {
+        if starts < count { await withCheckedContinuation { startWaiter = $0 } }
+    }
+
+    func release() { continuation?.resume(); continuation = nil }
+}
+
+@Test func signingOutDiscardsLateOrderingResultAndAllowsRetry() async throws {
+    let gate = SuspendedOrder()
+    let services = PocketPlanningServices(travel: { _, _, _, _ in throw PlanningError.invalidResponse },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          resolve: { _, _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in
+                                              await gate.wait()
+                                              return try PocketIntegrationFixture.experience(input)
+                                          })
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let url = directory.appendingPathComponent("trip.json")
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: url)
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: orderInput()))
+    await gate.waitUntilStarted(1)
+    let before = try Data(contentsOf: url)
+    await repository.suspendOrdering()
+    await gate.release()
+    try await Task.sleep(for: .milliseconds(50))
+    #expect(try Data(contentsOf: url) == before)
+    let after = try #require(await repository.resumePlanning())
+    #expect(after.status == .running)
+    #expect(after.result == nil)
+    await gate.waitUntilStarted(2)
+    await gate.release()
+    #expect(try await finished(repository, id: job.id).status == .succeeded)
+}
+
 private func orderInput(count: Int = 3) throws -> PlanningInput {
     var input = PocketIntegrationFixture.input()
     input.places = Array(try PocketIntegrationFixture.searchablePlaces().prefix(count))

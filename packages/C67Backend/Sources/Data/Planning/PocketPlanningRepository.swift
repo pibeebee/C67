@@ -593,15 +593,23 @@ public actor PocketPlanningRepository: PlanningRepository {
         orderTasks[job.id] = Task { await self.finishOrdering(job.id, requestID: command.requestID, revision: revision) }
     }
 
+    /// Invalidate in-flight work when the authenticated workspace is left.
+    public func suspendOrdering() {
+        configurationRevision += 1
+        for task in orderTasks.values { task.cancel() }
+    }
+
     private func finishOrdering(_ id: UUID, requestID: UUID, revision: Int) async {
         defer { orderTasks[id] = nil }
         guard var job = state.jobs[id] else { return }
         do {
             let result = try await execute(job.input, purpose: job.purpose, requestID: requestID)
+            try Task.checkCancellation()
             guard revision == configurationRevision else { throw CancellationError() }
             job.status = .succeeded; job.result = result; job.errorCode = nil
             job.originalInput = job.command?.input
         } catch {
+            guard revision == configurationRevision, !Task.isCancelled else { return }
             let planningError = error as? PlanningError
             if planningError == .unavailable || error is CancellationError {
                 job.status = .running; job.errorCode = "ORDER_CONNECTION_INTERRUPTED"
