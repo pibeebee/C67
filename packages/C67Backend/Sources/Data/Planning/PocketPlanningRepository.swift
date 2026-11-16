@@ -45,6 +45,14 @@ public actor PocketPlanningRepository: PlanningRepository {
         try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             .appendingPathComponent("PocketPlanning", isDirectory: true).appendingPathComponent("trips-v1.json")
     }
+    /// Each authenticated traveller has an independent on-device planning store.
+    public static func storageURL(for accountID: UUID) throws -> URL {
+        try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appendingPathComponent("PocketPlanning", isDirectory: true)
+            .appendingPathComponent("users", isDirectory: true)
+            .appendingPathComponent(accountID.uuidString.lowercased(), isDirectory: true)
+            .appendingPathComponent("trips-v1.json")
+    }
     public func engineConnection() async -> PlanningConnection? {
         let value = await connection.credentials()
         return .init(serverURL: value.serverURL, hasToken: !value.token.isEmpty)
@@ -147,7 +155,7 @@ public actor PocketPlanningRepository: PlanningRepository {
             }
             let evidence = result.weatherSources.map { source in
                 PlanningEvidence(id: source.id, label: source.source, url: source.url, checkedAt: source.checkedAt,
-                                 kind: "weather", summary: source.coverage, synthetic: synthetic)
+                                 kind: "weather", summary: source.coverage, synthetic: synthetic, attributionLogoURL: source.attributionLogoURL)
             }
             var proposal = PlanProposal(id: UUID(), input: input, stops: stops, finishesAt: nil, feasible: true,
                                         explanation: result.tripRationale, warnings: result.tradeoffs + result.uncertainties + result.contextWarnings,

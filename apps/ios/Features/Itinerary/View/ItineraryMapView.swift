@@ -37,8 +37,9 @@ struct ItineraryMapView: View {
                 }
             }
 
-            DisclosureGroup("Behind the scenes of your plan") {
+            DisclosureGroup("Trip details") {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Route estimates").font(.headline)
                     if proposal.experiencePlan == nil {
                         Text(proposal.explanation)
                         ForEach(proposal.warnings, id: \.self) { Text($0) }
@@ -47,8 +48,10 @@ struct ItineraryMapView: View {
                         if proposal.hasExperienceTravelFallback {
                             Text("Legs without a driving estimate use a \(PlanProposal.defaultExperienceTravelSeconds / 60)-minute default. Their road distance is unavailable.")
                         }
+                        Text("Opening hours").font(.headline)
                         Text("Opening hours have not been verified.")
                     }
+                    if !proposal.evidence.isEmpty { Text("Sources").font(.headline) }
                     ForEach(proposal.evidence) { evidence in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(evidence.label).fontWeight(.semibold)

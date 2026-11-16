@@ -67,6 +67,7 @@ public struct PlanningExperiencePlan: Equatable, Codable, Sendable {
         public var hourlySamples: [Hour]
         public var coverage: String
         public var fallbackReason: String?
+        public var attributionLogoURL: URL? = nil
     }
     public struct LightWindow: Equatable, Codable, Sendable, Identifiable {
         public var id: String

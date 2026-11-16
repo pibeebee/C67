@@ -14,6 +14,26 @@ public protocol PocketConnectionProviding: Sendable {
     func update(serverURL: String, token: String) async throws
 }
 
+/// Obtains the current user session for each request; never embeds a shared Pocket token.
+public struct AuthenticatedPocketConnection: PocketConnectionProviding {
+    private let serverURL: String
+    private let authentication: any TravellerAuthentication
+
+    public init(serverURL: String, authentication: any TravellerAuthentication) throws {
+        self.serverURL = try PocketResearchClient.validatedURL(serverURL).absoluteString
+        self.authentication = authentication
+    }
+
+    public func credentials() async -> PocketCredentials {
+        let token = (try? await authentication.accessToken()) ?? ""
+        return .init(serverURL: serverURL, token: token)
+    }
+
+    public func update(serverURL _: String, token _: String) async throws {
+        throw PlanningError.unavailable
+    }
+}
+
 public actor PocketConnectionStore: PocketConnectionProviding {
     private let defaultURL: String
     private let namespace: String

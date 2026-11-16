@@ -14,7 +14,9 @@ In mock mode on iPhone 18 Pro Max / iOS 27.2, a focused UI test verified that th
 
 ## Itinerary map and weather display — 15 November 2026
 
-[Verification and source audit](../tasks/itinerary-weather-map-adjustments.md) cover full-screen map interaction and forecast display. WeatherKit-first ordering remains unimplemented.
+[Verification and source audit](../tasks/itinerary-weather-map-adjustments.md) cover full-screen map interaction and historical forecast display. The local WeatherKit-first ordering adapter and Open-Meteo fallback are tested with synthetic responses; live credentials, provider attribution and deployment remain unverified.
+
+The local WeatherKit-first change passed 41 Pocket server tests using synthetic responses, 68 C67Backend tests, OpenAPI/fixture validation, and the iPhone 18 Pro Max / iOS 27.2 mock itinerary and departure-fallback tests. The server tests verify signed test tokens, source selection, fallback and attribution propagation, not a live Apple or Open-Meteo response. No server deployment or physical-device test was performed.
 
 ## Full-page trip creation — 15 November 2026
 

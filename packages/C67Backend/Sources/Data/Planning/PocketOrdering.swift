@@ -42,9 +42,13 @@ extension PlanningExperiencePlan {
             guard let place = input.places.first(where: { $0.id == source.placeID }), place.location == source.coordinates,
                   source.url.scheme == "https", source.timeZone == timeZone, source.date == candidateDate,
                   !source.hourlySamples.isEmpty else { throw PlanningError.invalidResponse }
+            if source.source == "Apple Weather" {
+                guard let logo = source.attributionLogoURL, logo.scheme == "https", logo.host == "weatherkit.apple.com",
+                      source.url.host == "weatherkit.apple.com" else { throw PlanningError.invalidResponse }
+            }
             for hour in source.hourlySamples {
                 guard hour.end.timeIntervalSince(hour.start) == 3600, day(hour.start) == candidateDate,
-                      hour.cloudCoverValidAt == hour.end,
+                      (hour.cloudCoverValidAt == hour.end || (source.source == "Apple Weather" && hour.cloudCoverValidAt == hour.start)),
                       hour.precipitationChance.isFinite, (0 ... 1).contains(hour.precipitationChance),
                       hour.cloudCover.isFinite, (0 ... 1).contains(hour.cloudCover),
                       hour.precipitationAmountMM.isFinite, hour.precipitationAmountMM >= 0 else { throw PlanningError.invalidResponse }

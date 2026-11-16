@@ -4,7 +4,7 @@ Open `apps/ios/C67.xcodeproj` and use the C67 scheme. The app targets iOS 18+, u
 
 ## Prepare a build
 
-1. Set the intended HTTPS host in ignored `apps/ios/Configuration/Production.local.xcconfig`, using the [example](../../apps/ios/Configuration/Production.example.xcconfig). Provider keys and tokens stay out of the app bundle.
+1. Set `pocket-auth`, the intended Pocket HTTPS host and the Supabase HTTPS host with its publishable/anon client key in ignored `apps/ios/Configuration/Production.local.xcconfig`, using the [example](../../apps/ios/Configuration/Production.example.xcconfig). The client key is public; server read tokens, service-role credentials and provider keys stay out of the app bundle. Testers sign in with Apple and do not enter a server URL or token.
 2. Enable WeatherKit in both App Capabilities and App Services for the app identifier. Refresh signing profiles after changes.
 3. Choose a new build number, build a generic iOS device archive, validate it, and upload with the TestFlight & App Store method.
 4. Answer export-compliance questions for the actual code in this build. The present app uses Apple platform cryptographic facilities. Reassess when its implementation changes.
@@ -12,7 +12,7 @@ Open `apps/ios/C67.xcodeproj` and use the C67 scheme. The app targets iOS 18+, u
 
 ## External beta
 
-Create an internal group before the external group. Complete the beta description, feedback address, reviewer contact, and test instructions. Pocket mode needs no traveller account. If Luna is included in the review flow, provide the invited-beta read token privately in Review Notes along with the server URL and Account > Pocket settings instructions.
+Create an internal group before the external group. Complete the beta description, feedback address, reviewer contact, and test instructions. The `pocket-auth` flow requires Sign in with Apple. The Pocket server must first be deployed and verified in `authenticated` mode against the same Supabase project; do not put a shared Pocket token in reviewer notes or the app. Existing unauthenticated local trip files are preserved but are not automatically assigned to an account.
 
 Select the build in the external group, enter What to Test, and submit to Beta App Review. Review submission and actual tester availability are different states. After approval, start testing if automatic distribution is disabled, then verify the public link on a compatible device. The current beta group was prepared for up to 20 iPhone testers. Share the beta access code separately with invited testers.
 

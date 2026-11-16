@@ -1,4 +1,6 @@
 import SwiftUI
+import C67Domain
+import C67Data
 
 @main
 struct C67App: App {
@@ -48,7 +50,9 @@ private struct StarterRootView: View {
     var body: some View {
         switch result {
         case .success(let dependencies):
-            if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
+            if dependencies.mode == "Pocket • authenticated", let authentication = dependencies.authentication {
+                PocketAuthenticatedRoot(authentication: authentication)
+            } else if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
                 DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
                                        authentication: dependencies.authentication)
             } else {
@@ -59,6 +63,80 @@ private struct StarterRootView: View {
         case .failure(let error):
             ContentUnavailableView("Configuration needed", systemImage: "gearshape",
                                    description: Text(error.localizedDescription))
+        }
+    }
+}
+
+/// Sign in once; session refresh and per-account trip storage stay on device.
+private struct PocketAuthenticatedRoot: View {
+    let authentication: any TravellerAuthentication
+    @State private var account: TravellerAccount?
+    @State private var restored = false
+    @State private var busy = false
+    @State private var error: String?
+
+    var body: some View {
+        Group {
+            if let account {
+                PocketAuthenticatedWorkspace(authentication: authentication, accountID: account.id)
+                    .id(account.id)
+            } else if restored {
+                VStack(spacing: 20) {
+                    Text("Welcome to Travelant").font(.largeTitle.bold())
+                    Text("Sign in to create and continue your trips.").foregroundStyle(.secondary)
+                    AppleSignInButtonView { result in
+                        switch result {
+                        case .success(let credentials):
+                            busy = true; error = nil
+                            Task {
+                                defer { busy = false }
+                                do { _ = try await authentication.signInWithApple(credentials) }
+                                catch { self.error = error.localizedDescription }
+                            }
+                        case .failure(let failure): error = failure.localizedDescription
+                        }
+                    }.disabled(busy)
+                    if busy { ProgressView("Signing in…") }
+                    if let error { Text(error).font(.footnote).foregroundStyle(.secondary) }
+                }.padding(24).frame(maxWidth: 480)
+            } else { ProgressView("Restoring your account…") }
+        }
+        .task {
+            let changes = await authentication.sessionChanges()
+            do { _ = try await authentication.currentAccount() }
+            catch { self.error = error.localizedDescription; restored = true }
+            for await snapshot in changes {
+                guard !Task.isCancelled else { return }
+                if snapshot.isRestored {
+                    account = snapshot.requiresPasswordReset ? nil : snapshot.account
+                    restored = true
+                }
+            }
+        }
+    }
+}
+
+private struct PocketAuthenticatedWorkspace: View {
+    let authentication: any TravellerAuthentication
+    let accountID: UUID
+    @State private var repository: (any PlanningRepository)?
+    @State private var error: String?
+
+    var body: some View {
+        Group {
+            if let repository {
+                PlanningAssembly.make(repository: repository, mode: "Pocket • authenticated", initialInput: nil, authentication: authentication)
+            } else if let error {
+                ContentUnavailableView("Trip storage unavailable", systemImage: "externaldrive.badge.exclamationmark", description: Text(error))
+            } else { ProgressView("Loading your trips…") }
+        }
+        .task {
+            do {
+                let raw = Bundle.main.object(forInfoDictionaryKey: "POCKET_SERVER_URL") as? String ?? ""
+                let connection = try AuthenticatedPocketConnection(serverURL: raw, authentication: authentication)
+                repository = try PocketPlanningRepository(services: .live(connection: connection), connection: connection,
+                                                          storageURL: PocketPlanningRepository.storageURL(for: accountID))
+            } catch { self.error = error.localizedDescription }
         }
     }
 }

@@ -19,16 +19,16 @@ manual-order constraint, app candidate date and timezone. It sends no provider k
 Tomorrow in the input timezone is the current app candidate for forecast context;
 it is not an optimized date. No operating-hours or ETA lookup is required.
 
-The maintained server retrieves optional Open-Meteo forecasts and calculates
+The maintained server attempts optional WeatherKit forecasts when configured, falling back to Open-Meteo, and calculates
 Astral light opportunities. Luna returns every selected ID exactly once, activity
 suggestions with inference basis, nullable visit-duration ranges, dayparts,
 reasoning, tradeoffs, uncertainties and references to supplied context. The server
 and phone validate identities, constraints, estimates and references. Bad model
 responses fail explicitly; missing data is not repaired with invented facts.
 
-The first forecast sample that covers departure can supply a rain probability near
-the first stop. Precipitation applies to the preceding hour. Unsampled hours
-remain unknown. Open-Meteo is the current fallback for this flow. Calculated solar
+The departure card requests a separate forecast for the origin and departure time.
+Ordering weather describes selected places, with per-source interval semantics in
+the evidence; unsampled hours remain unknown. Calculated solar
 windows remain in the provider result. Luna explanations are hidden in the
 itinerary.
 

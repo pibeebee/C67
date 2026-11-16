@@ -33,7 +33,7 @@ struct TripHomeRow: View {
                 Text(trip.title).font(.headline)
                 Text(trip.input.startsAt, format: .dateTime.day().month(.abbreviated).year().hour().minute().timeZone(.omitted))
                     .font(.caption).foregroundStyle(.secondary)
-                Text(trip.status == .completed ? "All visits completed" : "\(max(0, trip.plan.stops.count - trip.completedStopIDs.count)) stops to go")
+                Text(trip.status == .completed ? "All visits completed" : trip.status == .active ? "In progress · \(max(0, trip.plan.stops.count - trip.completedStopIDs.count)) stops to go" : "\(max(0, trip.plan.stops.count - trip.completedStopIDs.count)) stops to go")
                     .font(.caption).foregroundStyle(.secondary)
                 if trip.synthetic {
                     Text("Synthetic · memory only").font(.caption2).foregroundStyle(.secondary)

@@ -8,6 +8,7 @@ struct ItineraryDepartureCard: View {
     var editDeparture: (() -> Void)?
     var editEndpoints: ((ItineraryEditRoute) -> Void)?
     @Environment(\.locale) private var locale
+    @State private var departureForecast = DepartureWeatherLoader()
 
     private var departureContext: String {
         if isDesignPreview { return "Set to beat the morning rush." }
@@ -43,9 +44,7 @@ struct ItineraryDepartureCard: View {
                     .font(.subheadline.weight(.semibold))
                 Text(ItineraryFormatting.time(departure, zone: proposal.input.timeZone, locale: locale))
                     .font(.largeTitle.bold())
-                Text(experienceWeather())
-                    .font(.footnote).padding(.top, 6)
-                    .accessibilityIdentifier("itineraryDepartureWeather")
+                departureWeather
                 Text(proposal.hasExperienceTravelFallback ? "Driving estimates include defaults" : "Driving times are estimates")
                     .font(.caption).padding(.top, 4)
             } else {
@@ -87,15 +86,35 @@ struct ItineraryDepartureCard: View {
         .clipShape(.rect(cornerRadius: 26))
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("itineraryDeparture")
+        .task(id: forecastIdentity) {
+            guard !isDesignPreview, !proposal.synthetic, let departure = proposal.estimatedExperienceDeparture else { departureForecast.clear(); return }
+            await departureForecast.load(origin: proposal.input.origin, departure: departure)
+        }
     }
 
-    private func experienceWeather() -> String {
-        guard let first = proposal.stopsWithExperienceEstimates.first,
-              let visitTime = first.visitStartsAt ?? first.arrivalAt,
-              let hour = proposal.experiencePlan?.weatherSources.first(where: { $0.placeID == first.id })?
-                  .hourlySamples.first(where: { $0.start <= visitTime && visitTime < $0.end }) else {
-            return String(localized: "Weather forecast unavailable for the first stop")
+    private var forecastIdentity: String {
+        "\(proposal.input.origin.latitude),\(proposal.input.origin.longitude),\(proposal.estimatedExperienceDeparture?.timeIntervalSince1970 ?? 0),\(proposal.synthetic),\(isDesignPreview)"
+    }
+
+    @ViewBuilder private var departureWeather: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if isDesignPreview, let weatherAdvice {
+                Label(weatherAdvice, systemImage: "sun.max")
+            } else if let forecast = departureForecast.forecast {
+                Label("\(forecast.temperature.formatted(.measurement(width: .abbreviated, numberFormatStyle: .number.precision(.fractionLength(0))))) · \(forecast.condition)", systemImage: forecast.symbol)
+                Link(destination: forecast.sourceURL) {
+                    if let mark = forecast.markURL {
+                        AsyncImage(url: mark) { image in image.resizable().scaledToFit() } placeholder: { Text(forecast.source) }
+                            .frame(width: 90, height: 22).padding(4).background(.white, in: .rect(cornerRadius: 4))
+                    } else { Text(forecast.source).underline() }
+                }.accessibilityLabel("\(forecast.source) data sources")
+            } else if departureForecast.isLoading {
+                Text("Checking departure weather…")
+            } else {
+                Text("Weather unavailable for this time")
+            }
         }
-        return String(localized: "First stop · \(hour.precipitationChance.formatted(.percent.precision(.fractionLength(0)))) chance of rain")
+        .font(.footnote).padding(.top, 6)
+        .accessibilityIdentifier("itineraryDepartureWeather")
     }
 }

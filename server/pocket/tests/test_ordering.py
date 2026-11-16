@@ -2,6 +2,7 @@
 import copy
 import json
 import os
+import sqlite3
 import threading
 from unittest.mock import patch
 from urllib.error import HTTPError
@@ -9,13 +10,14 @@ from urllib.request import Request, urlopen
 from pathlib import Path
 import sys
 import tempfile
+from types import SimpleNamespace
 import time
 import unittest
 import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from ordering import OrderingResolver, request_context
-from server import Jobs, Handler, ThreadingHTTPServer
+from ordering import Environment, OrderingResolver, request_context
+from server import AuthenticationUnavailable, Jobs, Handler, ThreadingHTTPServer
 
 
 def body(count=5):
@@ -43,6 +45,118 @@ class NoWeather:
 
 
 class OrderingTests(unittest.TestCase):
+    def test_user_token_is_verified_with_auth_service(self):
+        user = str(uuid.uuid4())
+        handler = SimpleNamespace(headers={"Authorization": "Bearer synthetic-user-token"})
+        config = {"POCKET_AUTH_MODE": "authenticated", "SUPABASE_URL": "https://auth.example.test", "SUPABASE_CLIENT_KEY": "synthetic-publishable"}
+        response = SimpleNamespace(status_code=200, json=lambda: {"id": user})
+        with patch.dict(os.environ, config, clear=True), patch("server.httpx.get", return_value=response) as request:
+            self.assertEqual(Handler.authorized(handler), user)
+            self.assertEqual(request.call_args.kwargs["headers"]["Authorization"], "Bearer synthetic-user-token")
+            response.status_code = 401
+            self.assertIsNone(Handler.authorized(handler))
+            response.status_code = 503
+            with self.assertRaises(AuthenticationUnavailable): Handler.authorized(handler)
+
+    def test_jobs_are_private_to_the_authenticated_owner(self):
+        class Resolver:
+            def resolve(self, value): return {"synthetic": True}
+        with tempfile.TemporaryDirectory() as directory:
+            jobs = Jobs(directory, Resolver(), retry_failed=False)
+            value = body()
+            jobs.submit(value, "user-a")
+            with self.assertRaises(KeyError): jobs.get(value["requestID"], "user-b")
+            with self.assertRaises(KeyError): jobs.submit(value, "user-b")
+            self.assertEqual(jobs.get(value["requestID"], "user-a")["id"], value["requestID"])
+
+    def test_legacy_job_migration_preserves_record_without_exposing_it_to_new_users(self):
+        class Resolver:
+            def resolve(self, value): return {"synthetic": True}
+        with tempfile.TemporaryDirectory() as directory:
+            value = body()
+            with sqlite3.connect(str(Path(directory) / "resolution.sqlite")) as db:
+                db.execute("CREATE TABLE jobs (id TEXT PRIMARY KEY, fingerprint TEXT, state TEXT, request TEXT, result TEXT)")
+                db.execute("INSERT INTO jobs VALUES (?,?,?,?,?)", (value["requestID"], "old", "succeeded", "{}", '{"synthetic":true}'))
+            jobs = Jobs(directory, Resolver(), retry_failed=False)
+            self.assertEqual(jobs.get(value["requestID"])["status"], "succeeded")
+            with self.assertRaises(KeyError): jobs.get(value["requestID"], "user-a")
+
+    def test_authenticated_http_does_not_expose_other_users_job(self):
+        class Resolver:
+            def resolve(self, value): return {"synthetic": True}
+        with tempfile.TemporaryDirectory() as directory, patch.dict(os.environ, POCKET_AUTH_MODE="authenticated"), \
+             patch.object(Handler, "authorized", lambda handler: handler.headers.get("Authorization", "").removeprefix("Bearer ") or None):
+            jobs = Jobs(directory, Resolver(), retry_failed=False)
+            server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+            server.order_jobs = jobs
+            thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
+            try:
+                base = f"http://127.0.0.1:{server.server_address[1]}"
+                value = body()
+                a = {"Authorization": "Bearer user-a", "Content-Type": "application/json"}
+                b = {"Authorization": "Bearer user-b", "Content-Type": "application/json"}
+                with urlopen(Request(base + "/v1/order", data=json.dumps(value).encode(), headers=a)) as response:
+                    self.assertEqual(response.status, 202)
+                with self.assertRaises(HTTPError) as error:
+                    urlopen(Request(base + "/v1/order/jobs/" + value["requestID"], headers=b))
+                self.assertEqual(error.exception.code, 404)
+                with self.assertRaises(HTTPError):
+                    urlopen(Request(base + "/v1/order", data=json.dumps(value).encode(), headers=b))
+            finally:
+                server.shutdown(); server.server_close(); thread.join()
+
+    def test_weather_prefers_apple_and_falls_back_on_failure(self):
+        environment = Environment()
+        with patch.object(environment, "_apple", return_value=[{"source": "Apple Weather"}]) as apple, \
+             patch.object(environment, "_open_meteo") as fallback:
+            self.assertEqual(environment.read([], "2026-11-15", "Asia/Jakarta")[0]["source"], "Apple Weather")
+            apple.assert_called_once()
+            fallback.assert_not_called()
+        with patch.object(environment, "_apple", side_effect=ValueError("unavailable")), \
+             patch.object(environment, "_open_meteo", return_value=[{"source": "Open-Meteo"}]) as fallback:
+            self.assertEqual(environment.read([], "2026-11-15", "Asia/Jakarta")[0]["source"], "Open-Meteo")
+            fallback.assert_called_once()
+
+    def test_apple_weather_binds_hours_and_attribution_to_the_selected_place(self):
+        import base64
+        from cryptography.hazmat.primitives import hashes
+        from cryptography.hazmat.primitives import serialization
+        from cryptography.hazmat.primitives.asymmetric import ec
+        from cryptography.hazmat.primitives.asymmetric.utils import encode_dss_signature
+        signing_key = ec.generate_private_key(ec.SECP256R1())
+        key = signing_key.private_bytes(
+            serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()).decode()
+        env = dict(APPLE_TEAM_ID="TEAMTEST01", APPLE_WEATHER_SERVICE_ID="example.weather",
+                   APPLE_WEATHER_KEY_ID="KEYTEST001", APPLE_WEATHER_PRIVATE_KEY=key)
+        class Response:
+            def __init__(self, value): self.value = value
+            def raise_for_status(self): pass
+            def json(self): return self.value
+        class Client:
+            def __init__(self, **kwargs):
+                token = kwargs["headers"]["Authorization"].removeprefix("Bearer ")
+                header, payload, signature = token.split(".")
+                def decode(value): return base64.urlsafe_b64decode(value + "=" * (-len(value) % 4))
+                self.claims = json.loads(decode(payload))
+                raw = decode(signature)
+                signing_key.public_key().verify(encode_dss_signature(int.from_bytes(raw[:32], "big"), int.from_bytes(raw[32:], "big")),
+                                                f"{header}.{payload}".encode(), ec.ECDSA(hashes.SHA256()))
+                assert self.claims["sub"] == "example.weather"
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def get(self, url, **kwargs):
+                if "/attribution/" in url: return Response({"logoLight@2x": "/assets/mark.png"})
+                return Response({"forecastHourly": {"hours": [{"forecastStart": "2026-11-15T01:00:00Z",
+                    "precipitationChance": 0.4, "precipitationAmount": 1.0, "precipitationType": "rain", "cloudCover": 0.5}]}})
+        place = dict(id=str(uuid.uuid4()), coordinates=dict(latitude=-6.2, longitude=106.8))
+        with patch.dict(os.environ, env, clear=True), patch("ordering.httpx.Client", Client):
+            source = Environment().read([place], "2026-11-15", "Asia/Jakarta")[0]
+        self.assertEqual(source["placeID"], place["id"])
+        self.assertEqual(source["source"], "Apple Weather")
+        self.assertEqual(source["attributionLogoURL"], "https://weatherkit.apple.com/assets/mark.png")
+        self.assertEqual(source["hourlySamples"][0]["precipitationChance"], 0.4)
+        self.assertEqual(source["hourlySamples"][0]["cloudCoverValidAt"], source["hourlySamples"][0]["start"])
+
     def resolver(self, mutate=None, environment=None):
         def model(prompt, context):
             value=answer(context)

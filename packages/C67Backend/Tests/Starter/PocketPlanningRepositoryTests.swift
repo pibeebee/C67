@@ -296,3 +296,10 @@ func pocketBadLunaResponseNeverFallsBack(_ selection: String, _ model: String) a
                                   reportedReasoningEffort: "max").validated()
     }
 }
+@Test func authenticatedAccountsUseSeparateLocalTripStores() throws {
+    let first = UUID(), second = UUID()
+    let firstURL = try PocketPlanningRepository.storageURL(for: first)
+    #expect(firstURL == (try PocketPlanningRepository.storageURL(for: first)))
+    #expect(firstURL != (try PocketPlanningRepository.storageURL(for: second)))
+    #expect(firstURL != (try PocketPlanningRepository.defaultStorageURL()))
+}

@@ -1,8 +1,10 @@
 """Request-time reasonable ordering, optional forecast context and validated Luna output."""
 import copy
+import base64
 from datetime import date, datetime, timedelta, timezone
 import json
 import math
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -10,6 +12,8 @@ import threading
 from urllib.parse import urlencode
 import uuid
 from zoneinfo import ZoneInfo
+from urllib.parse import urljoin, urlparse
+import httpx
 
 from astral import Observer, SunDirection
 from astral.sun import golden_hour
@@ -69,8 +73,73 @@ def request_context(body):
 
 
 class Environment:
-    """Current authorized Open-Meteo fallback. No claimed WeatherKit request."""
+    """WeatherKit when configured and available, Open-Meteo otherwise."""
     def read(self, places, day, zone):
+        try:
+            return self._apple(places, day, zone)
+        except (OSError, ValueError, KeyError, TypeError, httpx.HTTPError, ImportError):
+            return self._open_meteo(places, day, zone)
+
+    def _apple(self, places, day, zone):
+        from cryptography.hazmat.primitives import hashes, serialization
+        from cryptography.hazmat.primitives.asymmetric import ec
+        from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature
+        team, service, key_id, pem = (os.environ.get(name, "") for name in
+            ("APPLE_TEAM_ID", "APPLE_WEATHER_SERVICE_ID", "APPLE_WEATHER_KEY_ID", "APPLE_WEATHER_PRIVATE_KEY"))
+        if not all((team, service, key_id, pem)):
+            raise ValueError("WeatherKit is not configured")
+        def encode(value):
+            return base64.urlsafe_b64encode(value).rstrip(b"=").decode("ascii")
+        issued = int(datetime.now(timezone.utc).timestamp())
+        header = encode(json.dumps(dict(alg="ES256", kid=key_id, id=f"{team}.{service}"), separators=(",", ":")).encode())
+        payload = encode(json.dumps(dict(iss=team, sub=service, iat=issued, exp=issued + 1200), separators=(",", ":")).encode())
+        message = f"{header}.{payload}".encode("ascii")
+        key = serialization.load_pem_private_key(pem.replace("\\n", "\n").encode(), password=None)
+        if not isinstance(key, ec.EllipticCurvePrivateKey) or not isinstance(key.curve, ec.SECP256R1):
+            raise ValueError("Invalid WeatherKit signing key")
+        r, s = decode_dss_signature(key.sign(message, ec.ECDSA(hashes.SHA256())))
+        token = f"{header}.{payload}.{encode(r.to_bytes(32, 'big') + s.to_bytes(32, 'big'))}"
+        local = ZoneInfo(zone)
+        begin = datetime.combine(date.fromisoformat(day), datetime.min.time(), local)
+        finish = begin + timedelta(days=1)
+        def iso(value): return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+        sources = []
+        with httpx.Client(timeout=12, follow_redirects=False, headers={"Authorization": f"Bearer {token}"}) as client:
+            attribution = client.get("https://weatherkit.apple.com/api/v1/attribution/en")
+            attribution.raise_for_status()
+            logo = urljoin("https://weatherkit.apple.com", attribution.json()["logoLight@2x"])
+            parsed = urlparse(logo)
+            if parsed.scheme != "https" or parsed.netloc != "weatherkit.apple.com":
+                raise ValueError("Invalid WeatherKit attribution")
+            for index, place in enumerate(places):
+                coord = place["coordinates"]
+                response = client.get(f"https://weatherkit.apple.com/api/v1/weather/en/{coord['latitude']}/{coord['longitude']}",
+                    params=dict(dataSets="forecastHourly", timezone=zone, hourlyStart=iso(begin), hourlyEnd=iso(finish)))
+                response.raise_for_status()
+                forecast = response.json()["forecastHourly"]
+                metadata = forecast.get("metadata", {})
+                expires = metadata.get("expireTime")
+                if metadata.get("temporarilyUnavailable") or (expires and datetime.fromisoformat(expires.replace("Z", "+00:00")) <= datetime.now(timezone.utc)):
+                    raise ValueError("WeatherKit unavailable")
+                samples = []
+                for hour in forecast["hours"]:
+                    start = datetime.fromisoformat(hour["forecastStart"].replace("Z", "+00:00")).astimezone(local)
+                    if start.date().isoformat() != day: continue
+                    chance, amount, cloud = hour["precipitationChance"], hour.get("precipitationAmount"), hour["cloudCover"]
+                    if any(type(x) not in (int, float) or not math.isfinite(x) for x in (chance, amount, cloud)) or not 0 <= chance <= 1 or amount < 0 or not 0 <= cloud <= 1: continue
+                    kind = {"clear": "none", "rain": "rain", "snow": "snow", "mixed": "mixed", "sleet": "mixed", "hail": "mixed"}.get(str(hour.get("precipitationType", "")).lower())
+                    if kind is None: continue
+                    label = "pagi" if start.hour < 11 else "siang" if start.hour < 15 else "sore" if start.hour < 18 else "malam"
+                    end = start.astimezone(timezone.utc) + timedelta(hours=1)
+                    samples.append(dict(start=start.isoformat(), end=end.isoformat(), period=label, precipitationChance=chance,
+                        precipitationAmountMM=amount, precipitationType=kind, cloudCover=cloud, cloudCoverValidAt=start.isoformat()))
+                if not samples: raise ValueError("WeatherKit hourly forecast unavailable")
+                sources.append(dict(id=f"AW{index+1}", placeID=place["id"], coordinates=coord, source="Apple Weather",
+                    url="https://weatherkit.apple.com/legal-attribution.html", attributionLogoURL=logo, checkedAt=now(), date=day,
+                    timeZone=zone, hourlySamples=samples, coverage="Hourly WeatherKit forecast; cloud cover represents the forecast period.", fallbackReason=None))
+        return sources
+
+    def _open_meteo(self, places, day, zone):
         fields = ["precipitation_probability", "precipitation", "rain", "showers", "snowfall", "cloud_cover"]
         url = "https://api.open-meteo.com/v1/forecast?" + urlencode(dict(
             latitude=",".join(str(p["coordinates"]["latitude"]) for p in places),
@@ -118,7 +187,7 @@ class Environment:
                     source="Open-Meteo forecast (CC BY 4.0)", url="https://open-meteo.com/", checkedAt=checked,
                     date=day, timeZone=zone, kind="live_forecast", hourlySamples=samples,
                     coverage="Selected preceding-hour precipitation intervals; cloud instantaneous at interval end; unsampled periods unknown",
-                    fallbackReason="Authorized current weather fallback: Open-Meteo; WeatherKit REST is not wired in this ordering service",
+                    fallbackReason="WeatherKit was unavailable or not configured.",
                     typeSemantics="none means zero predicted amount, not zero probability"))
         return sources
 

@@ -294,3 +294,13 @@ private func finished(_ repository: PocketPlanningRepository, id: UUID) async th
     #expect(plan.stops[1].duration == nil)
     #expect(plan.solarWindows.count == 10)
 }
+
+@Test func weatherKitAttributionDecodesWithBackwardCompatibility() throws {
+    let decoder = PocketOrderCodec.decoder()
+    let base = #"{"id":"AW1","placeID":"11111111-1111-4111-8111-111111111111","source":"Apple Weather","url":"https://weatherkit.apple.com/legal-attribution.html","checkedAt":"2026-11-15T01:00:00Z","date":"2026-11-15","timeZone":"Asia/Jakarta","coordinates":{"latitude":-6.2,"longitude":106.8},"hourlySamples":[],"coverage":"Synthetic""#
+    let withLogo = Data((base + #", "attributionLogoURL":"https://weatherkit.apple.com/assets/mark.png"}"#).utf8)
+    let source = try decoder.decode(PlanningExperiencePlan.WeatherSource.self, from: withLogo)
+    #expect(source.attributionLogoURL?.host == "weatherkit.apple.com")
+    let old = try decoder.decode(PlanningExperiencePlan.WeatherSource.self, from: Data((base + "}").utf8))
+    #expect(old.attributionLogoURL == nil)
+}

@@ -16,11 +16,11 @@ struct AddPlaceRow: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Button(action: toggle) {
-                if isSelected { Text("Added").font(.caption) }
+                if isSelected { Image(systemName: "checkmark.circle.fill").font(.title2) }
                 else { Image(systemName: "plus.circle.fill").font(.title2) }
             }
             .buttonStyle(.plain)
-            .foregroundStyle(isSelected ? Color.secondary : AppColor.accent)
+            .foregroundStyle(AppColor.accent)
             .frame(minWidth: 44, minHeight: 44)
             .disabled(isDisabled && !isSelected)
             .accessibilityLabel(isSelected ? "Remove \(item.place.name)" : "Add \(item.place.name)")

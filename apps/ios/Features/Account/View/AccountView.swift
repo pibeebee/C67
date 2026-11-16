@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AccountView: View {
     @Bindable var presenter: AccountPresenter
+    var appleOnly = false
     @Environment(\.dismiss) private var dismiss
     @State private var form = AccountFormState()
 
@@ -16,8 +17,10 @@ struct AccountView: View {
                         Text(account.email ?? "Signed in")
                         Button("Sign out", role: .destructive) { Task { await presenter.signOut() } }
                     }
-                    Section("Security") {
-                        Text("Sign out and use Forgot password to request a recovery link when you need to reset your password.")
+                    if !appleOnly {
+                        Section("Security") {
+                            Text("Sign out and use Forgot password to request a recovery link when you need to reset your password.")
+                        }
                     }
                 } else if presenter.hasRestored {
                     credentials

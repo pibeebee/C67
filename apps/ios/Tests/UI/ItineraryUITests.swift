@@ -20,7 +20,7 @@ final class ItineraryUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Itinerary map"].waitForExistence(timeout: 5))
         app.buttons["itineraryCloseMap"].tap()
         XCTAssertTrue(expandMap.waitForExistence(timeout: 5))
-        let context = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Behind the scenes of your plan")).firstMatch
+        let context = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Trip details")).firstMatch
         scrollTo(context, in: app)
         context.tap()
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Sample content from the supplied Sketch design")).firstMatch.exists)

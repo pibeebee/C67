@@ -72,7 +72,7 @@ struct MainSpotQuestionView: View {
         } footer: {
             VStack(spacing: 12) {
                 if researchesWithLuna {
-                    Text("Your selected places, pins and preferences are sent to the Pocket server and Luna to suggest an order and visit lengths. Weather may use Open-Meteo. Recommendations are estimates.")
+                    Text("Your selected places, pins and preferences are sent to the Pocket server and Luna to suggest an order and visit lengths. Weather providers may receive your starting point and selected places; forecasts may use Apple Weather or Open-Meteo. Recommendations are estimates.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)
                 }

@@ -1,5 +1,9 @@
-// Copy to Production.local.xcconfig. Put the read token in the app's Keychain via Account.
-C67_DATA_MODE = pocket
+// Copy to Production.local.xcconfig after authenticated Pocket is deployed and verified.
+C67_DATA_MODE = pocket-auth
 POCKET_SERVER_SCHEME = https
 POCKET_SERVER_HOST = pocket.example.com
+SUPABASE_SCHEME = https
+SUPABASE_HOST = supabase.example.com
+// Only a publishable/anon client key belongs in an app. Never use a service-role key.
+SUPABASE_CLIENT_KEY =
 // Never include a read token, write token, or provider key in this file or in the app bundle.

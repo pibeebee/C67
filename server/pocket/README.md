@@ -3,10 +3,19 @@
 New native itineraries call authenticated `POST /v1/order` and poll
 `GET /v1/order/jobs/{requestID}`. The server requests **untimed** activity ordering
 from Luna: every selected place stays in the answer, with no catalog, geographic
-gate, six-place cap, hours research or ETA prerequisite. Optional Open-Meteo
+gate, six-place cap, hours research or ETA prerequisite. Optional WeatherKit
 forecasts and Astral 3.2 light windows are supplied as context. Unknown estimates
 stay null. Exact IDs, manual order, estimates and context references are validated.
 No model-generated numeric weather/light facts are displayed as source data.
+
+An experimental `POCKET_AUTH_MODE=authenticated` validates each bearer token using
+the configured HTTPS Supabase Auth `/auth/v1/user` endpoint and binds ordering and
+visit jobs to its verified user ID. Configure `SUPABASE_URL` and the publishable
+`SUPABASE_CLIENT_KEY`; never use a service-role key. The previous `legacy` mode
+remains the local default and legacy jobs remain scoped to it. The iOS `pocket-auth`
+mode is implemented locally with Sign in with Apple, token refresh and account-specific
+storage. Production configuration, server deployment and end-to-end physical-device
+verification are still required. Do not deploy solely from these local changes.
 
 Ordering uses one provider attempt. Polls and identical submissions read the same
 persisted job. Failed/interrupted jobs never restart automatically; the traveller
@@ -17,8 +26,11 @@ these private records or log authorization headers.
 The current supported ordering transport is native `responses` with completed
 Luna/max metadata. The older alias chat transport remains for legacy operations.
 Provider metadata establishes the reported identity, not upstream implementation.
-WeatherKit REST is not wired into ordering; Open-Meteo is the authorized current
-fallback. Weather failures do not block an order. Solar calculations do not prove
+WeatherKit REST is preferred when `APPLE_TEAM_ID`, `APPLE_WEATHER_SERVICE_ID`,
+`APPLE_WEATHER_KEY_ID`, and `APPLE_WEATHER_PRIVATE_KEY` are configured. Keep the
+key server-side; encode line breaks in the environment value as `\n`. If WeatherKit
+or its attribution is unavailable, ordering falls back to Open-Meteo. Weather
+failures do not block an order. Solar calculations do not prove
 viewpoint access, visibility or arrival feasibility. See [integration](../../docs/guides/pocket-engine-integration.md).
 
 ## Legacy timed planning

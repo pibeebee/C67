@@ -6748,6 +6748,11 @@
                 "type": "null"
               }
             ]
+          },
+          "attributionLogoURL": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Apple Weather attribution mark when the source is WeatherKit."
           }
         },
         "required": [

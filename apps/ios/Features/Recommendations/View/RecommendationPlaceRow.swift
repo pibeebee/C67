@@ -36,9 +36,10 @@ struct RecommendationPlaceRow: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 if isSelected || isExisting {
-                    Text("Added")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(isExisting ? Color.secondary : AppColor.accent)
+                        .font(.title2)
+                        .accessibilityHidden(true)
                 } else {
                     Image(systemName: "plus")
                         .foregroundStyle(AppColor.accent)

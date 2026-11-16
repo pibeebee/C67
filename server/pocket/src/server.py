@@ -16,12 +16,15 @@ import sqlite3
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlsplit
 import uuid
+import httpx
 
 from resolution import Resolver, stamp
 from ordering import OrderingResolver, request_context
 
-ROOT = Path(__file__).resolve().parents[3]
+_parents = Path(__file__).resolve().parents
+ROOT = _parents[3] if len(_parents) > 3 else _parents[1]
 
 def load_env(path):
     if not path:
@@ -149,6 +152,9 @@ class Jobs:
         self.lock = threading.Lock()
         with self.connection() as db:
             db.execute("CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY, fingerprint TEXT, state TEXT, request TEXT, result TEXT)")
+            columns = {row[1] for row in db.execute("PRAGMA table_info(jobs)")}
+            if "owner" not in columns:
+                db.execute("ALTER TABLE jobs ADD COLUMN owner TEXT NOT NULL DEFAULT 'legacy'")
             # Interrupted jobs can be resumed by the client's original request ID.
             db.execute("UPDATE jobs SET state='interrupted' WHERE state='running'")
         os.chmod(self.path, 0o600)
@@ -162,26 +168,28 @@ class Jobs:
         finally:
             db.close()
 
-    def submit(self, body):
+    def submit(self, body, owner="legacy"):
         ident = str(uuid.UUID(body["requestID"]))
         encoded = json.dumps(body, sort_keys=True, ensure_ascii=False)
         fingerprint = hashlib.sha256(encoded.encode()).hexdigest()
         with self.lock:
             with self.connection() as db:
-                previous = db.execute("SELECT fingerprint,state FROM jobs WHERE id=?", (ident,)).fetchone()
+                previous = db.execute("SELECT fingerprint,state,owner FROM jobs WHERE id=?", (ident,)).fetchone()
+                if previous and previous[2] != owner:
+                    raise KeyError("Job not found")
                 if previous and previous[0] != fingerprint:
                     raise ValueError("The request ID was reused with different selections")
                 if previous and not self.retry_failed and previous[1] in {"failed", "interrupted"}:
-                    return self.get(ident)
+                    return self.get(ident, owner)
                 if not previous:
-                    db.execute("INSERT INTO jobs VALUES (?,?,?,?,NULL)", (ident, fingerprint, "running", encoded))
+                    db.execute("INSERT INTO jobs (id,fingerprint,state,request,result,owner) VALUES (?,?,?,?,NULL,?)", (ident, fingerprint, "running", encoded, owner))
                 elif previous[1] in {"interrupted", "failed"}:
                     db.execute("UPDATE jobs SET state='running',result=NULL WHERE id=?", (ident,))
                 elif previous[1] == "succeeded" or ident in self.active:
-                    return self.get(ident)
+                    return self.get(ident, owner)
                 self.active.add(ident)
             threading.Thread(target=self.run, args=(ident, body), daemon=True).start()
-        return self.get(ident)
+        return self.get(ident, owner)
 
     def run(self, ident, body):
         try:
@@ -197,15 +205,19 @@ class Jobs:
         with self.lock:
             self.active.discard(ident)
 
-    def get(self, ident):
+    def get(self, ident, owner="legacy"):
         with self.connection() as db:
-            row = db.execute("SELECT state,result FROM jobs WHERE id=?", (ident,)).fetchone()
+            row = db.execute("SELECT state,result FROM jobs WHERE id=? AND owner=?", (ident, owner)).fetchone()
         if not row:
             raise KeyError(ident)
         return dict(id=ident, status=row[0], result=json.loads(row[1]) if row[1] else None)
 
 
 class UpstreamResponseError(Exception):
+    pass
+
+
+class AuthenticationUnavailable(Exception):
     pass
 
 
@@ -227,28 +239,49 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def authorized(self):
-        return hmac.compare_digest(self.headers.get("Authorization", "").encode(),
-                                   ("Bearer " + os.environ["POCKET_READ_TOKEN"]).encode())
+        authorization = self.headers.get("Authorization", "")
+        if os.environ.get("POCKET_AUTH_MODE", "legacy") == "legacy":
+            expected = os.environ.get("POCKET_READ_TOKEN", "")
+            return "legacy" if expected and hmac.compare_digest(authorization.encode(), ("Bearer " + expected).encode()) else None
+        if not authorization.startswith("Bearer ") or not authorization[7:] or len(authorization) > 8192:
+            return None
+        base = os.environ.get("SUPABASE_URL", "").rstrip("/")
+        parts = urlsplit(base)
+        if parts.scheme != "https" or not parts.hostname or parts.username or parts.password or parts.query or parts.fragment:
+            return None
+        try:
+            response = httpx.get(base + "/auth/v1/user", headers={"Authorization": authorization,
+                                 "apikey": os.environ.get("SUPABASE_CLIENT_KEY", "")}, timeout=8, follow_redirects=False)
+            if response.status_code >= 500 or response.status_code == 429: raise AuthenticationUnavailable()
+            if response.status_code != 200: return None
+            return str(uuid.UUID(response.json()["id"]))
+        except httpx.HTTPError as error:
+            raise AuthenticationUnavailable() from error
+        except (ValueError, KeyError, TypeError):
+            return None
 
     def do_GET(self):
         if self.path == "/health":
             self.reply(200, dict(service="C67 Pocket ordering", version=3))
             return
-        if not self.authorized():
+        try: owner = self.authorized()
+        except AuthenticationUnavailable:
+            self.reply(503, dict(error="Authentication service unavailable")); return
+        if not owner:
             self.reply(401, dict(error="Unauthorized"))
             return
         prefix = "/v1/visits/jobs/"
         if self.path.startswith("/v1/order/jobs/"):
             try:
                 ident = str(uuid.UUID(self.path.removeprefix("/v1/order/jobs/")))
-                self.reply(200, self.server.order_jobs.get(ident))
+                self.reply(200, self.server.order_jobs.get(ident, owner))
             except (ValueError, KeyError):
                 self.reply(404, dict(error="Ordering job not found"))
             return
         if self.path.startswith(prefix):
             try:
                 ident = str(uuid.UUID(self.path.removeprefix(prefix)))
-                self.reply(200, self.server.jobs.get(ident))
+                self.reply(200, self.server.jobs.get(ident, owner))
             except (ValueError, KeyError):
                 self.reply(404, dict(error="Resolution job not found"))
         else:
@@ -275,7 +308,10 @@ class Handler(BaseHTTPRequestHandler):
                     **(dict(reportedReasoningEffort="max", providerProtocol="responses") if model == "gpt-6-luna" else {}))
 
     def do_POST(self):
-        if not self.authorized():
+        try: owner = self.authorized()
+        except AuthenticationUnavailable:
+            self.reply(503, dict(error="Authentication service unavailable")); return
+        if not owner:
             self.reply(401, dict(error="Unauthorized"))
             return
         try:
@@ -287,9 +323,9 @@ class Handler(BaseHTTPRequestHandler):
             body = json.loads(self.rfile.read(count))
             if self.path == "/v1/order":
                 request_context(body)
-                self.reply(202, self.server.order_jobs.submit(body))
+                self.reply(202, self.server.order_jobs.submit(body, owner))
             elif self.path == "/v1/visits/resolve":
-                self.reply(202, self.server.jobs.submit(body))
+                self.reply(202, self.server.jobs.submit(body, owner))
             elif self.path == "/v1/advice/visits":
                 with self.server.advice_lock:
                     self.reply(200, self.select_schedule(body))
@@ -297,7 +333,9 @@ class Handler(BaseHTTPRequestHandler):
                 self.reply(404, dict(error="Unknown endpoint"))
         except UpstreamResponseError:
             self.reply(502, dict(error="Invalid Luna response; no replacement result was used"))
-        except (ValueError, KeyError, TypeError):
+        except KeyError:
+            self.reply(404, dict(error="Job not found"))
+        except (ValueError, TypeError):
             self.reply(422, dict(error="Invalid resolution or advice request"))
         except (OSError, sqlite3.Error):
             self.reply(503, dict(error="Resolution storage or Luna is unavailable"))
@@ -310,8 +348,16 @@ def main():
     args = parser.parse_args()
     load_env(args.env_file)
     os.environ.setdefault("POCKET_LLM_BASE_URL", "https://ai.giovanc.com/v1")
-    if len(os.environ.get("POCKET_READ_TOKEN", "")) < 24:
+    mode = os.environ.get("POCKET_AUTH_MODE", "legacy")
+    if mode == "legacy" and len(os.environ.get("POCKET_READ_TOKEN", "")) < 24:
         raise SystemExit("Configure a read token of at least 24 characters")
+    if mode == "authenticated":
+        auth_url = urlsplit(os.environ.get("SUPABASE_URL", ""))
+        if (auth_url.scheme != "https" or not auth_url.hostname or auth_url.username or auth_url.password or
+            auth_url.query or auth_url.fragment or not os.environ.get("SUPABASE_CLIENT_KEY")):
+            raise SystemExit("Configure HTTPS SUPABASE_URL and the publishable SUPABASE_CLIENT_KEY")
+    if mode not in ("legacy", "authenticated"):
+        raise SystemExit("Unknown Pocket authentication mode")
     os.umask(0o077)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     luna = advice_module()

@@ -11,6 +11,13 @@ struct AppDependencies {
 
     @MainActor static func make() throws -> AppDependencies {
         #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--pocket-auth-fixture") {
+                let url = URL(string: "https://fixture.invalid")!
+                let auth = try SupabaseAuthentication(baseURL: url, clientKey: "synthetic-publishable-key",
+                                                      store: KeychainSessionStore(namespace: "io.pibeebee.c67.pocket-auth-fixture", baseURL: url))
+                return .init(repository: try MockRundownRepository(), planningRepository: MockPlanningRepository(),
+                             planningInitialInput: nil, mode: "Pocket • authenticated", authentication: auth)
+            }
             if ProcessInfo.processInfo.arguments.contains("--pocket-runtime-acceptance") {
                 let env = ProcessInfo.processInfo.environment
                 guard let url = env["C67_LIVE_URL"], let token = env["C67_LIVE_READ_TOKEN"],
@@ -31,6 +38,17 @@ struct AppDependencies {
         #endif
         let mode = Bundle.main.object(forInfoDictionaryKey: "C67_DATA_MODE") as? String ?? "mock"
         switch mode {
+        case "pocket-auth":
+            guard let raw = Bundle.main.object(forInfoDictionaryKey: "SUPABASE_URL") as? String,
+                  let url = URL(string: raw), url.scheme == "https", url.host != nil,
+                  let key = Bundle.main.object(forInfoDictionaryKey: "SUPABASE_CLIENT_KEY") as? String, !key.isEmpty else {
+                throw RepositoryError.invalidConfiguration
+            }
+            let auth = try SupabaseAuthentication(baseURL: url, clientKey: key,
+                                                  store: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".pocket-user", baseURL: url),
+                                                  flowStore: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".pocket-user-flow", baseURL: url))
+            return .init(repository: try MockRundownRepository(), planningRepository: MockPlanningRepository(),
+                         planningInitialInput: nil, mode: "Pocket • authenticated", authentication: auth)
         case "pocket":
             let raw = Bundle.main.object(forInfoDictionaryKey: "POCKET_SERVER_URL") as? String ?? ""
             let endpoint = URL(string: raw)?.host == nil ? "" : raw

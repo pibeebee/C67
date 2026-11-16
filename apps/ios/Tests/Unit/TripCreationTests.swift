@@ -7,6 +7,21 @@ import C67Domain
 
 @Suite("Connected Hi-Fi trip creation")
 @MainActor struct TripCreationTests {
+    @Test func departureFallbackUsesOnlyTheMatchingForecastHour() throws {
+        let data = Data(#"{"hourly_units":{"time":"unixtime","temperature_2m":"°C"},"hourly":{"time":[3600,7200],"temperature_2m":[24,29],"weather_code":[0,61]}}"#.utf8)
+        let reading = try DepartureWeatherLoader.decodeOpenMeteo(data, departure: Date(timeIntervalSince1970: 7500))
+        #expect(reading.temperature.value == 29)
+        #expect(reading.condition == "Rain")
+        #expect(reading.source == "Open-Meteo")
+        #expect(throws: (any Error).self) {
+            try DepartureWeatherLoader.decodeOpenMeteo(data, departure: Date(timeIntervalSince1970: 11000))
+        }
+        let badUnits = Data(#"{"hourly_units":{"time":"unixtime","temperature_2m":"°F"},"hourly":{"time":[3600],"temperature_2m":[72],"weather_code":[0]}}"#.utf8)
+        #expect(throws: (any Error).self) {
+            try DepartureWeatherLoader.decodeOpenMeteo(badUnits, departure: Date(timeIntervalSince1970: 3600))
+        }
+    }
+
     private func make(specific: Bool = true, repository: any PlanningRepository = MockPlanningRepository(),
                       searcher: (any TripPlaceSearching)? = nil) throws -> TripCreationPresenter {
         let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: try MockPlanningRepository.sampleInput())

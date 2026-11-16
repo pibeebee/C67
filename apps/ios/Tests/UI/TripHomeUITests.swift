@@ -1,6 +1,15 @@
 import XCTest
 
 final class TripHomeUITests: XCTestCase {
+    @MainActor func testAuthenticatedPocketStartsWithAppleSignIn() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash", "--pocket-auth-fixture"]
+        app.launch()
+        XCTAssertTrue(app.buttons["authApple"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.textFields["pocketServerURL"].exists)
+        XCTAssertFalse(app.secureTextFields["pocketReadToken"].exists)
+    }
+
     @MainActor func testCompletedTripShowsVisitedStops() {
         let app = XCUIApplication()
         app.launchArguments = ["--completed-trip-preview"]

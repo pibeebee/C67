@@ -1,13 +1,22 @@
 import XCTest
 
 final class HiFiPreviewUITests: XCTestCase {
+    @MainActor func testTripCompletionKeepsDoneAccessible() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--completed-trip-preview", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Trip complete"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["Done"].isHittable)
+    }
+
     @MainActor func testNavigationAndArrivalControlsAreVisible() {
         let app = XCUIApplication()
         app.launchArguments = ["--active-trip-preview", "-AppleInterfaceStyle", "Light"]
         app.launch()
         XCTAssertTrue(app.staticTexts["450 m"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["End trip"].isHittable)
+        XCTAssertTrue(app.buttons["Open in Maps"].isHittable)
         XCTAssertTrue(app.buttons["Pause trip"].isHittable)
+        XCTAssertTrue(app.buttons["confirmTripArrival"].isHittable)
         app.terminate()
 
         app.launchArguments = ["--arrival-preview", "-AppleInterfaceStyle", "Light"]
@@ -24,7 +33,7 @@ final class HiFiPreviewUITests: XCTestCase {
             app.launchArguments = [argument, "-AppleInterfaceStyle", "Light"]
             app.launch()
             XCTAssertTrue(app.windows.firstMatch.waitForExistence(timeout: 10))
-            let expected = argument == "--arrival-preview" ? "You’ve arrived" : argument == "--active-trip-preview" ? "80 m" : nil
+            let expected = argument == "--arrival-preview" ? "You’ve arrived" : argument == "--active-trip-preview" ? "Directions to ALDI’S BURGER" : nil
             if let expected { XCTAssertTrue(app.staticTexts[expected].waitForExistence(timeout: 5)) }
             let screenshot = XCTAttachment(screenshot: app.screenshot())
             screenshot.name = argument

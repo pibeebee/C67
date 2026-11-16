@@ -12,6 +12,20 @@ private func appleToken(_ access: String = "synthetic-apple-access") -> String {
     """
 }
 
+@Test func pocketConnectionUsesCurrentAppleSessionInsteadOfSharedToken() async throws {
+    let http = HTTPHarness { request in
+        if request.url!.lastPathComponent == "logout" { return .init(204, "") }
+        return .init(appleToken())
+    }
+    let service = try SupabaseAuthentication(baseURL: http.baseURL, clientKey: "client", store: MemorySessionStore(), session: http.session)
+    let connection = try AuthenticatedPocketConnection(serverURL: "https://pocket.example.test", authentication: service)
+    #expect(await connection.credentials().token.isEmpty)
+    _ = try await service.signInWithApple(appleCredentials)
+    #expect(await connection.credentials().token == "synthetic-apple-access")
+    try await service.signOut()
+    #expect(await connection.credentials().token.isEmpty)
+}
+
 @Test func appleTokenExchangePersistsCommonSessionWithoutPersistingAppleTokenOrNonce() async throws {
     let http = HTTPHarness { request in
         let body = try requestBody(request)
