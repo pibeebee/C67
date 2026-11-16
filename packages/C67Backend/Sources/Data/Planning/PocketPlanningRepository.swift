@@ -7,6 +7,7 @@ import PocketEngine
 /// Persists native trips and integrates server ordering; legacy timed trips retain the local solver.
 public actor PocketPlanningRepository: PlanningRepository {
     public nonisolated let supportsOnDevicePlanning = true
+    public nonisolated let supportsTripDeletion = true
     public nonisolated let preferenceLabels: [PlanningPreferenceLabel] = Interests.groups.dropFirst().flatMap { group in
         group.keys.map { PlanningPreferenceLabel(id: $0, title: Interests.title($0), group: group.title, allowsCondition: Facet(rawValue: $0)?.isCategoryLabel == false) }
     }
@@ -767,6 +768,28 @@ public actor PocketPlanningRepository: PlanningRepository {
         var next = state
         next.trips[trip.id] = trip; next.applied[jobID] = trip; next.receipts[requestID] = .trip(fingerprint, trip); next.pending = nil
         try commit(next); return trip
+    }
+
+    public func deleteTrip(id: UUID, expectedRevision: Int) async throws {
+        guard let trip = state.trips[id] else { throw PlanningError.notFound }
+        guard trip.revision == expectedRevision else { throw PlanningError.revisionConflict }
+        var next = state
+        let jobIDs = Set(next.jobs.values.filter { $0.tripID == id }.map(\.id))
+            .union(next.applied.filter { $0.value.id == id }.map(\.key))
+        next.trips.removeValue(forKey: id)
+        for jobID in jobIDs {
+            next.jobs.removeValue(forKey: jobID)
+            next.applied.removeValue(forKey: jobID)
+        }
+        next.receipts = next.receipts.filter { _, receipt in
+            switch receipt {
+            case .job(_, let jobID): !jobIDs.contains(jobID)
+            case .trip(_, let saved): saved.id != id
+            }
+        }
+        if let pending = next.pending, jobIDs.contains(pending) { next.pending = nil }
+        try commit(next)
+        for jobID in jobIDs { orderTasks.removeValue(forKey: jobID)?.cancel() }
     }
 
     public func recordEvent(tripID: UUID, event: C67Domain.PlanningEvent) throws -> PersonalPlanningTrip {

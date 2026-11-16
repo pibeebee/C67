@@ -368,6 +368,18 @@ import C67Domain
 }
 
 extension TripCreationTests {
+    @Test func recommendationShortAddressUsesAvailableLocationWithoutRepeatingName() {
+        var item = RecommendedPlace(place: .init(id: UUID(), name: "Kopi Kenangan", location: TripDiscoveryArea.center, visitSeconds: 1800),
+                                    address: "Kopi Kenangan, Jalan Thamrin, Central Jakarta")
+        #expect(item.shortAddress == "Jalan Thamrin")
+        item.branchAddress = "Jalan Cikini 10"
+        #expect(item.shortAddress == "Jalan Cikini 10")
+        item.branchAddress = nil
+        item.address = "Kopi Kenangan"
+        #expect(item.shortAddress == nil)
+        item.address = nil
+        #expect(item.shortAddress == nil)
+    }
     @Test func expiredProposalRequiresFreshReview() async throws {
         let repo = TripFlowRepositoryStub()
         let model = try make(repository: repo)
@@ -465,7 +477,7 @@ extension TripCreationTests {
         model.advance(.interests)
         await model.loadRecommendationsIfNeeded()
         #expect(model.route == .recommendations)
-        #expect(!model.batch.places.isEmpty)
+        #expect(model.batch.places.isEmpty)
         #expect(model.recommendationError == nil)
         #expect(model.planning.job == nil)
         #expect(await repo.started == false)
@@ -557,9 +569,10 @@ extension TripCreationTests {
         let chosen = try #require(model.batch.places.first)
         model.toggle(chosen)
         _ = await model.suggest()
-        #expect(firstQueries.count == 4)
-        #expect(search.queries.count == 8)
-        #expect(Set(firstQueries).isDisjoint(with: search.queries.suffix(4)))
+        let refreshedQueries = search.queries.dropFirst(firstQueries.count)
+        #expect(Set(firstQueries).count == 4)
+        #expect(Set(refreshedQueries).count == 4)
+        #expect(Set(firstQueries).isDisjoint(with: refreshedQueries))
         #expect(model.selected.contains(chosen))
     }
 
@@ -600,10 +613,32 @@ extension TripCreationTests {
         let second = RecommendedPlace(place: .init(id: UUID(), name: "Second place", location: TripDiscoveryArea.center, visitSeconds: 1800))
         let third = RecommendedPlace(place: .init(id: UUID(), name: "Third place", location: TripDiscoveryArea.center, visitSeconds: 1800))
         search.placesByQuery = ["first": [shared, second], "second": [shared, third]]
-        let batch = try await TripCreationInteractor(searcher: search).recommend(queries: ["first", "second"], near: nil, synthetic: true)
+        let batch = try await TripCreationInteractor(searcher: search).recommend(queries: ["first", "second"], near: TripDiscoveryArea.center, synthetic: true)
         #expect(batch.places.map(\.id) == [shared.id, second.id, third.id])
         #expect(batch.warnings.isEmpty)
         #expect(batch.synthetic)
+    }
+
+    @Test func recommendationsExpandAndExcludePlacesOutsideMaximumRadius() async throws {
+        let search = TripSearchStub()
+        let origin = TripDiscoveryArea.center
+        func place(_ name: String, latitudeOffset: Double) -> RecommendedPlace {
+            .init(place: .init(id: UUID(), name: name,
+                               location: .init(latitude: origin.latitude + latitudeOffset, longitude: origin.longitude), visitSeconds: 1800))
+        }
+        let nearby = place("Nearby", latitudeOffset: 0.01)
+        let expanded = place("Expanded", latitudeOffset: 0.15)
+        let tooFar = place("Too far", latitudeOffset: 0.5)
+        search.placesByQuery = ["park": [tooFar, expanded, nearby]]
+        let batch = try await TripCreationInteractor(searcher: search).recommend(queries: ["park"], near: origin, synthetic: true)
+        #expect(batch.radiusKilometers == 30)
+        #expect(batch.places.map(\.id) == [nearby.id, expanded.id])
+        #expect(search.queries.count == 3)
+
+        search.placesByQuery = ["park": (0 ..< 10).map { place("Nearby \($0)", latitudeOffset: Double($0) * 0.001) }]
+        let initial = try await TripCreationInteractor(searcher: search).recommend(queries: ["park"], near: origin, synthetic: true)
+        #expect(initial.radiusKilometers == 10)
+        #expect(initial.places.count == 10)
     }
 
     @Test func unrelatedPreferencesSearchSeparatelyRatherThanAsOneCombinedVenue() async throws {
@@ -626,10 +661,10 @@ extension TripCreationTests {
         let manual = try await interactor.search("bookstore", near: foreign.place.location)
         let batch = try await interactor.recommend(queries: ["bookstore"], near: foreign.place.location, synthetic: true)
         #expect(manual.map(\.id) == [foreign.id, local.id])
-        #expect(batch.places.map(\.id) == [foreign.id, local.id])
+        #expect(batch.places.map(\.id) == [foreign.id])
         search.placesByQuery = ["bookstore": [foreign]]
         let empty = try await interactor.recommend(queries: ["bookstore"], near: nil, synthetic: true)
-        #expect(empty.places.map(\.id) == [foreign.id])
+        #expect(empty.places.isEmpty)
         #expect(empty.warnings.isEmpty)
     }
 
@@ -668,10 +703,14 @@ extension TripCreationTests {
     @Test func directProcessingBuildsUntimedRecommendationWithoutAvailabilityForm() async throws {
         let repository = try PocketIntegrationFixture.repository()
         let model = try make(repository: repository)
+        let fixtureInput = PocketIntegrationFixture.input()
+        model.planning.startsAt = fixtureInput.startsAt
+        model.planning.finishBy = fixtureInput.finishBy
         model.selected = [.init(place: .init(id: UUID(), name: "Unverified trip selection",
                                              location: .init(latitude: -6.2515, longitude: 106.8), visitSeconds: 2700))]
         model.finishChoosingPlaces()
         await model.finishMainSpot()
+        #expect(model.error == nil)
         #expect(model.route == .review)
         #expect(model.planning.job?.purpose == .firstItinerary)
         let proposal = try #require(model.planning.job?.result?.proposal)

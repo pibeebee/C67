@@ -7,6 +7,7 @@ struct TripHomeHeader: View {
     var addSpecificPlace: () -> Void = {}
     var isBusy = false
     var isLocating = false
+    var accessibilityLocationTitle: String?
 
     var body: some View {
         ViewThatFits(in: .horizontal) {
@@ -14,7 +15,7 @@ struct TripHomeHeader: View {
                 Text("Trip")
                     .font(.largeTitle.bold())
                     .accessibilityAddTraits(.isHeader)
-                TripLocationButton(title: locationTitle, isLocating: isLocating, action: chooseLocation)
+                TripLocationButton(title: locationTitle, isLocating: isLocating, accessibilityTitle: accessibilityLocationTitle, action: chooseLocation)
                     .fixedSize()
                     .disabled(isBusy)
                 Spacer(minLength: 0)
@@ -28,7 +29,7 @@ struct TripHomeHeader: View {
                     Spacer()
                     TripAddButton(action: addTrip, addSpecificPlace: addSpecificPlace)
                 }
-                TripLocationButton(title: locationTitle, isLocating: isLocating, action: chooseLocation)
+                TripLocationButton(title: locationTitle, isLocating: isLocating, accessibilityTitle: accessibilityLocationTitle, action: chooseLocation)
                     .disabled(isBusy)
             }
         }

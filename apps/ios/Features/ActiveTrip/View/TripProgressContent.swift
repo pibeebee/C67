@@ -12,13 +12,16 @@ struct TripProgressContent: View {
     var previewDistance: String?
     var route: MKRoute?
     var locationError: String?
+    var locationPermissionDenied = false
     let openDirections: () -> Void
+    var openSettings: () -> Void = {}
     var openMaps: () -> Void = {}
     let arrive: () -> Void
     let completeVisit: () -> Void
     let returnToTrip: () -> Void
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.locale) private var locale
+    @State private var mapPosition: MapCameraPosition = .automatic
 
     private var stop: ScheduledPlanningStop? { trip.nextStop }
     private var arrived: Bool { stop != nil && trip.currentStopID == stop?.id }
@@ -38,7 +41,7 @@ struct TripProgressContent: View {
 
     private var activeContent: some View {
         GeometryReader { geometry in
-            Map {
+            Map(position: $mapPosition) {
                 UserAnnotation()
                 if let route { MapPolyline(route.polyline).stroke(.blue, lineWidth: 5) }
                 ForEach(trip.plan.stops.filter { $0.id == stop?.id }) { item in
@@ -58,19 +61,35 @@ struct TripProgressContent: View {
                     }
                 }
             }
+            .onChange(of: route) { _, _ in focusRoute() }
             .accessibilityLabel("Trip stops on the map")
+            .overlay(alignment: .trailing) {
+                if route != nil {
+                    Button(action: focusRoute) {
+                        Image(systemName: "location.viewfinder")
+                            .frame(width: 44, height: 44)
+                    }
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.circle)
+                    .accessibilityLabel("Show route")
+                    .padding(.trailing, 16)
+                }
+            }
             .safeAreaInset(edge: .top) {
-                if !arrived && trip.status != .completed, let stop {
+                if trip.status != .completed, let stop {
                     HStack(spacing: 16) {
-                        Image(systemName: "map").font(.largeTitle)
+                        Image(systemName: arrived ? "checkmark.circle.fill" : "map").font(.largeTitle)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Directions to \(stop.name)")
-                                .font(.title3)
+                            Text(arrived ? "You’ve arrived" : "On your way")
+                                .font(.headline)
+                            Text(stop.name)
+                                .font(.title3.bold())
                         }
                         Spacer(minLength: 0)
                     }
                     .padding(.horizontal, 24)
-                    .frame(minHeight: 154)
+                    .padding(.vertical, 18)
+                    .frame(minHeight: 90)
                     .frame(maxWidth: 640, alignment: .leading)
                     .foregroundStyle(.white)
                     .background(AppColor.brand, in: .rect(cornerRadius: 32))
@@ -86,16 +105,12 @@ struct TripProgressContent: View {
                             action("Back to trip", action: returnToTrip)
                         } else if let stop {
                             if arrived {
-                                HStack(alignment: .top, spacing: 12) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .font(.title).foregroundStyle(.green)
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text("You’ve arrived").font(.title.bold())
-                                        Text("Stop \(number) of \(trip.plan.stops.count)")
-                                            .font(.subheadline).foregroundStyle(.secondary)
-                                    }
+                                Text("Stop \(number) of \(trip.plan.stops.count)")
+                                    .font(.subheadline).foregroundStyle(.secondary)
+                                HStack(spacing: 12) {
+                                    PlaceThumbnail(imageName: details[stop.id]?.photoAsset, size: 48)
+                                    Text(stop.name).font(.headline)
                                 }
-                                Text(stop.name).font(.title3.weight(.semibold))
                                 if trip.plan.experiencePlan != nil {
                                     if trip.input.places.first(where: { $0.id == stop.id })?.durationOverridden == true {
                                         Text("Your visit length · \(stop.visitSeconds / 60) min")
@@ -119,21 +134,22 @@ struct TripProgressContent: View {
                                 }
                                 action(upcoming == nil ? "Finish last visit" : "Continue to next stop", action: completeVisit)
                                     .accessibilityIdentifier("completeTripVisit")
+                                backButton
                             } else {
                                 HStack(alignment: .top) {
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text(previewDistance ?? route.map { Self.distance($0.distance) } ?? "—")
                                             .font(.largeTitle.bold())
-                                        Text("Remaining").font(.subheadline)
+                                        Text("To next stop").font(.subheadline)
                                     }
                                     Spacer()
                                     VStack(alignment: .leading, spacing: 2) {
                                         HStack(spacing: 8) {
-                                            Image(systemName: "car.fill").font(.title3)
+                                            Image(systemName: trip.input.mode == .walking ? "figure.walk" : "car.fill").font(.title3)
                                             Text(isDesignPreview ? "6 min" : route.map { "\(Int(ceil($0.expectedTravelTime / 60))) min" } ?? "—")
                                                 .font(.largeTitle.bold())
                                         }
-                                        Text("Driving · estimate").font(.subheadline)
+                                        Text(trip.input.mode == .walking ? "Walk · estimate" : "Drive · estimate").font(.subheadline)
                                     }
                                 }
                                 HStack(spacing: 12) {
@@ -146,21 +162,18 @@ struct TripProgressContent: View {
                                 Divider()
                                 if let locationError, !isDesignPreview {
                                     Text(locationError).font(.footnote)
-                                    action("Try again", action: openDirections)
+                                    if locationPermissionDenied { action("Open Settings", action: openSettings) }
+                                    else { action("Try again", action: openDirections) }
                                 } else if route == nil && !isDesignPreview {
                                     ProgressView("Finding directions…").tint(AppColor.brand)
                                 }
-                                HStack {
-                                    action("Open in Maps", action: openMaps)
-                                    Button("I’m here", action: arrive)
-                                        .buttonStyle(.bordered).buttonBorderShape(.capsule)
-                                        .frame(maxWidth: .infinity, minHeight: 44)
-                                        .disabled(isBusy)
-                                        .accessibilityIdentifier("confirmTripArrival")
+                                Text("Arrival may be detected automatically.")
+                                    .font(.footnote).foregroundStyle(.secondary)
+                                directionsButton
+                                ViewThatFits(in: .horizontal) {
+                                    HStack { arrivalButton; backButton }
+                                    VStack { arrivalButton; backButton }
                                 }
-                                Button("Pause trip", action: returnToTrip)
-                                    .buttonStyle(.bordered).buttonBorderShape(.capsule)
-                                    .frame(maxWidth: .infinity, minHeight: 44).disabled(isBusy)
                             }
                         }
                         if isDesignPreview { Text("Design preview · sample directions and estimates").font(.caption).foregroundStyle(.secondary) }
@@ -168,7 +181,7 @@ struct TripProgressContent: View {
                         if let error { Label(error, systemImage: "exclamationmark.circle").font(.footnote) }
                         if isBusy { ProgressView("Updating trip…").tint(AppColor.brand) }
                     }
-                    .padding(arrived ? 30 : 21)
+                    .padding(21)
                     .frame(maxWidth: 640, alignment: .leading)
                     .frame(maxWidth: .infinity)
                 }
@@ -184,9 +197,34 @@ struct TripProgressContent: View {
         .background(AppColor.canvas)
         .navigationTitle(arrived ? "Arrival" : "")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(arrived ? .visible : .hidden, for: .navigationBar)
+        .toolbar(.hidden, for: .navigationBar)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
+    }
+
+    private var directionsButton: some View {
+        action("Navigate with Apple Maps", action: openMaps)
+    }
+
+    private var arrivalButton: some View {
+        Button("I’m here", action: arrive)
+            .buttonStyle(.bordered).buttonBorderShape(.capsule)
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .disabled(isBusy)
+            .accessibilityIdentifier("confirmTripArrival")
+    }
+
+    private var backButton: some View {
+        Button("Back to trip", action: returnToTrip)
+            .buttonStyle(.bordered).buttonBorderShape(.capsule)
+            .frame(maxWidth: .infinity, minHeight: 44).disabled(isBusy)
+    }
+
+    private func focusRoute() {
+        guard let route else { return }
+        let rect = route.polyline.boundingMapRect
+        guard !rect.isNull, !rect.isEmpty else { return }
+        mapPosition = .rect(rect.insetBy(dx: -max(rect.size.width * 0.25, 500), dy: -max(rect.size.height * 0.25, 500)))
     }
 
     private static func distance(_ meters: CLLocationDistance) -> String {

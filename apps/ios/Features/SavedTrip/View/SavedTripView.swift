@@ -5,6 +5,7 @@ struct SavedTripView: View {
     let tripID: UUID
     let presenter: PlanningPresenter
     @State private var showsProgress = false
+    @State private var confirmsDelete = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -21,11 +22,23 @@ struct SavedTripView: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink(value: SavedTripRoute.options) {
+                            Menu {
+                                NavigationLink("Trip options", value: SavedTripRoute.options)
+                                if presenter.supportsTripDeletion {
+                                    Button("Delete trip", role: .destructive) { confirmsDelete = true }
+                                }
+                            } label: {
                                 Label("Trip options", systemImage: "ellipsis")
                             }
                             .labelStyle(.iconOnly)
                         }
+                    }
+                    .confirmationDialog("Delete this trip?", isPresented: $confirmsDelete, titleVisibility: .visible) {
+                        Button("Delete trip", role: .destructive) {
+                            Task { if await presenter.deleteTrip(trip) { dismiss() } }
+                        }
+                    } message: {
+                        Text("This removes the trip from this device and cannot be undone.")
                     }
                     .task {
                         if presenter.consumeStartRequest(for: tripID) { primary(trip) }

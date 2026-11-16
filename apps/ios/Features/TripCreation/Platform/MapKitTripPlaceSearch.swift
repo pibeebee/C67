@@ -12,20 +12,37 @@ import C67Domain
     }
 
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
-        try await find(query, near: origin, pointsOfInterestOnly: false)
+        let matches = try await find(query, near: origin, pointsOfInterestOnly: false, spanMeters: 40000)
+        var combined = matches
+        do {
+            let points = try await find(query, near: origin, pointsOfInterestOnly: true, spanMeters: 40000)
+            var seen = Set(combined.map(\.id))
+            for point in points where seen.insert(point.id).inserted { combined.append(point) }
+        } catch is CancellationError { throw CancellationError() }
+        catch { /* Preserve usable results from the first search. */ }
+        guard let origin else { return combined }
+        return combined.enumerated().sorted { first, second in
+            let firstNearby = (first.element.straightLineDistance(from: origin) ?? .infinity) <= 40000
+            let secondNearby = (second.element.straightLineDistance(from: origin) ?? .infinity) <= 40000
+            return firstNearby == secondNearby ? first.offset < second.offset : firstNearby
+        }.map(\.element)
     }
 
     func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
-        try await find(query, near: origin, pointsOfInterestOnly: true)
+        try await find(query, near: origin, pointsOfInterestOnly: true, spanMeters: 40000)
     }
 
-    private func find(_ query: String, near origin: PlanningPoint?, pointsOfInterestOnly: Bool) async throws -> [RecommendedPlace] {
+    func recommendations(_ query: String, near origin: PlanningPoint, radiusMeters: Double) async throws -> [RecommendedPlace] {
+        try await find(query, near: origin, pointsOfInterestOnly: true, spanMeters: radiusMeters * 2)
+    }
+
+    private func find(_ query: String, near origin: PlanningPoint?, pointsOfInterestOnly: Bool, spanMeters: Double) async throws -> [RecommendedPlace] {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
         request.resultTypes = pointsOfInterestOnly ? [.pointOfInterest] : [.pointOfInterest, .address]
         if let origin {
             request.region = .init(center: .init(latitude: origin.latitude, longitude: origin.longitude),
-                                   latitudinalMeters: 40000, longitudinalMeters: 40000)
+                                   latitudinalMeters: spanMeters, longitudinalMeters: spanMeters)
         }
         let search = MKLocalSearch(request: request)
         let response: MKLocalSearch.Response
@@ -57,9 +74,12 @@ import C67Domain
             place.address = item.placemark.title
             place.phoneNumber = item.phoneNumber
             place.categories = item.pointOfInterestCategory.map { [$0.rawValue] } ?? []
-            return RecommendedPlace(place: place, address: place.address)
+            let street = [item.placemark.thoroughfare, item.placemark.subThoroughfare]
+                .compactMap { $0 }.joined(separator: " ")
+            let branchAddress = street.isEmpty ? (item.placemark.subLocality ?? item.placemark.locality) : street
+            return RecommendedPlace(place: place, address: place.address, branchAddress: branchAddress)
         }
-        return Array(places.prefix(12))
+        return places
     }
 }
 

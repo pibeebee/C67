@@ -25,6 +25,7 @@ import C67Domain
     private(set) var reviewProposal: PlanProposal?
     var error: String?
     private var recommendationAnswers: PreferenceAnswers?
+    private var recommendationOrigin: PlanningPoint?
     private var recommendationPage = 0
     private var recommendationGeneration = 0
     private var recommendationTask: Task<RecommendationsBatch, any Error>?
@@ -102,7 +103,7 @@ import C67Domain
         defer { if ticket == searchGeneration { isSearching = false } }
         do {
             let found = try await interactor.search(text, near: planning.origin)
-            guard ticket == searchGeneration, !Task.isCancelled else { return }
+            guard ticket == searchGeneration, !Task.isCancelled, query.trimmingCharacters(in: .whitespacesAndNewlines) == text else { return }
             results = found.map { item in
                 selected.first(where: { $0.place.name == item.place.name && $0.place.location == item.place.location }) ?? item
             }
@@ -123,13 +124,17 @@ import C67Domain
     }
 
     func loadRecommendationsIfNeeded() async {
-        guard recommendationAnswers != answers else { return }
+        guard planning.origin != nil, recommendationAnswers != answers || recommendationOrigin != planning.origin else { return }
         _ = await suggest()
     }
 
     func suggest() async -> RecommendationsBatch? {
         guard !Task.isCancelled, route == .recommendations, !isSuggesting, !planning.isBusy else { return nil }
         let snapshot = answers
+        guard let origin = planning.origin, TripDiscoveryArea.contains(origin) else {
+            batch = .init(places: [])
+            return nil
+        }
         recommendationGeneration += 1
         let generation = recommendationGeneration
         let session = planning.sessionGeneration
@@ -141,7 +146,7 @@ import C67Domain
         isSuggesting = true
         recommendationError = nil
         let request = Task {
-            try await interactor.recommend(queries: window, near: planning.origin, synthetic: mode.hasPrefix("Mock"))
+            try await interactor.recommend(queries: window, near: origin, synthetic: mode.hasPrefix("Mock"))
         }
         recommendationTask = request
         defer {
@@ -151,10 +156,11 @@ import C67Domain
             let updated = try await withTaskCancellationHandler {
                 try await request.value
             } onCancel: { request.cancel() }
-            guard !Task.isCancelled, generation == recommendationGeneration, snapshot == answers,
+            guard !Task.isCancelled, generation == recommendationGeneration, snapshot == answers, planning.origin == origin,
                   session == planning.sessionGeneration, route == .recommendations else { return nil }
             batch = updated
             recommendationAnswers = snapshot
+            recommendationOrigin = origin
             recommendationPage += 1
             return updated
         } catch {

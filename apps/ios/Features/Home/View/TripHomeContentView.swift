@@ -7,6 +7,7 @@ struct TripHomeContentView: View {
     let mode: String
     let showAccount: () -> Void
     var planTrip: () -> Void = {}
+    var resumeDraft: (PlanningJob) -> Void = { _ in }
 
     private var trips: [PersonalPlanningTrip] {
         presenter.trips.filter { ($0.status == .completed) == isHistory }
@@ -15,7 +16,7 @@ struct TripHomeContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                if presenter.isBusy && presenter.trips.isEmpty {
+                if presenter.isBusy && presenter.trips.isEmpty && (isHistory || presenter.firstItineraryJob == nil) {
                     ProgressView("Loading trips…")
                         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
                 } else if let error = presenter.error, presenter.firstItineraryJob == nil {
@@ -31,7 +32,7 @@ struct TripHomeContentView: View {
                         }
                     }
                     .frame(minHeight: geometry.size.height)
-                } else if trips.isEmpty {
+                } else if trips.isEmpty && (isHistory || presenter.firstItineraryJob == nil) {
                     if isHistory {
                         ContentUnavailableView("No trips yet", systemImage: "clock.arrow.circlepath",
                                                description: Text("Your completed trips will appear here."))
@@ -42,6 +43,13 @@ struct TripHomeContentView: View {
                     }
                 } else {
                     LazyVStack(spacing: 12) {
+                        if !isHistory, let draft = presenter.firstItineraryJob {
+                            Text("Drafts").font(.headline).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 4)
+                            Button { resumeDraft(draft) } label: { TripDraftRow(job: draft) }
+                                .buttonStyle(.plain)
+                                .disabled(presenter.isBusy)
+                                .accessibilityIdentifier("resumeItineraryDraft")
+                        }
                         ForEach(tripDays, id: \.self) { day in
                             Text(dayTitle(day))
                                 .font(.headline)
@@ -80,5 +88,38 @@ struct TripHomeContentView: View {
 
     private func reload() {
         Task { await presenter.load() }
+    }
+}
+
+struct TripDraftRow: View {
+    let job: PlanningJob
+
+    private var status: LocalizedStringKey {
+        switch job.status {
+        case .queued, .running: "Preparing itinerary…"
+        case .succeeded: "Ready to review"
+        case .failed: "Couldn’t prepare itinerary · Tap to retry"
+        case .unknown: "Continue itinerary draft"
+        }
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "map")
+                .font(.largeTitle).foregroundStyle(AppColor.accent)
+                .frame(width: 96, height: 96).background(AppColor.tertiaryFill, in: .rect(cornerRadius: 10))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(job.input.title).font(.headline)
+                Text(status).font(.subheadline).foregroundStyle(.secondary)
+                Text("\(job.input.places.count) places").font(.caption).foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            if job.status == .queued || job.status == .running { ProgressView() }
+            else { Image(systemName: "chevron.right").foregroundStyle(AppColor.accent).accessibilityHidden(true) }
+        }
+        .foregroundStyle(.primary).padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColor.surface, in: .rect(cornerRadius: 16))
     }
 }

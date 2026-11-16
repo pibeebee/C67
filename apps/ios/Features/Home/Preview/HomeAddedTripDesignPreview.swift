@@ -1,13 +1,20 @@
 #if DEBUG
     import SwiftUI
+    import C67Domain
 
     struct HomeAddedTripDesignPreview: View {
+        var draftStatus: PlanningJobStatus?
         var body: some View {
             TabView {
                 Tab("Trip", systemImage: "location") {
                     NavigationStack {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 12) {
+                                if let draftStatus {
+                                    Text("Drafts").font(.headline)
+                                    TripDraftRow(job: PlanningJob(id: UUID(), status: draftStatus, purpose: .firstItinerary,
+                                                                  input: TripDesignPreviewData.trip().input, createdAt: .now))
+                                }
                                 Text("Today").font(.headline)
                                 NavigationLink {
                                     SavedTripDesignPreview()

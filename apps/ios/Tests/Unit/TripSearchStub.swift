@@ -9,6 +9,7 @@ import C67Domain
     var queries: [String] = []
     var delay: Duration?
     var placesByQuery: [String: [RecommendedPlace]] = [:]
+    private var defaultIDs: [String: UUID] = [:]
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
         started = true
         queries.append(query)
@@ -16,6 +17,8 @@ import C67Domain
         if query == "old" { try? await Task.sleep(for: .milliseconds(80)) }
         if failing || failedQueries.contains(query) { throw PlanningError.unavailable }
         if let places = placesByQuery[query] { return places }
-        return [.init(place: .init(id: UUID(), name: query, location: TripDiscoveryArea.center, visitSeconds: 1800))]
+        let id = defaultIDs[query] ?? UUID()
+        defaultIDs[query] = id
+        return [.init(place: .init(id: id, name: query, location: TripDiscoveryArea.center, visitSeconds: 1800))]
     }
 }

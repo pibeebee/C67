@@ -1,4 +1,5 @@
 import SwiftUI
+import C67Domain
 
 /// The six ADD PLACES states share one search and selection surface.
 struct AddPlacesView: View {
@@ -9,6 +10,7 @@ struct AddPlacesView: View {
     var error: String?
     var synthetic = false
     var initiallyFocused = false
+    var origin: PlanningPoint?
     let search: () async -> Void
     let toggle: (RecommendedPlace) -> Void
     let next: () -> Void
@@ -21,7 +23,7 @@ struct AddPlacesView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 14) {
-                Text(TripDiscoveryArea.description).font(.footnote).foregroundStyle(.secondary)
+                Text("Search results").font(.footnote).foregroundStyle(.secondary)
                 if isSearching { ProgressView("Searching places…").padding() }
                 if let error {
                     ContentUnavailableView {
@@ -35,7 +37,7 @@ struct AddPlacesView: View {
                                            description: Text(query.isEmpty ? "Search for a place to add it to your trip." : "Try a different name or location."))
                 }
                 ForEach(displayed) { item in
-                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false) { toggle(item) }
+                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false, origin: origin) { toggle(item) }
                 }
                 if synthetic {
                     Text("Synthetic place search · demonstration only")

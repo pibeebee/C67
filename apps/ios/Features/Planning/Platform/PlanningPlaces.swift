@@ -120,9 +120,11 @@ final class PlanningPlaceSearch {
             let response = try await MKLocalSearch(request: request).start()
             guard ticket == generation, !Task.isCancelled else { return }
             results = response.mapItems.prefix(12).map { item in
-                .init(id: UUID(), name: item.name ?? "Selected place",
-                      location: .init(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude),
-                      visitSeconds: 2700, website: item.url)
+                var place = PlanningPlace(id: UUID(), name: item.name ?? "Selected place",
+                                          location: .init(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude),
+                                          visitSeconds: 2700, website: item.url)
+                place.address = item.placemark.title
+                return place
             }
         } catch is CancellationError { }
         catch { if ticket == generation { self.error = "Place search is unavailable. Try another query." } }
@@ -169,6 +171,32 @@ final class PlanningLocation: NSObject, @preconcurrency CLLocationManagerDelegat
     }
 }
 
+enum LocationAreaName {
+    static func shortName(_ name: String) -> String {
+        name.split(separator: ",", maxSplits: 1).first.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? name
+    }
+    static func format(district: String?, city: String?, province: String?) -> String? {
+        let parts = [district, city, province].compactMap { value -> String? in
+            guard let value = value?.trimmingCharacters(in: .whitespacesAndNewlines), !value.isEmpty else { return nil }
+            return value
+        }
+        var unique: [String] = []
+        for part in parts where !unique.contains(where: { $0.localizedCaseInsensitiveCompare(part) == .orderedSame }) {
+            unique.append(part)
+        }
+        let result = unique.prefix(2).joined(separator: ", ")
+        return result.isEmpty ? nil : result
+    }
+
+    @MainActor static func resolve(_ point: PlanningPoint) async -> String? {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: point.latitude, longitude: point.longitude)
+        guard let placemark = try? await geocoder.reverseGeocodeLocation(location).first, !Task.isCancelled else { return nil }
+        return format(district: placemark.subLocality, city: placemark.locality ?? placemark.subAdministrativeArea,
+                      province: placemark.administrativeArea)
+    }
+}
+
 enum PlanningDirections {
     @MainActor static func open(_ stop: ScheduledPlanningStop, mode: PlanningMode) {
         let item = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)))
@@ -184,12 +212,14 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
     private(set) var route: MKRoute?
     private(set) var error: String?
     private(set) var arrivalReady = false
+    private(set) var permissionDenied = false
     private var target: CLLocation?
     private var lastRouteLocation: CLLocation?
     private var routeTask: Task<Void, Never>?
     private var goodSamples = 0
     private var lastSampleDate: Date?
     private var generation = 0
+    private var mode: PlanningMode = .automobile
     @ObservationIgnored private let manager = CLLocationManager()
 
     override init() {
@@ -200,14 +230,16 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
         manager.activityType = .automotiveNavigation
     }
 
-    func start(to point: PlanningPoint) {
+    func start(to point: PlanningPoint, mode: PlanningMode = .automobile) {
         stop()
+        self.mode = mode
+        manager.activityType = mode == .walking ? .otherNavigation : .automotiveNavigation
         target = CLLocation(latitude: point.latitude, longitude: point.longitude)
-        location = nil; route = nil; error = nil; arrivalReady = false; goodSamples = 0; lastRouteLocation = nil; lastSampleDate = nil
+        location = nil; route = nil; error = nil; arrivalReady = false; permissionDenied = false; goodSamples = 0; lastRouteLocation = nil; lastSampleDate = nil
         switch manager.authorizationStatus {
         case .notDetermined: manager.requestWhenInUseAuthorization()
         case .authorizedAlways, .authorizedWhenInUse: manager.startUpdatingLocation()
-        default: error = "Allow location access in Settings to show directions and detect arrival."
+        default: permissionDenied = true; error = "Allow location access in Settings to show directions and detect arrival."
         }
     }
 
@@ -220,8 +252,8 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         guard target != nil else { return }
         switch manager.authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse: manager.startUpdatingLocation()
-        case .denied, .restricted: error = "Allow location access in Settings to show directions and detect arrival."
+        case .authorizedAlways, .authorizedWhenInUse: permissionDenied = false; error = nil; manager.startUpdatingLocation()
+        case .denied, .restricted: permissionDenied = true; error = "Allow location access in Settings to show directions and detect arrival."
         default: break
         }
     }
@@ -243,7 +275,7 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: current.coordinate))
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: target.coordinate))
-            request.transportType = .automobile
+            request.transportType = mode == .walking ? .walking : .automobile
             let directions = MKDirections(request: request)
             do {
                 let response = try await withTaskCancellationHandler { try await directions.calculate() } onCancel: { directions.cancel() }

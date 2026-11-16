@@ -14,8 +14,8 @@ final class HiFiPreviewUITests: XCTestCase {
         app.launchArguments = ["--active-trip-preview", "-AppleInterfaceStyle", "Light"]
         app.launch()
         XCTAssertTrue(app.staticTexts["450 m"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["Open in Maps"].isHittable)
-        XCTAssertTrue(app.buttons["Pause trip"].isHittable)
+        XCTAssertTrue(app.buttons["Navigate with Apple Maps"].isHittable)
+        XCTAssertTrue(app.buttons["Back to trip"].isHittable)
         XCTAssertTrue(app.buttons["confirmTripArrival"].isHittable)
         app.terminate()
 
@@ -23,6 +23,18 @@ final class HiFiPreviewUITests: XCTestCase {
         app.launch()
         XCTAssertTrue(app.staticTexts["You’ve arrived"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["completeTripVisit"].isHittable)
+    }
+
+    @MainActor func testNavigationActionsRemainReachableAtAccessibilitySize() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--active-trip-preview", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL", "-AppleInterfaceStyle", "Dark"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["On your way"].waitForExistence(timeout: 10))
+        for identifier in ["Navigate with Apple Maps", "confirmTripArrival", "Back to trip"] {
+            let button = app.buttons[identifier]
+            for _ in 0 ..< 8 where !button.isHittable { app.scrollViews["tripProgressPanel"].swipeUp() }
+            XCTAssertTrue(button.isHittable, "\(identifier) should remain reachable")
+        }
     }
 
     @MainActor func testNewSketchStatesRender() {
@@ -33,7 +45,7 @@ final class HiFiPreviewUITests: XCTestCase {
             app.launchArguments = [argument, "-AppleInterfaceStyle", "Light"]
             app.launch()
             XCTAssertTrue(app.windows.firstMatch.waitForExistence(timeout: 10))
-            let expected = argument == "--arrival-preview" ? "You’ve arrived" : argument == "--active-trip-preview" ? "Directions to ALDI’S BURGER" : nil
+            let expected = argument == "--arrival-preview" ? "You’ve arrived" : argument == "--active-trip-preview" ? "On your way" : nil
             if let expected { XCTAssertTrue(app.staticTexts[expected].waitForExistence(timeout: 5)) }
             let screenshot = XCTAttachment(screenshot: app.screenshot())
             screenshot.name = argument

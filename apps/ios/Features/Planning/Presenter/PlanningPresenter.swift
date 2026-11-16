@@ -128,10 +128,28 @@ final class PlanningPresenter {
         return job
     }
 
+    var supportsTripDeletion: Bool { interactor.repository.supportsTripDeletion }
+
+    func deleteTrip(_ trip: PersonalPlanningTrip) async -> Bool {
+        guard !isBusy, !privateAccessBlocked else { return false }
+        let ticket = generation
+        isBusy = true; error = nil
+        defer { if ticket == generation { isBusy = false } }
+        do {
+            try await interactor.repository.deleteTrip(id: trip.id, expectedRevision: trip.revision)
+            guard ticket == generation, !Task.isCancelled else { return false }
+            trips.removeAll { $0.id == trip.id }
+            return true
+        } catch {
+            if ticket == generation { self.error = error.localizedDescription }
+            return false
+        }
+    }
+
     func load(waitForFirstItinerary: Bool = true) async {
         guard !privateAccessBlocked else { error = PlanningError.authenticationRequired.localizedDescription; return }
         guard !isBusy else { return }
-        let ticket = generation; isBusy = true
+        let ticket = generation; isBusy = true; error = nil
         defer { if ticket == generation { isBusy = false; progress = nil } }
         do {
             let saved = try await interactor.trips()

@@ -15,6 +15,7 @@ enum TripDiscoveryArea {
 @MainActor protocol TripPlaceSearching {
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace]
     func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace]
+    func recommendations(_ query: String, near origin: PlanningPoint, radiusMeters: Double) async throws -> [RecommendedPlace]
 }
 
 extension PreferenceAnswers {
@@ -69,6 +70,9 @@ extension PreferenceAnswers {
 }
 
 extension TripPlaceSearching {
+    func recommendations(_ query: String, near origin: PlanningPoint, radiusMeters: Double) async throws -> [RecommendedPlace] {
+        try await recommendations(query, near: origin)
+    }
     func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
         try await search(query, near: origin)
     }
@@ -83,34 +87,49 @@ extension TripPlaceSearching {
 
     /// A small session search, independent of trip dates, the catalog and itinerary planning.
     func recommend(queries: [String], near origin: PlanningPoint?, synthetic: Bool) async throws -> RecommendationsBatch {
-        var groups: [[RecommendedPlace]] = []
+        guard let origin, TripDiscoveryArea.contains(origin) else {
+            return .init(places: [], synthetic: synthetic)
+        }
+        var accumulated: [[RecommendedPlace]] = Array(repeating: [], count: queries.count)
+        var seenByGroup: [Set<UUID>] = Array(repeating: [], count: queries.count)
         var warnings: [String] = []
         var lastError: (any Error)?
-        for query in queries {
-            try Task.checkCancellation()
-            do {
-                let found = try await searcher.recommendations(query, near: origin)
-                    .filter { TripDiscoveryArea.contains($0.place.location) }
-                groups.append(found)
-                if found.isEmpty { warnings.append("No places found for \"\(query)\". Try another preference or refresh.") }
-            } catch {
+        var successfulSearch = false
+        for radius in [10, 20, 30] {
+            for (index, query) in queries.enumerated() {
                 try Task.checkCancellation()
-                if error is CancellationError { throw error }
-                lastError = error
-                warnings.append("Search for \"\(query)\" is unavailable. Refresh to try again.")
+                do {
+                    let found = try await searcher.recommendations(query, near: origin, radiusMeters: Double(radius) * 1_000)
+                    successfulSearch = true
+                    for item in found where TripDiscoveryArea.contains(item.place.location) {
+                        guard let distance = item.straightLineDistance(from: origin), distance <= Double(radius) * 1_000,
+                              seenByGroup[index].insert(item.id).inserted else { continue }
+                        accumulated[index].append(item)
+                    }
+                } catch {
+                    try Task.checkCancellation()
+                    if error is CancellationError { throw error }
+                    lastError = error
+                    let warning = "Search for \"\(query)\" is unavailable. Refresh to try again."
+                    if !warnings.contains(warning) { warnings.append(warning) }
+                }
+            }
+            if !successfulSearch, let lastError { throw lastError }
+            let groups = accumulated.map { group in
+                group.sorted { ($0.straightLineDistance(from: origin) ?? .infinity) < ($1.straightLineDistance(from: origin) ?? .infinity) }
+            }
+            var places: [RecommendedPlace] = []
+            var seen: Set<UUID> = []
+            for index in 0 ..< (groups.map(\.count).max() ?? 0) {
+                for group in groups where index < group.count {
+                    let item = group[index]
+                    if seen.insert(item.id).inserted { places.append(item) }
+                }
+            }
+            if places.count >= 10 || radius == 30 {
+                return .init(places: places, warnings: warnings, synthetic: synthetic, radiusKilometers: radius)
             }
         }
-        try Task.checkCancellation()
-        if groups.isEmpty, let lastError { throw lastError }
-        // Interleave query groups so a broad query does not occupy the entire first screen.
-        var places: [RecommendedPlace] = []
-        var seen: Set<UUID> = []
-        for index in 0 ..< (groups.map(\.count).max() ?? 0) {
-            for group in groups where index < group.count {
-                let item = group[index]
-                if seen.insert(item.id).inserted { places.append(item) }
-            }
-        }
-        return .init(places: places, warnings: warnings, synthetic: synthetic)
+        return .init(places: [], warnings: warnings, synthetic: synthetic)
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct TripLocationButton: View {
     let title: String
     var isLocating = false
+    var accessibilityTitle: String?
     let action: () -> Void
 
     var body: some View {
@@ -15,7 +16,7 @@ struct TripLocationButton: View {
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(isLocating ? Text("Locating your position") : Text("Starting point: \(title)"))
+        .accessibilityLabel(isLocating ? Text("Locating your position") : Text("Starting point: \(accessibilityTitle ?? title)"))
         .accessibilityHint("Choose a starting point for your trip")
         .accessibilityIdentifier("homeLocation")
     }

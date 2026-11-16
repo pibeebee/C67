@@ -1,6 +1,17 @@
 import XCTest
 
 final class RecommendationsUITests: XCTestCase {
+    @MainActor func testSpecificPlaceCanBeInspectedOnMap() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--add-places-preview"]
+        app.launch()
+        let mapButton = app.buttons.matching(identifier: "View on map").firstMatch
+        XCTAssertTrue(mapButton.waitForExistence(timeout: 10))
+        mapButton.tap()
+        XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 5))
+        app.buttons["Done"].tap()
+        XCTAssertTrue(app.buttons["addPlacesNext"].exists)
+    }
     @MainActor func testPreferenceSearchAndSelectionRemainAvailable() {
         let app = XCUIApplication()
         app.launchArguments = ["--skip-splash"]
@@ -41,14 +52,14 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["0 selected"].exists)
     }
 
-    @MainActor func testRecommendationShowsDistanceInsteadOfAddress() {
+    @MainActor func testRecommendationShowsShortAddressAndDistance() {
         let app = XCUIApplication()
         app.launchArguments = ["--recommendations-added-preview"]
         app.launch()
         let first = app.buttons["ALDI’S BURGER"]
         XCTAssertTrue(first.waitForExistence(timeout: 10))
         XCTAssertTrue((first.value as? String ?? "").contains("away"))
-        XCTAssertFalse(app.staticTexts["Jl. Cemp. Putih Tim. 12 No.8A"].exists)
+        XCTAssertTrue((first.value as? String ?? "").contains("Jl. Cemp. Putih Tim. 12 No.8A"))
     }
 
     @MainActor func testSearchIsAvailableFromSelectedPlaces() {
@@ -58,12 +69,13 @@ final class RecommendationsUITests: XCTestCase {
         openMockCreation(app, recommendations: true)
         XCTAssertTrue(app.navigationBars["Recommendations"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["Search for a place"].exists)
+        XCTAssertTrue(app.staticTexts["0 places selected"].exists)
         app.buttons["My Places"].tap()
         let search = app.buttons["selectedPlacesSearch"]
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
         XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["3 places selected"].exists)
+        XCTAssertTrue(app.staticTexts["0 places selected"].exists)
     }
 
     @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {

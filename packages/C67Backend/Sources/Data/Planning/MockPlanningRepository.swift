@@ -3,6 +3,7 @@ import C67Domain
 
 /// Explicit synthetic, in-memory demonstration. No AI, Apple provider requests or persistence.
 public actor MockPlanningRepository: PlanningRepository {
+    public nonisolated let supportsTripDeletion = true
     private var jobs: [UUID: PlanningJob] = [:]
     private var trips: [UUID: PersonalPlanningTrip] = [:]
     private var receipts: [UUID: (Data, Receipt)] = [:]
@@ -68,6 +69,21 @@ public actor MockPlanningRepository: PlanningRepository {
     }
     public func resumePlanning() -> PlanningJob? { pending.flatMap { jobs[$0] } }
     public func personalTrips() -> [PersonalPlanningTrip] { trips.values.sorted { $0.createdAt > $1.createdAt } }
+
+    public func deleteTrip(id: UUID, expectedRevision: Int) async throws {
+        guard let trip = trips[id] else { throw PlanningError.notFound }
+        guard trip.revision == expectedRevision else { throw PlanningError.revisionConflict }
+        let jobIDs = Set(jobs.values.filter { $0.tripID == id }.map(\.id)).union(applied.filter { $0.value.id == id }.map(\.key))
+        trips.removeValue(forKey: id)
+        for jobID in jobIDs { jobs.removeValue(forKey: jobID); applied.removeValue(forKey: jobID) }
+        receipts = receipts.filter { _, receipt in
+            switch receipt.1 {
+            case .job(let job): !jobIDs.contains(job.id)
+            case .trip(let saved): saved.id != id
+            }
+        }
+        if let pending, jobIDs.contains(pending) { self.pending = nil }
+    }
 
     public func applyProposal(jobID: UUID, expectedRevision: Int?, requestID: UUID) throws -> PersonalPlanningTrip {
         let fingerprint = Data("apply:\(jobID):\(expectedRevision.map(String.init) ?? "new")".utf8)

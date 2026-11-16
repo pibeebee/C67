@@ -10,6 +10,9 @@ struct PlacesRecommendationsView: View {
     var areaDescription: LocalizedStringResource?
     var usesDeviceLocation = true
     var previewLocation: PlanningPoint?
+    var requiresOrigin = false
+    var origin: PlanningPoint?
+    var setOrigin: ((PlanningPlace) -> Void)?
     /// The older planning editor still follows its existing six-place contract.
     /// The recommendations-first creation flow leaves this nil.
     var maximumSelection: Int?
@@ -25,6 +28,7 @@ struct PlacesRecommendationsView: View {
     @State private var showsSelected = false
     @State private var searchAfterDismiss = false
     @State private var retryTask: Task<Void, Never>?
+    @State private var showsOriginSearch = false
 
     private var selectedIDs: Set<UUID> { Set(selected.map(\.id)) }
     private var selectedPlaces: Binding<[PlanningPlace]> {
@@ -48,11 +52,25 @@ struct PlacesRecommendationsView: View {
                         .disabled(isLoading)
                         .accessibilityIdentifier("refreshRecommendations")
                 }
-                if let areaDescription {
+                if let radius = batch.radiusKilometers, origin != nil {
+                    Text("Showing places within \(radius) km of your starting point")
+                        .font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
+                } else if let areaDescription, !requiresOrigin {
                     Text(areaDescription).font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
                 }
 
-                if usesDeviceLocation && location.point == nil {
+                if requiresOrigin && origin == nil {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Choose a starting point to find nearby places.")
+                        if location.isRequesting { ProgressView("Finding your location…") }
+                        else if location.permissionDenied {
+                            Button("Open Settings") {
+                                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                            }
+                        } else { Button("Use my current location") { location.request() } }
+                        Button("Choose starting point") { showsOriginSearch = true }
+                    }.font(.footnote)
+                } else if !requiresOrigin && usesDeviceLocation && location.point == nil {
                     if location.isRequesting {
                         Label("Finding your location…", systemImage: "location")
                             .font(.footnote).foregroundStyle(.secondary)
@@ -83,7 +101,7 @@ struct PlacesRecommendationsView: View {
                     Label(warning, systemImage: "exclamationmark.circle")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
-                if batch.places.isEmpty && !isLoading {
+                if batch.places.isEmpty && !isLoading && (!requiresOrigin || origin != nil) {
                     ContentUnavailableView {
                         Label("No recommendations yet", systemImage: "mappin.and.ellipse")
                     } description: {
@@ -95,7 +113,7 @@ struct PlacesRecommendationsView: View {
                 }
                 LazyVStack(spacing: 10) {
                     ForEach(batch.places) { item in
-                        RecommendationPlaceRow(item: item, userLocation: usesDeviceLocation ? location.point : previewLocation, isSelected: selectedIDs.contains(item.id),
+                        RecommendationPlaceRow(item: item, userLocation: requiresOrigin ? origin : (usesDeviceLocation ? location.point : previewLocation), isSelected: selectedIDs.contains(item.id),
                                                isExisting: false,
                                                isDisabled: !selectedIDs.contains(item.id) && maximumSelection.map { selected.count >= $0 } == true) { toggle(item) }
                     }
@@ -117,9 +135,14 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
-        .task {
-            if usesDeviceLocation { location.request() }
+        .task(id: origin) {
+            if usesDeviceLocation && (!requiresOrigin || origin == nil) && !location.isRequesting { location.request() }
             await load()
+        }
+        .onChange(of: location.point) { _, point in
+            if requiresOrigin, origin == nil, let point {
+                setOrigin?(.init(id: UUID(), name: "Current device position", location: point, visitSeconds: 2700))
+            }
         }
         .overlay {
             if isLoading && batch.places.isEmpty {
@@ -127,7 +150,7 @@ struct PlacesRecommendationsView: View {
             }
         }
         .refreshable {
-            if usesDeviceLocation { location.request() }
+            if usesDeviceLocation && (!requiresOrigin || origin == nil) { location.request() }
             await refresh()
         }
         .onDisappear { location.cancel(); retryTask?.cancel(); cancel() }
@@ -172,6 +195,12 @@ struct PlacesRecommendationsView: View {
                                details: Dictionary(selected.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }),
                                searchForPlace: { searchAfterDismiss = true; showsSelected = false })
         }
+        .sheet(isPresented: $showsOriginSearch) {
+            PlanningSearchSheet(near: origin, title: "Starting point") { place in
+                location.cancel()
+                setOrigin?(place)
+            }
+        }
         .navigationTitle("Recommendations")
         .navigationBarTitleDisplayMode(.inline)
         .tint(AppColor.accent)
@@ -179,7 +208,7 @@ struct PlacesRecommendationsView: View {
 
     private func retry() {
         guard !isLoading else { return }
-        if usesDeviceLocation { location.request() }
+        if usesDeviceLocation && (!requiresOrigin || origin == nil) { location.request() }
         retryTask?.cancel()
         retryTask = Task { await refresh() }
     }

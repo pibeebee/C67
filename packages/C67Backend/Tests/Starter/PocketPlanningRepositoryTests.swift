@@ -136,6 +136,22 @@ func pocketBadLunaResponseNeverFallsBack(_ selection: String, _ model: String) a
     await #expect(throws: PlanningError.requestConflict) { try await second.requestPlan(retry) }
 }
 
+@Test func deletingPocketTripRequiresCurrentRevisionAndPersists() async throws {
+    let catalog = try PocketIntegrationFixture.catalog()
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let url = directory.appendingPathComponent("trips.json")
+    let repository = try pocketTestRepository(catalog: catalog, storageURL: url)
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .plan, input: pocketTestInput(catalog)))
+    let trip = try await repository.applyProposal(jobID: job.id, expectedRevision: nil, requestID: UUID())
+    await #expect(throws: PlanningError.revisionConflict) { try await repository.deleteTrip(id: trip.id, expectedRevision: trip.revision + 1) }
+    #expect(await repository.personalTrips().count == 1)
+    try await repository.deleteTrip(id: trip.id, expectedRevision: trip.revision)
+    let reopened = try pocketTestRepository(catalog: catalog, storageURL: url)
+    #expect(await reopened.personalTrips().isEmpty)
+    await #expect(throws: PlanningError.notFound) { _ = try await reopened.planningJob(id: job.id) }
+}
+
 @Test func pocketServerURLRejectsCredentialsAndNonLocalPlainHTTP() throws {
     #expect(throws: (any Error).self) { try PocketResearchClient.validatedURL("https://user:password@example.com") }
     #expect(throws: (any Error).self) { try PocketResearchClient.validatedURL("http://example.com") }

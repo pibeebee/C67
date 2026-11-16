@@ -20,6 +20,10 @@ struct C67App: App {
                     TripProgressDesignPreview(arrived: true)
                 } else if ProcessInfo.processInfo.arguments.contains("--active-trip-preview") {
                     TripProgressDesignPreview()
+                } else if ProcessInfo.processInfo.arguments.contains("--home-draft-ready-preview") {
+                    HomeAddedTripDesignPreview(draftStatus: .succeeded)
+                } else if ProcessInfo.processInfo.arguments.contains("--home-draft-running-preview") {
+                    HomeAddedTripDesignPreview(draftStatus: .running)
                 } else if ProcessInfo.processInfo.arguments.contains("--home-added-preview") {
                     HomeAddedTripDesignPreview()
                 } else if ProcessInfo.processInfo.arguments.contains("--saved-trip-preview") {

@@ -9,8 +9,18 @@ struct RecommendedPlace: Identifiable, Equatable, Sendable {
     var category: String?
     var address: String?
     var previewImage: String?
+    var branchAddress: String?
 
     var id: UUID { place.id }
+
+    var shortAddress: String? {
+        let source = branchAddress ?? address ?? place.address
+        guard let source else { return nil }
+        let components = source.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty && $0.localizedCaseInsensitiveCompare(place.name) != .orderedSame }
+        guard let first = components.first else { return nil }
+        return first
+    }
 
     func straightLineDistance(from origin: PlanningPoint?) -> CLLocationDistance? {
         guard let origin else { return nil }

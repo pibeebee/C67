@@ -86,11 +86,19 @@ struct TripInterestQuestionView: View {
                 }
             }
         } footer: {
-            HStack {
-                Text("\(selection.count + selectedRefinements.count) selected").font(.subheadline)
-                Spacer()
-                QuestionPrimaryButton("Next", action: next)
-                    .disabled(selection.isEmpty && selectedRefinements.isEmpty)
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 24) {
+                    Text("\(selection.count + selectedRefinements.count) selected")
+                        .font(.subheadline).fixedSize()
+                    QuestionPrimaryButton("Next", action: next)
+                        .disabled(selection.isEmpty && selectedRefinements.isEmpty)
+                        .frame(minWidth: 100)
+                }
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("\(selection.count + selectedRefinements.count) selected").font(.subheadline)
+                    QuestionPrimaryButton("Next", action: next)
+                        .disabled(selection.isEmpty && selectedRefinements.isEmpty)
+                }
             }
         }
     }

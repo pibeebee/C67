@@ -7,6 +7,15 @@ import UIKit
 @MainActor
 @Suite("Splash and location permission match Sketch HI-FI")
 struct SplashAndLocationPermissionTests {
+    @Test("Location name uses available distinct administrative areas")
+    func locationAreaName() {
+        #expect(LocationAreaName.shortName("Tanah Abang, Central Jakarta") == "Tanah Abang")
+        #expect(LocationAreaName.shortName("Bogor") == "Bogor")
+        #expect(LocationAreaName.format(district: "Kemayoran", city: "Central Jakarta", province: "Jakarta") == "Kemayoran, Central Jakarta")
+        #expect(LocationAreaName.format(district: nil, city: "Bogor", province: "West Java") == "Bogor, West Java")
+        #expect(LocationAreaName.format(district: "Jakarta", city: "jakarta", province: "Jakarta") == "Jakarta")
+        #expect(LocationAreaName.format(district: nil, city: " ", province: nil) == nil)
+    }
     @Test("Arrival requires a recent and sufficiently accurate nearby fix")
     func arrivalFixValidation() {
         let now = Date()

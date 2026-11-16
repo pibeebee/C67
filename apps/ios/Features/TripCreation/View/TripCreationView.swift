@@ -64,7 +64,7 @@ struct TripCreationView: View {
             case .places:
                 AddPlacesView(query: $presenter.query, results: presenter.results, selected: presenter.selected,
                               isSearching: presenter.isSearching, error: presenter.searchError,
-                              synthetic: presenter.mode.hasPrefix("Mock"), search: { await presenter.search() }, toggle: presenter.toggle) {
+                              synthetic: presenter.mode.hasPrefix("Mock"), origin: presenter.planning.origin, search: { await presenter.search() }, toggle: presenter.toggle) {
                     if presenter.path.contains(.recommendations) { presenter.path.removeLast() }
                     else { presenter.finishChoosingPlaces() }
                 }
@@ -74,6 +74,13 @@ struct TripCreationView: View {
                 PlacesRecommendationsView(batch: presenter.batch, selected: presenter.selected,
                                           isLoading: presenter.isSuggesting, error: presenter.recommendationError,
                                           areaDescription: TripDiscoveryArea.description,
+                                          requiresOrigin: true, origin: presenter.planning.origin,
+                                          setOrigin: { place in
+                                              presenter.cancelRecommendations()
+                                              presenter.planning.origin = place.location
+                                              presenter.planning.originLabel = place.name
+                                              presenter.planning.draftChanged()
+                                          },
                                           load: { await presenter.loadRecommendationsIfNeeded() },
                                           refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
                                           toggle: presenter.toggle,

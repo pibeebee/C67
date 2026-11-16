@@ -16,6 +16,8 @@ struct TripHomeRootView: View {
     @State private var tripPath: [UUID] = []
     @State private var historyPath: [UUID] = []
     @State private var location = PlanningLocation()
+    @State private var areaLookup: Task<Void, Never>?
+    @State private var deviceAreaName: String?
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -78,6 +80,12 @@ struct TripHomeRootView: View {
             if let point, presenter.origin == nil, presenter.firstItineraryJob == nil {
                 presenter.receivedLocation(point)
                 presenter.draftChanged()
+                areaLookup?.cancel()
+                areaLookup = Task {
+                    let name = await LocationAreaName.resolve(point)
+                    guard !Task.isCancelled, presenter.origin == point, presenter.originLabel == "Current device position" else { return }
+                    if let name { deviceAreaName = name; presenter.originLabel = name }
+                }
             }
         }
         .onOpenURL(perform: handleCallback)
@@ -87,12 +95,13 @@ struct TripHomeRootView: View {
         TabView(selection: $selectedTab) {
             Tab("Trip", systemImage: "location", value: .trip) {
                 NavigationStack(path: $tripPath) {
-                    TripHomeContentView(presenter: presenter, mode: mode, showAccount: showAccount, planTrip: addTrip)
+                    TripHomeContentView(presenter: presenter, mode: mode, showAccount: showAccount, planTrip: addTrip, resumeDraft: resumeCreation)
                         .safeAreaInset(edge: .top, spacing: 0) {
                             VStack(alignment: .leading, spacing: 4) {
-                                TripHomeHeader(locationTitle: presenter.originLabel,
+                                TripHomeHeader(locationTitle: locationTitle,
                                                chooseLocation: chooseLocation, addTrip: addTrip, addSpecificPlace: addSpecificPlace,
-                                               isBusy: presenter.isBusy, isLocating: location.isRequesting)
+                                               isBusy: presenter.isBusy, isLocating: location.isRequesting,
+                                               accessibilityLocationTitle: presenter.origin == nil ? nil : presenter.originLabel)
                                 if presenter.origin == nil, location.permissionDenied || location.error != nil {
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(location.permissionDenied ? "Location access is off" : "Couldn’t get your location")
@@ -109,17 +118,6 @@ struct TripHomeRootView: View {
                                 }
                             }
                         }
-                        .safeAreaInset(edge: .bottom) {
-                            if let job = presenter.firstItineraryJob {
-                                Button(job.status == .succeeded ? "Review recommendation" : "Resume itinerary draft") {
-                                    resumeCreation(job)
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .disabled(presenter.isBusy || sheet != nil || showsCreation)
-                                .padding(8)
-                                .accessibilityIdentifier("resumeItineraryDraft")
-                            }
-                        }
                         .task { locateWhenNeeded() }
                         .background(Color("TripCanvas"))
                         .toolbar(.hidden, for: .navigationBar)
@@ -133,14 +131,26 @@ struct TripHomeRootView: View {
                 NavigationStack(path: $historyPath) {
                     TripHomeContentView(presenter: presenter, isHistory: true, mode: mode, showAccount: showAccount)
                         .background(Color("TripCanvas"))
-                        .navigationTitle("History")
+                        .safeAreaInset(edge: .top, spacing: 0) {
+                            HStack {
+                                Text("History")
+                                    .font(.largeTitle.bold())
+                                    .accessibilityAddTraits(.isHeader)
+                                Spacer()
+                                Button("Account", systemImage: "person.crop.circle", action: showAccount)
+                                    .labelStyle(.iconOnly)
+                                    .buttonStyle(.bordered)
+                                    .buttonBorderShape(.circle)
+                                    .frame(minWidth: 44, minHeight: 44)
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.top, 8)
+                            .padding(.bottom, 4)
+                        }
+                        .toolbar(.hidden, for: .navigationBar)
                         .navigationDestination(for: UUID.self) { id in
                             SavedTripView(tripID: id, presenter: presenter)
-                        }
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                Button("Account", systemImage: "person.crop.circle", action: showAccount)
-                            }
+                                .toolbar(.visible, for: .navigationBar)
                         }
                 }
             }
@@ -165,6 +175,17 @@ struct TripHomeRootView: View {
     }
 
     private func chooseLocation() { sheet = .location }
+    private var locationTitle: String {
+        if presenter.origin != nil {
+            if presenter.originLabel == deviceAreaName, let name = deviceAreaName {
+                return LocationAreaName.shortName(name)
+            }
+            return presenter.originLabel
+        }
+        if location.permissionDenied { return "Enable location" }
+        if location.error != nil { return "Location unavailable" }
+        return presenter.originLabel
+    }
     private func showAccount() { sheet = .account }
     private func dismissSheet() { sheet = nil }
     private func dismissCreation() { showsCreation = false }
@@ -178,6 +199,8 @@ struct TripHomeRootView: View {
     }
 
     private func selectLocation(_ place: PlanningPlace) {
+        areaLookup?.cancel()
+        deviceAreaName = nil
         location.cancel()
         presenter.origin = place.location
         presenter.originLabel = place.name

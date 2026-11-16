@@ -317,7 +317,11 @@ struct PlanningSearchSheet: View {
                     Button { select(place); dismiss() } label: {
                         VStack(alignment: .leading) {
                             Text(place.name)
-                            Text("\(place.location.latitude, specifier: "%.4f"), \(place.location.longitude, specifier: "%.4f")").font(.caption).foregroundStyle(.secondary)
+                            if let address = place.address, !address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                Text(address).font(.caption).foregroundStyle(.secondary)
+                            } else {
+                                Text("Address unavailable").font(.caption).foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }
