@@ -3,6 +3,11 @@ import C67Domain
 import PocketEngine
 
 enum PocketOrderCodec {
+    static func validateMethod(_ actual: PlanningOrderingMethod?, expected: PlanningOrderingMethod?) throws {
+        guard (actual ?? .luna) == (expected ?? .luna) else {
+            throw PlanningError.failed("POCKET_ORDER_METHOD_UNSUPPORTED")
+        }
+    }
     static func decoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom { value in
@@ -102,6 +107,7 @@ extension PocketResearchClient {
             var preservesPlaceOrder: Bool
             var candidateDate: String
             var timeZone: String
+            var orderingMethod: PlanningOrderingMethod?
         }
         struct Job: Decodable {
             var id: UUID
@@ -116,7 +122,8 @@ extension PocketResearchClient {
                         origin: input.origin, endpoint: input.enginePreferences?.endPoint ?? input.origin,
                         mainSpotID: input.enginePreferences?.mainSpotID, firstPlaceID: input.firstPlaceID,
                         preservesPlaceOrder: input.preservesPlaceOrder,
-                        candidateDate: String(format: "%04d-%02d-%02d", day.year!, day.month!, day.day!), timeZone: input.timeZone)
+                        candidateDate: String(format: "%04d-%02d-%02d", day.year!, day.month!, day.day!), timeZone: input.timeZone,
+                        orderingMethod: input.enginePreferences?.orderingMethod == .luna ? nil : input.enginePreferences?.orderingMethod)
         do {
             var data = try await fetch("v1/order", body: JSONEncoder().encode(body))
             while true {
@@ -125,7 +132,9 @@ extension PocketResearchClient {
                 guard job.id == requestID else { throw PlanningError.invalidResponse }
                 switch job.status {
                 case "succeeded":
-                    return try PocketOrderCodec.decoder().decode(Result.self, from: data).result.validated(for: input)
+                    let plan = try PocketOrderCodec.decoder().decode(Result.self, from: data).result.validated(for: input)
+                    try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: input.enginePreferences?.orderingMethod)
+                    return plan
                 case "running", "queued":
                     try await Task.sleep(for: .seconds(2))
                     data = try await fetch("v1/order/jobs/" + requestID.uuidString.lowercased())

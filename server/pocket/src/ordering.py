@@ -64,12 +64,42 @@ def request_context(body):
     preserve = body.get("preservesPlaceOrder", False)
     if type(preserve) is not bool:
         raise ValueError("Invalid order constraint")
+    method = body.get("orderingMethod", "luna")
+    if method not in {"luna", "hybrid_legacy", "hybrid_weather"}:
+        raise ValueError("Unknown ordering method")
     return dict(places=selected, origin=point(body["origin"]), endpoint=point(body.get("endpoint") or body["origin"]),
         mainSpotID=main, planningContext=dict(date=day, timeZone=zone, dateSource="app_candidate_date"),
         userPreferences=dict(wishes=preferences, transport="car"),
         orderConstraints=dict(preservesPlaceOrder=preserve, firstPlaceID=first),
         dayPartVocabulary=dict(morning="pagi", afternoon="siang", evening="sore", night="malam", flexible="fleksibel"),
         inputProvenance="Selected place metadata and traveller wishes; category/name inferences are not verified venue facts. Weather optional; solar is calculated. No operator facts supplied.")
+
+
+def candidate_orders(context):
+    """Bounded deterministic candidates; straight-line distances are not driving ETAs."""
+    places = context["places"]
+    ids = [p["id"] for p in places]
+    constraints = context["orderConstraints"]
+    if constraints["preservesPlaceOrder"]:
+        return [ids]
+    by_id = {p["id"]: p for p in places}
+    def distance(a, b):
+        la, lb = math.radians(a["latitude"]), math.radians(b["latitude"])
+        x = math.sin((lb - la) / 2) ** 2 + math.cos(la) * math.cos(lb) * math.sin(math.radians(b["longitude"] - a["longitude"]) / 2) ** 2
+        return 12742.0176 * math.asin(min(1, math.sqrt(x)))
+    remaining = set(ids)
+    order = []
+    first = constraints["firstPlaceID"]
+    current = context["origin"]
+    if first:
+        order.append(first); remaining.remove(first); current = by_id[first]["coordinates"]
+    while remaining:
+        chosen = min(remaining, key=lambda ident: (distance(current, by_id[ident]["coordinates"]), ident))
+        order.append(chosen); remaining.remove(chosen); current = by_id[chosen]["coordinates"]
+    alternatives = [order]
+    alternate = ([first] + list(reversed([x for x in ids if x != first]))) if first else list(reversed(order))
+    if alternate != order: alternatives.append(alternate)
+    return alternatives
 
 
 class Environment:
@@ -203,6 +233,7 @@ class OrderingResolver:
 
     def resolve(self, body):
         context = request_context(body)
+        method = body.get("orderingMethod", "luna")
         day, zone = context["planningContext"]["date"], context["planningContext"]["timeZone"]
         warnings = []
         try:
@@ -215,6 +246,19 @@ class OrderingResolver:
         except (ValueError, OverflowError):
             context["solarWindows"] = []
             warnings.append("Calculated light opportunities are unavailable.")
+        candidates = None
+        prompt = PROMPT
+        if method != "luna":
+            candidates = candidate_orders(context)
+            context["candidateOrders"] = [dict(candidateID=f"K{i + 1}", orderedIDs=order) for i, order in enumerate(candidates)]
+            prompt += "\nChoose orderedIDs EXACTLY equal to one candidateOrders entry. Do not add, remove or rearrange candidate IDs."
+            if method == "hybrid_weather":
+                context["systemAssessment"] = dict(
+                    activityExposure="unknown", arrivalTimes="unknown", roadETA="unknown",
+                    weatherComparison="unavailable: activity exposure and per-candidate arrival times are not supplied",
+                    availableForecastPlaceIDs=[s["placeID"] for s in context["weatherSources"]])
+                warnings.append("Weather-aware comparison unavailable: activity exposure and candidate arrival times are unknown.")
+                prompt += "\nSystem assessment is authoritative: unknown exposure and arrival times cannot justify claims of reduced heat or rainfall exposure. No weather-based ordering benefit is established."
         snapshot = dict(context=context)
         path = None
         if self.snapshot_directory:
@@ -222,7 +266,7 @@ class OrderingResolver:
             path = self.snapshot_directory / (str(uuid.UUID(body["requestID"])) + ".json")
             path.write_text(json.dumps(snapshot, ensure_ascii=False))
         with self.model_lock:
-            answer, model = self.model(PROMPT, context)
+            answer, model = self.model(prompt, context)
         if path:
             snapshot.update(answer=answer, reportedModel=model)
             path.write_text(json.dumps(snapshot, ensure_ascii=False))
@@ -236,11 +280,13 @@ class OrderingResolver:
         constraints = context["orderConstraints"]
         if not checked["structurePassed"] or checked["reviewFlags"]:
             raise ValueError("Invalid ordering response")
+        if candidates is not None and answer["orderedIDs"] not in candidates:
+            raise ValueError("Order was not an offered candidate")
         if constraints["preservesPlaceOrder"] and answer["orderedIDs"] != ids:
             raise ValueError("Manual order was changed")
         if constraints["firstPlaceID"] and answer["orderedIDs"][0] != constraints["firstPlaceID"]:
             raise ValueError("Current stop was changed")
-        return dict(**answer, generatedAt=now(), candidateDate=day, timeZone=zone,
+        return dict(**answer, generatedAt=now(), candidateDate=day, timeZone=zone, orderingMethod=method,
             requestedModel="cx/gpt-6-luna(max)", reportedModel=model,
             **(dict(reportedReasoningEffort="max", providerProtocol="responses") if model == "gpt-6-luna" else {}),
             weatherSources=context["weatherSources"], solarWindows=context["solarWindows"], contextWarnings=warnings)

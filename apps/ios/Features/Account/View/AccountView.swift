@@ -10,6 +10,7 @@ struct AccountView: View {
         NavigationStack {
             Form {
                 if presenter.isBusy { ProgressView("Updating account…") }
+                if appleOnly && !presenter.requiresPasswordReset { ItineraryMethodSection() }
                 if presenter.requiresPasswordReset {
                     passwordReset
                 } else if let account = presenter.account {

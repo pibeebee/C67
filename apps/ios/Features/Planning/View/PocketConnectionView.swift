@@ -1,4 +1,5 @@
 import SwiftUI
+import C67Domain
 
 struct PocketConnectionView: View {
     @Bindable var presenter: PlanningPresenter
@@ -10,6 +11,7 @@ struct PocketConnectionView: View {
     var body: some View {
         NavigationStack {
             Form {
+                ItineraryMethodSection()
                 Section("Pocket connection") {
                     TextField("Server URL", text: $serverURL)
                         .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
@@ -40,6 +42,23 @@ struct PocketConnectionView: View {
                 await presenter.loadPocketConnection()
                 serverURL = presenter.pocketConnection?.serverURL ?? ""
             }
+        }
+    }
+}
+
+struct ItineraryMethodSection: View {
+    @AppStorage("io.pibeebee.c67.orderingMethod") private var orderingMethod = PlanningOrderingMethod.luna.rawValue
+
+    var body: some View {
+        Section("Itinerary method") {
+            Picker("Method", selection: $orderingMethod) {
+                Text("Luna").tag(PlanningOrderingMethod.luna.rawValue)
+                Text("Hybrid: candidates").tag(PlanningOrderingMethod.hybridLegacy.rawValue)
+                Text("Hybrid: weather context").tag(PlanningOrderingMethod.hybridWeather.rawValue)
+            }
+            .accessibilityIdentifier("pocketOrderingMethod")
+            Text("Experimental: both hybrid methods require an updated Pocket server. Weather context is limited: activity exposure and candidate arrival times are unknown, so heat and rain exposure cannot yet be compared.")
+                .font(.footnote)
         }
     }
 }

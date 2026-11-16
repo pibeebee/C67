@@ -1,5 +1,11 @@
 import Foundation
 
+public enum PlanningOrderingMethod: String, Codable, CaseIterable, Sendable {
+    case luna
+    case hybridLegacy = "hybrid_legacy"
+    case hybridWeather = "hybrid_weather"
+}
+
 public enum PlanningVisitTiming: String, Codable, Sendable, CaseIterable {
     case preferred, required, notBefore
 }
@@ -23,6 +29,7 @@ public struct PlanningPreferences: Equatable, Codable, Sendable {
     public var lastPlaceID: UUID?
     public var automaticFirstPlan: Bool?
     public var reasonableOrdering: Bool?
+    public var orderingMethod: PlanningOrderingMethod?
     public var mainSpotID: UUID?
     public var endPoint: PlanningPoint?
     public var endPointName: String?

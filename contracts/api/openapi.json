@@ -6426,6 +6426,11 @@
           "preservesPlaceOrder": {
             "type": "boolean"
           },
+          "orderingMethod": {
+            "type": "string",
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather"],
+            "description": "Optional; absent means Luna for backwards compatibility. Experimental hybrids require a server that echoes the selected method."
+          },
           "candidateDate": {
             "type": "string",
             "format": "date"
@@ -6937,6 +6942,11 @@
             "items": {
               "type": "string"
             }
+          },
+          "orderingMethod": {
+            "type": "string",
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather"],
+            "description": "Method actually used. Missing in older Luna-only server responses."
           }
         },
         "required": [

@@ -4,6 +4,33 @@ import C67Domain
 import PocketEngine
 @testable import C67Data
 
+@Test func orderingMethodRequiresMatchingServerEchoAndDecodesOldPreferences() throws {
+    let original = try JSONDecoder().decode(PlanningPreferences.self, from: JSONEncoder().encode(PlanningPreferences()))
+    #expect(original.orderingMethod == nil)
+    try PocketOrderCodec.validateMethod(nil, expected: .luna)
+    try PocketOrderCodec.validateMethod(.hybridLegacy, expected: .hybridLegacy)
+    try PocketOrderCodec.validateMethod(.hybridWeather, expected: .hybridWeather)
+    #expect(throws: PlanningError.self) { try PocketOrderCodec.validateMethod(nil, expected: .hybridWeather) }
+    #expect(throws: PlanningError.self) { try PocketOrderCodec.validateMethod(.hybridLegacy, expected: .hybridWeather) }
+    var selection = PlanningPreferences()
+    selection.orderingMethod = .hybridWeather
+    let restored = try JSONDecoder().decode(PlanningPreferences.self, from: JSONEncoder().encode(selection))
+    #expect(restored.orderingMethod == .hybridWeather)
+}
+
+@Test func orderingMethodIsRetainedInThePlanningJob() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in throw PlanningError.invalidResponse },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil)
+    var input = try orderInput()
+    input.enginePreferences?.orderingMethod = .hybridLegacy
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(job.input.enginePreferences?.orderingMethod == .hybridLegacy)
+    #expect(job.command?.input.enginePreferences?.orderingMethod == .hybridLegacy)
+}
+
 private actor OrderConnection: PocketConnectionProviding {
     func credentials() -> PocketCredentials { .init(serverURL: "https://fixture.invalid", token: "synthetic") }
     func update(serverURL: String, token: String) {}

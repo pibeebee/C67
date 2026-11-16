@@ -319,6 +319,7 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
             case "POCKET_CONNECTION_REQUIRED": "Sign in or check your Pocket connection in Account. Your selected places are kept."
             case "POCKET_CONNECTION_REJECTED": "The Pocket server rejected the connection. Check your account and connection, then try again."
             case "POCKET_ORDER_ENDPOINT_MISSING": "This Pocket server does not support itinerary recommendations. Check the server URL in Account."
+            case "POCKET_ORDER_METHOD_UNSUPPORTED": "This Pocket server does not support the selected itinerary method. Choose Luna or connect to an updated server."
             case "ORDER_REQUEST_REJECTED": "The Pocket server rejected the trip details. Your selected places are kept."
             case "ORDER_JOB_MISSING": "The Pocket server could not find this request. Try again to start a new recommendation."
             case "ORDER_SERVER_INTERRUPTED": "The Pocket server stopped processing this request. Try again to start a new recommendation."

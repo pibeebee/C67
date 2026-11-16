@@ -44,6 +44,14 @@ struct ItineraryMapView: View {
                         Text(proposal.explanation)
                         ForEach(proposal.warnings, id: \.self) { Text($0) }
                     } else {
+                        Text("Itinerary method").font(.headline)
+                        switch proposal.experiencePlan?.orderingMethod ?? .luna {
+                        case .luna: Text("Luna")
+                        case .hybridLegacy: Text("Hybrid: candidates (experimental)")
+                        case .hybridWeather:
+                            Text("Hybrid: weather context (experimental)")
+                            Text("Activity exposure and candidate arrival times were unavailable, so heat and rain exposure were not compared.")
+                        }
                         Text(proposal.synthetic ? "Driving times and distances are synthetic examples." : "Driving times and road distances are estimated by Apple Maps. Travel conditions can change.")
                         if proposal.hasExperienceTravelFallback {
                             Text("Legs without a driving estimate use a \(PlanProposal.defaultExperienceTravelSeconds / 60)-minute default. Their road distance is unavailable.")

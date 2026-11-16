@@ -45,7 +45,7 @@ import C67Domain
     var route: TripCreationRoute { path.last ?? root }
     var needsPocketSettings: Bool {
         guard let code = planning.firstItineraryJob?.errorCode else { return false }
-        return ["POCKET_CONNECTION_REQUIRED", "POCKET_CONNECTION_REJECTED", "POCKET_ORDER_ENDPOINT_MISSING"].contains(code)
+        return ["POCKET_CONNECTION_REQUIRED", "POCKET_CONNECTION_REJECTED", "POCKET_ORDER_ENDPOINT_MISSING", "POCKET_ORDER_METHOD_UNSUPPORTED"].contains(code)
     }
     var checksExistingRequest: Bool {
         guard let job = planning.firstItineraryJob else { return false }
@@ -314,6 +314,7 @@ import C67Domain
     private func syncEnginePreferences() {
         guard planning.supportsOnDevicePlanning else { return }
         var preferences = planning.enginePreferences ?? PlanningPreferences()
+        preferences.orderingMethod = PlanningOrderingMethod(rawValue: UserDefaults.standard.string(forKey: "io.pibeebee.c67.orderingMethod") ?? "") ?? .luna
         preferences.themes = Set(answers.interests.map(\.rawValue))
         let supportedLabels = Set(planning.preferenceLabels.map(\.id))
         preferences.labels = answers.refinements.intersection(supportedLabels)

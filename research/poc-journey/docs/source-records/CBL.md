@@ -1,8 +1,65 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Updated:** 13 November 2026, Asia/Jakarta (WIB).
+**Updated:** 16 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Current status:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
+**Historical status, 13 November:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
+
+
+**Current engine checkpoint, 16 November:** The TestFlight build exposes Luna and two experimental Hybrid ordering methods. The updated Pocket server recognizes both Hybrid methods; real-account end-to-end results are still unverified, and the weather Hybrid does not yet compute exposure-based ordering. The dated checkpoint immediately below supersedes conflicting older status statements.
+
+<a id="engine-luna-hybrid-2026-11-16"></a>
+
+
+## 0Q. Checkpoint perjalanan engine: Luna, formula, Hybrid dan cuaca — 15–16 November 2026
+
+### Pertanyaan, perubahan pemahaman dan keputusan
+
+Perjalanan ini dimulai dari kekhawatiran atas lamanya pemrosesan Luna: informasi mana yang dapat dihitung dengan formula atau fungsi, dan apakah sistem deterministik cukup untuk menggantikannya? Pertanyaan berkembang menjadi **bagaimana menghasilkan rekomendasi yang paling masuk akal**, termasuk alasan tujuan berkunjung dan kompromi cuaca; pengguna menegaskan jumlah token bukan prioritas utama. Kecepatan tetap penting, tetapi bukan satu-satunya ukuran kualitas.
+
+Eksperimen menunjukkan fungsi cocok untuk pekerjaan yang memiliki input dan aturan jelas: validasi ID dan batasan urutan, perhitungan jarak koordinat sebagai pendekatan, pembentukan kandidat, pencocokan interval waktu dengan data prakiraan, serta penandaan data hilang. Luna dapat digunakan untuk menimbang tujuan pengalaman dan memilih kandidat, namun dapat membuat alasan atau klaim yang keliru. Formula dan Luna sama-sama belum terbukti memahami maksud aktivitas atau menghasilkan urutan terbaik bagi orang nyata. Perhitungan jarak lurus bukan ETA berkendara; di aplikasi ETA mobil tetap dihitung MapKit pada perangkat setelah urutan disarankan.
+
+Pengguna meminta tiga metode dapat dipilih teman-teman untuk melihat perbedaannya. Ini adalah **eksperimen produk**, bukan keputusan bahwa salah satu metode sudah menang atau menggantikan Luna. Ketiga jalur yang diimplementasikan tetap menggunakan Luna; kedua Hybrid membatasi model pada kandidat yang dibentuk sistem.
+
+### Bukti percobaan dan batasnya
+
+| Tahap | Hasil yang diamati | Batas interpretasi |
+| --- | --- | --- |
+| Formula vs Luna vs Hybrid v4 (workspace lab) | 12 variasi fixture, 12 panggilan Luna penuh dan 12 Hybrid. Formula dan Luna menghasilkan urutan identik 3/12; Hybrid memilih kandidat non-default 8/12. Median core formula 0,271 ms; panggilan Luna 49,55 dtk dan Hybrid 8,04 dtk. | Kasus saling berkorelasi; kandidat Hybrid hanya dua. Kesamaan dan pilihan alternatif bukan akurasi. Waktu core di memori tidak sebanding dengan waktu jaringan/model dan bukan latensi aplikasi. Tidak ada penilaian manusia independen. |
+| PoC panas indoor/outdoor (workspace lab) | Menyelaraskan waktu kunjungan dengan prakiraan per jam dan menghitung indikator relatif secara deterministik; UV dipisahkan dari suhu. Audit 100 kasus sintetis cocok dengan pembanding per menit. | Aktivitas, ETA dan cuaca sintetis; paparan unknown tidak boleh dihitung nol. Indikator bukan ukuran kenyamanan atau keamanan orang, dan batas tambahan perjalanan 15 menit hanya asumsi eksperimen. |
+| Luna vs Hybrid lama vs baru, cuaca (workspace lab) | Enam variasi sintetis, masing-masing tiga arm: 18 respons lolos format dasar. Kedua Hybrid memilih urutan sama 5/6 kasus; median panggilan Luna 27,15 dtk, lama 18,21 dtk, baru 17,68 dtk. | Tugas dan informasi tiap arm berbeda, tanpa ground truth manusia atau ETA/cuaca live. Pada satu kasus, Hybrid baru memakai suhu sebagai alasan meski exposure unknown. Selisih waktu bukan bukti peningkatan atau waktu end-to-end. |
+
+Dalam riset cuaca, lokasi tidak otomatis berarti aktivitas indoor atau outdoor: satu tempat dapat memiliki beberapa area, dan pengguna mungkin melakukan aktivitas berbeda. Klasifikasi perlu bukti yang relevan dengan **aktivitas dan area yang dipilih**, bersama asal dan ketidakpastian; kategori atau nama tempat saja tidak membuktikannya. Suhu terasa, UV, hujan dan waktu tempuh merupakan sinyal berbeda dengan trade-off. Jangan menyimpulkan bahwa indoor selalu sejuk, outdoor selalu terpapar penuh, atau urutan tertentu aman.
+
+### Apa yang berubah di aplikasi dan server
+
+Implementasi kerja berada di checkout C67-processing-hifi branch `gi/ui-audit-improvements`; statusnya perubahan lokal, bukan bukti merge ke `dev`. Rincian dan batas terdapat pada [task implementasi](../../../../docs/tasks/experimental-planning-methods.md).
+
+| Pilihan di Account | Perilaku implementasi saat checkpoint ini | Yang belum terbukti |
+| --- | --- | --- |
+| **Luna** | Server meminta Luna menyusun urutan; ini default untuk pilihan lama yang tidak menyertakan metode. | Ketepatan tujuan, durasi, dan urutan pada pengguna nyata. |
+| **Hybrid: candidates** | Server membuat kandidat deterministik terbatas dari posisi, misalnya urutan terdekat dan alternatif; Luna memilih salah satu. Validasi menolak kandidat yang tidak ditawarkan dan menjaga batasan pilihan. | Kandidat paling baik belum tentu ada dalam menu; bukan bukti urutan optimal atau kualitas setara Luna. |
+| **Hybrid: weather context** | Menggunakan kandidat dan pilihan Luna yang sama, dengan konteks cuaca yang tersedia serta pernyataan eksplisit bahwa exposure dan waktu tiba kandidat unknown. | Ini **bukan** algoritme lengkap benchmark cuaca: belum menghitung paparan atau membandingkan kandidat berdasarkan suhu/UV/hujan dan ETA per kandidat. Tidak terbukti menghindari panas atau hujan. |
+
+Pilihan metode disimpan di perangkat dan dicatat pada permintaan trip baru. Client memeriksa identitas metode pada hasil; server lama yang tidak mengembalikan metode tidak diam-diam dianggap menghasilkan Hybrid. Validasi bertujuan mempertahankan semua tempat pilihan dan aturan urutan yang dinyatakan; akurasi penjelasan belum otomatis dijamin. Data lokasi, durasi, sumber cuaca, waktu dan paparan yang tidak tersedia harus tetap dilaporkan sebagai unknown.
+
+### Iterasi TestFlight dan perbaikan server
+
+1. Build TestFlight **0.1.0 (2026111601)** diunggah dengan tiga pilihan. Setelah ditanya cara mengaksesnya, pemeriksaan kode menunjukkan bahwa mode akun TestFlight membuka **Account**, sedangkan pemilih semula hanya ada di halaman Pocket settings yang tidak dapat dicapai melalui jalur itu. Klaim awal bahwa pemilih sudah dapat diakses dikoreksi.
+2. Pemilih dipindahkan agar juga tersedia di **History → Account → Itinerary method** untuk mode `pocket-auth`. Build **0.1.0 (2026111602)** diunggah dan App Store Connect menampilkan status **Testing** pada grup internal dan eksternal. Uji UI pada iPhone 18 Pro Max Simulator / iOS 27.2, menggunakan fixture cabang Account terautentikasi, memeriksa tiga pilihan dan bahwa pilihan tetap ada ketika halaman dibuka kembali. Ini bukan uji Sign in with Apple pada perangkat fisik atau uji perjalanan live.
+3. Teman pengguna melaporkan pesan **“This Pocket server does not support the selected itinerary method. Choose Luna or connect to an updated server.”** Pemeriksaan server aktif menunjukkan kode saat itu belum mengenali `hybrid_legacy` dan `hybrid_weather`. Dengan demikian kegagalan kompatibilitas ini memiliki penjelasan konkret; penyebab lain pada iPhone tidak boleh disimpulkan tanpa tes lanjutan.
+4. Setelah pengguna menyetujui rencana, server Pocket diperbarui pada 16 November dengan image yang mengganti implementasi ordering. Cadangan volume dan SQLite dibuat; integritas salinan dan database aktif diperiksa. Container berstatus **healthy**, HTTPS health merespons, dan order tanpa autentikasi mendapat HTTP 401. Pada image yang sama, tiga tes logika dan satu tes job HTTP untuk Luna serta kedua Hybrid lulus dengan model dan input sintetis dalam container terisolasi. Pemeriksaan ini bukan pembuktian keluaran Luna nyata atau perbandingan kualitas.
+
+Pengujian manual melalui UI simulator untuk mereproduksi error sempat terhambat karena kontrol simulator tidak dapat dioperasikan; tidak dinyatakan lulus. Pada saat checkpoint ditulis belum ada bukti itinerary berhasil dari masing-masing Hybrid di TestFlight setelah pembaruan server. Jika mencoba lagi, buat permintaan/perjalanan baru dan catat metode, input yang layak dibagikan, hasil, waktu serta error tanpa merekam token atau data pribadi.
+
+### Refleksi dan pekerjaan berikutnya
+
+Pembelajaran utamanya adalah membedakan **apa yang bisa dihitung secara andal ketika input benar** dari **bagaimana memperoleh input dan memahami tujuan pengguna**. Benchmark membantu menemukan kegagalan alasan dan ketidakpastian, tetapi bukan pengganti evaluasi manusia. Perjalanan ini juga memperlihatkan bahwa pilihan UI, build TestFlight dan server harus diuji sebagai satu sistem: kontrol yang ada dalam binary bisa tidak memiliki jalur navigasi, dan client yang lebih baru dapat terhubung ke server yang belum kompatibel.
+
+- Verifikasi alur ketiga metode dengan akun yang sah, data uji yang disepakati dan iPhone/Simulator: simpan output, alasan, semua tempat, latensi total serta error. Pisahkan latensi provider, cuaca, rute dan UI jika dapat diukur.
+- Audit alasan Luna terhadap bukti dan kandidat; uji unknown, trade-off dan respons tidak valid. Adakan penilaian buta oleh orang pada kasus yang tidak dipakai menyusun aturan sebelum mengklaim kualitas.
+- Rancang kontrak paparan per aktivitas/area beserta provenance dan confidence, waktu mulai, durasi serta ETA per kandidat. Baru setelah data tersedia dan tervalidasi, evaluasi perbandingan cuaca yang sesungguhnya dan kebijakan saat data tidak lengkap.
+- Periksa kembali sumber dan fallback cuaca yang aktif serta atribusinya sebelum menyebut WeatherKit atau Open-Meteo sebagai sumber hasil tertentu. Jangan menyamakan prakiraan sintetis dengan data provider nyata.
+- Catat keputusan integrasi dan hasil verifikasi selanjutnya pada sumber repository yang sesuai; jangan mengasumsikan perubahan checkout eksperimental sudah di-commit, di-merge, atau lolos perjalanan fisik.
 
 **Catatan teknis 3 November 2026:** pengguna mengunci **hybrid adaptif** untuk routing PoC: baseline tervalidasi terlebih dahulu, kemudian cheapest insertion + multi-start local search secara selektif. Implementasi dan pengujian lokal tersedia pada [laporan PoC native](../../apps/native-routing-lab/docs/verification/ADAPTIVE_ROUTING_REPORT_2026-11-03.md). Ini memperbarui status eksperimen routing; integrasi AI dan recalculation perjalanan aktif tetap mempunyai lingkup dan bukti tersendiri.
 

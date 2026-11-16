@@ -295,6 +295,30 @@ final class PocketEngineUITests: XCTestCase {
         capture(app, "Started live Luna trip and confirmed first arrival")
     }
 
+    @MainActor func testAuthenticatedAccountExposesItineraryMethods() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["--skip-splash", "--pocket-auth-fixture", "--pocket-auth-settings-fixture"]
+        app.launch()
+        app.tabBars.buttons["History"].tap()
+        app.buttons["Account"].tap()
+        XCTAssertTrue(app.navigationBars["Account"].waitForExistence(timeout: 5))
+        let picker = app.buttons["pocketOrderingMethod"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 5), app.debugDescription)
+        picker.tap()
+        XCTAssertTrue(app.buttons["Luna"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Hybrid: candidates"].exists)
+        XCTAssertTrue(app.buttons["Hybrid: weather context"].exists)
+        app.buttons["Hybrid: weather context"].tap()
+        XCTAssertTrue(picker.label.contains("Hybrid: weather context") || (picker.value as? String)?.contains("Hybrid: weather context") == true)
+        app.buttons["Done"].tap()
+        app.buttons["Account"].tap()
+        XCTAssertTrue(picker.waitForExistence(timeout: 5))
+        XCTAssertTrue(picker.label.contains("Hybrid: weather context") || (picker.value as? String)?.contains("Hybrid: weather context") == true)
+        picker.tap()
+        app.buttons["Luna"].tap()
+    }
+
     @MainActor func testPocketSettingsAreReachableAndDoNotRevealReadToken() {
         continueAfterFailure = false
         let app = XCUIApplication()
@@ -306,6 +330,15 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.textFields["pocketServerURL"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.secureTextFields["pocketReadToken"].exists)
         XCTAssertFalse(app.staticTexts["synthetic-fixture-token"].exists)
+        let picker = app.buttons["pocketOrderingMethod"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 5), app.debugDescription)
+        picker.tap()
+        XCTAssertTrue(app.buttons["Hybrid: candidates"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Hybrid: weather context"].exists)
+        app.buttons["Hybrid: candidates"].tap()
+        XCTAssertTrue(picker.label.contains("Hybrid: candidates") || (picker.value as? String)?.contains("Hybrid: candidates") == true)
+        picker.tap()
+        app.buttons["Luna"].tap()
         app.buttons["Done"].tap()
         XCTAssertTrue(app.tabBars.buttons["Trip"].exists)
     }

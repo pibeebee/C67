@@ -16,7 +16,7 @@ import unittest
 import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from ordering import Environment, OrderingResolver, request_context
+from ordering import Environment, OrderingResolver, request_context, candidate_orders
 from server import AuthenticationUnavailable, Jobs, Handler, ThreadingHTTPServer
 
 
@@ -170,6 +170,74 @@ class OrderingTests(unittest.TestCase):
         self.assertIsNone(result["stops"][1]["duration"])
         self.assertEqual(result["weatherSources"],[])
         self.assertNotIn("arrivalAt",result)
+
+    def test_hybrid_methods_select_only_offered_candidates_and_preserve_all_places(self):
+        for method in ("hybrid_legacy", "hybrid_weather"):
+            value = body(8); value["orderingMethod"] = method
+            def model(prompt, context):
+                self.assertIn("candidateOrders", context)
+                if method == "hybrid_weather":
+                    self.assertEqual(context["systemAssessment"]["activityExposure"], "unknown")
+                    self.assertEqual(context["systemAssessment"]["arrivalTimes"], "unknown")
+                result = answer(context)
+                result["orderedIDs"] = context["candidateOrders"][-1]["orderedIDs"]
+                return result, "gpt-6-luna"
+            result = OrderingResolver(model, NoWeather()).resolve(value)
+            self.assertEqual(result["orderingMethod"], method)
+            self.assertEqual(set(result["orderedIDs"]), {p["id"] for p in value["places"]})
+            if method == "hybrid_weather": self.assertTrue(any("unknown" in x for x in result["contextWarnings"]))
+
+    def test_hybrid_rejects_unoffered_permutation(self):
+        value = body(); value["orderingMethod"] = "hybrid_legacy"
+        def model(prompt, context):
+            result = answer(context)
+            offered = [c["orderedIDs"] for c in context["candidateOrders"]]
+            from itertools import permutations
+            result["orderedIDs"] = next(list(x) for x in permutations(result["orderedIDs"]) if list(x) not in offered)
+            return result, "gpt-6-luna"
+        with self.assertRaisesRegex(ValueError, "offered candidate"):
+            OrderingResolver(model, NoWeather()).resolve(value)
+
+    def test_hybrid_candidates_preserve_locks_and_unknown_method_rejected(self):
+        value = body(8); value["firstPlaceID"] = value["places"][-1]["id"]
+        for candidate in candidate_orders(request_context(value)):
+            self.assertEqual(candidate[0], value["firstPlaceID"])
+            self.assertEqual(len(set(candidate)), 8)
+        value["preservesPlaceOrder"] = True
+        self.assertEqual(candidate_orders(request_context(value)), [[p["id"] for p in value["places"]]])
+        value["orderingMethod"] = "invented"
+        with self.assertRaises(ValueError): request_context(value)
+
+    def test_all_methods_complete_through_local_http_job_with_synthetic_model(self):
+        calls = []
+        def model(prompt, context):
+            calls.append(context)
+            value = answer(context)
+            if "candidateOrders" in context:
+                value["orderedIDs"] = context["candidateOrders"][-1]["orderedIDs"]
+            return value, "gpt-6-luna"
+        with tempfile.TemporaryDirectory() as directory, patch.object(Handler, "authorized", return_value="synthetic-user"):
+            jobs = Jobs(directory, OrderingResolver(model, NoWeather()), retry_failed=False)
+            server = ThreadingHTTPServer(("127.0.0.1", 0), Handler); server.order_jobs = jobs
+            thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
+            try:
+                base = f"http://127.0.0.1:{server.server_address[1]}"
+                headers = {"Authorization": "Bearer synthetic", "Content-Type": "application/json"}
+                for method in ("luna", "hybrid_legacy", "hybrid_weather"):
+                    value = body(); value["orderingMethod"] = method
+                    with urlopen(Request(base + "/v1/order", data=json.dumps(value).encode(), headers=headers)) as response:
+                        self.assertEqual(response.status, 202)
+                    deadline = time.monotonic() + 5
+                    result = jobs.get(value["requestID"], "synthetic-user")
+                    while result["status"] in ("queued", "running") and time.monotonic() < deadline:
+                        time.sleep(0.01)
+                        result = jobs.get(value["requestID"], "synthetic-user")
+                    self.assertEqual(result["status"], "succeeded", result)
+                    self.assertEqual(result["result"]["orderingMethod"], method)
+                    self.assertEqual(set(result["result"]["orderedIDs"]), {p["id"] for p in value["places"]})
+                self.assertEqual(len(calls), 3)
+            finally:
+                server.shutdown(); server.server_close(); thread.join()
 
     def test_more_than_six_and_foreign_pins_have_no_catalog_or_area_gate(self):
         value=body(8);value["places"][0]["location"]=dict(latitude=35.6,longitude=139.7)

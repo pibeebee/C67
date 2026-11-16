@@ -96,6 +96,7 @@ public struct PlanningExperiencePlan: Equatable, Codable, Sendable {
     public var weatherSources: [WeatherSource]
     public var solarWindows: [LightWindow]
     public var contextWarnings: [String]
+    public var orderingMethod: PlanningOrderingMethod? = nil
 
     public func stop(_ id: UUID) -> Stop? { stops.first { $0.placeID == id } }
 }

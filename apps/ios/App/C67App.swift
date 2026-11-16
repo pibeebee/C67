@@ -52,16 +52,30 @@ private struct StarterRootView: View {
     var body: some View {
         switch result {
         case .success(let dependencies):
-            if dependencies.mode == "Pocket • authenticated", let authentication = dependencies.authentication {
-                PocketAuthenticatedRoot(authentication: authentication, repositories: pocketRepositories)
-            } else if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
-                DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
-                                       authentication: dependencies.authentication)
-            } else {
-                PlanningAssembly.make(repository: dependencies.planningRepository, mode: dependencies.mode,
-                                      initialInput: dependencies.planningInitialInput,
-                                      authentication: dependencies.authentication)
-            }
+            #if DEBUG
+                if ProcessInfo.processInfo.arguments.contains("--pocket-auth-settings-fixture") {
+                    PlanningAssembly.make(repository: dependencies.planningRepository, mode: dependencies.mode,
+                                          initialInput: dependencies.planningInitialInput, authentication: dependencies.authentication)
+                } else if dependencies.mode == "Pocket • authenticated", let authentication = dependencies.authentication {
+                    PocketAuthenticatedRoot(authentication: authentication, repositories: pocketRepositories)
+                } else if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
+                    DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode, authentication: dependencies.authentication)
+                } else {
+                    PlanningAssembly.make(repository: dependencies.planningRepository, mode: dependencies.mode,
+                                          initialInput: dependencies.planningInitialInput, authentication: dependencies.authentication)
+                }
+            #else
+                if dependencies.mode == "Pocket • authenticated", let authentication = dependencies.authentication {
+                    PocketAuthenticatedRoot(authentication: authentication, repositories: pocketRepositories)
+                } else if ProcessInfo.processInfo.arguments.contains("--legacy-catalog") {
+                    DiscoveryAssembly.make(repository: dependencies.repository, mode: dependencies.mode,
+                                           authentication: dependencies.authentication)
+                } else {
+                    PlanningAssembly.make(repository: dependencies.planningRepository, mode: dependencies.mode,
+                                          initialInput: dependencies.planningInitialInput,
+                                          authentication: dependencies.authentication)
+                }
+            #endif
         case .failure(let error):
             ContentUnavailableView("Configuration needed", systemImage: "gearshape",
                                    description: Text(error.localizedDescription))
