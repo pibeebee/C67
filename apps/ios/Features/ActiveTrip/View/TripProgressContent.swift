@@ -111,7 +111,7 @@ struct TripProgressContent: View {
                                     PlaceThumbnail(imageName: details[stop.id]?.photoAsset, size: 48)
                                     Text(stop.name).font(.headline)
                                 }
-                                if trip.plan.experiencePlan != nil {
+                                if trip.plan.usesExperienceFlow {
                                     if trip.input.places.first(where: { $0.id == stop.id })?.durationOverridden == true {
                                         Text("Your visit length · \(stop.visitSeconds / 60) min")
                                     } else if let duration = trip.plan.experiencePlan?.stop(stop.id)?.duration {
@@ -127,7 +127,7 @@ struct TripProgressContent: View {
                                         PlaceThumbnail(imageName: details[upcoming.id]?.photoAsset, size: 48)
                                         VStack(alignment: .leading, spacing: 4) {
                                             Text(upcoming.name).font(.headline)
-                                            Text(trip.plan.experiencePlan == nil ? "\(upcoming.travelSeconds / 60) min · planned travel" : ItineraryFormatting.drivingEstimate(upcoming))
+                                            Text(!trip.plan.usesExperienceFlow ? "\(upcoming.travelSeconds / 60) min · planned travel" : ItineraryFormatting.drivingEstimate(upcoming))
                                                 .font(.subheadline)
                                         }
                                     }

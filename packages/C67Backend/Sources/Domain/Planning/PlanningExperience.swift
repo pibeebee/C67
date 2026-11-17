@@ -107,7 +107,7 @@ public extension PlanProposal {
 
     /// A device estimate. The candidate day comes from the request; the clock time is a default or user choice.
     var estimatedExperienceDeparture: Date? {
-        guard experiencePlan != nil else { return nil }
+        guard usesExperienceFlow else { return nil }
         if let departureAt { return departureAt }
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: input.timeZone) ?? .current
@@ -115,12 +115,12 @@ public extension PlanProposal {
     }
 
     var hasExperienceTravelFallback: Bool {
-        experiencePlan != nil && stops.contains { $0.roadDistanceMeters == nil }
+        usesExperienceFlow && stops.contains { $0.roadDistanceMeters == nil }
     }
 
     /// Presentation estimates are derived without changing the provider proposal or claiming route feasibility.
     var stopsWithExperienceEstimates: [ScheduledPlanningStop] {
-        if input.enginePreferences?.orderingMethod == .hybridV4 { return stops }
+        if input.enginePreferences?.orderingMethod?.isSchedule == true { return stops }
         guard var clock = estimatedExperienceDeparture else { return stops }
         return stops.map { stop in
             var estimate = stop

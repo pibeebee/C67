@@ -4,14 +4,19 @@ import C67Domain
 struct PocketVisitAvailabilityView: View {
     @Bindable var presenter: TripCreationPresenter
     let proceed: () -> Void
-    @State private var visitDate = Self.calendar.date(byAdding: .day, value: 1, to: .now) ?? .now
-    private static let calendar: Calendar = {
+    @State private var visitDate: Date
+    private var calendar: Calendar {
         var value = Calendar(identifier: .gregorian)
-        value.timeZone = TimeZone(identifier: "Asia/Jakarta")!
+        value.timeZone = TimeZone(identifier: presenter.planning.timeZone) ?? .current
         return value
-    }()
+    }
+    init(presenter: TripCreationPresenter, proceed: @escaping () -> Void) {
+        self.presenter = presenter
+        self.proceed = proceed
+        _visitDate = State(initialValue: presenter.planning.startsAt)
+    }
     var body: some View {
-        let calendar = Self.calendar
+        let calendar = calendar
         Form {
             Section {
                 Text("Review visit availability")
@@ -35,14 +40,15 @@ struct PocketVisitAvailabilityView: View {
             }
             Section {
                 Button("Build itinerary", action: proceed)
-                    .disabled(!presenter.availabilityPlaces.contains { row in
+                    .disabled(!presenter.usesV41 && !presenter.availabilityPlaces.contains { row in
                         row.place.visitConfirmation
                             .map { calendar.isDate($0.opensAt, inSameDayAs: visitDate) } == true
                     })
                     .accessibilityIdentifier("pocketBuildItinerary")
             }
         }
-        .environment(\.timeZone, TimeZone(identifier: "Asia/Jakarta")!)
+        .environment(\.timeZone, calendar.timeZone)
+        .onChange(of: visitDate) { _, date in if presenter.usesV41 { presenter.changeTripDate(date) } }
         .navigationTitle("Visit availability")
     }
 }

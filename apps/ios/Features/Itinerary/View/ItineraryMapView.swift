@@ -40,17 +40,20 @@ struct ItineraryMapView: View {
             DisclosureGroup("Trip details") {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Route estimates").font(.headline)
-                    if proposal.experiencePlan == nil {
+                    if !proposal.usesExperienceFlow {
                         Text(proposal.explanation)
                         ForEach(proposal.warnings, id: \.self) { Text($0) }
                     } else {
                         Text("Itinerary method").font(.headline)
-                        switch proposal.experiencePlan?.orderingMethod ?? .luna {
+                        switch proposal.effectiveOrderingMethod {
                         case .luna: Text("Luna")
                         case .hybridLegacy: Text("Hybrid: candidates (retired)")
-                        case .hybridV4:
-                            Text("Hybrid v4: schedules (experimental)")
+                        case .hybridV4, .hybridV41:
+                            Text(proposal.effectiveOrderingMethod == .hybridV41 ? "Hybrid v4.1: flexible schedules (experimental)" : "Hybrid v4: schedules (experimental)")
                             Text(proposal.explanation)
+                            if proposal.effectiveOrderingMethod == .hybridV41, proposal.experiencePlan == nil {
+                                Text("Visit durations were supplied by you.")
+                            }
                             ForEach(proposal.warnings, id: \.self) { Text($0) }
                             ForEach(Array(Set(proposal.stops.flatMap(\.warnings))).sorted(), id: \.self) { Text($0) }
                         case .hybridWeather:
@@ -121,12 +124,12 @@ struct ItineraryMapView: View {
             ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
                 Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
                     Group {
-                        if proposal.experiencePlan != nil { Image(systemName: "mappin").font(.footnote.bold()) }
+                        if proposal.usesExperienceFlow { Image(systemName: "mappin").font(.footnote.bold()) }
                         else { Text(index + 1, format: .number).font(.footnote.bold()) }
                     }
                     .foregroundStyle(.white)
                     .padding(8)
-                    .background(proposal.experiencePlan == nil ? Color("ItineraryBlue") : Color.red, in: .circle)
+                    .background(!proposal.usesExperienceFlow ? Color("ItineraryBlue") : Color.red, in: .circle)
                     .overlay(Circle().stroke(.white, lineWidth: 2))
                     .accessibilityLabel("Stop \(index + 1): \(stop.name)")
                 }

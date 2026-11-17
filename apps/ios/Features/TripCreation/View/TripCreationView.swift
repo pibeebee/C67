@@ -96,7 +96,10 @@ struct TripCreationView: View {
                                      skip: {
                                          presenter.mainSpot = .automatic; presenter.stay = nil
                                          run { await presenter.finishSurvey() }
-                                     }, researchesWithLuna: presenter.planning.supportsOnDevicePlanning)
+                                     }, researchesWithLuna: presenter.planning.supportsOnDevicePlanning,
+                                     usesV41: presenter.usesV41,
+                                     scheduleSummary: presenter.usesV41 ? presenter.scheduleSummary : nil,
+                                     editSchedule: presenter.usesV41 ? { openScheduleOptions() } : nil)
             case .stay:
                 StayDurationQuestionView(placeName: presenter.selected.first(where: { $0.id == presenter.mainSpot.placeID })?.place.name ?? "your main spot",
                                          selection: presenter.stay,
@@ -135,12 +138,28 @@ struct TripCreationView: View {
            let error = presenter.error, !presenter.isProcessing {
             VStack(alignment: .leading, spacing: 8) {
                 Label(error, systemImage: "exclamationmark.circle").font(.footnote)
+                if let assessment = presenter.scheduleAssessment, let input = presenter.planning.firstItineraryJob?.input {
+                    ForEach(Array(assessment.messages(in: input).prefix(4)), id: \.self) { Text($0).font(.footnote) }
+                    ForEach(assessment.durationAlternatives) { alternative in
+                        let name = presenter.selected.first { $0.id == alternative.placeID }?.place.name ?? "Visit"
+                        Text(alternative.source == "luna_experience_estimate" ? "Alternative based on Luna's estimated duration range." : "Alternative within your accepted duration range.")
+                            .font(.footnote)
+                        Button("Use \(alternative.proposedSeconds / 60) min at \(name) instead of \(alternative.originalSeconds / 60) min") {
+                            run { await presenter.acceptDurationAlternative(alternative) }
+                        }
+                        .accessibilityIdentifier("acceptShorterVisit")
+                    }
+                    if !assessment.regularConflicts.isEmpty || assessment.conflicts.contains(where: { $0.placeID != nil }) || assessment.stopReason == "date_conflict" {
+                        Button("Review visit availability") { presenter.reviewVisitAvailability() }
+                    }
+                }
                 if presenter.canTryTomorrow {
                     Button("Try tomorrow") { run { await presenter.tryTomorrow() } }
                 }
                 if let code = presenter.planning.firstItineraryJob?.errorCode,
                    ["V4_NO_SCHEDULE", "V4_DURATION_UNKNOWN", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
-                    "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED"].contains(code) {
+                    "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED", "V41_NO_SCHEDULE", "V41_ACCESS_CONFLICT",
+                    "V41_DATE_CONFLICT", "V41_BUDGET_REACHED"].contains(code) {
                     Button("Adjust schedule") { openScheduleOptions() }
                 }
                 if presenter.planning.origin == nil, presenter.planningHandoffMessage == nil {

@@ -1,5 +1,9 @@
 # Starter verification
 
+## Hybrid v4.1 — 17 November 2026
+
+The package suite passed 111 tests, including 20 v4.1 cases. On iPhone 18 Pro Max / iOS 27.2 Simulator, all 51 `TripCreationTests` passed and four targeted v4/v4.1 UI flows passed. Focused rechecks covered v4.1 after search refinements. The new cases cover structured timing, diagnostic recovery, adaptive search and budget persistence, duration review, access/session/entry constraints, zero-call scheduling, and semantic reuse. Six four-stop static synthetic cases matched an independent 24-order reference using 33–38 route attempts. OpenAPI/fixture validation, SwiftFormat, document references, and whitespace checks passed. Provider fixtures are synthetic; live Luna/MapKit, physical-device behavior, and human itinerary quality for this revision remain unverified. See [implementation details and result bundles](../tasks/hybrid-v41-integration.md).
+
 ## Hybrid v4 date fallback — 17 November 2026
 
 Four targeted repository tests and four iPhone 18 Pro Max / iOS 27.2 Simulator tests passed with synthetic providers. The app checks cover automatic rescheduling in review, saving and restoring the new date, explicit confirmation through the presenter, and the schedule controls. See the [Hybrid v4 integration checkpoint](../tasks/hybrid-v4-integration.md#automatic-date-for-the-first-itinerary).

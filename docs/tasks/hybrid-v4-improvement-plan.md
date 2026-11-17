@@ -1,6 +1,6 @@
-# Hybrid v4 implementation plan
+# Hybrid v4.1 implementation plan
 
-Status: Proposed, implementation pending
+Status: Implemented locally as Hybrid v4.1; see the [integration and verification record](hybrid-v41-integration.md).
 
 Prepared on 17 November 2026 for the engineers implementing Travelant's first-itinerary flow.
 
@@ -14,7 +14,7 @@ Owner and reviewers: to be assigned by the team across iOS, Domain/Data, and Poc
 
 Improve the first Hybrid v4 itinerary using the sources already available. A traveller's selected date and preferences reach the scheduler as structured input, failures lead to relevant recovery actions, and bounded route search finds more usable schedules for a measured request cost. Travellers can review duration compromises and uncertain access. Scheduling can complete without Luna when the supplied input is sufficient.
 
-This document proposes six implementation workstreams. The baseline commits preserve the existing implementation. The proposed types, policies, acceptance cases, and experiments below have not been implemented or executed by this planning task.
+This document records the six approved implementation workstreams. The baseline commits preserve the earlier implementation. The [v4.1 integration record](hybrid-v41-integration.md) identifies the delivered behavior, experiment settings, deviations from this design, executed checks, and remaining evaluation.
 
 ## Baseline and available inputs
 

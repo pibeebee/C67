@@ -218,8 +218,65 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertFalse(app.buttons["itineraryStartNow"].exists)
     }
 
-    @MainActor private func openV4MainSpot(lateDay: Bool = false) -> XCUIApplication {
-        var arguments = ["-io.pibeebee.c67.orderingMethod", "hybrid_v4"]
+    @MainActor func testV41CreatesAnItineraryUsingUserDurationsAndShowsTheChosenDate() {
+        continueAfterFailure = false
+        let app = openV4MainSpot(method: "hybrid_v4_1")
+        XCTAssertTrue(app.buttons["tripDateSummary"].waitForExistence(timeout: 5))
+        app.buttons["tripScheduleOptions"].tap()
+        XCTAssertTrue(app.navigationBars["Trip schedule"].waitForExistence(timeout: 5))
+        app.buttons["tripTimingChoice"].tap()
+        app.buttons["Tomorrow"].tap()
+        for name in ["Fixture Japanese 1", "Fixture Japanese 2"] {
+            let row = app.cells.containing(.staticText, identifier: name).firstMatch
+            scrollToTripControl(row, in: app)
+            let toggle = row.switches["Set visit duration"]
+            scrollToTripControl(toggle, in: app)
+            XCTAssertTrue(toggle.exists, app.debugDescription)
+            toggle.switches.firstMatch.tap()
+            XCTAssertEqual(toggle.value as? String, "1", app.debugDescription)
+        }
+        app.buttons["Done"].tap()
+        app.buttons["Skip"].tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 20), app.debugDescription)
+        XCTAssertTrue(app.staticTexts["Fixture Japanese 1"].exists)
+        XCTAssertTrue(app.staticTexts["Fixture Japanese 2"].exists)
+        let details = app.buttons["Trip details"]
+        scrollToTripControl(details, in: app)
+        details.tap()
+        XCTAssertTrue(app.staticTexts["Hybrid v4.1: flexible schedules (experimental)"].waitForExistence(timeout: 5), app.debugDescription)
+        let supplied = app.staticTexts["Visit durations were supplied by you."]
+        scrollToTripControl(supplied, in: app)
+        capture(app, "Hybrid v4.1 with user durations")
+        XCTAssertTrue(supplied.exists, app.debugDescription)
+    }
+
+    @MainActor func testV41ExplainsMissingDurationAndRecoversThroughScheduleEditing() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: ["-io.pibeebee.c67.orderingMethod", "hybrid_v4_1"])
+        let unknown = app.buttons["Fixture Unknown Hours"]
+        app.swipeUp()
+        scrollToTripControl(unknown, in: app)
+        unknown.tap()
+        XCTAssertTrue((unknown.value as? String)?.contains("Added") == true, app.debugDescription)
+        app.buttons["recommendationsNext"].tap()
+        XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5), app.debugDescription)
+        app.buttons["Skip"].tap()
+        let diagnostic = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "visit duration is needed")).firstMatch
+        XCTAssertTrue(diagnostic.waitForExistence(timeout: 15), app.debugDescription)
+        XCTAssertFalse(app.buttons["Review visit availability"].exists)
+        app.buttons["Adjust schedule"].tap()
+        let duration = app.switches["Set visit duration"]
+        scrollToTripControl(duration, in: app)
+        duration.switches.firstMatch.tap()
+        XCTAssertEqual(duration.value as? String, "1", app.debugDescription)
+        app.buttons["Done"].tap()
+        app.buttons["Try again"].tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 20), app.debugDescription)
+        XCTAssertTrue(app.staticTexts["Fixture Unknown Hours"].exists)
+    }
+
+    @MainActor private func openV4MainSpot(lateDay: Bool = false, method: String = "hybrid_v4") -> XCUIApplication {
+        var arguments = ["-io.pibeebee.c67.orderingMethod", method]
         if lateDay { arguments.append("--pocket-late-day-fixture") }
         let app = openFixtureRecommendations(extraArguments: arguments)
         for name in ["Fixture Japanese 1", "Fixture Japanese 2"] {

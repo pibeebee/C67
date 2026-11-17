@@ -31,7 +31,7 @@ struct ItineraryListView: View {
 
     var body: some View {
         let stops = proposal.stopsWithExperienceEstimates
-        let isExperience = proposal.experiencePlan != nil
+        let isExperience = proposal.usesExperienceFlow
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 if isExperience {
@@ -122,7 +122,7 @@ struct ItineraryListView: View {
                     Button("Add another place", action: addPlace)
                         .font(.subheadline)
                         .frame(maxWidth: .infinity, minHeight: 44)
-                        .disabled(isSaving || (proposal.experiencePlan == nil && proposal.input.places.count >= 6))
+                        .disabled(isSaving || (!proposal.usesExperienceFlow && proposal.input.places.count >= 6))
                         .accessibilityIdentifier("itineraryAddPlace")
                 }
 
@@ -198,7 +198,7 @@ struct ItineraryListView: View {
 
     private func timelineRow(index: Int, stop: ScheduledPlanningStop, stops: [ScheduledPlanningStop]) -> some View {
         let next = index + 1 < stops.count ? stops[index + 1] : nil
-        let isExperience = proposal.experiencePlan != nil
+        let isExperience = proposal.usesExperienceFlow
         let place = proposal.input.places.first { $0.id == stop.id }
         var stopDetails = details[stop.id] ?? ItineraryStopDetails()
         let poi = place.flatMap { RecommendedPlace(place: $0).poiPresentation }
@@ -229,7 +229,7 @@ struct ItineraryListView: View {
     @ViewBuilder private func tripEdits(_ edit: @escaping (ItineraryEditRoute) -> Void) -> some View {
         Button("Change start") { edit(.startingPoint) }
         Button("Change end") { edit(.endPoint) }
-        if proposal.experiencePlan == nil { Button("Change time") { edit(.tripTime) } }
+        if !proposal.usesExperienceFlow { Button("Change time") { edit(.tripTime) } }
     }
 
     private func acceptDrop(_ providers: [NSItemProvider], onto destination: UUID) -> Bool {

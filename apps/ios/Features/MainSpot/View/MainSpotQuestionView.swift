@@ -11,6 +11,9 @@ struct MainSpotQuestionView: View {
     let next: () -> Void
     let skip: () -> Void
     var researchesWithLuna = false
+    var usesV41 = false
+    var scheduleSummary: String?
+    var editSchedule: (() -> Void)?
 
     private var cardShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: 26, style: .continuous)
@@ -25,7 +28,7 @@ struct MainSpotQuestionView: View {
             VStack(alignment: .leading, spacing: 0) {
                 CheckmarkRow(
                     title: Text("Let Travelant decide"),
-                    subtitle: Text(researchesWithLuna ? "Let Luna arrange your experience" : "Adjust based on route and opening hours"),
+                    subtitle: Text(usesV41 ? "Plan the visits around your schedule" : (researchesWithLuna ? "Let Luna arrange your experience" : "Adjust based on route and opening hours")),
                     isSelected: selection == .automatic
                 ) {
                     select(.automatic)
@@ -71,7 +74,15 @@ struct MainSpotQuestionView: View {
             .sensoryFeedback(.selection, trigger: selection)
         } footer: {
             VStack(spacing: 12) {
-                if researchesWithLuna {
+                if let scheduleSummary, let editSchedule {
+                    Button(action: editSchedule) { Label(scheduleSummary, systemImage: "calendar") }
+                        .accessibilityIdentifier("tripDateSummary")
+                }
+                if usesV41 {
+                    Text("Hybrid v4.1 arranges your trip using Apple travel estimates and available hours. Hours checks send selected Apple place IDs to Pocket. If you choose Luna assistance, selected places, pins and preferences are sent to Pocket and Luna for activity and duration suggestions. Recommendations are estimates.")
+                        .font(AppFont.footnote)
+                        .foregroundStyle(AppColor.secondaryText)
+                } else if researchesWithLuna {
                     Text("Your selected places, pins and preferences are sent to the Pocket server and Luna to suggest an order and visit lengths. Weather providers may receive your starting point and selected places; forecasts may use Apple Weather or Open-Meteo. Recommendations are estimates.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)

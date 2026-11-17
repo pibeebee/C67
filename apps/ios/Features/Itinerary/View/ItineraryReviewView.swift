@@ -18,8 +18,8 @@ struct ItineraryReviewView: View {
     private var proposal: PlanProposal { presenter.job?.result?.proposal ?? initialProposal }
     private var displayedName: String { tripName ?? proposal.input.title }
     private var canStartToday: Bool {
-        guard proposal.experiencePlan != nil else { return false }
-        guard proposal.input.enginePreferences?.orderingMethod == .hybridV4 else { return true }
+        guard proposal.usesExperienceFlow else { return false }
+        guard proposal.input.enginePreferences?.orderingMethod?.isSchedule == true else { return true }
         return PlanningDayWindow.isSameDay(proposal.departureAt ?? proposal.input.startsAt, .now, timeZone: proposal.input.timeZone)
     }
     private var canEditName: Bool {
@@ -41,17 +41,17 @@ struct ItineraryReviewView: View {
                           editEndpoints: initialProposal.input.enginePreferences?.automaticFirstPlan == true ? { editRoute = $0 } : nil,
                           isSaving: presenter.isBusy, error: presenter.error,
                           canSave: !presenter.needsFreshProposal && presenter.job?.result?.proposal != nil && presenter.draftInput == proposal.input,
-                          heading: proposal.experiencePlan == nil ? nil : displayedName,
-                          editTitle: proposal.experiencePlan == nil ? nil : { nameDraft = displayedName; showsEditName = true },
-                          editDeparture: proposal.experiencePlan == nil ? nil : { editRoute = .estimatedDeparture },
+                          heading: !proposal.usesExperienceFlow ? nil : displayedName,
+                          editTitle: !proposal.usesExperienceFlow ? nil : { nameDraft = displayedName; showsEditName = true },
+                          editDeparture: !proposal.usesExperienceFlow ? nil : { editRoute = .estimatedDeparture },
                           startNow: canStartToday ? { saveName = displayedName; startsAfterSave = true; save() } : nil,
-                          actionTitle: proposal.experiencePlan == nil ? "Save Itinerary" : "Save your trip for later…",
+                          actionTitle: !proposal.usesExperienceFlow ? "Save Itinerary" : "Save your trip for later…",
                           retry: retryAction,
                           refreshRoute: proposal.hasExperienceTravelFallback ? { Task { await presenter.updateExperienceRoute() } } : nil,
                           lookupHours: { await presenter.openingHours(placeID: $0) },
                           edit: edit,
                           save: { saveName = displayedName; startsAfterSave = false; showsSaveName = true }, move: move)
-            .modifier(ItinerarySaveNameDialog(isPresented: $showsSaveName, name: $saveName, originalName: proposal.input.title, regeneratesOnRename: proposal.experiencePlan == nil, save: save))
+            .modifier(ItinerarySaveNameDialog(isPresented: $showsSaveName, name: $saveName, originalName: proposal.input.title, regeneratesOnRename: !proposal.usesExperienceFlow, save: save))
             .alert("Edit trip name", isPresented: $showsEditName) {
                 TextField("Itinerary name", text: $nameDraft)
                 Button("Done") { tripName = nameDraft.trimmingCharacters(in: .whitespacesAndNewlines) }
@@ -66,7 +66,7 @@ struct ItineraryReviewView: View {
             }
             .disabled(presenter.isBusy)
             .task {
-                if proposal.experiencePlan != nil, proposal.experienceRouteCheckedAt == nil {
+                if proposal.usesExperienceFlow, proposal.experienceRouteCheckedAt == nil {
                     await presenter.updateExperienceRoute()
                 }
             }
@@ -81,7 +81,7 @@ struct ItineraryReviewView: View {
                 switch route {
                 case .visit(let place):
                     ItineraryVisitEditor(place: place, zone: proposal.input.timeZone,
-                                         startsAt: proposal.input.startsAt, orderingOnly: proposal.experiencePlan != nil, update: update)
+                                         startsAt: proposal.input.startsAt, orderingOnly: proposal.usesExperienceFlow, update: update)
                 case .addPlace:
                     PlanningSearchSheet(near: presenter.origin, title: "Add a place", select: add)
                 case .startingPoint:
@@ -112,7 +112,7 @@ struct ItineraryReviewView: View {
 
     private func edit(_ id: UUID?) {
         if let id, var place = presenter.places.first(where: { $0.id == id }) {
-            if proposal.experiencePlan != nil, place.durationOverridden != true,
+            if proposal.usesExperienceFlow, place.durationOverridden != true,
                let stop = proposal.stopsWithExperienceEstimates.first(where: { $0.id == id }) { place.visitSeconds = stop.visitSeconds }
             editRoute = .visit(place)
         } else if id == nil {
@@ -122,14 +122,14 @@ struct ItineraryReviewView: View {
 
     private func update(_ original: PlanningPlace) {
         var place = original
-        if proposal.experiencePlan != nil { place.durationOverridden = true }
+        if proposal.usesExperienceFlow { place.durationOverridden = true }
         guard let index = presenter.places.firstIndex(where: { $0.id == place.id }), !presenter.isBusy else { return }
         presenter.places[index] = place
         regenerate()
     }
 
     private func add(_ place: PlanningPlace) {
-        guard proposal.experiencePlan != nil || presenter.places.count < 6, !presenter.isBusy else { return }
+        guard proposal.usesExperienceFlow || presenter.places.count < 6, !presenter.isBusy else { return }
         presenter.places.append(place)
         regenerate()
     }
@@ -141,7 +141,7 @@ struct ItineraryReviewView: View {
               let targetIndex = proposal.stops.firstIndex(where: { $0.id == destination }) else { return }
         var ordered = proposal.stops.map(\.id)
         ordered.insert(ordered.remove(at: sourceIndex), at: targetIndex)
-        if proposal.experiencePlan != nil {
+        if proposal.usesExperienceFlow {
             updateStopOrder(ordered)
             return
         }
@@ -166,7 +166,7 @@ struct ItineraryReviewView: View {
     }
 
     private func regenerate() {
-        let previousDeparture = proposal.experiencePlan == nil ? nil : proposal.departureAt
+        let previousDeparture = !proposal.usesExperienceFlow ? nil : proposal.departureAt
         presenter.draftChanged()
         Task {
             await presenter.request()

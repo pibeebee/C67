@@ -48,9 +48,24 @@ import C67Domain
         self.clock = clock
         selected = planning.places.map { .init(place: $0) }
         basePreferences = planning.preferences
+        answers.timing = planning.enginePreferences?.tripTiming.flatMap { TripTiming(rawValue: $0.rawValue) }
+        answers.dayPart = planning.enginePreferences?.preferredDayPart.flatMap { DayPart(rawValue: $0.rawValue) }
     }
 
     var route: TripCreationRoute { path.last ?? root }
+    var usesV41: Bool { orderingMethod() == .hybridV41 }
+    var scheduleAssessment: PlanningScheduleAssessment? { planning.firstItineraryJob?.scheduleAssessment }
+    var scheduleSummary: String {
+        guard let input = planning.draftInput else { return "Choose a trip date" }
+        let dates = (try? PlanningDayWindow.v41Inputs(input, at: clock())) ?? [input]
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: input.timeZone)
+        formatter.dateStyle = .medium
+        if dates.count > 1, let first = dates.first, let last = dates.last {
+            return "Compare \(formatter.string(from: first.startsAt)) – \(formatter.string(from: last.startsAt))"
+        }
+        return formatter.string(from: dates.first?.startsAt ?? input.startsAt)
+    }
     var needsPocketSettings: Bool {
         guard let code = planning.firstItineraryJob?.errorCode else { return false }
         return ["POCKET_CONNECTION_REQUIRED", "POCKET_CONNECTION_REJECTED", "POCKET_ORDER_ENDPOINT_MISSING", "POCKET_ORDER_METHOD_UNSUPPORTED"].contains(code)
@@ -75,11 +90,20 @@ import C67Domain
         planning.startsAt = window.start
         planning.finishBy = window.end
         planning.enginePreferences?.usesAutomaticTripDate = false
+        planning.enginePreferences?.scheduleSource = .manual
         planning.draftChanged()
         await plan()
     }
 
     func prepareScheduleOptions() {
+        if usesV41 {
+            syncEnginePreferences()
+            if let input = planning.draftInput, let resolved = try? PlanningDayWindow.v41Inputs(input, at: clock()).first {
+                planning.startsAt = resolved.startsAt
+                planning.finishBy = resolved.finishBy
+            }
+            return
+        }
         guard planning.enginePreferences?.usesAutomaticTripDate == true,
               orderingMethod() == .hybridV4 else { return }
         let now = planning.firstItineraryJob?.createdAt ?? clock()
@@ -96,7 +120,7 @@ import C67Domain
 
     var planningHandoffMessage: String? {
         let method = orderingMethod()
-        guard selected.count > 6, !planning.supportsOnDevicePlanning || method == .hybridV4 else { return nil }
+        guard selected.count > 6, !planning.supportsOnDevicePlanning || method.isSchedule else { return nil }
         return "All \(selected.count) places are kept for this session. This itinerary method supports up to six places."
     }
 
@@ -220,6 +244,7 @@ import C67Domain
         guard !selected.isEmpty else { return }
         error = nil
         syncPlaces()
+        syncEnginePreferences()
         push(.mainSpot)
     }
 
@@ -278,6 +303,8 @@ import C67Domain
     func openFirstItinerary(_ job: PlanningJob) {
         restoredJobID = job.id
         let input = job.command?.input ?? job.input
+        answers.timing = input.enginePreferences?.tripTiming.flatMap { TripTiming(rawValue: $0.rawValue) }
+        answers.dayPart = input.enginePreferences?.preferredDayPart.flatMap { DayPart(rawValue: $0.rawValue) }
         if let id = input.enginePreferences?.mainSpotID { mainSpot = .place(id) }
         if let proposal = job.result?.proposal, job.status == .succeeded {
             reviewProposal = proposal
@@ -336,7 +363,7 @@ import C67Domain
         if !refinements.isEmpty { lines.append("Detailed preferences: " + refinements.joined(separator: ", ")) }
         if let value = answers.popularity { lines.append("Place preference: " + String(localized: value.title)) }
         if let value = answers.pace { lines.append("Preferred pace: " + String(localized: value.title)) }
-        if let value = answers.timing { lines.append("Timing wish: " + String(localized: value.title)) }
+        if !usesV41, let value = answers.timing { lines.append("Timing wish: " + String(localized: value.title)) }
         if let value = answers.dayPart { lines.append("Preferred time of day: " + String(localized: value.title)) }
         if let value = answers.budget { lines.append("Budget wish: " + value.formatted(BudgetScale.currency)) }
         if let value = answers.transport { lines.append("Transport wish: " + String(localized: value.title) + ". Use the confirmed routing mode.") }
@@ -351,18 +378,75 @@ import C67Domain
         if let minutes {
             selected[index].place.visitSeconds = minutes * 60
             selected[index].place.durationOverridden = true
+            if let minimum = selected[index].place.minimumAcceptedVisitSeconds, minimum > minutes * 60 {
+                selected[index].place.minimumAcceptedVisitSeconds = minutes * 60
+            }
         } else { selected[index].place.durationOverridden = false }
         syncPlaces()
     }
 
     func confirmVisit(_ id: UUID, opens: Date, closes: Date, publicAccess: Bool) {
         guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        let cutoff = selected[index].place.visitConfirmation?.lastEntryAt
         selected[index].place.visitConfirmation = .init(opensAt: opens, closesAt: closes, publicAccessConfirmed: publicAccess)
+        if let cutoff, cutoff >= opens, cutoff <= closes { selected[index].place.visitConfirmation?.lastEntryAt = cutoff }
         syncPlaces()
     }
     func clearVisitConfirmation(_ id: UUID) {
         guard let index = selected.firstIndex(where: { $0.id == id }), selected[index].place.visitConfirmation != nil else { return }
         selected[index].place.visitConfirmation = nil; syncPlaces()
+    }
+    func setActivitySession(_ id: UUID, session: PlanningActivitySession?) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.activitySession = session
+        syncPlaces()
+    }
+    func setEntryCutoff(_ id: UUID, date: Date?) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.visitConfirmation?.lastEntryAt = date
+        syncPlaces()
+    }
+    func setMinimumDuration(_ id: UUID, minutes: Int?) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.minimumAcceptedVisitSeconds = minutes.map { $0 * 60 }
+        syncPlaces()
+    }
+    func chooseTripTiming(_ timing: PlanningTripTiming?) {
+        answers.timing = timing.flatMap { TripTiming(rawValue: $0.rawValue) }
+        planning.enginePreferences?.scheduleSource = timing == nil ? .automatic : .timingAnswer
+        planning.enginePreferences?.timingAnchor = clock()
+        syncEnginePreferences()
+        prepareScheduleOptions()
+        planning.draftChanged()
+    }
+    func changeTripDate(_ date: Date) {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: planning.timeZone) ?? .current
+        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: planning.startsAt), to: calendar.startOfDay(for: date)).day ?? 0
+        guard let start = calendar.date(byAdding: .day, value: days, to: planning.startsAt),
+              let finish = calendar.date(byAdding: .day, value: days, to: planning.finishBy) else { return }
+        planning.startsAt = start
+        planning.finishBy = finish
+        planning.enginePreferences?.usesAutomaticTripDate = false
+        planning.enginePreferences?.scheduleSource = .manual
+        planning.draftChanged()
+    }
+    func reviewVisitAvailability() {
+        let issues = (scheduleAssessment?.conflicts ?? []) + (scheduleAssessment?.regularConflicts ?? []) + (scheduleAssessment?.unresolved ?? [])
+        availabilityIDs = Set(issues.compactMap(\.placeID))
+        if availabilityIDs.isEmpty { availabilityIDs = Set(selected.map(\.id)) }
+        push(.availability)
+    }
+    func acceptDurationAlternative(_ alternative: PlanningDurationAlternative) async {
+        guard !isProcessing, !planning.isBusy else { return }
+        let input = planning.firstItineraryJob?.input
+        setVisitDuration(alternative.placeID, minutes: alternative.proposedSeconds / 60)
+        if let start = alternative.startsAt ?? input?.startsAt { planning.startsAt = start }
+        if let finish = alternative.finishBy ?? input?.finishBy { planning.finishBy = finish }
+        planning.enginePreferences?.usesAutomaticTripDate = false
+        planning.enginePreferences?.scheduleSource = .manual
+        planning.draftChanged()
+        await plan()
     }
     private func syncEnginePreferences() {
         guard planning.supportsOnDevicePlanning else { return }
@@ -372,6 +456,18 @@ import C67Domain
         preferences.themes = Set(answers.interests.map(\.rawValue))
         let supportedLabels = Set(planning.preferenceLabels.map(\.id))
         preferences.labels = answers.refinements.intersection(supportedLabels)
+        if selectedMethod == .hybridV41 {
+            if preferences.scheduleSource == nil { preferences.flexibleDeparture = true }
+            let timing = answers.timing.flatMap { PlanningTripTiming(rawValue: $0.rawValue) }
+            preferences.preferredDayPart = answers.dayPart.flatMap { PlanningDayPart(rawValue: $0.rawValue) }
+            if preferences.scheduleSource != .manual, preferences.scheduleSource != .resolved {
+                if preferences.tripTiming != timing || preferences.timingAnchor == nil { preferences.timingAnchor = clock() }
+                preferences.tripTiming = timing
+                preferences.scheduleSource = timing == nil ? .automatic : .timingAnswer
+                preferences.usesAutomaticTripDate = timing == nil
+            }
+            preferences.allowsAIProcessing = preferences.usesLuna && preferences.semanticAssistance != .disabled
+        }
         planning.enginePreferences = preferences
     }
 }

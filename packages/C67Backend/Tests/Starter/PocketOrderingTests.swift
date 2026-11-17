@@ -31,7 +31,7 @@ import PocketEngine
     #expect(job.command?.input.enginePreferences?.orderingMethod == .hybridLegacy)
 }
 
-private actor OrderConnection: PocketConnectionProviding {
+actor OrderConnection: PocketConnectionProviding {
     func credentials() -> PocketCredentials { .init(serverURL: "https://fixture.invalid", token: "synthetic") }
     func update(serverURL: String, token: String) {}
 }
@@ -73,7 +73,7 @@ private actor DriveCounter {
     }
 }
 
-private actor SuspendedOrder {
+actor SuspendedOrder {
     private var continuation: CheckedContinuation<Void, Never>?
     private var startWaiter: CheckedContinuation<Void, Never>?
     private var starts = 0
@@ -121,7 +121,7 @@ private actor SuspendedOrder {
     #expect(try await finished(repository, id: job.id).status == .succeeded)
 }
 
-private func orderInput(count: Int = 3) throws -> PlanningInput {
+func orderInput(count: Int = 3) throws -> PlanningInput {
     var input = PocketIntegrationFixture.input()
     input.places = Array(try PocketIntegrationFixture.searchablePlaces().prefix(count))
     input.enginePreferences?.mainSpotID = input.places.first?.id
@@ -138,7 +138,7 @@ private func orderRepository(_ counter: OrderCounter, storage: URL? = nil, drivi
     return try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: storage, synthetic: true)
 }
 
-private func finished(_ repository: PocketPlanningRepository, id: UUID) async throws -> PlanningJob {
+func finished(_ repository: PocketPlanningRepository, id: UUID) async throws -> PlanningJob {
     for _ in 0 ..< 100 {
         let job = try await repository.planningJob(id: id)
         if job.status == .succeeded || job.status == .failed { return job }

@@ -42,7 +42,7 @@ struct SavedTripView: View {
                     }
                     .task {
                         if presenter.consumeStartRequest(for: tripID) { primary(trip) }
-                        else if trip.status == .planned, trip.plan.experiencePlan != nil, trip.plan.experienceRouteCheckedAt == nil {
+                        else if trip.status == .planned, trip.plan.usesExperienceFlow, trip.plan.experienceRouteCheckedAt == nil {
                             await presenter.refreshSavedExperienceRoute(tripID: tripID)
                         }
                     }

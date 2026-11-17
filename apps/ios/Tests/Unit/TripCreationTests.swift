@@ -277,7 +277,88 @@ import C67Domain
         #expect(Set(proposal.stops.map(\.id)) == Set(model.selected.map(\.id)))
     }
 
-    private func v4DateFlow(repository: PocketPlanningRepository, now: Date, automatic: Bool) throws -> TripCreationPresenter {
+    @Test func v41UsesTheTimingAnswerAndSavesTomorrowWithoutLuna() async throws {
+        let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T12:00:00+07:00"))
+        let tomorrow = try #require(ISO8601DateFormatter().date(from: "2026-12-01T09:00:00+07:00"))
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let storage = directory.appendingPathComponent("trip.json")
+        let repository = try PocketIntegrationFixture.repository(storageURL: storage, jobClock: { now })
+        let model = try v4DateFlow(repository: repository, now: now, automatic: true, method: .hybridV41)
+        model.answers.timing = .tomorrow
+        model.finishChoosingPlaces()
+        model.prepareScheduleOptions()
+        #expect(model.planning.startsAt == tomorrow)
+        await model.finishMainSpot()
+        let proposal = try #require(model.reviewProposal)
+        #expect(model.route == .review)
+        #expect(proposal.estimatedExperienceDeparture == tomorrow)
+        #expect(proposal.scheduleAssessment?.modelCalls == 0)
+        #expect(proposal.experiencePlan == nil)
+        #expect(model.planning.draftInput == proposal.input)
+        await model.planning.saveReviewedProposal(named: "Tomorrow without Luna")
+        #expect(model.planning.error == nil)
+        let reopened = try PocketIntegrationFixture.repository(storageURL: storage)
+        let saved = try #require(await reopened.personalTrips().first)
+        #expect(saved.title == "Tomorrow without Luna")
+        #expect(saved.input.startsAt == tomorrow)
+        #expect(saved.plan.usesExperienceFlow)
+    }
+
+    @Test func v41ScheduleEditTakesPrecedenceOverTheEarlierTimingAnswer() async throws {
+        let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T12:00:00+07:00"))
+        let selectedDay = try #require(ISO8601DateFormatter().date(from: "2026-12-03T09:00:00+07:00"))
+        let repository = try PocketIntegrationFixture.repository(jobClock: { now })
+        let model = try v4DateFlow(repository: repository, now: now, automatic: true, method: .hybridV41)
+        model.answers.timing = .tomorrow
+        model.finishChoosingPlaces()
+        model.prepareScheduleOptions()
+        model.changeTripDate(selectedDay)
+        await model.finishMainSpot()
+        let proposal = try #require(model.reviewProposal)
+        #expect(proposal.input.startsAt == selectedDay)
+        #expect(proposal.scheduleAssessment?.modelCalls == 0)
+    }
+
+    @Test func v41RecalculatesAChangedDurationAfterManualReordering() async throws {
+        let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T12:00:00+07:00"))
+        let repository = try PocketIntegrationFixture.repository(jobClock: { now })
+        let model = try v4DateFlow(repository: repository, now: now, automatic: true, method: .hybridV41)
+        model.answers.timing = .tomorrow
+        model.finishChoosingPlaces()
+        await model.finishMainSpot()
+        let initial = try #require(model.reviewProposal)
+        let ids = Array(initial.stops.map(\.id).reversed())
+        await model.planning.updateExperienceRoute(orderedIDs: ids)
+        #expect(model.planning.error == nil)
+        model.planning.places[0].visitSeconds = 3600
+        model.planning.draftChanged()
+        await model.planning.request()
+        #expect(model.planning.error == nil)
+        let updated = try #require(model.planning.job?.result?.proposal)
+        #expect(updated.stops.map(\.id) == ids)
+        #expect(updated.stops[0].visitSeconds == 3600)
+        #expect(updated.scheduleAssessment?.modelCalls == 0)
+        #expect(updated.input == model.planning.draftInput)
+    }
+
+    @Test func v41DateSourceEditsKeepTheSemanticPreferencePayloadStable() throws {
+        let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T12:00:00+07:00"))
+        let tomorrow = try #require(ISO8601DateFormatter().date(from: "2026-12-01T09:00:00+07:00"))
+        let repository = try PocketIntegrationFixture.repository(jobClock: { now })
+        let model = try v4DateFlow(repository: repository, now: now, automatic: true, method: .hybridV41)
+        model.answers.timing = .tomorrow
+        model.answers.dayPart = .evening
+        model.finishChoosingPlaces()
+        let before = model.preferenceText
+        model.prepareScheduleOptions()
+        model.changeTripDate(tomorrow)
+        #expect(!before.isEmpty)
+        #expect(model.preferenceText == before)
+        #expect(model.planning.startsAt == tomorrow)
+    }
+
+    private func v4DateFlow(repository: PocketPlanningRepository, now: Date, automatic: Bool, method: PlanningOrderingMethod = .hybridV4) throws -> TripCreationPresenter {
         var input = PocketIntegrationFixture.input()
         input.startsAt = now
         input.finishBy = now.addingTimeInterval(25 * 60)
@@ -290,7 +371,7 @@ import C67Domain
         let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: input)
         return TripCreationPresenter(planning: planning, mode: "Pocket • synthetic integration fixture", specificPlace: true,
                                      interactor: .init(searcher: SyntheticTripPlaceSearch()),
-                                     orderingMethod: { .hybridV4 }, clock: { now })
+                                     orderingMethod: { method }, clock: { now })
     }
 
     private func orderedPlanning(_ repository: TripFlowRepositoryStub) async throws -> PlanningPresenter {

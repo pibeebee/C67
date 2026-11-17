@@ -238,7 +238,7 @@ final class PlanningPresenter {
                         throw PlanningError.invalidResponse
                     }
                 }
-                if latest.purpose == .firstItinerary || latest.result?.proposal?.experiencePlan != nil, let proposal = latest.result?.proposal {
+                if latest.purpose == .firstItinerary || latest.result?.proposal?.usesExperienceFlow == true, let proposal = latest.result?.proposal {
                     setDraft(proposal.input)
                 }
                 pendingRequest = nil; progress = nil; return
@@ -297,7 +297,7 @@ final class PlanningPresenter {
             return
         }
         if trimmed != proposal.input.title {
-            if proposal.experiencePlan != nil, let current = job {
+            if proposal.usesExperienceFlow, let current = job {
                 let ticket = generation
                 isBusy = true; error = nil
                 defer { if ticket == generation { isBusy = false } }

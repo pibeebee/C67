@@ -61,6 +61,8 @@ public struct PlanningPlace: Equatable, Codable, Sendable, Identifiable {
     public var availabilityVerified = false
     public var visitTiming: PlanningVisitTiming? = nil
     public var durationOverridden: Bool? = nil
+    public var minimumAcceptedVisitSeconds: Int? = nil
+    public var activitySession: PlanningActivitySession? = nil
     public init(id: UUID, name: String, location: PlanningPoint, visitSeconds: Int, website: URL? = nil, preferredAfter: Date? = nil, preferredBefore: Date? = nil) {
         self.id = id
         self.name = name
@@ -159,6 +161,7 @@ public struct PlanProposal: Equatable, Codable, Sendable, Identifiable {
     public var experiencePlan: PlanningExperiencePlan? = nil
     public var experienceRouteCheckedAt: Date? = nil
     public var rescheduledFromDate: Date? = nil
+    public var scheduleAssessment: PlanningScheduleAssessment? = nil
     public init(id: UUID, input: PlanningInput, stops: [ScheduledPlanningStop], finishesAt: Date?, feasible: Bool, explanation: String, warnings: [String], evidence: [PlanningEvidence], synthetic: Bool) {
         self.id = id
         self.input = input
@@ -214,6 +217,9 @@ public struct PlanningJob: Equatable, Codable, Sendable, Identifiable {
     public var result: PlanningResult?
     public var errorCode: String?
     public var createdAt: Date
+    public var scheduleAssessment: PlanningScheduleAssessment? = nil
+    public var semanticSnapshot: PlanningSemanticSnapshot? = nil
+    public var semanticSnapshots: [PlanningSemanticSnapshot]? = nil
     public init(id: UUID, status: PlanningJobStatus, purpose: PlanningPurpose, input: PlanningInput, tripID: UUID? = nil, baseRevision: Int? = nil, result: PlanningResult? = nil, errorCode: String? = nil, createdAt: Date) {
         self.id = id
         self.status = status
@@ -281,7 +287,7 @@ public extension PlanningInput {
               abs(origin.latitude) <= 90, abs(origin.longitude) <= 180 else { throw PlanningError.invalidInput }
         if enginePreferences != nil, purpose != .suggest {
             var calendar = Calendar(identifier: .gregorian)
-            calendar.timeZone = TimeZone(identifier: "Asia/Jakarta")!
+            calendar.timeZone = TimeZone(identifier: timeZone)!
             guard calendar.isDate(startsAt, inSameDayAs: finishBy) else { throw PlanningError.invalidInput }
         }
         for place in places {
@@ -290,6 +296,15 @@ public extension PlanningInput {
                   abs(place.location.latitude) <= 90, abs(place.location.longitude) <= 180 else { throw PlanningError.invalidInput }
             if let website = place.website, website.absoluteString.count > 2048 { throw PlanningError.invalidInput }
             if let after = place.preferredAfter, let before = place.preferredBefore, after > before { throw PlanningError.invalidInput }
+            if let minimum = place.minimumAcceptedVisitSeconds, minimum <= 0 || minimum > place.visitSeconds { throw PlanningError.invalidInput }
+            if let session = place.activitySession {
+                guard session.startsAt < session.endsAt, session.endsAt.timeIntervalSince(session.startsAt) <= 86400,
+                      session.arriveBy == nil || session.arriveBy! <= session.startsAt else { throw PlanningError.invalidInput }
+            }
+            if let confirmation = place.visitConfirmation {
+                guard confirmation.opensAt < confirmation.closesAt,
+                      confirmation.lastEntryAt == nil || (confirmation.lastEntryAt! >= confirmation.opensAt && confirmation.lastEntryAt! <= confirmation.closesAt) else { throw PlanningError.invalidInput }
+            }
         }
         if let firstPlaceID, !places.contains(where: { $0.id == firstPlaceID }) { throw PlanningError.invalidInput }
         if preservesPlaceOrder, let firstPlaceID, places.first?.id != firstPlaceID { throw PlanningError.invalidInput }
@@ -334,6 +349,10 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
             case "V4_TOMORROW_UNVERIFIED": "Today’s window was too short, and a complete schedule for tomorrow couldn’t be verified. Adjust your schedule or try again."
             case "V4_ROUTE_THROTTLED": "Apple Maps is temporarily limiting route estimates. Wait a moment and try again."
             case "V4_NO_SCHEDULE": "Hybrid v4 could not verify a complete schedule with the available route estimates and constraints. Try a wider time window or another method."
+            case "V41_NO_SCHEDULE": "Hybrid v4.1 has not found a complete schedule among the candidates checked. Review the details or try again."
+            case "V41_ACCESS_CONFLICT": "A visit conflicts with the available opening hours or its session. Review visit availability."
+            case "V41_DATE_CONFLICT": "The selected date conflicts with a dated visit. Review the trip date and visit confirmation."
+            case "V41_BUDGET_REACHED": "The route search reached its limit. Your selected places are kept. Try again to check more candidates."
             case "ORDER_GENERATION_FAILED": "The Pocket server could not complete the recommendation. Your selected places are kept. Try again."
             case "PROVIDER_CONFIGURATION_REQUIRED": "Live AI or Apple data is not configured on the planning server."
             case "ROUTE_UNAVAILABLE": "A route estimate is unavailable. No travel time was invented."
