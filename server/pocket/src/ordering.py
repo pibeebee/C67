@@ -14,6 +14,7 @@ import uuid
 from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, urlparse
 import httpx
+from hours import category_hint
 
 from astral import Observer, SunDirection
 from astral.sun import golden_hour
@@ -65,7 +66,7 @@ def request_context(body):
     if type(preserve) is not bool:
         raise ValueError("Invalid order constraint")
     method = body.get("orderingMethod", "luna")
-    if method not in {"luna", "hybrid_legacy", "hybrid_weather"}:
+    if method not in {"luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"}:
         raise ValueError("Unknown ordering method")
     return dict(places=selected, origin=point(body["origin"]), endpoint=point(body.get("endpoint") or body["origin"]),
         mainSpotID=main, planningContext=dict(date=day, timeZone=zone, dateSource="app_candidate_date"),
@@ -248,16 +249,22 @@ class OrderingResolver:
             warnings.append("Calculated light opportunities are unavailable.")
         candidates = None
         prompt = PROMPT
-        if method != "luna":
+        if method in {"hybrid_legacy", "hybrid_weather"}:
             candidates = candidate_orders(context)
             context["candidateOrders"] = [dict(candidateID=f"K{i + 1}", orderedIDs=order) for i, order in enumerate(candidates)]
             prompt += "\nChoose orderedIDs EXACTLY equal to one candidateOrders entry. Do not add, remove or rearrange candidate IDs."
             if method == "hybrid_weather":
+                hints = [dict(placeID=p["id"], **hint) for p in context["places"]
+                         if (hint := category_hint(p.get("category"))) is not None]
+                context["categoryHoursHints"] = hints
                 context["systemAssessment"] = dict(
                     activityExposure="unknown", arrivalTimes="unknown", roadETA="unknown",
                     weatherComparison="unavailable: activity exposure and per-candidate arrival times are not supplied",
                     availableForecastPlaceIDs=[s["placeID"] for s in context["weatherSources"]])
                 warnings.append("Weather-aware comparison unavailable: activity exposure and candidate arrival times are unknown.")
+                if hints:
+                    warnings.append("Category hours are unverified heuristics, not venue hours; opening times remain unknown.")
+                    prompt += "\nCategory-hours hints are unverified, low-confidence priors; never claim a venue is open or closed, never reject or remove a place, and do not override a user order. Actual arrival and operating hours are unknown."
                 prompt += "\nSystem assessment is authoritative: unknown exposure and arrival times cannot justify claims of reduced heat or rainfall exposure. No weather-based ordering benefit is established."
         snapshot = dict(context=context)
         path = None

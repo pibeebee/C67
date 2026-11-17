@@ -147,6 +147,30 @@ private func finished(_ repository: PocketPlanningRepository, id: UUID) async th
     throw PlanningError.unavailable
 }
 
+@Test func hybridAdjustsOnlyWhenKnownHoursImproveWithRealRouteQuotes() async throws {
+    let days = (1 ... 7).map { "{\"weekday\":\($0),\"intervals\":[{\"startSeconds\":31500,\"endSeconds\":79200}]}" }.joined(separator: ",")
+    let data = Data("{\"placeId\":\"I1\",\"timezone\":\"Asia/Jakarta\",\"weekly\":[\(days)]}".utf8)
+    let hours = try JSONDecoder().decode(PlanningRegularHours.self, from: data)
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 60, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) },
+                                          hours: { _ in .init(status: "available", hours: hours) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 2)
+    input.places[0].sourceID = "apple:I1"
+    input.enginePreferences?.orderingMethod = .hybridWeather
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let proposal = try #require(try await finished(repository, id: job.id).result?.proposal)
+    #expect(proposal.stops.map(\.id) == input.places.reversed().map(\.id))
+    #expect(proposal.explanation.contains("adjusted"))
+
+    input.preservesPlaceOrder = true
+    let locked = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let lockedProposal = try #require(try await finished(repository, id: locked.id).result?.proposal)
+    #expect(lockedProposal.stops.map(\.id) == input.places.map(\.id))
+}
+
 @Test func reasonableOrderKeepsUnknownPlacesAndHasNoInventedSchedule() async throws {
     let counter = OrderCounter(), repository = try orderRepository(counter)
     let input = try orderInput()
@@ -378,4 +402,215 @@ private func finished(_ repository: PocketPlanningRepository, id: UUID) async th
     #expect(source.attributionLogoURL?.host == "weatherkit.apple.com")
     let old = try decoder.decode(PlanningExperiencePlan.WeatherSource.self, from: Data((base + "}").utf8))
     #expect(old.attributionLogoURL == nil)
+}
+
+@Test func v4SchedulesKnownTravelAndPreservesVisitWindow() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 600, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 2)
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = TimeZone(identifier: input.timeZone)!
+    let tomorrow = calendar.date(byAdding: .day, value: 1, to: Date())!
+    input.startsAt = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: tomorrow)!
+    input.finishBy = input.startsAt.addingTimeInterval(10 * 3600)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    input.enginePreferences?.returnToOrigin = true
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let result = try await finished(repository, id: job.id)
+    let proposal = try #require(result.result?.proposal)
+    #expect(proposal.input.startsAt == input.startsAt)
+    #expect(proposal.departureAt == input.startsAt)
+    #expect(proposal.returnTravelSeconds == 600)
+    #expect(proposal.finishesAt! <= input.finishBy)
+    #expect(proposal.stops.allSatisfy { $0.arrivalAt != nil && $0.visitStartsAt != nil && $0.roadDistanceMeters != nil })
+    #expect(proposal.stopsWithExperienceEstimates == proposal.stops)
+}
+
+@Test func v4RejectsMissingTravelEstimates() async throws {
+    let repository = try orderRepository(OrderCounter())
+    var input = try orderInput(count: 2)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(try await finished(repository, id: job.id).status == .failed)
+}
+
+@Test func v4HonoursRequiredVisitAndExplicitWaiting() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 600, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 2)
+    var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(identifier: input.timeZone)!
+    input.startsAt = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: calendar.date(byAdding: .day, value: 1, to: Date())!)!
+    input.finishBy = input.startsAt.addingTimeInterval(10 * 3600)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    input.enginePreferences?.maximumWaitMinutes = 120
+    input.firstPlaceID = input.places[0].id
+    input.places[0].preferredAfter = input.startsAt.addingTimeInterval(3600)
+    input.places[0].preferredBefore = input.startsAt.addingTimeInterval(3900)
+    input.places[0].visitTiming = .required
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let proposal = try #require(try await finished(repository, id: job.id).result?.proposal)
+    let stop = try #require(proposal.stops.first)
+    #expect(stop.id == input.places[0].id)
+    #expect(stop.visitStartsAt == input.places[0].preferredAfter)
+    #expect(stop.visitStartsAt!.timeIntervalSince(stop.arrivalAt!) == 3000)
+}
+
+private actor V4ThrottleCounter {
+    private(set) var count = 0
+    func quote() throws -> LegQuote { count += 1; throw TravelQuoteError.throttled }
+}
+
+@Test func v4StopsRequestingTravelAfterThrottling() async throws {
+    let counter = V4ThrottleCounter()
+    let services = PocketPlanningServices(travel: { _, _, _, _ in try await counter.quote() },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 2)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    input.enginePreferences?.flexibleDeparture = true
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    #expect(try await finished(repository, id: job.id).status == .failed)
+    #expect(await counter.count == 1)
+}
+
+@Test func v4RepositoryScreensAllFivePlaceOrdersAndKeepsUnknownHours() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 600, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 5)
+    for index in input.places.indices { input.places[index].durationOverridden = true }
+    input.enginePreferences?.orderingMethod = .hybridV4
+    input.enginePreferences?.returnToOrigin = true
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let proposal = try #require(try await finished(repository, id: job.id).result?.proposal)
+    #expect(proposal.explanation.contains("screened 120 possible schedules"))
+    #expect(Set(proposal.stops.map(\.id)) == Set(input.places.map(\.id)))
+    #expect(proposal.stops.allSatisfy { $0.warnings.contains("Access on this date has not been verified.") })
+    #expect(proposal.returnTravelSeconds == 600)
+}
+
+@Test func v4FourHourDefaultRejectsFiveLongVisitsEvenWithAvailableRoutes() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 600, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 5)
+    for index in input.places.indices { input.places[index].durationOverridden = true; input.places[index].visitSeconds = 2700 }
+    input.finishBy = input.startsAt.addingTimeInterval(4 * 3600)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let result = try await finished(repository, id: job.id)
+    #expect(result.status == .failed)
+    #expect(result.errorCode == "V4_NO_SCHEDULE")
+}
+
+@Test func v4UnknownDurationCanBeOverriddenBeforeRetry() async throws {
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 600, meters: 1000) },
+                                          weather: { _, _, _ in throw PlanningError.invalidResponse },
+                                          advise: { _ in throw PlanningError.invalidResponse },
+                                          order: { input, _ in try PocketIntegrationFixture.experience(input) })
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil, synthetic: true)
+    var input = try orderInput(count: 3)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    let first = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let failed = try await finished(repository, id: first.id)
+    #expect(failed.errorCode == "V4_DURATION_UNKNOWN")
+    let unknown = try #require(input.places.firstIndex { $0.name.contains("Unknown") })
+    input.places[unknown].durationOverridden = true
+    input.places[unknown].visitSeconds = 2700
+    let retry = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let result = try await finished(repository, id: retry.id)
+    #expect(result.status == .succeeded)
+    #expect(result.result?.proposal?.stops.count == input.places.count)
+}
+
+private func v4DayJob(automatic: Bool, at now: Date) throws -> PlanningJob {
+    var input = try orderInput(count: 2)
+    input.enginePreferences?.orderingMethod = .hybridV4
+    input.enginePreferences?.reasonableOrdering = true
+    input.enginePreferences?.usesAutomaticTripDate = automatic
+    input.startsAt = now
+    input.finishBy = now.addingTimeInterval(25 * 60)
+    for index in input.places.indices {
+        input.places[index].visitSeconds = 45 * 60
+        input.places[index].durationOverridden = true
+    }
+    return .init(id: UUID(), status: .running, purpose: .firstItinerary, input: input,
+                 tripID: nil, baseRevision: nil, result: nil, errorCode: nil, createdAt: now)
+}
+
+@Test func v4MovesAutomaticWindowAndRequotesOnTomorrowInJakarta() async throws {
+    let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T23:30:00+07:00"))
+    let expectedDeparture = try #require(ISO8601DateFormatter().date(from: "2026-12-01T09:00:00+07:00"))
+    let counter = OrderCounter(), driving = DriveCounter()
+    let repository = try orderRepository(counter, driving: driving)
+    let job = try v4DayJob(automatic: true, at: now)
+
+    let result = try await repository.firstV4Itinerary(job, requestID: UUID())
+    let proposal = try #require(result.proposal)
+    let calls = await driving.calls
+    #expect(await counter.ids == [job.id])
+    #expect(proposal.experiencePlan?.candidateDate == "2026-12-01")
+    #expect(proposal.departureAt == expectedDeparture)
+    #expect(proposal.rescheduledFromDate != nil)
+    #expect(proposal.stops.count == job.input.places.count)
+    #expect(Set(proposal.stops.map(\.id)) == Set(job.input.places.map(\.id)))
+    #expect(proposal.stops.allSatisfy { $0.visitSeconds == 45 * 60 })
+    #expect(!calls.isEmpty && calls.allSatisfy { $0.at >= expectedDeparture && $0.at < proposal.input.finishBy })
+}
+
+@Test func v4RechecksLunaContextWithADistinctRequestAfterEstimatedDurationsDoNotFit() async throws {
+    let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T23:30:00+07:00"))
+    let counter = OrderCounter(), driving = DriveCounter()
+    let repository = try orderRepository(counter, driving: driving)
+    var job = try v4DayJob(automatic: true, at: now)
+    for index in job.input.places.indices { job.input.places[index].durationOverridden = nil }
+    let requestID = UUID()
+
+    let result = try await repository.firstV4Itinerary(job, requestID: requestID)
+    let proposal = try #require(result.proposal)
+    #expect(await counter.ids == [requestID, job.id])
+    #expect(proposal.experiencePlan?.candidateDate == "2026-12-01")
+    #expect(proposal.stops.allSatisfy { $0.visitSeconds == 45 * 60 })
+}
+
+@Test func v4OffersTomorrowForAnExplicitDateButPreservesDatedVisits() async throws {
+    let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T23:30:00+07:00"))
+    let counter = OrderCounter()
+    let repository = try orderRepository(counter)
+    let explicit = try v4DayJob(automatic: false, at: now)
+    await #expect(throws: PlanningError.failed("V4_TODAY_TOO_SHORT")) {
+        _ = try await repository.firstV4Itinerary(explicit, requestID: UUID())
+    }
+
+    var pinned = try v4DayJob(automatic: true, at: now)
+    pinned.input.places[0].visitConfirmation = .init(opensAt: now, closesAt: pinned.input.finishBy, publicAccessConfirmed: true)
+    let withConfirmation = pinned
+    await #expect(throws: PlanningError.failed("V4_WINDOW_TOO_SHORT")) {
+        _ = try await repository.firstV4Itinerary(withConfirmation, requestID: UUID())
+    }
+    #expect(await counter.ids.isEmpty)
+}
+
+@Test func v4DoesNotRequestTomorrowWhenTodayIsUnverifiedDueToMissingETA() async throws {
+    let now = try #require(ISO8601DateFormatter().date(from: "2026-11-30T17:00:00+07:00"))
+    let counter = OrderCounter()
+    let repository = try orderRepository(counter)
+    let job = try v4DayJob(automatic: true, at: now)
+    let requestID = UUID()
+    await #expect(throws: PlanningError.failed("V4_NO_SCHEDULE")) {
+        _ = try await repository.firstV4Itinerary(job, requestID: requestID)
+    }
+    #expect(await counter.ids == [requestID])
 }

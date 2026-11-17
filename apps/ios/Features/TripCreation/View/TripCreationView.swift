@@ -7,6 +7,7 @@ struct TripCreationView: View {
     @State private var isRunningOperation = false
     @State private var operation: Task<Void, Never>?
     @State private var showsStartingPointSearch = false
+    @State private var showsScheduleOptions = false
 
     init(presenter: TripCreationPresenter, dismiss: @escaping () -> Void, openPocketSettings: (() -> Void)? = nil) {
         _presenter = State(initialValue: presenter)
@@ -40,6 +41,9 @@ struct TripCreationView: View {
         .onDisappear { operation?.cancel(); presenter.cancelRecommendations() }
         .task {
             if presenter.route == .mainSpot, presenter.checksExistingRequest { run { await presenter.plan() } }
+        }
+        .sheet(isPresented: $showsScheduleOptions) {
+            PocketScheduleOptionsSheet(presenter: presenter)
         }
         .sheet(isPresented: $showsStartingPointSearch) {
             PlanningSearchSheet(near: presenter.planning.origin, title: "Starting point") { place in
@@ -108,6 +112,12 @@ struct TripCreationView: View {
         .disabled(presenter.isProcessing)
         .toolbar(presenter.isProcessing ? .hidden : .automatic, for: .navigationBar)
         .toolbar {
+            if route == .mainSpot && presenter.planning.supportsOnDevicePlanning {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Schedule", systemImage: "calendar") { openScheduleOptions() }
+                        .accessibilityIdentifier("tripScheduleOptions")
+                }
+            }
             if presenter.path.isEmpty {
                 ToolbarItem(placement: .cancellationAction) {
                     cancelButton
@@ -125,6 +135,14 @@ struct TripCreationView: View {
            let error = presenter.error, !presenter.isProcessing {
             VStack(alignment: .leading, spacing: 8) {
                 Label(error, systemImage: "exclamationmark.circle").font(.footnote)
+                if presenter.canTryTomorrow {
+                    Button("Try tomorrow") { run { await presenter.tryTomorrow() } }
+                }
+                if let code = presenter.planning.firstItineraryJob?.errorCode,
+                   ["V4_NO_SCHEDULE", "V4_DURATION_UNKNOWN", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
+                    "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED"].contains(code) {
+                    Button("Adjust schedule") { openScheduleOptions() }
+                }
                 if presenter.planning.origin == nil, presenter.planningHandoffMessage == nil {
                     Button("Choose starting point") { showsStartingPointSearch = true }
                 } else if presenter.needsPocketSettings, let openPocketSettings {
@@ -137,6 +155,11 @@ struct TripCreationView: View {
             .background(AppColor.surface)
             .accessibilityIdentifier("tripPlanningError")
         }
+    }
+
+    private func openScheduleOptions() {
+        presenter.prepareScheduleOptions()
+        showsScheduleOptions = true
     }
 
     private var cancelButton: some View {

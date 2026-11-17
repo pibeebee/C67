@@ -1,5 +1,9 @@
 # Starter verification
 
+## Hybrid v4 date fallback — 17 November 2026
+
+Four targeted repository tests and four iPhone 18 Pro Max / iOS 27.2 Simulator tests passed with synthetic providers. The app checks cover automatic rescheduling in review, saving and restoring the new date, explicit confirmation through the presenter, and the schedule controls. See the [Hybrid v4 integration checkpoint](../tasks/hybrid-v4-integration.md#automatic-date-for-the-first-itinerary).
+
 ## Active-trip Liquid Glass — 15 November 2026
 
 The moving/arrival panel uses native regular Liquid Glass on iOS 26+, with a regular material fallback on iOS 18–25. Mock Debug build succeeded and the moving preview was visually inspected on iPhone 18 Pro Max Simulator / iOS 27.2. The fallback and physical-device appearance were not verified.

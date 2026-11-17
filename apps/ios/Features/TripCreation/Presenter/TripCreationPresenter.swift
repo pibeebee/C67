@@ -31,14 +31,21 @@ import C67Domain
     private var recommendationTask: Task<RecommendationsBatch, any Error>?
     private let interactor: TripCreationInteractor
     private let basePreferences: String
+    private let orderingMethod: () -> PlanningOrderingMethod
+    private let clock: () -> Date
     private var searchGeneration = 0
     private var restoredJobID: UUID?
 
-    init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor) {
+    init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor,
+         orderingMethod: @escaping () -> PlanningOrderingMethod = {
+             PlanningOrderingMethod(rawValue: UserDefaults.standard.string(forKey: "io.pibeebee.c67.orderingMethod") ?? "") ?? .luna
+         }, clock: @escaping () -> Date = { .now }) {
         self.planning = planning
         self.mode = mode
         root = specificPlace ? .places : .question(.interests)
         self.interactor = interactor
+        self.orderingMethod = orderingMethod
+        self.clock = clock
         selected = planning.places.map { .init(place: $0) }
         basePreferences = planning.preferences
     }
@@ -52,14 +59,45 @@ import C67Domain
         guard let job = planning.firstItineraryJob else { return false }
         return job.status == .running || job.status == .queued
     }
+    var canTryTomorrow: Bool {
+        canTryTomorrow(at: clock())
+    }
+
+    private func canTryTomorrow(at now: Date) -> Bool {
+        guard let job = planning.firstItineraryJob, job.errorCode == "V4_TODAY_TOO_SHORT" else { return false }
+        return PlanningDayWindow.isSameDay(job.createdAt, now, timeZone: job.input.timeZone)
+    }
+
+    func tryTomorrow() async {
+        let now = clock()
+        guard canTryTomorrow(at: now), !isProcessing, !planning.isBusy,
+              let window = PlanningDayWindow.tomorrow(after: now, timeZone: planning.timeZone) else { return }
+        planning.startsAt = window.start
+        planning.finishBy = window.end
+        planning.enginePreferences?.usesAutomaticTripDate = false
+        planning.draftChanged()
+        await plan()
+    }
+
+    func prepareScheduleOptions() {
+        guard planning.enginePreferences?.usesAutomaticTripDate == true,
+              orderingMethod() == .hybridV4 else { return }
+        let now = planning.firstItineraryJob?.createdAt ?? clock()
+        let today = PlanningDayWindow.remainingToday(at: now, timeZone: planning.timeZone)
+        guard let window = today.flatMap({ $0.duration > 0 ? $0 : nil }) ??
+            PlanningDayWindow.tomorrow(after: now, timeZone: planning.timeZone) else { return }
+        planning.startsAt = window.start
+        planning.finishBy = window.end
+    }
     var canPlan: Bool {
         guard let input = planning.draftInput else { return false }
         return (try? input.validate(purpose: .plan)) != nil
     }
 
     var planningHandoffMessage: String? {
-        guard !planning.supportsOnDevicePlanning, selected.count > 6 else { return nil }
-        return "All \(selected.count) places are kept for this session. Itinerary creation supports up to six places for now."
+        let method = orderingMethod()
+        guard selected.count > 6, !planning.supportsOnDevicePlanning || method == .hybridV4 else { return nil }
+        return "All \(selected.count) places are kept for this session. This itinerary method supports up to six places."
     }
 
     func advance(_ step: PreferenceStep, skip: Bool = false) {
@@ -308,6 +346,15 @@ import C67Domain
         return lines.joined(separator: "\n")
     }
 
+    func setVisitDuration(_ id: UUID, minutes: Int?) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        if let minutes {
+            selected[index].place.visitSeconds = minutes * 60
+            selected[index].place.durationOverridden = true
+        } else { selected[index].place.durationOverridden = false }
+        syncPlaces()
+    }
+
     func confirmVisit(_ id: UUID, opens: Date, closes: Date, publicAccess: Bool) {
         guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
         selected[index].place.visitConfirmation = .init(opensAt: opens, closesAt: closes, publicAccessConfirmed: publicAccess)
@@ -320,7 +367,8 @@ import C67Domain
     private func syncEnginePreferences() {
         guard planning.supportsOnDevicePlanning else { return }
         var preferences = planning.enginePreferences ?? PlanningPreferences()
-        preferences.orderingMethod = PlanningOrderingMethod(rawValue: UserDefaults.standard.string(forKey: "io.pibeebee.c67.orderingMethod") ?? "") ?? .luna
+        let selectedMethod = orderingMethod()
+        preferences.orderingMethod = selectedMethod == .hybridLegacy ? .hybridWeather : selectedMethod
         preferences.themes = Set(answers.interests.map(\.rawValue))
         let supportedLabels = Set(planning.preferenceLabels.map(\.id))
         preferences.labels = answers.refinements.intersection(supportedLabels)

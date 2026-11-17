@@ -32,8 +32,18 @@ struct AppDependencies {
                              mode: "Pocket • live runtime acceptance", authentication: nil)
             }
             if ProcessInfo.processInfo.arguments.contains("--pocket-integration-fixture") {
-                return .init(repository: try MockRundownRepository(), planningRepository: try PocketIntegrationFixture.repository(),
-                             planningInitialInput: PocketIntegrationFixture.input(), mode: "Pocket • synthetic integration fixture", authentication: nil)
+                let input = PocketIntegrationFixture.input()
+                let lateJobTime: Date?
+                if ProcessInfo.processInfo.arguments.contains("--pocket-late-day-fixture") {
+                    var calendar = Calendar(identifier: .gregorian)
+                    calendar.timeZone = TimeZone(identifier: input.timeZone) ?? .current
+                    lateJobTime = calendar.startOfDay(for: .now).addingTimeInterval(23 * 3600 + 30 * 60)
+                } else {
+                    lateJobTime = nil
+                }
+                let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now })
+                return .init(repository: try MockRundownRepository(), planningRepository: repository,
+                             planningInitialInput: input, mode: "Pocket • synthetic integration fixture", authentication: nil)
             }
         #endif
         let mode = Bundle.main.object(forInfoDictionaryKey: "C67_DATA_MODE") as? String ?? "mock"

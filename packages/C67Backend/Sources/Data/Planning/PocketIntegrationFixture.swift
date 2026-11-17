@@ -59,13 +59,14 @@
             return .init(resolvedAt: .now, records: records, requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)")
         }
 
-        public static func repository(storageURL: URL? = nil) throws -> PocketPlanningRepository {
+        public static func repository(storageURL: URL? = nil, jobClock: @escaping @Sendable () -> Date = { .now }) throws -> PocketPlanningRepository {
             let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic test; no live weather") },
                                                   advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") },
                                                   resolve: { input, _ in resolution(input, catalog: try catalog()) },
                                                   order: { input, _ in try experience(input) })
-            return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL, synthetic: true)
+            return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL,
+                                                synthetic: true, jobClock: jobClock)
         }
 
         public static func experience(_ input: PlanningInput) throws -> PlanningExperiencePlan {
@@ -87,6 +88,7 @@
                                          "stops": stops, "alternativeOrder": NSNull(), "tradeoffs": [], "uncertainties": ["Synthetic fixture only"],
                                          "generatedAt": ISO8601DateFormatter().string(from: .now), "candidateDate": TripClock.day(input.startsAt), "timeZone": input.timeZone,
                                          "requestedModel": "cx/gpt-6-luna(max)", "reportedModel": "gpt-6-luna(max)",
+                                         "orderingMethod": input.enginePreferences?.orderingMethod?.rawValue ?? "luna",
                                          "weatherSources": [], "solarWindows": [], "contextWarnings": []]
             return try PocketOrderCodec.decoder().decode(PlanningExperiencePlan.self, from: JSONSerialization.data(withJSONObject: object))
         }

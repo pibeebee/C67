@@ -158,6 +158,7 @@ public struct PlanProposal: Equatable, Codable, Sendable, Identifiable {
     public var unscheduledPlaces: [String]? = nil
     public var experiencePlan: PlanningExperiencePlan? = nil
     public var experienceRouteCheckedAt: Date? = nil
+    public var rescheduledFromDate: Date? = nil
     public init(id: UUID, input: PlanningInput, stops: [ScheduledPlanningStop], finishesAt: Date?, feasible: Bool, explanation: String, warnings: [String], evidence: [PlanningEvidence], synthetic: Bool) {
         self.id = id
         self.input = input
@@ -325,6 +326,14 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
             case "ORDER_SERVER_INTERRUPTED": "The Pocket server stopped processing this request. Try again to start a new recommendation."
             case "ORDER_CONNECTION_INTERRUPTED": "The app lost contact with the Pocket server. Check the same request when the connection is back."
             case "ORDER_RESPONSE_INVALID": "The app could not verify the recommendation. Your selected places are kept."
+            case "V4_UNSUPPORTED_INPUT": "Hybrid v4 needs a known duration for each place and supports up to six places. Choose another method or update the trip."
+            case "V4_DURATION_UNKNOWN": "A visit duration is unavailable. Open Adjust schedule and set a duration for each place, then try again."
+            case "V4_WINDOW_TOO_SHORT": "The visits and travel cannot fit within the selected time window. Adjust your schedule."
+            case "V4_TODAY_TOO_SHORT": "There isn’t enough time for the trip today. Try tomorrow or adjust the schedule."
+            case "V4_TOMORROW_TOO_SHORT": "There isn’t enough time for these visits today or tomorrow. Adjust your schedule."
+            case "V4_TOMORROW_UNVERIFIED": "Today’s window was too short, and a complete schedule for tomorrow couldn’t be verified. Adjust your schedule or try again."
+            case "V4_ROUTE_THROTTLED": "Apple Maps is temporarily limiting route estimates. Wait a moment and try again."
+            case "V4_NO_SCHEDULE": "Hybrid v4 could not verify a complete schedule with the available route estimates and constraints. Try a wider time window or another method."
             case "ORDER_GENERATION_FAILED": "The Pocket server could not complete the recommendation. Your selected places are kept. Try again."
             case "PROVIDER_CONFIGURATION_REQUIRED": "Live AI or Apple data is not configured on the planning server."
             case "ROUTE_UNAVAILABLE": "A route estimate is unavailable. No travel time was invented."

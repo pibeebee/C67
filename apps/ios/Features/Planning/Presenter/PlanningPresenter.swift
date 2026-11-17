@@ -4,6 +4,9 @@ import C67Domain
 
 @MainActor @Observable
 final class PlanningPresenter {
+    func openingHours(placeID: String) async -> PlanningHoursLookup {
+        await interactor.repository.openingHours(placeID: placeID)
+    }
     var title = "My trip"
     var origin: PlanningPoint?
     var originLabel = "Choose a starting point"
@@ -45,6 +48,7 @@ final class PlanningPresenter {
         preferenceLabels = interactor.repository.preferenceLabels
         if supportsOnDevicePlanning {
             enginePreferences = PlanningPreferences(); timeZone = "Asia/Jakarta"
+            enginePreferences?.usesAutomaticTripDate = true
             (startsAt, finishBy) = Self.defaultPocketWindow(after: .now)
         }
         if let initialInput { setDraft(initialInput); originLabel = "Synthetic starting point" }
@@ -86,6 +90,7 @@ final class PlanningPresenter {
         job = nil; pendingRequest = nil; pendingApply = nil; needsFreshProposal = false; error = nil
         title = "My trip"; places = []; preferences = ""; preservesPlaceOrder = false
         enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
+        enginePreferences?.usesAutomaticTripDate = true
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
         timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
         if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
@@ -102,6 +107,7 @@ final class PlanningPresenter {
         openTripID = nil; tripToStartID = nil; title = "My trip"; origin = nil; originLabel = "Choose a starting point"
         places = []; preferences = ""; preservesPlaceOrder = false; reportedPosition = nil; error = nil
         enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
+        enginePreferences?.usesAutomaticTripDate = true
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
         timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
         if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }

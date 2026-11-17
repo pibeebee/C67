@@ -45,6 +45,20 @@ class NoWeather:
 
 
 class OrderingTests(unittest.TestCase):
+    def test_v4_preserves_unrestricted_luna_semantic_enrichment(self):
+        request = body()
+        request["orderingMethod"] = "hybrid_v4"
+        observed = {}
+
+        def model(prompt, context):
+            observed.update(context)
+            return answer(context), "gpt-6-luna"
+
+        result = OrderingResolver(model, environment=NoWeather()).resolve(request)
+        self.assertEqual(result["orderingMethod"], "hybrid_v4")
+        self.assertNotIn("candidateOrders", observed)
+        self.assertEqual(set(result["orderedIDs"]), {place["id"] for place in request["places"]})
+
     def test_user_token_is_verified_with_auth_service(self):
         user = str(uuid.uuid4())
         handler = SimpleNamespace(headers={"Authorization": "Bearer synthetic-user-token"})
@@ -187,6 +201,25 @@ class OrderingTests(unittest.TestCase):
             self.assertEqual(set(result["orderedIDs"]), {p["id"] for p in value["places"]})
             if method == "hybrid_weather": self.assertTrue(any("unknown" in x for x in result["contextWarnings"]))
 
+    def test_category_hints_are_unknown_only_for_weather_hybrid(self):
+        value = body(); value['places'][0]['categories'] = ['MKPOICategoryMovieTheater']
+        for method in ('luna', 'hybrid_legacy', 'hybrid_weather'):
+            value['orderingMethod'] = method
+            def model(prompt, context):
+                hints = context.get('categoryHoursHints')
+                if method == 'hybrid_weather':
+                    self.assertEqual(hints[0]['endSecondsFromStartDay'], 93600)
+                    self.assertEqual(hints[0]['venueHoursStatus'], 'unknown')
+                    self.assertIn('never claim a venue is open or closed', prompt)
+                else:
+                    self.assertIsNone(hints)
+                result = answer(context)
+                if 'candidateOrders' in context:
+                    result['orderedIDs'] = context['candidateOrders'][0]['orderedIDs']
+                return result, 'gpt-6-luna'
+            result = OrderingResolver(model, NoWeather()).resolve(value)
+            self.assertEqual(set(result['orderedIDs']), {p['id'] for p in value['places']})
+
     def test_hybrid_rejects_unoffered_permutation(self):
         value = body(); value["orderingMethod"] = "hybrid_legacy"
         def model(prompt, context):
@@ -223,7 +256,7 @@ class OrderingTests(unittest.TestCase):
             try:
                 base = f"http://127.0.0.1:{server.server_address[1]}"
                 headers = {"Authorization": "Bearer synthetic", "Content-Type": "application/json"}
-                for method in ("luna", "hybrid_legacy", "hybrid_weather"):
+                for method in ("luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"):
                     value = body(); value["orderingMethod"] = method
                     with urlopen(Request(base + "/v1/order", data=json.dumps(value).encode(), headers=headers)) as response:
                         self.assertEqual(response.status, 202)
@@ -235,7 +268,7 @@ class OrderingTests(unittest.TestCase):
                     self.assertEqual(result["status"], "succeeded", result)
                     self.assertEqual(result["result"]["orderingMethod"], method)
                     self.assertEqual(set(result["result"]["orderedIDs"]), {p["id"] for p in value["places"]})
-                self.assertEqual(len(calls), 3)
+                self.assertEqual(len(calls), 4)
             finally:
                 server.shutdown(); server.server_close(); thread.join()
 

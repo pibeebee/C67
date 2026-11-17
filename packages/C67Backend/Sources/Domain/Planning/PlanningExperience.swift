@@ -120,6 +120,7 @@ public extension PlanProposal {
 
     /// Presentation estimates are derived without changing the provider proposal or claiming route feasibility.
     var stopsWithExperienceEstimates: [ScheduledPlanningStop] {
+        if input.enginePreferences?.orderingMethod == .hybridV4 { return stops }
         guard var clock = estimatedExperienceDeparture else { return stops }
         return stops.map { stop in
             var estimate = stop

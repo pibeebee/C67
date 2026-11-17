@@ -3292,6 +3292,21 @@
         }
       }
     },
+    "/v1/hours/lookup": {
+      "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
+      "post": {
+        "operationId": "lookupPocketHours",
+        "description": "Authenticated, transient lookup for one selected Apple Place ID. Regular weekly hours are not special-date guarantees; absence and provider errors are distinct. No provider credentials are returned.",
+        "security": [{"pocketReadToken": []}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "additionalProperties": false, "required": ["placeId"], "properties": {"placeId": {"type": "string", "pattern": "^I[0-9A-Fa-f]{1,63}$"}}}}}},
+        "responses": {
+          "200": {"description": "Lookup status and optional transient weekly hours", "content": {"application/json": {"schema": {"type": "object", "required": ["status"], "properties": {"status": {"type": "string", "enum": ["available", "unavailable", "invalid_place_id", "not_configured", "configuration_error", "temporary_error"]}, "hours": {"type": "object", "description": "Provider data for the matching selected place; regular weekly hours only."}}}}}},
+          "401": {"description": "Authentication required"},
+          "422": {"description": "Invalid request"},
+          "503": {"description": "Authentication unavailable"}
+        }
+      }
+    },
     "/v1/order": {
       "servers": [
         {
@@ -6428,7 +6443,7 @@
           },
           "orderingMethod": {
             "type": "string",
-            "enum": ["luna", "hybrid_legacy", "hybrid_weather"],
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"],
             "description": "Optional; absent means Luna for backwards compatibility. Experimental hybrids require a server that echoes the selected method."
           },
           "candidateDate": {
@@ -6945,7 +6960,7 @@
           },
           "orderingMethod": {
             "type": "string",
-            "enum": ["luna", "hybrid_legacy", "hybrid_weather"],
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"],
             "description": "Method actually used. Missing in older Luna-only server responses."
           }
         },

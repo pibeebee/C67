@@ -121,21 +121,36 @@ public struct PocketPlanningServices: Sendable {
     public var advise: @Sendable (VisitAdviceRequest) async throws -> PocketAdviceSelection
     public var resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)?
     public var order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)?
+    public var hours: (@Sendable (String) async -> PlanningHoursLookup)?
     public var attribution: @Sendable () async throws -> PlanningEvidence?
     public init(travel: @escaping @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote,
                 weather: @escaping ItineraryPlanner.Weather,
                 advise: @escaping @Sendable (VisitAdviceRequest) async throws -> PocketAdviceSelection,
                 resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)? = nil,
                 order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)? = nil,
+                hours: (@Sendable (String) async -> PlanningHoursLookup)? = nil,
                 attribution: @escaping @Sendable () async throws -> PlanningEvidence? = { nil }) {
         self.travel = travel; self.weather = weather; self.advise = advise
         self.attribution = attribution
         self.resolve = resolve
         self.order = order
+        self.hours = hours
     }
 }
 
 public actor PocketResearchClient {
+    public func openingHours(placeID: String) async -> PlanningHoursLookup {
+        guard placeID.range(of: "^I[0-9A-Fa-f]{1,63}$", options: .regularExpression) != nil else {
+            return .init(status: "invalid_place_id")
+        }
+        do {
+            let body = try JSONEncoder().encode(["placeId": placeID])
+            let data = try await fetch("v1/hours/lookup", body: body)
+            let result = try JSONDecoder().decode(PlanningHoursLookup.self, from: data)
+            guard result.status != "available" || result.hours?.placeId == placeID else { return .init(status: "temporary_error") }
+            return result
+        } catch { return .init(status: "temporary_error") }
+    }
     private final class RedirectGuard: NSObject, URLSessionTaskDelegate, Sendable {
         func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
                         newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }

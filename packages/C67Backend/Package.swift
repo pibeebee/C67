@@ -14,6 +14,6 @@ let package = Package(
                 resources: [.copy("Fixtures/rundowns.json"), .copy("Fixtures/planning-input.json"),
                             .copy("Fixtures/planning-result.json"), .copy("Fixtures/planning-job.json"),
                             .copy("Fixtures/personal-planning-trip.json")]),
-        .testTarget(name: "C67BackendTests", dependencies: ["C67Domain", "C67Data", .product(name: "PocketEngine", package: "PocketEngine")], path: "Tests/Starter")
+        .testTarget(name: "C67BackendTests", dependencies: ["C67Domain", "C67Data", .product(name: "PocketEngine", package: "PocketEngine")], path: "Tests/Starter", exclude: ["V4Replay.json", "V4ExhaustiveReplay.json"])
     ]
 )

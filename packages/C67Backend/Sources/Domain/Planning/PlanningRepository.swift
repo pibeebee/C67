@@ -16,9 +16,11 @@ public protocol PlanningRepository: Sendable {
     func renameProposal(jobID: UUID, title: String) async throws -> PlanningJob
     func updateExperienceRoute(jobID: UUID, orderedIDs: [UUID]?, departure: Date?) async throws -> PlanningJob
     func refreshExperienceRoute(tripID: UUID) async throws -> PersonalPlanningTrip
+    func openingHours(placeID: String) async -> PlanningHoursLookup
 }
 
 public extension PlanningRepository {
+    func openingHours(placeID _: String) async -> PlanningHoursLookup { .init(status: "unavailable") }
     var supportsOnDevicePlanning: Bool { false }
     var supportsTripDeletion: Bool { false }
     func deleteTrip(id: UUID, expectedRevision: Int) async throws { throw PlanningError.unavailable }

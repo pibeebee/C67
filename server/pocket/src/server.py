@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import shlex
 import sqlite3
+from hours import HoursProvider
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -321,7 +322,11 @@ class Handler(BaseHTTPRequestHandler):
             if not 0 < count <= 200_000:
                 raise ValueError("Invalid body size")
             body = json.loads(self.rfile.read(count))
-            if self.path == "/v1/order":
+            if self.path == "/v1/hours/lookup":
+                if not isinstance(body, dict) or set(body) != {"placeId"}:
+                    raise ValueError("Invalid hours lookup")
+                self.reply(200, HoursProvider().lookup(body["placeId"]))
+            elif self.path == "/v1/order":
                 request_context(body)
                 self.reply(202, self.server.order_jobs.submit(body, owner))
             elif self.path == "/v1/visits/resolve":

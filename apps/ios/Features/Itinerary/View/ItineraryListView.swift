@@ -22,10 +22,12 @@ struct ItineraryListView: View {
     var navigationTitle = "Itinerary"
     var retry: (() -> Void)?
     var refreshRoute: (() -> Void)?
+    var lookupHours: ((String) async -> PlanningHoursLookup)? = nil
     let edit: (UUID?) -> Void
     let save: () -> Void
     var move: (@MainActor @Sendable (UUID, UUID) -> Void)? = nil
     @State private var draggedStop: UUID?
+    @State private var hoursByPlace: [String: PlanningHoursLookup] = [:]
 
     var body: some View {
         let stops = proposal.stopsWithExperienceEstimates
@@ -55,6 +57,25 @@ struct ItineraryListView: View {
 
                 ItineraryDepartureCard(proposal: proposal, weatherAdvice: departureWeather, isDesignPreview: isDesignPreview,
                                        editDeparture: editDeparture, editEndpoints: isExperience ? editEndpoints : nil)
+
+                if isExperience, lookupHours != nil {
+                    DisclosureGroup("Opening hours") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Regular hours may differ on holidays or for individual activities. Travel and visit times are estimates.")
+                            ForEach(stops) { stop in
+                                if let place = proposal.input.places.first(where: { $0.id == stop.id }) {
+                                    Text("\(stop.name): \(hoursLabel(place: place, stop: stop))")
+                                }
+                            }
+                            if hoursByPlace.values.contains(where: { $0.status == "available" }) {
+                                Text("Hours from Apple Maps")
+                            }
+                        }.font(.footnote)
+                    }
+                    .padding(12)
+                    .background(Color("ItinerarySurface"), in: .rect(cornerRadius: 14))
+                    .accessibilityIdentifier("itineraryOpeningHours")
+                }
 
                 if let editEndpoints, !isExperience {
                     ViewThatFits(in: .horizontal) {
@@ -156,6 +177,18 @@ struct ItineraryListView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
+        .task(id: proposal.input.places) {
+            guard let lookupHours else { return }
+            for place in proposal.input.places {
+                guard !Task.isCancelled, let source = place.sourceID, source.hasPrefix("apple:") else { continue }
+                let id = String(source.dropFirst(6))
+                if hoursByPlace[id] == nil {
+                    let result = await lookupHours(id)
+                    guard !Task.isCancelled else { return }
+                    hoursByPlace[id] = result
+                }
+            }
+        }
         .background(Color("TripCanvas"))
         .tint(Color("ItineraryAction"))
         .navigationTitle(navigationTitle)
@@ -215,6 +248,34 @@ struct ItineraryListView: View {
     private func formattedDistance(_ meters: Double) -> String {
         if meters < 1_000 { return "\(Int(meters.rounded())) m" }
         return "\((meters / 1_000).formatted(.number.precision(.fractionLength(1)))) km"
+    }
+
+    private func hoursLabel(place: PlanningPlace, stop: ScheduledPlanningStop) -> String {
+        let fallback = categoryHoursHint(for: place)
+        guard let source = place.sourceID, source.hasPrefix("apple:") else { return "Hours unavailable — check before visiting.\(fallback)" }
+        let id = String(source.dropFirst(6))
+        guard let lookup = hoursByPlace[id] else { return "Checking hours…" }
+        guard let hours = lookup.hours, lookup.status == "available", let start = stop.visitStartsAt ?? stop.arrivalAt, let end = stop.departureAt else {
+            let message = lookup.status == "temporary_error" || lookup.status == "configuration_error" || lookup.status == "not_configured"
+                ? "Could not check hours — check before visiting." : "Hours unavailable — check before visiting."
+            return message + fallback
+        }
+        switch hours.match(start: start, end: end) {
+        case .within: return "Estimated visit fits regular hours."
+        case .partial: return "Estimated visit partly outside regular hours."
+        case .outside: return "Estimated visit outside regular hours."
+        case .unknown: return "Hours could not be compared — check before visiting."
+        }
+    }
+
+    private func categoryHoursHint(for place: PlanningPlace) -> String {
+        let categories = Set(place.categories.map { $0.lowercased().replacingOccurrences(of: "_", with: "") })
+        let hint: String
+        if !categories.isDisjoint(with: ["museum", "mkpoicategorymuseum"]) { hint = "09:00–16:00" }
+        else if !categories.isDisjoint(with: ["cinema", "movietheater", "mkpoicategorymovietheater"]) { hint = "10:00–02:00 next day" }
+        else if !categories.isDisjoint(with: ["mall", "shoppingmall"]) { hint = "10:00–22:00" }
+        else { return "" }
+        return " Unverified category estimate: \(hint); actual hours may differ."
     }
 
     private func addPlace() { edit(nil) }

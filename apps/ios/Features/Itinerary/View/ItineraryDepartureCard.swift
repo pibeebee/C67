@@ -44,6 +44,11 @@ struct ItineraryDepartureCard: View {
                     .font(.subheadline.weight(.semibold))
                 Text(ItineraryFormatting.time(departure, zone: proposal.input.timeZone, locale: locale))
                     .font(.largeTitle.bold())
+                if let originalDate = proposal.rescheduledFromDate {
+                    let date = ItineraryFormatting.date(originalDate, zone: proposal.input.timeZone, locale: locale)
+                    Text("The trip didn’t fit on \(date). Travelant found a schedule for this date instead.")
+                        .font(.footnote)
+                }
                 departureWeather
                 Text(proposal.hasExperienceTravelFallback ? "Driving estimates include defaults" : "Driving times are estimates")
                     .font(.caption).padding(.top, 4)

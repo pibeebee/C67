@@ -53,11 +53,12 @@ struct ItineraryMethodSection: View {
         Section("Itinerary method") {
             Picker("Method", selection: $orderingMethod) {
                 Text("Luna").tag(PlanningOrderingMethod.luna.rawValue)
-                Text("Hybrid: candidates").tag(PlanningOrderingMethod.hybridLegacy.rawValue)
+                Text("Hybrid v4: schedules").tag(PlanningOrderingMethod.hybridV4.rawValue)
                 Text("Hybrid: weather context").tag(PlanningOrderingMethod.hybridWeather.rawValue)
             }
             .accessibilityIdentifier("pocketOrderingMethod")
-            Text("Experimental: both hybrid methods require an updated Pocket server. Weather context is limited: activity exposure and candidate arrival times are unknown, so heat and rain exposure cannot yet be compared.")
+            .onAppear { if orderingMethod == PlanningOrderingMethod.hybridLegacy.rawValue { orderingMethod = PlanningOrderingMethod.hybridWeather.rawValue } }
+            Text("Experimental methods require an updated Pocket server. Hybrid v4 compares a bounded set of schedules using estimated travel and available hours; weather exposure is not optimized.")
                 .font(.footnote)
         }
     }

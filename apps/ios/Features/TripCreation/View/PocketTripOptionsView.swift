@@ -46,3 +46,78 @@ private struct PocketTripOptionFields: View {
         }
     }
 }
+
+/// Trip constraints available before the first scheduler request.
+struct PocketScheduleOptionsSheet: View {
+    @Bindable var presenter: TripCreationPresenter
+    @Environment(\.dismiss) private var dismiss
+
+    private var zone: TimeZone { TimeZone(identifier: presenter.planning.timeZone) ?? .current }
+    private var calendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = zone
+        return calendar
+    }
+
+    private var validWindow: Bool {
+        return presenter.planning.finishBy > presenter.planning.startsAt &&
+            calendar.isDate(presenter.planning.startsAt, inSameDayAs: presenter.planning.finishBy)
+    }
+
+    private func changeTripDate(to date: Date) {
+        let planning = presenter.planning
+        let day = calendar.startOfDay(for: date)
+        let currentDay = calendar.startOfDay(for: planning.startsAt)
+        guard let days = calendar.dateComponents([.day], from: currentDay, to: day).day, days != 0,
+              let start = calendar.date(byAdding: .day, value: days, to: planning.startsAt),
+              let finish = calendar.date(byAdding: .day, value: days, to: planning.finishBy) else { return }
+        planning.startsAt = start
+        planning.finishBy = finish
+        planning.enginePreferences?.usesAutomaticTripDate = false
+    }
+
+    var body: some View {
+        @Bindable var planning = presenter.planning
+        NavigationStack {
+            Form {
+                Section("Available time") {
+                    DatePicker("Trip date", selection: Binding(get: { planning.startsAt }, set: changeTripDate),
+                               displayedComponents: .date)
+                        .accessibilityIdentifier("tripScheduleDate")
+                    DatePicker("Earliest departure", selection: Binding(get: { planning.startsAt }, set: {
+                        planning.startsAt = $0
+                        planning.enginePreferences?.usesAutomaticTripDate = false
+                    }), displayedComponents: .hourAndMinute)
+                    DatePicker("Finish by", selection: Binding(get: { planning.finishBy }, set: {
+                        planning.finishBy = $0
+                        planning.enginePreferences?.usesAutomaticTripDate = false
+                    }), displayedComponents: .hourAndMinute)
+                    if !validWindow { Text("Choose a finish time after departure on the same day.").foregroundStyle(.red) }
+                }
+                if let options = Binding($planning.enginePreferences) {
+                    Section("Schedule preferences") {
+                        Toggle("Flexible departure", isOn: options.flexibleDeparture)
+                        Toggle("Return to starting point", isOn: options.returnToOrigin)
+                        Stepper("Maximum waiting: \(options.wrappedValue.maximumWaitMinutes) min", value: options.maximumWaitMinutes, in: 0 ... 120, step: 5)
+                    }
+                }
+                Section("Visit durations") {
+                    ForEach(presenter.selected) { item in
+                        let id = item.id
+                        let override = item.place.durationOverridden == true
+                        VStack(alignment: .leading) {
+                            Text(item.place.name)
+                            Toggle("Set visit duration", isOn: Binding(get: { presenter.selected.first(where: { $0.id == id })?.place.durationOverridden == true }, set: { presenter.setVisitDuration(id, minutes: $0 ? max(15, item.place.visitSeconds / 60) : nil) }))
+                            if override {
+                                Stepper("\(item.place.visitSeconds / 60) min", value: Binding(get: { (presenter.selected.first(where: { $0.id == id })?.place.visitSeconds ?? 2700) / 60 }, set: { presenter.setVisitDuration(id, minutes: $0) }), in: 15 ... 240, step: 5)
+                            } else { Text("Use Luna's estimate when available.").font(.footnote).foregroundStyle(.secondary) }
+                        }
+                    }
+                }
+            }
+            .environment(\.timeZone, zone)
+            .navigationTitle("Trip schedule")
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { planning.draftChanged(); dismiss() }.disabled(!validWindow) } }
+        }
+    }
+}

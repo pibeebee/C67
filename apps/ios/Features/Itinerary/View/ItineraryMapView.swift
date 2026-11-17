@@ -47,7 +47,12 @@ struct ItineraryMapView: View {
                         Text("Itinerary method").font(.headline)
                         switch proposal.experiencePlan?.orderingMethod ?? .luna {
                         case .luna: Text("Luna")
-                        case .hybridLegacy: Text("Hybrid: candidates (experimental)")
+                        case .hybridLegacy: Text("Hybrid: candidates (retired)")
+                        case .hybridV4:
+                            Text("Hybrid v4: schedules (experimental)")
+                            Text(proposal.explanation)
+                            ForEach(proposal.warnings, id: \.self) { Text($0) }
+                            ForEach(Array(Set(proposal.stops.flatMap(\.warnings))).sorted(), id: \.self) { Text($0) }
                         case .hybridWeather:
                             Text("Hybrid: weather context (experimental)")
                             Text("Activity exposure and candidate arrival times were unavailable, so heat and rain exposure were not compared.")
@@ -57,7 +62,7 @@ struct ItineraryMapView: View {
                             Text("Legs without a driving estimate use a \(PlanProposal.defaultExperienceTravelSeconds / 60)-minute default. Their road distance is unavailable.")
                         }
                         Text("Opening hours").font(.headline)
-                        Text("Opening hours have not been verified.")
+                        Text("Regular hours do not verify opening or access on the selected date.")
                     }
                     if !proposal.evidence.isEmpty { Text("Sources").font(.headline) }
                     ForEach(proposal.evidence) { evidence in

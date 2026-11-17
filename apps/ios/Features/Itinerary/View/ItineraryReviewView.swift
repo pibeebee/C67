@@ -17,6 +17,11 @@ struct ItineraryReviewView: View {
 
     private var proposal: PlanProposal { presenter.job?.result?.proposal ?? initialProposal }
     private var displayedName: String { tripName ?? proposal.input.title }
+    private var canStartToday: Bool {
+        guard proposal.experiencePlan != nil else { return false }
+        guard proposal.input.enginePreferences?.orderingMethod == .hybridV4 else { return true }
+        return PlanningDayWindow.isSameDay(proposal.departureAt ?? proposal.input.startsAt, .now, timeZone: proposal.input.timeZone)
+    }
     private var canEditName: Bool {
         let name = nameDraft.trimmingCharacters(in: .whitespacesAndNewlines)
         return !name.isEmpty && name.count <= 120
@@ -39,10 +44,11 @@ struct ItineraryReviewView: View {
                           heading: proposal.experiencePlan == nil ? nil : displayedName,
                           editTitle: proposal.experiencePlan == nil ? nil : { nameDraft = displayedName; showsEditName = true },
                           editDeparture: proposal.experiencePlan == nil ? nil : { editRoute = .estimatedDeparture },
-                          startNow: proposal.experiencePlan == nil ? nil : { saveName = displayedName; startsAfterSave = true; save() },
+                          startNow: canStartToday ? { saveName = displayedName; startsAfterSave = true; save() } : nil,
                           actionTitle: proposal.experiencePlan == nil ? "Save Itinerary" : "Save your trip for later…",
                           retry: retryAction,
                           refreshRoute: proposal.hasExperienceTravelFallback ? { Task { await presenter.updateExperienceRoute() } } : nil,
+                          lookupHours: { await presenter.openingHours(placeID: $0) },
                           edit: edit,
                           save: { saveName = displayedName; startsAfterSave = false; showsSaveName = true }, move: move)
             .modifier(ItinerarySaveNameDialog(isPresented: $showsSaveName, name: $saveName, originalName: proposal.input.title, regeneratesOnRename: proposal.experiencePlan == nil, save: save))
