@@ -645,7 +645,7 @@ public actor PocketPlanningRepository: PlanningRepository {
             if job.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true {
                 let planner = V41ItineraryPlanner(services: services, hours: { await self.openingHours(placeID: $0) }, synthetic: synthetic,
                                                   reserveRoute: { try await self.retainRouteBudget($0, jobID: id, revision: revision) })
-                let sourceJobs = job.input.enginePreferences?.orderingMethod == .hybridV42 ? [job] : Array(state.jobs.values)
+                let sourceJobs = job.input.enginePreferences?.orderingMethod?.usesV42Scheduler == true ? [job] : Array(state.jobs.values)
                 let snapshots = sourceJobs.flatMap { $0.semanticSnapshots ?? $0.semanticSnapshot.map { [$0] } ?? [] }
                 result = try await planner.plan(job, snapshots: snapshots) { snapshot in
                     try await self.retainSemanticSnapshot(snapshot, jobID: id, revision: revision)

@@ -2,9 +2,35 @@
 
 **Updated:** 18 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Current local checkpoint:** Start with [Hybrid v4.1 and error recovery](#hybrid-v41-recovery-2026-11-18). The earlier dated entries describe the state at their respective checkpoints.
+**Current local checkpoint:** [Hybrid v4.2](#hybrid-v42-checkpoint-2026-11-18) is the baseline for this iteration. Luna remains available for activity and duration suggestions through Pocket. Further Luna optimization and replacement experiments are deferred. Earlier dated entries describe the state at their respective checkpoints.
 
 **Historical status, 13 November:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
+
+<a id="hybrid-v42-checkpoint-2026-11-18"></a>
+
+## 0S. Hybrid v4.2 and the decision to keep Luna — 18 November 2026
+
+### Reducing the wait after place selection
+
+Once v4.1 addressed date intent and schedule recovery, Giovan turned to the wait after choosing places. v4.2 retains the v4.1 schedule search and departure-specific ETA checks. The iOS planner starts regular-hours lookups while Luna runs and reuses weekly evidence within the same job. Pocket can request a shared activity and duration estimate for up to three candidate dates, with changes linked to the date they apply to. Luna's v4.2 path requires the updated Pocket contract. The shared server last observed during authenticated testing rejected `hybrid_v4_2`. A temporary local v4.2 server reached Luna and returned accepted results in the app-path experiment. [Implementation and latency instrumentation](../../../../docs/tasks/hybrid-v42-performance.md) · [App-path and server evidence](../../../../docs/tasks/hybrid-v42-foundation-comparison-2026-11-18.md).
+
+### What the experiments showed
+
+| Synthetic scenario | Median v4.1 → v4.2 | Simulated model calls v4.1 → v4.2 |
+| --- | --- | --- |
+| Tomorrow | 101 → 45 ms | 1 → 1 |
+| Compare three dates | 303 → 54 ms | 3 → 1 |
+| Insufficient time today, try tomorrow | 306 → 47 ms | 2 → 1 |
+
+Across five repetitions per scenario, the compared versions agreed on the selected date, departure and finish, stop order and durations, and ETA request counts. This shows less work on the tested fixtures with simulated provider delays. User wait from **Next** to a visible itinerary with live MapKit and Pocket still needs measurement. [Synthetic comparison test](../../../../packages/C67Backend/Tests/Starter/V42ComparisonTests.swift).
+
+The initial app-path comparison supplied weather and light context only to Luna. The follow-up on iPhone 18 Pro Max Simulator used the same English task and context, synthetic ETA and one attempt per arm. Luna returned four structurally accepted proposals, with provider calls taking 12.98–20.14 seconds. Foundation Models returned zero accepted proposals. Three responses failed JSON or contract validation, and one call failed in the Simulator safety service. This follow-up used plain JSON. The app's `@Generable` adapter produced accepted fixture schedules in separate iPhone 17 tests. Without a successful matched pair, the follow-up leaves relative time to a valid itinerary and recommendation quality open. [App-path and physical-device results](../../../../docs/tasks/hybrid-v42-foundation-comparison-2026-11-18.md) · [Matched Simulator results](../../../../docs/tasks/hybrid-v42-matched-simulator-results-2026-11-18.md).
+
+### Decision and reflection
+
+Giovan chose **Hybrid v4.2 as the baseline for this iteration**. The device owns scheduling and ETA validation. Luna remains available for activity, duration and daypart suggestions. When traveller-supplied or booked visit durations are sufficient, the planner can build the itinerary without a model call. Reusing suitable estimates, learning from confirmed visit durations, and limiting Luna to unresolved decisions remain proposals for a later iteration.
+
+The trials clarified that shorter model calls only help when they yield usable recommendations. If the comparison resumes, measure time to a visible itinerary and assess activity, duration, and date choices on fresh Jakarta cases with the same traveller constraints and access evidence.
 
 <a id="hybrid-v41-recovery-2026-11-18"></a>
 
@@ -843,13 +869,13 @@ This chat focused on turning user preferences into relevant place candidates. Ea
 - Discovery and manual destination search use a temporary 60 km radius around central Jakarta. The app requires the enclosing MapKit region and filters candidates by coordinates and country code when supplied. The radius is a product boundary. The administrative DKI boundary and expansion of Pocket's itinerary area are separate work.
 - The flow is preferences → recommendations → place selection → main spot → optional duration → planning attempt. Refresh retains the selection. My Places lets the user remove places without a selection cap. The survey hands off directly after the removal of Confirm trip. A missing starting point, visit availability or applicable consent can still require input. The planner currently accepts at most six places and supports its existing Jakarta Selatan and Kemayoran areas.
 
-Implementation details and verification are recorded in the [recommendations checkpoint](../../../docs/tasks/recommendations-first-flow.md) and [Jakarta discovery and direct processing](../../../docs/tasks/jakarta-discovery-direct-processing.md).
+Implementation details and verification are recorded in the [recommendations checkpoint](../../../../docs/tasks/recommendations-first-flow.md) and [Jakarta discovery and direct processing](../../../../docs/tasks/jakarta-discovery-direct-processing.md).
 
 ### Observed results and closure
 
 On iPhone 18 Pro Max Simulator running iOS 27.2, the mock flow retained seven selections in My Places and when returning from the survey. The walkthrough found a stale planner message that continued to cover Next after the selection was reduced. The banner was moved to the planning screens and clears when the selection changes. A retest reduced seven places to three and passed through to a mock itinerary with a one-hour main-spot visit.
 
-In the live MapKit walkthrough, the sample returned Jakarta ramen venues and a jogging result in an apartment complex. Public access to the jogging result remained unknown. The exact Independent bookstore query returned no local candidates. A separate native diagnostic returned 24 results for the broader `bookstore` query, with independence unverified. The app now presents an empty local result separately from a provider error. In a live partial-result retry, Refresh retained the selected place. The live walkthrough reached Visit availability after the survey. The unsigned Release build, 44 selected unit tests and two targeted mock UI tests passed. [Verification evidence](../../../docs/tasks/jakarta-discovery-direct-processing.md#simulator-walkthrough)
+In the live MapKit walkthrough, the sample returned Jakarta ramen venues and a jogging result in an apartment complex. Public access to the jogging result remained unknown. The exact Independent bookstore query returned no local candidates. A separate native diagnostic returned 24 results for the broader `bookstore` query, with independence unverified. The app now presents an empty local result separately from a provider error. In a live partial-result retry, Refresh retained the selected place. The live walkthrough reached Visit availability after the survey. The unsigned Release build, 44 selected unit tests and two targeted mock UI tests passed. [Verification evidence](../../../../docs/tasks/jakarta-discovery-direct-processing.md#simulator-walkthrough)
 
 
 

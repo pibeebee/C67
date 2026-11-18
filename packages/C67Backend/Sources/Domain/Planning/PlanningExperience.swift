@@ -101,6 +101,35 @@ public struct PlanningExperiencePlan: Equatable, Codable, Sendable {
     public func stop(_ id: UUID) -> Stop? { stops.first { $0.placeID == id } }
 }
 
+extension PlanningExperiencePlan.Duration {
+    package init(estimatedMin: Int, max: Int, rationale: String) {
+        self.init(minMinutes: estimatedMin, maxMinutes: max, rationale: rationale, basis: "experience_estimate")
+    }
+}
+
+extension PlanningExperiencePlan.Stop {
+    package init(onDevicePlaceID: UUID, activity: String, basis: String, isMain: Bool,
+                 duration: PlanningExperiencePlan.Duration?, preferredDayPart: String, reason: String) {
+        self.init(placeID: onDevicePlaceID, activity: .init(suggestion: activity, basis: basis), role: isMain ? "main" : "supporting",
+                  duration: duration, durationUnknownReason: duration == nil ? "The model could not estimate a visit duration from the supplied details." : nil,
+                  preferredDayPart: preferredDayPart, reason: reason,
+                  weather: .init(sourceRefs: [], advice: "", status: "unavailable"),
+                  light: .init(windowRef: nil, priority: "unknown", advice: ""), uncertainties: [])
+    }
+}
+
+extension PlanningExperiencePlan {
+    package init(onDeviceStops: [Stop], order: [UUID], date: String, timeZone: String, model: String) {
+        self.init(status: "proposed", orderedIDs: order,
+                  tripRationale: "Travelant checks the on-device activity and duration suggestions against your schedule.",
+                  stops: onDeviceStops, alternativeOrder: nil, tradeoffs: [],
+                  uncertainties: ["Visit suggestions are estimates. Opening hours and access on the trip date remain unverified by the model."],
+                  generatedAt: .now, candidateDate: date, timeZone: timeZone, requestedModel: model, reportedModel: model,
+                  reportedReasoningEffort: nil, providerProtocol: "on_device", weatherSources: [], solarWindows: [],
+                  contextWarnings: ["The on-device suggestions did not use weather or light forecasts."], orderingMethod: .hybridV42FoundationModels)
+    }
+}
+
 public extension PlanProposal {
     static let defaultExperienceTravelSeconds = 6 * 60
     static let defaultExperienceVisitSeconds = 30 * 60

@@ -40,8 +40,12 @@ Read CBL section 0P first. Latest agreed geography is Jakarta only; code still a
 
 ## 14 November continuation
 
-CBL section [0Q](../source-records/CBL.md#current-handoff) records the closure of the local preferences, recommendations and survey-handoff scope. The [Simulator and test evidence](../../../docs/tasks/jakarta-discovery-direct-processing.md) is the basis for the new checkpoint. The ledger records the new document hash while the previous validation and import hashes remain available above.
+CBL section [0Q](../source-records/CBL.md#current-handoff) records the closure of the local preferences, recommendations and survey-handoff scope. The [Simulator and test evidence](../../../../docs/tasks/jakarta-discovery-direct-processing.md) is the basis for the new checkpoint. The ledger records the new document hash while the previous validation and import hashes remain available above.
 
 ## 18 November continuation
 
 Section [0R](../source-records/CBL.md#hybrid-v41-recovery-2026-11-18) records the observed date mismatch, the v4 fallback, the six v4.1 workstreams, and the error recovery follow-up. The [verification record](../../../../docs/testing/verification.md) documents the synthetic tests and remaining device and provider checks. This is a local documentation update. Check the new links, whitespace, and reviewed source hash against the unchanged publication baseline.
+
+## 18 November Hybrid v4.2 continuation
+
+Section [0S](../source-records/CBL.md#hybrid-v42-checkpoint-2026-11-18) records the decision to keep v4.2 as the baseline and defer changes to Luna. The synthetic v4.1–v4.2 figures come from the completed run of [the comparison test](../../../../packages/C67Backend/Tests/Starter/V42ComparisonTests.swift), with five repetitions per scenario. The section also links the [app-path and device experiment](../../../../docs/tasks/hybrid-v42-foundation-comparison-2026-11-18.md) and the [matched Simulator experiment](../../../../docs/tasks/hybrid-v42-matched-simulator-results-2026-11-18.md). Verification for this continuation covers the source record, links and evidence ledger.

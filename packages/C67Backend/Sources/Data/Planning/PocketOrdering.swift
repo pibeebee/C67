@@ -31,8 +31,15 @@ enum PocketOrderCodec {
 
 extension PlanningExperiencePlan {
     func validated(for input: PlanningInput) throws -> Self {
-        _ = try PocketAdviceSelection(slotID: "", requestedModel: requestedModel, reportedModel: reportedModel,
-                                      reportedReasoningEffort: reportedReasoningEffort, providerProtocol: providerProtocol).validated()
+        if input.enginePreferences?.orderingMethod == .hybridV42FoundationModels {
+            guard orderingMethod == .hybridV42FoundationModels,
+                  requestedModel == V42FoundationExperience.modelID, reportedModel == V42FoundationExperience.modelID,
+                  providerProtocol == "on_device", reportedReasoningEffort == nil,
+                  weatherSources.isEmpty, solarWindows.isEmpty else { throw PlanningError.invalidResponse }
+        } else {
+            _ = try PocketAdviceSelection(slotID: "", requestedModel: requestedModel, reportedModel: reportedModel,
+                                          reportedReasoningEffort: reportedReasoningEffort, providerProtocol: providerProtocol).validated()
+        }
         var calendar = Calendar(identifier: .gregorian)
         guard let zone = TimeZone(identifier: input.timeZone) else { throw PlanningError.invalidResponse }
         calendar.timeZone = zone
@@ -108,7 +115,9 @@ extension PocketResearchClient {
     }
 
     private func order(_ inputs: [PlanningInput], requestID: UUID) async throws -> [PlanningExperiencePlan] {
-        guard let input = inputs.first else { throw PlanningError.invalidInput }
+        guard let input = inputs.first, input.enginePreferences?.orderingMethod != .hybridV42FoundationModels else {
+            throw PlanningError.invalidInput
+        }
         struct Place: Encodable {
             var id: UUID
             var name: String

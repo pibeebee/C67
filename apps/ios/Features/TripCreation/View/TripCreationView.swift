@@ -177,6 +177,7 @@ struct TripCreationView: View {
                                      showsNext: presenter.error == nil || presenter.connectionNotice == nil,
                                      researchesWithLuna: presenter.planning.supportsOnDevicePlanning,
                                      usesV41: presenter.usesV41,
+                                     usesFoundationModels: presenter.usesFoundationModels,
                                      scheduleSummary: presenter.usesV41 ? presenter.scheduleSummary : nil,
                                      editSchedule: presenter.usesV41 ? { openScheduleOptions() } : nil)
             case .stay:
@@ -287,7 +288,8 @@ struct TripCreationView: View {
             return .init(title: "Try tomorrow") { run { await presenter.tryTomorrow() } }
         }
         switch code {
-        case "V4_DURATION_UNKNOWN", "V4_NO_SCHEDULE", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
+        case "FOUNDATION_MODELS_UNAVAILABLE", "FOUNDATION_MODELS_GENERATION_FAILED",
+             "V4_DURATION_UNKNOWN", "V4_NO_SCHEDULE", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
              "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED", "V41_NO_SCHEDULE", "V41_ACCESS_CONFLICT", "V41_DATE_CONFLICT":
             return .init(title: "Adjust schedule") { openScheduleOptions() }
         default:

@@ -122,6 +122,7 @@ public struct PocketPlanningServices: Sendable {
     public var resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)?
     public var order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)?
     public var experience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])?
+    public var foundationExperience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])?
     public var hours: (@Sendable (String) async -> PlanningHoursLookup)?
     public var attribution: @Sendable () async throws -> PlanningEvidence?
     public init(travel: @escaping @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote,
@@ -130,6 +131,7 @@ public struct PocketPlanningServices: Sendable {
                 resolve: (@Sendable (PlanningInput, UUID) async throws -> PocketVisitResolution)? = nil,
                 order: (@Sendable (PlanningInput, UUID) async throws -> PlanningExperiencePlan)? = nil,
                 experience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])? = nil,
+                foundationExperience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])? = nil,
                 hours: (@Sendable (String) async -> PlanningHoursLookup)? = nil,
                 attribution: @escaping @Sendable () async throws -> PlanningEvidence? = { nil }) {
         self.travel = travel; self.weather = weather; self.advise = advise
@@ -137,6 +139,7 @@ public struct PocketPlanningServices: Sendable {
         self.resolve = resolve
         self.order = order
         self.experience = experience
+        self.foundationExperience = foundationExperience
         self.hours = hours
     }
 }

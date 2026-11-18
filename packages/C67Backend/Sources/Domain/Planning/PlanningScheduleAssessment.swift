@@ -60,7 +60,9 @@ public struct PlanningScheduleIssue: Equatable, Codable, Sendable, Identifiable 
         case "return_deadline_exceeded", "duration_exceeds_day": detail = "visits and travel exceed the finish time under the selected duration policy"
         case "duration_unknown": detail = "visit duration is needed"
         case "date_access_unverified": detail = "access on this date has not been confirmed"
-        case "semantic_unavailable": detail = "Luna suggestions are unavailable"
+        case "semantic_unavailable":
+            detail = input.enginePreferences?.orderingMethod == .hybridV42FoundationModels ?
+                "Foundation Models suggestions are unavailable" : "Luna suggestions are unavailable"
         case "session_arrival_missed": detail = "arrival is later than the session check-in time"
         case "required_visits_overlap": detail = "required activity time overlaps another visit"
         case "waiting_permission_unknown": detail = "waiting needs your confirmation"

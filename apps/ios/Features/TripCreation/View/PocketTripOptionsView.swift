@@ -41,8 +41,11 @@ private struct PocketTripOptionFields: View {
             }
         }
         Section("Visit research") {
-            Text("Travelant researches the selected place names, pins, available branch details and preferences using the Pocket server and Luna. Opening hours and entry rules require retrieved sources; suggested durations remain estimates. Apple provides driving times.")
-                .font(.footnote)
+            if options.orderingMethod == .hybridV42FoundationModels {
+                Text("Foundation Models estimates activities and durations on your device. Apple provides travel estimates, and Pocket can look up regular hours.").font(.footnote)
+            } else {
+                Text("Travelant researches the selected place names, pins, available branch details and preferences using the Pocket server and Luna. Opening hours and entry rules require retrieved sources; suggested durations remain estimates. Apple provides driving times.").font(.footnote)
+            }
         }
     }
 }
@@ -170,7 +173,7 @@ struct PocketScheduleOptionsSheet: View {
                                     Text("Afternoon · 15–18").tag(Optional(PlanningDayPart.evening))
                                     Text("Night · 18–22").tag(Optional(PlanningDayPart.night))
                                 }
-                                lunaAssistance(options)
+                                modelAssistance(options)
                             }
                         }
                     }
@@ -237,7 +240,9 @@ struct PocketScheduleOptionsSheet: View {
                     }
                 }
             } else if presenter.usesV41, presenter.planning.enginePreferences?.semanticAssistance == .disabled {
-                Text("Set a duration when Luna assistance is off.").font(.footnote).foregroundStyle(.secondary)
+                Text("Set a duration when visit suggestions are off.").font(.footnote).foregroundStyle(.secondary)
+            } else if presenter.usesFoundationModels {
+                Text("Use an on-device estimate when available.").font(.footnote).foregroundStyle(.secondary)
             } else {
                 Text("Use Luna's estimate when available.").font(.footnote).foregroundStyle(.secondary)
             }
@@ -250,10 +255,12 @@ struct PocketScheduleOptionsSheet: View {
         V41VisitAccessFields(presenter: presenter, placeID: id, revealedField: field, focus: $focusedField)
     }
 
-    @ViewBuilder private func lunaAssistance(_ options: Binding<PlanningPreferences>) -> some View {
-        let picker = Picker("Luna assistance", selection: Binding(get: { options.wrappedValue.semanticAssistance ?? .whenNeeded }, set: {
+    @ViewBuilder private func modelAssistance(_ options: Binding<PlanningPreferences>) -> some View {
+        let title: LocalizedStringKey = presenter.usesFoundationModels ? "Foundation Models assistance" : "Luna assistance"
+        let identifier = presenter.usesFoundationModels ? "foundationModelsAssistance" : "lunaAssistance"
+        let picker = Picker(title, selection: Binding(get: { options.wrappedValue.semanticAssistance ?? .whenNeeded }, set: {
             options.wrappedValue.semanticAssistance = $0
-            options.wrappedValue.usesLuna = $0 != .disabled
+            if !presenter.usesFoundationModels { options.wrappedValue.usesLuna = $0 != .disabled }
             options.wrappedValue.allowsAIProcessing = $0 != .disabled
         })) {
             Text("Estimate missing durations").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.whenNeeded)
@@ -261,9 +268,9 @@ struct PocketScheduleOptionsSheet: View {
             Text("Off · use my durations").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.disabled)
         }
         if dynamicTypeSize.isAccessibilitySize {
-            picker.pickerStyle(.inline).accessibilityIdentifier("lunaAssistance")
+            picker.pickerStyle(.inline).accessibilityIdentifier(identifier)
         } else {
-            picker.accessibilityIdentifier("lunaAssistance")
+            picker.accessibilityIdentifier(identifier)
         }
     }
 

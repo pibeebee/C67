@@ -12,6 +12,7 @@ struct MainSpotQuestionView: View {
     var showsNext = true
     var researchesWithLuna = false
     var usesV41 = false
+    var usesFoundationModels = false
     var scheduleSummary: String?
     var editSchedule: (() -> Void)?
 
@@ -77,7 +78,11 @@ struct MainSpotQuestionView: View {
                     Button(action: editSchedule) { Label(scheduleSummary, systemImage: "calendar") }
                         .accessibilityIdentifier("tripDateSummary")
                 }
-                if usesV41 {
+                if usesFoundationModels {
+                    Text("Apple Foundation Models estimates activities and visit durations on your device. Travelant uses Apple travel estimates and may send selected Apple place IDs to Pocket to check opening hours.")
+                        .font(AppFont.footnote)
+                        .foregroundStyle(AppColor.secondaryText)
+                } else if usesV41 {
                     Text("Travelant arranges your trip using Apple travel estimates and available hours. Hours checks send selected Apple place IDs to Pocket. If you choose Luna assistance, selected places, pins, candidate dates and preferences are sent to Pocket and Luna for activity and duration suggestions. Recommendations are estimates.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)

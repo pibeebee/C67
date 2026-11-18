@@ -31,7 +31,7 @@ struct PocketConnectionView: View {
                     if let error = presenter.connectionError { Text(error).foregroundStyle(.red) }
                 }
                 Section("How your trip is processed") {
-                    Text("The Pocket server sends your selected places and preferences to Luna for itinerary recommendations.")
+                    Text("Luna itinerary methods send selected places and preferences to Pocket and Luna. Foundation Models generates visit suggestions on your device.")
                     Text("Your saved trips stay in this app on this device. Account sync is not enabled in Pocket mode.")
                     Text("Use HTTPS for TestFlight. API provider keys and the server write token must stay on the server.")
                 }
@@ -55,12 +55,13 @@ struct ItineraryMethodSection: View {
                 Text("Luna").tag(PlanningOrderingMethod.luna.rawValue)
                 Text("Hybrid v4: schedules").tag(PlanningOrderingMethod.hybridV4.rawValue)
                 Text("Hybrid v4.1: flexible schedules").tag(PlanningOrderingMethod.hybridV41.rawValue)
-                Text("Hybrid v4.2: faster planning").tag(PlanningOrderingMethod.hybridV42.rawValue)
+                Text("Hybrid v4.2 · Luna").tag(PlanningOrderingMethod.hybridV42.rawValue)
+                Text("Hybrid v4.2 · Foundation Models").tag(PlanningOrderingMethod.hybridV42FoundationModels.rawValue)
                 Text("Hybrid: weather context").tag(PlanningOrderingMethod.hybridWeather.rawValue)
             }
             .accessibilityIdentifier("pocketOrderingMethod")
             .onAppear { if orderingMethod == PlanningOrderingMethod.hybridLegacy.rawValue { orderingMethod = PlanningOrderingMethod.hybridWeather.rawValue } }
-            Text("Luna assistance uses the Pocket server. Hybrid v4.1 and v4.2 can schedule your supplied visit durations directly using estimated travel and available hours.")
+            Text("Foundation Models requires Apple Intelligence and uses English. Both v4.2 methods check travel and opening hours with the same scheduler.")
                 .font(.footnote)
         }
     }

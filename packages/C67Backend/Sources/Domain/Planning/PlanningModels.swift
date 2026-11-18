@@ -343,6 +343,8 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
             case "ORDER_SERVER_INTERRUPTED": "The Pocket server stopped processing this request. Try again to start a new recommendation."
             case "ORDER_CONNECTION_INTERRUPTED": "The app lost contact with the Pocket server. Check the same request when the connection is back."
             case "ORDER_RESPONSE_INVALID": "The app could not verify the recommendation. Your selected places are kept."
+            case "FOUNDATION_MODELS_UNAVAILABLE": "Apple’s on-device model is unavailable. Check Apple Intelligence in Settings or add your own visit durations in Adjust schedule."
+            case "FOUNDATION_MODELS_GENERATION_FAILED": "Apple’s on-device model could not provide visit suggestions. Adjust the schedule to enter your durations, or try again."
             case "V4_UNSUPPORTED_INPUT": "Hybrid v4 needs a known duration for each place and supports up to six places. Choose another method or update the trip."
             case "V4_DURATION_UNKNOWN": "A visit duration is unavailable. Open Adjust schedule and set a duration for each place, then try again."
             case "V4_WINDOW_TOO_SHORT": "The visits and travel cannot fit within the selected time window. Adjust your schedule."

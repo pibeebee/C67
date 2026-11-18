@@ -87,6 +87,7 @@
                          advise: { try await client.advise($0) }, resolve: { try await client.resolve($0, requestID: $1) },
                          order: { try await client.order($0, requestID: $1) },
                          experience: { try await client.experience($0, requestID: $1) },
+                         foundationExperience: { inputs, _ in try await V42FoundationExperience.generate(for: inputs) },
                          attribution: { await apple.weatherEvidence() })
         }
     }

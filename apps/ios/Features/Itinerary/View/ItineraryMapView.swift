@@ -57,9 +57,11 @@ struct ItineraryMapView: View {
                         switch proposal.effectiveOrderingMethod {
                         case .luna: Text("Luna")
                         case .hybridLegacy: Text("Hybrid: candidates (retired)")
-                        case .hybridV4, .hybridV41, .hybridV42:
-                            if proposal.effectiveOrderingMethod == .hybridV42 {
-                                Text("Hybrid v4.2: faster planning (experimental)")
+                        case .hybridV4, .hybridV41, .hybridV42, .hybridV42FoundationModels:
+                            if proposal.effectiveOrderingMethod == .hybridV42FoundationModels {
+                                Text("Hybrid v4.2 · Foundation Models (experimental)")
+                            } else if proposal.effectiveOrderingMethod == .hybridV42 {
+                                Text("Hybrid v4.2 · Luna (experimental)")
                             } else if proposal.effectiveOrderingMethod == .hybridV41 {
                                 Text("Hybrid v4.1: flexible schedules (experimental)")
                             } else {
