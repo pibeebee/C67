@@ -242,6 +242,12 @@ import PocketEngine
     #expect(assessment.routeCalls <= 72)
     #expect(done.result?.proposal?.stops.first?.id != input.places[0].id)
     #expect(Set(done.result?.proposal?.stops.map(\.id) ?? []) == Set(input.places.map(\.id)))
+    let originalOrder = try #require(done.result?.proposal?.stops.map(\.id))
+    let updated = try await repository.updateExperienceRoute(jobID: job.id, orderedIDs: nil, departure: input.startsAt)
+    #expect(updated.result?.proposal?.stops.map(\.id) == originalOrder)
+    let saved = try await repository.applyProposal(jobID: job.id, expectedRevision: nil, requestID: UUID())
+    let refreshed = try await repository.refreshExperienceRoute(tripID: saved.id)
+    #expect(refreshed.plan.stops.map(\.id) == originalOrder)
 }
 
 @Test func v41PersistsAnAccessConflictBeforeSpendingRouteBudget() async throws {

@@ -157,6 +157,25 @@ import C67Domain
         #expect(model.planning.places.isEmpty)
     }
 
+    @Test func newCreationRecoversAnInterruptedPendingItinerary() async throws {
+        let repository = TripFlowRepositoryStub(supportsOnDevicePlanning: true)
+        let model = try make(repository: repository)
+        let input = try #require(model.planning.draftInput)
+        let command = PlanningRequest(requestID: UUID(), purpose: .firstItinerary, input: input)
+        var pending = PlanningJob(id: UUID(), status: .running, purpose: .firstItinerary, input: input,
+                                  tripID: nil, baseRevision: nil, result: nil,
+                                  errorCode: "ORDER_CONNECTION_INTERRUPTED", createdAt: .now)
+        pending.command = command
+        await repository.setPendingJob(pending)
+        model.planning.startNewTrip()
+        let restored = await model.planning.recoverPendingCreation()
+        #expect(restored?.id == pending.id)
+        #expect(model.planning.firstItineraryJob?.id == pending.id)
+        #expect(model.planning.draftInput == input)
+        model.planning.startNewTrip()
+        #expect(model.planning.firstItineraryJob?.id == pending.id)
+    }
+
     @Test func failedTripRefreshPreservesPreviouslyLoadedTrips() async throws {
         let repository = TripFlowRepositoryStub()
         let model = try make(repository: repository)

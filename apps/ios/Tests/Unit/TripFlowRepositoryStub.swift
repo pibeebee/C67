@@ -20,6 +20,7 @@ actor TripFlowRepositoryStub: PlanningRepository {
     private(set) var lookedUpHoursIDs: [String] = []
     private var routeError: PlanningError?
     private var interruptsStatusRead = false
+    private var pendingJobOverride: PlanningJob?
     private(set) var requests: [PlanningRequest] = []
     private(set) var statusReadIDs: [UUID] = []
     private(set) var routeJobIDs: [UUID] = []
@@ -60,6 +61,7 @@ actor TripFlowRepositoryStub: PlanningRepository {
 
     func setRouteError(_ error: PlanningError?) { routeError = error }
     func setInterruptsStatusRead(_ enabled: Bool) { interruptsStatusRead = enabled }
+    func setPendingJob(_ job: PlanningJob) { pendingJobOverride = job }
     func updateExperienceRoute(jobID: UUID, orderedIDs: [UUID]?, departure: Date?) async throws -> PlanningJob {
         routeJobIDs.append(jobID)
         if let routeError { throw routeError }
@@ -89,7 +91,10 @@ actor TripFlowRepositoryStub: PlanningRepository {
         if interruptsStatusRead { throw PlanningError.unavailable }
         return try await base.planningJob(id: id)
     }
-    func resumePlanning() async throws -> PlanningJob? { try await base.resumePlanning() }
+    func resumePlanning() async throws -> PlanningJob? {
+        if let pendingJobOverride { return pendingJobOverride }
+        return try await base.resumePlanning()
+    }
     func applyProposal(jobID: UUID, expectedRevision: Int?, requestID: UUID) async throws -> PersonalPlanningTrip {
         applyCalls += 1
         appliedRequestIDs.append(requestID)

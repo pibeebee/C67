@@ -108,7 +108,7 @@ final class PlanningPresenter {
     }
     /// Start a separate creation session without changing saved trips or the starting point.
     func startNewTrip() {
-        guard !isBusy else { return }
+        guard !isBusy, resumableJob == nil else { return }
         generation += 1
         ignoresPreviousPendingJob = true
         job = nil; jobScope = nil; pendingRequest = nil; pendingApply = nil; needsFreshProposal = false; clearIssue(.planning(nil)); clearIssue(.review)
@@ -119,6 +119,27 @@ final class PlanningPresenter {
         timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
         if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
         mode = .walking
+    }
+    func recoverPendingCreation() async -> PlanningJob? {
+        guard !isBusy, !privateAccessBlocked else { return nil }
+        if let current = resumableJob, current.purpose == .firstItinerary { return current }
+        let ticket = generation
+        isBusy = true
+        defer { if ticket == generation { isBusy = false } }
+        do {
+            guard let pending = try await interactor.resume(), ticket == generation,
+                  pending.purpose == .firstItinerary, pending.status == .running || pending.status == .queued else { return nil }
+            job = pending
+            jobScope = .planning(nil)
+            pendingRequest = pending.command
+            ignoresPreviousPendingJob = false
+            setDraft(pending.command?.input ?? pending.input)
+            return pending
+        } catch {
+            guard ticket == generation else { return nil }
+            record(.init(error, scope: .planning(nil), operation: .plan(.firstItinerary)))
+            return nil
+        }
     }
     func sessionDidChange(_ value: AuthenticationSnapshot) {
         let blocked = value.account == nil || value.requiresPasswordReset

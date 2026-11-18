@@ -1073,6 +1073,10 @@ public actor PocketPlanningRepository: PlanningRepository {
     private func calculateExperienceRoute(_ proposal: PlanProposal, reusing previous: PlanProposal? = nil) async throws -> PlanProposal {
         if proposal.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true {
             var input = proposal.input
+            let places = Dictionary(uniqueKeysWithValues: input.places.map { ($0.id, $0) })
+            let stopIDs = proposal.stops.map(\.id)
+            guard stopIDs.count == places.count, Set(stopIDs) == Set(places.keys) else { throw PlanningError.invalidInput }
+            input.places = stopIDs.compactMap { places[$0] }
             input.preservesPlaceOrder = true
             input.enginePreferences?.flexibleDeparture = false
             input.enginePreferences?.scheduleSource = .manual

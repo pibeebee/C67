@@ -162,9 +162,15 @@ struct TripHomeRootView: View {
 
     private func beginCreation(specificPlace: Bool) {
         guard !presenter.isBusy else { return }
-        presenter.startNewTrip()
-        creation = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: specificPlace)
-        showsCreation = true
+        Task {
+            if let pending = await presenter.recoverPendingCreation() {
+                resumeCreation(pending)
+            } else {
+                presenter.startNewTrip()
+                creation = TripCreationAssembly.makePresenter(planning: presenter, mode: mode, specificPlace: specificPlace)
+                showsCreation = true
+            }
+        }
     }
     private func resumeCreation(_ job: PlanningJob) {
         location.cancel()
