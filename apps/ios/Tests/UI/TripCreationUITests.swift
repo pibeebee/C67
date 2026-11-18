@@ -27,13 +27,33 @@ final class TripCreationUITests: XCTestCase {
         XCTAssertFalse(app.staticTexts["Synthetic coffee shop"].exists)
     }
 
-    @MainActor func testDraggingStopRecalculatesAndPreservesOrder() {
+    @MainActor func testDraggingStopRecalculatesAndPreservesOrder() throws {
+        continueAfterFailure = false
         let app = launch()
-        reviewMockItinerary(app)
-        let first = app.staticTexts["Synthetic stop 1"]
-        let second = app.staticTexts["Synthetic stop 2"]
+        openTripMenu(app)
+        app.buttons["Add Specific Place"].tap()
+        let search = app.textFields["addPlacesSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("coffee\n")
+        for name in ["Synthetic coffee shop", "Synthetic museum"] {
+            let add = app.buttons["Add \(name)"]
+            XCTAssertTrue(add.waitForExistence(timeout: 5))
+            add.tap()
+        }
+        app.buttons["addPlacesNext"].tap()
+        let next = app.buttons["Next"]
+        XCTAssertTrue(next.waitForExistence(timeout: 5))
+        next.tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 10))
+
+        let coffee = app.staticTexts["Synthetic coffee shop"]
+        let museum = app.staticTexts["Synthetic museum"]
         let handles = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@", "itineraryReorder-"))
-        XCTAssertTrue(second.waitForExistence(timeout: 5))
+        XCTAssertTrue(museum.waitForExistence(timeout: 5))
+        let coffeeFirst = coffee.frame.midY < museum.frame.midY
+        let first = coffeeFirst ? coffee : museum
+        let second = coffeeFirst ? museum : coffee
         let source = handles.element(boundBy: 0)
         let target = handles.element(boundBy: 1)
         XCTAssertTrue(source.isHittable)
@@ -47,10 +67,16 @@ final class TripCreationUITests: XCTestCase {
         waitForExpectations(timeout: 20)
         XCTAssertTrue(app.buttons["Save this trip"].exists)
         capture(app, "ITINERARY - reordered")
-        saveMockItinerary(app)
-        XCTAssertTrue(app.staticTexts["Synthetic stop 1"].exists)
-        XCTAssertTrue(app.staticTexts["Synthetic stop 2"].exists)
-        XCTAssertLessThan(app.staticTexts["Synthetic stop 2"].frame.midY, app.staticTexts["Synthetic stop 1"].frame.midY)
+        let save = app.buttons["Save this trip"]
+        scrollToTripControl(save, in: app)
+        save.tap()
+        let dialog = app.alerts["Save Itinerary"]
+        XCTAssertTrue(dialog.waitForExistence(timeout: 5))
+        let name = try XCTUnwrap(dialog.textFields.firstMatch.value as? String)
+        dialog.buttons["Save"].tap()
+        XCTAssertTrue(app.navigationBars[name].waitForExistence(timeout: 10))
+        XCTAssertTrue(first.exists && second.exists)
+        XCTAssertLessThan(second.frame.midY, first.frame.midY)
     }
 
     @MainActor func testReviewNavigationSeparatesBackAndCancel() {

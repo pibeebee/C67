@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 import Observation
 import C67Domain
 
@@ -16,7 +17,12 @@ import C67Domain
     var query = ""
     private(set) var results: [RecommendedPlace] = []
     private(set) var isSearching = false
-    private(set) var searchError: String?
+    private var submittedQuery: String?
+    private var searchFailure: String?
+    var searchError: String? { submittedQuery == normalizedQuery ? searchFailure : nil }
+    var hasSearchedCurrentQuery: Bool { submittedQuery == normalizedQuery && !normalizedQuery.isEmpty }
+    var showsPreviousResults: Bool { !results.isEmpty && !normalizedQuery.isEmpty && (!hasSearchedCurrentQuery || isSearching || searchError != nil) }
+    private var normalizedQuery: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
     private(set) var isProcessing = false
     private(set) var isShowingCompletion = false
     private(set) var isSuggesting = false
@@ -35,6 +41,8 @@ import C67Domain
     private let clock: () -> Date
     private var searchGeneration = 0
     private var restoredJobID: UUID?
+    private var reviewTiming: (started: ContinuousClock.Instant, requestID: UUID, method: PlanningOrderingMethod)?
+    private static let timingLogger = Logger(subsystem: "io.pibeebee.c67", category: "PlanningTiming")
 
     init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor,
          orderingMethod: @escaping () -> PlanningOrderingMethod = {
@@ -53,7 +61,8 @@ import C67Domain
     }
 
     var route: TripCreationRoute { path.last ?? root }
-    var usesV41: Bool { orderingMethod() == .hybridV41 }
+    var usesV41: Bool { orderingMethod().usesFlexibleSchedule }
+    var hasSixPlaceLimit: Bool { !planning.supportsOnDevicePlanning || orderingMethod().isSchedule }
     var scheduleAssessment: PlanningScheduleAssessment? { planning.firstItineraryJob?.scheduleAssessment }
     var scheduleSummary: String {
         guard let input = planning.draftInput else { return "Choose a trip date" }
@@ -70,9 +79,26 @@ import C67Domain
         guard let code = planning.firstItineraryJob?.errorCode else { return false }
         return ["POCKET_CONNECTION_REQUIRED", "POCKET_CONNECTION_REJECTED", "POCKET_ORDER_ENDPOINT_MISSING", "POCKET_ORDER_METHOD_UNSUPPORTED"].contains(code)
     }
-    var checksExistingRequest: Bool {
-        guard let job = planning.firstItineraryJob else { return false }
-        return job.status == .running || job.status == .queued
+    var checksExistingRequest: Bool { planning.hasPendingCreationJob }
+    enum ConnectionNotice { case loadFailed, takingLonger }
+    var connectionNotice: ConnectionNotice? {
+        guard let issue = planning.creationIssue, case .plan = issue.operation else { return nil }
+        switch issue.cause {
+        case .pending: return .takingLonger
+        case .planning(.timedOut): return checksExistingRequest ? .takingLonger : .loadFailed
+        case .planning(.unavailable), .planning(.invalidResponse), .planning(.failed("ORDER_GENERATION_FAILED")),
+             .planning(.failed("ORDER_RESPONSE_INVALID")): return .loadFailed
+        default: return nil
+        }
+    }
+
+    func selectMainSpot(_ value: MainSpotChoice) {
+        guard value != mainSpot else { return }
+        mainSpot = value
+        stay = nil
+        error = nil
+        planning.enginePreferences?.mainSpotID = value.placeID
+        planning.draftChanged()
     }
     var canTryTomorrow: Bool {
         canTryTomorrow(at: clock())
@@ -158,21 +184,23 @@ import C67Domain
     func search() async {
         searchGeneration += 1
         let ticket = searchGeneration
-        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        searchError = nil
+        let text = normalizedQuery
+        let session = planning.sessionGeneration
+        submittedQuery = text
+        searchFailure = nil
         guard !text.isEmpty else { results = []; isSearching = false; return }
         isSearching = true
         defer { if ticket == searchGeneration { isSearching = false } }
         do {
             let found = try await interactor.search(text, near: planning.origin)
-            guard ticket == searchGeneration, !Task.isCancelled, query.trimmingCharacters(in: .whitespacesAndNewlines) == text else { return }
+            guard ticket == searchGeneration, session == planning.sessionGeneration, !Task.isCancelled, normalizedQuery == text else { return }
             results = found.map { item in
                 selected.first(where: { $0.place.name == item.place.name && $0.place.location == item.place.location }) ?? item
             }
         } catch is CancellationError { }
         catch {
-            guard ticket == searchGeneration, !Task.isCancelled else { return }
-            searchError = "Place search is unavailable. Try another query."
+            guard ticket == searchGeneration, session == planning.sessionGeneration, !Task.isCancelled, normalizedQuery == text else { return }
+            searchFailure = "Check your connection or try a different query."
         }
     }
 
@@ -288,11 +316,12 @@ import C67Domain
         guard canPlan else { error = PlanningError.invalidInput.localizedDescription; return }
         isProcessing = true; error = nil
         defer { isProcessing = false }
-        await planning.request()
+        if checksExistingRequest { await planning.checkStatus() }
+        else { await planning.request() }
         guard !Task.isCancelled, !planning.privateAccessBlocked,
               let job = planning.job, job.status == .succeeded, job.purpose == .plan,
-              job.input == planning.draftInput, job.result?.proposal != nil, planning.error == nil else {
-            error = planning.error ?? "Your itinerary could not be prepared. Try again."
+              job.input == planning.draftInput, job.result?.proposal != nil, planning.creationIssue == nil else {
+            error = planning.creationIssue?.message ?? "Your itinerary could not be prepared. Try again."
             return
         }
         guard await showCompletion() else { return }
@@ -316,6 +345,8 @@ import C67Domain
     }
 
     private func planFirstItinerary() async {
+        let started = ContinuousClock.now
+        reviewTiming = nil
         guard planning.origin != nil else { error = "Choose a starting point to prepare your itinerary."; return }
         planning.mode = .automobile
         planning.preservesPlaceOrder = false
@@ -324,13 +355,17 @@ import C67Domain
         isProcessing = true; error = nil
         defer { isProcessing = false }
         let routeBeforeRequest = route
-        await planning.request(.firstItinerary)
+        if checksExistingRequest { await planning.checkStatus() }
+        else { await planning.request(.firstItinerary) }
         guard !Task.isCancelled, !planning.privateAccessBlocked, route == routeBeforeRequest else { return }
-        if planning.error == nil, let job = planning.job, job.purpose == .firstItinerary,
-           let proposal = job.result?.proposal {
+        if planning.creationIssue == nil, let job = planning.job, job.purpose == .firstItinerary,
+           job.status == .succeeded, let proposal = job.result?.proposal {
             guard await showCompletion(), route == routeBeforeRequest else { return }
             availabilityIDs = []
             reviewProposal = proposal
+            if proposal.effectiveOrderingMethod.usesFlexibleSchedule, let requestID = job.command?.requestID {
+                reviewTiming = (started, requestID, proposal.effectiveOrderingMethod)
+            }
             push(.review)
         } else {
             let result = planning.job?.result
@@ -338,8 +373,15 @@ import C67Domain
             if route == .availability { availabilityIDs.formUnion(incomplete) }
             else { availabilityIDs = incomplete }
             if !availabilityPlaces.isEmpty, route != .availability { push(.availability) }
-            error = planning.error ?? result?.warnings.prefix(3).joined(separator: "\n") ?? "Your itinerary could not be prepared. Try again."
+            error = planning.creationIssue?.message ?? result?.warnings.prefix(3).joined(separator: "\n") ?? "Your itinerary could not be prepared. Try again."
         }
+    }
+
+    func recordReviewAppearance() {
+        guard let timing = reviewTiming else { return }
+        reviewTiming = nil
+        let elapsed = String(describing: timing.started.duration(to: .now))
+        Self.timingLogger.info("itinerary_visible request_id=\(timing.requestID.uuidString.lowercased(), privacy: .public) method=\(timing.method.rawValue, privacy: .public) elapsed=\(elapsed, privacy: .public)")
     }
 
     private func showCompletion() async -> Bool {
@@ -389,7 +431,7 @@ import C67Domain
         guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
         let cutoff = selected[index].place.visitConfirmation?.lastEntryAt
         selected[index].place.visitConfirmation = .init(opensAt: opens, closesAt: closes, publicAccessConfirmed: publicAccess)
-        if let cutoff, cutoff >= opens, cutoff <= closes { selected[index].place.visitConfirmation?.lastEntryAt = cutoff }
+        selected[index].place.visitConfirmation?.lastEntryAt = cutoff
         syncPlaces()
     }
     func clearVisitConfirmation(_ id: UUID) {
@@ -456,7 +498,7 @@ import C67Domain
         preferences.themes = Set(answers.interests.map(\.rawValue))
         let supportedLabels = Set(planning.preferenceLabels.map(\.id))
         preferences.labels = answers.refinements.intersection(supportedLabels)
-        if selectedMethod == .hybridV41 {
+        if selectedMethod.usesFlexibleSchedule {
             if preferences.scheduleSource == nil { preferences.flexibleDeparture = true }
             let timing = answers.timing.flatMap { PlanningTripTiming(rawValue: $0.rawValue) }
             preferences.preferredDayPart = answers.dayPart.flatMap { PlanningDayPart(rawValue: $0.rawValue) }

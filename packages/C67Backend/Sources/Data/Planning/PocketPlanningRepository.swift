@@ -32,6 +32,7 @@ public actor PocketPlanningRepository: PlanningRepository {
     private let storageURL: URL?
     private let synthetic: Bool
     private let jobClock: @Sendable () -> Date
+    private var accountDataErased = false
     private var configurationRevision = 0
     private var orderTasks: [UUID: Task<Void, Never>] = [:]
     private let logger = Logger(subsystem: "io.pibeebee.c67", category: "pocket-planning")
@@ -108,12 +109,12 @@ public actor PocketPlanningRepository: PlanningRepository {
                 input.preservesPlaceOrder = true
             }
         }
-        let usesV41 = input.enginePreferences?.orderingMethod == .hybridV41
-        let usesOrdering = usesV41 || (services.order != nil && (request.purpose == .firstItinerary || input.enginePreferences?.reasonableOrdering == true))
+        let usesFlexibleSchedule = input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true
+        let usesOrdering = usesFlexibleSchedule || (services.order != nil && (request.purpose == .firstItinerary || input.enginePreferences?.reasonableOrdering == true))
         if usesOrdering {
             if input.enginePreferences == nil { input.enginePreferences = PlanningPreferences() }
             input.enginePreferences?.reasonableOrdering = true
-            if !usesV41 {
+            if !usesFlexibleSchedule {
                 input.enginePreferences?.allowsAIProcessing = true
                 input.enginePreferences?.usesLuna = true
             }
@@ -619,17 +620,30 @@ public actor PocketPlanningRepository: PlanningRepository {
         for task in orderTasks.values { task.cancel() }
     }
 
+    /// Called by the authenticated account owner after the server confirms deletion.
+    public func eraseAccountData() throws {
+        suspendOrdering()
+        if let storageURL, FileManager.default.fileExists(atPath: storageURL.path) {
+            try FileManager.default.removeItem(at: storageURL)
+        }
+        accountDataErased = true
+        state = State()
+    }
+
     private func finishOrdering(_ id: UUID, requestID: UUID, revision: Int) async {
         defer { orderTasks[id] = nil }
         guard var job = state.jobs[id] else { return }
         do {
             let result: PlanningResult
-            if job.input.enginePreferences?.orderingMethod == .hybridV41 {
+            if job.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true {
                 let planner = V41ItineraryPlanner(services: services, hours: { await self.openingHours(placeID: $0) }, synthetic: synthetic,
                                                   reserveRoute: { try await self.retainRouteBudget($0, jobID: id, revision: revision) })
-                let snapshots = state.jobs.values.flatMap { $0.semanticSnapshots ?? $0.semanticSnapshot.map { [$0] } ?? [] }
+                let sourceJobs = job.input.enginePreferences?.orderingMethod == .hybridV42 ? [job] : Array(state.jobs.values)
+                let snapshots = sourceJobs.flatMap { $0.semanticSnapshots ?? $0.semanticSnapshot.map { [$0] } ?? [] }
                 result = try await planner.plan(job, snapshots: snapshots) { snapshot in
                     try await self.retainSemanticSnapshot(snapshot, jobID: id, revision: revision)
+                } retainBatch: { snapshots in
+                    try await self.retainSemanticSnapshots(snapshots, jobID: id, revision: revision)
                 }
             } else if job.purpose == .firstItinerary, job.input.enginePreferences?.orderingMethod == .hybridV4 {
                 result = try await firstV4Itinerary(job, requestID: requestID)
@@ -641,7 +655,7 @@ public actor PocketPlanningRepository: PlanningRepository {
             job.status = .succeeded; job.result = result; job.errorCode = nil
             job.scheduleAssessment = result.proposal?.scheduleAssessment
             job.originalInput = job.command?.input
-            if job.purpose == .firstItinerary || job.input.enginePreferences?.orderingMethod == .hybridV41, let proposal = result.proposal {
+            if job.purpose == .firstItinerary || job.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true, let proposal = result.proposal {
                 job.input = proposal.input
             }
         } catch {
@@ -651,12 +665,14 @@ public actor PocketPlanningRepository: PlanningRepository {
                 job.status = .failed
                 job.errorCode = failure.code
                 job.scheduleAssessment = failure.assessment
-            } else
-            if planningError == .unavailable || error is CancellationError {
+            } else if planningError == .timedOut {
+                job.status = .running; job.errorCode = "ORDER_REQUEST_TIMED_OUT"
+            } else if planningError == .unavailable || error is CancellationError {
                 job.status = .running; job.errorCode = "ORDER_CONNECTION_INTERRUPTED"
             } else {
                 job.status = .failed
-                if case .failed(let code) = planningError { job.errorCode = code }
+                if planningError == .rateLimited { job.errorCode = "PROVIDER_RATE_LIMITED" }
+                else if case .failed(let code) = planningError { job.errorCode = code }
                 else if planningError == .invalidResponse || error is DecodingError { job.errorCode = "ORDER_RESPONSE_INVALID" }
                 else { job.errorCode = "ORDER_GENERATION_FAILED" }
             }
@@ -676,19 +692,30 @@ public actor PocketPlanningRepository: PlanningRepository {
     public func planningJob(id: UUID) throws -> PlanningJob {
         guard let value = state.jobs[id] else { throw PlanningError.notFound }
         if value.errorCode == "ORDER_CONNECTION_INTERRUPTED" { throw PlanningError.unavailable }
+        if value.errorCode == "ORDER_REQUEST_TIMED_OUT" { throw PlanningError.timedOut }
+        startOrdering(value)
+        return state.jobs[id] ?? value
+    }
+
+    public func checkPlanningJob(id: UUID) async throws -> PlanningJob {
+        guard let value = state.jobs[id] else { throw PlanningError.notFound }
         startOrdering(value)
         return state.jobs[id] ?? value
     }
 
     private func retainSemanticSnapshot(_ snapshot: PlanningSemanticSnapshot, jobID: UUID, revision: Int) throws {
+        try retainSemanticSnapshots([snapshot], jobID: jobID, revision: revision)
+    }
+
+    private func retainSemanticSnapshots(_ additions: [PlanningSemanticSnapshot], jobID: UUID, revision: Int) throws {
         try Task.checkCancellation()
         guard revision == configurationRevision, state.jobs[jobID]?.status == .running else { throw CancellationError() }
         var next = state
-        next.jobs[jobID]?.semanticSnapshot = snapshot
+        next.jobs[jobID]?.semanticSnapshot = additions.last
+        let keys = Set(additions.map(\.contextKey))
         var snapshots = next.jobs[jobID]?.semanticSnapshots ?? []
-        snapshots.removeAll { $0.contextKey == snapshot.contextKey }
-        snapshots.append(snapshot)
-        next.jobs[jobID]?.semanticSnapshots = snapshots
+        snapshots.removeAll { keys.contains($0.contextKey) }
+        next.jobs[jobID]?.semanticSnapshots = snapshots + additions
         try commit(next)
     }
 
@@ -734,7 +761,7 @@ public actor PocketPlanningRepository: PlanningRepository {
                 proposal.rescheduledFromDate = nil
             }
             proposal.departureAt = departure
-            if proposal.effectiveOrderingMethod == .hybridV41 {
+            if proposal.effectiveOrderingMethod.usesFlexibleSchedule {
                 guard departure < proposal.input.finishBy else { throw PlanningError.invalidInput }
                 proposal.input.startsAt = departure
                 proposal.input.enginePreferences?.flexibleDeparture = false
@@ -1037,7 +1064,7 @@ public actor PocketPlanningRepository: PlanningRepository {
     }
 
     private func calculateExperienceRoute(_ proposal: PlanProposal, reusing previous: PlanProposal? = nil) async throws -> PlanProposal {
-        if proposal.input.enginePreferences?.orderingMethod == .hybridV41 {
+        if proposal.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true {
             var input = proposal.input
             input.preservesPlaceOrder = true
             input.enginePreferences?.flexibleDeparture = false
@@ -1184,6 +1211,7 @@ public actor PocketPlanningRepository: PlanningRepository {
     }
 
     private func commit(_ value: State) throws {
+        guard !accountDataErased else { throw PlanningError.authenticationRequired }
         if let storageURL {
             try FileManager.default.createDirectory(at: storageURL.deletingLastPathComponent(), withIntermediateDirectories: true)
             #if os(iOS)

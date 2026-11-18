@@ -4,6 +4,30 @@ import C67Domain
 import PocketEngine
 @testable import C67Data
 
+private struct HTTPOrderConnection: PocketConnectionProviding {
+    let url: URL
+    func credentials() async -> PocketCredentials { .init(serverURL: url.absoluteString, token: "synthetic") }
+    func update(serverURL: String, token: String) async throws { }
+}
+
+@Test func pocketClientDistinguishesRateLimitFromUnavailable() async throws {
+    for (status, expected) in [(429, PlanningError.rateLimited), (503, .unavailable), (408, .timedOut), (504, .timedOut), (524, .timedOut)] {
+        let harness = HTTPHarness { _ in StubResponse(status, "{}") }
+        let client = PocketResearchClient(connection: HTTPOrderConnection(url: harness.baseURL), session: harness.session)
+        await #expect(throws: expected) { try await client.fetch("v1/order") }
+        #expect(await client.openingHours(placeID: "I1A").status == (status == 429 ? "rate_limited" : "temporary_error"))
+    }
+}
+
+@Test func orderingDistinguishesTransportTimeoutFromLostConnection() async throws {
+    let input = try orderInput()
+    for (code, expected) in [(URLError.Code.timedOut, PlanningError.timedOut), (.networkConnectionLost, .unavailable)] {
+        let harness = HTTPHarness { _ in throw URLError(code) }
+        let client = PocketResearchClient(connection: HTTPOrderConnection(url: harness.baseURL), session: harness.session)
+        await #expect(throws: expected) { try await client.order(input, requestID: UUID()) }
+    }
+}
+
 @Test func orderingMethodRequiresMatchingServerEchoAndDecodesOldPreferences() throws {
     let original = try JSONDecoder().decode(PlanningPreferences.self, from: JSONEncoder().encode(PlanningPreferences()))
     #expect(original.orderingMethod == nil)
@@ -307,7 +331,7 @@ func finished(_ repository: PocketPlanningRepository, id: UUID) async throws -> 
     #expect(await counter.ids == [command.requestID])
 }
 
-@Test func disconnectedOrderRetriesTheSameRequestIdentity() async throws {
+@Test func checkingDisconnectedOrderResumesTheSameRequestIdentity() async throws {
     let counter = OrderCounter(failFirst: true), repository = try orderRepository(counter)
     let command = PlanningRequest(requestID: UUID(), purpose: .firstItinerary, input: try orderInput())
     let first = try await repository.requestPlan(command)
@@ -318,7 +342,7 @@ func finished(_ repository: PocketPlanningRepository, id: UUID) async throws -> 
         try await Task.sleep(for: .milliseconds(5))
     }
     #expect(interrupted)
-    let retry = try await repository.requestPlan(command)
+    let retry = try await repository.checkPlanningJob(id: first.id)
     #expect(retry.id == first.id)
     #expect(try await finished(repository, id: first.id).status == .succeeded)
     #expect(await counter.ids == [command.requestID, command.requestID])

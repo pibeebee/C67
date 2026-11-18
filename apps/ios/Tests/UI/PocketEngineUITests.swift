@@ -82,6 +82,11 @@ final class PocketEngineUITests: XCTestCase {
         let target = handles.element(boundBy: 1)
         XCTAssertTrue(source.isHittable && target.isHittable)
         source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.2, thenDragTo: review.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)))
+        XCTAssertLessThan(first.frame.midY, second.frame.midY)
+        XCTAssertFalse(app.staticTexts["Updated itinerary. Review it before saving."].exists)
+        XCTAssertTrue(source.isHittable && target.isHittable)
+        source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
             .press(forDuration: 1.2, thenDragTo: target.coordinate(withNormalizedOffset: CGVector(dx: -2, dy: 0.5)),
                    withVelocity: .slow, thenHoldForDuration: 1)
         let reordered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
@@ -100,6 +105,32 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Fixture Japanese 2"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Unknown Hours"].exists)
         XCTAssertLessThan(second.frame.midY, first.frame.midY)
+    }
+
+    @MainActor func testMainSpotTimeoutChecksSameRequestAndKeepsSelections() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: ["--pocket-itinerary-timeout-fixture",
+                                                              "-io.pibeebee.c67.orderingMethod", "luna"])
+        let name = "Fixture Japanese 1"
+        let place = app.buttons[name]
+        scrollToTripControl(place, in: app)
+        place.tap()
+        app.buttons["recommendationsNext"].tap()
+        let mainSpot = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                        "mainSpot-", name)).firstMatch
+        XCTAssertTrue(mainSpot.waitForExistence(timeout: 5))
+        mainSpot.tap()
+        app.buttons["Next"].tap()
+
+        let status = app.buttons["Check status"]
+        XCTAssertTrue(app.staticTexts["Your itinerary is taking longer than expected"].waitForExistence(timeout: 15),
+                      app.debugDescription)
+        XCTAssertTrue(status.waitForExistence(timeout: 5))
+        XCTAssertTrue(mainSpot.exists)
+        XCTAssertFalse(app.buttons["Next"].exists)
+        status.tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 15), app.debugDescription)
+        XCTAssertTrue(app.staticTexts[name].exists)
     }
 
     @MainActor func testOpeningHoursDisclosesUnknownForSelectedPlace() {
@@ -145,10 +176,12 @@ final class PocketEngineUITests: XCTestCase {
 
     @MainActor func testUntimedRenameValidatesNameAndCancelKeepsTheRecommendation() {
         continueAfterFailure = false
-        let app = openFixtureRecommendations()
+        let app = openFixtureRecommendations(extraArguments: ["-io.pibeebee.c67.orderingMethod", "luna"])
         let unknown = app.buttons["Fixture Unknown Hours"]
+        app.swipeUp()
         scrollToTripControl(unknown, in: app)
         unknown.tap()
+        XCTAssertTrue((unknown.value as? String)?.contains("Added") == true, app.debugDescription)
         app.buttons["recommendationsNext"].tap()
         XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
         app.buttons["Skip"].tap()
@@ -160,6 +193,8 @@ final class PocketEngineUITests: XCTestCase {
         let alert = app.alerts["Save Itinerary"]
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
         let field = alert.textFields.firstMatch
+        let originalName = field.value as? String
+        XCTAssertFalse(originalName?.isEmpty ?? true)
         replaceTripName(field, with: "")
         XCTAssertFalse(alert.buttons["Save"].isEnabled)
         replaceTripName(field, with: String(repeating: "A", count: 121))
@@ -170,7 +205,7 @@ final class PocketEngineUITests: XCTestCase {
         scrollToTripControl(save, in: app)
         save.tap()
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
-        XCTAssertEqual(field.value as? String, "Pocket integration test")
+        XCTAssertEqual(field.value as? String, originalName)
         replaceTripName(field, with: "Weekend coffee and taman 2026")
         XCTAssertTrue(alert.buttons["Save"].isEnabled)
         alert.buttons["Save"].tap()
@@ -261,12 +296,22 @@ final class PocketEngineUITests: XCTestCase {
         app.buttons["recommendationsNext"].tap()
         XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5), app.debugDescription)
         app.buttons["Skip"].tap()
+        let details = app.buttons["View schedule details"]
+        XCTAssertTrue(details.waitForExistence(timeout: 15), app.debugDescription)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: details)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed, app.debugDescription)
+        capture(app, "Schedule recovery notice")
+        details.tap()
         let diagnostic = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "visit duration is needed")).firstMatch
         XCTAssertTrue(diagnostic.waitForExistence(timeout: 15), app.debugDescription)
-        XCTAssertFalse(app.buttons["Review visit availability"].exists)
-        app.buttons["Adjust schedule"].tap()
+        XCTAssertTrue(app.staticTexts["Visit duration needed"].exists, app.debugDescription)
+        capture(app, "Schedule conflict details")
+        diagnostic.tap()
+        XCTAssertTrue(app.navigationBars["Trip schedule"].waitForExistence(timeout: 10), app.debugDescription)
         let duration = app.switches["Set visit duration"]
-        scrollToTripControl(duration, in: app)
+        let revealed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: duration)
+        XCTAssertEqual(XCTWaiter.wait(for: [revealed], timeout: 5), .completed, app.debugDescription)
+        capture(app, "Duration field after opening the diagnostic")
         duration.switches.firstMatch.tap()
         XCTAssertEqual(duration.value as? String, "1", app.debugDescription)
         app.buttons["Done"].tap()

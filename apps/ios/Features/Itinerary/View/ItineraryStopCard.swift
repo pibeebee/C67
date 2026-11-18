@@ -10,10 +10,13 @@ struct ItineraryStopCard: View {
     let edit: () -> Void
     var showsEstimatedTimes = false
     var symbol: String?
-    var beginReorder: (() -> NSItemProvider)? = nil
+    var reorderChanged: ((DragGesture.Value) -> Void)?
+    var reorderEnded: ((DragGesture.Value) -> Void)?
+    var reorderCancelled: (() -> Void)?
     var moveUp: (() -> Void)? = nil
     var moveDown: (() -> Void)? = nil
     @Environment(\.locale) private var locale
+    @GestureState private var isDragging = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -44,17 +47,28 @@ struct ItineraryStopCard: View {
                 } else {
                     visitSummary.accessibilityElement(children: .combine)
                 }
-                if let beginReorder {
-                    Image(systemName: showsEstimatedTimes ? "circle.grid.3x3" : "line.3.horizontal")
+                if let reorderChanged {
+                    Image(systemName: "line.3.horizontal")
                         .foregroundStyle(.secondary)
                         .frame(minWidth: 44, minHeight: 44)
                         .contentShape(.rect)
-                        .onDrag(beginReorder)
+                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
+                            .updating($isDragging) { _, isActive, _ in isActive = true }
+                            .onChanged(reorderChanged)
+                            .onEnded { reorderEnded?($0) })
+                        .onChange(of: isDragging) { _, active in
+                            if !active {
+                                // Gesture state also resets when the system interrupts a drag.
+                                Task { @MainActor in reorderCancelled?() }
+                            }
+                        }
                         .accessibilityLabel("Reorder \(stop.name)")
                         .accessibilityIdentifier("itineraryReorder-\(stop.id)")
-                        .accessibilityHint("Drag to another stop to change the visit order.")
-                        .accessibilityAction(named: "Move up") { moveUp?() }
-                        .accessibilityAction(named: "Move down") { moveDown?() }
+                        .accessibilityHint("Drag up or down to change the visit order.")
+                        .accessibilityActions {
+                            if let moveUp { Button("Move up", action: moveUp) }
+                            if let moveDown { Button("Move down", action: moveDown) }
+                        }
                 }
             }
             .padding(.leading, 12)

@@ -3307,6 +3307,46 @@
         }
       }
     },
+    "/v1/account/deletion": {
+      "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
+      "post": {
+        "operationId": "deleteTravellerAccount",
+        "description": "Start deleting the authenticated traveller's account and associated data. Apple accounts must supply a fresh authorization code for the same Apple identity. Repeating a previously accepted request returns its status even after authentication is revoked. Keep this random request ID private. Status responses expose no account information.",
+        "security": [{"travellerToken": []}, {}],
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requestID"],
+            "properties": {
+              "requestID": {"type": "string", "format": "uuid", "description": "A private UUID v4 generated before the first attempt. Reuse it when checking status."},
+              "appleAuthorizationCode": {"type": "string", "minLength": 1, "maxLength": 2048, "description": "Ephemeral code for a fresh native Sign in with Apple confirmation."}
+            }
+          }}}
+        },
+        "responses": {
+          "200": {
+            "description": "Server deletion confirmed",
+            "content": {"application/json": {"schema": {"type": "object", "required": ["status"], "properties": {"status": {"const": "deleted"}}}}}
+          },
+          "202": {
+            "description": "Accepted, with deletion still in progress",
+            "content": {"application/json": {"schema": {"type": "object", "required": ["status"], "properties": {"status": {"const": "pending"}}}}}
+          },
+          "401": {
+            "description": "AUTHENTICATION_REQUIRED for a request that has not been accepted",
+            "content": {"application/json": {"schema": {"type": "object", "required": ["code"], "properties": {"code": {"const": "AUTHENTICATION_REQUIRED"}}}}}
+          },
+          "409": {
+            "description": "Apple verification missing or mismatched, or deletion was already requested",
+            "content": {"application/json": {"schema": {"type": "object", "required": ["code"], "properties": {"code": {"enum": ["APPLE_VERIFICATION_REQUIRED", "APPLE_ACCOUNT_MISMATCH", "DELETION_IN_PROGRESS"]}}}}}
+          },
+          "422": {"description": "INVALID_DELETION_REQUEST"},
+          "503": {"description": "DELETION_UNAVAILABLE"}
+        }
+      }
+    },
     "/v1/order": {
       "servers": [
         {
@@ -6443,12 +6483,23 @@
           },
           "orderingMethod": {
             "type": "string",
-            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"],
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4", "hybrid_v4_2"],
             "description": "Optional; absent means Luna for backwards compatibility. Experimental hybrids require a server that echoes the selected method."
           },
           "candidateDate": {
             "type": "string",
             "format": "date"
+          },
+          "comparisonDates": {
+            "type": "array",
+            "description": "Hybrid v4.2 only. One or two unique dates in chronological order, each one to three calendar days after candidateDate in timeZone. Returned in the same order as comparisonResults.",
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
           },
           "timeZone": {
             "type": "string"
@@ -6960,7 +7011,7 @@
           },
           "orderingMethod": {
             "type": "string",
-            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4"],
+            "enum": ["luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4", "hybrid_v4_2"],
             "description": "Method actually used. Missing in older Luna-only server responses."
           }
         },
@@ -6999,6 +7050,15 @@
               "failed",
               "interrupted"
             ]
+          },
+          "comparisonResults": {
+            "type": "array",
+            "description": "Present on a successful Hybrid v4.2 comparison. Each result binds its own candidateDate, forecast sources and light windows.",
+            "minItems": 1,
+            "maxItems": 2,
+            "items": {
+              "$ref": "#/components/schemas/PocketOrderResult"
+            }
           },
           "result": {
             "oneOf": [

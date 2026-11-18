@@ -10,17 +10,21 @@ import importlib.util
 import json
 import logging
 import os
+import re
 from pathlib import Path
 import shlex
+import shutil
 import sqlite3
 from hours import HoursProvider
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from time import monotonic
 from urllib.parse import urlsplit
 import uuid
 import httpx
 
+from account_deletion import AccountDeletions, AccountDeletionProviders, DeletionRejection
 from resolution import Resolver, stamp
 from ordering import OrderingResolver, request_context
 
@@ -149,6 +153,7 @@ class Jobs:
         self.path = self.directory / "resolution.sqlite"
         self.resolver = resolver
         self.retry_failed = retry_failed
+        self.blocks_owner = lambda owner: False
         self.active = set()
         self.lock = threading.Lock()
         with self.connection() as db:
@@ -174,6 +179,8 @@ class Jobs:
         encoded = json.dumps(body, sort_keys=True, ensure_ascii=False)
         fingerprint = hashlib.sha256(encoded.encode()).hexdigest()
         with self.lock:
+            if self.blocks_owner(owner):
+                raise DeletionRejection(403, "ACCOUNT_DELETION_PENDING")
             with self.connection() as db:
                 previous = db.execute("SELECT fingerprint,state,owner FROM jobs WHERE id=?", (ident,)).fetchone()
                 if previous and previous[2] != owner:
@@ -189,29 +196,67 @@ class Jobs:
                 elif previous[1] == "succeeded" or ident in self.active:
                     return self.get(ident, owner)
                 self.active.add(ident)
-            threading.Thread(target=self.run, args=(ident, body), daemon=True).start()
+            threading.Thread(target=self.run, args=(ident, body, owner), daemon=True).start()
         return self.get(ident, owner)
 
-    def run(self, ident, body):
+    def run(self, ident, body, owner):
+        started = monotonic()
         try:
-            result = self.resolver.resolve(body)
+            resolver = self.resolver
+            if owner != "legacy" and isinstance(resolver, Resolver):
+                resolver = Resolver(resolver.directory / owner / ident, resolver.request_model)
+            result = resolver.resolve(body)
             state = "succeeded"
         except Exception as error:
             logging.exception("resolution_failed kind=%s", type(error).__name__)
             result = dict(error=getattr(self.resolver, "failure_message", "Source research or Luna request failed. Retry this request."),
                           errorKind=type(error).__name__)
             state = "failed"
-        with self.connection() as db:
-            db.execute("UPDATE jobs SET state=?,result=? WHERE id=?", (state, json.dumps(result, ensure_ascii=False), ident))
-        with self.lock:
-            self.active.discard(ident)
+        try:
+            with self.connection() as db:
+                db.execute("UPDATE jobs SET state=?,result=? WHERE id=?", (state, json.dumps(result, ensure_ascii=False), ident))
+        except sqlite3.Error:
+            logging.warning("resolution_storage_unavailable")
+        finally:
+            with self.lock:
+                self.active.discard(ident)
+        if isinstance(self.resolver, OrderingResolver):
+            logging.info("order_complete order_id=%s status=%s elapsed_ms=%d", ident, state, (monotonic() - started) * 1000)
+
+    def purge_owner(self, owner):
+        # Serializes with submit. The deletion receipt blocks new jobs before we start.
+        with self.lock, self.connection() as db:
+            db.execute("PRAGMA secure_delete = ON")
+            rows = db.execute("SELECT id, result FROM jobs WHERE owner=?", (owner,)).fetchall()
+            if any(ident in self.active for ident, _ in rows):
+                return False
+            if isinstance(self.resolver, OrderingResolver) and self.resolver.snapshot_directory:
+                for ident, _ in rows:
+                    (self.resolver.snapshot_directory / (ident + ".json")).unlink(missing_ok=True)
+            if isinstance(self.resolver, Resolver):
+                directory = self.resolver.directory / owner
+                if directory.exists():
+                    shutil.rmtree(directory)
+                # Before owner directories existed, results recorded the exact source snapshots they referenced.
+                for _, raw in rows:
+                    for record in (json.loads(raw) if raw else {}).get("records", []):
+                        for field in ("snapshotID", "previousSnapshotID"):
+                            snapshot = record.get(field, "")
+                            if re.fullmatch(r"[a-f0-9]{64}", snapshot):
+                                (self.resolver.directory / (snapshot + ".json")).unlink(missing_ok=True)
+            db.execute("DELETE FROM jobs WHERE owner=?", (owner,))
+            return True
 
     def get(self, ident, owner="legacy"):
         with self.connection() as db:
             row = db.execute("SELECT state,result FROM jobs WHERE id=? AND owner=?", (ident, owner)).fetchone()
         if not row:
             raise KeyError(ident)
-        return dict(id=ident, status=row[0], result=json.loads(row[1]) if row[1] else None)
+        result = json.loads(row[1]) if row[1] else None
+        response = dict(id=ident, status=row[0], result=result)
+        if isinstance(self.resolver, OrderingResolver) and isinstance(result, dict) and "comparisonResults" in result:
+            response["comparisonResults"] = result.pop("comparisonResults")
+        return response
 
 
 class UpstreamResponseError(Exception):
@@ -244,6 +289,11 @@ class Handler(BaseHTTPRequestHandler):
         if os.environ.get("POCKET_AUTH_MODE", "legacy") == "legacy":
             expected = os.environ.get("POCKET_READ_TOKEN", "")
             return "legacy" if expected and hmac.compare_digest(authorization.encode(), ("Bearer " + expected).encode()) else None
+        user = Handler.authenticated_user(authorization)
+        return str(uuid.UUID(user["id"])) if user else None
+
+    @staticmethod
+    def authenticated_user(authorization):
         if not authorization.startswith("Bearer ") or not authorization[7:] or len(authorization) > 8192:
             return None
         base = os.environ.get("SUPABASE_URL", "").rstrip("/")
@@ -255,7 +305,9 @@ class Handler(BaseHTTPRequestHandler):
                                  "apikey": os.environ.get("SUPABASE_CLIENT_KEY", "")}, timeout=8, follow_redirects=False)
             if response.status_code >= 500 or response.status_code == 429: raise AuthenticationUnavailable()
             if response.status_code != 200: return None
-            return str(uuid.UUID(response.json()["id"]))
+            user = response.json()
+            uuid.UUID(user["id"])
+            return user
         except httpx.HTTPError as error:
             raise AuthenticationUnavailable() from error
         except (ValueError, KeyError, TypeError):
@@ -308,7 +360,35 @@ class Handler(BaseHTTPRequestHandler):
                     requestedModel="cx/gpt-6-luna(max)", reportedModel=model,
                     **(dict(reportedReasoningEffort="max", providerProtocol="responses") if model == "gpt-6-luna" else {}))
 
+    def read_json(self, limit):
+        if self.headers.get("Transfer-Encoding") or self.headers.get_content_type() != "application/json":
+            raise ValueError("JSON body required")
+        count = int(self.headers.get("Content-Length", "0"))
+        if not 0 < count <= limit:
+            raise ValueError("Invalid body size")
+        return json.loads(self.rfile.read(count))
+
+    def delete_account(self):
+        deletions = getattr(self.server, "account_deletions", None)
+        if not deletions:
+            self.reply(503, dict(code="DELETION_UNAVAILABLE"))
+            return
+        try:
+            body = self.read_json(4096)
+            state = deletions.submit(body, lambda: self.authenticated_user(self.headers.get("Authorization", "")))
+        except DeletionRejection as error:
+            self.reply(error.status, dict(code=error.code))
+        except (AuthenticationUnavailable, OSError, sqlite3.Error, httpx.HTTPError):
+            self.reply(503, dict(code="DELETION_UNAVAILABLE"))
+        except (KeyError, ValueError, TypeError, AttributeError):
+            self.reply(422, dict(code="INVALID_DELETION_REQUEST"))
+        else:
+            self.reply(200 if state == "deleted" else 202, dict(status=state))
+
     def do_POST(self):
+        if self.path == "/v1/account/deletion":
+            self.delete_account()
+            return
         try: owner = self.authorized()
         except AuthenticationUnavailable:
             self.reply(503, dict(error="Authentication service unavailable")); return
@@ -316,12 +396,7 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(401, dict(error="Unauthorized"))
             return
         try:
-            if self.headers.get("Transfer-Encoding") or self.headers.get_content_type() != "application/json":
-                raise ValueError("JSON body required")
-            count = int(self.headers.get("Content-Length", "0"))
-            if not 0 < count <= 200_000:
-                raise ValueError("Invalid body size")
-            body = json.loads(self.rfile.read(count))
+            body = self.read_json(200_000)
             if self.path == "/v1/hours/lookup":
                 if not isinstance(body, dict) or set(body) != {"placeId"}:
                     raise ValueError("Invalid hours lookup")
@@ -336,6 +411,8 @@ class Handler(BaseHTTPRequestHandler):
                     self.reply(200, self.select_schedule(body))
             else:
                 self.reply(404, dict(error="Unknown endpoint"))
+        except DeletionRejection as error:
+            self.reply(error.status, dict(code=error.code))
         except UpstreamResponseError:
             self.reply(502, dict(error="Invalid Luna response; no replacement result was used"))
         except KeyError:
@@ -374,10 +451,22 @@ def main():
     server.jobs = Jobs(args.data_dir, resolver)
     order_model = Resolver(args.data_dir / "order-sources", lambda payload: request_luna(luna, payload, attempts=1))
     server.order_jobs = Jobs(args.data_dir / "ordering", OrderingResolver(order_model.model, snapshot_directory=args.data_dir / "ordering-snapshots"), retry_failed=False)
+    service_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+    if mode == "authenticated" and service_key:
+        providers = AccountDeletionProviders(os.environ["SUPABASE_URL"].rstrip("/"), service_key)
+        stores = (server.jobs, server.order_jobs)
+        deletions = AccountDeletions(args.data_dir / "account-deletions.sqlite", providers, stores)
+        server.account_deletions = deletions
+        for jobs in stores:
+            jobs.blocks_owner = deletions.blocks_jobs
+        threading.Thread(target=deletions.run, daemon=True).start()
     logging.info("Visit resolution server ready port=%d", server.server_port)
     try:
         server.serve_forever()
     finally:
+        if getattr(server, "account_deletions", None):
+            server.account_deletions.stop.set()
+            server.account_deletions.wake.set()
         server.server_close()
 
 

@@ -5,12 +5,28 @@ import CryptoKit
 #endif
 import C67Domain
 
+public struct AccountDeletionConfiguration: Sendable {
+    let baseURL: URL
+    let removeLocalData: @Sendable (UUID) async throws -> Void
+
+    public init?(baseURL: URL?, removeLocalData: @escaping @Sendable (UUID) async throws -> Void) {
+        guard let baseURL, baseURL.scheme == "https", baseURL.host != nil,
+              baseURL.user == nil, baseURL.password == nil, baseURL.query == nil, baseURL.fragment == nil,
+              baseURL.path.isEmpty || baseURL.path == "/" else { return nil }
+        self.baseURL = baseURL
+        self.removeLocalData = removeLocalData
+    }
+}
+
 /// One actor owns native Apple/email session transitions, refresh rotation and PKCE email commands.
 public actor SupabaseAuthentication: TravellerAuthentication {
     public static let callbackURL = URL(string: "c67://auth/callback")!
     private let connection: SupabaseConnection
     private let store: any SessionStore
     private let flowStore: (any SessionStore)?
+    private let accountDeletion: AccountDeletionConfiguration?
+    private var accountDeleted = false
+    public nonisolated var supportsAccountDeletion: Bool { accountDeletion != nil }
     private let now: @Sendable () -> Date
     private var record: SessionRecord?
     private var pending: EmailFlow?
@@ -21,9 +37,9 @@ public actor SupabaseAuthentication: TravellerAuthentication {
     private var observers: [UUID: AsyncStream<AuthenticationSnapshot>.Continuation] = [:]
 
     public init(baseURL: URL, clientKey: String, store: any SessionStore, flowStore: (any SessionStore)? = nil,
-                session: URLSession = .shared, now: @escaping @Sendable () -> Date = { Date() }) throws {
+                session: URLSession = .shared, accountDeletion: AccountDeletionConfiguration? = nil, now: @escaping @Sendable () -> Date = { Date() }) throws {
         connection = try .init(baseURL: baseURL, clientKey: clientKey, session: session)
-        self.store = store; self.flowStore = flowStore; self.now = now
+        self.store = store; self.flowStore = flowStore; self.now = now; self.accountDeletion = accountDeletion
     }
 
     public func sessionChanges() -> AsyncStream<AuthenticationSnapshot> {
@@ -37,14 +53,23 @@ public actor SupabaseAuthentication: TravellerAuthentication {
     private func removeObserver(_ id: UUID) { observers[id] = nil }
     private var snapshot: AuthenticationSnapshot {
         .init(account: record?.account, sessionID: generation, requiresPasswordReset: record?.isRecovery == true,
-              isRestored: restored, pendingEmail: pending?.email, pendingRecovery: pending?.kind == .recovery)
+              isRestored: restored, pendingEmail: pending?.email, pendingRecovery: pending?.kind == .recovery,
+              accountDeleted: accountDeleted)
     }
     private func publish() { for observer in observers.values { observer.yield(snapshot) } }
 
-    public func currentAccount() async throws -> TravellerAccount? { try await validSession()?.account }
-    public func refreshSession() async throws -> TravellerAccount? { try await validSession(forceRefresh: true)?.account }
+    public func currentAccount() async throws -> TravellerAccount? { try await account(forceRefresh: false) }
+    public func refreshSession() async throws -> TravellerAccount? { try await account(forceRefresh: true) }
+    private func account(forceRefresh: Bool) async throws -> TravellerAccount? {
+        try restore()
+        if let record, record.deletionRequestID != nil { return record.account }
+        return try await validSession(forceRefresh: forceRefresh)?.account
+    }
     public func accessToken() async throws -> String? {
+        try restore()
+        guard record?.deletionRequestID == nil else { throw AuthenticationError.operationInProgress }
         let session = try await validSession()
+        guard record?.deletionRequestID == nil else { throw AuthenticationError.operationInProgress }
         guard session?.isRecovery != true else { throw AuthenticationError.passwordResetRequired }
         return session?.accessToken
     }
@@ -98,7 +123,7 @@ public actor SupabaseAuthentication: TravellerAuthentication {
 
     public func invalidateAppleSession(userID: String) async throws {
         try restore()
-        guard record?.appleUserID == userID else { return }
+        guard record?.appleUserID == userID, record?.deletionRequestID == nil else { return }
         try await signOut()
     }
 
@@ -195,16 +220,21 @@ public actor SupabaseAuthentication: TravellerAuthentication {
                           refreshToken: current.refreshToken, expiresAt: current.expiresAt, recovery: false))
     }
 
-    public func cancelEmailFlow() throws { _ = try clearSession(clearFlow: true) }
+    public func cancelEmailFlow() throws {
+        try restore()
+        guard record?.deletionRequestID == nil else { throw AuthenticationError.operationInProgress }
+        _ = try clearSession(clearFlow: true)
+    }
 
     public func invalidateSession(rejectedToken: String) throws {
         try restore()
-        guard record?.accessToken == rejectedToken else { return }
+        guard record?.accessToken == rejectedToken, record?.deletionRequestID == nil else { return }
         _ = try clearSession(clearFlow: false)
     }
 
     public func signOut() async throws {
         try? restore()
+        guard record?.deletionRequestID == nil else { throw AuthenticationError.operationInProgress }
         let token = record?.accessToken
         _ = try clearSession(clearFlow: true)
         guard let token else { return }
@@ -212,6 +242,118 @@ public actor SupabaseAuthentication: TravellerAuthentication {
             _ = try await send("logout", body: Empty(), token: token,
                                query: [.init(name: "scope", value: "local")])
         } catch { throw AuthenticationError.remoteSignOutFailed }
+    }
+
+    public func hasPendingAccountDeletion() async throws -> Bool {
+        try restore()
+        return record?.deletionRequestID != nil
+    }
+
+    public func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult {
+        guard let accountDeletion else { throw AccountDeletionError.unavailable }
+        try beginAction(allowPendingDeletion: true)
+        defer { busy = false }
+        guard var current = record, current.account.id == expectedAccountID, !current.isRecovery else {
+            throw AuthenticationError.sessionExpired
+        }
+        if current.deletionRequestID == nil {
+            guard let session = try await validSession(allowBusy: true), session.account.id == expectedAccountID else {
+                throw AuthenticationError.sessionExpired
+            }
+            current = session
+            current.deletionRequestID = UUID()
+            try persist(current)
+            record = current
+        }
+        guard let requestID = current.deletionRequestID else { throw AccountDeletionError.unconfirmed }
+        let operation = generation
+        let result: AccountDeletionResult
+        do {
+            result = try await submitDeletion(accountDeletion, requestID: requestID, token: current.accessToken,
+                                              appleAuthorizationCode: appleAuthorizationCode)
+        } catch AccountDeletionError.unauthorized {
+            guard current.deletionAccepted != true else { throw AccountDeletionError.unconfirmed }
+            // A known receipt works without a live session. Only an unaccepted request needs a fresh token.
+            guard let renewed = try await validSession(forceRefresh: true, allowBusy: true),
+                  renewed.account.id == expectedAccountID else { throw AuthenticationError.sessionExpired }
+            do {
+                result = try await submitDeletion(accountDeletion, requestID: requestID, token: renewed.accessToken,
+                                                  appleAuthorizationCode: appleAuthorizationCode)
+            } catch {
+                try handleDeletionRejection(error, operation: operation)
+                throw error
+            }
+        } catch {
+            try handleDeletionRejection(error, operation: operation)
+            throw error
+        }
+        try check(operation)
+        if case .pending = result, var pending = record, pending.deletionAccepted != true {
+            pending.deletionAccepted = true
+            try persist(pending)
+            record = pending
+        }
+        if case .deleted = result {
+            do {
+                try await accountDeletion.removeLocalData(expectedAccountID)
+                try check(operation)
+                try saveFlow(nil)
+                try persist(nil)
+            } catch is CancellationError { throw CancellationError() }
+            catch { throw AccountDeletionError.localCleanupFailed }
+            accountDeleted = true
+            _ = clearSessionInMemory()
+        }
+        return result
+    }
+
+    private func handleDeletionRejection(_ error: any Error, operation: UUID) throws {
+        try check(operation)
+        guard let failure = error as? AccountDeletionError, var value = record, value.deletionAccepted != true else { return }
+        switch failure {
+        case .appleVerificationRequired, .appleAccountMismatch, .alreadyRequested, .unavailable, .unauthorized:
+            value.deletionRequestID = nil
+            try persist(value)
+            record = value
+        default: break
+        }
+    }
+
+    private func submitDeletion(_ configuration: AccountDeletionConfiguration, requestID: UUID, token: String,
+                                appleAuthorizationCode: String?) async throws -> AccountDeletionResult {
+        var request = URLRequest(url: configuration.baseURL.appendingPathComponent("v1/account/deletion"))
+        request.httpMethod = "POST"
+        request.timeoutInterval = 45
+        request.httpShouldHandleCookies = false
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        request.httpBody = try JSONEncoder().encode(DeletionRequest(requestID: requestID, appleAuthorizationCode: appleAuthorizationCode))
+        let data: Data
+        let response: URLResponse
+        do { (data, response) = try await connection.session.data(for: request, delegate: DeletionRedirectGuard()) }
+        catch {
+            try Task.checkCancellation()
+            throw AccountDeletionError.unconfirmed
+        }
+        guard let http = response as? HTTPURLResponse else { throw AccountDeletionError.unconfirmed }
+        let reply = try? JSONDecoder().decode(DeletionReply.self, from: data)
+        switch (http.statusCode, reply?.status, reply?.code) {
+        case (200, "deleted", nil): return .deleted
+        case (202, "pending", nil): return .pending
+        case (401, nil, "AUTHENTICATION_REQUIRED"): throw AccountDeletionError.unauthorized
+        case (409, nil, "APPLE_VERIFICATION_REQUIRED"): throw AccountDeletionError.appleVerificationRequired
+        case (409, nil, "APPLE_ACCOUNT_MISMATCH"): throw AccountDeletionError.appleAccountMismatch
+        case (409, nil, "DELETION_IN_PROGRESS"): throw AccountDeletionError.alreadyRequested
+        case (404, _, _), (503, nil, "DELETION_UNAVAILABLE"): throw AccountDeletionError.unavailable
+        default: throw AccountDeletionError.unconfirmed
+        }
+    }
+
+    private struct DeletionRequest: Encodable { let requestID: UUID; let appleAuthorizationCode: String? }
+    private struct DeletionReply: Decodable { let status: String?; let code: String? }
+    private final class DeletionRedirectGuard: NSObject, URLSessionTaskDelegate, Sendable {
+        func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
+                        newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
     }
 
     private func validSession(forceRefresh: Bool = false, allowBusy: Bool = false) async throws -> SessionRecord? {
@@ -239,6 +381,8 @@ public actor SupabaseAuthentication: TravellerAuthentication {
             guard generation == operation else { throw CancellationError() }
             guard value.account.id == current.account.id else { throw AuthenticationError.invalidResponse }
             value.appleUserID = current.appleUserID
+            value.deletionRequestID = record?.deletionRequestID
+            value.deletionAccepted = record?.deletionAccepted
             try persist(value)
             record = value
             publish()
@@ -253,21 +397,28 @@ public actor SupabaseAuthentication: TravellerAuthentication {
         try Task.checkCancellation()
         guard generation == operation else { throw CancellationError() }
     }
-    private func beginAction() throws {
-        guard !busy else { throw AuthenticationError.operationInProgress }
+    private func beginAction(allowPendingDeletion: Bool = false) throws {
+        try restore()
+        guard !busy, allowPendingDeletion || record?.deletionRequestID == nil else { throw AuthenticationError.operationInProgress }
         busy = true
     }
     @discardableResult private func clearSession(clearFlow: Bool) throws -> UUID {
+        accountDeleted = false
+        let operation = clearSessionInMemory()
+        try persist(nil)
+        if clearFlow { try saveFlow(nil) }
+        return operation
+    }
+    private func clearSessionInMemory() -> UUID {
         generation = UUID()
         refresh?.task.cancel(); refresh = nil
         record = nil; restored = true
         publish()
-        try persist(nil)
-        if clearFlow { try saveFlow(nil) }
         return generation
     }
     private func install(_ value: SessionRecord) throws {
         try persist(value)
+        accountDeleted = false
         record = value; restored = true; generation = UUID()
         publish()
     }
@@ -379,6 +530,8 @@ public actor SupabaseAuthentication: TravellerAuthentication {
         let expiresAt: Date
         let recovery: Bool?
         var appleUserID: String? = nil
+        var deletionRequestID: UUID? = nil
+        var deletionAccepted: Bool? = nil
         var isRecovery: Bool { recovery == true }
     }
     private enum EmailKind: String, Codable { case signup, recovery }

@@ -13,6 +13,9 @@ import C67Domain
         #expect(reading.temperature.value == 29)
         #expect(reading.condition == "Rain")
         #expect(reading.source == "Open-Meteo")
+        #expect(throws: DepartureWeatherLoader.ForecastFailure.noForecastForDeparture) {
+            try DepartureWeatherLoader.decodeOpenMeteo(data, departure: Date(timeIntervalSince1970: 12_000))
+        }
         #expect(throws: (any Error).self) {
             try DepartureWeatherLoader.decodeOpenMeteo(data, departure: Date(timeIntervalSince1970: 11000))
         }
@@ -152,6 +155,213 @@ import C67Domain
         await model.planning.load()
         #expect(model.planning.job == nil)
         #expect(model.planning.places.isEmpty)
+    }
+
+    @Test func failedTripRefreshPreservesPreviouslyLoadedTrips() async throws {
+        let repository = TripFlowRepositoryStub()
+        let model = try make(repository: repository)
+        await model.planning.request()
+        await model.planning.apply()
+        let before = model.planning.trips
+        #expect(!before.isEmpty)
+        await repository.setTripsError(.unavailable)
+        await model.planning.load()
+        #expect(model.planning.trips == before)
+        #expect(model.planning.tripListError == PlanningError.unavailable.localizedDescription)
+        await repository.setTripsError(nil)
+        await model.planning.load()
+        #expect(model.planning.tripListError == nil)
+        #expect(model.planning.trips == before)
+    }
+
+    @Test func failedAutomaticArrivalWaitsForManualRetryAndKeepsIdentity() async throws {
+        let repository = TripFlowRepositoryStub()
+        let model = try make(repository: repository)
+        await model.planning.request()
+        await model.planning.apply()
+        let planned = try #require(model.planning.trips.first)
+        await model.planning.event(.start, trip: planned)
+        let active = try #require(model.planning.trips.first)
+        await repository.setEventError(.unavailable)
+        #expect(model.planning.claimAutomaticArrival(for: active))
+        await model.planning.event(.arrive, trip: active)
+        #expect(!model.planning.claimAutomaticArrival(for: active))
+        #expect(!model.planning.claimAutomaticArrival(for: active))
+        await model.planning.event(.arrive, trip: active)
+        let arrivals = await repository.recordedEvents.filter { $0.kind == .arrive }
+        #expect(arrivals.count == 2)
+        #expect(arrivals[0].requestID == arrivals[1].requestID)
+    }
+
+    @Test func reviewRetryRepeatsRouteWithoutRequestingOrApplyingAPlan() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await planning.request()
+        let original = try #require(planning.job)
+        await repo.setRouteError(.unavailable)
+        await planning.updateExperienceRoute()
+        #expect(planning.reviewIssue?.operation == .changeRoute(order: nil, departure: nil))
+        #expect(planning.job == original)
+        await repo.setTripsError(.unavailable)
+        await planning.load(resumesJobs: false)
+        #expect(planning.reviewIssue?.operation == .changeRoute(order: nil, departure: nil))
+        #expect(planning.issues[.tripList]?.operation == .loadTrips)
+        await repo.setRouteError(nil)
+        await planning.retryReviewIssue()
+        #expect(await repo.routeJobIDs == [original.id, original.id])
+        #expect(await repo.requests.count == 1)
+        #expect(await repo.applyCalls == 0)
+        #expect(planning.reviewIssue == nil)
+        #expect(planning.tripListError != nil)
+    }
+
+    @Test func rejectedStopOrderKeepsThePreviousItineraryAndExplainsTheConflict() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await planning.request()
+        let original = try #require(planning.job)
+        let stops = try #require(original.result?.proposal?.stops)
+        let reversed = stops.reversed().map(\.id)
+        #expect(reversed != stops.map(\.id))
+
+        await repo.setRouteError(.failed("V41_ACCESS_CONFLICT"))
+        await planning.updateExperienceRoute(orderedIDs: reversed)
+
+        #expect(planning.job == original)
+        #expect(planning.reviewIssue?.operation == .changeRoute(order: reversed, departure: nil))
+        #expect(planning.reviewIssue?.message.contains("opening hours") == true)
+        #expect(await repo.routeJobIDs == [original.id])
+        #expect(await repo.requests.count == 1)
+        #expect(await repo.applyCalls == 0)
+    }
+
+    @Test func timedReviewRejectsAnOrderThatFinishesAfterTheDeadline() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        let origin = try #require(planning.origin)
+        planning.places = [
+            PlanningPlace(id: UUID(), name: "Nearby", location: .init(latitude: origin.latitude + 0.001, longitude: origin.longitude), visitSeconds: 1800),
+            PlanningPlace(id: UUID(), name: "Farther away", location: .init(latitude: origin.latitude + 0.008, longitude: origin.longitude), visitSeconds: 1800),
+        ]
+        await planning.request()
+        let finish = try #require(planning.job?.result?.proposal?.finishesAt)
+        planning.finishBy = finish.addingTimeInterval(1)
+        planning.draftChanged()
+        await planning.request()
+        let previous = try #require(planning.job)
+        try #require(previous.result?.proposal?.feasible == true)
+        let reversed = Array(planning.places.reversed())
+
+        await planning.updateTimedReviewOrder(reversed)
+
+        #expect(planning.job == previous)
+        #expect(planning.draftInput == previous.input)
+        #expect(planning.reviewIssue?.operation == .changeRoute(order: reversed.map(\.id), departure: nil))
+        #expect(planning.reviewIssue?.recovery == nil)
+    }
+
+    @Test func statusRecoveryReadsTheSameJobWithoutASecondPlanningRequest() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await repo.setInterruptsStatusRead(true)
+        await planning.request()
+        let id = try #require(planning.job?.id)
+        #expect(planning.creationIssue?.certainty == .unconfirmed)
+        #expect(planning.creationIssue?.recovery == .checkStatus)
+        await repo.setInterruptsStatusRead(false)
+        await planning.checkStatus()
+        #expect(await repo.statusReadIDs == [id, id])
+        #expect(await repo.requests.count == 1)
+        #expect(planning.job?.status == .succeeded)
+        #expect(planning.creationIssue == nil)
+    }
+
+    @Test func mainSpotLoadFailureRetriesUnconfirmedRequestWithTheSameInput() async throws {
+        let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true)
+        let model = try make(repository: repo)
+        model.finishChoosingPlaces()
+        let selected = model.selected.map(\.id)
+        model.selectMainSpot(.place(try #require(selected.first)))
+
+        await repo.configure(failing: true)
+        await model.finishMainSpot()
+        #expect(model.route == .mainSpot)
+        #expect(model.connectionNotice == .loadFailed)
+        #expect(!model.checksExistingRequest)
+        #expect(model.selected.map(\.id) == selected)
+
+        await model.plan()
+        let requests = await repo.requests
+        #expect(requests.count == 2)
+        #expect(requests.first == requests.last)
+        #expect(requests.first?.input.enginePreferences?.mainSpotID == selected.first)
+    }
+
+    @Test func requestRecoveryPreservesUnconfirmedIdentityUntilFinalFailure() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await repo.configure(failing: true)
+        await planning.request()
+        planning.draftChanged()
+        await planning.request()
+        let requests = await repo.requests
+        #expect(requests.count == 2)
+        #expect(requests.first?.requestID == requests.last?.requestID)
+        planning.title = "Changed trip"
+        planning.draftChanged()
+        await planning.request()
+        #expect(await repo.requests.last?.requestID != requests.last?.requestID)
+
+        await repo.configure(failing: false)
+        await planning.request()
+        await repo.setApplyError(.unavailable)
+        await planning.apply()
+        await repo.setApplyError(.invalidResponse)
+        await planning.retryReviewIssue()
+        #expect(planning.reviewIssue?.certainty == .unconfirmed)
+        await repo.setApplyError(.rateLimited)
+        await planning.retryReviewIssue()
+        #expect(planning.reviewIssue?.recovery == .wait)
+        await repo.setApplyError(nil)
+        await planning.retryReviewIssue()
+        let applyIDs = await repo.appliedRequestIDs
+        #expect(applyIDs.count == 4)
+        #expect(Set(applyIDs.prefix(3)).count == 1)
+        #expect(applyIDs.first != applyIDs.last)
+        #expect(planning.trips.count == 1)
+    }
+
+    @Test func deleteFailureIsScopedToTheSavedTripAndPreservesItsSnapshot() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await planning.request()
+        await planning.apply()
+        let trip = try #require(planning.trips.first)
+        await repo.setDeleteError(.unavailable)
+        #expect(await planning.deleteTrip(trip) == false)
+        #expect(planning.trips == [trip])
+        #expect(planning.issues[.savedTrip(trip.id)]?.operation == .delete)
+        #expect(planning.tripListError == nil)
+        #expect(planning.reviewIssue == nil)
+        await repo.setDeleteError(nil)
+        #expect(await planning.deleteTrip(trip))
+        #expect(planning.trips.isEmpty)
+        #expect(planning.issues[.savedTrip(trip.id)] == nil)
+    }
+
+    @Test func openingHoursRetryPerformsOnlyTheRequestedPlaceLookup() async throws {
+        let repo = TripFlowRepositoryStub()
+        let planning = try make(repository: repo).planning
+        await planning.request()
+        let original = try #require(planning.job)
+        await repo.setHours(.init(status: "temporary_error"))
+        #expect(await planning.openingHours(placeID: "I1A").status == "temporary_error")
+        await repo.setHours(.init(status: "unavailable"))
+        #expect(await planning.openingHours(placeID: "I1A").status == "unavailable")
+        #expect(await repo.lookedUpHoursIDs == ["I1A", "I1A"])
+        #expect(await repo.requests.count == 1)
+        #expect(await repo.applyCalls == 0)
+        #expect(planning.job == original)
     }
 
     @Test func mainSpotDurationDoesNotPinFirstStop() async throws {

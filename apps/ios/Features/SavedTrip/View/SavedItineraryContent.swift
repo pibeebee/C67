@@ -7,6 +7,7 @@ struct SavedItineraryContent: View {
     var isDesignPreview = false
     var isBusy = false
     var error: String?
+    var retry: (() -> Void)?
     var refreshRoute: (() -> Void)?
     let primary: () -> Void
 
@@ -23,7 +24,7 @@ struct SavedItineraryContent: View {
         ItineraryListView(proposal: trip.plan, details: details, isDesignPreview: isDesignPreview,
                           isSaving: isBusy, error: error, canSave: trip.status != .unknown,
                           heading: trip.title, actionTitle: actionTitle, allowsEditing: false, navigationTitle: trip.title,
-                          refreshRoute: refreshRoute, edit: { _ in }, save: primary)
+                          retry: retry, refreshRoute: refreshRoute, edit: { _ in }, save: primary)
             .navigationTitle(trip.title)
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 if trip.status == .completed {

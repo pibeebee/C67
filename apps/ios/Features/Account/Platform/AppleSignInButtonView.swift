@@ -3,15 +3,16 @@ import AuthenticationServices
 import C67Domain
 
 struct AppleSignInButtonView: View {
+    var verifyingDeletion = false
     let onCompletion: (Result<AppleSignInCredentials, AuthenticationError>) -> Void
     @Environment(\.colorScheme) private var colorScheme
     @State private var attempt: AppleSignInAttempt?
 
     var body: some View {
-        SignInWithAppleButton(.signIn) { request in
+        SignInWithAppleButton(verifyingDeletion ? .continue : .signIn) { request in
             let next = AppleSignInAttempt()
             attempt = next
-            request.requestedScopes = [.email]
+            request.requestedScopes = verifyingDeletion ? [] : [.email]
             request.nonce = next.hashedNonce
             request.state = next.state
         } onCompletion: { result in
@@ -26,7 +27,8 @@ struct AppleSignInButtonView: View {
                 do {
                     onCompletion(.success(try current.credentials(userID: credential.user,
                                                                   identityToken: credential.identityToken,
-                                                                  returnedState: credential.state)))
+                                                                  returnedState: credential.state,
+                                                                  authorizationCode: verifyingDeletion ? credential.authorizationCode : nil)))
                 } catch { onCompletion(.failure(.invalidAppleCredential)) }
             case .failure(let error):
                 if (error as? ASAuthorizationError)?.code != .canceled {

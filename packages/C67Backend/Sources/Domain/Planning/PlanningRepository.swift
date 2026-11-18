@@ -8,6 +8,7 @@ public protocol PlanningRepository: Sendable {
     func updateEngineConnection(serverURL: String, token: String) async throws
     func requestPlan(_ request: PlanningRequest) async throws -> PlanningJob
     func planningJob(id: UUID) async throws -> PlanningJob
+    func checkPlanningJob(id: UUID) async throws -> PlanningJob
     func resumePlanning() async throws -> PlanningJob?
     func applyProposal(jobID: UUID, expectedRevision: Int?, requestID: UUID) async throws -> PersonalPlanningTrip
     func personalTrips() async throws -> [PersonalPlanningTrip]
@@ -20,6 +21,7 @@ public protocol PlanningRepository: Sendable {
 }
 
 public extension PlanningRepository {
+    func checkPlanningJob(id: UUID) async throws -> PlanningJob { try await planningJob(id: id) }
     func openingHours(placeID _: String) async -> PlanningHoursLookup { .init(status: "unavailable") }
     var supportsOnDevicePlanning: Bool { false }
     var supportsTripDeletion: Bool { false }

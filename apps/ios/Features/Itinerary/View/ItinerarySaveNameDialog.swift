@@ -17,7 +17,11 @@ struct ItinerarySaveNameDialog: ViewModifier {
                 .disabled(trimmedName.isEmpty || trimmedName.count > 120)
             Button("Cancel", role: .cancel) { }
         } message: {
-            if regeneratesOnRename {
+            if trimmedName.isEmpty {
+                Text("Enter a trip name to save.")
+            } else if trimmedName.count > 120 {
+                Text("Shorten the trip name to 120 characters or fewer.")
+            } else if regeneratesOnRename {
                 Text("Name your itinerary to save it. If you change the name, a new proposal is prepared for you to review before saving.")
             } else {
                 Text("Name your itinerary to save it. Changing the name keeps this recommendation.")

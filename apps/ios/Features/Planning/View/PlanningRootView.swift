@@ -71,7 +71,12 @@ struct PlanningRootView: View {
     private var journeyTrips: some View {
         List {
             Section { Text(mode).font(.caption).foregroundStyle(.secondary) }
-            if let error = presenter.error { Text(error).foregroundStyle(.red) }
+            if let error = presenter.tripListError {
+                RecoveryNotice(title: "Couldn’t load trips", message: error,
+                               primary: presenter.privateAccessBlocked
+                                   ? .init(title: "Sign in") { showsAccount = true }
+                                   : .init(title: "Try again") { Task { await presenter.load(resumesJobs: false) } })
+            }
             ForEach(presenter.trips) { trip in
                 NavigationLink {
                     ActivePlanningTripView(tripID: trip.id, presenter: presenter)
@@ -83,10 +88,10 @@ struct PlanningRootView: View {
                     }
                 }
             }
-            if presenter.trips.isEmpty {
+            if presenter.trips.isEmpty, presenter.tripListError == nil {
                 ContentUnavailableView("No personal trips", systemImage: "map", description: Text("Choose places, review a proposal, and save your trip."))
             }
-        }.refreshable { await presenter.load() }
+        }.refreshable { await presenter.load(resumesJobs: false) }
     }
 }
 
@@ -240,7 +245,7 @@ struct PlanningEditorView: View {
     }
 
     private func currentRecommendations() -> PlanningResult? {
-        guard !Task.isCancelled, !presenter.privateAccessBlocked, presenter.error == nil,
+        guard !Task.isCancelled, !presenter.privateAccessBlocked, presenter.creationIssue == nil,
               let job = presenter.job, job.purpose == .suggest, job.status == .succeeded,
               job.input == presenter.draftInput else { return nil }
         return job.result
@@ -312,7 +317,11 @@ struct PlanningSearchSheet: View {
         NavigationStack {
             List {
                 if search.isBusy { ProgressView("Searching places…") }
-                if let error = search.error { Text(error) }
+                if let error = search.error {
+                    RecoveryNotice(title: "Search unavailable", message: error,
+                                   primary: .init(title: "Try again") { Task { await search.search(near: near) } })
+                }
+                if search.showsPreviousResults { Text("Previous search results").font(.footnote).foregroundStyle(.secondary) }
                 ForEach(search.results) { place in
                     Button { select(place); dismiss() } label: {
                         VStack(alignment: .leading) {
@@ -325,7 +334,12 @@ struct PlanningSearchSheet: View {
                         }
                     }
                 }
-                if search.results.isEmpty && !search.isBusy { Text("Search for a place or address, then choose the correct result.").foregroundStyle(.secondary) }
+                if search.results.isEmpty && !search.isBusy && search.error == nil {
+                    Text(search.hasSearched && !search.query.isEmpty
+                        ? "No places found. Try another name or address."
+                        : "Search for a place or address, then choose the correct result.")
+                        .foregroundStyle(.secondary)
+                }
             }.navigationTitle(title)
                 .searchable(text: $search.query, prompt: "Place or address")
                 .onSubmit(of: .search) { Task { await search.search(near: near) } }
@@ -349,10 +363,47 @@ private struct PlanningMapSection: View {
 
 private struct PlanningFeedback: View {
     let presenter: PlanningPresenter
+    var tripID: UUID?
     var body: some View {
+        let scope = PresentationIssue.Scope.planning(tripID)
         if let progress = presenter.progress { ProgressView(progress) }
-        if let error = presenter.error { Text(error).foregroundStyle(.red) }
-        if !presenter.isBusy { Button("Refresh planning status") { Task { await presenter.load() } } }
+        if let issue = presenter.issues[scope] {
+            RecoveryNotice(title: "Planning needs attention", message: issue.message,
+                           primary: recovery(issue, scope: scope))
+        }
+        if !presenter.isBusy, presenter.job?.tripID == tripID,
+           presenter.job?.status == .running || presenter.job?.status == .queued,
+           presenter.issues[scope]?.recovery != .checkStatus {
+            Button("Check status") { Task { await presenter.checkStatus(scope: scope) } }
+        }
+    }
+
+    private func recovery(_ issue: PresentationIssue, scope: PresentationIssue.Scope) -> RecoveryNotice.Action? {
+        if issue.recovery == .checkStatus {
+            return .init(title: "Check status") { Task { await presenter.checkStatus(scope: scope) } }
+        }
+        guard issue.recovery != .signIn else { return nil }
+        let trip = presenter.trips.first { $0.id == tripID }
+        switch issue.operation {
+        case .save where issue.recovery == .regenerate, .save where issue.recovery == .refreshTrip:
+            return .init(title: "Request a fresh plan") {
+                Task {
+                    if tripID != nil { await presenter.load(resumesJobs: false) }
+                    if tripID == nil { await presenter.request() }
+                    else if let refreshed = presenter.trips.first(where: { $0.id == tripID }) {
+                        await presenter.request(.replan, trip: refreshed)
+                    }
+                }
+            }
+        case .save:
+            return .init(title: "Retry saving") { Task { await presenter.apply(scope: scope) } }
+        case .plan where issue.recovery == .refreshTrip:
+            return .init(title: "Refresh trip") { Task { await presenter.load(resumesJobs: false) } }
+        case .plan(let purpose):
+            let title: LocalizedStringKey = issue.recovery == .wait ? "Try again later" : "Try again"
+            return .init(title: title) { Task { await presenter.request(purpose, trip: trip) } }
+        default: return nil
+        }
     }
 }
 
@@ -365,8 +416,11 @@ private struct PlanningProposalSections: View {
             Text(proposal.explanation)
             Text("Estimated finish: \(PlanningTime.text(proposal.finishesAt, zone: proposal.input.timeZone))")
             ForEach(proposal.warnings, id: \.self) { Text($0).font(.footnote).foregroundStyle(.secondary) }
-            Button(presenter.job?.tripID == nil ? "Save this trip" : "Apply this proposal") { Task { await presenter.apply() } }
-                .disabled(presenter.isBusy || !proposal.feasible)
+            Button(presenter.job?.tripID == nil ? "Save this trip" : "Apply this proposal") {
+                let scope = PresentationIssue.Scope.planning(presenter.job?.tripID)
+                Task { await presenter.apply(scope: scope) }
+            }
+            .disabled(presenter.isBusy || !proposal.feasible || presenter.needsFreshProposal)
         }
         Section("Suggested order") {
             ForEach(proposal.stops) { stop in PlanningStopRow(stop: stop, zone: proposal.input.timeZone) }
@@ -413,6 +467,7 @@ struct ActivePlanningTripView: View {
     let tripID: UUID
     let presenter: PlanningPresenter
     @State private var location = PlanningLocation()
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         if let trip = presenter.trips.first(where: { $0.id == tripID }) {
             Form {
@@ -420,7 +475,11 @@ struct ActivePlanningTripView: View {
                     Text(trip.status.rawValue.capitalized)
                     if trip.synthetic { Text("Synthetic demonstration · memory only").font(.caption) }
                     Text("\(trip.completedStopIDs.count) of \(trip.plan.stops.count) visits complete")
-                    PlanningFeedback(presenter: presenter)
+                    PlanningFeedback(presenter: presenter, tripID: tripID)
+                    if let issue = presenter.issues[.activity(tripID)] {
+                        RecoveryNotice(title: "Trip update needs attention", message: issue.message,
+                                       primary: tripRecovery(issue, trip: trip))
+                    }
                 }
                 if trip.status == .planned {
                     Section { Button("Start trip") { Task { await presenter.event(.start, trip: trip) } }.disabled(presenter.isBusy) }
@@ -457,7 +516,23 @@ struct ActivePlanningTripView: View {
                 }
             }.navigationTitle(trip.title).refreshable { await presenter.load() }
                 .onChange(of: location.point) { _, point in if let point { presenter.receivedReplanningLocation(point) } }
-        } else { ContentUnavailableView("Trip unavailable", systemImage: "map", description: Text("Refresh My Trips or sign in again.")) }
+        } else {
+            ContentUnavailableView {
+                Label("Trip unavailable", systemImage: "map")
+            } description: {
+                Text("Go back to your trips to refresh the list.")
+            } actions: {
+                Button("Go back") { dismiss() }
+            }
+        }
+    }
+
+    private func tripRecovery(_ issue: PresentationIssue, trip: PersonalPlanningTrip) -> RecoveryNotice.Action? {
+        if issue.recovery == .refreshTrip {
+            return .init(title: "Refresh trip") { Task { await presenter.load(resumesJobs: false) } }
+        }
+        guard issue.recovery == .retry, case .event(let kind, let seconds) = issue.operation else { return nil }
+        return .init(title: "Try again") { Task { await presenter.event(kind, trip: trip, extraSeconds: seconds) } }
     }
 }
 

@@ -9,7 +9,9 @@ struct AppDependencies {
     let mode: String
     let authentication: (any TravellerAuthentication)?
 
-    @MainActor static func make() throws -> AppDependencies {
+    @MainActor static func make(removeAccountData: @escaping @Sendable (UUID) async throws -> Void) throws -> AppDependencies {
+        let pocketURL = (Bundle.main.object(forInfoDictionaryKey: "POCKET_SERVER_URL") as? String).flatMap(URL.init(string:))
+        let deletion = AccountDeletionConfiguration(baseURL: pocketURL, removeLocalData: removeAccountData)
         #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--pocket-auth-fixture") {
                 let url = URL(string: "https://fixture.invalid")!
@@ -41,7 +43,9 @@ struct AppDependencies {
                 } else {
                     lateJobTime = nil
                 }
-                let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now })
+                let timesOut = ProcessInfo.processInfo.arguments.contains("--pocket-itinerary-timeout-fixture")
+                let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now },
+                                                                         firstOrderFailure: timesOut ? .timedOut : nil)
                 return .init(repository: try MockRundownRepository(), planningRepository: repository,
                              planningInitialInput: input, mode: "Pocket • synthetic integration fixture", authentication: nil)
             }
@@ -56,7 +60,8 @@ struct AppDependencies {
             }
             let auth = try SupabaseAuthentication(baseURL: url, clientKey: key,
                                                   store: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".pocket-user", baseURL: url),
-                                                  flowStore: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".pocket-user-flow", baseURL: url))
+                                                  flowStore: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".pocket-user-flow", baseURL: url),
+                                                  accountDeletion: deletion)
             return .init(repository: try MockRundownRepository(), planningRepository: MockPlanningRepository(),
                          planningInitialInput: nil, mode: "Pocket • authenticated", authentication: auth)
         case "pocket":
@@ -79,7 +84,8 @@ struct AppDependencies {
             }
             let authentication = try SupabaseAuthentication(baseURL: url, clientKey: key,
                                                             store: KeychainSessionStore(namespace: Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter", baseURL: url),
-                                                            flowStore: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".email-flow", baseURL: url))
+                                                            flowStore: KeychainSessionStore(namespace: (Bundle.main.bundleIdentifier ?? "io.pibeebee.c67.starter") + ".email-flow", baseURL: url),
+                                                            accountDeletion: deletion)
             let planning: any PlanningRepository
             if let raw = Bundle.main.object(forInfoDictionaryKey: "PLANNING_API_URL") as? String,
                let endpoint = URL(string: raw), endpoint.host != nil {

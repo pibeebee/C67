@@ -6,8 +6,10 @@ public enum PlanningOrderingMethod: String, Codable, CaseIterable, Sendable {
     case hybridWeather = "hybrid_weather"
     case hybridV4 = "hybrid_v4"
     case hybridV41 = "hybrid_v4_1"
+    case hybridV42 = "hybrid_v4_2"
 
-    public var isSchedule: Bool { self == .hybridV4 || self == .hybridV41 }
+    public var usesFlexibleSchedule: Bool { self == .hybridV41 || self == .hybridV42 }
+    public var isSchedule: Bool { self == .hybridV4 || usesFlexibleSchedule }
 }
 
 public enum PlanningVisitTiming: String, Codable, Sendable, CaseIterable {

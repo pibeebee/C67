@@ -16,9 +16,9 @@ struct DiscoveryView: View {
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 if presenter.isLoading { ProgressView("Loading rundowns…") }
-                if let error = presenter.error {
-                    Text(error).foregroundStyle(.red)
-                    Button("Retry") { Task { await presenter.load() } }
+                if let error = presenter.loadError {
+                    RecoveryNotice(title: "Couldn’t load rundowns", message: error,
+                                   primary: .init(title: "Try again") { Task { await presenter.load() } })
                 }
                 ForEach(presenter.rundowns) { rundown in
                     NavigationLink(value: DiscoveryRoute.rundown(rundown)) {
@@ -29,7 +29,7 @@ struct DiscoveryView: View {
                         }
                     }
                 }
-                if !presenter.isLoading && presenter.rundowns.isEmpty && presenter.error == nil {
+                if !presenter.isLoading && presenter.rundowns.isEmpty && presenter.loadError == nil {
                     ContentUnavailableView("No rundowns yet", systemImage: "map")
                 }
             }
@@ -98,7 +98,10 @@ private struct RundownDetailView: View {
                     else { Text("Save as my trip") }
                 }
                 .disabled(presenter.isSaving)
-                if let error = presenter.error { Text(error).foregroundStyle(.red) }
+                if let error = presenter.saveError, presenter.failedRundownID == rundown.id {
+                    RecoveryNotice(title: "Trip wasn’t saved", message: error,
+                                   primary: .init(title: "Try again") { Task { await presenter.save(rundown, at: start) } })
+                }
             }
         }
         .navigationTitle(rundown.title)

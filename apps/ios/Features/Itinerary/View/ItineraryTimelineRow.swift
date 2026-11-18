@@ -16,7 +16,11 @@ struct ItineraryTimelineRow: View {
     var orderingOnly = false
     var symbol: String?
     let edit: () -> Void
-    var beginReorder: (() -> NSItemProvider)? = nil
+    var reorderChanged: ((DragGesture.Value) -> Void)?
+    var reorderEnded: ((DragGesture.Value) -> Void)?
+    var reorderCancelled: (() -> Void)?
+    var isLifted = false
+    var isReordering = false
     var moveUp: (() -> Void)? = nil
     var moveDown: (() -> Void)? = nil
 
@@ -45,7 +49,9 @@ struct ItineraryTimelineRow: View {
             VStack(alignment: .leading, spacing: 0) {
                 ItineraryStopCard(stop: stop, zone: zone, details: details, isEditable: isEditable, weatherEvidence: weatherEvidence, edit: edit,
                                   showsEstimatedTimes: orderingOnly, symbol: symbol,
-                                  beginReorder: beginReorder, moveUp: moveUp, moveDown: moveDown)
+                                  reorderChanged: reorderChanged, reorderEnded: reorderEnded, reorderCancelled: reorderCancelled,
+                                  moveUp: moveUp, moveDown: moveDown)
+                    .shadow(color: .black.opacity(isLifted ? 0.25 : 0), radius: 10, y: 5)
                 if let nextStop {
                     Label {
                         if orderingOnly {
@@ -61,6 +67,8 @@ struct ItineraryTimelineRow: View {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 7)
+                    .opacity(isReordering ? 0 : 1)
+                    .accessibilityHidden(isReordering)
                 }
             }
         }

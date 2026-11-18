@@ -54,6 +54,25 @@ final class AccountTests: XCTestCase {
         XCTAssertEqual(presenter.error, AuthenticationError.remoteSignOutFailed.localizedDescription)
     }
 
+    func testPresenterKeepsAccountUntilDeletionFinishes() async {
+        let authentication = FakeAuthentication()
+        let interactor = AccountInteractor(authentication: authentication, appleCredentials: TestAppleChecker(fails: false))
+        let presenter = AccountPresenter(interactor: interactor)
+        await presenter.signInWithApple(.init(identityToken: "synthetic", nonce: "synthetic", userID: "synthetic-user"))
+
+        await presenter.deleteAccount()
+        XCTAssertTrue(presenter.deletionPending)
+        XCTAssertNotNil(presenter.account)
+
+        let reopened = AccountPresenter(interactor: interactor)
+        await reopened.restore()
+        XCTAssertTrue(reopened.deletionPending)
+        await reopened.deleteAccount()
+        XCTAssertFalse(reopened.deletionPending)
+        XCTAssertNil(reopened.account)
+        XCTAssertEqual(reopened.notice, "Your account has been deleted.")
+    }
+
     func testPresenterKeepsAccountOnTemporaryErrorAndClearsExpiredSession() async {
         let authentication = FakeAuthentication()
         let presenter = AccountAssembly.makePresenter(authentication: authentication)
@@ -119,6 +138,19 @@ private actor FakeAuthentication: TravellerAuthentication {
     private var account: TravellerAccount?
     private var restoreError: AuthenticationError?
     private var logoutFails = false
+    private var deletionPending = false
+    nonisolated var supportsAccountDeletion: Bool { true }
+    func hasPendingAccountDeletion() async -> Bool { deletionPending }
+    func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) throws -> AccountDeletionResult {
+        guard account?.id == expectedAccountID else { throw AuthenticationError.sessionExpired }
+        if deletionPending {
+            deletionPending = false
+            account = nil
+            return .deleted
+        }
+        deletionPending = true
+        return .pending
+    }
     private var appleUserID: String?
     func failRestore(_ error: AuthenticationError) { restoreError = error }
     func failLogout() { logoutFails = true }

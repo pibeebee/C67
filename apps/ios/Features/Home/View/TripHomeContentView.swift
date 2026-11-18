@@ -19,7 +19,7 @@ struct TripHomeContentView: View {
                 if presenter.isBusy && presenter.trips.isEmpty && (isHistory || presenter.firstItineraryJob == nil) {
                     ProgressView("Loading trips…")
                         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
-                } else if let error = presenter.error, presenter.firstItineraryJob == nil {
+                } else if let error = presenter.tripListError, presenter.trips.isEmpty, presenter.firstItineraryJob == nil {
                     ContentUnavailableView {
                         Label("Trips couldn’t be loaded", systemImage: "exclamationmark.arrow.trianglehead.2.clockwise.rotate.90")
                     } description: {
@@ -32,7 +32,7 @@ struct TripHomeContentView: View {
                         }
                     }
                     .frame(minHeight: geometry.size.height)
-                } else if trips.isEmpty && (isHistory || presenter.firstItineraryJob == nil) {
+                } else if trips.isEmpty && presenter.tripListError == nil && (isHistory || presenter.firstItineraryJob == nil) {
                     if isHistory {
                         ContentUnavailableView("No trips yet", systemImage: "clock.arrow.circlepath",
                                                description: Text("Your completed trips will appear here."))
@@ -43,9 +43,15 @@ struct TripHomeContentView: View {
                     }
                 } else {
                     LazyVStack(spacing: 12) {
+                        if let error = presenter.tripListError {
+                            RecoveryNotice(title: "Couldn’t refresh trips", message: error,
+                                           primary: presenter.privateAccessBlocked
+                                               ? .init(title: "Sign in", perform: showAccount)
+                                               : .init(title: "Try again", perform: reload))
+                        }
                         if !isHistory, let draft = presenter.firstItineraryJob {
                             Text("Drafts").font(.headline).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 4)
-                            Button { resumeDraft(draft) } label: { TripDraftRow(job: draft) }
+                            Button { resumeDraft(draft) } label: { TripDraftRow(job: draft, statusUnconfirmed: presenter.creationIssue?.recovery == .checkStatus) }
                                 .buttonStyle(.plain)
                                 .disabled(presenter.isBusy)
                                 .accessibilityIdentifier("resumeItineraryDraft")
@@ -87,18 +93,19 @@ struct TripHomeContentView: View {
     }
 
     private func reload() {
-        Task { await presenter.load() }
+        Task { await presenter.load(resumesJobs: false) }
     }
 }
 
 struct TripDraftRow: View {
     let job: PlanningJob
+    var statusUnconfirmed = false
 
     private var status: LocalizedStringKey {
         switch job.status {
-        case .queued, .running: "Preparing itinerary…"
+        case .queued, .running: statusUnconfirmed ? "Check request status" : "Continue planning"
         case .succeeded: "Ready to review"
-        case .failed: "Couldn’t prepare itinerary · Tap to retry"
+        case .failed: "Needs attention"
         case .unknown: "Continue itinerary draft"
         }
     }
@@ -115,8 +122,7 @@ struct TripDraftRow: View {
                 Text("\(job.input.places.count) places").font(.caption).foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            if job.status == .queued || job.status == .running { ProgressView() }
-            else { Image(systemName: "chevron.right").foregroundStyle(AppColor.accent).accessibilityHidden(true) }
+            Image(systemName: "chevron.right").foregroundStyle(AppColor.accent).accessibilityHidden(true)
         }
         .foregroundStyle(.primary).padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)

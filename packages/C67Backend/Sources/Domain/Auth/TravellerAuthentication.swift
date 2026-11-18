@@ -14,11 +14,13 @@ public struct AuthenticationSnapshot: Equatable, Sendable {
     public let isRestored: Bool
     public let pendingEmail: String?
     public let pendingRecovery: Bool
+    public let accountDeleted: Bool
     public init(account: TravellerAccount?, sessionID: UUID, requiresPasswordReset: Bool = false,
-                isRestored: Bool = true, pendingEmail: String? = nil, pendingRecovery: Bool = false) {
+                isRestored: Bool = true, pendingEmail: String? = nil, pendingRecovery: Bool = false, accountDeleted: Bool = false) {
         self.account = account; self.sessionID = sessionID
         self.requiresPasswordReset = requiresPasswordReset; self.isRestored = isRestored
         self.pendingEmail = pendingEmail; self.pendingRecovery = pendingRecovery
+        self.accountDeleted = accountDeleted
     }
 }
 
@@ -27,8 +29,28 @@ public struct AppleSignInCredentials: Sendable {
     public let identityToken: String
     public let nonce: String
     public let userID: String
-    public init(identityToken: String, nonce: String, userID: String) {
+    public let authorizationCode: String?
+    public init(identityToken: String, nonce: String, userID: String, authorizationCode: String? = nil) {
         self.identityToken = identityToken; self.nonce = nonce; self.userID = userID
+        self.authorizationCode = authorizationCode
+    }
+}
+
+public enum AccountDeletionResult: Sendable { case pending, deleted }
+
+public enum AccountDeletionError: LocalizedError, Sendable {
+    case unavailable, unconfirmed, unauthorized, appleVerificationRequired, appleAccountMismatch, alreadyRequested, localCleanupFailed
+
+    public var errorDescription: String? {
+        switch self {
+        case .unavailable: "Account deletion is temporarily unavailable. Try again later."
+        case .unauthorized: "Your session has expired. Sign in again to request account deletion."
+        case .unconfirmed: "We couldn’t confirm the deletion status. Check again when you’re connected."
+        case .appleVerificationRequired: "Verify your Apple account to continue."
+        case .appleAccountMismatch: "Use the Apple account you signed in with."
+        case .alreadyRequested: "Deletion was requested on another device. Check the status there."
+        case .localCleanupFailed: "Your account was deleted. Try again to remove its data from this device."
+        }
     }
 }
 
@@ -48,6 +70,17 @@ public protocol TravellerAuthentication: Sendable {
     func cancelEmailFlow() async throws
     func signOut() async throws
     func accessToken() async throws -> String?
+    var supportsAccountDeletion: Bool { get }
+    func hasPendingAccountDeletion() async throws -> Bool
+    func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult
+}
+
+public extension TravellerAuthentication {
+    var supportsAccountDeletion: Bool { false }
+    func hasPendingAccountDeletion() async throws -> Bool { false }
+    func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult {
+        throw AccountDeletionError.unavailable
+    }
 }
 
 public enum AuthenticationError: Error, Equatable, LocalizedError, Sendable {

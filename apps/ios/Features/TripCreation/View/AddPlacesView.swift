@@ -7,9 +7,12 @@ struct AddPlacesView: View {
     let results: [RecommendedPlace]
     let selected: [RecommendedPlace]
     var isSearching = false
+    var hasSearched = false
+    var showsPreviousResults = false
     var error: String?
     var synthetic = false
     var initiallyFocused = false
+    var hasSixPlaceLimit = false
     var origin: PlanningPoint?
     let search: () async -> Void
     let toggle: (RecommendedPlace) -> Void
@@ -23,15 +26,15 @@ struct AddPlacesView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 14) {
-                Text("Search results").font(.footnote).foregroundStyle(.secondary)
+                if !displayed.isEmpty, !query.isEmpty {
+                    Text(showsPreviousResults ? "Previous search results" : "Search results")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
                 if isSearching { ProgressView("Searching places…").padding() }
                 if let error {
-                    ContentUnavailableView {
-                        Label("Search unavailable", systemImage: "wifi.exclamationmark")
-                    } description: { Text(error) } actions: {
-                        Button("Try again") { Task { await search() } }
-                    }
-                } else if displayed.isEmpty && !isSearching {
+                    RecoveryNotice(title: "Search unavailable", message: error, icon: "wifi.exclamationmark",
+                                   primary: .init(title: "Try again") { Task { await search() } })
+                } else if displayed.isEmpty && !isSearching && (hasSearched || query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
                     ContentUnavailableView(query.isEmpty ? "Find your places" : "No places found",
                                            systemImage: "magnifyingglass",
                                            description: Text(query.isEmpty ? "Search for a place to add it to your trip." : "Try a different name or location."))
@@ -86,6 +89,13 @@ struct AddPlacesView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("\(selected.count) places selected")
                     .accessibilityIdentifier("placesSelectedCount")
+                if hasSixPlaceLimit {
+                    Text("This itinerary method supports up to six places. Your selections are kept.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    if selected.count > 6 {
+                        Button("Review My Places") { showsSelected = true }
+                    }
+                }
                 QuestionPrimaryButton("Next") { searchFocused = false; next() }
                     .disabled(selected.isEmpty)
                     .accessibilityIdentifier("addPlacesNext")

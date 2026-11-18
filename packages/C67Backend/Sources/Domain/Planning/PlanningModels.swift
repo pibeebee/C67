@@ -317,7 +317,7 @@ public extension PersonalPlanningTrip {
 
 public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
     case invalidInput, configurationRequired, authenticationRequired, invalidResponse, notFound
-    case revisionConflict, requestConflict, unavailable, rateLimited, expired, failed(String)
+    case revisionConflict, requestConflict, unavailable, timedOut, rateLimited, expired, failed(String)
     public var errorDescription: String? {
         switch self {
         case .invalidInput: "Check your selected places, visit details and trip settings."
@@ -328,6 +328,7 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
         case .revisionConflict: "Your trip changed. Refresh it and request a new proposal."
         case .requestConflict: "This request no longer matches its original input. Start a new request."
         case .unavailable: "Planning is unavailable. Your saved trip is unchanged. Try again."
+        case .timedOut: "The planner took longer than expected."
         case .rateLimited: "The planning limit was reached. Wait before trying again."
         case .expired: "This proposal expired. Request a fresh plan."
         case .failed(let code):
@@ -349,7 +350,7 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
             case "V4_TOMORROW_UNVERIFIED": "Today’s window was too short, and a complete schedule for tomorrow couldn’t be verified. Adjust your schedule or try again."
             case "V4_ROUTE_THROTTLED": "Apple Maps is temporarily limiting route estimates. Wait a moment and try again."
             case "V4_NO_SCHEDULE": "Hybrid v4 could not verify a complete schedule with the available route estimates and constraints. Try a wider time window or another method."
-            case "V41_NO_SCHEDULE": "Hybrid v4.1 has not found a complete schedule among the candidates checked. Review the details or try again."
+            case "V41_NO_SCHEDULE": "Travelant could not verify a complete schedule with the available estimates. Review the details or try again."
             case "V41_ACCESS_CONFLICT": "A visit conflicts with the available opening hours or its session. Review visit availability."
             case "V41_DATE_CONFLICT": "The selected date conflicts with a dated visit. Review the trip date and visit confirmation."
             case "V41_BUDGET_REACHED": "The route search reached its limit. Your selected places are kept. Try again to check more candidates."

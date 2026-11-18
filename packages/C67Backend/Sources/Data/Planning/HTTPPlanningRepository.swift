@@ -17,7 +17,7 @@ public actor HTTPPlanningRepository: PlanningRepository {
     private let authentication: SupabaseAuthentication
     private let session: URLSession
     private let onUnauthorized: @Sendable (String) async throws -> Void
-    private let defaults: UserDefaults
+    private static let commands = PendingPlanningCommands()
 
     public init(baseURL: URL, authentication: SupabaseAuthentication,
                 onUnauthorized: @escaping @Sendable (String) async throws -> Void = { _ in }) throws {
@@ -28,7 +28,6 @@ public actor HTTPPlanningRepository: PlanningRepository {
         }
         self.baseURL = baseURL; self.authentication = authentication; self.onUnauthorized = onUnauthorized
         session = URLSession(configuration: .ephemeral, delegate: PlanningRedirectPolicy(), delegateQueue: nil)
-        defaults = .standard
     }
 
     private struct Authorization {
@@ -43,6 +42,9 @@ public actor HTTPPlanningRepository: PlanningRepository {
     }
 
     private func pendingKey(_ account: UUID) -> String { "C67.Planning.Pending.\(baseURL.absoluteString).\(account.uuidString)" }
+
+    /// Remove any legacy draft belonging to this account, regardless of the API host used to save it.
+    public static func eraseAccountData(for accountID: UUID) async { await commands.erase(for: accountID) }
 
     private func send<T: Decodable>(_ path: String, method: String, body: Data? = nil, authorization: Authorization) async throws -> T {
         guard await authentication.isCurrent(authorization.ticket) else { throw CancellationError() }
@@ -63,6 +65,7 @@ public actor HTTPPlanningRepository: PlanningRepository {
             switch response.statusCode {
             case 404: throw PlanningError.notFound
             case 409: throw PlanningError.revisionConflict
+            case 408, 504: throw PlanningError.timedOut
             case 429: throw PlanningError.rateLimited
             case 400: throw PlanningError.invalidInput
             default: throw error.map { PlanningError.failed($0.error.code) } ?? .unavailable
@@ -80,7 +83,7 @@ public actor HTTPPlanningRepository: PlanningRepository {
         try request.input.validate()
         let data = try SupabaseConnection.encoder().encode(PlanningRequestDTO(request))
         // Persist the exact command before sending. An uncertain HTTP response can be retried safely.
-        defaults.set(data, forKey: pendingKey(authorization.owner))
+        try await Self.commands.save(data, key: pendingKey(authorization.owner), owner: authorization.owner)
         let value: PlanningJobDTO = try await send("v1/planning/jobs", method: "POST", body: data, authorization: authorization)
         return value.domain
     }
@@ -90,9 +93,9 @@ public actor HTTPPlanningRepository: PlanningRepository {
     }
     public func resumePlanning() async throws -> PlanningJob? {
         let authorization = try await authorize(); let owner = authorization.owner
-        guard let data = defaults.data(forKey: pendingKey(owner)) else { return nil }
+        guard let data = await Self.commands.load(key: pendingKey(owner)) else { return nil }
         guard let command = try? SupabaseConnection.decoder().decode(PlanningRequestDTO.self, from: data) else {
-            defaults.removeObject(forKey: pendingKey(owner)); return nil
+            await Self.commands.remove(key: pendingKey(owner)); return nil
         }
         let job = try await submit(command.domain, authorization: authorization)
         let value: PlanningJobDTO = try await send("v1/planning/jobs/\(job.id.uuidString)", method: "GET", authorization: authorization)
@@ -102,7 +105,7 @@ public actor HTTPPlanningRepository: PlanningRepository {
         let authorization = try await authorize(); let owner = authorization.owner
         let body = try SupabaseConnection.encoder().encode(ApplyPlanningBody(request_id: requestID, expected_revision: expectedRevision))
         let value: PersonalPlanningTripDTO = try await send("v1/planning/proposals/\(jobID.uuidString)/apply", method: "POST", body: body, authorization: authorization)
-        defaults.removeObject(forKey: pendingKey(owner))
+        await Self.commands.remove(key: pendingKey(owner))
         return value.domain
     }
     public func personalTrips() async throws -> [PersonalPlanningTrip] {
@@ -113,6 +116,27 @@ public actor HTTPPlanningRepository: PlanningRepository {
         let body = try SupabaseConnection.encoder().encode(PlanningEventDTO(event))
         let value: PersonalPlanningTripDTO = try await send("v1/planning/trips/\(tripID.uuidString)/events", method: "POST", body: body, authorization: authorize())
         return value.domain
+    }
+}
+
+private actor PendingPlanningCommands {
+    private let defaults = UserDefaults.standard
+    private var erasedAccounts = Set<UUID>()
+
+    func save(_ data: Data, key: String, owner: UUID) throws {
+        guard !erasedAccounts.contains(owner) else { throw PlanningError.authenticationRequired }
+        defaults.set(data, forKey: key)
+    }
+
+    func load(key: String) -> Data? { defaults.data(forKey: key) }
+    func remove(key: String) { defaults.removeObject(forKey: key) }
+
+    func erase(for accountID: UUID) {
+        erasedAccounts.insert(accountID)
+        let suffix = "." + accountID.uuidString
+        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix("C67.Planning.Pending.") && key.hasSuffix(suffix) {
+            remove(key: key)
+        }
     }
 }
 

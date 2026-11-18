@@ -154,7 +154,7 @@ public struct PlanningSemanticSnapshot: Equatable, Codable, Sendable {
 
 public extension PlanProposal {
     var usesExperienceFlow: Bool {
-        experiencePlan != nil || input.enginePreferences?.orderingMethod == .hybridV41
+        experiencePlan != nil || input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true
     }
 
     var effectiveOrderingMethod: PlanningOrderingMethod {

@@ -40,11 +40,62 @@ def answer(context):
                 stops=stops,alternativeOrder=None,tradeoffs=[],uncertainties=["No arrival or availability guarantee"])
 
 
+def compact_answer(context):
+    estimates = [dict(placeID=place["id"], activity=dict(suggestion="Synthetic activity", basis="unknown"),
+                      duration=dict(minMinutes=30, maxMinutes=45, rationale="Synthetic estimate", basis="experience_estimate"),
+                      durationUnknownReason=None)
+                 for place in context["places"]]
+    return dict(estimates=estimates, days={
+        day["date"]: [dict(placeID=estimate["placeID"], preferredDayPart="flexible", reason="Synthetic reason",
+                           weatherAdvice="", lightWindowRef=None, estimateOverride=None) for estimate in estimates]
+        for day in context["days"]
+    })
+
+
 class NoWeather:
     def read(self,*args): return []
 
 
 class OrderingTests(unittest.TestCase):
+    def test_compact_comparison_shares_estimates_and_keeps_dated_overrides(self):
+        request = body(count=2)
+        request.update(orderingMethod="hybrid_v4_2", comparisonDates=["2026-11-17"])
+        request["firstPlaceID"] = request["places"][1]["id"]
+        calls = []
+
+        def model(prompt, context):
+            calls.append(context)
+            result = compact_answer(context)
+            alternate = copy.deepcopy(result["estimates"][0])
+            alternate.pop("placeID")
+            alternate["duration"]["maxMinutes"] = 60
+            result["days"]["2026-11-17"][0]["estimateOverride"] = alternate
+            return result, "gpt-6-luna"
+
+        result = OrderingResolver(model, environment=NoWeather()).resolve(request)
+        comparison, = result["comparisonResults"]
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(result["candidateDate"], "2026-11-16")
+        self.assertEqual(comparison["candidateDate"], "2026-11-17")
+        self.assertEqual(result["stops"][0]["duration"]["maxMinutes"], 45)
+        self.assertEqual(comparison["stops"][0]["duration"]["maxMinutes"], 60)
+        self.assertEqual(comparison["stops"][1]["duration"], result["stops"][1]["duration"])
+        self.assertEqual(comparison["orderedIDs"][0], request["firstPlaceID"])
+
+    def test_compact_comparison_rejects_light_reference_from_another_date(self):
+        request = body(count=1)
+        request.update(orderingMethod="hybrid_v4_2", comparisonDates=["2026-11-17"])
+
+        def model(prompt, context):
+            result = compact_answer(context)
+            first_day, second_day = context["days"]
+            self.assertTrue(first_day["light"])
+            result["days"][second_day["date"]][0]["lightWindowRef"] = first_day["light"][0]["id"]
+            return result, "gpt-6-luna"
+
+        with self.assertRaisesRegex(ValueError, "Invalid ordering response"):
+            OrderingResolver(model, environment=NoWeather()).resolve(request)
+
     def test_v4_preserves_unrestricted_luna_semantic_enrichment(self):
         request = body()
         request["orderingMethod"] = "hybrid_v4"

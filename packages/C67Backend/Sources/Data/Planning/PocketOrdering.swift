@@ -3,6 +3,12 @@ import C67Domain
 import PocketEngine
 
 enum PocketOrderCodec {
+    static func candidateDay(_ input: PlanningInput) -> String {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: input.timeZone) ?? .current
+        let value = calendar.dateComponents([.year, .month, .day], from: input.startsAt)
+        return String(format: "%04d-%02d-%02d", value.year!, value.month!, value.day!)
+    }
     static func validateMethod(_ actual: PlanningOrderingMethod?, expected: PlanningOrderingMethod?) throws {
         guard (actual ?? .luna) == (expected ?? .luna) else {
             throw PlanningError.failed("POCKET_ORDER_METHOD_UNSUPPORTED")
@@ -90,6 +96,19 @@ extension PlanningExperiencePlan {
 
 extension PocketResearchClient {
     public func order(_ input: PlanningInput, requestID: UUID) async throws -> PlanningExperiencePlan {
+        let results = try await order([input], requestID: requestID)
+        guard let result = results.first else { throw PlanningError.invalidResponse }
+        return result
+    }
+
+    func experience(_ inputs: [PlanningInput], requestID: UUID) async throws -> [PlanningExperiencePlan] {
+        guard (1 ... 3).contains(inputs.count),
+              inputs.allSatisfy({ $0.enginePreferences?.orderingMethod == .hybridV42 }) else { throw PlanningError.invalidInput }
+        return try await order(inputs, requestID: requestID)
+    }
+
+    private func order(_ inputs: [PlanningInput], requestID: UUID) async throws -> [PlanningExperiencePlan] {
+        guard let input = inputs.first else { throw PlanningError.invalidInput }
         struct Place: Encodable {
             var id: UUID
             var name: String
@@ -106,6 +125,7 @@ extension PocketResearchClient {
             var firstPlaceID: UUID?
             var preservesPlaceOrder: Bool
             var candidateDate: String
+            var comparisonDates: [String]?
             var timeZone: String
             var orderingMethod: PlanningOrderingMethod?
         }
@@ -113,28 +133,34 @@ extension PocketResearchClient {
             var id: UUID
             var status: String
         }
-        struct Result: Decodable { var result: PlanningExperiencePlan }
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: input.timeZone) ?? .current
-        let day = calendar.dateComponents([.year, .month, .day], from: input.startsAt)
+        struct Result: Decodable {
+            var result: PlanningExperiencePlan
+            var comparisonResults: [PlanningExperiencePlan]?
+        }
+        let comparisonDates = inputs.dropFirst().map(PocketOrderCodec.candidateDay)
+        let v42 = input.enginePreferences?.orderingMethod == .hybridV42
         let selected = input.places.map { Place(id: $0.id, name: $0.name, location: $0.location, categories: $0.categories) }
         let body = Body(requestID: requestID, places: selected, preferences: input.preferences,
                         origin: input.origin, endpoint: input.enginePreferences?.endPoint ?? input.origin,
                         mainSpotID: input.enginePreferences?.mainSpotID, firstPlaceID: input.firstPlaceID,
                         preservesPlaceOrder: input.preservesPlaceOrder,
-                        candidateDate: String(format: "%04d-%02d-%02d", day.year!, day.month!, day.day!), timeZone: input.timeZone,
+                        candidateDate: PocketOrderCodec.candidateDay(input), comparisonDates: comparisonDates.isEmpty ? nil : comparisonDates, timeZone: input.timeZone,
                         orderingMethod: input.enginePreferences?.orderingMethod == .luna ? nil : input.enginePreferences?.orderingMethod)
         do {
-            var data = try await fetch("v1/order", body: JSONEncoder().encode(body))
+            var data = try await fetch("v1/order", body: JSONEncoder().encode(body), v42: v42)
             while true {
                 try Task.checkCancellation()
                 let job = try JSONDecoder().decode(Job.self, from: data)
                 guard job.id == requestID else { throw PlanningError.invalidResponse }
                 switch job.status {
                 case "succeeded":
-                    let plan = try PocketOrderCodec.decoder().decode(Result.self, from: data).result.validated(for: input)
-                    try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: input.enginePreferences?.orderingMethod)
-                    return plan
+                    let response = try PocketOrderCodec.decoder().decode(Result.self, from: data)
+                    let plans = [response.result] + (response.comparisonResults ?? [])
+                    guard plans.count == inputs.count else { throw PlanningError.invalidResponse }
+                    return try zip(plans, inputs).map { plan, requested in
+                        try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: requested.enginePreferences?.orderingMethod)
+                        return try plan.validated(for: requested)
+                    }
                 case "running", "queued":
                     try await Task.sleep(for: .seconds(2))
                     data = try await fetch("v1/order/jobs/" + requestID.uuidString.lowercased())
@@ -143,6 +169,9 @@ extension PocketResearchClient {
                 default: throw PlanningError.invalidResponse
                 }
             }
-        } catch is URLError { throw PlanningError.unavailable }
+        } catch let error as URLError {
+            try Task.checkCancellation()
+            throw error.code == .timedOut ? PlanningError.timedOut : PlanningError.unavailable
+        }
     }
 }

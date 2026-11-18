@@ -48,8 +48,23 @@ private struct PocketTripOptionFields: View {
 }
 
 /// Trip constraints available before the first scheduler request.
+enum ScheduleField: Hashable {
+    case finish, waiting, place(UUID), duration(UUID), access(UUID), entry(UUID), session(UUID), checkIn(UUID)
+
+    var placeID: UUID? {
+        switch self {
+        case .place(let id), .duration(let id), .access(let id), .entry(let id), .session(let id), .checkIn(let id): id
+        case .finish, .waiting: nil
+        }
+    }
+}
+
 struct PocketScheduleOptionsSheet: View {
     @Bindable var presenter: TripCreationPresenter
+    var target: ScheduleField?
+    @State private var revealedField: ScheduleField?
+    @AccessibilityFocusState private var focusedField: ScheduleField?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.dismiss) private var dismiss
 
     private var zone: TimeZone { TimeZone(identifier: presenter.planning.timeZone) ?? .current }
@@ -59,17 +74,26 @@ struct PocketScheduleOptionsSheet: View {
         return calendar
     }
 
-    private var validWindow: Bool {
-        return presenter.planning.finishBy > presenter.planning.startsAt &&
-            calendar.isDate(presenter.planning.startsAt, inSameDayAs: presenter.planning.finishBy) &&
-            presenter.selected.allSatisfy { item in
-                if let access = item.place.visitConfirmation {
-                    if access.opensAt >= access.closesAt { return false }
-                    if let cutoff = access.lastEntryAt, cutoff < access.opensAt || cutoff > access.closesAt { return false }
-                }
-                guard let session = item.place.activitySession else { return true }
-                return session.startsAt < session.endsAt && (session.arriveBy == nil || session.arriveBy! <= session.startsAt)
+    private var firstInvalidField: ScheduleField? {
+        let planning = presenter.planning
+        guard planning.finishBy > planning.startsAt,
+              calendar.isDate(planning.startsAt, inSameDayAs: planning.finishBy) else { return .finish }
+        for item in presenter.selected {
+            if let access = item.place.visitConfirmation {
+                if access.opensAt >= access.closesAt { return .access(item.id) }
+                if let cutoff = access.lastEntryAt, cutoff < access.opensAt || cutoff > access.closesAt { return .entry(item.id) }
             }
+            if let session = item.place.activitySession {
+                if session.startsAt >= session.endsAt { return .session(item.id) }
+                if let cutoff = session.arriveBy, cutoff > session.startsAt { return .checkIn(item.id) }
+            }
+        }
+        return nil
+    }
+
+    private var focusedVisit: RecommendedPlace? {
+        guard let placeID = (revealedField ?? target)?.placeID else { return nil }
+        return presenter.selected.first { $0.id == placeID }
     }
 
     private var dayChoice: Binding<String> {
@@ -92,139 +116,245 @@ struct PocketScheduleOptionsSheet: View {
     var body: some View {
         @Bindable var planning = presenter.planning
         NavigationStack {
-            Form {
-                Section("Available time") {
-                    if presenter.usesV41 {
-                        Picker("Choose day", selection: dayChoice) {
-                            Text("Selected date").tag("selected_date")
-                            Text("Automatic").tag("automatic")
-                            Text("Today").tag(PlanningTripTiming.now.rawValue)
-                            Text("Tomorrow").tag(PlanningTripTiming.tomorrow.rawValue)
-                            Text("In 2–3 days").tag(PlanningTripTiming.inAFewDays.rawValue)
-                            Text("Compare today and the next 2 days").tag(PlanningTripTiming.bestDay.rawValue)
-                        }
-                        .accessibilityIdentifier("tripTimingChoice")
+            ScrollViewReader { scroll in
+                Form {
+                    if let focusedVisit {
+                        Section("Visit to review") { visitFields(focusedVisit) }
                     }
-                    DatePicker("Trip date", selection: Binding(get: { planning.startsAt }, set: changeTripDate),
-                               displayedComponents: .date)
-                        .accessibilityIdentifier("tripScheduleDate")
-                    DatePicker("Earliest departure", selection: Binding(get: { planning.startsAt }, set: {
-                        planning.startsAt = $0
-                        planning.enginePreferences?.usesAutomaticTripDate = false
-                        planning.enginePreferences?.scheduleSource = .manual
-                    }), displayedComponents: .hourAndMinute)
-                    DatePicker("Finish by", selection: Binding(get: { planning.finishBy }, set: {
-                        planning.finishBy = $0
-                        planning.enginePreferences?.usesAutomaticTripDate = false
-                        planning.enginePreferences?.scheduleSource = .manual
-                    }), displayedComponents: .hourAndMinute)
-                    if !validWindow { Text("Choose a finish time after departure on the same day.").foregroundStyle(.red) }
-                }
-                if let options = Binding($planning.enginePreferences) {
-                    Section("Schedule preferences") {
-                        Toggle("Flexible departure", isOn: options.flexibleDeparture)
-                        Toggle("Return to starting point", isOn: options.returnToOrigin)
-                        Stepper("Maximum waiting: \(options.wrappedValue.maximumWaitMinutes) min", value: options.maximumWaitMinutes, in: 0 ... 120, step: 5)
+                    Section("Available time") {
                         if presenter.usesV41 {
-                            Picker("Preferred visit period", selection: Binding(get: { options.wrappedValue.preferredDayPart }, set: {
-                                options.wrappedValue.preferredDayPart = $0
-                                presenter.answers.dayPart = $0.flatMap { DayPart(rawValue: $0.rawValue) }
-                            })) {
-                                Text("Any time").tag(PlanningDayPart?.none)
-                                Text("Morning · 06–11").tag(Optional(PlanningDayPart.morning))
-                                Text("Midday · 11–15").tag(Optional(PlanningDayPart.afternoon))
-                                Text("Afternoon · 15–18").tag(Optional(PlanningDayPart.evening))
-                                Text("Night · 18–22").tag(Optional(PlanningDayPart.night))
+                            Picker("Choose day", selection: dayChoice) {
+                                Text("Selected date").tag("selected_date")
+                                Text("Automatic").tag("automatic")
+                                Text("Today").tag(PlanningTripTiming.now.rawValue)
+                                Text("Tomorrow").tag(PlanningTripTiming.tomorrow.rawValue)
+                                Text("In 2–3 days").tag(PlanningTripTiming.inAFewDays.rawValue)
+                                Text("Compare today and the next 2 days").tag(PlanningTripTiming.bestDay.rawValue)
                             }
-                            Picker("Luna assistance", selection: Binding(get: { options.wrappedValue.semanticAssistance ?? .whenNeeded }, set: {
-                                options.wrappedValue.semanticAssistance = $0
-                                options.wrappedValue.usesLuna = $0 != .disabled
-                                options.wrappedValue.allowsAIProcessing = $0 != .disabled
-                            })) {
-                                Text("Estimate missing durations").tag(PlanningSemanticAssistance.whenNeeded)
-                                Text("Activities and preferred times").tag(PlanningSemanticAssistance.requested)
-                                Text("Off · use my durations").tag(PlanningSemanticAssistance.disabled)
+                            .accessibilityIdentifier("tripTimingChoice")
+                        }
+                        DatePicker("Trip date", selection: Binding(get: { planning.startsAt }, set: changeTripDate),
+                                   displayedComponents: .date)
+                            .accessibilityIdentifier("tripScheduleDate")
+                        DatePicker("Earliest departure", selection: Binding(get: { planning.startsAt }, set: {
+                            planning.startsAt = $0
+                            planning.enginePreferences?.usesAutomaticTripDate = false
+                            planning.enginePreferences?.scheduleSource = .manual
+                        }), displayedComponents: .hourAndMinute)
+                        DatePicker("Finish by", selection: Binding(get: { planning.finishBy }, set: {
+                            planning.finishBy = $0
+                            planning.enginePreferences?.usesAutomaticTripDate = false
+                            planning.enginePreferences?.scheduleSource = .manual
+                        }), displayedComponents: .hourAndMinute)
+                            .id(ScheduleField.finish)
+                            .accessibilityFocused($focusedField, equals: .finish)
+                        if planning.finishBy <= planning.startsAt || !calendar.isDate(planning.startsAt, inSameDayAs: planning.finishBy) {
+                            Text("Choose a finish time after departure on the same day.").foregroundStyle(.red)
+                        }
+                    }
+                    if let options = Binding($planning.enginePreferences) {
+                        Section("Schedule preferences") {
+                            Toggle("Flexible departure", isOn: options.flexibleDeparture)
+                            Toggle("Return to starting point", isOn: options.returnToOrigin)
+                            Stepper("Maximum waiting: \(options.wrappedValue.maximumWaitMinutes) min", value: options.maximumWaitMinutes, in: 0 ... 120, step: 5)
+                                .id(ScheduleField.waiting)
+                                .accessibilityFocused($focusedField, equals: .waiting)
+                            if presenter.usesV41 {
+                                Picker("Preferred visit period", selection: Binding(get: { options.wrappedValue.preferredDayPart }, set: {
+                                    options.wrappedValue.preferredDayPart = $0
+                                    presenter.answers.dayPart = $0.flatMap { DayPart(rawValue: $0.rawValue) }
+                                })) {
+                                    Text("Any time").tag(PlanningDayPart?.none)
+                                    Text("Morning · 06–11").tag(Optional(PlanningDayPart.morning))
+                                    Text("Midday · 11–15").tag(Optional(PlanningDayPart.afternoon))
+                                    Text("Afternoon · 15–18").tag(Optional(PlanningDayPart.evening))
+                                    Text("Night · 18–22").tag(Optional(PlanningDayPart.night))
+                                }
+                                lunaAssistance(options)
                             }
-                            .accessibilityIdentifier("lunaAssistance")
+                        }
+                    }
+                    let otherPlaces = presenter.selected.filter { $0.id != focusedVisit?.id }
+                    if !otherPlaces.isEmpty {
+                        Section("Visit durations") {
+                            ForEach(otherPlaces) { item in visitFields(item) }
                         }
                     }
                 }
-                Section("Visit durations") {
-                    ForEach(presenter.selected) { item in
-                        let id = item.id
-                        let override = item.place.durationOverridden == true
-                        VStack(alignment: .leading) {
-                            Text(item.place.name)
-                            Toggle("Set visit duration", isOn: Binding(get: { presenter.selected.first(where: { $0.id == id })?.place.durationOverridden == true }, set: { presenter.setVisitDuration(id, minutes: $0 ? max(15, item.place.visitSeconds / 60) : nil) }))
-                            if override {
-                                Stepper("\(item.place.visitSeconds / 60) min", value: Binding(get: { (presenter.selected.first(where: { $0.id == id })?.place.visitSeconds ?? 2700) / 60 }, set: { presenter.setVisitDuration(id, minutes: $0) }), in: 15 ... 240, step: 5)
-                                if presenter.usesV41 {
-                                    Toggle("Allow a shorter visit", isOn: Binding(get: { item.place.minimumAcceptedVisitSeconds != nil }, set: {
-                                        presenter.setMinimumDuration(id, minutes: $0 ? max(15, item.place.visitSeconds / 120) : nil)
-                                    }))
-                                    if let minimum = item.place.minimumAcceptedVisitSeconds {
-                                        Stepper("Minimum \(minimum / 60) min", value: Binding(get: { minimum / 60 }, set: { presenter.setMinimumDuration(id, minutes: $0) }), in: 15 ... max(15, item.place.visitSeconds / 60), step: 5)
-                                    }
-                                }
-                            } else { Text("Use Luna's estimate when available.").font(.footnote).foregroundStyle(.secondary) }
-                            if presenter.usesV41 { V41VisitAccessFields(presenter: presenter, placeID: id) }
+                .environment(\.timeZone, zone)
+                .navigationTitle("Trip schedule")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        if let firstInvalidField {
+                            Button("Review error") { reveal(firstInvalidField, scroll: scroll) }
+                                .accessibilityHint("Go to the first field to fix before saving")
+                        } else {
+                            Button("Done") { planning.draftChanged(); dismiss() }
                         }
                     }
+                }
+                .task {
+                    if let field = target ?? firstInvalidField { reveal(field, scroll: scroll) }
+                }
+                .task(id: revealedField) {
+                    guard let revealedField else { return }
+                    await Task.yield()
+                    guard !Task.isCancelled else { return }
+                    scroll.scrollTo(revealedField, anchor: .center)
+                    focusedField = revealedField
                 }
             }
-            .environment(\.timeZone, zone)
-            .navigationTitle("Trip schedule")
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { planning.draftChanged(); dismiss() }.disabled(!validWindow) } }
         }
+    }
+
+    private func visitFields(_ item: RecommendedPlace) -> some View {
+        let id = item.id
+        let override = item.place.durationOverridden == true
+        let field = revealedField ?? target
+        let showAccessFirst = field == .access(id) || field == .entry(id) || field == .session(id) || field == .checkIn(id)
+        return VStack(alignment: .leading) {
+            Text(item.place.name)
+            if presenter.usesV41, showAccessFirst { visitAccess(id, field: field) }
+            Toggle("Set visit duration", isOn: Binding(get: {
+                presenter.selected.first(where: { $0.id == id })?.place.durationOverridden == true
+            }, set: {
+                presenter.setVisitDuration(id, minutes: $0 ? max(15, item.place.visitSeconds / 60) : nil)
+            }))
+            .id(ScheduleField.duration(id))
+            .accessibilityFocused($focusedField, equals: .duration(id))
+            if override {
+                Stepper("\(item.place.visitSeconds / 60) min", value: Binding(get: {
+                    (presenter.selected.first(where: { $0.id == id })?.place.visitSeconds ?? 2700) / 60
+                }, set: { presenter.setVisitDuration(id, minutes: $0) }), in: 15 ... 240, step: 5)
+                if presenter.usesV41 {
+                    Toggle("Allow a shorter visit", isOn: Binding(get: { item.place.minimumAcceptedVisitSeconds != nil }, set: {
+                        presenter.setMinimumDuration(id, minutes: $0 ? max(15, item.place.visitSeconds / 120) : nil)
+                    }))
+                    if let minimum = item.place.minimumAcceptedVisitSeconds {
+                        Stepper("Minimum \(minimum / 60) min", value: Binding(get: { minimum / 60 }, set: {
+                            presenter.setMinimumDuration(id, minutes: $0)
+                        }), in: 15 ... max(15, item.place.visitSeconds / 60), step: 5)
+                    }
+                }
+            } else if presenter.usesV41, presenter.planning.enginePreferences?.semanticAssistance == .disabled {
+                Text("Set a duration when Luna assistance is off.").font(.footnote).foregroundStyle(.secondary)
+            } else {
+                Text("Use Luna's estimate when available.").font(.footnote).foregroundStyle(.secondary)
+            }
+            if presenter.usesV41, !showAccessFirst { visitAccess(id, field: field) }
+        }
+        .id(ScheduleField.place(id))
+    }
+
+    private func visitAccess(_ id: UUID, field: ScheduleField?) -> some View {
+        V41VisitAccessFields(presenter: presenter, placeID: id, revealedField: field, focus: $focusedField)
+    }
+
+    @ViewBuilder private func lunaAssistance(_ options: Binding<PlanningPreferences>) -> some View {
+        let picker = Picker("Luna assistance", selection: Binding(get: { options.wrappedValue.semanticAssistance ?? .whenNeeded }, set: {
+            options.wrappedValue.semanticAssistance = $0
+            options.wrappedValue.usesLuna = $0 != .disabled
+            options.wrappedValue.allowsAIProcessing = $0 != .disabled
+        })) {
+            Text("Estimate missing durations").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.whenNeeded)
+            Text("Activities and preferred times").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.requested)
+            Text("Off · use my durations").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.disabled)
+        }
+        if dynamicTypeSize.isAccessibilitySize {
+            picker.pickerStyle(.inline).accessibilityIdentifier("lunaAssistance")
+        } else {
+            picker.accessibilityIdentifier("lunaAssistance")
+        }
+    }
+
+    private func reveal(_ field: ScheduleField, scroll: ScrollViewProxy) {
+        revealedField = field
+        scroll.scrollTo(field.placeID.map(ScheduleField.place) ?? field, anchor: .center)
+        focusedField = field
     }
 }
 
 private struct V41VisitAccessFields: View {
     @Bindable var presenter: TripCreationPresenter
     let placeID: UUID
+    let revealedField: ScheduleField?
+    var focus: AccessibilityFocusState<ScheduleField?>.Binding
+    @State private var expanded = false
 
     var body: some View {
         if let place = presenter.selected.first(where: { $0.id == placeID })?.place {
-            DisclosureGroup("Access and activity session") {
+            DisclosureGroup("Access and activity session", isExpanded: $expanded) {
                 Toggle("I confirmed access during this trip window", isOn: Binding(get: { place.visitConfirmation != nil }, set: { enabled in
                     if enabled {
                         presenter.confirmVisit(placeID, opens: presenter.planning.startsAt, closes: presenter.planning.finishBy, publicAccess: true)
                     } else { presenter.clearVisitConfirmation(placeID) }
                 }))
+                .id(place.visitConfirmation == nil ? ScheduleField.access(placeID) : nil)
+                .accessibilityFocused(focus, equals: place.visitConfirmation == nil ? .access(placeID) : nil)
                 if let access = place.visitConfirmation {
+                    if access.opensAt >= access.closesAt {
+                        Text("Available until must be after available from.").foregroundStyle(.red)
+                    }
+                    if let cutoff = access.lastEntryAt, cutoff < access.opensAt || cutoff > access.closesAt {
+                        Text("Last entry must be within the confirmed access window.").foregroundStyle(.red)
+                    }
                     DatePicker("Available from", selection: Binding(get: { access.opensAt }, set: {
                         presenter.confirmVisit(placeID, opens: $0, closes: access.closesAt, publicAccess: true)
                     }), displayedComponents: [.date, .hourAndMinute])
                     DatePicker("Available until", selection: Binding(get: { access.closesAt }, set: {
                         presenter.confirmVisit(placeID, opens: access.opensAt, closes: $0, publicAccess: true)
                     }), displayedComponents: [.date, .hourAndMinute])
+                        .id(Optional(ScheduleField.access(placeID)))
+                        .accessibilityFocused(focus, equals: .access(placeID))
                     Toggle("Last entry applies", isOn: Binding(get: { access.lastEntryAt != nil }, set: {
                         presenter.setEntryCutoff(placeID, date: $0 ? access.closesAt : nil)
                     }))
+                    .id(access.lastEntryAt == nil ? ScheduleField.entry(placeID) : nil)
+                    .accessibilityFocused(focus, equals: access.lastEntryAt == nil ? .entry(placeID) : nil)
                     if let cutoff = access.lastEntryAt {
                         DatePicker("Last entry", selection: Binding(get: { cutoff }, set: { presenter.setEntryCutoff(placeID, date: $0) }), displayedComponents: .hourAndMinute)
+                            .id(Optional(ScheduleField.entry(placeID)))
+                            .accessibilityFocused(focus, equals: .entry(placeID))
                     }
                 }
                 Toggle("I have a booked activity session", isOn: Binding(get: { place.activitySession != nil }, set: {
                     let start = presenter.planning.startsAt
                     presenter.setActivitySession(placeID, session: $0 ? .init(startsAt: start, endsAt: start.addingTimeInterval(3600)) : nil)
                 }))
+                .id(place.activitySession == nil ? ScheduleField.session(placeID) : nil)
+                .accessibilityFocused(focus, equals: place.activitySession == nil ? .session(placeID) : nil)
                 if let session = place.activitySession {
+                    if session.startsAt >= session.endsAt {
+                        Text("Session end must be after the start.").foregroundStyle(.red)
+                    }
+                    if let cutoff = session.arriveBy, cutoff > session.startsAt {
+                        Text("Check-in must be no later than the session start.").foregroundStyle(.red)
+                    }
                     DatePicker("Session starts", selection: Binding(get: { session.startsAt }, set: {
                         presenter.setActivitySession(placeID, session: .init(startsAt: $0, endsAt: session.endsAt, arriveBy: session.arriveBy))
                     }), displayedComponents: [.date, .hourAndMinute])
                     DatePicker("Session ends", selection: Binding(get: { session.endsAt }, set: {
                         presenter.setActivitySession(placeID, session: .init(startsAt: session.startsAt, endsAt: $0, arriveBy: session.arriveBy))
                     }), displayedComponents: [.date, .hourAndMinute])
+                        .id(Optional(ScheduleField.session(placeID)))
+                        .accessibilityFocused(focus, equals: .session(placeID))
                     Toggle("Session has a check-in deadline", isOn: Binding(get: { session.arriveBy != nil }, set: {
                         presenter.setActivitySession(placeID, session: .init(startsAt: session.startsAt, endsAt: session.endsAt, arriveBy: $0 ? session.startsAt : nil))
                     }))
+                    .id(session.arriveBy == nil ? ScheduleField.checkIn(placeID) : nil)
+                    .accessibilityFocused(focus, equals: session.arriveBy == nil ? .checkIn(placeID) : nil)
                     if let cutoff = session.arriveBy {
                         DatePicker("Arrive by", selection: Binding(get: { cutoff }, set: {
                             presenter.setActivitySession(placeID, session: .init(startsAt: session.startsAt, endsAt: session.endsAt, arriveBy: $0))
                         }), displayedComponents: .hourAndMinute)
+                            .id(Optional(ScheduleField.checkIn(placeID)))
+                            .accessibilityFocused(focus, equals: .checkIn(placeID))
                     }
                 }
+            }
+            .onChange(of: revealedField, initial: true) { _, field in
+                if field == .access(placeID) || field == .entry(placeID) ||
+                    field == .session(placeID) || field == .checkIn(placeID) { expanded = true }
             }
         }
     }

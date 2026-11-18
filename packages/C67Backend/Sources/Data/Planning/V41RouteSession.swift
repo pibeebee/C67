@@ -22,6 +22,7 @@ actor V41RouteSession {
     private(set) var proxies: [Pair: V4Quote] = [:]
     private(set) var failedPairs = Set<Pair>()
     private(set) var calls = 0
+    private(set) var providerDuration: Duration = .zero
     private(set) var stopReason: String?
     private var firstCallAt: ContinuousClock.Instant?
     private let maximumSeconds: Double
@@ -72,6 +73,8 @@ actor V41RouteSession {
         try Task.checkCancellation()
         let pair = Pair(from: from, to: to)
         let value: V4Quote
+        let started = ContinuousClock.now
+        defer { providerDuration += started.duration(to: .now) }
         do {
             let leg = try await services.travel(.init(latitude: a.latitude, longitude: a.longitude),
                                                 .init(latitude: b.latitude, longitude: b.longitude),

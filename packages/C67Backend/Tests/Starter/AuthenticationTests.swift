@@ -205,3 +205,61 @@ private func auth(_ http: HTTPHarness, store: MemorySessionStore = .init(), cloc
     try await service.invalidateSession(rejectedToken: "new-access")
     #expect(try await service.currentAccount() == nil)
 }
+
+@Test func deletionReusesItsReceiptAfterRelaunchAndClearsLocalDataOnlyAfterConfirmation() async throws {
+    let http = HTTPHarness { request in
+        if request.url!.path.hasSuffix("/account/deletion") {
+            #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer synthetic-access")
+            return try requestBody(request)["appleAuthorizationCode"] != nil
+                ? .init(202, #"{"status":"pending"}"#)
+                : .init(200, #"{"status":"deleted"}"#)
+        }
+        return .init(tokenJSON())
+    }
+    let store = MemorySessionStore()
+    let localTrips = MemorySessionStore(Data("synthetic-trips".utf8))
+    let config = try #require(AccountDeletionConfiguration(baseURL: http.baseURL) { id in
+        #expect(id.uuidString.lowercased() == accountID)
+        #expect(try store.read() != nil)
+        try localTrips.write(nil)
+    })
+    func makeAuthentication() throws -> SupabaseAuthentication {
+        try .init(baseURL: http.baseURL, clientKey: "opaque-client-key", store: store,
+                  session: http.session, accountDeletion: config)
+    }
+    let first = try makeAuthentication()
+    let signedIn = try await first.signIn(email: "a@example.test", password: "synthetic")
+    guard case .pending = try await first.deleteAccount(expectedAccountID: signedIn.id, appleAuthorizationCode: "synthetic-apple-code")
+    else { Issue.record("Expected accepted deletion"); return }
+    #expect(try await first.hasPendingAccountDeletion())
+    #expect(try localTrips.read() != nil)
+    let persisted = try #require(try store.read())
+    #expect(persisted.range(of: Data("synthetic-apple-code".utf8)) == nil)
+
+    let restarted = try makeAuthentication()
+    #expect(try await restarted.currentAccount() == signedIn)
+    await #expect(throws: AuthenticationError.operationInProgress) { try await restarted.accessToken() }
+    guard case .deleted = try await restarted.deleteAccount(expectedAccountID: signedIn.id, appleAuthorizationCode: nil)
+    else { Issue.record("Expected completed deletion"); return }
+    let requests = await http.log.requests().filter { $0.url!.path.hasSuffix("/account/deletion") }
+    #expect(requests.count == 2)
+    let receipts = try requests.map { try #require(try requestBody($0)["requestID"] as? String) }
+    #expect(Set(receipts).count == 1)
+    #expect(try await restarted.currentAccount() == nil)
+    #expect(try localTrips.read() == nil)
+    #expect(try store.read() == nil)
+}
+
+@Test func accountDeletionRemovesOnlyThatAccountsLegacyPlanningDrafts() async {
+    let owner = UUID(), another = UUID()
+    let keys = ["C67.Planning.Pending.https://one.example.test.\(owner)", "C67.Planning.Pending.https://two.example.test.\(owner)",
+                "C67.Planning.Pending.https://one.example.test.\(another)"]
+    defer { for key in keys { UserDefaults.standard.removeObject(forKey: key) } }
+    for key in keys { UserDefaults.standard.set(Data("synthetic-draft".utf8), forKey: key) }
+
+    await HTTPPlanningRepository.eraseAccountData(for: owner)
+
+    #expect(UserDefaults.standard.data(forKey: keys[0]) == nil)
+    #expect(UserDefaults.standard.data(forKey: keys[1]) == nil)
+    #expect(UserDefaults.standard.data(forKey: keys[2]) != nil)
+}

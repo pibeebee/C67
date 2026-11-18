@@ -15,12 +15,14 @@ struct AppleSignInAttempt {
         createdAt = now
     }
 
-    func credentials(userID: String, identityToken: Data?, returnedState: String?, now: Date = Date()) throws -> AppleSignInCredentials {
+    func credentials(userID: String, identityToken: Data?, returnedState: String?, authorizationCode: Data? = nil,
+                     now: Date = Date()) throws -> AppleSignInCredentials {
         guard returnedState == state, now.timeIntervalSince(createdAt) >= 0,
               now.timeIntervalSince(createdAt) < 300, !userID.isEmpty,
               let identityToken, let token = String(data: identityToken, encoding: .utf8), !token.isEmpty else {
             throw AuthenticationError.invalidAppleCredential
         }
-        return .init(identityToken: token, nonce: nonce, userID: userID)
+        return .init(identityToken: token, nonce: nonce, userID: userID,
+                     authorizationCode: authorizationCode.flatMap { String(data: $0, encoding: .utf8) })
     }
 }

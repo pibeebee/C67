@@ -16,6 +16,7 @@ struct PlacesRecommendationsView: View {
     /// The older planning editor still follows its existing six-place contract.
     /// The recommendations-first creation flow leaves this nil.
     var maximumSelection: Int?
+    var showsSixPlaceLimit = false
     let load: @MainActor () async -> Void
     let refresh: @MainActor () async -> Void
     let cancel: () -> Void
@@ -93,15 +94,23 @@ struct PlacesRecommendationsView: View {
 
                 if isLoading { ProgressView("Finding places…").frame(maxWidth: .infinity).padding() }
                 if let error {
-                    Label(error, systemImage: "exclamationmark.circle")
-                        .font(.footnote).foregroundStyle(.secondary)
-                    Button("Try again", action: retry).disabled(isLoading)
+                    RecoveryNotice(title: "Couldn’t refresh recommendations", message: error,
+                                   primary: isLoading ? nil : .init(title: "Try again", perform: retry),
+                                   secondary: .init(title: "Search for a place", perform: findPlace))
                 }
-                ForEach(batch.warnings, id: \.self) { warning in
-                    Label(warning, systemImage: "exclamationmark.circle")
-                        .font(.footnote).foregroundStyle(.secondary)
+                if !batch.warnings.isEmpty {
+                    DisclosureGroup(batch.places.isEmpty ? "Recommendation details" : "Some recommendations are unavailable") {
+                        ForEach(batch.warnings, id: \.self) { warning in
+                            Text(warning).font(.footnote).foregroundStyle(.secondary)
+                        }
+                    }
                 }
-                if batch.places.isEmpty && !isLoading && (!requiresOrigin || origin != nil) {
+                if showsSixPlaceLimit || maximumSelection == 6 {
+                    Text("This itinerary method supports up to six places. Your selections are kept.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    if selected.count > 6 { Button("Review My Places") { showsSelected = true } }
+                }
+                if batch.places.isEmpty && !isLoading && error == nil && (!requiresOrigin || origin != nil) {
                     ContentUnavailableView {
                         Label("No recommendations yet", systemImage: "mappin.and.ellipse")
                     } description: {

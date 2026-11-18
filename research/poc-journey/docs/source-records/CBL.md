@@ -1,11 +1,47 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Updated:** 16 November 2026, Asia/Jakarta (WIB).
+**Updated:** 18 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
+**Current local checkpoint:** Start with [Hybrid v4.1 and error recovery](#hybrid-v41-recovery-2026-11-18). The earlier dated entries describe the state at their respective checkpoints.
+
 **Historical status, 13 November:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
 
+<a id="hybrid-v41-recovery-2026-11-18"></a>
 
-**Current engine checkpoint, 16 November:** The TestFlight build exposes Luna and two experimental Hybrid ordering methods. The updated Pocket server recognizes both Hybrid methods; real-account end-to-end results are still unverified, and the weather Hybrid does not yet compute exposure-based ordering. The dated checkpoint immediately below supersedes conflicting older status statements.
+## 0R. Hybrid v4.1 and error recovery — 17–18 November 2026
+
+### From a schedule failure to explicit date intent
+
+Hybrid v4 reported that it could not verify a complete schedule on the main spot screen. Opening **Adjust schedule** showed today, while the traveller intended to plan for another day. This revealed a mismatch between the default date and the traveller's intent. The specific cause of the original failure remains open because that input and its route responses have yet to be replayed.
+
+The traveller proposed trying tomorrow when there is insufficient time today. A new automatic v4 draft tries tomorrow when the visit durations already exceed today's remaining window or all candidates in the declared search domain have been evaluated and miss the deadline. Missing ETA, provider throttling, or an incomplete search alone cannot establish a time conflict. Choosing today explicitly keeps that date until the traveller takes **Try tomorrow**, when available. Review explains an automatic move and saves the chosen date. [V4 fallback integration and checks](../../../../docs/tasks/hybrid-v4-integration.md#automatic-date-for-the-first-itinerary).
+
+### Six changes in Hybrid v4.1
+
+| Focus | Implemented behavior |
+| --- | --- |
+| Date intent | The first-itinerary flow shows a date or finite comparison range before **Next**. Explicit dates take precedence, and relative choices use a stable anchor in the trip time zone. |
+| Schedule diagnosis | The assessment records conflicts, missing information, dates considered, search coverage, and duration alternatives. |
+| Adaptive search | The scheduler expands past the initial candidates, varies first and last visits, and checks each leg's ETA at its proposed departure. Search has a bounded budget that persists when work resumes. |
+| Duration review | The target stays as the baseline. Travellers review and accept a shorter alternative before it applies. Booked sessions keep their duration. |
+| Access and activity sessions | The scheduler checks access, last entry, session times, and check-in separately. A venue with unknown hours can be included provisionally when routes and durations are available. Access remains unverified. |
+| Optional Luna | Luna can suggest activities, duration ranges, and a preferred part of the day. The device ranks schedules and resolves departure time against route, access, deadline, and preference inputs. Sufficient supplied or booked durations allow planning with zero model calls. |
+
+The experimental method is selectable in Account as **Hybrid v4.1: flexible schedules**. It uses the existing Pocket `hybrid_v4` contract for optional enrichment. The scheduling changes require no additional server implementation. The branch `gi/ui-audit-improvements` records the v4 checkpoint in `9725792`, the six-part plan in `24e1e44`, and the v4.1 implementation in `f865adf`. [V4.1 integration and search boundaries](../../../../docs/tasks/hybrid-v41-integration.md).
+
+### Recovery in the existing interface
+
+The screen and code audit preceded remediation. The existing SwiftUI flow now gives a primary recovery action and **View schedule details**. In the missing-duration case, opening the diagnosis surfaces the affected visit's duration control. A failed search refresh retains its previous results. Review retains work when a component fails, and **Retry** repeats the operation that failed. An interrupted or unconfirmed job can be resumed through **Check status** under the same request identity. [Screen map, findings, and remediation](../../../../docs/tasks/error-handling-ux-audit-2026-11-18.md).
+
+### Evidence and reflection
+
+- Four package tests and four Simulator tests covered the v4 date fallback, including explicit date choice, review and persistence. In v4.1, six static synthetic four-stop cases matched the independent reference over all 24 orders per case, with 33–38 route attempts. [Verification record](../../../../docs/testing/verification.md).
+- The first separate non-UI v4.1 experiment passed 17 of 18 methods. One assertion compared normalized working input with raw request input. The corrected method passed on its own, giving all 18 methods passing observations across the two runs. The production engine did not change during this correction. [Experiment record](../../../../docs/tasks/hybrid-v41-engine-experiment-results.md).
+- The error recovery checkpoint passed 130 package tests and 66 focused app tests. The synthetic missing-duration scenario reached review on iPhone 18 Pro Max and iPad mini Simulator (iOS 27.2) in Light with standard text and Dark with Accessibility Large. VoiceOver, same-input visual parity, injected startup/storage faults, and map/weather retry behavior under provider faults remain open. [Simulator and recovery evidence](../../../../docs/tasks/error-handling-ux-audit-2026-11-18.md#remediation-follow-up--18-november-2026).
+
+Route optimization made date intent and evidence quality more important to the user experience. A fast sequence is only useful when the trip fits the intended day and the traveller can see what needs confirmation or correction. The next evidence step is a local Xcode run on a physical iPhone with explicitly recorded trip dates and constraints, live provider responses, and a traveller's assessment of the proposed itinerary. This checkpoint records local changes and synthetic evidence. Physical-device validation and distribution of this revision through TestFlight remain open.
+
+**Historical engine checkpoint, 16 November:** The TestFlight build exposes Luna and two experimental Hybrid ordering methods. The updated Pocket server recognizes both Hybrid methods; real-account end-to-end results were still unverified, and the weather Hybrid did not yet compute exposure-based ordering.
 
 <a id="engine-luna-hybrid-2026-11-16"></a>
 

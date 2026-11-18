@@ -41,3 +41,7 @@ Read CBL section 0P first. Latest agreed geography is Jakarta only; code still a
 ## 14 November continuation
 
 CBL section [0Q](../source-records/CBL.md#current-handoff) records the closure of the local preferences, recommendations and survey-handoff scope. The [Simulator and test evidence](../../../docs/tasks/jakarta-discovery-direct-processing.md) is the basis for the new checkpoint. The ledger records the new document hash while the previous validation and import hashes remain available above.
+
+## 18 November continuation
+
+Section [0R](../source-records/CBL.md#hybrid-v41-recovery-2026-11-18) records the observed date mismatch, the v4 fallback, the six v4.1 workstreams, and the error recovery follow-up. The [verification record](../../../../docs/testing/verification.md) documents the synthetic tests and remaining device and provider checks. This is a local documentation update. Check the new links, whitespace, and reviewed source hash against the unchanged publication baseline.

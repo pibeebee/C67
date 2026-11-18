@@ -1,13 +1,27 @@
 import SwiftUI
+import C67Domain
 
 struct TripCreationView: View {
+    private enum ScheduleOptions: Hashable, Identifiable {
+        case all, field(ScheduleField)
+        var id: Self { self }
+        var target: ScheduleField? {
+            if case .field(let target) = self { return target }
+            return nil
+        }
+    }
+
+    @Environment(\.locale) private var locale
     @State private var presenter: TripCreationPresenter
     let dismiss: () -> Void
     let openPocketSettings: (() -> Void)?
     @State private var isRunningOperation = false
     @State private var operation: Task<Void, Never>?
     @State private var showsStartingPointSearch = false
-    @State private var showsScheduleOptions = false
+    @State private var scheduleOptions: ScheduleOptions?
+    @State private var showsScheduleDetails = false
+    @State private var pendingScheduleTarget: ScheduleField?
+    @State private var showsMyPlaces = false
 
     init(presenter: TripCreationPresenter, dismiss: @escaping () -> Void, openPocketSettings: (() -> Void)? = nil) {
         _presenter = State(initialValue: presenter)
@@ -22,7 +36,7 @@ struct TripCreationView: View {
         }
         .fullScreenCover(isPresented: Binding(get: { presenter.isProcessing }, set: { _ in })) {
             ZStack(alignment: .bottom) {
-                TripProcessingView(advances: false, isReady: presenter.isShowingCompletion)
+                TripProcessingView(advances: false, messageOverride: presenter.planning.progress, isReady: presenter.isShowingCompletion)
                 if !presenter.isShowingCompletion {
                     Button { operation?.cancel(); dismiss() } label: {
                         Text(presenter.planning.supportsOnDevicePlanning ? "Continue later" : "Cancel")
@@ -42,8 +56,71 @@ struct TripCreationView: View {
         .task {
             if presenter.route == .mainSpot, presenter.checksExistingRequest { run { await presenter.plan() } }
         }
-        .sheet(isPresented: $showsScheduleOptions) {
-            PocketScheduleOptionsSheet(presenter: presenter)
+        .sheet(item: $scheduleOptions) { options in
+            PocketScheduleOptionsSheet(presenter: presenter, target: options.target)
+        }
+        .sheet(isPresented: $showsMyPlaces) {
+            PlacesSelectionSheet(places: presenter.selected, remove: presenter.toggle)
+        }
+        .sheet(isPresented: $showsScheduleDetails, onDismiss: {
+            if let target = pendingScheduleTarget {
+                pendingScheduleTarget = nil
+                scheduleOptions = .field(target)
+            }
+        }) {
+            NavigationStack {
+                List {
+                    if let assessment = presenter.scheduleAssessment, let input = presenter.planning.firstItineraryJob?.input {
+                        if !assessment.conflicts.isEmpty || !assessment.regularConflicts.isEmpty {
+                            Section("Conflicts") {
+                                ForEach(Array((assessment.conflicts + assessment.regularConflicts).enumerated()), id: \.offset) { _, issue in
+                                    scheduleIssueRow(issue, input: input)
+                                }
+                            }
+                        }
+                        if !assessment.unresolved.isEmpty {
+                            Section("Information to check") {
+                                ForEach(Array(assessment.unresolved.enumerated()), id: \.offset) { _, issue in scheduleIssueRow(issue, input: input) }
+                            }
+                        }
+                        if !assessment.dates.isEmpty {
+                            Section("Dates checked") {
+                                ForEach(Array(assessment.dates.enumerated()), id: \.offset) { _, day in
+                                    VStack(alignment: .leading) {
+                                        Text(ItineraryFormatting.date(day.date, zone: input.timeZone, locale: locale))
+                                        Text(dateStatus(day))
+                                            .font(.footnote).foregroundStyle(.secondary)
+                                    }
+                                }
+                            }
+                        }
+                        if !assessment.durationAlternatives.isEmpty {
+                            Section("Duration alternatives") {
+                                ForEach(assessment.durationAlternatives) { alternative in
+                                    let name = presenter.selected.first { $0.id == alternative.placeID }?.place.name ?? "Visit"
+                                    Button("Use \(alternative.proposedSeconds / 60) min at \(name) instead of \(alternative.originalSeconds / 60) min") {
+                                        showsScheduleDetails = false
+                                        run { await presenter.acceptDurationAlternative(alternative) }
+                                    }
+                                    .accessibilityIdentifier("acceptShorterVisit")
+                                }
+                            }
+                        }
+                        if (assessment.conflicts + assessment.regularConflicts + assessment.unresolved).contains(where: { $0.placeID != nil }) {
+                            Section {
+                                Button("Review visit availability") {
+                                    showsScheduleDetails = false
+                                    presenter.reviewVisitAvailability()
+                                }
+                            }
+                        }
+                    }
+                }
+                .environment(\.timeZone, TimeZone(identifier: presenter.planning.timeZone) ?? .current)
+                .navigationTitle("Schedule details")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showsScheduleDetails = false } } }
+            }
         }
         .sheet(isPresented: $showsStartingPointSearch) {
             PlanningSearchSheet(near: presenter.planning.origin, title: "Starting point") { place in
@@ -67,8 +144,10 @@ struct TripCreationView: View {
                                        refinementOptions: presenter.planning.preferenceLabels)
             case .places:
                 AddPlacesView(query: $presenter.query, results: presenter.results, selected: presenter.selected,
-                              isSearching: presenter.isSearching, error: presenter.searchError,
-                              synthetic: presenter.mode.hasPrefix("Mock"), origin: presenter.planning.origin, search: { await presenter.search() }, toggle: presenter.toggle) {
+                              isSearching: presenter.isSearching, hasSearched: presenter.hasSearchedCurrentQuery,
+                              showsPreviousResults: presenter.showsPreviousResults, error: presenter.searchError,
+                              synthetic: presenter.mode.hasPrefix("Mock"), hasSixPlaceLimit: presenter.hasSixPlaceLimit,
+                              origin: presenter.planning.origin, search: { await presenter.search() }, toggle: presenter.toggle) {
                     if presenter.path.contains(.recommendations) { presenter.path.removeLast() }
                     else { presenter.finishChoosingPlaces() }
                 }
@@ -85,18 +164,17 @@ struct TripCreationView: View {
                                               presenter.planning.originLabel = place.name
                                               presenter.planning.draftChanged()
                                           },
+                                          showsSixPlaceLimit: presenter.hasSixPlaceLimit,
                                           load: { await presenter.loadRecommendationsIfNeeded() },
                                           refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
                                           toggle: presenter.toggle,
                                           findPlace: { presenter.push(.places) }, complete: presenter.finishChoosingPlaces)
             case .mainSpot:
                 MainSpotQuestionView(places: presenter.selected, selection: presenter.mainSpot,
-                                     select: { presenter.mainSpot = $0; presenter.stay = nil },
+                                     select: presenter.selectMainSpot,
                                      next: { run { await presenter.finishMainSpot() } },
-                                     skip: {
-                                         presenter.mainSpot = .automatic; presenter.stay = nil
-                                         run { await presenter.finishSurvey() }
-                                     }, researchesWithLuna: presenter.planning.supportsOnDevicePlanning,
+                                     showsNext: presenter.error == nil || presenter.connectionNotice == nil,
+                                     researchesWithLuna: presenter.planning.supportsOnDevicePlanning,
                                      usesV41: presenter.usesV41,
                                      scheduleSummary: presenter.usesV41 ? presenter.scheduleSummary : nil,
                                      editSchedule: presenter.usesV41 ? { openScheduleOptions() } : nil)
@@ -108,6 +186,7 @@ struct TripCreationView: View {
             case .review:
                 if let proposal = presenter.reviewProposal {
                     ItineraryReviewView(presenter: presenter.planning, initialProposal: proposal)
+                        .onAppear { presenter.recordReviewAppearance() }
                 }
             }
         }
@@ -136,49 +215,131 @@ struct TripCreationView: View {
     @ViewBuilder private func planningErrorBanner(for route: TripCreationRoute) -> some View {
         if presenter.route == route, [.mainSpot, .stay, .availability].contains(route),
            let error = presenter.error, !presenter.isProcessing {
-            VStack(alignment: .leading, spacing: 8) {
-                Label(error, systemImage: "exclamationmark.circle").font(.footnote)
-                if let assessment = presenter.scheduleAssessment, let input = presenter.planning.firstItineraryJob?.input {
-                    ForEach(Array(assessment.messages(in: input).prefix(4)), id: \.self) { Text($0).font(.footnote) }
-                    ForEach(assessment.durationAlternatives) { alternative in
-                        let name = presenter.selected.first { $0.id == alternative.placeID }?.place.name ?? "Visit"
-                        Text(alternative.source == "luna_experience_estimate" ? "Alternative based on Luna's estimated duration range." : "Alternative within your accepted duration range.")
-                            .font(.footnote)
-                        Button("Use \(alternative.proposedSeconds / 60) min at \(name) instead of \(alternative.originalSeconds / 60) min") {
-                            run { await presenter.acceptDurationAlternative(alternative) }
-                        }
-                        .accessibilityIdentifier("acceptShorterVisit")
-                    }
-                    if !assessment.regularConflicts.isEmpty || assessment.conflicts.contains(where: { $0.placeID != nil }) || assessment.stopReason == "date_conflict" {
-                        Button("Review visit availability") { presenter.reviewVisitAvailability() }
-                    }
-                }
-                if presenter.canTryTomorrow {
-                    Button("Try tomorrow") { run { await presenter.tryTomorrow() } }
-                }
-                if let code = presenter.planning.firstItineraryJob?.errorCode,
-                   ["V4_NO_SCHEDULE", "V4_DURATION_UNKNOWN", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
-                    "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED", "V41_NO_SCHEDULE", "V41_ACCESS_CONFLICT",
-                    "V41_DATE_CONFLICT", "V41_BUDGET_REACHED"].contains(code) {
-                    Button("Adjust schedule") { openScheduleOptions() }
-                }
-                if presenter.planning.origin == nil, presenter.planningHandoffMessage == nil {
-                    Button("Choose starting point") { showsStartingPointSearch = true }
-                } else if presenter.needsPocketSettings, let openPocketSettings {
-                    Button("Open Pocket settings", action: openPocketSettings)
-                } else if route != .availability, presenter.planningHandoffMessage == nil {
-                    Button(presenter.checksExistingRequest ? "Check status" : "Try again") { run { await presenter.plan() } }
+            Group {
+                if let notice = presenter.connectionNotice {
+                    connectionBanner(notice)
+                } else {
+                    let code = presenter.planning.firstItineraryJob?.errorCode
+                    RecoveryNotice(title: presenter.checksExistingRequest ? "Request status" : "Itinerary needs attention",
+                                   message: planningMessage(error, code: code), primary: planningAction(code: code, route: route),
+                                   secondary: secondaryPlanningAction)
                 }
             }
-            .padding().frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppColor.surface)
             .accessibilityIdentifier("tripPlanningError")
+        }
+    }
+
+    private func connectionBanner(_ notice: TripCreationPresenter.ConnectionNotice) -> RecoveryNotice {
+        let checking = presenter.checksExistingRequest
+        let action = RecoveryNotice.Action(title: checking ? "Check status" : "Try again") {
+            run { await presenter.plan() }
+        }
+        switch notice {
+        case .takingLonger:
+            return RecoveryNotice(title: "Your itinerary is taking longer than expected",
+                                  message: "Check for a result using the same request. Your selections are kept.",
+                                  icon: "clock", primary: action)
+        case .loadFailed:
+            return RecoveryNotice(title: "Couldn’t load your itinerary",
+                                  message: checking
+                                      ? "Your selections are kept. Check the same request when you’re connected."
+                                      : "Your selections are kept. Try again when you’re ready.",
+                                  primary: action)
+        }
+    }
+
+    private var secondaryPlanningAction: RecoveryNotice.Action? {
+        if presenter.scheduleAssessment != nil {
+            return .init(title: "View schedule details") { pendingScheduleTarget = nil; showsScheduleDetails = true }
+        }
+        if presenter.canTryTomorrow {
+            return .init(title: "Adjust schedule") { openScheduleOptions() }
+        }
+        return nil
+    }
+
+    private func planningMessage(_ message: String, code: String?) -> String {
+        switch code {
+        case "V4_DURATION_UNKNOWN": "A visit duration is unavailable. Add it to continue."
+        case "V41_ACCESS_CONFLICT": "A visit conflicts with available hours or an activity session."
+        case "V41_DATE_CONFLICT": "A confirmed visit falls outside the trip date."
+        case "V41_BUDGET_REACHED": "Route checking stopped before a complete schedule could be verified."
+        case "V41_NO_SCHEDULE": "No complete schedule was verified among the routes checked."
+        default: message
+        }
+    }
+
+    private func planningAction(code: String?, route: TripCreationRoute) -> RecoveryNotice.Action? {
+        if presenter.planningHandoffMessage != nil {
+            return .init(title: "Review My Places") { showsMyPlaces = true }
+        }
+        if presenter.planning.origin == nil {
+            return .init(title: "Choose starting point") { showsStartingPointSearch = true }
+        }
+        if presenter.needsPocketSettings || presenter.planning.creationIssue?.recovery == .signIn, let openPocketSettings {
+            return .init(title: "Open Account", perform: openPocketSettings)
+        }
+        if presenter.checksExistingRequest {
+            return .init(title: "Check status") { run { await presenter.plan() } }
+        }
+        if presenter.canTryTomorrow {
+            return .init(title: "Try tomorrow") { run { await presenter.tryTomorrow() } }
+        }
+        switch code {
+        case "V4_DURATION_UNKNOWN", "V4_NO_SCHEDULE", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
+             "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED", "V41_NO_SCHEDULE", "V41_ACCESS_CONFLICT", "V41_DATE_CONFLICT":
+            return .init(title: "Adjust schedule") { openScheduleOptions() }
+        default:
+            guard route != .availability else { return nil }
+            let title: LocalizedStringKey = presenter.planning.creationIssue?.recovery == .wait ? "Try again later" : "Try again"
+            return .init(title: title) { run { await presenter.plan() } }
+        }
+    }
+
+    private func dateStatus(_ day: PlanningDateAssessment) -> LocalizedStringKey {
+        if day.completeCandidates > 0 { return "Schedule found" }
+        if day.stopReason == "date_conflict" { return "Conflicting visit date" }
+        if day.stopReason == "preflight_conflict" {
+            if presenter.planning.firstItineraryJob?.errorCode == "V4_DURATION_UNKNOWN" { return "Visit duration needed" }
+            return "Stopped before checking routes"
+        }
+        if day.stopReason.hasSuffix("_budget_exhausted") { return "Route checking reached its limit" }
+        return "No complete schedule verified"
+    }
+
+    @ViewBuilder private func scheduleIssueRow(_ issue: PlanningScheduleIssue, input: PlanningInput) -> some View {
+        let target: ScheduleField? = switch issue.code {
+        case "duration_unknown", "duration_exceeds_all_windows": issue.placeID.map(ScheduleField.duration)
+        case "session_arrival_missed": issue.placeID.map(ScheduleField.checkIn)
+        case "session_outside_date", "required_visits_overlap", "required_target_missed", "hard_target_missed",
+             "target_outside_availability": issue.placeID.map(ScheduleField.session)
+        case "all_day_closed", "date_access_unverified": issue.placeID.map(ScheduleField.access)
+        case "visit_outside_hours_or_entry": issue.placeID.map(ScheduleField.entry)
+        case "return_deadline_exceeded", "duration_exceeds_day": .finish
+        case "waiting_permission_unknown": .waiting
+        default: nil
+        }
+        if let target {
+            Button {
+                presenter.prepareScheduleOptions()
+                pendingScheduleTarget = target
+                showsScheduleDetails = false
+            } label: {
+                HStack {
+                    Text(issue.message(in: input))
+                    Spacer(minLength: 8)
+                    Image(systemName: "chevron.right").accessibilityHidden(true)
+                }
+            }
+            .accessibilityHint("Opens the related schedule field")
+        } else {
+            Text(issue.message(in: input))
         }
     }
 
     private func openScheduleOptions() {
         presenter.prepareScheduleOptions()
-        showsScheduleOptions = true
+        scheduleOptions = .all
     }
 
     private var cancelButton: some View {

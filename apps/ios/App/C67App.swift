@@ -52,7 +52,16 @@ struct C67App: App {
 
 private struct StarterRootView: View {
     let pocketRepositories: PocketRepositoryRegistry
-    @State private var result = Result { try AppDependencies.make() }
+    @State private var result: Result<AppDependencies, Error>
+
+    init(pocketRepositories: PocketRepositoryRegistry) {
+        self.pocketRepositories = pocketRepositories
+        _result = State(initialValue: Self.makeDependencies(pocketRepositories))
+    }
+
+    private static func makeDependencies(_ repositories: PocketRepositoryRegistry) -> Result<AppDependencies, Error> {
+        Result { try AppDependencies.make(removeAccountData: { try await repositories.erase(for: $0) }) }
+    }
     var body: some View {
         switch result {
         case .success(let dependencies):
@@ -81,8 +90,24 @@ private struct StarterRootView: View {
                 }
             #endif
         case .failure(let error):
-            ContentUnavailableView("Configuration needed", systemImage: "gearshape",
-                                   description: Text(error.localizedDescription))
+            let needsConfiguration = (error as? RepositoryError) == .invalidConfiguration
+            ContentUnavailableView {
+                Label("Travelant couldn’t start", systemImage: "gearshape")
+            } description: {
+                if needsConfiguration {
+                    Text("This build couldn’t start. Check for a Travelant update or contact support.")
+                } else {
+                    Text("Try opening Travelant again. Your trips haven’t been removed.")
+                }
+            } actions: {
+                if needsConfiguration {
+                    ShareLink(item: "Travelant could not start because this build needs configuration.") {
+                        Label("Share startup details", systemImage: "square.and.arrow.up")
+                    }
+                } else {
+                    Button("Try again") { result = Self.makeDependencies(pocketRepositories) }
+                }
+            }
         }
     }
 }
@@ -93,8 +118,9 @@ private struct PocketAuthenticatedRoot: View {
     let repositories: PocketRepositoryRegistry
     @State private var account: TravellerAccount?
     @State private var restored = false
+    @State private var accountDeleted = false
     @State private var busy = false
-    @State private var error: String?
+    @State private var issue: PresentationIssue?
 
     var body: some View {
         Group {
@@ -104,28 +130,34 @@ private struct PocketAuthenticatedRoot: View {
             } else if restored {
                 VStack(spacing: 20) {
                     Text("Welcome to Travelant").font(.largeTitle.bold())
-                    Text("Sign in to create and continue your trips.").foregroundStyle(.secondary)
+                    Text(accountDeleted ? "Your account has been deleted." : "Sign in to create and continue your trips.")
+                        .foregroundStyle(.secondary)
                     AppleSignInButtonView { result in
                         switch result {
                         case .success(let credentials):
-                            busy = true; error = nil
+                            busy = true; issue = nil
                             Task {
                                 defer { busy = false }
                                 do { _ = try await authentication.signInWithApple(credentials) }
-                                catch { self.error = error.localizedDescription }
+                                catch is CancellationError { }
+                                catch { issue = .init(account: error) }
                             }
-                        case .failure(let failure): error = failure.localizedDescription
+                        case .failure(let failure): issue = .init(account: failure)
                         }
                     }.disabled(busy)
                     if busy { ProgressView("Signing in…") }
-                    if let error { Text(error).font(.footnote).foregroundStyle(.secondary) }
+                    if let issue {
+                        RecoveryNotice(title: "Sign-in needs attention", message: issue.message,
+                                       primary: issue.recovery == .checkSession
+                                           ? .init(title: "Check session again") { Task { await checkSession() } }
+                                           : nil)
+                    }
                 }.padding(24).frame(maxWidth: 480)
             } else { ProgressView("Restoring your account…") }
         }
         .task {
             let changes = await authentication.sessionChanges()
-            do { _ = try await authentication.currentAccount() }
-            catch { self.error = error.localizedDescription; restored = true }
+            await checkSession()
             for await snapshot in changes {
                 guard !Task.isCancelled else { return }
                 if snapshot.isRestored {
@@ -134,10 +166,20 @@ private struct PocketAuthenticatedRoot: View {
                         await repositories.suspendOrdering(for: oldID)
                     }
                     account = nextAccount
+                    accountDeleted = snapshot.accountDeleted
                     restored = true
                 }
             }
         }
+    }
+
+    private func checkSession() async {
+        guard !busy else { return }
+        busy = true; issue = nil
+        defer { busy = false; restored = true }
+        do { _ = try await authentication.currentAccount() }
+        catch is CancellationError { }
+        catch { issue = .init(account: error, checkingSession: true) }
     }
 }
 
@@ -152,17 +194,26 @@ private struct PocketAuthenticatedWorkspace: View {
         Group {
             if let repository {
                 PlanningAssembly.make(repository: repository, mode: "Pocket • authenticated", initialInput: nil, authentication: authentication)
-            } else if let error {
-                ContentUnavailableView("Trip storage unavailable", systemImage: "externaldrive.badge.exclamationmark", description: Text(error))
+            } else if error != nil {
+                ContentUnavailableView {
+                    Label("Trip storage unavailable", systemImage: "externaldrive.badge.exclamationmark")
+                } description: {
+                    Text("Your trips could not be opened. Try again; your saved data has not been removed.")
+                } actions: {
+                    Button("Try again") { openRepository() }
+                }
             } else { ProgressView("Loading your trips…") }
         }
-        .task {
-            do {
-                let raw = Bundle.main.object(forInfoDictionaryKey: "POCKET_SERVER_URL") as? String ?? ""
-                let connection = try AuthenticatedPocketConnection(serverURL: raw, authentication: authentication)
-                repository = try repositories.repository(for: accountID, connection: connection)
-            } catch { self.error = error.localizedDescription }
-        }
+        .task { openRepository() }
+    }
+
+    private func openRepository() {
+        error = nil
+        do {
+            let raw = Bundle.main.object(forInfoDictionaryKey: "POCKET_SERVER_URL") as? String ?? ""
+            let connection = try AuthenticatedPocketConnection(serverURL: raw, authentication: authentication)
+            repository = try repositories.repository(for: accountID, connection: connection)
+        } catch { self.error = error.localizedDescription }
     }
 }
 
@@ -177,6 +228,18 @@ private final class PocketRepositoryRegistry {
                                                       storageURL: PocketPlanningRepository.storageURL(for: accountID))
         repositories[accountID] = repository
         return repository
+    }
+
+    func erase(for accountID: UUID) async throws {
+        await HTTPPlanningRepository.eraseAccountData(for: accountID)
+        if let repository = repositories[accountID] {
+            try await repository.eraseAccountData()
+            repositories[accountID] = nil
+        }
+        let folder = try PocketPlanningRepository.storageURL(for: accountID).deletingLastPathComponent()
+        if FileManager.default.fileExists(atPath: folder.path) {
+            try FileManager.default.removeItem(at: folder)
+        }
     }
 
     func suspendOrdering(for accountID: UUID) async {

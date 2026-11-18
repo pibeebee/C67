@@ -3,10 +3,20 @@ import MapKit
 import C67Domain
 
 struct ItineraryMapView: View {
+    private static let stopColors: [Color] = [.blue, .orange, .purple, .teal, .pink, .brown]
+
+    private struct RouteTaskID: Equatable {
+        let path: [PlanningPoint]
+        let retry: Int
+    }
     let proposal: PlanProposal
-    @State private var routes: [MKRoute] = []
+    @State private var routes: [Int: MKRoute] = [:]
+    @State private var loadedPath: [PlanningPoint] = []
     @State private var routeUnavailable = false
+    @State private var isLoadingRoutes = false
+    private var path: [PlanningPoint] { [proposal.input.origin] + proposal.stops.map(\.location) }
     @State private var showsFullMap = false
+    @State private var retryGeneration = 0
 
     var body: some View {
         VStack(spacing: 0) {
@@ -23,8 +33,7 @@ struct ItineraryMapView: View {
                     .padding(8)
                 }
             if routeUnavailable {
-                Text("Some driving routes could not be loaded.")
-                    .font(.footnote).foregroundStyle(.secondary).padding(8)
+                routeFailure
             }
             ForEach(proposal.evidence.filter { $0.kind == "weather" && $0.attributionLogoURL != nil }) { evidence in
                 if let url = evidence.url, let logo = evidence.attributionLogoURL, url.scheme == "https", logo.host == "weatherkit.apple.com" {
@@ -48,10 +57,16 @@ struct ItineraryMapView: View {
                         switch proposal.effectiveOrderingMethod {
                         case .luna: Text("Luna")
                         case .hybridLegacy: Text("Hybrid: candidates (retired)")
-                        case .hybridV4, .hybridV41:
-                            Text(proposal.effectiveOrderingMethod == .hybridV41 ? "Hybrid v4.1: flexible schedules (experimental)" : "Hybrid v4: schedules (experimental)")
+                        case .hybridV4, .hybridV41, .hybridV42:
+                            if proposal.effectiveOrderingMethod == .hybridV42 {
+                                Text("Hybrid v4.2: faster planning (experimental)")
+                            } else if proposal.effectiveOrderingMethod == .hybridV41 {
+                                Text("Hybrid v4.1: flexible schedules (experimental)")
+                            } else {
+                                Text("Hybrid v4: schedules (experimental)")
+                            }
                             Text(proposal.explanation)
-                            if proposal.effectiveOrderingMethod == .hybridV41, proposal.experiencePlan == nil {
+                            if proposal.effectiveOrderingMethod.usesFlexibleSchedule, proposal.experiencePlan == nil {
                                 Text("Visit durations were supplied by you.")
                             }
                             ForEach(proposal.warnings, id: \.self) { Text($0) }
@@ -99,11 +114,14 @@ struct ItineraryMapView: View {
         }
         .background(Color("ItinerarySurface"))
         .clipShape(.rect(cornerRadius: 14))
-        .task(id: proposal.input) { await loadRoutes() }
+        .task(id: RouteTaskID(path: path, retry: retryGeneration)) { await loadRoutes() }
         .fullScreenCover(isPresented: $showsFullMap) {
             NavigationStack {
                 routeMap
                     .ignoresSafeArea(edges: .bottom)
+                    .safeAreaInset(edge: .bottom) {
+                        if routeUnavailable { routeFailure.background(.regularMaterial) }
+                    }
                     .navigationTitle("Itinerary map")
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -116,45 +134,65 @@ struct ItineraryMapView: View {
         }
     }
 
+    private var routeFailure: some View {
+        RecoveryNotice(title: "Driving routes incomplete",
+                       message: isLoadingRoutes ? "Checking the missing routes…" : "Some routes couldn’t be drawn. You can still see all the stops.",
+                       primary: isLoadingRoutes ? nil : .init(title: "Try loading routes again") { retryGeneration += 1 })
+    }
+
     private var routeMap: some View {
         Map(interactionModes: [.pan, .zoom]) {
-            ForEach(Array(routes.enumerated()), id: \.offset) { _, route in
-                MapPolyline(route.polyline).stroke(Color.blue, lineWidth: 4)
+            ForEach(routes.keys.sorted(), id: \.self) { index in
+                if let route = routes[index], loadedPath == path {
+                    MapPolyline(route.polyline)
+                        .stroke(stopColor(at: index - 1), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
+                }
             }
             ForEach(Array(proposal.stops.enumerated()), id: \.element.id) { index, stop in
                 Annotation(stop.name, coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)) {
-                    Group {
-                        if proposal.usesExperienceFlow { Image(systemName: "mappin").font(.footnote.bold()) }
-                        else { Text(index + 1, format: .number).font(.footnote.bold()) }
-                    }
-                    .foregroundStyle(.white)
-                    .padding(8)
-                    .background(!proposal.usesExperienceFlow ? Color("ItineraryBlue") : Color.red, in: .circle)
-                    .overlay(Circle().stroke(.white, lineWidth: 2))
-                    .accessibilityLabel("Stop \(index + 1): \(stop.name)")
+                    Text(index + 1, format: .number)
+                        .font(.footnote.weight(.bold).monospacedDigit())
+                        .foregroundStyle(.black)
+                        .padding(6)
+                        .frame(minWidth: 30, minHeight: 30)
+                        .background(.white, in: .capsule)
+                        .overlay(Capsule().strokeBorder(stopColor(at: index), lineWidth: 3))
+                        .accessibilityLabel("Stop \(index + 1): \(stop.name)")
                 }
             }
         }
         .accessibilityLabel("Itinerary places on the map")
     }
 
+    private func stopColor(at index: Int) -> Color {
+        Self.stopColors[index % Self.stopColors.count]
+    }
+
     private func loadRoutes() async {
-        routes = []; routeUnavailable = false
+        let requestedPath = path
+        if requestedPath != loadedPath {
+            routes = [:]
+            routeUnavailable = false
+            loadedPath = requestedPath
+        }
         guard !proposal.synthetic else { return }
-        var origin = proposal.input.origin
-        for stop in proposal.stops {
+        isLoadingRoutes = true
+        defer { if !Task.isCancelled { isLoadingRoutes = false } }
+        for index in requestedPath.indices.dropFirst() where routes[index] == nil {
             guard !Task.isCancelled else { return }
+            let origin = requestedPath[index - 1], destination = requestedPath[index]
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: origin.latitude, longitude: origin.longitude)))
-            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: destination.latitude, longitude: destination.longitude)))
             request.transportType = .automobile
             let directions = MKDirections(request: request)
             do {
                 let result = try await withTaskCancellationHandler { try await directions.calculate() } onCancel: { directions.cancel() }
                 guard !Task.isCancelled else { return }
-                if let route = result.routes.first { routes.append(route) } else { routeUnavailable = true }
+                if let route = result.routes.first { routes[index] = route } else { routeUnavailable = true }
             } catch { if !Task.isCancelled { routeUnavailable = true } }
-            origin = stop.location
         }
+        guard !Task.isCancelled else { return }
+        routeUnavailable = routes.count < requestedPath.count - 1
     }
 }

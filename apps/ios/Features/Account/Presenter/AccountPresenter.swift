@@ -12,7 +12,13 @@ final class AccountPresenter {
     private(set) var isBusy = false
     private(set) var hasRestored = false
     var screen: Screen = .signIn
-    var error: String?
+    private(set) var issue: PresentationIssue?
+    private(set) var deletionPending = false
+    private(set) var deletingAccount = false
+    private(set) var deletionMessage: String?
+    var verifiesAppleForDeletion = false
+    var supportsAccountDeletion: Bool { interactor.supportsAccountDeletion }
+    var error: String? { issue?.message }
     var notice: String?
     var onSessionChange: ((AuthenticationSnapshot) -> Void)?
     private var queuedCallback: URL?
@@ -39,12 +45,13 @@ final class AccountPresenter {
         do {
             account = try await (force ? interactor.refresh() : interactor.restore())
             // Opening Account or returning to the foreground must not erase callback feedback.
-            if force { error = nil }
+            deletionPending = try await interactor.hasPendingDeletion()
+            if force { issue = nil }
         }
         catch is CancellationError { }
-        catch AuthenticationError.sessionExpired { account = nil; error = AuthenticationError.sessionExpired.localizedDescription }
-        catch AuthenticationError.remoteSignOutFailed { account = nil; error = AuthenticationError.remoteSignOutFailed.localizedDescription }
-        catch { self.error = error.localizedDescription }
+        catch AuthenticationError.sessionExpired { account = nil; issue = .init(account: AuthenticationError.sessionExpired) }
+        catch AuthenticationError.remoteSignOutFailed { account = nil; issue = .init(account: AuthenticationError.remoteSignOutFailed) }
+        catch { issue = .init(account: error, checkingSession: true) }
     }
     func signIn(email: String, password: String) async {
         await perform { self.account = try await self.interactor.signIn(email: email, password: password) }
@@ -54,7 +61,7 @@ final class AccountPresenter {
     }
     func appleAuthorizationFailed(_ failure: AuthenticationError) {
         guard !isBusy else { return }
-        error = failure.localizedDescription; notice = nil
+        issue = .init(account: failure); notice = nil
     }
     func signUp(email: String, password: String) async {
         await perform {
@@ -100,6 +107,36 @@ final class AccountPresenter {
             }
         }
     }
+    func deleteAccount(appleAuthorizationCode: String? = nil) async {
+        guard !isBusy, let account else { return }
+        isBusy = true; deletingAccount = true; deletionMessage = nil; issue = nil; notice = nil
+        defer { deletingAccount = false; finishAction() }
+        do {
+            switch try await interactor.deleteAccount(account.id, appleAuthorizationCode: appleAuthorizationCode) {
+            case .pending:
+                verifiesAppleForDeletion = false
+                deletionPending = true
+            case .deleted:
+                verifiesAppleForDeletion = false
+                deletionPending = false
+                self.account = nil
+                notice = "Your account has been deleted."
+            }
+        } catch is CancellationError { }
+        catch AccountDeletionError.appleVerificationRequired { verifiesAppleForDeletion = true }
+        catch {
+            deletionMessage = error.localizedDescription
+            if let failure = error as? AccountDeletionError, case .appleAccountMismatch = failure {
+                verifiesAppleForDeletion = true
+            }
+        }
+        if let pending = try? await interactor.hasPendingDeletion() { deletionPending = pending }
+    }
+
+    func appleDeletionAuthorizationFailed(_ failure: AuthenticationError) {
+        deletionMessage = failure.localizedDescription
+    }
+
     private func finishAction() {
         isBusy = false
         if let callback = queuedCallback {
@@ -109,10 +146,10 @@ final class AccountPresenter {
     }
     private func perform(_ action: () async throws -> Void) async {
         guard !isBusy else { return }
-        isBusy = true; error = nil; notice = nil
+        isBusy = true; issue = nil; notice = nil
         defer { finishAction() }
         do { try await action() }
         catch is CancellationError { }
-        catch { self.error = error.localizedDescription }
+        catch { issue = .init(account: error) }
     }
 }

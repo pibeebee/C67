@@ -17,18 +17,26 @@ final class DepartureWeatherLoader {
         let markURL: URL?
     }
 
+    enum ForecastFailure: Error {
+        case noForecastForDeparture, temporarilyUnavailable
+    }
+
     private(set) var forecast: Forecast?
+    private(set) var failure: ForecastFailure?
     private(set) var isLoading = false
     private var generation = 0
 
-    func clear() { generation += 1; forecast = nil; isLoading = false }
+    func clear() { generation += 1; forecast = nil; failure = nil; isLoading = false }
 
     func load(origin: PlanningPoint, departure: Date) async {
         generation += 1
         let ticket = generation
-        forecast = nil; isLoading = true
+        forecast = nil; failure = nil; isLoading = true
         defer { if ticket == generation { isLoading = false } }
-        guard departure >= Date().addingTimeInterval(-3600) else { return }
+        guard departure >= Date().addingTimeInterval(-3600) else {
+            failure = .noForecastForDeparture
+            return
+        }
         do {
             let start = Date(timeIntervalSince1970: floor(departure.timeIntervalSince1970 / 3600) * 3600)
             let location = CLLocation(latitude: origin.latitude, longitude: origin.longitude)
@@ -46,7 +54,10 @@ final class DepartureWeatherLoader {
                 let value = try await openMeteo(origin: origin, departure: departure)
                 guard !Task.isCancelled, ticket == generation else { return }
                 forecast = value
-            } catch { }
+            } catch {
+                guard !Task.isCancelled, ticket == generation else { return }
+                failure = error as? ForecastFailure ?? .temporarilyUnavailable
+            }
         }
     }
 
@@ -83,8 +94,10 @@ final class DepartureWeatherLoader {
         let forecast = try JSONDecoder().decode(Response.self, from: data)
         guard forecast.hourly_units.time == "unixtime", forecast.hourly_units.temperature_2m == "°C" else { throw URLError(.cannotParseResponse) }
         let hourly = forecast.hourly
-        guard let index = hourly.time.firstIndex(where: { $0 <= departure.timeIntervalSince1970 && departure.timeIntervalSince1970 < $0 + 3600 }),
-              hourly.temperature_2m.indices.contains(index), hourly.weather_code.indices.contains(index),
+        guard let index = hourly.time.firstIndex(where: { $0 <= departure.timeIntervalSince1970 && departure.timeIntervalSince1970 < $0 + 3600 }) else {
+            throw ForecastFailure.noForecastForDeparture
+        }
+        guard hourly.temperature_2m.indices.contains(index), hourly.weather_code.indices.contains(index),
               let temperature = hourly.temperature_2m[index], temperature.isFinite, let code = hourly.weather_code[index] else { throw URLError(.cannotParseResponse) }
         let (condition, symbol): (String, String) = switch code {
         case 0: ("Clear", "sun.max")
@@ -105,20 +118,29 @@ final class PlanningPlaceSearch {
     var query = ""
     private(set) var results: [PlanningPlace] = []
     private(set) var isBusy = false
-    var error: String?
+    private var searchFailure: String?
+    private var submittedQuery: String?
+    private var normalizedQuery: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
+    var hasSearched: Bool { submittedQuery == normalizedQuery }
+    var error: String? { hasSearched ? searchFailure : nil }
+    var showsPreviousResults: Bool { !results.isEmpty && (!hasSearched || isBusy || error != nil) }
     private var generation = 0
 
     func search(near point: PlanningPoint?) async {
-        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !text.isEmpty else { results = []; return }
-        generation += 1; let ticket = generation; isBusy = true; error = nil
+        let text = normalizedQuery
+        generation += 1
+        let ticket = generation
+        submittedQuery = text
+        searchFailure = nil
+        guard !text.isEmpty else { results = []; isBusy = false; return }
+        isBusy = true
         defer { if ticket == generation { isBusy = false } }
         let request = MKLocalSearch.Request(); request.naturalLanguageQuery = text
         request.resultTypes = [.address, .pointOfInterest]
         if let point { request.region = MKCoordinateRegion(center: .init(latitude: point.latitude, longitude: point.longitude), latitudinalMeters: 20000, longitudinalMeters: 20000) }
         do {
             let response = try await MKLocalSearch(request: request).start()
-            guard ticket == generation, !Task.isCancelled else { return }
+            guard ticket == generation, !Task.isCancelled, normalizedQuery == text else { return }
             results = response.mapItems.prefix(12).map { item in
                 var place = PlanningPlace(id: UUID(), name: item.name ?? "Selected place",
                                           location: .init(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude),
@@ -127,7 +149,11 @@ final class PlanningPlaceSearch {
                 return place
             }
         } catch is CancellationError { }
-        catch { if ticket == generation { self.error = "Place search is unavailable. Try another query." } }
+        catch {
+            guard ticket == generation, !Task.isCancelled, normalizedQuery == text else { return }
+            if MapKitTripPlaceSearch.isEmptyResult(error) { results = [] }
+            else { searchFailure = "Check your connection or try a different query." }
+        }
     }
 }
 

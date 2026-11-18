@@ -8,6 +8,7 @@ struct ItineraryDepartureCard: View {
     var editDeparture: (() -> Void)?
     var editEndpoints: ((ItineraryEditRoute) -> Void)?
     @Environment(\.locale) private var locale
+    @State private var weatherRetry = 0
     @State private var departureForecast = DepartureWeatherLoader()
 
     private var departureContext: String {
@@ -18,6 +19,34 @@ struct ItineraryDepartureCard: View {
     }
 
     var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            departureCard
+            if let forecast = departureForecast.forecast, proposal.estimatedExperienceDeparture != nil,
+               !proposal.synthetic, !isDesignPreview {
+                Link(destination: forecast.sourceURL) {
+                    if let mark = forecast.markURL {
+                        AsyncImage(url: mark) { image in
+                            image.resizable().scaledToFit()
+                        } placeholder: { Text(forecast.source).foregroundStyle(.black) }
+                            .frame(width: 90, height: 22)
+                            .padding(4)
+                            .background(.white, in: .rect(cornerRadius: 4))
+                    } else {
+                        Text(forecast.source).underline()
+                    }
+                }
+                .font(.footnote)
+                .frame(minHeight: 44)
+                .accessibilityLabel("\(forecast.source) data sources")
+            }
+        }
+        .task(id: forecastIdentity) {
+            guard !isDesignPreview, !proposal.synthetic, let departure = proposal.estimatedExperienceDeparture else { departureForecast.clear(); return }
+            await departureForecast.load(origin: proposal.input.origin, departure: departure)
+        }
+    }
+
+    private var departureCard: some View {
         VStack(alignment: .leading, spacing: 4) {
             if let departure = proposal.estimatedExperienceDeparture {
                 HStack {
@@ -91,14 +120,10 @@ struct ItineraryDepartureCard: View {
         .clipShape(.rect(cornerRadius: 26))
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("itineraryDeparture")
-        .task(id: forecastIdentity) {
-            guard !isDesignPreview, !proposal.synthetic, let departure = proposal.estimatedExperienceDeparture else { departureForecast.clear(); return }
-            await departureForecast.load(origin: proposal.input.origin, departure: departure)
-        }
     }
 
     private var forecastIdentity: String {
-        "\(proposal.input.origin.latitude),\(proposal.input.origin.longitude),\(proposal.estimatedExperienceDeparture?.timeIntervalSince1970 ?? 0),\(proposal.synthetic),\(isDesignPreview)"
+        "\(proposal.input.origin.latitude),\(proposal.input.origin.longitude),\(proposal.estimatedExperienceDeparture?.timeIntervalSince1970 ?? 0),\(proposal.synthetic),\(isDesignPreview),\(weatherRetry)"
     }
 
     @ViewBuilder private var departureWeather: some View {
@@ -107,16 +132,13 @@ struct ItineraryDepartureCard: View {
                 Label(weatherAdvice, systemImage: "sun.max")
             } else if let forecast = departureForecast.forecast {
                 Label("\(forecast.temperature.formatted(.measurement(width: .abbreviated, numberFormatStyle: .number.precision(.fractionLength(0))))) · \(forecast.condition)", systemImage: forecast.symbol)
-                Link(destination: forecast.sourceURL) {
-                    if let mark = forecast.markURL {
-                        AsyncImage(url: mark) { image in image.resizable().scaledToFit() } placeholder: { Text(forecast.source) }
-                            .frame(width: 90, height: 22).padding(4).background(.white, in: .rect(cornerRadius: 4))
-                    } else { Text(forecast.source).underline() }
-                }.accessibilityLabel("\(forecast.source) data sources")
             } else if departureForecast.isLoading {
                 Text("Checking departure weather…")
             } else {
                 Text("Weather unavailable for this time")
+                if !proposal.synthetic, !isDesignPreview, departureForecast.failure == .temporarilyUnavailable {
+                    Button("Try weather again") { weatherRetry += 1 }
+                }
             }
         }
         .font(.footnote).padding(.top, 6)

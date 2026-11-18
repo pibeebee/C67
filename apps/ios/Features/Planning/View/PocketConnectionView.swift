@@ -55,11 +55,12 @@ struct ItineraryMethodSection: View {
                 Text("Luna").tag(PlanningOrderingMethod.luna.rawValue)
                 Text("Hybrid v4: schedules").tag(PlanningOrderingMethod.hybridV4.rawValue)
                 Text("Hybrid v4.1: flexible schedules").tag(PlanningOrderingMethod.hybridV41.rawValue)
+                Text("Hybrid v4.2: faster planning").tag(PlanningOrderingMethod.hybridV42.rawValue)
                 Text("Hybrid: weather context").tag(PlanningOrderingMethod.hybridWeather.rawValue)
             }
             .accessibilityIdentifier("pocketOrderingMethod")
             .onAppear { if orderingMethod == PlanningOrderingMethod.hybridLegacy.rawValue { orderingMethod = PlanningOrderingMethod.hybridWeather.rawValue } }
-            Text("Luna assistance uses the Pocket server. Hybrid v4.1 can schedule your supplied visit durations directly and compares a bounded set of schedules using estimated travel and available hours.")
+            Text("Luna assistance uses the Pocket server. Hybrid v4.1 and v4.2 can schedule your supplied visit durations directly using estimated travel and available hours.")
                 .font(.footnote)
         }
     }

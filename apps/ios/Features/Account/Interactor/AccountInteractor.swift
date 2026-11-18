@@ -13,7 +13,9 @@ struct AccountInteractor: Sendable {
         return try await authentication.refreshSession()
     }
     private func verifyAppleCredential() async throws {
-        guard let userID = try await authentication.currentAppleUserID() else { return }
+        // Apple can revoke its credential while the server is still deleting the account.
+        guard try await !authentication.hasPendingAccountDeletion(),
+              let userID = try await authentication.currentAppleUserID() else { return }
         // Temporary Apple/system errors must not destroy a usable Supabase session.
         guard let authorized = try? await appleCredentials.isAuthorized(userID: userID), !authorized else { return }
         try await authentication.invalidateAppleSession(userID: userID)
@@ -32,5 +34,10 @@ struct AccountInteractor: Sendable {
     func callback(_ url: URL) async throws { try await authentication.handleCallback(url) }
     func updatePassword(_ password: String) async throws { try await authentication.updatePassword(password) }
     func cancelEmailFlow() async throws { try await authentication.cancelEmailFlow() }
+    var supportsAccountDeletion: Bool { authentication.supportsAccountDeletion }
+    func hasPendingDeletion() async throws -> Bool { try await authentication.hasPendingAccountDeletion() }
+    func deleteAccount(_ accountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult {
+        try await authentication.deleteAccount(expectedAccountID: accountID, appleAuthorizationCode: appleAuthorizationCode)
+    }
     func signOut() async throws { try await authentication.signOut() }
 }

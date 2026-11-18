@@ -62,3 +62,15 @@ python -m unittest discover -s server/pocket/tests -v
 ```
 
 These tests use synthetic sources and model responses to check exact-quote rejection, independent review, unknown branch identity, reservation conditions, model/truncation rejection, source extraction, private-address rejection, job retries and authenticated HTTP without a catalog route. Ordering tests also cover complete selection preservation, unknown duration, optional weather failure, invalid sources, manual-order constraints and no regeneration on duplicate/terminal requests. Actual web/Luna and native UI acceptance are recorded in [the runtime task](../../docs/tasks/pocket-runtime-visit-resolution.md). Container, shared-server and TestFlight acceptance are separate.
+
+### Account deletion
+
+In authenticated mode, `POST /v1/account/deletion` verifies the traveller through Supabase Auth. Apple accounts confirm with a fresh native authorization code. The server exchanges it with Apple, checks the Apple subject against the account's linked identity, and revokes the Apple token before accepting the request. Codes and tokens are not saved by the endpoint. The client saves its private random receipt before submitting so a lost response or restart can check the same request.
+
+To enable the endpoint in an environment:
+
+1. Apply the account-deletion cleanup migration to that environment and deploy the matching Pocket service and ingress.
+2. Set the server-only `SUPABASE_SERVICE_ROLE_KEY` and Sign in with Apple variables in the [example environment](.env.example). The Apple client ID for the native code exchange is the app's bundle identifier. The Sign in with Apple signing key is separate from the WeatherKit configuration.
+3. Exercise the full flow against an isolated test account before enabling it for testers.
+
+The worker removes owner-scoped Pocket jobs and snapshots, then clears associated Storage objects and deletes the Supabase Auth user. Foreign keys remove related database records. Interrupted work is retried. Earlier visit-research snapshots are included when their job records reference them. Older flat files from interrupted research with no persisted reference have no trustworthy ownership link and require separate retention cleanup. The app removes account data from the device that confirms completion.

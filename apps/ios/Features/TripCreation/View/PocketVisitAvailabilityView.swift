@@ -36,7 +36,7 @@ struct PocketVisitAvailabilityView: View {
                                            closes: confirmation?.closesAt ?? day.addingTimeInterval(17 * 3600),
                                            confirm: { presenter.confirmVisit(item.id, opens: $0, closes: $1, publicAccess: true) },
                                            invalidate: { presenter.clearVisitConfirmation(item.id) })
-                    .id(day)
+                    .id(AvailabilityRowID(place: item.id, day: day))
             }
             Section {
                 Button("Build itinerary", action: proceed)
@@ -51,6 +51,11 @@ struct PocketVisitAvailabilityView: View {
         .onChange(of: visitDate) { _, date in if presenter.usesV41 { presenter.changeTripDate(date) } }
         .navigationTitle("Visit availability")
     }
+}
+
+private struct AvailabilityRowID: Hashable {
+    let place: UUID
+    let day: Date
 }
 
 private struct PocketVisitAvailabilityRow: View {
@@ -73,6 +78,11 @@ private struct PocketVisitAvailabilityRow: View {
             DatePicker("Available until", selection: $closes, displayedComponents: .hourAndMinute)
             Toggle("I checked access, any reservation, and these hours", isOn: $checked)
                 .accessibilityIdentifier("pocketAccess")
+            if closes <= opens {
+                Text("Available until must be after available from.").font(.footnote).foregroundStyle(.red)
+            } else if !checked {
+                Text("Check access and hours before confirming.").font(.footnote).foregroundStyle(.secondary)
+            }
             Button("Confirm availability") { confirm(opens, closes) }
                 .disabled(!checked || closes <= opens)
                 .accessibilityIdentifier("pocketConfirm")

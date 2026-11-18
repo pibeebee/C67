@@ -46,8 +46,14 @@ struct TripInterestQuestionView: View {
                         .foregroundStyle(AppColor.secondaryText)
                         .padding(.horizontal, 12)
                 }
-                if term.isEmpty && !selected.isEmpty {
+                if term.isEmpty && (!selected.isEmpty || !selection.isEmpty) {
                     FlowLayout(spacing: 8, lineSpacing: 8) {
+                        ForEach(TripInterest.allCases.filter { selection.contains($0) }) { interest in
+                            ChoiceChip(title: interest.title, systemImage: interest.systemImage, isSelected: true) {
+                                animateInterestToggle(interest)
+                            }
+                            .matchedGeometryEffect(id: "interest-\(interest.id)", in: preferenceAnimation)
+                        }
                         ForEach(selected, id: \.option.id) { item in
                             ChoiceChip(title: item.option.title, systemImage: item.symbol, isSelected: true) { animateToggle(item.option.id) }
                                 .matchedGeometryEffect(id: item.option.id, in: preferenceAnimation)
@@ -71,9 +77,10 @@ struct TripInterestQuestionView: View {
                 if term.isEmpty {
                     Text("Explore by category").font(.headline)
                     FlowLayout(spacing: 8, lineSpacing: 8) {
-                        ForEach(TripInterest.allCases) { interest in
+                        ForEach(TripInterest.allCases.filter { !selection.contains($0) }) { interest in
                             ChoiceChip(title: interest.title, systemImage: interest.systemImage,
-                                       isSelected: selection.contains(interest)) { toggle(interest) }
+                                       isSelected: false) { animateInterestToggle(interest) }
+                                .matchedGeometryEffect(id: "interest-\(interest.id)", in: preferenceAnimation)
                         }
                     }
                 }
@@ -106,6 +113,12 @@ struct TripInterestQuestionView: View {
     private func animateToggle(_ id: String) {
         withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.28)) {
             toggleRefinement(id)
+        }
+    }
+
+    private func animateInterestToggle(_ interest: TripInterest) {
+        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.28)) {
+            toggle(interest)
         }
     }
 }

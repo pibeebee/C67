@@ -1,5 +1,37 @@
 # Starter verification
 
+## Traveller account deletion — 18 November 2026
+
+The Swift package passed 135 tests, including resuming deletion after relaunch and removing only the correct account's legacy drafts. The iPhone 18 Pro Max Simulator (iOS 27.2) passed 10 focused Account app tests and mock UI checks in total. The Pocket suite passed 63 tests, including rejecting a different Apple identity, waiting for active work, removing only the target account's jobs and retaining the receipt across a restart. OpenAPI validation passed.
+
+An embedded PostgreSQL 18.6 check with simulated Auth/Storage tables verified the migration, the service-only object manifest, the wait for an active media lease, the rejection of new uploads and account-owned row cascades. The actual Supabase Storage and Auth HTTP flow, live Apple revocation, the container image build and physical-device behavior remain unverified. The rollout prerequisites are documented in the [Pocket service guide](../../server/pocket/README.md#account-deletion).
+
+## Itinerary drag reorder — 18 November 2026
+
+Two UI tests and two app tests passed on iPhone 18 Pro Max Simulator (iOS 27.2). Synthetic Pocket review preserved the original order when the drag ended outside the list, then saved the next successful reorder. Timed mock review also saved the reordered stops. The app tests verified that a rejected Pocket order retains the previous proposal and that a timed order exceeding the deadline restores the previous proposal and draft. Simulator screenshots show the committed order. Auto-scroll on longer lists, VoiceOver traversal, and haptic feel on a physical iPhone remain unverified.
+
+The final result bundle is `test_sim_2026-11-18T02-33-32-466Z_pid63276_563df1e0.xcresult`. SwiftFormat and the worktree diff check passed.
+
+## Travelant error recovery — 18 November 2026
+
+The Main Spot follow-up passed 136 package tests and 62 focused app and UI tests on iPhone 18 Pro Max Simulator (iOS 27.2). The app test verified that retrying an unconfirmed submission keeps the selected places, main spot, full input and request ID. The UI test simulated a timeout after a Pocket job existed and checked that the banner showed **Check status**, hid the duplicate **Next** action, and reached itinerary review with the selected place. The fixture succeeds only on a repeat of the same request ID. Package tests distinguish a URL transport timeout from lost connectivity and classify gateway timeouts separately. The timeout was injected at the transport boundary. The full ten-minute UI polling limit and live provider behavior were not exercised.
+
+The local package passed 130 tests, including HTTP 429 versus 503 and recovery of an interrupted Pocket job under the same request ID. The focused iPhone application run passed 66 TripCreation and Account tests. A later focused test passed for an unconfirmed write with an invalid response, followed by a definitive failure and a new request identity.
+
+The iPhone 18 Pro Max and iPad mini (iOS 27.2) ran the synthetic missing-duration scenario in Light at standard Dynamic Type and Dark at Accessibility Large. The final iPhone Dark and iPad Light runs open the diagnostic sheet, assert immediate access to the affected duration control and reach itinerary review with the selected place. The iPhone normal planning/save and trip-name validation flows also passed. The initial UI runs exposed two test assumptions: a hardcoded synthetic default name and a tap attempt before the processing cover finished dismissing. The corrected iPhone tests passed. Result bundles and implementation findings are in the [error-handling audit](../tasks/error-handling-ux-audit-2026-11-18.md#remediation-follow-up--18-november-2026).
+
+VoiceOver traversal and spoken focus, a matching pre-change screenshot matrix, live providers, physical devices, injected startup/storage UI failures, and runtime map/weather retry fault injection remain unverified.
+
+## Hybrid v4.1 engine experiment results — 18 November 2026
+
+The first synthetic non-UI run of `V41EngineExperimentTests` passed 17 of 18 test methods (26 of 27 parameter-expanded invocations). The persistence method failed because its assertion compared the restored working input with the raw request input. The repository intentionally adds `reasonableOrdering` and `automaticFirstPlan` before saving the job and retains the original request in `command`.
+
+The test now verifies those two expected flags, the unchanged original command, and equality of the working input, failure status, error code, and diagnostics across reopening. Only `failedAccessDiagnosticsSurvivePersistenceWithoutAnotherSearch` was rerun after the correction: **1 test passed**, zero issues, exit 0. Production code was unchanged. All 18 methods now have passing observations across the original run and targeted rerun; the complete suite was not rerun. SwiftFormat passed for all 674 Swift files. See the [cause, scenario results, commands, and limitations](../tasks/hybrid-v41-engine-experiment-results.md).
+
+## Hybrid v4.1 engine test preparation — 18 November 2026
+
+At preparation, the additional non-UI suite contained 18 test methods with 27 planned parameter-expanded invocations using synthetic planner/repository providers. Syntax validation and `swift build --build-tests` compile/link checks succeeded, with execution deferred at that stage. Execution was subsequently authorized and is recorded above. The earlier 111-test result below remains historical evidence for the previous revision. See the [preparation and scenario matrix](../tasks/hybrid-v41-engine-test-preparation.md).
+
 ## Hybrid v4.1 — 17 November 2026
 
 The package suite passed 111 tests, including 20 v4.1 cases. On iPhone 18 Pro Max / iOS 27.2 Simulator, all 51 `TripCreationTests` passed and four targeted v4/v4.1 UI flows passed. Focused rechecks covered v4.1 after search refinements. The new cases cover structured timing, diagnostic recovery, adaptive search and budget persistence, duration review, access/session/entry constraints, zero-call scheduling, and semantic reuse. Six four-stop static synthetic cases matched an independent 24-order reference using 33–38 route attempts. OpenAPI/fixture validation, SwiftFormat, document references, and whitespace checks passed. Provider fixtures are synthetic; live Luna/MapKit, physical-device behavior, and human itinerary quality for this revision remain unverified. See [implementation details and result bundles](../tasks/hybrid-v41-integration.md).

@@ -9,7 +9,7 @@ struct MainSpotQuestionView: View {
     let selection: MainSpotChoice
     let select: (MainSpotChoice) -> Void
     let next: () -> Void
-    let skip: () -> Void
+    var showsNext = true
     var researchesWithLuna = false
     var usesV41 = false
     var scheduleSummary: String?
@@ -22,8 +22,7 @@ struct MainSpotQuestionView: View {
     var body: some View {
         QuestionScaffold(
             title: Text("Where do you want to spend the \(QuestionTitle.highlight("most time"))?"),
-            contentSpacing: 24,
-            skip: skip
+            contentSpacing: 24
         ) {
             VStack(alignment: .leading, spacing: 0) {
                 CheckmarkRow(
@@ -79,7 +78,7 @@ struct MainSpotQuestionView: View {
                         .accessibilityIdentifier("tripDateSummary")
                 }
                 if usesV41 {
-                    Text("Hybrid v4.1 arranges your trip using Apple travel estimates and available hours. Hours checks send selected Apple place IDs to Pocket. If you choose Luna assistance, selected places, pins and preferences are sent to Pocket and Luna for activity and duration suggestions. Recommendations are estimates.")
+                    Text("Travelant arranges your trip using Apple travel estimates and available hours. Hours checks send selected Apple place IDs to Pocket. If you choose Luna assistance, selected places, pins, candidate dates and preferences are sent to Pocket and Luna for activity and duration suggestions. Recommendations are estimates.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)
                 } else if researchesWithLuna {
@@ -87,7 +86,7 @@ struct MainSpotQuestionView: View {
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)
                 }
-                QuestionPrimaryButton("Next", action: next)
+                if showsNext { QuestionPrimaryButton("Next", action: next) }
             }
         }
     }
@@ -101,8 +100,7 @@ struct MainSpotQuestionView: View {
                 places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
                 selection: selection,
                 select: { selection = $0 },
-                next: {},
-                skip: {}
+                next: {}
             )
         }
     }
@@ -114,8 +112,7 @@ struct MainSpotQuestionView: View {
                 places: Array(RecommendationsPreviewData.batch.places.prefix(3)),
                 selection: selection,
                 select: { selection = $0 },
-                next: {},
-                skip: {}
+                next: {}
             )
         }
         .preferredColorScheme(.dark)

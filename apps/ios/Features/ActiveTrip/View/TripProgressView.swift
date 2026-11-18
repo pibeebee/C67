@@ -12,7 +12,9 @@ struct TripProgressView: View {
 
     var body: some View {
         if let trip = presenter.trips.first(where: { $0.id == tripID }) {
-            TripProgressContent(trip: trip, isBusy: presenter.isBusy, error: presenter.error,
+            let issue = presenter.issues[.activity(tripID)]
+            TripProgressContent(trip: trip, isBusy: presenter.isBusy, error: issue?.message,
+                                recovery: recovery(for: issue, trip: trip),
                                 route: navigation.route, locationError: navigation.error, locationPermissionDenied: navigation.permissionDenied,
                                 openDirections: {
                                     if let next = trip.nextStop { navigation.start(to: next.location, mode: trip.input.mode) }
@@ -22,7 +24,7 @@ struct TripProgressView: View {
                                     if let next = trip.nextStop { PlanningDirections.open(next, mode: trip.input.mode) }
                                 }, arrive: { send(.arrive, trip: trip) },
                                 completeVisit: { send(.completeStop, trip: trip) }, returnToTrip: { dismiss() })
-                .refreshable { await presenter.load() }
+                .refreshable { await presenter.load(resumesJobs: false) }
                 .task(id: trip.nextStop?.id) {
                     guard trip.status == .active, trip.currentStopID == nil, let stop = trip.nextStop else { navigation.stop(); return }
                     navigation.start(to: stop.location, mode: trip.input.mode)
@@ -33,13 +35,13 @@ struct TripProgressView: View {
                     }
                 }
                 .onChange(of: navigation.arrivalReady) { _, arrived in
-                    if arrived, trip.currentStopID == nil, !presenter.isBusy {
+                    if arrived, !presenter.isBusy, presenter.claimAutomaticArrival(for: trip) {
                         navigation.stop()
                         send(.arrive, trip: trip)
                     }
                 }
                 .onChange(of: presenter.isBusy) { _, busy in
-                    if !busy, navigation.arrivalReady, trip.currentStopID == nil {
+                    if !busy, navigation.arrivalReady, presenter.claimAutomaticArrival(for: trip) {
                         navigation.stop()
                         send(.arrive, trip: trip)
                     }
@@ -47,9 +49,24 @@ struct TripProgressView: View {
                 .onChange(of: trip.currentStopID) { _, id in if id != nil { navigation.stop() } }
                 .onDisappear { navigation.stop() }
         } else {
-            ContentUnavailableView("Trip unavailable", systemImage: "map",
-                                   description: Text("Return to Home and refresh your trips."))
+            ContentUnavailableView {
+                Label("Trip unavailable", systemImage: "map")
+            } description: {
+                Text("Return to Home and refresh your trips.")
+            } actions: {
+                Button("Go back") { dismiss() }
+            }
         }
+    }
+
+    private func recovery(for issue: PresentationIssue?, trip: PersonalPlanningTrip) -> RecoveryNotice.Action? {
+        guard let issue else { return nil }
+        if issue.recovery == .refreshTrip {
+            return .init(title: "Refresh trip") { Task { await presenter.load(resumesJobs: false) } }
+        }
+        guard issue.recovery == .retry, issue.stopID == trip.nextStop?.id,
+              case .event(let kind, _) = issue.operation else { return nil }
+        return .init(title: "Try again") { send(kind, trip: trip) }
     }
 
     private func send(_ kind: PlanningEventKind, trip: PersonalPlanningTrip) {

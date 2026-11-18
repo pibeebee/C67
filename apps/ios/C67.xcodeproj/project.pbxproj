@@ -126,6 +126,7 @@
 		BD1ACBD413DAC68AB4055E34 /* ExplorationPace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AFB0D045F3D501A49343AA /* ExplorationPace.swift */; };
 		BED8D1C94922F0671705C1F3 /* Brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B54B01FB8DD1FDB257D260B /* Brand.xcassets */; };
 		BFE588ED2026807E7D349FF2 /* SplashTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6EC29B4A4588154898C39B /* SplashTimeline.swift */; };
+		C1047F7EA9776E7366CFDCE2 /* RecoveryNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0524F7CCEA155302A39E4E /* RecoveryNotice.swift */; };
 		C44366E41843290ACD41611E /* SplashOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7902378AEDD6B3DAE60FC97 /* SplashOverlay.swift */; };
 		C4AE74DDA1C7D1FBA201E1E4 /* PlanningPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D05EFD5CD984C724BBFEE8 /* PlanningPresenter.swift */; };
 		C58CBDCC5C973BC65903B3B6 /* TravelantPinShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5A9461AF5F9FB4999FF690 /* TravelantPinShape.swift */; };
@@ -165,6 +166,7 @@
 		F56C93F97940B7D726EE708E /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1E7A79AF8DDA0C85D926E /* AccountInteractor.swift */; };
 		F6E1A8EA1EFBFB413C6BED90 /* AppleCredentialStateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126D61DF933A25ECDF7E037 /* AppleCredentialStateChecker.swift */; };
 		F732410A21B6F74213C11AB9 /* C67Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BE2F8A6BAD9B3E742988 /* C67Domain */; };
+		F86CF915153D691FB2151ED4 /* PresentationIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07998E4E41B453748E8C3EF7 /* PresentationIssue.swift */; };
 		F8F8E40F0F5738B006527162 /* TripHomeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA291B975799498FECC5181 /* TripHomeSheet.swift */; };
 		F93D7D2DDB5BE1C5DD7DABDC /* TripHomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B51999F8AF4A81CE9B184 /* TripHomeHeader.swift */; };
 		FACA5766C2C4F3EFF3DA862D /* PocketTripOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75225279227D0983BBCDE414 /* PocketTripOptionsView.swift */; };
@@ -198,6 +200,7 @@
 		042360167A44A096BF5111C4 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		043B73D8949E60986B68A7A0 /* AddPlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceRow.swift; sourceTree = "<group>"; };
 		068FEEF5274BBE305D1AF59A /* TripGlassCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripGlassCapsule.swift; sourceTree = "<group>"; };
+		07998E4E41B453748E8C3EF7 /* PresentationIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationIssue.swift; sourceTree = "<group>"; };
 		09ECC6AD17A8EDBBD1597F4C /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		0AA9D475D6FE3EE1A06E2A56 /* ChoiceOptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceOptionList.swift; sourceTree = "<group>"; };
 		0CD6D3B9D10D99F5FACA4A09 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 		78FD16A1407DF9284C3BFB8F /* SavedTripDesignPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTripDesignPreview.swift; sourceTree = "<group>"; };
 		7D19E62BFF2B6B3381AE885E /* TripHomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHomeRootView.swift; sourceTree = "<group>"; };
 		7E34AC0602574C6A2FAF12DB /* StayDurationQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayDurationQuestionView.swift; sourceTree = "<group>"; };
+		7F0524F7CCEA155302A39E4E /* RecoveryNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryNotice.swift; sourceTree = "<group>"; };
 		80EABA14B4E0F377A51CE149 /* TripProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProcessingView.swift; sourceTree = "<group>"; };
 		813FF06D1BDDCAEDBB1C20A6 /* PocketEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PocketEngine; path = ../../packages/PocketEngine; sourceTree = SOURCE_ROOT; };
 		817B51999F8AF4A81CE9B184 /* TripHomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHomeHeader.swift; sourceTree = "<group>"; };
@@ -580,6 +584,7 @@
 				0AA9D475D6FE3EE1A06E2A56 /* ChoiceOptionList.swift */,
 				09ECC6AD17A8EDBBD1597F4C /* FlowLayout.swift */,
 				DDB0163A8A16DFEA5343217E /* PlaceThumbnail.swift */,
+				07998E4E41B453748E8C3EF7 /* PresentationIssue.swift */,
 				B06632EA92895F3A88060E3F /* ProcessingStatusView.swift */,
 				F0887B0A9629FEA13F3309F5 /* QuestionPrimaryButton.swift */,
 				9895893E9A08B8A20E022C4F /* QuestionScaffold.swift */,
@@ -1233,6 +1238,7 @@
 				F9806B6F8D1557111217CA48 /* AppColor.swift */,
 				2FB01CE293D1ADA3FD6CA313 /* AppFont.swift */,
 				0CD6D3B9D10D99F5FACA4A09 /* README.md */,
+				7F0524F7CCEA155302A39E4E /* RecoveryNotice.swift */,
 				068FEEF5274BBE305D1AF59A /* TripGlassCapsule.swift */,
 			);
 			path = DesignSystem;
@@ -1731,6 +1737,7 @@
 				7E8AD3F91A9D9A2FC1FF1C36 /* PreferenceQuestionView.swift in Sources */,
 				8002BE04FA1D0F4B96A2530B /* PreferenceStep.swift in Sources */,
 				AF47A42E392B7565AFD43F48 /* PreferencesFlowView.swift in Sources */,
+				F86CF915153D691FB2151ED4 /* PresentationIssue.swift in Sources */,
 				5EC3224FF11C97FFC2327452 /* ProcessingStatusView.swift in Sources */,
 				450F7DDBBE37D2F0785B0591 /* QuestionPrimaryButton.swift in Sources */,
 				46EE6F5E8C4825FE3CCE2B24 /* QuestionScaffold.swift in Sources */,
@@ -1741,6 +1748,7 @@
 				DB525FD55106CE999AAFFF00 /* RecommendationsPreviewData.swift in Sources */,
 				2269B5B5E6DE29453C36E9C8 /* RecommendationsProcessingView.swift in Sources */,
 				8A2449A6F1757D09E9AD3C28 /* RecommendedPlace.swift in Sources */,
+				C1047F7EA9776E7366CFDCE2 /* RecoveryNotice.swift in Sources */,
 				864C9D8ABABE3866AD68FB11 /* SavedItineraryContent.swift in Sources */,
 				487D69B176C0B392307719DC /* SavedTripDesignPreview.swift in Sources */,
 				7751461F5FC708B6C5DBD445 /* SavedTripRoute.swift in Sources */,

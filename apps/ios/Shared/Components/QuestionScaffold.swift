@@ -8,14 +8,14 @@ import SwiftUI
 struct QuestionScaffold<Content: View, Footer: View>: View {
     private let title: Text
     private let contentSpacing: CGFloat
-    private let skip: () -> Void
+    private let skip: (() -> Void)?
     private let content: Content
     private let footer: Footer
 
     init(
         title: Text,
         contentSpacing: CGFloat = 64,
-        skip: @escaping () -> Void,
+        skip: (() -> Void)? = nil,
         @ViewBuilder content: () -> Content,
         @ViewBuilder footer: () -> Footer
     ) {
@@ -49,7 +49,9 @@ struct QuestionScaffold<Content: View, Footer: View>: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Skip", action: skip)
+                if let skip {
+                    Button("Skip", action: skip)
+                }
             }
         }
         .tint(AppColor.accent)

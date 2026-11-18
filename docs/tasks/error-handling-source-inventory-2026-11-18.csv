@@ -1,0 +1,120 @@
+source_path,feature,role,flow_scope,view_declarations,error_state_signal_lines,review_boundary,conditional_content_note
+apps/ios/App/C67App.swift,App,App/support,Shared/entry,StarterRootView; PocketAuthenticatedRoot; PocketAuthenticatedWorkspace,83;84;85;97;111;115;117;121;128;149;155;156;164;174,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/App/CompositionRoot/AppDependencies.swift,App,CompositionRoot,Shared/entry,,12;25;55;78;95;106,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Account/Assembly/AccountAssembly.swift,Account,Assembly,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/Interactor/AccountInteractor.swift,Account,Interactor,Primary/shared app flow,,7;11;15;20;22;26;29;30;31;32;33;34;35,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/Platform/AppleCredentialStateChecker.swift,Account,Platform,Primary/shared app flow,,6;10,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/Platform/AppleSignInAttempt.swift,Account,Platform,Primary/shared app flow,,18;22,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/Platform/AppleSignInButtonView.swift,Account,Platform,Primary/shared app flow,AppleSignInButtonView,24;30;31;32;33,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/Presenter/AccountPresenter.swift,Account,Presenter,Primary/shared app flow,,15;42;44;45;46;47;55;57;97;99;110;112;115;116,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/View/AccountFormState.swift,Account,View,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Account/View/AccountView.swift,Account,View,Primary/shared app flow,AccountView,39;41;63,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/ActiveTrip/View/TripProgressContent.swift,ActiveTrip,View,Primary/shared app flow,TripProgressContent; TripCompletedContent,11;181,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/ActiveTrip/View/TripProgressView.swift,ActiveTrip,View,Primary/shared app flow,TripProgressView,15;16;50,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Discovery/Assembly/DiscoveryAssembly.swift,Discovery,Assembly,Legacy catalog,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Discovery/Interactor/DiscoveryInteractor.swift,Discovery,Interactor,Legacy catalog,,6;7,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Discovery/Presenter/DiscoveryPresenter.swift,Discovery,Presenter,Legacy catalog,,10;13;20;23;24;29;43;44;50,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Discovery/Router/DiscoveryRouter.swift,Discovery,Router,Legacy catalog,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Discovery/View/DiscoveryView.swift,Discovery,View,Legacy catalog,DiscoveryView; RundownDetailView,19;20;21;32;33;46;101;106,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/ExploreSlice/ExploreSliceView.swift,ExploreSlice,App/support,Static workspace slice,DiscoverSliceView; SearchSliceView,141,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/Router/TripHomeSheet.swift,Home,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/Router/TripHomeTab.swift,Home,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/View/TripAddButton.swift,Home,View,Primary/shared app flow,TripAddButton,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/View/TripEmptyView.swift,Home,View,Primary/shared app flow,TripEmptyView,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/View/TripHomeContentView.swift,Home,View,Primary/shared app flow,TripHomeContentView; TripDraftRow,22;23;26;37;101,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/View/TripHomeHeader.swift,Home,View,Primary/shared app flow,TripHomeHeader,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Home/View/TripHomeRootView.swift,Home,View,Primary/shared app flow,TripHomeRootView,54;105;186;195,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Home/View/TripHomeRow.swift,Home,View,Primary/shared app flow,TripHomeRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Home/View/TripLocationButton.swift,Home,View,Primary/shared app flow,TripLocationButton; TripLocationLabel,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/Presenter/ItineraryFormatting.swift,Itinerary,Presenter,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/Presenter/ItineraryStopDetails.swift,Itinerary,Presenter,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/Router/ItineraryEditRoute.swift,Itinerary,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/Router/ItineraryReviewRoute.swift,Itinerary,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryDepartureCard.swift,Itinerary,View,Primary/shared app flow,ItineraryDepartureCard,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryListView.swift,Itinerary,View,Primary/shared app flow,ItineraryListView,14;23;111;142;143;146;147,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Itinerary/View/ItineraryMapView.swift,Itinerary,View,Primary/shared app flow,ItineraryMapView,45;57;58;156,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryReviewView.swift,Itinerary,View,Primary/shared app flow,ItineraryReviewView; ExperienceDepartureEditor; ItineraryTripTimeEditor,31;42;49;55;161;173;188,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItinerarySaveNameDialog.swift,Itinerary,View,Primary/shared app flow,,13,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryStopCard.swift,Itinerary,View,Primary/shared app flow,ItineraryStopCard,69,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryTimelineRow.swift,Itinerary,View,Primary/shared app flow,ItineraryTimelineRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Itinerary/View/ItineraryVisitEditor.swift,Itinerary,View,Primary/shared app flow,ItineraryVisitEditor,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/MainSpot/Presenter/MainSpotChoice.swift,MainSpot,Presenter,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/MainSpot/Presenter/StayDuration.swift,MainSpot,Presenter,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/MainSpot/View/MainSpotQuestionView.swift,MainSpot,View,Primary/shared app flow,MainSpotQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/MainSpot/View/StayDurationQuestionView.swift,MainSpot,View,Primary/shared app flow,StayDurationQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Planning/Assembly/PlanningAssembly.swift,Planning,Assembly,Shared presenter/platform + optional workspace,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Planning/Interactor/PlanningInteractor.swift,Planning,Interactor,Shared presenter/platform + optional workspace,,6;7;8;9;10;11;14;17;20,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Planning/Platform/PlanningPlaces.swift,Planning,Platform,Shared presenter/platform + optional workspace,,39;42;43;49;53;65;69;84;88;108;114;129;130;139;144;152;161;166;169;170;213;238;242;255;256;284;285;288;289,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Planning/Presenter/PlanningPresenter.swift,Planning,Presenter,Shared presenter/platform + optional workspace,,29;83;90;108;130;142;149;150;156;158;166;191;192;195;197;200;213;214;216;217;218;221;232;238;245;246;254;262;269;270;275;281;282;296;302;309;310;323;339;340;342;343;349;360;361,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Planning/View/PlanningRootView.swift,Planning,View,Shared presenter/platform + optional workspace,PlanningRootView; PlanningEditorView; PlanningPlaceEditor; PlanningSearchSheet; PlanningMapSection; PlanningFeedback; PlanningProposalSections; PlanningStopRow; ActivePlanningTripView,42;54;74;87;124;162;207;243;315;354;367;407;437;460,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Planning/View/PocketConnectionView.swift,Planning,View,Shared presenter/platform + optional workspace,PocketConnectionView; ItineraryMethodSection,31,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/BudgetScale.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/DayPart.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/ExplorationPace.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/PlacePopularityPreference.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/PreferenceAnswers.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/PreferenceFlow.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/TransportMode.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/TripInterest.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Presenter/TripTiming.swift,Preferences,Presenter,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/Router/PreferenceStep.swift,Preferences,Router,Local preference state/shared navigation,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/View/BudgetQuestionView.swift,Preferences,View,Local preference state/shared navigation,BudgetQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/DayPartQuestionView.swift,Preferences,View,Local preference state/shared navigation,DayPartQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/ExplorationPaceQuestionView.swift,Preferences,View,Local preference state/shared navigation,ExplorationPaceQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/PlacePopularityQuestionView.swift,Preferences,View,Local preference state/shared navigation,PlacePopularityQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/PreferenceQuestionView.swift,Preferences,View,Local preference state/shared navigation,PreferenceQuestionView,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Preferences/View/PreferencesFlowView.swift,Preferences,View,Local preference state/shared navigation,PreferencesFlowView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/TransportModeQuestionView.swift,Preferences,View,Local preference state/shared navigation,TransportModeQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/TripInterestQuestionView.swift,Preferences,View,Local preference state/shared navigation,TripInterestQuestionView,60,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Preferences/View/TripTimingQuestionView.swift,Preferences,View,Local preference state/shared navigation,TripTimingQuestionView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Recommendations/Model/RecommendationsBatch.swift,Recommendations,Model,Primary/shared app flow,,5;11;16;18,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Recommendations/Model/RecommendedPlace.swift,Recommendations,Model,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Recommendations/View/PlacesRecommendationsView.swift,Recommendations,View,Primary/shared app flow,PlacesRecommendationsView,9;50;85;95;96;98;100;101;105;110;209,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Recommendations/View/RecommendationPlaceRow.swift,Recommendations,View,Primary/shared app flow,RecommendationPlaceRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Recommendations/View/RecommendationsProcessingView.swift,Recommendations,View,Primary/shared app flow,RecommendationsProcessingView,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Recommendations/View/SelectedPlaceCard.swift,Recommendations,View,Primary/shared app flow,SelectedPlaceCard,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Recommendations/View/SelectedPlacesView.swift,Recommendations,View,Primary/shared app flow,SelectedPlacesView; SelectedPlacesPreview,21,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/SavedTrip/Router/SavedTripRoute.swift,SavedTrip,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/SavedTrip/View/SavedItineraryContent.swift,SavedTrip,View,Primary/shared app flow,SavedItineraryContent,9;24,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/SavedTrip/View/SavedTripView.swift,SavedTrip,View,Primary/shared app flow,SavedTripView,14;36;51,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Splash/Presenter/SplashTimeline.swift,Splash,Presenter,Local presentation/loading,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Splash/View/SplashFrameView.swift,Splash,View,Local presentation/loading,SplashFrameView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/Splash/View/SplashOverlay.swift,Splash,View,Local presentation/loading,,22,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/Splash/View/SplashView.swift,Splash,View,Local presentation/loading,SplashView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/TripCreation/Assembly/TripCreationAssembly.swift,TripCreation,Assembly,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/TripCreation/Interactor/TripCreationInteractor.swift,TripCreation,Interactor,Primary/shared app flow,,16;17;18;73;76;84;89;95;96;109;111;112;113;114;117;130;133,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/Platform/MapKitTripPlaceSearch.swift,TripCreation,Platform,Primary/shared app flow,TripRecommendationsMap,9;10;14;21;22;31;35;39;55;57;58,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/Platform/SyntheticTripPlaceSearch.swift,TripCreation,Platform,Primary/shared app flow,,12;25;38;45,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Features/TripCreation/Presenter/TripCreationPresenter.swift,TripCreation,Presenter,Primary/shared app flow,,24;26;31;130;151;172;173;228;229;245;278;284;287;288;289;294;295;313;319;324;329;341;351,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/Router/TripCreationRoute.swift,TripCreation,Router,Primary/shared app flow,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/AddPlaceRow.swift,TripCreation,View,Primary/shared app flow,AddPlaceRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/AddPlacesView.swift,TripCreation,View,Primary/shared app flow,AddPlacesView,10;28;29;31;35;117,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/PlacesSelectionSheet.swift,TripCreation,View,Primary/shared app flow,PlacesSelectionSheet,12,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/PocketTripOptionsView.swift,TripCreation,View,Primary/shared app flow,PocketTripOptionsView; PocketTripOptionFields; PocketScheduleOptionsSheet; V41VisitAccessFields,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/PocketVisitAvailabilityView.swift,TripCreation,View,Primary/shared app flow,PocketVisitAvailabilityView; PocketVisitAvailabilityRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/TripCreationSheet.swift,TripCreation,View,Primary/shared app flow,TripCreationSheet,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripCreation/View/TripCreationView.swift,TripCreation,View,Primary/shared app flow,TripCreationView,70;79;138;140,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripProcessing/Presenter/TripProcessingStage.swift,TripProcessing,Presenter,Local presentation/loading,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Features/TripProcessing/View/TripProcessingView.swift,TripProcessing,View,Local presentation/loading,TripProcessingView,,Static text inventory; see audit for traced behavior findings,May include #if DEBUG previews in the same file
+apps/ios/Shared/Components/CheckmarkRow.swift,Shared,Components,Shared/entry,CheckmarkRow,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ChoiceChip.swift,Shared,Components,Shared/entry,ChoiceChip,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ChoiceChipButtonStyle.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ChoiceOption.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ChoiceOptionButtonStyle.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ChoiceOptionList.swift,Shared,Components,Shared/entry,ChoiceOptionList,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/FlowLayout.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/PlaceThumbnail.swift,Shared,Components,Shared/entry,PlaceThumbnail,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/ProcessingStatusView.swift,Shared,Components,Shared/entry,ProcessingStatusView,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/QuestionPrimaryButton.swift,Shared,Components,Shared/entry,QuestionPrimaryButton,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/QuestionScaffold.swift,Shared,Components,Shared/entry,QuestionScaffold,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/QuestionTitle.swift,Shared,Components,Shared/entry,QuestionTitle,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/SingleChoiceQuestionView.swift,Shared,Components,Shared/entry,SingleChoiceQuestionView,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantBall.swift,Shared,Components,Shared/entry,TravelantBall,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantMarkAssets.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantMarkGeometry.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantPinShape.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantWordmarkGeometry.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/Components/TravelantWordmarkLetter.swift,Shared,Components,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/DesignSystem/AppColor.swift,Shared,DesignSystem,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/DesignSystem/AppFont.swift,Shared,DesignSystem,Shared/entry,,,Static text inventory; see audit for traced behavior findings,
+apps/ios/Shared/DesignSystem/TripGlassCapsule.swift,Shared,DesignSystem,Shared/entry,,,Static text inventory; see audit for traced behavior findings,

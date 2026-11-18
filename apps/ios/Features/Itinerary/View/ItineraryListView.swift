@@ -1,8 +1,34 @@
 import SwiftUI
-import UniformTypeIdentifiers
 import C67Domain
 
 struct ItineraryListView: View {
+    private struct StopDrag {
+        let source: UUID
+        let originalIndex: Int
+        let frames: [CGRect]
+        let startY: CGFloat
+        let startTimelineY: CGFloat
+        var finger: CGPoint
+        var targetIndex: Int
+
+        func translation(timelineY: CGFloat) -> CGFloat {
+            finger.y - startY + startTimelineY - timelineY
+        }
+
+        func position(of index: Int) -> Int {
+            if index == originalIndex { return targetIndex }
+            if originalIndex < index, index <= targetIndex { return index - 1 }
+            if targetIndex <= index, index < originalIndex { return index + 1 }
+            return index
+        }
+    }
+
+    private struct ScrollRange: Equatable {
+        let offset: CGFloat
+        let maximum: CGFloat
+    }
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @ScaledMetric(relativeTo: .caption) private var timelineIndent = 34
     let proposal: PlanProposal
     var excludedPlaces: [String] = []
@@ -12,6 +38,7 @@ struct ItineraryListView: View {
     var isDesignPreview = false
     var isSaving = false
     var error: String?
+    var retryTitle: LocalizedStringKey = "Try again"
     var canSave = true
     var heading: String?
     var editTitle: (() -> Void)?
@@ -25,8 +52,15 @@ struct ItineraryListView: View {
     var lookupHours: ((String) async -> PlanningHoursLookup)? = nil
     let edit: (UUID?) -> Void
     let save: () -> Void
-    var move: (@MainActor @Sendable (UUID, UUID) -> Void)? = nil
-    @State private var draggedStop: UUID?
+    var move: (@MainActor (UUID, UUID) async -> Void)? = nil
+    @State private var drag: StopDrag?
+    @State private var pendingOrder: [UUID]?
+    @State private var rowFrames: [UUID: CGRect] = [:]
+    @State private var timelineFrame = CGRect.zero
+    @State private var viewport = CGRect.zero
+    @State private var scrollPosition = ScrollPosition()
+    @State private var scrollRange = ScrollRange(offset: 0, maximum: 0)
+    @State private var isRetryingHours = false
     @State private var hoursByPlace: [String: PlanningHoursLookup] = [:]
 
     var body: some View {
@@ -55,6 +89,28 @@ struct ItineraryListView: View {
                         .padding(.horizontal, 4)
                 }
 
+                if let error {
+                    RecoveryNotice(title: "Itinerary needs attention", message: error,
+                                   primary: retry.map { .init(title: retryTitle, perform: $0) })
+                }
+                if let assessment = proposal.scheduleAssessment, proposal.feasible {
+                    if !assessment.unresolved.isEmpty || proposal.hasExperienceTravelFallback ||
+                        !proposal.warnings.isEmpty || !excludedPlaces.isEmpty {
+                        RecoveryNotice(title: "Review before you go",
+                                       message: "A schedule is ready. Check the visit and travel details marked below.",
+                                       icon: "info.circle")
+                        if !assessment.unresolved.isEmpty {
+                            DisclosureGroup("Visits and information to check") {
+                                ForEach(assessment.unresolved, id: \.id) { issue in
+                                    Text(issue.message(in: proposal.input)).font(.footnote)
+                                }
+                            }
+                        }
+                    } else {
+                        Label("Schedule ready", systemImage: "checkmark.circle").font(.subheadline)
+                    }
+                }
+
                 ItineraryDepartureCard(proposal: proposal, weatherAdvice: departureWeather, isDesignPreview: isDesignPreview,
                                        editDeparture: editDeparture, editEndpoints: isExperience ? editEndpoints : nil)
 
@@ -69,6 +125,25 @@ struct ItineraryListView: View {
                             }
                             if hoursByPlace.values.contains(where: { $0.status == "available" }) {
                                 Text("Hours from Apple Maps")
+                            }
+                            if let lookupHours, hoursByPlace.values.contains(where: { ["temporary_error", "rate_limited"].contains($0.status) }) {
+                                if hoursByPlace.values.contains(where: { $0.status == "rate_limited" }) {
+                                    Text("Opening hours are temporarily limited. Wait before trying again.")
+                                }
+                                Button("Try checking hours again") {
+                                    guard !isRetryingHours else { return }
+                                    isRetryingHours = true
+                                    Task {
+                                        defer { isRetryingHours = false }
+                                        let failedIDs = hoursByPlace.filter { ["temporary_error", "rate_limited"].contains($0.value.status) }.map(\.key)
+                                        for id in failedIDs {
+                                            let result = await lookupHours(id)
+                                            guard !Task.isCancelled else { return }
+                                            hoursByPlace[id] = result
+                                        }
+                                    }
+                                }
+                                .disabled(isRetryingHours)
                             }
                         }.font(.footnote)
                     }
@@ -111,11 +186,7 @@ struct ItineraryListView: View {
                     ContentUnavailableView("No places in this itinerary", systemImage: "map",
                                            description: Text("Add a place and plan your trip again."))
                 } else {
-                    VStack(spacing: 0) {
-                        ForEach(Array(stops.enumerated()), id: \.element.id) { index, stop in
-                            timelineRow(index: index, stop: stop, stops: stops)
-                        }
-                    }
+                    timeline(stops)
                 }
 
                 if allowsEditing {
@@ -138,15 +209,6 @@ struct ItineraryListView: View {
                     Text(isDesignPreview ? "Design preview · sample itinerary from Sketch" : "Synthetic demonstration · trips last until the app closes.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
-                }
-                if let error {
-                    Label(error, systemImage: "exclamationmark.circle")
-                        .font(.subheadline)
-                        .foregroundStyle(.red)
-                    if let retry {
-                        Button("Try again", action: retry)
-                            .disabled(isSaving)
-                    }
                 }
                 if let startNow {
                     Button("Start your trip today", action: startNow)
@@ -177,6 +239,17 @@ struct ItineraryListView: View {
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
+        .scrollPosition($scrollPosition)
+        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { viewport = $0 }
+        .onScrollGeometryChange(for: ScrollRange.self) { geometry in
+            ScrollRange(offset: geometry.contentOffset.y + geometry.contentInsets.top,
+                        maximum: max(0, geometry.contentSize.height + geometry.contentInsets.top + geometry.contentInsets.bottom - geometry.containerSize.height))
+        } action: { _, range in
+            scrollRange = range
+        }
+        .task(id: autoScrollDirection) { await scrollWhileDragging() }
+        .sensoryFeedback(.selection, trigger: drag?.targetIndex) { old, new in old != nil && new != nil }
+        .onChange(of: stops.map(\.id)) { _, _ in cancelDrag() }
         .task(id: proposal.input.places) {
             guard let lookupHours else { return }
             for place in proposal.input.places {
@@ -196,7 +269,33 @@ struct ItineraryListView: View {
         .accessibilityIdentifier("itineraryList")
     }
 
-    private func timelineRow(index: Int, stop: ScheduledPlanningStop, stops: [ScheduledPlanningStop]) -> some View {
+    private var reorderAnimation: Animation? { reduceMotion ? nil : .snappy(duration: 0.23, extraBounce: 0) }
+
+    private func timeline(_ stops: [ScheduledPlanningStop]) -> some View {
+        let ordered = pendingOrder?.compactMap { id in stops.first { $0.id == id } } ?? stops
+        let displayed = ordered.count == stops.count ? ordered : stops
+        return VStack(spacing: 0) {
+            ForEach(Array(displayed.enumerated()), id: \.element.id) { index, stop in
+                let lifted = drag?.source == stop.id
+                ZStack {
+                    timelineRow(index: index, stop: stop, stops: displayed, lifted: lifted)
+                        .offset(y: rowOffset(index: index, lifted: lifted))
+                }
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .named("itineraryTimeline")) } action: {
+                    rowFrames[stop.id] = $0
+                }
+                .zIndex(lifted ? 1 : 0)
+                .animation(lifted ? nil : reorderAnimation, value: drag?.targetIndex)
+            }
+        }
+        .coordinateSpace(.named("itineraryTimeline"))
+        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: {
+            timelineFrame = $0
+            updateTarget()
+        }
+    }
+
+    private func timelineRow(index: Int, stop: ScheduledPlanningStop, stops: [ScheduledPlanningStop], lifted: Bool) -> some View {
         let next = index + 1 < stops.count ? stops[index + 1] : nil
         let isExperience = proposal.usesExperienceFlow
         let place = proposal.input.places.first { $0.id == stop.id }
@@ -207,23 +306,21 @@ struct ItineraryListView: View {
             if let meters = next.roadDistanceMeters { return formattedDistance(meters) }
             return isExperience ? nil : details[next.id]?.distance
         }
-        let reorder: (() -> NSItemProvider)? = move == nil ? nil : {
-            draggedStop = stop.id
-            return NSItemProvider(object: stop.id.uuidString as NSString)
+        let reorder: ((DragGesture.Value) -> Void)? = move == nil || stops.count < 2 ? nil : {
+            updateDrag($0, source: stop.id, index: index, stops: stops)
         }
-        let up: (() -> Void)? = index > 0 ? { move?(stop.id, proposal.stops[index - 1].id) } : nil
-        let down: (() -> Void)? = index + 1 < proposal.stops.count ? { move?(stop.id, proposal.stops[index + 1].id) } : nil
-        return ItineraryTimelineRow(stop: stop, number: index + 1, isLast: next == nil,
+        let up: (() -> Void)? = index > 0 ? { commitMove(from: index, to: index - 1, stops: stops) } : nil
+        let down: (() -> Void)? = index + 1 < stops.count ? { commitMove(from: index, to: index + 1, stops: stops) } : nil
+        return ItineraryTimelineRow(stop: stop, number: (drag?.position(of: index) ?? index) + 1, isLast: next == nil,
                                     nextStop: next, nextDistance: distance,
                                     mode: proposal.input.mode, zone: proposal.input.timeZone,
                                     details: stopDetails, isEditable: allowsEditing,
                                     weatherEvidence: proposal.evidence.filter { $0.kind == "weather" },
                                     orderingOnly: isExperience, symbol: poi?.symbol, edit: { edit(stop.id) },
-                                    beginReorder: reorder, moveUp: up, moveDown: down)
-            .contentShape(Rectangle())
-            .onDrop(of: [UTType.plainText], isTargeted: nil) { providers in
-                acceptDrop(providers, onto: stop.id)
-            }
+                                    reorderChanged: reorder, reorderEnded: { finishDrag($0, source: stop.id, stops: stops) },
+                                    reorderCancelled: { if drag?.source == stop.id { cancelDrag() } },
+                                    isLifted: lifted, isReordering: drag != nil || pendingOrder != nil,
+                                    moveUp: up, moveDown: down)
     }
 
     @ViewBuilder private func tripEdits(_ edit: @escaping (ItineraryEditRoute) -> Void) -> some View {
@@ -232,17 +329,87 @@ struct ItineraryListView: View {
         if !proposal.usesExperienceFlow { Button("Change time") { edit(.tripTime) } }
     }
 
-    private func acceptDrop(_ providers: [NSItemProvider], onto destination: UUID) -> Bool {
-        guard let source = draggedStop, source != destination,
-              let provider = providers.first, let move else { return false }
-        _ = provider.loadObject(ofClass: NSString.self) { value, _ in
-            guard value as? String == source.uuidString else { return }
-            DispatchQueue.main.async {
-                draggedStop = nil
-                move(source, destination)
-            }
+    private func updateDrag(_ value: DragGesture.Value, source: UUID, index: Int, stops: [ScheduledPlanningStop]) {
+        guard !isSaving, pendingOrder == nil else { return }
+        if drag == nil {
+            let frames = stops.compactMap { rowFrames[$0.id] }
+            guard frames.count == stops.count else { return }
+            drag = StopDrag(source: source, originalIndex: index, frames: frames, startY: value.startLocation.y,
+                            startTimelineY: timelineFrame.minY, finger: value.location, targetIndex: index)
         }
-        return true
+        guard drag?.source == source else { return }
+        drag?.finger = value.location
+        updateTarget()
+    }
+
+    private func updateTarget() {
+        guard let drag else { return }
+        let center = drag.frames[drag.originalIndex].midY + drag.translation(timelineY: timelineFrame.minY)
+        if let target = drag.frames.indices.min(by: { abs(drag.frames[$0].midY - center) < abs(drag.frames[$1].midY - center) }),
+           target != drag.targetIndex {
+            self.drag?.targetIndex = target
+        }
+    }
+
+    private func rowOffset(index: Int, lifted: Bool) -> CGFloat {
+        guard let drag, drag.frames.indices.contains(index) else { return 0 }
+        if lifted { return drag.translation(timelineY: timelineFrame.minY) }
+        let position = drag.position(of: index)
+        guard position != index else { return 0 }
+        return drag.frames[drag.originalIndex].height * (position < index ? -1 : 1)
+    }
+
+    private func finishDrag(_ value: DragGesture.Value, source: UUID, stops: [ScheduledPlanningStop]) {
+        guard let drag, drag.source == source else { return }
+        self.drag?.finger = value.location
+        updateTarget()
+        guard let target = self.drag?.targetIndex, target != drag.originalIndex,
+              viewport.contains(value.location), timelineFrame.insetBy(dx: -16, dy: -16).contains(value.location) else {
+            cancelDrag()
+            return
+        }
+        commitMove(from: drag.originalIndex, to: target, stops: stops)
+    }
+
+    private func cancelDrag() {
+        guard drag != nil else { return }
+        withAnimation(reorderAnimation) { drag = nil }
+    }
+
+    private func commitMove(from source: Int, to target: Int, stops: [ScheduledPlanningStop]) {
+        guard let move, !isSaving, pendingOrder == nil else {
+            cancelDrag()
+            return
+        }
+        var ordered = stops.map(\.id)
+        ordered.insert(ordered.remove(at: source), at: target)
+        withAnimation(reorderAnimation) {
+            pendingOrder = ordered
+            drag = nil
+        }
+        Task {
+            await move(stops[source].id, stops[target].id)
+            withAnimation(reorderAnimation) { pendingOrder = nil }
+        }
+    }
+
+    private var autoScrollDirection: CGFloat {
+        guard let drag, viewport.insetBy(dx: -16, dy: 0).contains(drag.finger) else { return 0 }
+        if drag.finger.y < viewport.minY + 56 { return -1 }
+        if drag.finger.y > viewport.maxY - 56 { return 1 }
+        return 0
+    }
+
+    private func scrollWhileDragging() async {
+        let direction = autoScrollDirection
+        guard direction != 0 else { return }
+        while !Task.isCancelled, autoScrollDirection == direction {
+            let next = min(max(scrollRange.offset + 9 * direction, 0), scrollRange.maximum)
+            // Stop at the first or last visit when the whole view extends beyond the timeline.
+            let withinTimeline = direction < 0 ? timelineFrame.minY < viewport.minY + 56 : timelineFrame.maxY > viewport.maxY - 56
+            if withinTimeline, next != scrollRange.offset { scrollPosition.scrollTo(y: next) }
+            try? await Task.sleep(for: .milliseconds(16))
+        }
     }
 
     private func formattedDistance(_ meters: Double) -> String {
@@ -256,7 +423,7 @@ struct ItineraryListView: View {
         let id = String(source.dropFirst(6))
         guard let lookup = hoursByPlace[id] else { return "Checking hours…" }
         guard let hours = lookup.hours, lookup.status == "available", let start = stop.visitStartsAt ?? stop.arrivalAt, let end = stop.departureAt else {
-            let message = lookup.status == "temporary_error" || lookup.status == "configuration_error" || lookup.status == "not_configured"
+            let message = ["temporary_error", "configuration_error", "not_configured", "rate_limited"].contains(lookup.status)
                 ? "Could not check hours — check before visiting." : "Hours unavailable — check before visiting."
             return message + fallback
         }
