@@ -31,7 +31,7 @@ struct PocketConnectionView: View {
                     if let error = presenter.connectionError { Text(error).foregroundStyle(.red) }
                 }
                 Section("How your trip is processed") {
-                    Text("Luna itinerary methods send selected places and preferences to Pocket and Luna. Foundation Models generates visit suggestions on your device.")
+                    Text("Travelant sends selected places and preferences to Pocket and Luna for itinerary suggestions.")
                     Text("Your saved trips stay in this app on this device. Account sync is not enabled in Pocket mode.")
                     Text("Use HTTPS for TestFlight. API provider keys and the server write token must stay on the server.")
                 }
@@ -47,22 +47,10 @@ struct PocketConnectionView: View {
 }
 
 struct ItineraryMethodSection: View {
-    @AppStorage("io.pibeebee.c67.orderingMethod") private var orderingMethod = PlanningOrderingMethod.luna.rawValue
-
     var body: some View {
         Section("Itinerary method") {
-            Picker("Method", selection: $orderingMethod) {
-                Text("Luna").tag(PlanningOrderingMethod.luna.rawValue)
-                Text("Hybrid v4: schedules").tag(PlanningOrderingMethod.hybridV4.rawValue)
-                Text("Hybrid v4.1: flexible schedules").tag(PlanningOrderingMethod.hybridV41.rawValue)
-                Text("Hybrid v4.2 · Luna").tag(PlanningOrderingMethod.hybridV42.rawValue)
-                Text("Hybrid v4.2 · Foundation Models").tag(PlanningOrderingMethod.hybridV42FoundationModels.rawValue)
-                Text("Hybrid: weather context").tag(PlanningOrderingMethod.hybridWeather.rawValue)
-            }
-            .accessibilityIdentifier("pocketOrderingMethod")
-            .onAppear { if orderingMethod == PlanningOrderingMethod.hybridLegacy.rawValue { orderingMethod = PlanningOrderingMethod.hybridWeather.rawValue } }
-            Text("Foundation Models requires Apple Intelligence and uses English. Both v4.2 methods check travel and opening hours with the same scheduler.")
-                .font(.footnote)
+            LabeledContent("Method", value: "Hybrid v4.2 · Luna")
+                .accessibilityIdentifier("pocketOrderingMethod")
         }
     }
 }

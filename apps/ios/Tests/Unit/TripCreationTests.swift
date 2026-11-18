@@ -7,6 +7,22 @@ import C67Domain
 
 @Suite("Connected Hi-Fi trip creation")
 @MainActor struct TripCreationTests {
+    @Test func newTripUsesV42EvenWithAnOlderSavedMethod() throws {
+        let key = "io.pibeebee.c67.orderingMethod"
+        let previous = UserDefaults.standard.object(forKey: key)
+        UserDefaults.standard.set(PlanningOrderingMethod.luna.rawValue, forKey: key)
+        defer {
+            if let previous { UserDefaults.standard.set(previous, forKey: key) }
+            else { UserDefaults.standard.removeObject(forKey: key) }
+        }
+
+        let presenter = try make(repository: TripFlowRepositoryStub(supportsOnDevicePlanning: true))
+        presenter.finishChoosingPlaces()
+        #expect(presenter.planning.enginePreferences?.orderingMethod == .hybridV42)
+        #expect(presenter.usesV41)
+        #expect(!presenter.usesFoundationModels)
+    }
+
     @Test func departureFallbackUsesOnlyTheMatchingForecastHour() throws {
         let data = Data(#"{"hourly_units":{"time":"unixtime","temperature_2m":"°C"},"hourly":{"time":[3600,7200],"temperature_2m":[24,29],"weather_code":[0,61]}}"#.utf8)
         let reading = try DepartureWeatherLoader.decodeOpenMeteo(data, departure: Date(timeIntervalSince1970: 7500))
@@ -298,6 +314,11 @@ import C67Domain
     @Test func mainSpotLoadFailureRetriesUnconfirmedRequestWithTheSameInput() async throws {
         let repo = TripFlowRepositoryStub(supportsOnDevicePlanning: true)
         let model = try make(repository: repo)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try #require(TimeZone(identifier: model.planning.timeZone))
+        let start = try #require(calendar.date(bySettingHour: 9, minute: 0, second: 0, of: .now))
+        model.planning.startsAt = start
+        model.planning.finishBy = start.addingTimeInterval(4 * 3600)
         model.finishChoosingPlaces()
         let selected = model.selected.map(\.id)
         model.selectMainSpot(.place(try #require(selected.first)))
@@ -1096,7 +1117,7 @@ extension TripCreationTests {
         #expect(model.route == .review)
     }
 
-    @Test func directProcessingBuildsUntimedRecommendationWithoutAvailabilityForm() async throws {
+    @Test func directProcessingBuildsV42ScheduleWithoutAvailabilityForm() async throws {
         let repository = try PocketIntegrationFixture.repository()
         let model = try make(repository: repository)
         let fixtureInput = PocketIntegrationFixture.input()
@@ -1112,7 +1133,8 @@ extension TripCreationTests {
         let proposal = try #require(model.planning.job?.result?.proposal)
         #expect(proposal.experiencePlan != nil)
         #expect(proposal.stops.map(\.id) == model.selected.map { $0.place.id })
-        #expect(proposal.stops.allSatisfy { $0.arrivalAt == nil && $0.departureAt == nil })
+        #expect(proposal.input.enginePreferences?.orderingMethod == .hybridV42)
+        #expect(proposal.stops.allSatisfy { $0.arrivalAt != nil && $0.departureAt != nil })
         #expect(model.availabilityPlaces.isEmpty)
         #expect(model.error == nil)
         #expect(model.planning.enginePreferences?.allowsAIProcessing == true)

@@ -45,9 +45,7 @@ import C67Domain
     private static let timingLogger = Logger(subsystem: "io.pibeebee.c67", category: "PlanningTiming")
 
     init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor,
-         orderingMethod: @escaping () -> PlanningOrderingMethod = {
-             PlanningOrderingMethod(rawValue: UserDefaults.standard.string(forKey: "io.pibeebee.c67.orderingMethod") ?? "") ?? .luna
-         }, clock: @escaping () -> Date = { .now }) {
+         orderingMethod: @escaping () -> PlanningOrderingMethod = { .hybridV42 }, clock: @escaping () -> Date = { .now }) {
         self.planning = planning
         self.mode = mode
         root = specificPlace ? .places : .question(.interests)
