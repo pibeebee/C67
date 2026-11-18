@@ -89,6 +89,10 @@ struct AddPlacesView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("\(selected.count) places selected")
                     .accessibilityIdentifier("placesSelectedCount")
+                if selected.count < 3 {
+                    Text("Choose at least 3 places to continue.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
                 if hasSixPlaceLimit {
                     Text("This itinerary method supports up to six places. Your selections are kept.")
                         .font(.footnote).foregroundStyle(.secondary)
@@ -97,7 +101,7 @@ struct AddPlacesView: View {
                     }
                 }
                 QuestionPrimaryButton("Next") { searchFocused = false; next() }
-                    .disabled(selected.isEmpty)
+                    .disabled(selected.count < 3)
                     .accessibilityIdentifier("addPlacesNext")
             }
             .padding(20)

@@ -4,6 +4,27 @@ import C67Domain
 import PocketEngine
 @testable import C67Data
 
+@Test func pocketRejectsAnotherRequestWhilePlanningAndKeepsRetryIdentity() async throws {
+    let calls = V41Calls()
+    var services = v41Services(calls, model: false)
+    services.travel = { _, _, at, _ in
+        try await Task.sleep(for: .milliseconds(20))
+        return try await calls.travel(at)
+    }
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil)
+    let input = try v41Input()
+    let request = PlanningRequest(requestID: UUID(), purpose: .firstItinerary, input: input)
+    let job = try await repository.requestPlan(request)
+    #expect(try await repository.requestPlan(request).id == job.id)
+    let other = PlanningRequest(requestID: UUID(), purpose: .firstItinerary, input: input)
+    await #expect(throws: PlanningError.failed("PLANNING_ALREADY_RUNNING")) {
+        try await repository.requestPlan(other)
+    }
+    _ = try await finished(repository, id: job.id)
+    let next = try await repository.requestPlan(other)
+    #expect(next.id != job.id)
+}
+
 @Test func v41ResolvesTomorrowInTheTripCalendarAndPreservesManualEdits() throws {
     let anchor = ISO8601DateFormatter().date(from: "2026-11-30T23:30:00+07:00")!
     let tomorrow = ISO8601DateFormatter().date(from: "2026-12-01T09:00:00+07:00")!

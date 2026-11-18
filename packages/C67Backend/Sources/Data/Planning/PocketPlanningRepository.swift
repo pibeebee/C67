@@ -80,8 +80,14 @@ public actor PocketPlanningRepository: PlanningRepository {
         let fingerprint = try Self.fingerprint(request)
         if let receipt = state.receipts[request.requestID] {
             guard case .job(let prior, let id) = receipt, prior == fingerprint, let job = state.jobs[id] else { throw PlanningError.requestConflict }
+            guard !state.jobs.values.contains(where: { $0.id != id && $0.status == .running }) else {
+                throw PlanningError.failed("PLANNING_ALREADY_RUNNING")
+            }
             startOrdering(job)
             return state.jobs[id] ?? job
+        }
+        guard !state.jobs.values.contains(where: { $0.status == .running }) else {
+            throw PlanningError.failed("PLANNING_ALREADY_RUNNING")
         }
         guard request.purpose != .firstItinerary || (request.tripID == nil && request.baseRevision == nil) else {
             throw PlanningError.invalidInput
@@ -608,6 +614,7 @@ public actor PocketPlanningRepository: PlanningRepository {
 
     private func startOrdering(_ job: PlanningJob) {
         guard job.status == .running, job.input.enginePreferences?.reasonableOrdering == true,
+              orderTasks.isEmpty,
               orderTasks[job.id] == nil, let command = job.command else { return }
         state.jobs[job.id]?.errorCode = nil
         let revision = configurationRevision

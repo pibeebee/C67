@@ -333,6 +333,7 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
         case .expired: "This proposal expired. Request a fresh plan."
         case .failed(let code):
             switch code {
+            case "PLANNING_ALREADY_RUNNING": "Another itinerary is still being prepared. Check its status before starting another."
             case "POCKET_CONNECTION_REQUIRED": "Sign in or check your Pocket connection in Account. Your selected places are kept."
             case "POCKET_CONNECTION_REJECTED": "The Pocket server rejected the connection. Check your account and connection, then try again."
             case "POCKET_ORDER_ENDPOINT_MISSING": "This Pocket server does not support itinerary recommendations. Check the server URL in Account."

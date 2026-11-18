@@ -269,7 +269,7 @@ import C67Domain
     }
 
     func finishChoosingPlaces() {
-        guard !selected.isEmpty else { return }
+        guard selected.count >= 3 else { return }
         error = nil
         syncPlaces()
         syncEnginePreferences()

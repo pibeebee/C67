@@ -165,6 +165,7 @@ struct TripCreationView: View {
                                               presenter.planning.draftChanged()
                                           },
                                           showsSixPlaceLimit: presenter.hasSixPlaceLimit,
+                                          minimumSelection: 3,
                                           load: { await presenter.loadRecommendationsIfNeeded() },
                                           refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
                                           toggle: presenter.toggle,

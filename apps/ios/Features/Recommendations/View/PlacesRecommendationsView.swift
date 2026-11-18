@@ -17,6 +17,7 @@ struct PlacesRecommendationsView: View {
     /// The recommendations-first creation flow leaves this nil.
     var maximumSelection: Int?
     var showsSixPlaceLimit = false
+    var minimumSelection = 1
     let load: @MainActor () async -> Void
     let refresh: @MainActor () async -> Void
     let cancel: () -> Void
@@ -185,8 +186,12 @@ struct PlacesRecommendationsView: View {
                 if let maximumSelection {
                     Text("Choose up to \(maximumSelection) additional places.").font(.footnote).foregroundStyle(.secondary)
                 }
+                if selected.count < minimumSelection {
+                    Text("Choose at least \(minimumSelection) places to continue.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
                 QuestionPrimaryButton("Next", action: complete)
-                    .disabled(selected.isEmpty)
+                    .disabled(selected.count < minimumSelection)
                     .accessibilityIdentifier("recommendationsNext")
             }
             .padding(.horizontal, 20)
