@@ -17,13 +17,16 @@ private actor P1ModelCalls {
     }
 }
 
-@Test func p1ActiveTripKeepsExtendedStayAndReturnsToEndpointWithoutCallingLuna() async throws {
+@Test(arguments: [false, true])
+func p1ActiveTripKeepsExtendedStayAndReturnsToEndpointWithoutCallingLuna(hasActivitySession: Bool) async throws {
     let now = try #require(ISO8601DateFormatter().date(from: "2026-11-19T09:00:00+07:00"))
+    let clock = TestClock()
+    clock.advance(now.timeIntervalSince(clock.now()))
     let model = P1ModelCalls()
     var services = v41Services(V41Calls(), model: false)
     services.experience = { inputs, _ in try await model.experience(inputs) }
     let repository = try PocketPlanningRepository(services: services, connection: P1Connection(), storageURL: nil,
-                                                  synthetic: true, jobClock: { now })
+                                                  synthetic: true, jobClock: { clock.now() })
     var input = try v41Input(count: 2)
     input.startsAt = now
     input.finishBy = now.addingTimeInterval(8 * 3600)
@@ -34,6 +37,10 @@ private actor P1ModelCalls {
     input.enginePreferences?.usesLuna = true
     input.preservesPlaceOrder = true
     for index in input.places.indices { input.places[index].durationOverridden = false }
+    if hasActivitySession {
+        input.enginePreferences?.maximumWaitMinutes = 60
+        input.places[0].activitySession = .init(startsAt: now.addingTimeInterval(3600), endsAt: now.addingTimeInterval(7200))
+    }
     let request = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
     _ = try await finished(repository, id: request.id)
     var trip = try await repository.applyProposal(jobID: request.id, expectedRevision: nil, requestID: UUID())
@@ -48,16 +55,21 @@ private actor P1ModelCalls {
     let preparation = try await repository.prepareStart(tripID: trip.id, expectedRevision: trip.revision)
     trip = try await event(.start, trip: trip, preparationID: preparation?.id)
     let first = try #require(trip.nextStop)
+    if hasActivitySession { clock.advance(3600) }
     trip = try await event(.arrive, trip: trip, stopID: first.id)
     trip = try await event(.extendStay, trip: trip, stopID: first.id, extraSeconds: 1800)
+    let extendedDeparture = try #require(trip.plan.stops.first?.departureAt)
     let replan = try await repository.requestPlan(.init(requestID: UUID(), purpose: .replan, input: trip.input,
                                                         tripID: trip.id, baseRevision: trip.revision))
     let updated = try await finished(repository, id: replan.id)
     let proposal = try #require(updated.result?.proposal)
     #expect(proposal.stops.map(\.id) == input.places.map(\.id))
     #expect(proposal.stops.first?.visitSeconds == first.visitSeconds + 1800)
+    #expect(proposal.stops.first?.departureAt == extendedDeparture)
+    #expect(try #require(proposal.stops.last?.arrivalAt) >= extendedDeparture)
     #expect(proposal.input.planningEndpoint == input.origin)
     trip = try await repository.applyProposal(jobID: updated.id, expectedRevision: trip.revision, requestID: UUID())
+    #expect(trip.plan.stops.first?.departureAt == extendedDeparture)
     trip = try await event(.completeStop, trip: trip, stopID: first.id)
     let second = try #require(trip.nextStop)
     trip = try await event(.arrive, trip: trip, stopID: second.id)

@@ -898,7 +898,8 @@ public actor PocketPlanningRepository: PlanningRepository {
         let current = trip.plan.stops.first { $0.id == trip.currentStopID }
         let remaining = current.map { stop in
             let sessionEnd = input.places.first { $0.id == stop.id }?.activitySession?.endsAt
-            let end = sessionEnd ?? stop.departureAt ?? input.startsAt
+            let departure = stop.departureAt ?? input.startsAt
+            let end = sessionEnd.map { max($0, departure) } ?? departure
             let roundedStart = ceil(input.startsAt.timeIntervalSince1970 / 60) * 60
             return (id: stop.id, seconds: max(0, Int(ceil(end.timeIntervalSince1970 - roundedStart))))
         }
