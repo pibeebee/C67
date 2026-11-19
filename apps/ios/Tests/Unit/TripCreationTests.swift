@@ -542,7 +542,9 @@ import C67Domain
         await model.finishMainSpot()
         let proposal = try #require(model.reviewProposal)
         #expect(model.route == .review)
-        #expect(proposal.estimatedExperienceDeparture == tomorrow)
+        let departure = try #require(proposal.estimatedExperienceDeparture)
+        #expect(PlanningDayWindow.isSameDay(departure, tomorrow, timeZone: proposal.input.timeZone))
+        #expect(departure >= tomorrow && departure < proposal.input.finishBy)
         #expect(proposal.scheduleAssessment?.modelCalls == 0)
         #expect(proposal.experiencePlan == nil)
         #expect(model.planning.draftInput == proposal.input)
@@ -606,6 +608,123 @@ import C67Domain
         #expect(!before.isEmpty)
         #expect(model.preferenceText == before)
         #expect(model.planning.startsAt == tomorrow)
+    }
+
+    @Test func futureTripRequiresDateRevisionAndExplicitSameDayStartConfirmation() async throws {
+        let input = try savedTripFixture()
+        let replacementDeparture = input.startsAt.addingTimeInterval(-86_400)
+        let now = replacementDeparture.addingTimeInterval(30 * 60)
+        let repository = try PocketIntegrationFixture.repository(jobClock: { now })
+        let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: input)
+        let original = try await saveTripFixture(using: planning)
+
+        await #expect(throws: PlanningError.failed("START_DATE_MISMATCH")) {
+            try await planning.prepareStart(original)
+        }
+        #expect(planning.issues[.activity(original.id)]?.cause == .planning(.failed("START_DATE_MISMATCH")))
+        #expect(planning.trips.first == original)
+
+        await planning.request(.replan, trip: original, replacementDeparture: replacementDeparture)
+        let preview = try #require(planning.job?.result?.proposal)
+        #expect(preview.departureAt == replacementDeparture)
+        #expect(preview.stops.map(\.id) == original.plan.stops.map(\.id))
+        #expect(planning.trips.first == original)
+        await planning.apply(scope: .savedTrip(original.id))
+        let revised = try #require(planning.trips.first)
+        #expect(revised.id == original.id)
+        #expect(revised.status == .planned)
+        #expect(revised.revision == original.revision + 1)
+        #expect(revised.plan.departureAt == replacementDeparture)
+
+        let confirmation = try #require(await planning.prepareStart(revised))
+        #expect(confirmation.scheduleChanged)
+        #expect(confirmation.proposal.departureAt == now)
+        #expect(planning.trips.first == revised)
+        await planning.event(.start, trip: revised)
+        #expect(planning.issues[.activity(revised.id)]?.cause == .planning(.expired))
+        #expect(planning.trips.first == revised)
+
+        await planning.event(.start, trip: revised, preparationID: confirmation.id)
+        let started = try #require(planning.trips.first)
+        #expect(started.status == .active)
+        #expect(started.revision == revised.revision + 1)
+        #expect(started.plan == confirmation.proposal)
+    }
+
+    @Test func replanPreservesProgressAndRestoresPendingEndpointFromDisk() async throws {
+        let input = try savedTripFixture()
+        let now = input.startsAt
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let storage = directory.appendingPathComponent("trips.json")
+        let repository = try PocketIntegrationFixture.repository(storageURL: storage, jobClock: { now })
+        let planning = PlanningPresenter(interactor: .init(repository: repository), initialInput: input)
+        let saved = try await saveTripFixture(using: planning)
+        let confirmation = try #require(await planning.prepareStart(saved))
+        await planning.event(.start, trip: saved, preparationID: confirmation.id)
+        let started = try #require(planning.trips.first)
+        let first = try #require(started.nextStop)
+
+        await planning.event(.arrive, trip: started)
+        await planning.event(.completeStop, trip: try #require(planning.trips.first))
+        let afterFirst = try #require(planning.trips.first)
+        let second = try #require(afterFirst.nextStop)
+        await planning.event(.arrive, trip: afterFirst)
+        await planning.event(.extendStay, trip: try #require(planning.trips.first), extraSeconds: 1800)
+        let extended = try #require(planning.trips.first)
+        let extendedDeparture = try #require(extended.nextStop?.departureAt)
+        #expect(extendedDeparture == now.addingTimeInterval(Double(second.visitSeconds + 1800)))
+
+        await planning.request(.replan, trip: extended)
+        let preview = try #require(planning.job?.result?.proposal)
+        #expect(preview.stops.map(\.id) == [second.id])
+        #expect(preview.stops.first?.departureAt == extendedDeparture)
+        #expect(preview.input.planningEndpoint == input.origin)
+        #expect(preview.experiencePlan == nil)
+        #expect(planning.trips.first == extended)
+        await planning.apply(scope: .planning(extended.id))
+        let updated = try #require(planning.trips.first)
+        #expect(updated.revision == extended.revision + 1)
+        #expect(updated.completedStopIDs == [first.id])
+        #expect(updated.currentStopID == second.id)
+        #expect(updated.plan.stops.map(\.id) == [first.id, second.id])
+
+        await planning.event(.completeStop, trip: updated)
+        let pending = try #require(planning.trips.first)
+        #expect(pending.status == .active)
+        #expect(pending.pendingEndpoint == input.origin)
+        let reopened = try PocketIntegrationFixture.repository(storageURL: storage, jobClock: { now })
+        let restoredPlanning = PlanningPresenter(interactor: .init(repository: reopened))
+        await restoredPlanning.load(resumesJobs: false)
+        let restored = try #require(restoredPlanning.trips.first)
+        #expect(restored.id == pending.id)
+        #expect(restored.status == .active)
+        #expect(restored.completedStopIDs == [first.id, second.id])
+        #expect(restored.pendingEndpoint == input.origin)
+
+        await restoredPlanning.event(.arriveAtEndpoint, trip: restored)
+        let completed = try #require(restoredPlanning.trips.first)
+        #expect(completed.status == .completed)
+        #expect(completed.pendingEndpoint == nil)
+        #expect(completed.completedStopIDs == restored.completedStopIDs)
+    }
+
+    private func savedTripFixture() throws -> PlanningInput {
+        var input = PocketIntegrationFixture.input()
+        input.places = Array(try PocketIntegrationFixture.searchablePlaces().prefix(2))
+        for index in input.places.indices { input.places[index].durationOverridden = true }
+        input.enginePreferences?.orderingMethod = .hybridV42
+        input.enginePreferences?.scheduleSource = .manual
+        input.enginePreferences?.returnToOrigin = true
+        input.preservesPlaceOrder = true
+        return input
+    }
+
+    private func saveTripFixture(using planning: PlanningPresenter) async throws -> PersonalPlanningTrip {
+        await planning.request(.firstItinerary)
+        _ = try #require(planning.job?.result?.proposal)
+        await planning.apply()
+        return try #require(planning.trips.first)
     }
 
     private func v4DateFlow(repository: PocketPlanningRepository, now: Date, automatic: Bool, method: PlanningOrderingMethod = .hybridV4) throws -> TripCreationPresenter {

@@ -25,6 +25,7 @@ struct AccountInteractor: Sendable {
         try await authentication.signInWithApple(credentials)
     }
     func changes() async -> AsyncStream<AuthenticationSnapshot> { await authentication.sessionChanges() }
+    func currentAppleUserID() async throws -> String? { try await authentication.currentAppleUserID() }
     func signIn(email: String, password: String) async throws -> TravellerAccount {
         try await authentication.signIn(email: email, password: password)
     }
@@ -38,6 +39,9 @@ struct AccountInteractor: Sendable {
     func hasPendingDeletion() async throws -> Bool { try await authentication.hasPendingAccountDeletion() }
     func deleteAccount(_ accountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult {
         try await authentication.deleteAccount(expectedAccountID: accountID, appleAuthorizationCode: appleAuthorizationCode)
+    }
+    func deleteAccountWithManualAppleRevocation(_ accountID: UUID) async throws -> AccountDeletionResult {
+        try await authentication.deleteAccountWithManualAppleRevocation(expectedAccountID: accountID)
     }
     func signOut() async throws { try await authentication.signOut() }
 }

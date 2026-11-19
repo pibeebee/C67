@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Sketch HI-FI `PLACES MAIN COURSE ADD`: where to spend the most time.
 ///
-/// "Let Travelant decide" or one of the chosen places, with a native-style checkmark on the
+/// "Let Travelants decide" or one of the chosen places, with a native-style checkmark on the
 /// selection, then Next.
 struct MainSpotQuestionView: View {
     let places: [RecommendedPlace]
@@ -27,50 +27,36 @@ struct MainSpotQuestionView: View {
         ) {
             VStack(alignment: .leading, spacing: 0) {
                 CheckmarkRow(
-                    title: Text("Let Travelant decide"),
-                    subtitle: Text(usesV41 ? "Plan the visits around your schedule" : (researchesWithLuna ? "Let Luna arrange your experience" : "Adjust based on route and opening hours")),
+                    title: Text("Let Travelants decide"),
+                    subtitle: Text("Adjust based on route and opening hours"),
                     isSelected: selection == .automatic
                 ) {
                     select(.automatic)
+                } leading: {
+                    PlaceThumbnail(imageName: nil, size: 48, systemImage: "sparkle")
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .background(AppColor.surface, in: cardShape)
+                .padding(.vertical, 5)
+                .accessibilityIdentifier("mainSpotAutomatic")
 
-                if !places.isEmpty {
-                    Text("Or pick a main spot")
-                        .font(AppFont.subheadline)
-                        .foregroundStyle(AppColor.secondaryText)
-                        .padding(.horizontal, 4)
-                        .padding(.top, 22)
-                        .padding(.bottom, 8)
-
-                    VStack(spacing: 0) {
-                        ForEach(places) { item in
-                            CheckmarkRow(
-                                title: Text(verbatim: item.place.name),
-                                subtitle: (item.poiPresentation?.label ?? item.category).map { Text(verbatim: $0) },
-                                titleFont: AppFont.headline,
-                                isSelected: selection == .place(item.id)
-                            ) {
-                                select(.place(item.id))
-                            } leading: {
-                                PlaceThumbnail(imageName: nil, size: 48, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
-                            }
-                            .padding(.vertical, 5)
-                            .accessibilityIdentifier("mainSpot-\(item.id)")
-
-                            if item.id != places.last?.id {
-                                Divider()
-                                    .padding(.leading, 64)
-                            }
-                        }
+                ForEach(places) { item in
+                    Divider().padding(.leading, 64)
+                    CheckmarkRow(
+                        title: Text(verbatim: item.place.name),
+                        subtitle: (item.poiPresentation?.label ?? item.category).map { Text(verbatim: $0) },
+                        titleFont: AppFont.headline,
+                        isSelected: selection == .place(item.id)
+                    ) {
+                        select(.place(item.id))
+                    } leading: {
+                        PlaceThumbnail(imageName: nil, size: 48, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
                     }
-                    .padding(.horizontal, 16)
                     .padding(.vertical, 5)
-                    .background(AppColor.surface, in: cardShape)
+                    .accessibilityIdentifier("mainSpot-\(item.id)")
                 }
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 5)
+            .background(AppColor.surface, in: cardShape)
             .sensoryFeedback(.selection, trigger: selection)
         } footer: {
             VStack(spacing: 12) {
@@ -79,14 +65,10 @@ struct MainSpotQuestionView: View {
                         .accessibilityIdentifier("tripDateSummary")
                 }
                 if usesFoundationModels {
-                    Text("Apple Foundation Models estimates activities and visit durations on your device. Travelant uses Apple travel estimates and may send selected Apple place IDs to Pocket to check opening hours.")
+                    Text("Apple Foundation Models estimates activities and visit durations on your device. Travelants uses Apple travel estimates and may send selected Apple place IDs to Pocket to check opening hours.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)
-                } else if usesV41 {
-                    Text("Travelant arranges your trip using Apple travel estimates and available hours. Hours checks send selected Apple place IDs to Pocket. If you choose Luna assistance, selected places, pins, candidate dates and preferences are sent to Pocket and Luna for activity and duration suggestions. Recommendations are estimates.")
-                        .font(AppFont.footnote)
-                        .foregroundStyle(AppColor.secondaryText)
-                } else if researchesWithLuna {
+                } else if researchesWithLuna, !usesV41 {
                     Text("Your selected places, pins and preferences are sent to the Pocket server and Luna to suggest an order and visit lengths. Weather providers may receive your starting point and selected places; forecasts may use Apple Weather or Open-Meteo. Recommendations are estimates.")
                         .font(AppFont.footnote)
                         .foregroundStyle(AppColor.secondaryText)

@@ -46,7 +46,8 @@ struct TripHomeRootView: View {
                 PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
             case .account:
                 if let accountPresenter {
-                    AccountView(presenter: accountPresenter, appleOnly: mode == "Pocket • authenticated")
+                    AccountView(presenter: accountPresenter, appleOnly: mode == "Pocket • authenticated",
+                                withdrawAIConsent: presenter.requiresExternalAIConsent ? { try await presenter.withdrawExternalAIConsent() } : nil)
                 } else if presenter.supportsOnDevicePlanning {
                     PocketConnectionView(presenter: presenter, dismiss: dismissSheet)
                 } else {
@@ -64,6 +65,7 @@ struct TripHomeRootView: View {
         }
         .modifier(AppleCredentialRevocationModifier { Task { await accountPresenter?.restore() } })
         .task { await accountPresenter?.observe() }
+        .task(id: accountPresenter?.deletionPending) { await accountPresenter?.pollPendingDeletion() }
         .task(id: scenePhase) { await restoreWhenActive() }
         .onChange(of: accountPresenter?.account?.id) { _, _ in accountChanged() }
         .onChange(of: presenter.openTripID) { _, id in
@@ -88,6 +90,9 @@ struct TripHomeRootView: View {
                 }
             }
         }
+        .onChange(of: selectedTab) { _, tab in
+            if tab != .trip { location.cancel() }
+        }
         .onOpenURL(perform: handleCallback)
     }
 
@@ -102,23 +107,25 @@ struct TripHomeRootView: View {
                                                chooseLocation: chooseLocation, addTrip: addTrip, addSpecificPlace: addSpecificPlace,
                                                isBusy: presenter.isBusy, isLocating: location.isRequesting,
                                                accessibilityLocationTitle: presenter.origin == nil ? nil : presenter.originLabel)
-                                if presenter.origin == nil, location.permissionDenied || location.error != nil {
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text(location.permissionDenied ? "Location access is off" : "Couldn’t get your location")
-                                            .font(.footnote).foregroundStyle(.secondary)
-                                        HStack {
-                                            if location.permissionDenied {
-                                                Button("Open Settings") {
-                                                    if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
-                                                }
-                                            } else { Button("Try again") { location.request() } }
-                                            Button("Choose location manually", action: chooseLocation)
-                                        }.font(.footnote)
-                                    }.padding(.horizontal, 16).padding(.bottom, 8)
+                                if presenter.origin == nil, !location.isRequesting {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        if location.permissionDenied {
+                                            Text("Location access is off").foregroundStyle(.secondary)
+                                            Button("Open Settings") {
+                                                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                                            }
+                                        } else if location.error != nil {
+                                            Text("Couldn’t get your location").foregroundStyle(.secondary)
+                                        }
+                                        Button("Use current location", systemImage: "location") { location.request() }
+                                            .accessibilityIdentifier("homeUseCurrentLocation")
+                                    }
+                                    .font(.subheadline)
+                                    .padding(.horizontal, 16)
+                                    .padding(.bottom, 8)
                                 }
                             }
                         }
-                        .task { locateWhenNeeded() }
                         .background(Color("TripCanvas"))
                         .toolbar(.hidden, for: .navigationBar)
                         .navigationDestination(for: UUID.self) { id in
@@ -137,11 +144,17 @@ struct TripHomeRootView: View {
                                     .font(.largeTitle.bold())
                                     .accessibilityAddTraits(.isHeader)
                                 Spacer()
-                                Button("Account", systemImage: "person.crop.circle", action: showAccount)
-                                    .labelStyle(.iconOnly)
-                                    .buttonStyle(.bordered)
-                                    .buttonBorderShape(.circle)
-                                    .frame(minWidth: 44, minHeight: 44)
+                                Button(action: showAccount) {
+                                    Label("Account", systemImage: "person.crop.circle")
+                                        .labelStyle(.iconOnly)
+                                        .font(.body.weight(.semibold))
+                                        .foregroundStyle(.tint)
+                                        .padding(7)
+                                        .background(.tint.opacity(0.18), in: .circle)
+                                        .frame(minWidth: 44, minHeight: 44)
+                                        .contentShape(.rect)
+                                }
+                                .buttonStyle(.plain)
                             }
                             .padding(.horizontal, 16)
                             .padding(.top, 8)
@@ -162,6 +175,7 @@ struct TripHomeRootView: View {
 
     private func beginCreation(specificPlace: Bool) {
         guard !presenter.isBusy else { return }
+        location.cancel()
         Task {
             if let pending = await presenter.recoverPendingCreation() {
                 resumeCreation(pending)
@@ -180,7 +194,10 @@ struct TripHomeRootView: View {
         showsCreation = true
     }
 
-    private func chooseLocation() { sheet = .location }
+    private func chooseLocation() {
+        location.cancel()
+        sheet = .location
+    }
     private var locationTitle: String {
         if presenter.origin != nil {
             if presenter.originLabel == deviceAreaName, let name = deviceAreaName {
@@ -188,21 +205,11 @@ struct TripHomeRootView: View {
             }
             return presenter.originLabel
         }
-        if location.permissionDenied { return "Enable location" }
-        if location.error != nil { return "Location unavailable" }
         return presenter.originLabel
     }
     private func showAccount() { sheet = .account }
     private func dismissSheet() { sheet = nil }
     private func dismissCreation() { showsCreation = false }
-
-    /// Sketch HI-FI `HOME LOCATION PERMIS`: with no starting point yet, Home asks for the
-    /// device position. The system shows its own permission alert the first time; the location
-    /// pill reads "Locating…" until a position or an error arrives.
-    private func locateWhenNeeded() {
-        guard presenter.origin == nil, !location.isRequesting else { return }
-        location.request()
-    }
 
     private func selectLocation(_ place: PlanningPlace) {
         areaLookup?.cancel()
@@ -215,7 +222,6 @@ struct TripHomeRootView: View {
 
     private func restoreWhenActive() async {
         guard scenePhase == .active else { return }
-        if location.permissionDenied, presenter.origin == nil { location.request() }
         await accountPresenter?.restore()
         await presenter.load(waitForFirstItinerary: false)
     }
@@ -223,6 +229,9 @@ struct TripHomeRootView: View {
     private func reload() { Task { await presenter.load() } }
 
     private func accountChanged() {
+        location.cancel()
+        areaLookup?.cancel()
+        deviceAreaName = nil
         creation = nil
         sheet = nil
         showsCreation = false

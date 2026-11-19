@@ -58,6 +58,7 @@ struct PlanningRootView: View {
         }
         .modifier(AppleCredentialRevocationModifier { Task { await accountPresenter?.restore() } })
         .task { await accountPresenter?.observe() }
+        .task(id: accountPresenter?.deletionPending) { await accountPresenter?.pollPendingDeletion() }
         .task(id: scenePhase) {
             if scenePhase == .active { await accountPresenter?.restore(); await presenter.load() }
         }
@@ -466,6 +467,7 @@ private struct PlanningStopRow: View {
 struct ActivePlanningTripView: View {
     let tripID: UUID
     let presenter: PlanningPresenter
+    var startTrip: (() -> Void)? = nil
     @State private var location = PlanningLocation()
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -482,7 +484,10 @@ struct ActivePlanningTripView: View {
                     }
                 }
                 if trip.status == .planned {
-                    Section { Button("Start trip") { Task { await presenter.event(.start, trip: trip) } }.disabled(presenter.isBusy) }
+                    Section { Button("Start trip") {
+                        if let startTrip { startTrip() }
+                        else { Task { await presenter.event(.start, trip: trip) } }
+                    }.disabled(presenter.isBusy) }
                 }
                 if trip.status == .active, let next = trip.nextStop {
                     Section(trip.currentStopID == next.id ? "Current visit" : "Next place") {
@@ -501,6 +506,12 @@ struct ActivePlanningTripView: View {
                         }
                         Button("Recalculate remaining trip") { Task { await presenter.request(.replan, trip: trip) } }
                         Text("After extending a visit, recalculate to see the impact on later places and your finish time.").font(.footnote).foregroundStyle(.secondary)
+                    }.disabled(presenter.isBusy)
+                }
+                if trip.pendingEndpoint != nil {
+                    Section {
+                        Button("Recalculate route to endpoint") { Task { await presenter.request(.replan, trip: trip) } }
+                        Button("I’ve arrived at the endpoint") { Task { await presenter.event(.arriveAtEndpoint, trip: trip) } }
                     }.disabled(presenter.isBusy)
                 }
                 if presenter.job?.tripID == trip.id, let proposal = presenter.job?.result?.proposal {

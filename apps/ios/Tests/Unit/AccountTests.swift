@@ -73,6 +73,94 @@ final class AccountTests: XCTestCase {
         XCTAssertEqual(reopened.notice, "Your account has been deleted.")
     }
 
+    func testCancellingDeletionReviewAndApplePromptSubmitsNothing() async throws {
+        let authentication = FakeAuthentication()
+        let presenter = AccountAssembly.makePresenter(authentication: authentication)
+        try await signInForDeletion(using: presenter)
+        presenter.openDeletionReview(requiresAppleVerification: true)
+        let review = try XCTUnwrap(presenter.deletionReview)
+
+        presenter.beginAppleDeletionAuthorization(for: review)
+        XCTAssertTrue(presenter.isAuthorizingDeletion)
+        presenter.cancelAppleDeletionAuthorization(for: review)
+        XCTAssertEqual(presenter.deletionReview?.id, review.id)
+        XCTAssertFalse(presenter.isAuthorizingDeletion)
+        XCTAssertEqual(presenter.deletionReview?.offersManualRevocation, false)
+        presenter.closeDeletionReview()
+
+        let requests = await authentication.deletionRequestCount
+        XCTAssertEqual(requests, 0)
+        XCTAssertNotNil(presenter.account)
+    }
+
+    func testLateAppleAuthorizationDoesNotDeleteAccountAfterSessionChanges() async throws {
+        let authentication = FakeAuthentication()
+        let presenter = AccountAssembly.makePresenter(authentication: authentication)
+        try await signInForDeletion(using: presenter)
+        presenter.openDeletionReview(requiresAppleVerification: true)
+        let review = try XCTUnwrap(presenter.deletionReview)
+        presenter.beginAppleDeletionAuthorization(for: review)
+
+        await authentication.replaceSession()
+        await presenter.observe()
+        XCTAssertEqual(presenter.account, review.account)
+        XCTAssertNil(presenter.deletionReview)
+        await presenter.finishAppleDeletionAuthorization(.success(deletionCredentials), for: review)
+
+        let requests = await authentication.deletionRequestCount
+        XCTAssertEqual(requests, 0)
+        XCTAssertFalse(presenter.isAuthorizingDeletion)
+    }
+
+    func testDeletionWithWrongAppleAccountAllowsVerificationAgain() async throws {
+        let authentication = FakeAuthentication()
+        let presenter = AccountAssembly.makePresenter(authentication: authentication)
+        try await signInForDeletion(using: presenter)
+        presenter.openDeletionReview(requiresAppleVerification: true)
+        let review = try XCTUnwrap(presenter.deletionReview)
+        await authentication.failNextDeletion(.appleAccountMismatch)
+
+        presenter.beginAppleDeletionAuthorization(for: review)
+        await presenter.finishAppleDeletionAuthorization(.success(deletionCredentials), for: review)
+
+        XCTAssertEqual(presenter.deletionReview?.id, review.id)
+        XCTAssertEqual(presenter.deletionReview?.offersManualRevocation, false)
+        XCTAssertEqual(presenter.deletionMessage, AccountDeletionError.appleAccountMismatch.localizedDescription)
+        XCTAssertFalse(presenter.deletionPending)
+        presenter.beginAppleDeletionAuthorization(for: review)
+        await presenter.finishAppleDeletionAuthorization(.success(deletionCredentials), for: review)
+        XCTAssertTrue(presenter.deletionPending)
+    }
+
+    func testLegacyDeletionCanRequestAppleVerificationInSameReview() async throws {
+        let authentication = FakeAuthentication()
+        let presenter = AccountAssembly.makePresenter(authentication: authentication)
+        try await signInForDeletion(using: presenter)
+        presenter.openDeletionReview(requiresAppleVerification: false)
+        let review = try XCTUnwrap(presenter.deletionReview)
+        await authentication.failNextDeletion(.appleVerificationRequired)
+
+        await presenter.confirmDeletion(for: review)
+
+        XCTAssertEqual(presenter.deletionReview?.id, review.id)
+        XCTAssertEqual(presenter.deletionReview?.requiresAppleVerification, true)
+        XCTAssertEqual(presenter.deletionReview?.offersManualRevocation, false)
+        let updatedReview = try XCTUnwrap(presenter.deletionReview)
+        presenter.beginAppleDeletionAuthorization(for: updatedReview)
+        await presenter.finishAppleDeletionAuthorization(.success(deletionCredentials), for: updatedReview)
+        XCTAssertTrue(presenter.deletionPending)
+    }
+
+    private var deletionCredentials: AppleSignInCredentials {
+        .init(identityToken: "synthetic", nonce: "synthetic", userID: "synthetic-user", authorizationCode: "synthetic-code")
+    }
+
+    private func signInForDeletion(using presenter: AccountPresenter) async throws {
+        await presenter.signInWithApple(deletionCredentials)
+        await presenter.observe()
+        _ = try XCTUnwrap(presenter.account)
+    }
+
     func testPresenterKeepsAccountOnTemporaryErrorAndClearsExpiredSession() async {
         let authentication = FakeAuthentication()
         let presenter = AccountAssembly.makePresenter(authentication: authentication)
@@ -138,15 +226,25 @@ private actor FakeAuthentication: TravellerAuthentication {
     private var account: TravellerAccount?
     private var restoreError: AuthenticationError?
     private var logoutFails = false
+    private var sessionID = UUID()
     private var deletionPending = false
+    private var deletionFailure: AccountDeletionError?
+    private(set) var deletionRequestCount = 0
     nonisolated var supportsAccountDeletion: Bool { true }
     func hasPendingAccountDeletion() async -> Bool { deletionPending }
+    func failNextDeletion(_ error: AccountDeletionError) { deletionFailure = error }
+    func replaceSession() { sessionID = UUID() }
     func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) throws -> AccountDeletionResult {
         guard account?.id == expectedAccountID else { throw AuthenticationError.sessionExpired }
+        deletionRequestCount += 1
+        if let deletionFailure {
+            self.deletionFailure = nil
+            throw deletionFailure
+        }
         if deletionPending {
             deletionPending = false
             account = nil
-            return .deleted
+            return .deleted()
         }
         deletionPending = true
         return .pending
@@ -180,7 +278,7 @@ private actor FakeAuthentication: TravellerAuthentication {
     }
     func refreshSession() throws -> TravellerAccount? { try currentAccount() }
     func sessionChanges() -> AsyncStream<AuthenticationSnapshot> {
-        AsyncStream { $0.yield(.init(account: account, sessionID: UUID())); $0.finish() }
+        AsyncStream { $0.yield(.init(account: account, sessionID: sessionID)); $0.finish() }
     }
     func signUp(email: String, password: String) throws { throw AuthenticationError.signupUnavailable }
     func resendConfirmation() throws { throw AuthenticationError.emailFlowUnavailable }

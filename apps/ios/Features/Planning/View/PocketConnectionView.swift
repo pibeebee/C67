@@ -31,7 +31,7 @@ struct PocketConnectionView: View {
                     if let error = presenter.connectionError { Text(error).foregroundStyle(.red) }
                 }
                 Section("How your trip is processed") {
-                    Text("Travelant sends selected places and preferences to Pocket and Luna for itinerary suggestions.")
+                    Text("Travelants sends selected places and preferences to Pocket and Luna for itinerary suggestions.")
                     Text("Your saved trips stay in this app on this device. Account sync is not enabled in Pocket mode.")
                     Text("Use HTTPS for TestFlight. API provider keys and the server write token must stay on the server.")
                 }

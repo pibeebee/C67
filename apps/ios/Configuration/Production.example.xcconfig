@@ -6,4 +6,6 @@ SUPABASE_SCHEME = https
 SUPABASE_HOST = supabase.example.com
 // Only a publishable/anon client key belongs in an app. Never use a service-role key.
 SUPABASE_CLIENT_KEY =
+// Comma-separated App Review account emails. Configure passwords in Supabase and App Store Connect.
+TRAVELANTS_REVIEW_EMAILS =
 // Never include a read token, write token, or provider key in this file or in the app bundle.

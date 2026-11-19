@@ -35,11 +35,11 @@ struct MainSpotTests {
     }
 
     @MainActor
-    @Test("Picking a place moves the checkmark away from Let Travelant decide")
+    @Test("Picking a place moves the checkmark away from Let Travelants decide")
     func checkmarkFollowsSelection() throws {
         func png(_ isSelected: Bool) throws -> Data {
             let renderer = ImageRenderer(
-                content: CheckmarkRow(title: Text("Let Travelant decide"), isSelected: isSelected, action: {})
+                content: CheckmarkRow(title: Text("Let Travelants decide"), isSelected: isSelected, action: {})
                     .frame(width: 340)
             )
             renderer.scale = 1

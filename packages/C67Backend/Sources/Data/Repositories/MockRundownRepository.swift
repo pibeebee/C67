@@ -1,3 +1,4 @@
+#if DEBUG
 import Foundation
 import C67Domain
 
@@ -9,7 +10,7 @@ public actor MockRundownRepository: RundownRepository {
     private var trips: [UUID: Trip] = [:]
 
     public init() throws {
-        guard let url = Bundle.module.url(forResource: "rundowns", withExtension: "json") else {
+        guard let url = DevelopmentFixture.url(named: "rundowns") else {
             throw RepositoryError.notFound
         }
         rundowns = try JSONDecoder().decode([Rundown].self, from: Data(contentsOf: url))
@@ -111,3 +112,4 @@ public actor MockRundownRepository: RundownRepository {
         return cursor
     }
 }
+#endif

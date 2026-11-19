@@ -4,9 +4,10 @@ struct RecommendationsProcessingView: View {
     var body: some View {
         ProcessingStatusView(
             title: Text("We’ve got you."),
-            message: Text("Searching for places for your \(QuestionTitle.highlight("trip"))…"),
-            accessibilityLabel: Text("Finding recommendations")
-        )
+            message: Text("Searching for places for your \(QuestionTitle.highlight("trip"))…")
+        ) {
+            RecommendationProcessingIllustration()
+        }
         .accessibilityIdentifier("recommendationsProcessing")
     }
 }

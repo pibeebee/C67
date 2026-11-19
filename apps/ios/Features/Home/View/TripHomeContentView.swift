@@ -61,7 +61,7 @@ struct TripHomeContentView: View {
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 4)
-                            ForEach(trips.filter { Calendar.current.startOfDay(for: $0.input.startsAt) == day }) { trip in
+                            ForEach(trips.filter { Calendar.current.startOfDay(for: $0.plan.departureAt ?? $0.plan.input.startsAt) == day }) { trip in
                                 NavigationLink(value: trip.id) { TripHomeRow(trip: trip) }
                                     .buttonStyle(.plain)
                             }
@@ -69,6 +69,7 @@ struct TripHomeContentView: View {
                     }
                     .padding(16)
                 }
+                #if DEBUG
                 if isHistory {
                     Text(mode.hasPrefix("Mock") ? "Synthetic demonstration · trips last until the app closes." : mode)
                         .font(.footnote)
@@ -76,13 +77,14 @@ struct TripHomeContentView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                 }
+                #endif
             }
             .refreshable { await presenter.load(waitForFirstItinerary: false) }
         }
     }
 
     private var tripDays: [Date] {
-        Array(Set(trips.map { Calendar.current.startOfDay(for: $0.input.startsAt) }))
+        Array(Set(trips.map { Calendar.current.startOfDay(for: $0.plan.departureAt ?? $0.plan.input.startsAt) }))
             .sorted { isHistory ? $0 > $1 : $0 < $1 }
     }
 

@@ -59,7 +59,8 @@ public struct PlanningScheduleIssue: Equatable, Codable, Sendable, Identifiable 
         case "target_outside_availability", "hard_target_missed", "required_target_missed", "session_outside_date": detail = "required visit time conflicts with this schedule"
         case "return_deadline_exceeded", "duration_exceeds_day": detail = "visits and travel exceed the finish time under the selected duration policy"
         case "duration_unknown": detail = "visit duration is needed"
-        case "date_access_unverified": detail = "access on this date has not been confirmed"
+        case "date_access_unverified":
+            detail = source == EstimatedVisitWindow.source ? "hours are estimated and need checking before the visit" : "access on this date has not been confirmed"
         case "semantic_unavailable":
             detail = input.enginePreferences?.orderingMethod == .hybridV42FoundationModels ?
                 "Foundation Models suggestions are unavailable" : "Luna suggestions are unavailable"

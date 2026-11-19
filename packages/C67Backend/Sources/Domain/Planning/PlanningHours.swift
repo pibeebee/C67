@@ -57,3 +57,36 @@ public struct PlanningHoursLookup: Decodable, Sendable {
     public let hours: PlanningRegularHours?
     public init(status: String, hours: PlanningRegularHours? = nil) { self.status = status; self.hours = hours }
 }
+
+/// Typical visit times used as a preference when a venue's hours cannot be verified.
+public struct EstimatedVisitWindow: Sendable {
+    public let opensHour: Int
+    public let closesHour: Int
+    public static let source = "estimated_visit_window"
+
+    public init(categories: [String]) {
+        let keys = Set(categories.map {
+            $0.lowercased().filter { $0.isLetter || $0.isNumber }.replacingOccurrences(of: "mkpoicategory", with: "")
+        })
+        if keys.contains("museum") { (opensHour, closesHour) = (9, 16) }
+        else if !keys.isDisjoint(with: ["cinema", "movietheater", "movietheatre"]) { (opensHour, closesHour) = (10, 26) }
+        else if !keys.isDisjoint(with: ["mall", "shoppingmall"]) { (opensHour, closesHour) = (10, 22) }
+        else { (opensHour, closesHour) = (10, 17) }
+    }
+
+    public func interval(on date: Date, timeZone: String) -> DateInterval? {
+        guard let zone = TimeZone(identifier: timeZone) else { return nil }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = zone
+        let day = calendar.startOfDay(for: date)
+        guard let opens = calendar.date(bySettingHour: opensHour, minute: 0, second: 0, of: day),
+              let closeDay = calendar.date(byAdding: .day, value: closesHour / 24, to: day),
+              let closes = calendar.date(bySettingHour: closesHour % 24, minute: 0, second: 0, of: closeDay),
+              opens < closes else { return nil }
+        return .init(start: opens, end: closes)
+    }
+
+    public var clockLabel: String {
+        String(format: "%02d:00–%02d:00", opensHour, closesHour % 24)
+    }
+}

@@ -225,8 +225,12 @@ enum LocationAreaName {
 
 enum PlanningDirections {
     @MainActor static func open(_ stop: ScheduledPlanningStop, mode: PlanningMode) {
-        let item = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: stop.location.latitude, longitude: stop.location.longitude)))
-        item.name = stop.name
+        open(stop.location, name: stop.name, mode: mode)
+    }
+
+    @MainActor static func open(_ point: PlanningPoint, name: String, mode: PlanningMode) {
+        let item = MKMapItem(placemark: MKPlacemark(coordinate: .init(latitude: point.latitude, longitude: point.longitude)))
+        item.name = name
         item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: mode == .walking ? MKLaunchOptionsDirectionsModeWalking : MKLaunchOptionsDirectionsModeDriving])
     }
 }
@@ -242,7 +246,7 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
     private var target: CLLocation?
     private var lastRouteLocation: CLLocation?
     private var routeTask: Task<Void, Never>?
-    private var goodSamples = 0
+    private var arrivalSamples: [CLLocation] = []
     private var lastSampleDate: Date?
     private var generation = 0
     private var mode: PlanningMode = .automobile
@@ -261,7 +265,7 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
         self.mode = mode
         manager.activityType = mode == .walking ? .otherNavigation : .automotiveNavigation
         target = CLLocation(latitude: point.latitude, longitude: point.longitude)
-        location = nil; route = nil; error = nil; arrivalReady = false; permissionDenied = false; goodSamples = 0; lastRouteLocation = nil; lastSampleDate = nil
+        location = nil; route = nil; error = nil; arrivalReady = false; permissionDenied = false; arrivalSamples = []; lastRouteLocation = nil; lastSampleDate = nil
         switch manager.authorizationStatus {
         case .notDetermined: manager.requestWhenInUseAuthorization()
         case .authorizedAlways, .authorizedWhenInUse: manager.startUpdatingLocation()
@@ -269,7 +273,21 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
         }
     }
 
-    func stop() { generation += 1; manager.stopUpdatingLocation(); routeTask?.cancel(); routeTask = nil; target = nil }
+    func stop() {
+        generation += 1
+        manager.stopUpdatingLocation()
+        routeTask?.cancel()
+        routeTask = nil
+        target = nil
+        arrivalSamples = []
+        arrivalReady = false
+    }
+
+    func canConfirmArrival(at point: PlanningPoint, now: Date = .now) -> Bool {
+        guard let target, target.coordinate.latitude == point.latitude, target.coordinate.longitude == point.longitude,
+              manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse else { return false }
+        return arrivalSamples.count == 2 && arrivalSamples.allSatisfy { Self.isArrivalSample($0, target: target, now: now) }
+    }
     static func isArrivalSample(_ current: CLLocation, target: CLLocation, now: Date = .now) -> Bool {
         current.horizontalAccuracy >= 0 && current.horizontalAccuracy <= 50 &&
             abs(current.timestamp.timeIntervalSince(now)) < 20 &&
@@ -279,7 +297,11 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
         guard target != nil else { return }
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse: permissionDenied = false; error = nil; manager.startUpdatingLocation()
-        case .denied, .restricted: permissionDenied = true; error = "Allow location access in Settings to show directions and detect arrival."
+        case .denied, .restricted:
+            arrivalSamples = []
+            arrivalReady = false
+            permissionDenied = true
+            error = "Allow location access in Settings to show directions and detect arrival."
         default: break
         }
     }
@@ -290,9 +312,12 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
         guard lastSampleDate.map({ current.timestamp > $0 }) ?? true else { return }
         lastSampleDate = current.timestamp
         if Self.isArrivalSample(current, target: target) {
-            goodSamples += 1
-            if goodSamples >= 2 { arrivalReady = true }
-        } else { goodSamples = 0 }
+            arrivalSamples = Array(arrivalSamples.filter { Self.isArrivalSample($0, target: target) }.suffix(1)) + [current]
+            arrivalReady = arrivalSamples.count == 2
+        } else {
+            arrivalSamples = []
+            arrivalReady = false
+        }
         guard routeTask == nil, lastRouteLocation == nil || current.distance(from: lastRouteLocation!) >= 250 else { return }
         lastRouteLocation = current
         let ticket = generation

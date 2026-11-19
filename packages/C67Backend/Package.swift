@@ -10,10 +10,7 @@ let package = Package(
     dependencies: [.package(path: "../PocketEngine")],
     targets: [
         .target(name: "C67Domain", path: "Sources/Domain"),
-        .target(name: "C67Data", dependencies: ["C67Domain", .product(name: "PocketEngine", package: "PocketEngine")], path: "Sources/Data",
-                resources: [.copy("Fixtures/rundowns.json"), .copy("Fixtures/planning-input.json"),
-                            .copy("Fixtures/planning-result.json"), .copy("Fixtures/planning-job.json"),
-                            .copy("Fixtures/personal-planning-trip.json")]),
+        .target(name: "C67Data", dependencies: ["C67Domain", .product(name: "PocketEngine", package: "PocketEngine")], path: "Sources/Data"),
         .testTarget(name: "C67BackendTests", dependencies: ["C67Domain", "C67Data", .product(name: "PocketEngine", package: "PocketEngine")], path: "Tests/Starter", exclude: ["V4Replay.json", "V4ExhaustiveReplay.json"])
     ]
 )

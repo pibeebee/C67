@@ -15,12 +15,15 @@ public struct AuthenticationSnapshot: Equatable, Sendable {
     public let pendingEmail: String?
     public let pendingRecovery: Bool
     public let accountDeleted: Bool
+    public let requiresManualAppleRevocation: Bool
     public init(account: TravellerAccount?, sessionID: UUID, requiresPasswordReset: Bool = false,
-                isRestored: Bool = true, pendingEmail: String? = nil, pendingRecovery: Bool = false, accountDeleted: Bool = false) {
+                isRestored: Bool = true, pendingEmail: String? = nil, pendingRecovery: Bool = false, accountDeleted: Bool = false,
+                requiresManualAppleRevocation: Bool = false) {
         self.account = account; self.sessionID = sessionID
         self.requiresPasswordReset = requiresPasswordReset; self.isRestored = isRestored
         self.pendingEmail = pendingEmail; self.pendingRecovery = pendingRecovery
         self.accountDeleted = accountDeleted
+        self.requiresManualAppleRevocation = requiresManualAppleRevocation
     }
 }
 
@@ -36,7 +39,10 @@ public struct AppleSignInCredentials: Sendable {
     }
 }
 
-public enum AccountDeletionResult: Sendable { case pending, deleted }
+public enum AccountDeletionResult: Sendable {
+    case pending
+    case deleted(requiresManualAppleRevocation: Bool = false)
+}
 
 public enum AccountDeletionError: LocalizedError, Sendable {
     case unavailable, unconfirmed, unauthorized, appleVerificationRequired, appleAccountMismatch, alreadyRequested, localCleanupFailed
@@ -73,9 +79,13 @@ public protocol TravellerAuthentication: Sendable {
     var supportsAccountDeletion: Bool { get }
     func hasPendingAccountDeletion() async throws -> Bool
     func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult
+    func deleteAccountWithManualAppleRevocation(expectedAccountID: UUID) async throws -> AccountDeletionResult
 }
 
 public extension TravellerAuthentication {
+    func deleteAccountWithManualAppleRevocation(expectedAccountID: UUID) async throws -> AccountDeletionResult {
+        throw AccountDeletionError.unavailable
+    }
     var supportsAccountDeletion: Bool { false }
     func hasPendingAccountDeletion() async throws -> Bool { false }
     func deleteAccount(expectedAccountID: UUID, appleAuthorizationCode: String?) async throws -> AccountDeletionResult {

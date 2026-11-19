@@ -43,7 +43,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/check_contracts.py
 ```
 
-Edit fixtures in `contracts/fixtures/`, then run `python3 scripts/sync_fixtures.py` to update the package resource and SQL seed. Validation rejects a stale package copy.
+Edit fixtures in `contracts/fixtures/`, then run `python3 scripts/sync_fixtures.py` to update the SQL seed. Debug and tests use the canonical files, and validation rejects a stale seed.
 
 ## 4. Start local Supabase (server developers)
 

@@ -11,6 +11,7 @@ struct TripCreationView: View {
         }
     }
 
+    @Environment(\.openURL) private var openPrivacyURL
     @Environment(\.locale) private var locale
     @State private var presenter: TripCreationPresenter
     let dismiss: () -> Void
@@ -36,15 +37,22 @@ struct TripCreationView: View {
         }
         .fullScreenCover(isPresented: Binding(get: { presenter.isProcessing }, set: { _ in })) {
             ZStack(alignment: .bottom) {
-                TripProcessingView(advances: false, messageOverride: presenter.planning.progress, isReady: presenter.isShowingCompletion)
-                if !presenter.isShowingCompletion {
-                    Button { operation?.cancel(); dismiss() } label: {
-                        Text(presenter.planning.supportsOnDevicePlanning ? "Continue later" : "Cancel")
-                            .frame(minWidth: 44, minHeight: 44)
+                TripProcessingView(advances: false, messageOverride: presenter.planning.progress,
+                                   activity: presenter.planning.activity)
+                if presenter.planning.canCancelPlanning {
+                    Button("Cancel planning", role: .destructive) {
+                        operation?.cancel()
+                        Task { _ = await presenter.planning.cancelPlanning() }
                     }
                     .buttonStyle(.bordered)
-                    .padding(20)
+                    .padding(.bottom, 78)
                 }
+                Button { operation?.cancel(); dismiss() } label: {
+                    Text(presenter.planning.supportsOnDevicePlanning ? "Continue later" : "Cancel")
+                        .frame(minWidth: 44, minHeight: 44)
+                }
+                .buttonStyle(.bordered)
+                .padding(20)
             }
             .interactiveDismissDisabled()
         }
@@ -55,6 +63,25 @@ struct TripCreationView: View {
         .onDisappear { operation?.cancel(); presenter.cancelRecommendations() }
         .task {
             if presenter.route == .mainSpot, presenter.checksExistingRequest { run { await presenter.plan() } }
+        }
+        .confirmationDialog("Use AI to help plan this trip?", isPresented: $presenter.requestsAIConsent, titleVisibility: .visible) {
+            Button("Allow AI assistance for this trip") { run { await presenter.chooseExternalAI(true) } }
+            Button("Enter durations myself") { run { await presenter.chooseExternalAI(false) } }
+            if let policy = TravelantsPrivacy.policyURL {
+                Button("Privacy Policy") { openPrivacyURL(policy) }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            if let recipient = TravelantsPrivacy.aiRecipient {
+                Text("Travelants sends selected places and pins, your starting and ending points, trip dates, time zone and preferences to Pocket. Pocket shares selected place details, dates, preferences and weather context with \(recipient) to suggest activities and visit durations.")
+            }
+        }
+        .onChange(of: presenter.manualDurationTarget) { _, id in
+            if let id {
+                presenter.manualDurationTarget = nil
+                presenter.prepareScheduleOptions()
+                scheduleOptions = .field(.duration(id))
+            }
         }
         .sheet(item: $scheduleOptions) { options in
             PocketScheduleOptionsSheet(presenter: presenter, target: options.target)
@@ -94,7 +121,7 @@ struct TripCreationView: View {
                                 }
                             }
                         }
-                        if !assessment.durationAlternatives.isEmpty {
+                        if !presenter.automaticallySchedules, !assessment.durationAlternatives.isEmpty {
                             Section("Duration alternatives") {
                                 ForEach(assessment.durationAlternatives) { alternative in
                                     let name = presenter.selected.first { $0.id == alternative.placeID }?.place.name ?? "Visit"
@@ -106,7 +133,8 @@ struct TripCreationView: View {
                                 }
                             }
                         }
-                        if (assessment.conflicts + assessment.regularConflicts + assessment.unresolved).contains(where: { $0.placeID != nil }) {
+                        if !presenter.automaticallySchedules,
+                           (assessment.conflicts + assessment.regularConflicts + assessment.unresolved).contains(where: { $0.placeID != nil }) {
                             Section {
                                 Button("Review visit availability") {
                                     showsScheduleDetails = false
@@ -156,7 +184,6 @@ struct TripCreationView: View {
             case .recommendations:
                 PlacesRecommendationsView(batch: presenter.batch, selected: presenter.selected,
                                           isLoading: presenter.isSuggesting, error: presenter.recommendationError,
-                                          areaDescription: TripDiscoveryArea.description,
                                           requiresOrigin: true, origin: presenter.planning.origin,
                                           setOrigin: { place in
                                               presenter.cancelRecommendations()
@@ -178,8 +205,8 @@ struct TripCreationView: View {
                                      researchesWithLuna: presenter.planning.supportsOnDevicePlanning,
                                      usesV41: presenter.usesV41,
                                      usesFoundationModels: presenter.usesFoundationModels,
-                                     scheduleSummary: presenter.usesV41 ? presenter.scheduleSummary : nil,
-                                     editSchedule: presenter.usesV41 ? { openScheduleOptions() } : nil)
+                                     scheduleSummary: showsManualScheduleControl ? presenter.scheduleSummary : nil,
+                                     editSchedule: showsManualScheduleControl ? { openScheduleOptions() } : nil)
             case .stay:
                 StayDurationQuestionView(placeName: presenter.selected.first(where: { $0.id == presenter.mainSpot.placeID })?.place.name ?? "your main spot",
                                          selection: presenter.stay,
@@ -196,12 +223,6 @@ struct TripCreationView: View {
         .disabled(presenter.isProcessing)
         .toolbar(presenter.isProcessing ? .hidden : .automatic, for: .navigationBar)
         .toolbar {
-            if route == .mainSpot && presenter.planning.supportsOnDevicePlanning {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Schedule", systemImage: "calendar") { openScheduleOptions() }
-                        .accessibilityIdentifier("tripScheduleOptions")
-                }
-            }
             if presenter.path.isEmpty {
                 ToolbarItem(placement: .cancellationAction) {
                     cancelButton
@@ -254,7 +275,7 @@ struct TripCreationView: View {
         if presenter.scheduleAssessment != nil {
             return .init(title: "View schedule details") { pendingScheduleTarget = nil; showsScheduleDetails = true }
         }
-        if presenter.canTryTomorrow {
+        if !presenter.automaticallySchedules, presenter.canTryTomorrow {
             return .init(title: "Adjust schedule") { openScheduleOptions() }
         }
         return nil
@@ -284,14 +305,17 @@ struct TripCreationView: View {
         if presenter.checksExistingRequest {
             return .init(title: "Check status") { run { await presenter.plan() } }
         }
-        if presenter.canTryTomorrow {
+        if !presenter.automaticallySchedules, presenter.canTryTomorrow {
             return .init(title: "Try tomorrow") { run { await presenter.tryTomorrow() } }
         }
         switch code {
         case "FOUNDATION_MODELS_UNAVAILABLE", "FOUNDATION_MODELS_GENERATION_FAILED",
              "V4_DURATION_UNKNOWN", "V4_NO_SCHEDULE", "V4_WINDOW_TOO_SHORT", "V4_TODAY_TOO_SHORT",
              "V4_TOMORROW_TOO_SHORT", "V4_TOMORROW_UNVERIFIED", "V41_NO_SCHEDULE", "V41_ACCESS_CONFLICT", "V41_DATE_CONFLICT":
-            return .init(title: "Adjust schedule") { openScheduleOptions() }
+            if !presenter.automaticallySchedules {
+                return .init(title: "Adjust schedule") { openScheduleOptions() }
+            }
+            return nil
         default:
             guard route != .availability else { return nil }
             let title: LocalizedStringKey = presenter.planning.creationIssue?.recovery == .wait ? "Try again later" : "Try again"
@@ -301,6 +325,7 @@ struct TripCreationView: View {
 
     private func dateStatus(_ day: PlanningDateAssessment) -> LocalizedStringKey {
         if day.completeCandidates > 0 { return "Schedule found" }
+        if day.stopReason == "provider_unverified" { return "Could not check this date" }
         if day.stopReason == "date_conflict" { return "Conflicting visit date" }
         if day.stopReason == "preflight_conflict" {
             if presenter.planning.firstItineraryJob?.errorCode == "V4_DURATION_UNKNOWN" { return "Visit duration needed" }
@@ -322,7 +347,7 @@ struct TripCreationView: View {
         case "waiting_permission_unknown": .waiting
         default: nil
         }
-        if let target {
+        if !presenter.automaticallySchedules, let target {
             Button {
                 presenter.prepareScheduleOptions()
                 pendingScheduleTarget = target
@@ -338,6 +363,10 @@ struct TripCreationView: View {
         } else {
             Text(issue.message(in: input))
         }
+    }
+
+    private var showsManualScheduleControl: Bool {
+        presenter.planning.supportsOnDevicePlanning && !presenter.automaticallySchedules
     }
 
     private func openScheduleOptions() {

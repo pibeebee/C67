@@ -23,8 +23,12 @@ public enum PlanningDayWindow {
         return try offsets.map { offset in
             var input = original
             let window: DateInterval?
-            if offset == 0 { window = remainingToday(at: now, timeZone: original.timeZone) }
-            else {
+            if offset == 0 {
+                // Keep the draft representable at midnight; the planner still sees zero usable minutes.
+                window = remainingToday(at: now, timeZone: original.timeZone).map { today in
+                    today.duration > 0 ? today : .init(start: today.end.addingTimeInterval(-1), end: today.end)
+                }
+            } else {
                 let day = calendar.date(byAdding: .day, value: offset, to: calendar.startOfDay(for: now))!
                 let start = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: day)!
                 window = calendar.dateInterval(of: .day, for: day).map { .init(start: start, end: $0.end.addingTimeInterval(-1)) }

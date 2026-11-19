@@ -1,9 +1,10 @@
 #include "Base.xcconfig"
-// Release uses the Pocket HTTPS URL from Base. Other live modes require their own client configuration.
-C67_DATA_MODE = pocket
+// Distribution builds require authenticated Pocket configuration.
+C67_DATA_MODE = pocket-auth
 SUPABASE_SCHEME = https
 SUPABASE_HOST =
 SUPABASE_CLIENT_KEY =
 PLANNING_SCHEME = https
 PLANNING_HOST =
 #include? "Production.local.xcconfig"
+EXCLUDED_SOURCE_FILE_NAMES = $(inherited) ItineraryPreview.xcassets rundowns.json planning-input.json README.md

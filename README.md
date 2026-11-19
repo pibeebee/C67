@@ -1,114 +1,64 @@
 <div align="center">
-  <img src="apps/ios/Resources/Brand.xcassets/AppIcon.appiconset/AppIcon.png" width="96" alt="Travelant app icon">
-  <h1>Travelant</h1>
-  <p>Plan a day out around your interests, places, and available time.</p>
-  <p><a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#repository-map">Repository map</a> · <a href="#verification">Verification</a> · <a href="docs/README.md">Documentation</a></p>
+  <img src="apps/ios/Resources/Brand.xcassets/AppIcon.appiconset/AppIcon.png" width="96" alt="Travelants app icon">
+  <h1>Travelants</h1>
+  <p>Build a day trip around the places you want to visit.</p>
+  <p><a href="#get-started">Get started</a> · <a href="#how-it-works">How it works</a> · <a href="#run-the-checks">Run the checks</a> · <a href="docs/README.md">Documentation</a></p>
 </div>
 
-Travelant is an Apple-first iOS trip planner. Choose interests, discover places, review visit availability, and save an itinerary you can adjust during your trip. The current beta focuses on South Jakarta and Kemayoran.
+Travelants is an iPhone and iPad day-trip planner. Start from your current location or search for a starting point. Find nearby places by interest, or add places you already have in mind. Choose a main stop or let Travelants decide, then review and save your itinerary. During the trip, you can check which stop is next and open Apple Maps for directions.
 
-The repository is named **C67**. The app is named **Travelant**, and its on-device recommendation and scheduling core is **Pocket Engine**.
-
-> [!NOTE]
-> Travelant is a beta. Existing Simulator and provider checks are documented separately from physical-device testing and real-world recommendation quality. Start with the [verification record](docs/testing/verification.md).
-
-## What you can do
-
-- Choose from seven interest themes and refine them with 62 labels and supported conditions.
-- Discover places through Apple MapKit and an independent OSM/Overture catalog.
-- Review visit durations, opening/access evidence, preferred times, required stops, and the finish-by time.
-- Generate a walking or driving itinerary using Apple route estimates and optional Apple Weather context.
-- Let Luna Max choose among locally validated schedule options after you consent to AI processing.
-- Review, reorder, save, and reopen trips on your device, then recalculate remaining visits when needed.
-
-Missing hours, access information, weather, and route data remain visible in the planning flow. The [integration guide](docs/guides/pocket-engine-integration.md) explains the current constraints and data boundaries.
+Travelants can suggest the next day when there is too little time left today. When verified opening hours are unavailable, the planner uses place-category assumptions and marks estimated hours in the itinerary. Saved trips stay on the device.
 
 ## Get started
 
-### Requirements
-
-- macOS with Xcode and an installed iPhone Simulator runtime. The app targets **iOS 18+**, uses Swift 6 language mode, and was most recently checked with Xcode 27.2.
-- XcodeGen 2.44+ when editing the project specification.
-- Python 3.11+ for repository checks. Node 22.18+ is needed for the earlier HTTP planning service.
+You need macOS and Xcode with an iOS Simulator runtime. The app targets **iOS 18 or later** and uses Swift 6. The 1.0 candidate was verified with Xcode 27.2.
 
 ```sh
-git clone https://github.com/pibeebee/C67.git
+git clone --branch dev https://github.com/pibeebee/C67.git
 cd C67
-git switch dev
 open apps/ios/C67.xcodeproj
 ```
 
-Select the **C67** scheme and an iPhone Simulator. Choose a starting point on the Trip screen, tap **+ → Get Recommendations**, and complete the preferences. Review the selected places and visit availability before saving the itinerary.
+Select the **C67** scheme and an iPhone Simulator, then run. Debug defaults to `pocket`, which opens the on-device planner. For isolated UI work, copy [Development.example.xcconfig](apps/ios/Configuration/Development.example.xcconfig) to `Development.local.xcconfig` and set `C67_DATA_MODE = mock`. Mock mode uses synthetic data and keeps trips in memory.
 
-The default mode is `pocket`. With no read token, discovery can use bundled independent records and Apple search. Catalog sync and optional Luna advice use the Pocket service. Enter the HTTPS URL and invited-beta read token in **Account → Pocket settings**. The token is stored in Keychain.
+Try a starting point of **Blok M MRT, Jakarta**. Choose **My Places**, add **Taman Bendera Pusaka**, leave **Let Travelants decide** selected, and generate an itinerary.
 
-For isolated UI work, select explicit `mock` mode as described in [Getting started](docs/guides/getting-started.md). Its sample trips stay in memory.
-
-### Pocket service
-
-The maintained Python service lives in `server/pocket/src/`. It serves catalog evidence and constrained Luna advice. Configure its ignored environment file from `.env.example`, then follow the [server guide](server/pocket/README.md).
-
-```sh
-cp server/pocket/.env.example server/pocket/.env
-# Fill the private tokens and provider settings before starting.
-docker compose -f server/pocket/compose.yml up -d --build
-```
-
-For the homelab, use the [Cloudflare Tunnel deployment](server/deploy/pocket/README.md). Release builds require an explicit HTTPS host in ignored `apps/ios/Configuration/Production.local.xcconfig`.
+For a signed device or distribution build, start with [Production.example.xcconfig](apps/ios/Configuration/Production.example.xcconfig) and the [TestFlight guide](docs/operations/testflight.md). Release mode is `pocket-auth` and requires the configured HTTPS endpoints and a Supabase publishable client key.
 
 > [!IMPORTANT]
-> Provider API keys and write tokens stay on the server. Put only client-safe settings in Xcode configuration. Use the read token in Pocket settings, and keep real credentials out of Git and test fixtures.
+> Keep local configuration overrides out of Git. Service-role keys, provider keys, and App Review passwords belong in private storage.
 
 ## How it works
 
-```text
-SwiftUI / VIPER
-    → C67Domain interfaces
-    → C67Data adapters
-    → Pocket Engine matching and schedule validation on device
-        ├── Apple MapKit / WeatherKit
-        └── Pocket server → independent catalog / optional Luna advice
-```
+- **SwiftUI** handles trip creation, itinerary review, saved trips, and progress. Feature modules use View, Presenter, Interactor, Router, and Assembly boundaries.
+- **C67Domain, C67Data, and Pocket Engine** build and validate schedules on the device using visit durations, operating hours, and Apple Maps travel estimates. Apple Weather provides context where available. Travelants 1.0 calculates itineraries with external AI disabled.
+- **Supabase Auth and Pocket** support Sign in with Apple, authenticated opening-hours checks, and permanent account deletion. Older planning and provider experiments remain available in the repository for development.
 
-Trips are saved on the device. The model receives bounded schedule options and returns a selection ID for local revalidation. The [architecture guide](docs/architecture/architecture.md) describes the current native path and the earlier HTTP planning mode.
-
-## Repository map
-
-| Directory | Contents |
+| Directory | What you’ll find |
 | --- | --- |
-| [`apps/ios/`](apps/ios/README.md) | Travelant app, XcodeGen specification, UI, assets, and app/UI tests |
-| [`packages/C67Backend/`](packages/C67Backend/README.md) | On-device Domain/Data package and adapters |
-| [`packages/PocketEngine/`](packages/PocketEngine/README.md) | Recommendation core, scheduling, taxonomy, and independent catalog resources |
-| [`server/`](server/README.md) | Pocket service, earlier HTTP planner, Supabase, media worker, and deployment recipes |
-| [`contracts/`](contracts/README.md) | Shared API specification and authoritative synthetic fixtures |
-| [`research/`](research/README.md) | PoCs, model evaluations, source records, and historical evidence |
-| [`design/`](design/README.md) | Branding sources and design exports |
-| [`docs/`](docs/README.md) | Product, architecture, guides, operations, testing, and task records |
-| `scripts/` / `tools/` | Repository checks and pinned tool manifests |
+| [`apps/ios`](apps/ios/README.md) | App, design assets, XcodeGen specification, and iOS tests |
+| [`packages/C67Backend`](packages/C67Backend/README.md) | Swift domain models, authentication, and planning adapters |
+| [`packages/PocketEngine`](packages/PocketEngine/README.md) | Recommendation and scheduling core |
+| [`server`](server/README.md) | Pocket API, Supabase migrations, and earlier planning services |
+| [`contracts`](contracts/README.md) | OpenAPI specification and synthetic fixtures |
+| [`docs`](docs/README.md) · [`research`](research/README.md) · [`design`](design/README.md) | Engineering guides, experiments, and design sources |
 
-The [layout guide](docs/guides/repository-layout.md) maps earlier paths to their current locations. Imported experiment reports retain their original dates, hashes, and historical commands.
+For a local API setup, see the [Pocket server guide](server/pocket/README.md). For deployment and health checks, see the [deployment guide](server/deploy/pocket/README.md).
 
-## Verification
+## Run the checks
 
-Run from the repository root.
+From the repository root:
 
 ```sh
 swift test --package-path packages/PocketEngine
 swift test --package-path packages/C67Backend
-python3 -m unittest discover -s server/pocket/tests
+
 python3 -m venv .venv
-.venv/bin/pip install -r scripts/requirements.txt
+.venv/bin/python -m pip install -r scripts/requirements.txt -r server/pocket/requirements.txt
 .venv/bin/python scripts/check_contracts.py
+.venv/bin/python -m unittest discover -s server/pocket/tests
 ```
 
-`bash scripts/verify_local.sh quick` runs the local feature checks. Use `ios-smoke` for app unit tests and two mock UI flows, or `ios-full` for the full mock app/UI suite. PoC verification has its own [entry point](research/README.md).
+For app and UI tests, run `bash scripts/verify_local.sh ios-smoke` or use the **C67** scheme’s Test action. Use XcodeGen 2.44 or later to regenerate the project after editing `apps/ios/project.yml`. See the [verification record](docs/testing/verification.md) for Simulator, production API, and physical-device coverage.
 
-Work branches target **dev**. Automatic CI runs on **dev → main** promotion PRs. Broader regression and PoC workflows are manual. See [repository settings](docs/operations/repository-settings.md) and [coding conventions](docs/guides/coding-conventions.md).
-
-## Explore the project
-
-- [Product context and planning boundaries](docs/product/product-context.md)
-- [Pocket configuration and local storage](docs/guides/pocket-engine-integration.md)
-- [PoC and Apple-first transition index](research/poc-journey/docs/apple-first-transition-2026-11-12.md)
-- [Live test evidence and beta handoff](docs/tasks/pocket-live-testflight-handoff.md)
-- [Release and TestFlight procedure](docs/operations/testflight.md)
+[Travelants Support](https://travelants.giovanc.com/support/) · [Privacy Policy](https://travelants.giovanc.com/privacy-policy/)

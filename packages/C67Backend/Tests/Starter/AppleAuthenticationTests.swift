@@ -19,11 +19,11 @@ private func appleToken(_ access: String = "synthetic-apple-access") -> String {
     }
     let service = try SupabaseAuthentication(baseURL: http.baseURL, clientKey: "client", store: MemorySessionStore(), session: http.session)
     let connection = try AuthenticatedPocketConnection(serverURL: "https://pocket.example.test", authentication: service)
-    #expect(await connection.credentials().token.isEmpty)
+    await #expect(throws: PlanningError.authenticationRequired) { try await connection.credentials() }
     _ = try await service.signInWithApple(appleCredentials)
-    #expect(await connection.credentials().token == "synthetic-apple-access")
+    #expect(try await connection.credentials().token == "synthetic-apple-access")
     try await service.signOut()
-    #expect(await connection.credentials().token.isEmpty)
+    await #expect(throws: PlanningError.authenticationRequired) { try await connection.credentials() }
 }
 
 @Test func appleTokenExchangePersistsCommonSessionWithoutPersistingAppleTokenOrNonce() async throws {

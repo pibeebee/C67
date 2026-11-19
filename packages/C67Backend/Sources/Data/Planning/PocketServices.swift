@@ -10,7 +10,7 @@ public struct PocketCredentials: Sendable {
 }
 
 public protocol PocketConnectionProviding: Sendable {
-    func credentials() async -> PocketCredentials
+    func credentials() async throws -> PocketCredentials
     func update(serverURL: String, token: String) async throws
 }
 
@@ -24,8 +24,8 @@ public struct AuthenticatedPocketConnection: PocketConnectionProviding {
         self.authentication = authentication
     }
 
-    public func credentials() async -> PocketCredentials {
-        let token = (try? await authentication.accessToken()) ?? ""
+    public func credentials() async throws -> PocketCredentials {
+        guard let token = try await authentication.accessToken(), !token.isEmpty else { throw PlanningError.authenticationRequired }
         return .init(serverURL: serverURL, token: token)
     }
 
@@ -144,6 +144,10 @@ public struct PocketPlanningServices: Sendable {
     }
 }
 
+enum PocketExternalAIRequest {
+    @TaskLocal static var authorize: (@Sendable () async throws -> Void)?
+}
+
 public actor PocketResearchClient {
     public func openingHours(placeID: String) async -> PlanningHoursLookup {
         guard placeID.range(of: "^I[0-9A-Fa-f]{1,63}$", options: .regularExpression) != nil else {
@@ -188,9 +192,15 @@ public actor PocketResearchClient {
         guard url.scheme == "https" || permittedLocal else { throw EngineError.invalid("Use HTTPS for the Pocket server.") }
         return url
     }
-    func fetch(_ path: String, body: Data? = nil, v42: Bool = false) async throws -> Data {
-        let credentials = await connection.credentials()
+    func fetch(_ path: String, body: Data? = nil, timeout: TimeInterval? = nil) async throws -> Data {
         let isOrdering = path.hasPrefix("v1/order")
+        let credentials: PocketCredentials
+        do { credentials = try await connection.credentials() }
+        catch is CancellationError { throw CancellationError() }
+        catch AuthenticationError.sessionExpired { throw PlanningError.authenticationRequired }
+        catch AuthenticationError.passwordResetRequired { throw PlanningError.authenticationRequired }
+        catch let error as PlanningError { throw error }
+        catch { throw PlanningError.unavailable }
         guard !credentials.serverURL.isEmpty, !credentials.token.isEmpty else {
             if isOrdering { throw PlanningError.failed("POCKET_CONNECTION_REQUIRED") }
             throw EngineError.invalid("Configure the visit research server and read token in Account.")
@@ -205,19 +215,34 @@ public actor PocketResearchClient {
         request.setValue("Bearer " + credentials.token, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         if let body {
-            request.httpMethod = "POST"; request.httpBody = body; request.timeoutInterval = 360
+            request.httpMethod = "POST"; request.httpBody = body; request.timeoutInterval = isOrdering ? 25 : 360
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
+        if let timeout { request.timeoutInterval = timeout }
+        if body != nil, ["v1/order", "v1/visits/resolve", "v1/advice/visits"].contains(path) {
+            try await PocketExternalAIRequest.authorize?()
+        }
+        try Task.checkCancellation()
         let (data, response) = try await session.data(for: request)
         try Task.checkCancellation()
         guard let http = response as? HTTPURLResponse, data.count <= 30_000_000 else { throw PlanningError.invalidResponse }
         if isOrdering {
+            struct ErrorResponse: Decodable { let code: String }
+            let code = (try? JSONDecoder().decode(ErrorResponse.self, from: data))?.code
+            switch code {
+            case "ORDER_METHOD_UNSUPPORTED": throw PlanningError.failed("POCKET_ORDER_METHOD_UNSUPPORTED")
+            case "INVALID_ORDER_INPUT": throw PlanningError.invalidInput
+            case "REQUEST_CONFLICT": throw PlanningError.requestConflict
+            case "AUTH_TEMPORARILY_UNAVAILABLE", "JOB_STORAGE_UNAVAILABLE": throw PlanningError.unavailable
+            default: break
+            }
             switch http.statusCode {
             case 400: throw PlanningError.failed("ORDER_REQUEST_REJECTED")
+            case 401 where connection is AuthenticatedPocketConnection: throw PlanningError.authenticationRequired
             case 401, 403: throw PlanningError.failed("POCKET_CONNECTION_REJECTED")
             case 404 where body != nil: throw PlanningError.failed("POCKET_ORDER_ENDPOINT_MISSING")
             case 404: throw PlanningError.failed("ORDER_JOB_MISSING")
-            case 422 where v42: throw PlanningError.failed("POCKET_ORDER_METHOD_UNSUPPORTED")
+            case 422: throw PlanningError.failed("ORDER_REQUEST_REJECTED")
             default: break
             }
         }

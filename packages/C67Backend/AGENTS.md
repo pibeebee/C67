@@ -9,7 +9,7 @@ Apply the [root instructions](../../AGENTS.md). Scope: `packages/C67Backend/`.
 - Preserve request IDs across retries of the same operation, reject changed input with a reused ID, and distinguish uncertain responses from confirmed writes.
 - Get authenticated access tokens through the injected session provider. Implement storage/refresh/cancellation deliberately in Auth work; do not hardcode tokens or use Studio credentials.
 - Keep opaque client keys in `apikey`; only actual traveller JWTs belong in the bearer header. Do not weaken transport configuration to make a remote endpoint work over plain HTTP.
-- Fixture source: `../../contracts/fixtures/`. Run `python3 scripts/sync_fixtures.py` from the root to update the bundled copy and SQL seed; do not hand-edit those copies.
+- Fixture source: `../../contracts/fixtures/`. Run `python3 scripts/sync_fixtures.py` from the root to refresh the SQL seed; do not hand-edit the generated seed. Debug and tests read the canonical fixtures.
 
 ## Verification
 

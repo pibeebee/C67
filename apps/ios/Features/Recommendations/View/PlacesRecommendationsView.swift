@@ -7,7 +7,6 @@ struct PlacesRecommendationsView: View {
     let selected: [RecommendedPlace]
     var isLoading = false
     var error: String?
-    var areaDescription: LocalizedStringResource?
     var usesDeviceLocation = true
     var previewLocation: PlanningPoint?
     var requiresOrigin = false
@@ -25,12 +24,13 @@ struct PlacesRecommendationsView: View {
     let findPlace: () -> Void
     let complete: () -> Void
     @State private var location = PlanningLocation()
-    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
     @State private var showsSelected = false
     @State private var searchAfterDismiss = false
     @State private var retryTask: Task<Void, Never>?
     @State private var showsOriginSearch = false
+
+    private var canLoadRecommendations: Bool { !requiresOrigin || origin != nil }
 
     private var selectedIDs: Set<UUID> { Set(selected.map(\.id)) }
     private var selectedPlaces: Binding<[PlanningPlace]> {
@@ -43,34 +43,37 @@ struct PlacesRecommendationsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Text("List of \(Text("Places").foregroundStyle(AppColor.accent))")
-                    .font(.title.bold())
-                    .accessibilityAddTraits(.isHeader)
                 HStack {
-                    Text("Pull down to refresh recommendations").foregroundStyle(.secondary)
+                    Text("List of \(Text("Places").foregroundStyle(AppColor.accent))")
+                        .font(.title.bold())
+                        .accessibilityAddTraits(.isHeader)
                     Spacer(minLength: 8)
                     Button("Refresh", systemImage: "arrow.clockwise", action: retry)
-                        .labelStyle(.iconOnly).frame(minWidth: 44, minHeight: 44)
-                        .disabled(isLoading)
+                        .labelStyle(.iconOnly)
+                        .frame(minWidth: 44, minHeight: 44)
+                        .disabled(isLoading || !canLoadRecommendations)
                         .accessibilityIdentifier("refreshRecommendations")
-                }
-                if let radius = batch.radiusKilometers, origin != nil {
-                    Text("Showing places within \(radius) km of your starting point")
-                        .font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
-                } else if let areaDescription, !requiresOrigin {
-                    Text(areaDescription).font(.footnote).foregroundStyle(.secondary).padding(.bottom, 16)
                 }
 
                 if requiresOrigin && origin == nil {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Choose a starting point to find nearby places.")
                         if location.isRequesting { ProgressView("Finding your location…") }
-                        else if location.permissionDenied {
-                            Button("Open Settings") {
-                                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                        else if usesDeviceLocation {
+                            if location.permissionDenied {
+                                Text("Location access is off").foregroundStyle(.secondary)
+                                Button("Open Settings") {
+                                    if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                                }
+                            } else if location.error != nil {
+                                Text("Couldn’t get your location").foregroundStyle(.secondary)
                             }
-                        } else { Button("Use my current location") { location.request() } }
-                        Button("Choose starting point") { showsOriginSearch = true }
+                            Button("Use current location") { location.request() }
+                        }
+                        Button("Choose starting point") {
+                            location.cancel()
+                            showsOriginSearch = true
+                        }
                     }.font(.footnote)
                 } else if !requiresOrigin && usesDeviceLocation && location.point == nil {
                     if location.isRequesting {
@@ -90,6 +93,8 @@ struct PlacesRecommendationsView: View {
                                 .font(.footnote).foregroundStyle(.secondary)
                             Button("Try location again") { location.request() }
                         }
+                    } else {
+                        Button("Use current location") { location.request() }
                     }
                 }
 
@@ -105,11 +110,6 @@ struct PlacesRecommendationsView: View {
                             Text(warning).font(.footnote).foregroundStyle(.secondary)
                         }
                     }
-                }
-                if showsSixPlaceLimit || maximumSelection == 6 {
-                    Text("This itinerary method supports up to six places. Your selections are kept.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                    if selected.count > 6 { Button("Review My Places") { showsSelected = true } }
                 }
                 if batch.places.isEmpty && !isLoading && error == nil && (!requiresOrigin || origin != nil) {
                     ContentUnavailableView {
@@ -146,8 +146,7 @@ struct PlacesRecommendationsView: View {
             .frame(maxWidth: .infinity)
         }
         .task(id: origin) {
-            if usesDeviceLocation && (!requiresOrigin || origin == nil) && !location.isRequesting { location.request() }
-            await load()
+            if canLoadRecommendations { await load() }
         }
         .onChange(of: location.point) { _, point in
             if requiresOrigin, origin == nil, let point {
@@ -160,15 +159,9 @@ struct PlacesRecommendationsView: View {
             }
         }
         .refreshable {
-            if usesDeviceLocation && (!requiresOrigin || origin == nil) { location.request() }
-            await refresh()
+            if canLoadRecommendations { await refresh() }
         }
         .onDisappear { location.cancel(); retryTask?.cancel(); cancel() }
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active && usesDeviceLocation && location.permissionDenied {
-                location.request()
-            }
-        }
         .background(AppColor.canvas.ignoresSafeArea())
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 12) {
@@ -183,8 +176,10 @@ struct PlacesRecommendationsView: View {
                         Button("My Places") { showsSelected = true }
                     }
                 }
-                if let maximumSelection {
-                    Text("Choose up to \(maximumSelection) additional places.").font(.footnote).foregroundStyle(.secondary)
+                if let limit = maximumSelection ?? (showsSixPlaceLimit ? 6 : nil), selected.count >= limit {
+                    Text("This itinerary supports up to \(limit) places.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    if selected.count > limit { Button("Review My Places") { showsSelected = true } }
                 }
                 if selected.count < minimumSelection {
                     Text("Choose at least \(minimumSelection) places to continue.")
@@ -221,8 +216,7 @@ struct PlacesRecommendationsView: View {
     }
 
     private func retry() {
-        guard !isLoading else { return }
-        if usesDeviceLocation && (!requiresOrigin || origin == nil) { location.request() }
+        guard !isLoading, canLoadRecommendations else { return }
         retryTask?.cancel()
         retryTask = Task { await refresh() }
     }

@@ -2,6 +2,14 @@ import Foundation
 import C67Domain
 import PocketEngine
 
+enum PocketPlanningActivity {
+    @TaskLocal static var report: (@Sendable (PlanningActivity?) async -> Void)?
+
+    static func show(_ activity: PlanningActivity?) async {
+        await report?(activity)
+    }
+}
+
 enum PocketOrderCodec {
     static func candidateDay(_ input: PlanningInput) -> String {
         var calendar = Calendar(identifier: .gregorian)
@@ -141,13 +149,13 @@ extension PocketResearchClient {
         struct Job: Decodable {
             var id: UUID
             var status: String
+            var activity: String?
         }
         struct Result: Decodable {
             var result: PlanningExperiencePlan
             var comparisonResults: [PlanningExperiencePlan]?
         }
         let comparisonDates = inputs.dropFirst().map(PocketOrderCodec.candidateDay)
-        let v42 = input.enginePreferences?.orderingMethod == .hybridV42
         let selected = input.places.map { Place(id: $0.id, name: $0.name, location: $0.location, categories: $0.categories) }
         let body = Body(requestID: requestID, places: selected, preferences: input.preferences,
                         origin: input.origin, endpoint: input.enginePreferences?.endPoint ?? input.origin,
@@ -156,7 +164,10 @@ extension PocketResearchClient {
                         candidateDate: PocketOrderCodec.candidateDay(input), comparisonDates: comparisonDates.isEmpty ? nil : comparisonDates, timeZone: input.timeZone,
                         orderingMethod: input.enginePreferences?.orderingMethod == .luna ? nil : input.enginePreferences?.orderingMethod)
         do {
-            var data = try await fetch("v1/order", body: JSONEncoder().encode(body), v42: v42)
+            let deadline = ContinuousClock.now.advanced(by: .seconds(360))
+            var pollDelay = 2
+            await PocketPlanningActivity.show(nil)
+            var data = try await fetch("v1/order", body: JSONEncoder().encode(body))
             while true {
                 try Task.checkCancellation()
                 let job = try JSONDecoder().decode(Job.self, from: data)
@@ -171,8 +182,16 @@ extension PocketResearchClient {
                         return try plan.validated(for: requested)
                     }
                 case "running", "queued":
-                    try await Task.sleep(for: .seconds(2))
-                    data = try await fetch("v1/order/jobs/" + requestID.uuidString.lowercased())
+                    await PocketPlanningActivity.show(job.activity.flatMap(PlanningActivity.init(rawValue:)))
+                    let remaining = ContinuousClock.now.duration(to: deadline)
+                    guard remaining > .zero else { throw PlanningError.timedOut }
+                    try await Task.sleep(for: min(.seconds(pollDelay), remaining))
+                    guard ContinuousClock.now < deadline else { throw PlanningError.timedOut }
+                    pollDelay = min(10, pollDelay + 2)
+                    let budget = ContinuousClock.now.duration(to: deadline).components
+                    let seconds = Double(budget.seconds) + Double(budget.attoseconds) / 1e18
+                    guard seconds > 0 else { throw PlanningError.timedOut }
+                    data = try await fetch("v1/order/jobs/" + requestID.uuidString.lowercased(), timeout: min(25, seconds))
                 case "failed": throw PlanningError.failed("ORDER_GENERATION_FAILED")
                 case "interrupted": throw PlanningError.failed("ORDER_SERVER_INTERRUPTED")
                 default: throw PlanningError.invalidResponse

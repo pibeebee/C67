@@ -18,6 +18,7 @@ struct TripProgressContent: View {
     var openSettings: () -> Void = {}
     var openMaps: () -> Void = {}
     let arrive: () -> Void
+    var arriveAtEndpoint: () -> Void = {}
     let completeVisit: () -> Void
     let returnToTrip: () -> Void
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -35,6 +36,16 @@ struct TripProgressContent: View {
     var body: some View {
         if trip.status == .completed {
             TripCompletedContent(trip: trip, done: returnToTrip)
+        } else if trip.pendingEndpoint != nil {
+            VStack(spacing: 16) {
+                Text(trip.plan.input.enginePreferences?.endPointName ?? "Return to starting point").font(.headline)
+                if let route { Text("Estimated travel: \(Int(ceil(route.expectedTravelTime / 60))) min") }
+                if let locationError { Text(locationError).font(.footnote) }
+                if locationPermissionDenied { Button("Open Settings", action: openSettings) }
+                if let error { RecoveryNotice(title: "Trip update needs attention", message: error, primary: recovery) }
+                Button("Open directions in Maps", action: openMaps)
+                Button("I’ve arrived at the endpoint", action: arriveAtEndpoint).disabled(isBusy)
+            }.padding()
         } else {
             activeContent
         }

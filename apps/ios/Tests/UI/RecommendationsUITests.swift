@@ -46,6 +46,11 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(selected.waitForExistence(timeout: 5))
         XCTAssertFalse(quickPick.exists)
         XCTAssertTrue(app.staticTexts["1 selected"].exists)
+        XCTAssertTrue(app.buttons["Next"].isHittable)
+        let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screenshot.name = "Preferences with a selected interest"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
         selected.tap()
         XCTAssertTrue(quickPick.waitForExistence(timeout: 5))
         XCTAssertFalse(selected.exists)

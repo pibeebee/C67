@@ -1,3 +1,4 @@
+#if DEBUG
 import Foundation
 import C67Domain
 
@@ -14,7 +15,7 @@ public actor MockPlanningRepository: PlanningRepository {
     public init() {}
 
     public static func sampleInput() throws -> PlanningInput {
-        guard let path = Bundle.module.url(forResource: "planning-input", withExtension: "json") else { throw PlanningError.notFound }
+        guard let path = DevelopmentFixture.url(named: "planning-input") else { throw PlanningError.notFound }
         var value = try SupabaseConnection.decoder().decode(PlanningInputDTO.self, from: Data(contentsOf: path)).domain
         let start = Date().addingTimeInterval(600)
         value.startsAt = start; value.finishBy = start.addingTimeInterval(4 * 3600)
@@ -127,6 +128,7 @@ public actor MockPlanningRepository: PlanningRepository {
             guard trip.status == .active, let next, next.id == event.stopID, trip.currentStopID == next.id else { throw PlanningError.invalidInput }
             trip.completedStopIDs.append(next.id); trip.currentStopID = nil; trip.currentArrivedAt = nil
             if trip.completedStopIDs.count == trip.plan.stops.count { trip.status = .completed }
+        case .arriveAtEndpoint: throw PlanningError.invalidInput
         case .extendStay:
             guard trip.status == .active, next?.id == event.stopID, trip.currentStopID == event.stopID,
                   let extra = event.extraSeconds, (1 ... 7200).contains(extra),
@@ -164,3 +166,4 @@ public actor MockPlanningRepository: PlanningRepository {
         hypot((a.latitude - b.latitude) * 111000, (a.longitude - b.longitude) * 110000)
     }
 }
+#endif

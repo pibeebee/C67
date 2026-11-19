@@ -47,6 +47,31 @@ private func auth(_ http: HTTPHarness, store: MemorySessionStore = .init(), cloc
     #expect(try await afterLogout.accessToken() == nil)
 }
 
+@Test func restrictedPasswordSignInChecksEmailBeforeSendingAndBeforeInstallingSession() async throws {
+    let http = HTTPHarness { request in
+        let body = try requestBody(request)
+        #expect(request.url?.query == "grant_type=password")
+        #expect(body["email"] as? String == "traveller@example.test")
+        return body["password"] as? String == "synthetic-match"
+            ? .init(tokenJSON())
+            : .init(tokenJSON().replacingOccurrences(of: "traveller@example.test", with: "different@example.test"))
+    }
+    let store = MemorySessionStore()
+    let service = try SupabaseAuthentication(baseURL: http.baseURL, clientKey: "opaque-client-key", store: store,
+                                             session: http.session, passwordSignInAllowedEmails: ["traveller@example.test"])
+    await #expect(throws: AuthenticationError.invalidCredentials) {
+        try await service.signIn(email: "different@example.test", password: "synthetic-match")
+    }
+    #expect(await http.log.requests().isEmpty)
+    await #expect(throws: AuthenticationError.invalidCredentials) {
+        try await service.signIn(email: "traveller@example.test", password: "synthetic-mismatch")
+    }
+    #expect(try store.read() == nil)
+    let account = try await service.signIn(email: " Traveller@Example.Test ", password: "synthetic-match")
+    #expect(account.email == "traveller@example.test")
+    #expect(try store.read() != nil)
+}
+
 @Test func concurrentRefreshRotatesOnceAndPersistsBeforeReturning() async throws {
     let http = HTTPHarness { request in
         if request.url!.query == "grant_type=refresh_token" {
@@ -247,6 +272,41 @@ private func auth(_ http: HTTPHarness, store: MemorySessionStore = .init(), cloc
     #expect(Set(receipts).count == 1)
     #expect(try await restarted.currentAccount() == nil)
     #expect(try localTrips.read() == nil)
+    #expect(try store.read() == nil)
+}
+
+@Test func manualAppleRevocationChoiceSurvivesRelaunchBeforeTheServerResponds() async throws {
+    let http = HTTPHarness { request in
+        guard request.url!.path.hasSuffix("/account/deletion") else { return .init(tokenJSON()) }
+        let body = try requestBody(request)
+        #expect(body["useManualAppleRevocation"] as? Bool == true)
+        #expect(body["appleAuthorizationCode"] == nil)
+        return .init(200, #"{"status":"deleted"}"#)
+    }
+    let store = MemorySessionStore()
+    func authentication(_ harness: HTTPHarness) throws -> SupabaseAuthentication {
+        let config = try #require(AccountDeletionConfiguration(baseURL: harness.baseURL) { _ in })
+        return try .init(baseURL: harness.baseURL, clientKey: "opaque-client-key", store: store,
+                         session: harness.session, accountDeletion: config)
+    }
+    let interrupted = HTTPHarness { request in
+        if request.url!.path.hasSuffix("/account/deletion") { throw URLError(.timedOut) }
+        return .init(tokenJSON())
+    }
+    let first = try authentication(interrupted)
+    let account = try await first.signIn(email: "a@example.test", password: "synthetic")
+    await #expect(throws: AccountDeletionError.unconfirmed) {
+        try await first.deleteAccountWithManualAppleRevocation(expectedAccountID: account.id)
+    }
+    #expect(try await first.hasPendingAccountDeletion())
+
+    let restarted = try authentication(http)
+    guard case .deleted(requiresManualAppleRevocation: true) =
+        try await restarted.deleteAccount(expectedAccountID: account.id, appleAuthorizationCode: nil)
+    else { Issue.record("Expected deletion confirmation with instructions for Apple access"); return }
+    let original = try #require(await interrupted.log.requests().last)
+    let retried = try #require(await http.log.requests().last)
+    #expect(try requestBody(original)["requestID"] as? String == requestBody(retried)["requestID"] as? String)
     #expect(try store.read() == nil)
 }
 

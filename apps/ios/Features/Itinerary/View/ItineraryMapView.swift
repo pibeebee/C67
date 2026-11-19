@@ -50,33 +50,41 @@ struct ItineraryMapView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Route estimates").font(.headline)
                     if !proposal.usesExperienceFlow {
-                        Text(proposal.explanation)
-                        ForEach(proposal.warnings, id: \.self) { Text($0) }
-                    } else {
-                        Text("Itinerary method").font(.headline)
-                        switch proposal.effectiveOrderingMethod {
-                        case .luna: Text("Luna")
-                        case .hybridLegacy: Text("Hybrid: candidates (retired)")
-                        case .hybridV4, .hybridV41, .hybridV42, .hybridV42FoundationModels:
-                            if proposal.effectiveOrderingMethod == .hybridV42FoundationModels {
-                                Text("Hybrid v4.2 · Foundation Models (experimental)")
-                            } else if proposal.effectiveOrderingMethod == .hybridV42 {
-                                Text("Hybrid v4.2 · Luna (experimental)")
-                            } else if proposal.effectiveOrderingMethod == .hybridV41 {
-                                Text("Hybrid v4.1: flexible schedules (experimental)")
-                            } else {
-                                Text("Hybrid v4: schedules (experimental)")
-                            }
+                        #if DEBUG
                             Text(proposal.explanation)
-                            if proposal.effectiveOrderingMethod.usesFlexibleSchedule, proposal.experiencePlan == nil {
-                                Text("Visit durations were supplied by you.")
-                            }
                             ForEach(proposal.warnings, id: \.self) { Text($0) }
-                            ForEach(Array(Set(proposal.stops.flatMap(\.warnings))).sorted(), id: \.self) { Text($0) }
-                        case .hybridWeather:
-                            Text("Hybrid: weather context (experimental)")
-                            Text("Activity exposure and candidate arrival times were unavailable, so heat and rain exposure were not compared.")
-                        }
+                        #else
+                            Text("Travel and visit times are estimates.")
+                        #endif
+                    } else {
+                        #if DEBUG
+                            Text("Itinerary method").font(.headline)
+                            switch proposal.effectiveOrderingMethod {
+                            case .luna: Text("Luna")
+                            case .hybridLegacy: Text("Hybrid: candidates (retired)")
+                            case .hybridV4, .hybridV41, .hybridV42, .hybridV42FoundationModels:
+                                if proposal.effectiveOrderingMethod == .hybridV42FoundationModels {
+                                    Text("Hybrid v4.2 · Foundation Models (experimental)")
+                                } else if proposal.effectiveOrderingMethod == .hybridV42 {
+                                    Text("Hybrid v4.2 · Luna (experimental)")
+                                } else if proposal.effectiveOrderingMethod == .hybridV41 {
+                                    Text("Hybrid v4.1: flexible schedules (experimental)")
+                                } else {
+                                    Text("Hybrid v4: schedules (experimental)")
+                                }
+                                Text(proposal.explanation)
+                                if proposal.effectiveOrderingMethod.usesFlexibleSchedule, proposal.experiencePlan == nil {
+                                    Text(proposal.input.places.allSatisfy(\.hasExplicitVisitDuration)
+                                        ? "Visit durations were supplied by you."
+                                        : "Travelants estimated missing visit durations on this device.")
+                                }
+                                ForEach(proposal.warnings, id: \.self) { Text($0) }
+                                ForEach(Array(Set(proposal.stops.flatMap(\.warnings))).sorted(), id: \.self) { Text($0) }
+                            case .hybridWeather:
+                                Text("Hybrid: weather context (experimental)")
+                                Text("Activity exposure and candidate arrival times were unavailable, so heat and rain exposure were not compared.")
+                            }
+                        #endif
                         Text(proposal.synthetic ? "Driving times and distances are synthetic examples." : "Driving times and road distances are estimated by Apple Maps. Travel conditions can change.")
                         if proposal.hasExperienceTravelFallback {
                             Text("Legs without a driving estimate use a \(PlanProposal.defaultExperienceTravelSeconds / 60)-minute default. Their road distance is unavailable.")

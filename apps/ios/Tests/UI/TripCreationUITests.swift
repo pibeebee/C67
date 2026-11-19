@@ -103,7 +103,7 @@ final class TripCreationUITests: XCTestCase {
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.buttons["addPlacesNext"].waitForExistence(timeout: 5))
         app.buttons["addPlacesNext"].tap()
-        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Let Travelant decide")).firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Let Travelants decide")).firstMatch.waitForExistence(timeout: 5))
         XCTAssertFalse(app.buttons["confirmTripInput"].exists)
         app.buttons["Next"].tap()
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 10))

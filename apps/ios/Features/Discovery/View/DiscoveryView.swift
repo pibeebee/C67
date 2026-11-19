@@ -55,6 +55,7 @@ struct DiscoveryView: View {
                 Task { await accountPresenter?.restore() }
             })
             .task { await accountPresenter?.observe() }
+            .task(id: accountPresenter?.deletionPending) { await accountPresenter?.pollPendingDeletion() }
             .onOpenURL { url in
                 showsAccount = true
                 Task { await accountPresenter?.callback(url) }

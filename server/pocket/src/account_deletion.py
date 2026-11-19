@@ -78,9 +78,9 @@ class AccountDeletionProviders:
             if code:
                 raise DeletionRejection(409, "APPLE_ACCOUNT_MISMATCH")
             return
-        apple = self.apple_client()
         if not code:
             raise DeletionRejection(409, "APPLE_VERIFICATION_REQUIRED")
+        apple = self.apple_client()
         response = httpx.post("https://appleid.apple.com/auth/token",
                               data={**apple, "grant_type": "authorization_code", "code": code},
                               timeout=15, follow_redirects=False)
@@ -153,11 +153,13 @@ class AccountDeletions:
             return db.execute("SELECT 1 FROM deletions WHERE owner_hash=?", (fingerprint(owner),)).fetchone() is not None
 
     def submit(self, body, authenticate):
-        if not isinstance(body, dict) or not set(body) <= {"requestID", "appleAuthorizationCode"}:
+        if not isinstance(body, dict) or not set(body) <= {"requestID", "appleAuthorizationCode", "useManualAppleRevocation"}:
             raise ValueError("Invalid deletion request")
         request = uuid.UUID(body["requestID"])
         code = body.get("appleAuthorizationCode")
-        if request.version != 4 or (code is not None and (not isinstance(code, str) or not 1 <= len(code) <= 2048)):
+        manual = body.get("useManualAppleRevocation", False)
+        if (request.version != 4 or type(manual) is not bool or (manual and code is not None)
+                or (code is not None and (not isinstance(code, str) or not 1 <= len(code) <= 2048))):
             raise ValueError("Invalid deletion request")
         receipt = fingerprint(str(request))
         state = self.state(receipt)
@@ -173,7 +175,9 @@ class AccountDeletions:
             owner = str(uuid.UUID(user["id"]))
             if self.blocks_jobs(owner):
                 raise DeletionRejection(409, "DELETION_IN_PROGRESS")
-            self.providers.revoke_apple(user, code)
+            # The authenticated owner explicitly chose to remove Apple access themselves.
+            if not manual:
+                self.providers.revoke_apple(user, code)
             with self.connect() as db, db:
                 db.execute("INSERT INTO deletions VALUES (?,?,?,?)",
                            (receipt, owner, fingerprint(owner), int(time.time())))

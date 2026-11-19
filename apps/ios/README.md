@@ -69,7 +69,7 @@ Open `C67.xcodeproj`, select **C67**, and run an iPhone Simulator. Default mode 
 the Discover toolbar in live mode; mock mode explains its synthetic boundary without signing in.
 Other feature folders remain unimplemented placeholders.
 
-`project.yml` is the XcodeGen source; regenerate and commit `C67.xcodeproj` after changing targets/source groups. Base defaults are shared; Debug includes the ignored Development.local.xcconfig and Release includes a separate Production.local.xcconfig. See [native Auth setup](../../docs/guides/native-auth.md). Client configuration is compiled into the app and must contain no server secrets.
+`project.yml` is the XcodeGen source; regenerate and commit `C67.xcodeproj` after changing targets/source groups. Debug loads the ignored `Development.local.xcconfig` and includes development fixtures and preview photos. Release requires authenticated Pocket configuration via the separate `Production.local.xcconfig` and excludes those assets. See [native Auth setup](../../docs/guides/native-auth.md). Client configuration is compiled into the app and must contain no server secrets.
 
 ## Design system
 

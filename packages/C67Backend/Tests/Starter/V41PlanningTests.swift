@@ -4,6 +4,53 @@ import C67Domain
 import PocketEngine
 @testable import C67Data
 
+@Test func pocketReportsRouteWorkDuringFormulaPlanningAndClearsItOnCompletion() async throws {
+    let calls = V41Calls()
+    let gate = RouteActivityGate()
+    var services = v41Services(calls, model: false)
+    services.travel = { _, _, at, _ in
+        await gate.wait()
+        return try await calls.travel(at)
+    }
+    let repository = try PocketPlanningRepository(services: services, connection: OrderConnection(), storageURL: nil)
+    let input = try v41Input()
+    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    var observed = job
+    do {
+        for _ in 0 ..< 100 {
+            observed = try await repository.planningJob(id: job.id)
+            if observed.activity == .travelTimes || observed.status != .running { break }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    } catch {
+        await gate.release()
+        throw error
+    }
+    await gate.release()
+    #expect(observed.status == .running)
+    #expect(observed.activity == .travelTimes)
+    let result = try await finished(repository, id: job.id)
+    #expect(result.status == .succeeded)
+    #expect(result.activity == nil)
+    #expect(await calls.modelIDs.isEmpty)
+}
+
+private actor RouteActivityGate {
+    private var released = false
+    private var waiting: [CheckedContinuation<Void, Never>] = []
+
+    func wait() async {
+        guard !released else { return }
+        await withCheckedContinuation { waiting.append($0) }
+    }
+
+    func release() {
+        released = true
+        for waiter in waiting { waiter.resume() }
+        waiting.removeAll()
+    }
+}
+
 @Test func pocketRejectsAnotherRequestWhilePlanningAndKeepsRetryIdentity() async throws {
     let calls = V41Calls()
     var services = v41Services(calls, model: false)
@@ -129,7 +176,7 @@ import PocketEngine
     #expect(rejected.scheduleAssessment?.conflicts.contains { $0.code == "session_arrival_missed" } == true)
 }
 
-@Test func v41ReschedulesAutomaticTodayButProtectsExplicitDatesAndPinnedVisits() async throws {
+@Test func v41ReschedulesAutomaticTodayAndNowButProtectsPinnedVisits() async throws {
     let now = ISO8601DateFormatter().date(from: "2026-11-30T23:30:00+07:00")!
     let calls = V41Calls()
     let repository = try PocketPlanningRepository(services: v41Services(calls), connection: OrderConnection(), storageURL: nil,
@@ -148,8 +195,9 @@ import PocketEngine
     input.enginePreferences?.tripTiming = .now
     input.enginePreferences?.scheduleSource = .timingAnswer
     let today = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
-    let rejected = try await finished(repository, id: today.id)
-    #expect(rejected.errorCode == "V4_TODAY_TOO_SHORT")
+    let rescheduled = try await finished(repository, id: today.id)
+    #expect(rescheduled.status == .succeeded)
+    #expect(rescheduled.result?.proposal?.rescheduledFromDate != nil)
     input.enginePreferences?.tripTiming = .tomorrow
     input.places[0].activitySession = .init(startsAt: now, endsAt: now.addingTimeInterval(600))
     let pinned = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
@@ -374,6 +422,10 @@ private func referenceLeg(_ from: Int, _ to: Int, seed: Int) -> Int {
     for seed in 0 ..< 6 {
         var input = try v41Input(count: 4)
         input.enginePreferences?.returnToOrigin = true
+        // This reference isolates route arithmetic from estimated access preferences.
+        for index in input.places.indices {
+            input.places[index].visitConfirmation = .init(opensAt: input.startsAt, closesAt: input.finishBy, publicAccessConfirmed: true)
+        }
         let points = [input.origin] + input.places.map(\.location)
         let indices = Dictionary(uniqueKeysWithValues: points.enumerated().map { ($0.element.latitude, $0.offset) })
         let services = PocketPlanningServices(travel: { from, to, _, _ in
@@ -493,5 +545,107 @@ private func referenceLeg(_ from: Int, _ to: Int, seed: Int) -> Int {
     #expect(done.errorCode == "V41_ACCESS_CONFLICT")
     let affected = done.scheduleAssessment?.conflicts.filter { $0.code == "required_visits_overlap" }.compactMap(\.placeID) ?? []
     #expect(Set(affected) == Set(input.places.map(\.id)))
+    #expect(await calls.routeDates.isEmpty)
+}
+
+@Test func v42TriesTomorrowWhenKnownHoursExcludeTodayAndKeepsLockedDates() async throws {
+    let anchor = ISO8601DateFormatter().date(from: "2026-11-30T12:00:00+07:00")!
+    var input = try v41Input()
+    input.enginePreferences?.orderingMethod = .hybridV42
+    input.enginePreferences?.scheduleSource = .timingAnswer
+    input.enginePreferences?.tripTiming = .now
+    input.enginePreferences?.timingAnchor = anchor
+    input.places[0].sourceID = "apple:museum"
+    let days = (1 ... 7).map { weekday in
+        ["weekday": weekday, "intervals": weekday == 3 ? [["startSeconds": 32400, "endSeconds": 57600]] : []] as [String: Any]
+    }
+    let data = try JSONSerialization.data(withJSONObject: ["timezone": input.timeZone, "placeId": "museum", "weekly": days])
+    let hours = try JSONDecoder().decode(PlanningRegularHours.self, from: data)
+    let calls = V41Calls()
+    let planner = V41ItineraryPlanner(services: v41Services(calls, model: false),
+                                      hours: { _ in .init(status: "available", hours: hours) })
+    let result = try await planner.plan(.init(id: UUID(), status: .running, purpose: .firstItinerary, input: input, createdAt: anchor))
+    let proposal = try #require(result.proposal)
+    let tomorrow = try #require(PlanningDayWindow.tomorrow(after: anchor, timeZone: input.timeZone))
+    #expect(proposal.input.startsAt == tomorrow.start)
+    #expect(proposal.rescheduledFromDate != nil)
+    #expect(proposal.input.places == input.places)
+    #expect(proposal.scheduleAssessment?.dates.count == 2)
+    #expect(await calls.routeDates.allSatisfy { $0 >= tomorrow.start })
+    #expect(await calls.modelIDs.isEmpty)
+
+    input.enginePreferences?.scheduleSource = .manual
+    do {
+        _ = try await planner.plan(.init(id: UUID(), status: .running, purpose: .firstItinerary, input: input, createdAt: anchor))
+        Issue.record("Expected known closure on the manually selected day")
+    } catch let failure as PlanningScheduleFailure {
+        #expect(failure.code == "V41_ACCESS_CONFLICT")
+        #expect(failure.assessment.dates.count == 1)
+    }
+}
+
+@Test(arguments: [
+    ("MKPOICategoryMuseum", 9, 16),
+    ("movie_theater", 10, 26),
+    ("shopping_mall", 10, 22),
+    ("unclassified", 10, 17)
+])
+func v42UsesUnverifiedHoursAsAVisitPreference(category: String, opens: Int, closes: Int) async throws {
+    let anchor = ISO8601DateFormatter().date(from: "2026-11-30T06:00:00+07:00")!
+    var input = try v41Input(count: 1)
+    input.startsAt = anchor
+    input.finishBy = anchor.addingTimeInterval(12 * 3600)
+    input.enginePreferences?.orderingMethod = .hybridV42
+    input.enginePreferences?.flexibleDeparture = true
+    input.places[0].categories = [category]
+    input.places[0].sourceID = "apple:unknown"
+    let rule = EstimatedVisitWindow(categories: [category])
+    #expect(rule.opensHour == opens)
+    #expect(rule.closesHour == closes)
+    let interval = try #require(rule.interval(on: anchor, timeZone: input.timeZone))
+    if closes == 26 {
+        #expect(interval.end == ISO8601DateFormatter().date(from: "2026-12-01T02:00:00+07:00"))
+    }
+    let calls = V41Calls()
+    let planner = V41ItineraryPlanner(services: v41Services(calls, model: false),
+                                      hours: { _ in .init(status: "available") })
+    func run(_ input: PlanningInput) async throws -> PlanProposal {
+        let job = PlanningJob(id: UUID(), status: .running, purpose: .firstItinerary, input: input, createdAt: anchor)
+        return try #require(try await planner.plan(job).proposal)
+    }
+    let preferred = try await run(input)
+    #expect(try #require(preferred.stops.first?.visitStartsAt) >= interval.start)
+    #expect(try #require(preferred.stops.first?.departureAt) <= interval.end)
+    #expect(preferred.scheduleAssessment?.unresolved.contains { $0.source == EstimatedVisitWindow.source } == true)
+
+    input.enginePreferences?.flexibleDeparture = false
+    input.finishBy = anchor.addingTimeInterval(90 * 60)
+    let outside = try await run(input)
+    #expect(try #require(outside.stops.first?.departureAt) < interval.start)
+    #expect(outside.scheduleAssessment?.needsAccessConfirmation == true)
+    #expect(await calls.modelIDs.isEmpty)
+}
+
+@Test func v42VeryLateNowRemainsValidAndReportsWhenNeitherDayCanFit() async throws {
+    let anchor = ISO8601DateFormatter().date(from: "2026-11-30T23:59:59+07:00")!
+    var input = try v41Input()
+    input.enginePreferences?.orderingMethod = .hybridV42
+    input.enginePreferences?.scheduleSource = .timingAnswer
+    input.enginePreferences?.tripTiming = .now
+    input.enginePreferences?.timingAnchor = anchor
+    let draft = try #require(try PlanningDayWindow.v41Inputs(input, at: anchor).first)
+    try draft.validate(purpose: .firstItinerary)
+    // Two 8-hour visits cannot fit into either day's available window.
+    for index in input.places.indices { input.places[index].visitSeconds = 8 * 3600 }
+    let calls = V41Calls()
+    let planner = V41ItineraryPlanner(services: v41Services(calls, model: false), hours: { _ in .init(status: "unavailable") })
+    let job = PlanningJob(id: UUID(), status: .running, purpose: .firstItinerary, input: input, createdAt: anchor)
+    do {
+        _ = try await planner.plan(job)
+        Issue.record("Expected both dates to be too short")
+    } catch let failure as PlanningScheduleFailure {
+        #expect(failure.code == "V4_WINDOW_TOO_SHORT")
+        #expect(failure.assessment.dates.count == 2)
+    }
     #expect(await calls.routeDates.isEmpty)
 }

@@ -24,7 +24,6 @@ import C67Domain
     var showsPreviousResults: Bool { !results.isEmpty && !normalizedQuery.isEmpty && (!hasSearchedCurrentQuery || isSearching || searchError != nil) }
     private var normalizedQuery: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
     private(set) var isProcessing = false
-    private(set) var isShowingCompletion = false
     private(set) var isSuggesting = false
     private(set) var recommendationError: String?
     private(set) var batch = RecommendationsBatch(places: [], warnings: [], synthetic: false)
@@ -60,6 +59,7 @@ import C67Domain
 
     var route: TripCreationRoute { path.last ?? root }
     var usesV41: Bool { orderingMethod().usesFlexibleSchedule }
+    var automaticallySchedules: Bool { planning.supportsOnDevicePlanning && usesV41 }
     var usesFoundationModels: Bool { orderingMethod() == .hybridV42FoundationModels }
     var hasSixPlaceLimit: Bool { !planning.supportsOnDevicePlanning || orderingMethod().isSchedule }
     var scheduleAssessment: PlanningScheduleAssessment? { planning.firstItineraryJob?.scheduleAssessment }
@@ -286,8 +286,72 @@ import C67Domain
         await plan()
     }
 
+    var requestsAIConsent = false
+    var manualDurationTarget: UUID?
+    private var missingDuration: UUID? { selected.first { !$0.place.hasExplicitVisitDuration }?.id }
+
+    func chooseExternalAI(_ allowed: Bool) async {
+        requestsAIConsent = false
+        if checksExistingRequest {
+            guard await planning.cancelPlanning() else {
+                error = planning.creationIssue?.message ?? "Couldn’t update the previous request. Try again."
+                return
+            }
+            restoredJobID = nil
+        }
+        if allowed {
+            do { try await planning.grantExternalAIConsent() }
+            catch is CancellationError { return }
+            catch { self.error = "Couldn’t save your AI choice. Try again or enter visit durations yourself."; return }
+        } else {
+            planning.enginePreferences?.externalAIConsentID = nil
+            planning.enginePreferences?.semanticAssistance = .disabled
+        }
+        await plan()
+    }
+
     func plan() async {
         guard !Task.isCancelled, !isProcessing, !planning.isBusy else { return }
+        if planning.requiresExternalAIConsent, !usesFoundationModels {
+            let session = planning.sessionGeneration
+            let hasConsent = await planning.hasExternalAIConsent()
+            guard !Task.isCancelled, session == planning.sessionGeneration else { return }
+            if let pending = planning.firstItineraryJob, checksExistingRequest, !hasConsent {
+                let previousInput = pending.command?.input ?? pending.input
+                if previousInput.enginePreferences?.semanticAssistance != .disabled,
+                   previousInput.places.contains(where: { !$0.hasExplicitVisitDuration }) ||
+                   previousInput.enginePreferences?.semanticAssistance == .requested {
+                    guard await planning.cancelPlanning() else {
+                        error = planning.creationIssue?.message
+                        return
+                    }
+                    restoredJobID = nil
+                }
+            }
+            if automaticallySchedules, !hasConsent {
+                var preferences = planning.enginePreferences ?? PlanningPreferences()
+                preferences.externalAIConsentID = nil
+                preferences.semanticAssistance = .disabled
+                preferences.allowsAIProcessing = false
+                planning.enginePreferences = preferences
+            }
+            let assistance = planning.enginePreferences?.semanticAssistance
+            if !automaticallySchedules, missingDuration != nil || assistance == .requested {
+                if !planning.externalAIAvailable || assistance == .disabled {
+                    if assistance != .disabled || checksExistingRequest {
+                        await chooseExternalAI(false)
+                        return
+                    }
+                    if let missingDuration {
+                        manualDurationTarget = missingDuration
+                        return
+                    }
+                } else if !hasConsent {
+                    requestsAIConsent = true
+                    return
+                }
+            }
+        }
         if let job = planning.firstItineraryJob, job.id == restoredJobID {
             let input = job.command?.input ?? job.input
             if selected.map(\.id) == input.places.map(\.id) {
@@ -315,15 +379,15 @@ import C67Domain
         guard canPlan else { error = PlanningError.invalidInput.localizedDescription; return }
         isProcessing = true; error = nil
         defer { isProcessing = false }
+        let session = planning.sessionGeneration
         if checksExistingRequest { await planning.checkStatus() }
         else { await planning.request() }
-        guard !Task.isCancelled, !planning.privateAccessBlocked,
+        guard !Task.isCancelled, session == planning.sessionGeneration, !planning.privateAccessBlocked,
               let job = planning.job, job.status == .succeeded, job.purpose == .plan,
               job.input == planning.draftInput, job.result?.proposal != nil, planning.creationIssue == nil else {
             error = planning.creationIssue?.message ?? "Your itinerary could not be prepared. Try again."
             return
         }
-        guard await showCompletion() else { return }
         reviewProposal = job.result?.proposal
         push(.review)
     }
@@ -354,12 +418,12 @@ import C67Domain
         isProcessing = true; error = nil
         defer { isProcessing = false }
         let routeBeforeRequest = route
+        let session = planning.sessionGeneration
         if checksExistingRequest { await planning.checkStatus() }
         else { await planning.request(.firstItinerary) }
-        guard !Task.isCancelled, !planning.privateAccessBlocked, route == routeBeforeRequest else { return }
+        guard !Task.isCancelled, session == planning.sessionGeneration, !planning.privateAccessBlocked, route == routeBeforeRequest else { return }
         if planning.creationIssue == nil, let job = planning.job, job.purpose == .firstItinerary,
            job.status == .succeeded, let proposal = job.result?.proposal {
-            guard await showCompletion(), route == routeBeforeRequest else { return }
             availabilityIDs = []
             reviewProposal = proposal
             if proposal.effectiveOrderingMethod.usesFlexibleSchedule, let requestID = job.command?.requestID {
@@ -371,7 +435,7 @@ import C67Domain
             let incomplete = Set(result?.candidates.map(\.id) ?? [])
             if route == .availability { availabilityIDs.formUnion(incomplete) }
             else { availabilityIDs = incomplete }
-            if !availabilityPlaces.isEmpty, route != .availability { push(.availability) }
+            if !automaticallySchedules, !availabilityPlaces.isEmpty, route != .availability { push(.availability) }
             error = planning.creationIssue?.message ?? result?.warnings.prefix(3).joined(separator: "\n") ?? "Your itinerary could not be prepared. Try again."
         }
     }
@@ -381,18 +445,6 @@ import C67Domain
         reviewTiming = nil
         let elapsed = String(describing: timing.started.duration(to: .now))
         Self.timingLogger.info("itinerary_visible request_id=\(timing.requestID.uuidString.lowercased(), privacy: .public) method=\(timing.method.rawValue, privacy: .public) elapsed=\(elapsed, privacy: .public)")
-    }
-
-    private func showCompletion() async -> Bool {
-        let session = planning.sessionGeneration
-        isShowingCompletion = true
-        defer { isShowingCompletion = false }
-        do {
-            try await Task.sleep(for: .seconds(1.5))
-        } catch {
-            return false
-        }
-        return !Task.isCancelled && session == planning.sessionGeneration && !planning.privateAccessBlocked
     }
 
     var preferenceText: String {
@@ -507,7 +559,8 @@ import C67Domain
                 preferences.scheduleSource = timing == nil ? .automatic : .timingAnswer
                 preferences.usesAutomaticTripDate = timing == nil
             }
-            preferences.allowsAIProcessing = (usesFoundationModels || preferences.usesLuna) && preferences.semanticAssistance != .disabled
+            let canUseExternalAI = planning.requiresExternalAIConsent ? preferences.externalAIConsentID != nil : preferences.usesLuna
+            preferences.allowsAIProcessing = (usesFoundationModels || canUseExternalAI) && preferences.semanticAssistance != .disabled
         }
         planning.enginePreferences = preferences
     }

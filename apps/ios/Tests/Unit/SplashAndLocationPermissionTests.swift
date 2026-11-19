@@ -31,6 +31,26 @@ struct SplashAndLocationPermissionTests {
         let far = CLLocation(latitude: -6.21, longitude: 106.8)
         #expect(!TripNavigation.isArrivalSample(fix(accuracy: 10, age: 1), target: far, now: now))
     }
+
+    @Test("Automatic arrival rejects cached samples and distant fixes with uncertain accuracy")
+    func arrivalFixBoundaries() {
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
+        let target = CLLocation(latitude: -6.2, longitude: 106.8)
+        let nearby = CLLocation(latitude: -6.20072, longitude: 106.8)
+        #expect((75 ... 85).contains(nearby.distance(from: target)))
+
+        func fix(accuracy: Double, offset: TimeInterval) -> CLLocation {
+            CLLocation(coordinate: nearby.coordinate, altitude: 0, horizontalAccuracy: accuracy,
+                       verticalAccuracy: 10, timestamp: now.addingTimeInterval(offset))
+        }
+
+        #expect(TripNavigation.isArrivalSample(fix(accuracy: 10, offset: -19), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 30, offset: -1), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 10, offset: -20), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: 10, offset: 20), target: target, now: now))
+        #expect(!TripNavigation.isArrivalSample(fix(accuracy: -1, offset: 0), target: target, now: now))
+    }
+
     @Test("Splash gradient colors are bundled", arguments: [
         "SplashGradientTop", "SplashGradientMiddle", "SplashGradientBottom", "SplashTagline", "SplashShadow",
     ])
@@ -45,19 +65,19 @@ struct SplashAndLocationPermissionTests {
         #expect(UIImage(named: name) != nil)
     }
 
-    @Test("Native launch screen starts on the splash color without a logo, like the video's first frame")
+    @Test("Native launch screen matches the app canvas")
     func launchScreenConfiguration() throws {
         let launch = try #require(Bundle.main.object(forInfoDictionaryKey: "UILaunchScreen") as? [String: Any])
-        #expect(launch["UIColorName"] as? String == "SplashGradientMiddle")
+        #expect(launch["UIColorName"] as? String == "TripCanvas")
         #expect(launch["UIImageName"] == nil)
     }
 
-    @Test("The permission alert shows the Sketch app name and explanation")
+    @Test("The permission alert explains Travelants’ two location uses")
     func locationPermissionCopy() {
-        #expect(Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String == "Travelant")
+        #expect(Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String == "Travelants")
         #expect(
             Bundle.main.object(forInfoDictionaryKey: "NSLocationWhenInUseUsageDescription") as? String
-                == "Your location is used to get your position on the map to improve the best itinerary for you"
+                == "Travelants uses your location to find places near your starting point and detect arrival during an active trip."
         )
     }
 

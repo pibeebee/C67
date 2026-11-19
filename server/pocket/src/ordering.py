@@ -272,30 +272,34 @@ class OrderingResolver:
             warnings.append("Calculated light opportunities are unavailable.")
         return context, warnings
 
-    def get_answer(self, request_id, method, prompt, payload, context_ms):
+    def get_answer(self, request_id, method, prompt, payload, context_ms, report):
         waiting = monotonic()
         with self.model_lock:
             started = monotonic()
             success = False
             try:
+                report("luna")
                 answer = self.model(prompt, payload)
                 success = True
                 return answer
             finally:
+                report(None)
                 logging.info("order_timing order_id=%s method=%s context_ms=%d queue_ms=%d luna_ms=%d model_ok=%s",
                              request_id, method, context_ms, (started - waiting) * 1000,
                              (monotonic() - started) * 1000, success)
 
-    def resolve(self, body):
+    def resolve(self, body, report=lambda _: None):
         started = monotonic()
         base = request_context(body)
         method = body.get("orderingMethod", "luna")
         request_id = str(uuid.UUID(body["requestID"]))
         day = base["planningContext"]["date"]
+        report("weather")
         if method == "hybrid_v4_2":
             dates = [day] + comparison_dates(body, day, method)
-            return self.resolve_compact(base, dates, request_id, started)
+            return self.resolve_compact(base, dates, request_id, started, report)
         context, warnings = self.day_context(base, day)
+        report(None)
         candidates = None
         prompt = PROMPT
         if method in {"hybrid_legacy", "hybrid_weather"}:
@@ -315,35 +319,36 @@ class OrderingResolver:
                     warnings.append("Category hours are unverified heuristics, not venue hours; opening times remain unknown.")
                     prompt += "\nCategory-hours hints are unverified, low-confidence priors; never claim a venue is open or closed, never reject or remove a place, and do not override a user order. Actual arrival and operating hours are unknown."
                 prompt += "\nSystem assessment is authoritative: unknown exposure and arrival times cannot justify claims of reduced heat or rainfall exposure. No weather-based ordering benefit is established."
-        answer, model = self.answer_with_snapshot(request_id, method, prompt, context, started)
+        answer, model = self.answer_with_snapshot(request_id, method, prompt, context, started, report)
         return self.result(context, warnings, method, answer, model, candidates)
 
-    def answer_with_snapshot(self, request_id, method, prompt, payload, started):
+    def answer_with_snapshot(self, request_id, method, prompt, payload, started, report):
         snapshot = dict(context=payload)
         path = None
         if self.snapshot_directory:
             self.snapshot_directory.mkdir(parents=True, exist_ok=True, mode=0o700)
             path = self.snapshot_directory / (request_id + ".json")
             path.write_text(json.dumps(snapshot, ensure_ascii=False))
-        answer, model = self.get_answer(request_id, method, prompt, payload, int((monotonic() - started) * 1000))
+        answer, model = self.get_answer(request_id, method, prompt, payload, int((monotonic() - started) * 1000), report)
         if path:
             snapshot.update(answer=answer, reportedModel=model)
             path.write_text(json.dumps(snapshot, ensure_ascii=False))
         return answer, model
 
-    def resolve_compact(self, base, dates, request_id, started):
+    def resolve_compact(self, base, dates, request_id, started, report):
         if len(dates) == 1:
             contexts = [self.day_context(base, dates[0])]
         else:
             with ThreadPoolExecutor(max_workers=2) as pool:
                 contexts = list(pool.map(lambda day: self.day_context(base, day), dates))
+        report(None)
         # Bind references to dates as well as places, so a cross-date reference fails validation.
         for day, (context, _) in zip(dates, contexts):
             for key in ("weatherSources", "solarWindows"):
                 context[key] = [dict(source, id=f"{day}/{source['id']}") for source in context[key]]
         payload = dict(places=base["places"], mainSpotID=base["mainSpotID"], wishes=base["userPreferences"]["wishes"],
                        timeZone=base["planningContext"]["timeZone"], days=[compact_day(context) for context, _ in contexts])
-        answer, model = self.answer_with_snapshot(request_id, "hybrid_v4_2", COMPACT_PROMPT, payload, started)
+        answer, model = self.answer_with_snapshot(request_id, "hybrid_v4_2", COMPACT_PROMPT, payload, started, report)
         estimates, hints = compact_rows(answer, dates, [place["id"] for place in base["places"]])
         results = []
         for day, (context, warnings) in zip(dates, contexts):

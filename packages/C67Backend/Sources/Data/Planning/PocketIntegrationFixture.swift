@@ -9,6 +9,12 @@
             func credentials() -> PocketCredentials { .init(serverURL: "https://fixture.invalid", token: "synthetic-fixture-token") }
             func update(serverURL: String, token: String) {}
         }
+        public static func lateDay(on date: Date = .now) -> Date {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = TimeZone(identifier: "Asia/Jakarta")!
+            return calendar.date(bySettingHour: 23, minute: 40, second: 0, of: date)!
+        }
+
         public static func input() -> PlanningInput {
             var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(identifier: "Asia/Jakarta")!
             let tomorrow = calendar.date(byAdding: .day, value: 1, to: .now)!
@@ -67,7 +73,7 @@
         }
 
         public static func repository(storageURL: URL? = nil, jobClock: @escaping @Sendable () -> Date = { .now },
-                                      firstOrderFailure: PlanningError? = nil) throws -> PocketPlanningRepository {
+                                      firstOrderFailure: PlanningError? = nil, externalAIDisclosure: String? = nil) throws -> PocketPlanningRepository {
             let interruption = OrderInterruption()
             let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic test; no live weather") },
@@ -79,7 +85,9 @@
                                                   },
                                                   experience: { inputs, _ in try inputs.map { try experience($0) } })
             return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL,
-                                                synthetic: true, jobClock: jobClock)
+                                                synthetic: true, jobClock: jobClock,
+                                                requiresExternalAIConsent: externalAIDisclosure != nil,
+                                                externalAIDisclosure: externalAIDisclosure)
         }
 
         public static func experience(_ input: PlanningInput) throws -> PlanningExperiencePlan {

@@ -1,5 +1,81 @@
 # Starter verification
 
+## Travelants 1.0 App Review sign-in
+
+Release candidate `1.0 (202611192232)` enables **App Review Sign-In** for two configured demo emails. The password grant rejects other addresses before making a request and checks the returned email before saving the session. The archive's public configuration was verified against authenticated Pocket, the published privacy URL and disabled external AI. Demo passwords are stored in Keychain on the release Mac.
+
+All 158 C67Backend tests passed. Four focused iPhone 16 Simulator tests on iOS 27.2 passed. They exercise bad demo credentials, successful sign-in, session restoration, demo deletion, and the existing Apple entry and deletion flows with synthetic APIs.
+
+Both production demo accounts signed in as email-only users. Pocket completed permanent deletion for the disposable account over its production HTTPS endpoint. Authentication then rejected the deleted account. The replacement received a new account ID, and both demo accounts signed in again.
+
+The signed app installed on Giovan’s iPhone 17. iOS declined to launch it while the device was locked, so the on-device itinerary walkthrough remains pending. App Store Connect processed the build, accepted the account holder's export declaration, saved the private demo credentials and review notes, and moved version 1.0 to Ready for Review. The submission remains a draft.
+
+## Travelants App Store 1.0 preparation — 19 November 2026
+
+The signed local Release preflight archive reports Travelants `1.0 (202611191950)`, iPhone and iPad support, authenticated Pocket mode, and empty external AI configuration. Its public Privacy Policy setting is empty, pending the team's publishing details. All 157 C67Backend tests passed. The local Support and Privacy Policy pages passed heading, contact and reciprocal link checks. Listing keywords fit the App Store limit.
+
+On iPhone 16 Simulator (iOS 27.2), the captured Preferences, automatic next-day itinerary, planning without an AI prompt, and Privacy Policy link checks passed. The policy-link test used a fixture URL. Preferences and the navigation and arrival controls passed on iPad Pro 13-inch (M5) Simulator (iPadOS 27.2). The screenshot drafts are three opaque 1179 × 2556 iPhone PNGs and one opaque 2064 × 2752 iPad PNG. Itinerary and Active Trip captures use sample data. The physical-device release walkthrough, public URLs, and App Store Connect draft are pending.
+
+The unknown-hours itinerary, drag reorder and save passed together on iPhone 18 Pro Max Simulator. On iPhone 16, the hours disclosure test passed after verifying that all three places were selected. The separate reorder test reached the itinerary and revealed the stop with missing hours, but the drag-order assertion timed out or saw duplicate accessibility matches after updating the itinerary. Compact-device reorder remains unverified.
+
+Review materials and prerequisites are in the [App Store 1.0 task](../tasks/travelants-app-store-1-0.md).
+
+## Travelants automatic schedule from Main Spot — 19 November 2026
+
+Six automatic itinerary UI cases passed on iPhone 18 Pro Max Simulator (iOS 27.2). Next opened itinerary review directly when durations or hours were missing, when AI consent had never been granted, and when the first viable schedule was tomorrow. The tests checked save and reorder, the pinned Save action, and date editing after saving. The tomorrow result bundle includes screenshots of Main Spot and the itinerary. Both legacy Hybrid v4 UI cases and all 65 trip creation unit cases passed across the original and focused runs. The focused run corrected the test's assumption about the next-day departure time and made the legacy itinerary details scroll reliable.
+
+All 157 C67Backend tests passed, including local duration estimates with zero AI calls and one-attempt fallback after an optional provider failure. Signed iPhone Release build `0.1.0 (202611191646)` compiled. The Simulator used synthetic ETA and opening-hours inputs. Live routing and physical-device runtime were outside this run. Result bundles: `test_sim_2026-11-19T09-41-01-172Z_pid20997_004f8513.xcresult` and `test_sim_2026-11-19T09-47-54-728Z_pid20997_79792bf7.xcresult`.
+
+## Travelants single-screen Delete Account — 19 November 2026
+
+All 16 focused Account tests passed on iPhone 18 Pro Max Simulator (iOS 27.2, Xcode 27.2). The UI tests opened a single Delete Account sheet from History → Account, reached the system-styled Apple button at Accessibility XXXL, cancelled the review, and returned to sign-in after a synthetic Apple authorization. The manual recovery fixture confirmed that the option appeared after authorization failed and that an accepted deletion finished after leaving Account. Presenter tests covered zero submissions on cancellation, a mismatched Apple account, inline verification for legacy accounts, and a late callback after a session change.
+
+The generic iOS Simulator Release build, all 155 C67Backend tests, and `git diff --check` passed. Repository-wide SwiftFormat still reports existing formatting findings outside the changes for this task. The result bundle is `test_sim_2026-11-19T09-21-45-647Z_pid9923_4104c7be.xcresult` and includes screenshots of the review, recovery, and completion. The deletion tests used synthetic credentials and HTTP responses.
+
+On Giovan’s physical iPhone 17 (iOS 27.2.1) through Device Hub, Debug build `0.1.0 (202611191625)` opened the single Delete Account sheet and displayed the native Apple prompt. Cancelling the prompt and then the review preserved the fixture session across relaunch. With synthetic credentials and HTTP responses, automatic deletion progressed to the sign-in confirmation. The manual recovery flow displayed the separate consent and the Apple access help link after completion. Relaunching the fixture without reseeding returned to sign-in. The device was then updated to local Release build `0.1.0 (202611191626)` in authenticated Pocket mode and the normal sign-in screen opened. Face ID and production deletion through the revised interface await a separately authorized device test account.
+
+## Travelants Delete Account on a physical iPhone — 19 November 2026
+
+On Giovan’s iPhone 17 (iOS 27.2.1), the History account button did not open the Account sheet on the installed build and an initial local Release rebuild. Moving the 44 pt hit area inside the button label restored touch interaction. Local Release build `0.1.0 (202611191554)` opened Account and reached the delete confirmation in Device Hub. The focused deletion UI regression also passed on iPhone 18 Pro Max Simulator with synthetic account data.
+
+The production Pocket services were healthy after replacing only the account deletion module in image `account-deletion-recovery-20261119`. Five isolated worker tests passed against that image before switching the container. Both deletion request formats returned HTTP 401 without authentication. The deployment kept the existing ingress and volume. The previous image, integrity-checked SQLite backups, and rollback command are available under `/home/giovan/apps/c67-pocket-beta/staging/account-recovery-20261119`.
+
+After the user confirmed Face ID on the iPhone, Apple’s live token exchange and revocation both returned HTTP 200. The app showed “Your account has been deleted” on the sign-in screen. Pocket recorded one completed receipt and zero pending receipts. A read-only Supabase check found zero Auth users, Auth identities, journal upload rows, or Storage objects matching that receipt’s owner. The manual revocation option was covered by the isolated worker and Simulator tests and its live authentication gate was verified. The physical deletion used automatic Apple revocation. The build was installed directly on the iPhone.
+
+## Travelants schedule fallback and itinerary screens — 19 November 2026
+
+All 155 Swift package tests passed. Coverage includes automatic and Now rollover, closing hours that rule out today, manually pinned dates and visits, the last second before midnight, both days too short, and category-based preferences for unavailable or malformed hours. Estimated hours do not make a visit eligible when known hours or a booking rule it out.
+
+On iPhone 18 Pro Max Simulator (iOS 27.2), the current Hybrid v4.2 fixture went directly from Main Spot to the next day's itinerary with three selected places and an enabled pinned Save action. The unknown-hours flow passed through reviewing, reordering and saving. The larger-text UI test verified the pinned Save action was tappable and at least 44 pt tall after the processing sheet dismissed. Screenshots cover List of Places, Main Spot, both itinerary action layouts and the larger-text footer. Simulator inputs, ETA and opening-hours data were synthetic. The iPhone and TestFlight were untouched.
+
+## Travelants account deletion recovery — 19 November 2026
+
+The iPhone 18 Pro Max Simulator (iOS 27.2) passed the UI regression for the manual Apple revocation path, including leaving Account while deletion is pending and reopening the app after completion. Nine focused app tests passed. The client suite passed 152 tests, including the preserved request ID and revocation choice after a timeout and restart. The Pocket suite passed 67 tests. The OpenAPI check passed.
+
+A separate Simulator run exercised the current Pocket deletion worker over loopback HTTPS with disposable GoTrue v2.197.0 and PostgreSQL 17.11. The session and account came from GoTrue. A local test adapter forwarded Auth requests and ran the actual deletion migration's empty Storage manifest for the fixture. After confirming deletion in the app, the target Auth user and its journal row were gone, and its bearer session returned HTTP 403. The control user's session returned HTTP 200 and its journal row remained. The app returned to sign-in and stayed signed out on relaunch. The Apple association was synthetic, the run used manual revocation, and no Storage bytes or production users were involved. The fix was not deployed to the shared Pocket service or TestFlight in this run.
+
+## Travelants per-trip AI consent — 19 November 2026
+
+All 151 C67Backend tests passed. The consent regression verifies that legacy flags do not grant permission, manual planning succeeds with zero model calls, a valid grant survives repository relaunch, a repeated completed request does not call the provider again, and withdrawal or a changed disclosure invalidates the old grant. Two tests passed on iPhone 18 Pro Max Simulator (iOS 27.2): dismissing consent and completing a three-stop manual itinerary at an accessibility text size, and finding the policy link before sign-in and in Account. The simulator used fixtures and made no live AI requests. The [policy draft and configuration handoff](../product/privacy-policy/README.md) identify the remaining publication and physical-device checks.
+
+## Travelants account deletion rollout — 19 November 2026
+
+Applied only Supabase migration `20261118120000`, configured the deletion worker on Pocket image `v42-20261118`, and opened the public POST route. Verified Pocket health, local client-secret signing, live Supabase Auth access, and a successful empty Storage manifest for an ID verified to have no account. The SQL RPC grants execution to `service_role` and denies `authenticated`. Public deletion returned 405 for GET, 401 for a valid unauthenticated request, and 422 for a malformed request. Hours lookup still returned 401 without a session. Database, SQLite and ingress backup checksums passed before rollout. No real account was deleted; physical TestFlight deletion and real Apple token revocation remain to be tested with a disposable Apple account.
+
+## Travelants App Store P0 preflight — 19 November 2026
+
+The authenticated Pocket service is already running `v42-20261118`. Read-only inspection confirmed that the deployed parser accepts `hybrid_v4_2` and the existing job store contains 14 successful v4.2 jobs, including five with comparison dates. These aggregate records do not identify the submitting client build.
+
+The live ingress forwards hours lookup and returns 404 for account deletion. The deletion route exists in the active image, but its worker credentials and the Supabase deletion migration are absent. The shared migration ledger is also missing the separate personal AI planning migration, so a broad migration push would exceed this rollout's scope.
+
+The deletion migration also passed in an isolated Docker container using the same Supabase PostgreSQL 17.6.1.136 image digest as the shared database, with synthetic prerequisite tables and two synthetic owners. The check covered RPC permission boundaries, the Storage manifest's owner filter, upload blocking, and account-scoped cascades. It did not call real Supabase Auth, Storage or Apple services. The Apple Developer team currently has Maps and WeatherKit keys; a dedicated Sign in with Apple key for the primary App ID is still required.
+
+The local candidate image built and started with an isolated Nginx instance, temporary data, and synthetic credentials. Health, method gates, hours routing, deletion request validation, authentication rejection, and unrelated route rejection passed. All 66 Pocket tests passed, including the deletion receipt HTTP test. Nine focused iOS Account tests and one signed-out gate UI test passed in the iPhone 18 Pro Max Simulator. A broader Home UI run failed in the mock save-trip scenario. Physical TestFlight login, itinerary, and real Apple revocation remain unverified; the paired iPhone had build `0.1.0 (1)` installed during preflight. No shared services or data were changed.
+
+## Travelant P1 reliability — 19 November 2026
+
+The Swift package passed 149 tests and the Pocket suite previously passed 64 tests. OpenAPI validation and the generic iOS Simulator test build passed. On iOS 27.2 Simulator, 143 app tests passed with 5 skipped, and the focused future-trip date recovery UI test passed. A broader UI run had failures and timed out. See [P1 implementation and verification](../tasks/travelant-p1-reliability.md).
+
 ## Traveller account deletion — 18 November 2026
 
 The Swift package passed 135 tests, including resuming deletion after relaunch and removing only the correct account's legacy drafts. The iPhone 18 Pro Max Simulator (iOS 27.2) passed 10 focused Account app tests and mock UI checks in total. The Pocket suite passed 63 tests, including rejecting a different Apple identity, waiting for active work, removing only the target account's jobs and retaining the receipt across a restart. OpenAPI validation passed.
@@ -81,6 +157,22 @@ Pocket-mode Debug build and launch succeeded on iPhone 18 Pro Max / iOS 27.2; th
 ## Trip processing Hi-Fi — 15 November 2026
 
 [Task and verification notes](../tasks/trip-processing-hifi.md) cover the two processing states, mock Simulator walkthrough, and remaining live-recovery checks.
+
+On 19 November 2026, the Luna loading illustration was centered with the title and status, with spacing based on the supplied SVG. The globe makes one turn every 12 seconds behind a fixed circular frame. A 13-second recording of the Debug preview on iPhone 18 Pro Max (iOS 27.2) showed the globe and landmarks moving while the title and status stayed fixed. The recording covers the standard motion setting and does not call Luna.
+
+Two trip-processing checks and the mock future-trip creation, save, and date-recovery UI test passed on the same Simulator. SwiftFormat and `git diff --check` passed.
+
+The recommendation loading screen randomly picks the globe or yellow car and keeps the choice until that screen closes. With Reduce Motion enabled the selected illustration stays still. On iPhone 18 Pro Max (iOS 27.2), the recommendation Debug preview held the car across captures taken 14 seconds apart and picked the globe on a subsequent presentation. The preview did not use live Luna.
+
+The buildings now scroll left in a six-second loop behind the car. A separate Debug preview recording on the same Simulator showed the skyline moving and returning to its starting position while the road stayed fixed. SwiftFormat and `git diff --check` passed.
+
+The itinerary loading illustration now uses activity snapshots from the active planner. It compares illustrative route lines during travel-time checks and moves the same pins into a timeline for weather and daylight, Luna or on-device advice, and opening hours. The UI keeps a generic map if the step is unavailable and respects Reduce Motion. The illustration does not display the calculated route or verified opening windows. The recommendation screen still picks the globe or car.
+
+The simulator recording on iPhone 18 Pro Max (iOS 27.2) is a Debug preview with synthetic activity changes. Two app tests and the mock itinerary creation, save, and future-date recovery UI test also passed on that Simulator. The Swift package passed 150 tests, including a gated formula route check with zero model calls. The local Pocket server suite passed 65 tests on retry after an existing temporary-directory cleanup race. It includes an owner-scoped activity test that holds each synthetic provider while reading the current phase. OpenAPI and SwiftFormat passed. Weather and Luna activity require the updated Pocket server; the existing server contract remains compatible and falls back to the generic map. No deployment or live Luna validation was performed.
+
+The visual refinement tightened the itinerary loading layout and aligned the timeline cards and weather icons. The map now pans upward to reveal the timeline at its original scale. The Debug build and a 14-second preview recording on the same Simulator verified the four illustrated activities and their transitions. SwiftFormat and `git diff --check` passed.
+
+A second visual pass replaced the uniform street grid with an illustrated waterfront, softened the route motion, and simplified the timeline to opening windows and connected stops. A mock Debug build and a separate preview recording verified all four activities on iPhone 18 Pro Max (iOS 27.2). SwiftFormat and `git diff --check` passed.
 
 ## Runtime visit research and Luna — 14 November 2026
 

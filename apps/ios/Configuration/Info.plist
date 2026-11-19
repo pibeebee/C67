@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Travelant</string>
+	<string>Travelants</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -39,7 +39,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is used to get your position on the map to improve the best itinerary for you</string>
+	<string>Travelants uses your location to find places near your starting point and detect arrival during an active trip.</string>
 	<key>PLANNING_API_URL</key>
 	<string>$(PLANNING_SCHEME)://$(PLANNING_HOST)</string>
 	<key>POCKET_SERVER_URL</key>
@@ -48,10 +48,18 @@
 	<string>$(SUPABASE_CLIENT_KEY)</string>
 	<key>SUPABASE_URL</key>
 	<string>$(SUPABASE_SCHEME)://$(SUPABASE_HOST)</string>
+	<key>TRAVELANTS_AI_DISCLOSURE_VERSION</key>
+	<string>$(TRAVELANTS_AI_DISCLOSURE_VERSION)</string>
+	<key>TRAVELANTS_AI_RECIPIENT</key>
+	<string>$(TRAVELANTS_AI_RECIPIENT)</string>
+	<key>TRAVELANTS_PRIVACY_POLICY_URL</key>
+	<string>$(TRAVELANTS_PRIVACY_POLICY_URL)</string>
+	<key>TRAVELANTS_REVIEW_EMAILS</key>
+	<string>$(TRAVELANTS_REVIEW_EMAILS)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>SplashGradientMiddle</string>
+		<string>TripCanvas</string>
 	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -198,7 +198,7 @@ struct ItineraryListView: View {
                 }
 
                 ItineraryMapView(proposal: proposal)
-                if let seconds = proposal.returnTravelSeconds {
+                if proposal.input.planningEndpoint != nil, let seconds = proposal.returnTravelSeconds {
                     let destination = proposal.input.enginePreferences?.endPointName ?? "starting point"
                     let action = proposal.input.enginePreferences?.endPointName == nil ? "Return to" : "End at"
                     Label("\(action) \(destination) · \(Int(ceil(Double(seconds) / 60))) min · arrive by \(ItineraryFormatting.time(proposal.finishesAt, zone: proposal.input.timeZone, locale: .current))", systemImage: "arrow.uturn.backward")
@@ -210,35 +210,14 @@ struct ItineraryListView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
-                if let startNow {
-                    Button("Start your trip today", action: startNow)
-                        .frame(maxWidth: .infinity, minHeight: 34)
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color("ItineraryBlue"))
-                        .buttonBorderShape(.capsule)
-                        .padding(.top, 20)
-                        .disabled(isSaving || !canSave || !proposal.feasible || stops.isEmpty)
-                        .accessibilityIdentifier("itineraryStartNow")
-                }
-                Button(action: save) {
-                    HStack {
-                        if isSaving { ProgressView().tint(.white) }
-                        Text(isSaving ? "Please wait…" : actionTitle)
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 34)
-                }
-                .buttonStyle(ItinerarySaveButtonStyle(secondary: startNow != nil))
-                .tint(Color("ItineraryBlue"))
-                .buttonBorderShape(.capsule)
-                .disabled(isSaving || !canSave || !proposal.feasible || stops.isEmpty)
-                .padding(.top, startNow == nil ? 20 : 0)
-                .accessibilityIdentifier("Save this trip")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 20)
             .frame(maxWidth: 640)
             .frame(maxWidth: .infinity)
         }
+        .accessibilityIdentifier("itineraryList")
+        .safeAreaInset(edge: .bottom, spacing: 0) { itineraryActions(hasStops: !stops.isEmpty) }
         .scrollPosition($scrollPosition)
         .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { viewport = $0 }
         .onScrollGeometryChange(for: ScrollRange.self) { geometry in
@@ -266,7 +245,39 @@ struct ItineraryListView: View {
         .tint(Color("ItineraryAction"))
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
-        .accessibilityIdentifier("itineraryList")
+    }
+
+    private func itineraryActions(hasStops: Bool) -> some View {
+        VStack(spacing: 4) {
+            if let startNow {
+                Button(action: startNow) {
+                    Text("Start your trip today")
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .tint(Color("ItineraryBlue"))
+                .accessibilityIdentifier("itineraryStartNow")
+            }
+            Button(action: save) {
+                HStack {
+                    if isSaving { ProgressView() }
+                    Text(isSaving ? "Please wait…" : actionTitle)
+                }
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(ItinerarySaveButtonStyle(secondary: startNow != nil))
+            .tint(Color("ItineraryBlue"))
+            .buttonBorderShape(.capsule)
+            .accessibilityIdentifier("Save this trip")
+        }
+        .disabled(isSaving || !canSave || !proposal.feasible || !hasStops)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+        .frame(maxWidth: 640)
+        .frame(maxWidth: .infinity)
+        .background(AppColor.surface)
     }
 
     private var reorderAnimation: Animation? { reduceMotion ? nil : .snappy(duration: 0.23, extraBounce: 0) }
@@ -431,18 +442,17 @@ struct ItineraryListView: View {
         case .within: return "Estimated visit fits regular hours."
         case .partial: return "Estimated visit partly outside regular hours."
         case .outside: return "Estimated visit outside regular hours."
-        case .unknown: return "Hours could not be compared — check before visiting."
+        case .unknown: return "Hours could not be compared — check before visiting." + fallback
         }
     }
 
     private func categoryHoursHint(for place: PlanningPlace) -> String {
-        let categories = Set(place.categories.map { $0.lowercased().replacingOccurrences(of: "_", with: "") })
-        let hint: String
-        if !categories.isDisjoint(with: ["museum", "mkpoicategorymuseum"]) { hint = "09:00–16:00" }
-        else if !categories.isDisjoint(with: ["cinema", "movietheater", "mkpoicategorymovietheater"]) { hint = "10:00–02:00 next day" }
-        else if !categories.isDisjoint(with: ["mall", "shoppingmall"]) { hint = "10:00–22:00" }
-        else { return "" }
-        return " Unverified category estimate: \(hint); actual hours may differ."
+        guard proposal.scheduleAssessment?.unresolved.contains(where: {
+            $0.placeID == place.id && $0.source == EstimatedVisitWindow.source
+        }) == true else { return "" }
+        let estimate = EstimatedVisitWindow(categories: place.categories)
+        let label = estimate.closesHour >= 24 ? "\(estimate.clockLabel) next day" : estimate.clockLabel
+        return " Estimated visit window: \(label). Actual hours may differ."
     }
 
     private func addPlace() { edit(nil) }

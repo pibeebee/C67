@@ -19,13 +19,13 @@ This is a local Swift package, not a remote server. It exports two products:
 | Target | Responsibility |
 |---|---|
 | `C67Domain` | Rundown/stop/trip entities, repository protocol, domain-facing errors |
-| `C67Data` | Mock actor with bundled fixtures; URLSession Supabase RPC adapter |
+| `C67Data` | URLSession Supabase RPC adapter; in-memory mock adapters in Debug |
 
 Run `swift test --package-path packages/C67Backend` from the repository root. Tests cover snapshot copying, retry identity, configuration validation, authentication boundaries and the RPC wire adapter.
 
 The package has no external Swift dependencies. Domain cannot import Data. Reserved Application/Platform directories are not compiler targets yet. Introduce them when shared use cases or native services need a stable boundary.
 
-`MockRundownRepository` is memory-only. Its bundled fixture is a checked copy of `contracts/fixtures/rundowns.json`; update it with `scripts/sync_fixtures.py`. `SupabaseRundownRepository` accepts a URL, client key, injectable URLSession and async access-token provider. It adds a bearer header only for an actual traveller JWT; client API keys stay in the `apikey` header.
+`MockRundownRepository` is memory-only. Debug and tests read the canonical `contracts/fixtures/rundowns.json`. `SupabaseRundownRepository` accepts a URL, client key, injectable URLSession and async access-token provider. It adds a bearer header only for an actual traveller JWT; client API keys stay in the `apikey` header.
 
 `SupabaseAuthentication` implements email/password login for an existing traveller account,
 Keychain restore, demand-driven refresh within 60 seconds of expiry, and local-scope logout.

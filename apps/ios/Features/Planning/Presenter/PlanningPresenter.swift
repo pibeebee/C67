@@ -26,6 +26,7 @@ final class PlanningPresenter {
     private(set) var privateAccessBlocked = false
     private(set) var needsFreshProposal = false
     private(set) var progress: String?
+    private(set) var activity: PlanningActivity?
     private(set) var issues: [PresentationIssue.Scope: PresentationIssue] = [:]
     private var latestIssueScope: PresentationIssue.Scope?
     var error: String? { latestIssueScope.flatMap { issues[$0]?.message } }
@@ -72,6 +73,7 @@ final class PlanningPresenter {
         if supportsOnDevicePlanning {
             enginePreferences = PlanningPreferences(); timeZone = "Asia/Jakarta"
             enginePreferences?.usesAutomaticTripDate = true
+            if supportsOnDevicePlanning { enginePreferences?.returnToOrigin = true }
             (startsAt, finishBy) = Self.defaultPocketWindow(after: .now)
         }
         if let initialInput { setDraft(initialInput); originLabel = "Synthetic starting point" }
@@ -100,6 +102,30 @@ final class PlanningPresenter {
         input.enginePreferences = enginePreferences
         return input
     }
+    var requiresExternalAIConsent: Bool { interactor.repository.requiresExternalAIConsent }
+    var externalAIAvailable: Bool { interactor.repository.externalAIAvailable }
+
+    func hasExternalAIConsent() async -> Bool {
+        await interactor.repository.hasExternalAIConsent(enginePreferences?.externalAIConsentID)
+    }
+
+    func grantExternalAIConsent() async throws {
+        let session = sessionGeneration
+        let id = try await interactor.repository.grantExternalAIConsent()
+        guard session == sessionGeneration, !privateAccessBlocked else { throw CancellationError() }
+        enginePreferences?.externalAIConsentID = id
+    }
+
+    func withdrawExternalAIConsent() async throws {
+        try await interactor.repository.withdrawExternalAIConsent()
+        enginePreferences?.externalAIConsentID = nil
+        if let active = resumableJob, let refreshed = try? await interactor.repository.planningJob(id: active.id),
+           job?.id == active.id {
+            job = refreshed
+            if refreshed.status == .failed { pendingRequest = nil }
+        }
+    }
+
     func draftChanged() {
         guard !isBusy else { return }
         if let job, job.tripID == nil, job.input == draftInput || job.command?.input == draftInput { return }
@@ -115,6 +141,7 @@ final class PlanningPresenter {
         title = "My trip"; places = []; preferences = ""; preservesPlaceOrder = false
         enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
         enginePreferences?.usesAutomaticTripDate = true
+        if supportsOnDevicePlanning { enginePreferences?.returnToOrigin = true }
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
         timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
         if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
@@ -147,12 +174,13 @@ final class PlanningPresenter {
         needsFreshProposal = false; ignoresPreviousPendingJob = false
         sessionGeneration += 1
         privateAccessBlocked = blocked
-        sessionID = value.sessionID; generation += 1; isBusy = false; progress = nil
+        sessionID = value.sessionID; generation += 1; isBusy = false; progress = nil; activity = nil
         trips = []; job = nil; jobScope = nil; pendingRequest = nil; pendingApply = nil; pendingEvent = nil; automaticArrivalAttempts = []
         openTripID = nil; tripToStartID = nil; title = "My trip"; origin = nil; originLabel = "Choose a starting point"
         places = []; preferences = ""; preservesPlaceOrder = false; reportedPosition = nil; issues = [:]; latestIssueScope = nil
         enginePreferences = supportsOnDevicePlanning ? PlanningPreferences() : nil
         enginePreferences?.usesAutomaticTripDate = true
+        if supportsOnDevicePlanning { enginePreferences?.returnToOrigin = true }
         startsAt = Date().addingTimeInterval(600); finishBy = startsAt.addingTimeInterval(4 * 3600)
         timeZone = supportsOnDevicePlanning ? "Asia/Jakarta" : TimeZone.current.identifier
         if supportsOnDevicePlanning { (startsAt, finishBy) = Self.defaultPocketWindow(after: .now) }
@@ -267,22 +295,25 @@ final class PlanningPresenter {
                          jobID: resumableJob?.id))
         }
     }
-    func request(_ purpose: PlanningPurpose = .plan, trip: PersonalPlanningTrip? = nil, reviewing: Bool = false) async {
+    func request(_ purpose: PlanningPurpose = .plan, trip: PersonalPlanningTrip? = nil, reviewing: Bool = false, replacementDeparture: Date? = nil) async {
         let scope: PresentationIssue.Scope = reviewing ? .review : .planning(trip?.id)
         let operation = PresentationIssue.Operation.plan(purpose)
         guard !privateAccessBlocked else { record(.init(PlanningError.authenticationRequired, scope: scope, operation: operation)); return }
         guard !isBusy else { return }
-        let ticket = generation; isBusy = true; clearIssue(scope); needsFreshProposal = false; progress = "Preparing your request…"
-        defer { if ticket == generation { isBusy = false; progress = nil } }
+        let ticket = generation; isBusy = true; clearIssue(scope); needsFreshProposal = false; progress = "Preparing your request…"; activity = nil
+        defer { if ticket == generation { isBusy = false; progress = nil; activity = nil } }
         do {
             guard let input = trip?.input ?? draftInput else { throw PlanningError.invalidInput }; try input.validate(purpose: purpose)
             let command: PlanningRequest
             if let pendingRequest, pendingRequest.purpose == purpose, pendingRequest.input == input,
-               pendingRequest.tripID == trip?.id, pendingRequest.baseRevision == trip?.revision { command = pendingRequest }
+               pendingRequest.tripID == trip?.id, pendingRequest.baseRevision == trip?.revision,
+               pendingRequest.replacementDeparture == replacementDeparture { command = pendingRequest }
             else {
                 let position = reportedPosition.flatMap { Date().timeIntervalSince($0.1) <= 30 ? $0.0 : nil }
-                command = .init(requestID: UUID(), purpose: purpose, input: input, tripID: trip?.id,
-                                baseRevision: trip?.revision, currentOrigin: trip == nil ? nil : position)
+                var draftCommand = PlanningRequest(requestID: UUID(), purpose: purpose, input: input, tripID: trip?.id,
+                                                   baseRevision: trip?.revision, currentOrigin: trip == nil ? nil : position)
+                draftCommand.replacementDeparture = replacementDeparture
+                command = draftCommand
                 pendingRequest = command
             }
             let value = try await interactor.request(command)
@@ -304,11 +335,38 @@ final class PlanningPresenter {
         return job
     }
 
+    var canCancelPlanning: Bool {
+        interactor.repository.supportsPlanningCancellation && resumableJob != nil
+    }
+
+    func cancelPlanning() async -> Bool {
+        guard canCancelPlanning, let current = resumableJob else { return false }
+        let scope = jobScope ?? .planning(current.tripID)
+        generation += 1
+        let ticket = generation
+        isBusy = true; activity = nil
+        defer { if ticket == generation { isBusy = false; progress = nil } }
+        do {
+            try await interactor.repository.cancelPlanning(id: current.id)
+            guard ticket == generation else { return false }
+            var cancelled = current
+            cancelled.status = .failed
+            cancelled.errorCode = "PLANNING_CANCELLED"
+            job = cancelled
+            pendingRequest = nil
+            clearIssue(scope)
+            return true
+        } catch {
+            if ticket == generation { record(.init(error, scope: scope, operation: .plan(current.purpose), jobID: current.id)) }
+            return false
+        }
+    }
+
     func checkStatus(scope: PresentationIssue.Scope = .planning(nil)) async {
         guard !isBusy, !privateAccessBlocked, jobScope == scope, let current = resumableJob else { return }
         let ticket = generation
-        isBusy = true; clearIssue(scope); progress = "Checking request status…"
-        defer { if ticket == generation { isBusy = false; progress = nil } }
+        isBusy = true; clearIssue(scope); progress = "Checking request status…"; activity = nil
+        defer { if ticket == generation { isBusy = false; progress = nil; activity = nil } }
         do {
             let refreshed = try await interactor.repository.checkPlanningJob(id: current.id)
             try await receive(refreshed, ticket: ticket, scope: scope)
@@ -328,11 +386,11 @@ final class PlanningPresenter {
 
     private func receive(_ value: PlanningJob, ticket: Int, scope: PresentationIssue.Scope) async throws {
         var latest = value
-        let limitsWait = value.purpose == .firstItinerary || value.input.enginePreferences?.reasonableOrdering != true
-        let deadline = limitsWait ? ContinuousClock.now.advanced(by: .seconds(600)) : nil
+        let deadline = ContinuousClock.now.advanced(by: .seconds(360))
         while true {
             try Task.checkCancellation(); guard ticket == generation else { return }
             job = latest
+            activity = latest.status == .running ? latest.activity : nil
             jobScope = scope
             switch latest.status {
             case .succeeded:
@@ -352,13 +410,17 @@ final class PlanningPresenter {
                     setDraft(proposal.input)
                 }
                 pendingRequest = nil; progress = nil; return
-            case .failed: pendingRequest = nil; throw PlanningError.failed(latest.errorCode ?? "PROVIDER_UNAVAILABLE")
+            case .failed:
+                pendingRequest = nil
+                if latest.errorCode == "PLANNING_AUTH_REQUIRED" { throw PlanningError.authenticationRequired }
+                if latest.errorCode == "PLANNING_REVISION_CONFLICT" { throw PlanningError.revisionConflict }
+                throw PlanningError.failed(latest.errorCode ?? "PROVIDER_UNAVAILABLE")
             case .unknown: throw PlanningError.invalidResponse
             case .queued: progress = "Your planning request is queued…"
             case .running: progress = latest.input.enginePreferences?.orderingMethod?.usesFlexibleSchedule == true
                 ? "Checking candidate schedules…" : "Preparing your itinerary…"
             }
-            if let deadline, ContinuousClock.now >= deadline {
+            if ContinuousClock.now >= deadline {
                 record(.init(pending: scope, purpose: latest.purpose, jobID: latest.id))
                 return
             }
@@ -416,7 +478,12 @@ final class PlanningPresenter {
             self.job = changed
             setDraft(changed.input)
         } catch is CancellationError { }
-        catch { if ticket == generation { record(.init(error, scope: .review, operation: .changeRoute(order: orderedIDs, departure: departure), jobID: job.id)) } }
+        catch {
+            if ticket == generation {
+                let cause = (error as? PlanningScheduleFailure).map { PlanningError.failed($0.code) } ?? error
+                record(.init(cause, scope: .review, operation: .changeRoute(order: orderedIDs, departure: departure), jobID: job.id))
+            }
+        }
     }
 
     func refreshSavedExperienceRoute(tripID: UUID) async {
@@ -498,17 +565,43 @@ final class PlanningPresenter {
             }
         }
     }
-    func event(_ kind: PlanningEventKind, trip: PersonalPlanningTrip, extraSeconds: Int? = nil) async {
+    func prepareStart(_ trip: PersonalPlanningTrip) async throws -> PlanningStartPreparation? {
+        guard !isBusy, !privateAccessBlocked else { throw CancellationError() }
+        let ticket = generation
+        let scope = PresentationIssue.Scope.activity(trip.id)
+        clearIssue(scope)
+        isBusy = true
+        defer { if ticket == generation { isBusy = false } }
+        do {
+            let value = try await interactor.repository.prepareStart(tripID: trip.id, expectedRevision: trip.revision)
+            guard ticket == generation else { throw CancellationError() }
+            return value
+        } catch {
+            if ticket == generation {
+                let cause = (error as? PlanningScheduleFailure).map { PlanningError.failed($0.code) } ?? error
+                record(.init(cause, scope: scope, operation: .event(.start, extraSeconds: nil)))
+            }
+            throw error
+        }
+    }
+
+    func event(_ kind: PlanningEventKind, trip: PersonalPlanningTrip, extraSeconds: Int? = nil, preparationID: UUID? = nil) async {
         guard !isBusy, !privateAccessBlocked,
               trips.first(where: { $0.id == trip.id })?.revision == trip.revision else { return }
         let scope = PresentationIssue.Scope.activity(trip.id)
         let ticket = generation; isBusy = true; clearIssue(scope)
         defer { if ticket == generation { isBusy = false } }
         let command: PlanningEvent
-        let stopID = kind == .start ? nil : trip.nextStop?.id
+        let stopID = kind == .start || kind == .arriveAtEndpoint ? nil : trip.nextStop?.id
         if let prior = pendingEvent, prior.0 == trip.id, prior.1.kind == kind,
-           prior.1.expectedRevision == trip.revision, prior.1.stopID == stopID, prior.1.extraSeconds == extraSeconds { command = prior.1 }
-        else { command = .init(requestID: UUID(), expectedRevision: trip.revision, kind: kind, stopID: stopID, extraSeconds: extraSeconds); pendingEvent = (trip.id, command) }
+           prior.1.expectedRevision == trip.revision, prior.1.stopID == stopID, prior.1.extraSeconds == extraSeconds,
+           prior.1.preparationID == preparationID { command = prior.1 }
+        else {
+            var event = PlanningEvent(requestID: UUID(), expectedRevision: trip.revision, kind: kind, stopID: stopID, extraSeconds: extraSeconds)
+            event.preparationID = preparationID
+            command = event
+            pendingEvent = (trip.id, command)
+        }
         do {
             let updated = try await interactor.event(tripID: trip.id, event: command)
             guard ticket == generation, !Task.isCancelled else { return }

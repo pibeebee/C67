@@ -44,7 +44,7 @@ private struct PocketTripOptionFields: View {
             if options.orderingMethod == .hybridV42FoundationModels {
                 Text("Foundation Models estimates activities and durations on your device. Apple provides travel estimates, and Pocket can look up regular hours.").font(.footnote)
             } else {
-                Text("Travelant researches the selected place names, pins, available branch details and preferences using the Pocket server and Luna. Opening hours and entry rules require retrieved sources; suggested durations remain estimates. Apple provides driving times.").font(.footnote)
+                Text("Travelants researches the selected place names, pins, available branch details and preferences using the Pocket server and Luna. Opening hours and entry rules require retrieved sources; suggested durations remain estimates. Apple provides driving times.").font(.footnote)
             }
         }
     }
@@ -65,6 +65,7 @@ enum ScheduleField: Hashable {
 struct PocketScheduleOptionsSheet: View {
     @Bindable var presenter: TripCreationPresenter
     var target: ScheduleField?
+    @State private var choosesEndpoint = false
     @State private var revealedField: ScheduleField?
     @AccessibilityFocusState private var focusedField: ScheduleField?
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -158,7 +159,19 @@ struct PocketScheduleOptionsSheet: View {
                     if let options = Binding($planning.enginePreferences) {
                         Section("Schedule preferences") {
                             Toggle("Flexible departure", isOn: options.flexibleDeparture)
-                            Toggle("Return to starting point", isOn: options.returnToOrigin)
+                            if let name = options.wrappedValue.endPointName {
+                                LabeledContent("End point", value: name)
+                                Button("Remove custom end point") {
+                                    planning.enginePreferences?.endPoint = nil
+                                    planning.enginePreferences?.endPointName = nil
+                                    planning.draftChanged()
+                                }
+                            } else {
+                                Toggle("Return to starting point", isOn: options.returnToOrigin)
+                            }
+                            if presenter.usesV41 {
+                                Button("Choose a custom end point") { choosesEndpoint = true }
+                            }
                             Stepper("Maximum waiting: \(options.wrappedValue.maximumWaitMinutes) min", value: options.maximumWaitMinutes, in: 0 ... 120, step: 5)
                                 .id(ScheduleField.waiting)
                                 .accessibilityFocused($focusedField, equals: .waiting)
@@ -173,7 +186,9 @@ struct PocketScheduleOptionsSheet: View {
                                     Text("Afternoon · 15–18").tag(Optional(PlanningDayPart.evening))
                                     Text("Night · 18–22").tag(Optional(PlanningDayPart.night))
                                 }
-                                modelAssistance(options)
+                                if !presenter.planning.requiresExternalAIConsent || presenter.planning.externalAIAvailable {
+                                    modelAssistance(options)
+                                }
                             }
                         }
                     }
@@ -206,6 +221,14 @@ struct PocketScheduleOptionsSheet: View {
                     scroll.scrollTo(revealedField, anchor: .center)
                     focusedField = revealedField
                 }
+            }
+        }
+        .sheet(isPresented: $choosesEndpoint) {
+            PlanningSearchSheet(near: planning.origin, title: "End point") { place in
+                planning.enginePreferences?.endPoint = place.location
+                planning.enginePreferences?.endPointName = place.name
+                planning.draftChanged()
+                choosesEndpoint = false
             }
         }
     }
@@ -261,7 +284,12 @@ struct PocketScheduleOptionsSheet: View {
         let picker = Picker(title, selection: Binding(get: { options.wrappedValue.semanticAssistance ?? .whenNeeded }, set: {
             options.wrappedValue.semanticAssistance = $0
             if !presenter.usesFoundationModels { options.wrappedValue.usesLuna = $0 != .disabled }
-            options.wrappedValue.allowsAIProcessing = $0 != .disabled
+            if presenter.planning.requiresExternalAIConsent && $0 == .disabled {
+                options.wrappedValue.externalAIConsentID = nil
+            }
+            options.wrappedValue.allowsAIProcessing = $0 != .disabled &&
+                (!presenter.planning.requiresExternalAIConsent || presenter.usesFoundationModels ||
+                 options.wrappedValue.externalAIConsentID != nil)
         })) {
             Text("Estimate missing durations").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.whenNeeded)
             Text("Activities and preferred times").fixedSize(horizontal: false, vertical: true).tag(PlanningSemanticAssistance.requested)

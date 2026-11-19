@@ -19,6 +19,7 @@ from hours import HoursProvider
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import time
 from time import monotonic
 from urllib.parse import urlsplit
 import uuid
@@ -146,6 +147,10 @@ def request_luna(module, payload, attempts=2):
     raise OSError(last_error)
 
 
+class OrderRequestConflict(ValueError):
+    pass
+
+
 class Jobs:
     def __init__(self, directory, resolver, retry_failed=True):
         self.directory = Path(directory)
@@ -155,7 +160,9 @@ class Jobs:
         self.retry_failed = retry_failed
         self.blocks_owner = lambda owner: False
         self.active = set()
-        self.lock = threading.Lock()
+        self.activities = {}
+        self.pending_writes = {}
+        self.lock = threading.RLock()
         with self.connection() as db:
             db.execute("CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY, fingerprint TEXT, state TEXT, request TEXT, result TEXT)")
             columns = {row[1] for row in db.execute("PRAGMA table_info(jobs)")}
@@ -186,14 +193,14 @@ class Jobs:
                 if previous and previous[2] != owner:
                     raise KeyError("Job not found")
                 if previous and previous[0] != fingerprint:
-                    raise ValueError("The request ID was reused with different selections")
+                    raise OrderRequestConflict("The request ID was reused with different selections")
                 if previous and not self.retry_failed and previous[1] in {"failed", "interrupted"}:
                     return self.get(ident, owner)
                 if not previous:
                     db.execute("INSERT INTO jobs (id,fingerprint,state,request,result,owner) VALUES (?,?,?,?,NULL,?)", (ident, fingerprint, "running", encoded, owner))
                 elif previous[1] in {"interrupted", "failed"}:
                     db.execute("UPDATE jobs SET state='running',result=NULL WHERE id=?", (ident,))
-                elif previous[1] == "succeeded" or ident in self.active:
+                elif previous[1] == "succeeded" or not self.retry_failed or ident in self.active:
                     return self.get(ident, owner)
                 self.active.add(ident)
             threading.Thread(target=self.run, args=(ident, body, owner), daemon=True).start()
@@ -205,7 +212,10 @@ class Jobs:
             resolver = self.resolver
             if owner != "legacy" and isinstance(resolver, Resolver):
                 resolver = Resolver(resolver.directory / owner / ident, resolver.request_model)
-            result = resolver.resolve(body)
+            if isinstance(resolver, OrderingResolver):
+                result = resolver.resolve(body, report=lambda activity: self.report_activity(ident, activity))
+            else:
+                result = resolver.resolve(body)
             state = "succeeded"
         except Exception as error:
             logging.exception("resolution_failed kind=%s", type(error).__name__)
@@ -213,15 +223,35 @@ class Jobs:
                           errorKind=type(error).__name__)
             state = "failed"
         try:
-            with self.connection() as db:
-                db.execute("UPDATE jobs SET state=?,result=? WHERE id=?", (state, json.dumps(result, ensure_ascii=False), ident))
-        except sqlite3.Error:
-            logging.warning("resolution_storage_unavailable")
+            for delay in (0, .1, .4):
+                if delay:
+                    time.sleep(delay)
+                try:
+                    self.store_result(ident, owner, state, result)
+                    break
+                except sqlite3.Error:
+                    logging.warning("resolution_storage_unavailable")
+            else:
+                with self.lock:
+                    self.pending_writes[ident] = (owner, state, result)
         finally:
             with self.lock:
                 self.active.discard(ident)
+                self.activities.pop(ident, None)
         if isinstance(self.resolver, OrderingResolver):
             logging.info("order_complete order_id=%s status=%s elapsed_ms=%d", ident, state, (monotonic() - started) * 1000)
+
+    def report_activity(self, ident, activity):
+        with self.lock:
+            if activity is None:
+                self.activities.pop(ident, None)
+            else:
+                self.activities[ident] = activity
+
+    def store_result(self, ident, owner, state, result):
+        with self.connection() as db:
+            db.execute("UPDATE jobs SET state=?,result=? WHERE id=? AND owner=? AND state='running'",
+                       (state, json.dumps(result, ensure_ascii=False), ident, owner))
 
     def purge_owner(self, owner):
         # Serializes with submit. The deletion receipt blocks new jobs before we start.
@@ -245,15 +275,31 @@ class Jobs:
                             if re.fullmatch(r"[a-f0-9]{64}", snapshot):
                                 (self.resolver.directory / (snapshot + ".json")).unlink(missing_ok=True)
             db.execute("DELETE FROM jobs WHERE owner=?", (owner,))
+            for ident, _ in rows:
+                self.pending_writes.pop(ident, None)
             return True
 
     def get(self, ident, owner="legacy"):
-        with self.connection() as db:
-            row = db.execute("SELECT state,result FROM jobs WHERE id=? AND owner=?", (ident, owner)).fetchone()
-        if not row:
-            raise KeyError(ident)
+        with self.lock:
+            with self.connection() as db:
+                row = db.execute("SELECT state,result FROM jobs WHERE id=? AND owner=?", (ident, owner)).fetchone()
+            if not row:
+                raise KeyError(ident)
+            if row[0] == "running" and ident not in self.active:
+                pending = self.pending_writes.get(ident)
+                if pending and pending[0] == owner:
+                    _, state, result = pending
+                    self.store_result(ident, owner, state, result)
+                    self.pending_writes.pop(ident, None)
+                    row = (state, json.dumps(result, ensure_ascii=False))
+                else:
+                    self.store_result(ident, owner, "interrupted", None)
+                    row = ("interrupted", None)
+            activity = self.activities.get(ident) if row[0] == "running" else None
         result = json.loads(row[1]) if row[1] else None
         response = dict(id=ident, status=row[0], result=result)
+        if activity is not None:
+            response["activity"] = activity
         if isinstance(self.resolver, OrderingResolver) and isinstance(result, dict) and "comparisonResults" in result:
             response["comparisonResults"] = result.pop("comparisonResults")
         return response
@@ -319,7 +365,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         try: owner = self.authorized()
         except AuthenticationUnavailable:
-            self.reply(503, dict(error="Authentication service unavailable")); return
+            self.reply(503, dict(error="Authentication service unavailable", code="AUTH_TEMPORARILY_UNAVAILABLE")); return
         if not owner:
             self.reply(401, dict(error="Unauthorized"))
             return
@@ -330,6 +376,8 @@ class Handler(BaseHTTPRequestHandler):
                 self.reply(200, self.server.order_jobs.get(ident, owner))
             except (ValueError, KeyError):
                 self.reply(404, dict(error="Ordering job not found"))
+            except sqlite3.Error:
+                self.reply(503, dict(error="Job storage is unavailable", code="JOB_STORAGE_UNAVAILABLE"))
             return
         if self.path.startswith(prefix):
             try:
@@ -391,7 +439,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         try: owner = self.authorized()
         except AuthenticationUnavailable:
-            self.reply(503, dict(error="Authentication service unavailable")); return
+            self.reply(503, dict(error="Authentication service unavailable", code="AUTH_TEMPORARILY_UNAVAILABLE")); return
         if not owner:
             self.reply(401, dict(error="Unauthorized"))
             return
@@ -402,7 +450,16 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError("Invalid hours lookup")
                 self.reply(200, HoursProvider().lookup(body["placeId"]))
             elif self.path == "/v1/order":
-                request_context(body)
+                known_methods = {"luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4", "hybrid_v4_2"}
+                if isinstance(body, dict) and isinstance(body.get("orderingMethod"), str) and body["orderingMethod"] not in known_methods:
+                    self.reply(422, dict(error="Unsupported ordering method", code="ORDER_METHOD_UNSUPPORTED"))
+                    return
+                if not isinstance(body, dict):
+                    raise ValueError("Invalid order input")
+                try:
+                    request_context(body)
+                except KeyError as error:
+                    raise ValueError("Missing order input") from error
                 self.reply(202, self.server.order_jobs.submit(body, owner))
             elif self.path == "/v1/visits/resolve":
                 self.reply(202, self.server.jobs.submit(body, owner))
@@ -415,12 +472,14 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(error.status, dict(code=error.code))
         except UpstreamResponseError:
             self.reply(502, dict(error="Invalid Luna response; no replacement result was used"))
+        except OrderRequestConflict:
+            self.reply(422, dict(error="Request ID reused with changed input", code="REQUEST_CONFLICT"))
         except KeyError:
             self.reply(404, dict(error="Job not found"))
         except (ValueError, TypeError):
-            self.reply(422, dict(error="Invalid resolution or advice request"))
+            self.reply(422, dict(error="Invalid request", **({"code": "INVALID_ORDER_INPUT"} if self.path == "/v1/order" else {})))
         except (OSError, sqlite3.Error):
-            self.reply(503, dict(error="Resolution storage or Luna is unavailable"))
+            self.reply(503, dict(error="Resolution storage or Luna is unavailable", code="JOB_STORAGE_UNAVAILABLE"))
 
 
 def main():

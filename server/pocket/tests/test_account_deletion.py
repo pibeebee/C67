@@ -3,8 +3,11 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
 import uuid
 
 import httpx
@@ -13,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from account_deletion import AccountDeletions, AccountDeletionProviders, DeletionRejection
 from ordering import OrderingResolver
 from resolution import Resolver
-from server import Jobs
+from server import Handler, Jobs, ThreadingHTTPServer
 
 
 class Providers:
@@ -42,6 +45,46 @@ class AccountDeletionTests(unittest.TestCase):
 
     def auth(self):
         return {"id": self.alice}
+
+    def test_public_deletion_route_requires_session_to_start_and_serves_completed_receipt(self):
+        service = AccountDeletions(self.root / "accounts.sqlite", self.providers, ())
+        self.providers.ready = True
+        payload = {"requestID": str(uuid.uuid4()), "appleAuthorizationCode": "synthetic-code"}
+
+        with ThreadingHTTPServer(("127.0.0.1", 0), Handler) as server:
+            server.account_deletions = service
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+
+            def submit(token=None, body=payload):
+                headers = {"Content-Type": "application/json"}
+                if token:
+                    headers["Authorization"] = f"Bearer {token}"
+                request = Request(f"http://127.0.0.1:{server.server_port}/v1/account/deletion",
+                                  data=json.dumps(body).encode(), headers=headers)
+                return urlopen(request, timeout=3)
+
+            try:
+                with patch.object(Handler, "authenticated_user",
+                                  side_effect=lambda auth: self.auth() if auth == "Bearer synthetic-session" else None):
+                    with self.assertRaises(HTTPError) as malformed:
+                        submit(body={})
+                    self.assertEqual(malformed.exception.code, 422)
+                    malformed.exception.close()
+                    with self.assertRaises(HTTPError) as unauthorized:
+                        submit()
+                    self.assertEqual(unauthorized.exception.code, 401)
+                    unauthorized.exception.close()
+                    with submit("synthetic-session") as response:
+                        self.assertEqual((response.status, json.load(response)), (202, {"status": "pending"}))
+                    service.process()
+                    with submit(body={"requestID": payload["requestID"]}) as response:
+                        self.assertEqual((response.status, json.load(response)), (200, {"status": "deleted"}))
+                    self.assertEqual(self.providers.revocations, [(self.alice, "synthetic-code")])
+                    self.assertEqual(self.providers.deleted, [self.alice])
+            finally:
+                server.shutdown()
+                thread.join()
 
     def test_receipt_requires_authenticated_owner_to_start_and_survives_restart(self):
         path = self.root / "accounts.sqlite"
@@ -142,6 +185,33 @@ class AccountDeletionTests(unittest.TestCase):
                         providers.revoke_apple(user, "synthetic-code")
                     self.assertEqual(error.exception.code, "APPLE_ACCOUNT_MISMATCH")
                     self.assertEqual(post.call_count, 1)
+
+    def test_apple_owner_can_explicitly_delete_when_apple_verification_is_unavailable(self):
+        providers = AccountDeletionProviders("https://auth.example.test", "synthetic-service-key")
+        path = self.root / "accounts.sqlite"
+        service = AccountDeletions(path, providers, ())
+        body = {"requestID": str(uuid.uuid4())}
+        apple_account = {"id": self.alice, "identities": [
+            {"provider": "apple", "identity_data": {"sub": "synthetic-apple-subject"}}
+        ]}
+
+        with self.assertRaises(DeletionRejection) as required:
+            service.submit(body, lambda: apple_account)
+        self.assertEqual(required.exception.code, "APPLE_VERIFICATION_REQUIRED")
+        fallback = {**body, "useManualAppleRevocation": True}
+        with self.assertRaises(ValueError):
+            service.submit({**fallback, "appleAuthorizationCode": "synthetic-code"}, lambda: apple_account)
+        with self.assertRaises(DeletionRejection) as unauthorized:
+            service.submit(fallback, lambda: None)
+        self.assertEqual(unauthorized.exception.status, 401)
+        with patch.object(providers, "revoke_apple") as revoke, patch.object(
+            providers, "purge_storage", return_value=True
+        ), patch.object(providers, "delete_auth_user") as delete:
+            self.assertEqual(service.submit(fallback, lambda: apple_account), "pending")
+            revoke.assert_not_called()
+            service.process()
+            delete.assert_called_once_with(self.alice)
+        self.assertEqual(AccountDeletions(path, providers, ()).submit(body, lambda: None), "deleted")
 
 
 if __name__ == "__main__":

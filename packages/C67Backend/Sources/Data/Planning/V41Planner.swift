@@ -11,6 +11,7 @@ enum V41Planner {
     struct Result: Sendable {
         var selected: V4Schedule?
         var assessment: PlanningScheduleAssessment
+        var blockedByRegularHours: Bool
     }
 
     static func search(_ original: V4Trip, input: PlanningInput, modelTargets: [String: V4Target],
@@ -38,7 +39,7 @@ enum V41Planner {
                 let failedCount = pairs.filter { failures.contains($0) }.count
                 let coverage = (coveredStarts.contains(spec.order[0]) ? 1 : 0) + (coveredEnds.contains(spec.order.last!) ? 1 : 0)
                 var priority = [failedCount, screen.conflicts.count + screen.regular_conflicts.count, coverage, screen.eligible ? 0 : 1]
-                priority += screen.eligible ? rank(trip, screen, input: input, modelTargets: modelTargets) : [0, 0, 0, 0, 0]
+                priority += screen.eligible ? rank(trip, screen, input: input, modelTargets: modelTargets) : [0, 0, 0, 0, 0, 0]
                 candidates.append(.init(index: index, spec: spec, priority: priority))
             }
             candidates.sort { a, b in
@@ -75,7 +76,7 @@ enum V41Planner {
                 domain.append(contentsOf: extra.filter { !existing.contains($0) })
             }
             let stopped = await routes.stopReason != nil
-            let preferenceMatched = bestKey?.prefix(3).allSatisfy { $0 == 0 } == true
+            let preferenceMatched = bestKey?.prefix(4).allSatisfy { $0 == 0 } == true
             let checkedStarts = Set(rows.compactMap { $0.spec.order.first })
             let unexploredStart = domain.contains { !checkedStarts.contains($0.order[0]) }
             let checkedEnds = Set(rows.compactMap { $0.spec.order.last })
@@ -112,7 +113,12 @@ enum V41Planner {
             assessment.remainingMinutes = best.finish.map { trip.return_deadline - $0 }
             assessment.preferredPeriodOutsideMinutes = periodDeviation(best, input: input)
         }
-        return .init(selected: best, assessment: assessment)
+        let blockedByRegularHours = best == nil && !routeStopped && domain.isEmpty && !rows.isEmpty &&
+            rows.allSatisfy { row in
+                row.finish != nil && row.conflicts.allSatisfy { $0.code == "return_deadline_exceeded" } &&
+                    (!row.regular_conflicts.isEmpty || !row.conflicts.isEmpty)
+            } && rows.contains { !$0.regular_conflicts.isEmpty }
+        return .init(selected: best, assessment: assessment, blockedByRegularHours: blockedByRegularHours)
     }
 
     private static func screen(_ trip: V4Trip, _ spec: V4Spec, input: PlanningInput,
@@ -188,7 +194,12 @@ enum V41Planner {
             guard let target = modelTargets[visit.id], let start = visit.start else { return total }
             return total + max(target.earliest - start, 0, start - target.latest)
         }
-        return [row.soft_deviation ?? Int.max, periodDeviation(row, input: input), modelDeviation,
+        let estimatedHoursDeviation = row.visits.reduce(0) { total, visit in
+            guard let hours = trip.stops.first(where: { $0.id == visit.id })?.hours, hours.kind == "estimated",
+                  let window = hours.windows.first, let start = visit.start, let end = visit.end else { return total }
+            return total + end - start - max(0, min(end, window.closes) - max(start, window.opens))
+        }
+        return [row.soft_deviation ?? Int.max, periodDeviation(row, input: input), modelDeviation, estimatedHoursDeviation,
                 (row.finish ?? trip.return_deadline) - row.spec.departure, row.spec.waits.reduce(0, +)]
     }
 

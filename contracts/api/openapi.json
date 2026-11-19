@@ -3311,7 +3311,7 @@
       "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
       "post": {
         "operationId": "deleteTravellerAccount",
-        "description": "Start deleting the authenticated traveller's account and associated data. Apple accounts must supply a fresh authorization code for the same Apple identity. Repeating a previously accepted request returns its status even after authentication is revoked. Keep this random request ID private. Status responses expose no account information.",
+        "description": "Start deleting the authenticated traveller's account and associated data. Apple accounts normally supply a fresh authorization code for the same Apple identity. If the owner explicitly chooses to remove Apple access manually, the authenticated request can proceed without an Apple code. Repeating a previously accepted request returns its status even after authentication is revoked. Keep this random request ID private. Status responses expose no account information.",
         "security": [{"travellerToken": []}, {}],
         "requestBody": {
           "required": true,
@@ -3321,8 +3321,10 @@
             "required": ["requestID"],
             "properties": {
               "requestID": {"type": "string", "format": "uuid", "description": "A private UUID v4 generated before the first attempt. Reuse it when checking status."},
-              "appleAuthorizationCode": {"type": "string", "minLength": 1, "maxLength": 2048, "description": "Ephemeral code for a fresh native Sign in with Apple confirmation."}
-            }
+              "appleAuthorizationCode": {"type": "string", "minLength": 1, "maxLength": 2048, "description": "Ephemeral code for a fresh native Sign in with Apple confirmation."},
+              "useManualAppleRevocation": {"type": "boolean", "default": false, "description": "True only after the authenticated account owner explicitly chooses to remove Apple access manually. Omit the Apple authorization code in this case."}
+            },
+            "not": {"required": ["appleAuthorizationCode", "useManualAppleRevocation"], "properties": {"useManualAppleRevocation": {"const": true}}}
           }}}
         },
         "responses": {
@@ -3391,10 +3393,12 @@
             "description": "Missing or invalid read token"
           },
           "422": {
-            "description": "Invalid body or request ID reused with different selections"
+            "description": "Order rejected",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PocketOrderError"}}}
           },
           "503": {
-            "description": "Storage or upstream unavailable"
+            "description": "Storage or authentication temporarily unavailable",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PocketOrderError"}}}
           }
         },
         "summary": "Propose an untimed experience order for all selected places"
@@ -3445,6 +3449,10 @@
           },
           "404": {
             "description": "Unknown job"
+          },
+          "503": {
+            "description": "Storage or authentication temporarily unavailable",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/PocketOrderError"}}}
           }
         },
         "summary": "Read a persisted ordering job without model regeneration"
@@ -7034,6 +7042,17 @@
         ],
         "additionalProperties": false
       },
+      "PocketOrderError": {
+        "type": "object",
+        "required": ["error", "code"],
+        "properties": {
+          "error": {"type": "string"},
+          "code": {
+            "type": "string",
+            "enum": ["INVALID_ORDER_INPUT", "ORDER_METHOD_UNSUPPORTED", "REQUEST_CONFLICT", "AUTH_TEMPORARILY_UNAVAILABLE", "JOB_STORAGE_UNAVAILABLE"]
+          }
+        }
+      },
       "PocketOrderJob": {
         "type": "object",
         "properties": {
@@ -7050,6 +7069,11 @@
               "failed",
               "interrupted"
             ]
+          },
+          "activity": {
+            "type": "string",
+            "enum": ["weather", "luna"],
+            "description": "Optional current activity for a running job. Absence means the current step is unavailable."
           },
           "comparisonResults": {
             "type": "array",

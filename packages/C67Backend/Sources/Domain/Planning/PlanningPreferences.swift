@@ -46,6 +46,7 @@ public struct PlanningPreferences: Equatable, Codable, Sendable {
     public var preferredDayPart: PlanningDayPart?
     public var scheduleSource: PlanningScheduleSource?
     public var timingAnchor: Date?
+    public var externalAIConsentID: UUID?
     public var semanticAssistance: PlanningSemanticAssistance?
     public init() {}
 }
@@ -75,4 +76,10 @@ public struct PlanningConnection: Equatable, Sendable {
     public var serverURL: String
     public var hasToken: Bool
     public init(serverURL: String, hasToken: Bool) { self.serverURL = serverURL; self.hasToken = hasToken }
+}
+
+public extension PlanningPlace {
+    var hasExplicitVisitDuration: Bool {
+        activitySession != nil || (durationOverridden == true && visitSeconds > 0)
+    }
 }

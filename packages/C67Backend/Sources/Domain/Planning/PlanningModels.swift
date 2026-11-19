@@ -34,6 +34,7 @@ public enum PlanningEventKind: String, Equatable, Codable, Sendable, CaseIterabl
     case arrive
     case completeStop = "complete_stop"
     case extendStay = "extend_stay"
+    case arriveAtEndpoint = "arrive_at_endpoint"
 }
 
 public struct PlanningPoint: Equatable, Codable, Sendable {
@@ -194,6 +195,7 @@ public struct PlanningRequest: Equatable, Codable, Sendable {
     public var input: PlanningInput
     public var tripID: UUID?
     public var baseRevision: Int?
+    public var replacementDeparture: Date? = nil
     public var currentOrigin: PlanningPoint?
     public init(requestID: UUID, purpose: PlanningPurpose, input: PlanningInput, tripID: UUID? = nil, baseRevision: Int? = nil, currentOrigin: PlanningPoint? = nil) {
         self.requestID = requestID
@@ -203,6 +205,10 @@ public struct PlanningRequest: Equatable, Codable, Sendable {
         self.baseRevision = baseRevision
         self.currentOrigin = currentOrigin
     }
+}
+
+public enum PlanningActivity: String, Codable, Sendable {
+    case weather, luna, openingHours, travelTimes, onDeviceAdvice
 }
 
 public struct PlanningJob: Equatable, Codable, Sendable, Identifiable {
@@ -220,6 +226,7 @@ public struct PlanningJob: Equatable, Codable, Sendable, Identifiable {
     public var scheduleAssessment: PlanningScheduleAssessment? = nil
     public var semanticSnapshot: PlanningSemanticSnapshot? = nil
     public var semanticSnapshots: [PlanningSemanticSnapshot]? = nil
+    public var activity: PlanningActivity? = nil
     public init(id: UUID, status: PlanningJobStatus, purpose: PlanningPurpose, input: PlanningInput, tripID: UUID? = nil, baseRevision: Int? = nil, result: PlanningResult? = nil, errorCode: String? = nil, createdAt: Date) {
         self.id = id
         self.status = status
@@ -260,11 +267,24 @@ public struct PersonalPlanningTrip: Equatable, Codable, Sendable, Identifiable {
     }
 }
 
+public struct PlanningStartPreparation: Sendable {
+    public let id: UUID
+    public let proposal: PlanProposal
+    public let scheduleChanged: Bool
+
+    public init(id: UUID, proposal: PlanProposal, scheduleChanged: Bool) {
+        self.id = id
+        self.proposal = proposal
+        self.scheduleChanged = scheduleChanged
+    }
+}
+
 public struct PlanningEvent: Equatable, Codable, Sendable {
     public var requestID: UUID
     public var expectedRevision: Int
     public var kind: PlanningEventKind
     public var stopID: UUID?
+    public var preparationID: UUID? = nil
     public var extraSeconds: Int?
     public init(requestID: UUID, expectedRevision: Int, kind: PlanningEventKind, stopID: UUID? = nil, extraSeconds: Int? = nil) {
         self.requestID = requestID
@@ -276,6 +296,10 @@ public struct PlanningEvent: Equatable, Codable, Sendable {
 }
 
 public extension PlanningInput {
+    var planningEndpoint: PlanningPoint? {
+        enginePreferences?.endPoint ?? (enginePreferences?.returnToOrigin == true ? origin : nil)
+    }
+
     func validate(purpose: PlanningPurpose = .plan) throws {
         let validCount = purpose == .firstItinerary || enginePreferences?.reasonableOrdering == true ? !places.isEmpty
             : ((purpose == .suggest && enginePreferences != nil ? 0 : 1) ... 6).contains(places.count)
@@ -312,6 +336,11 @@ public extension PlanningInput {
 }
 
 public extension PersonalPlanningTrip {
+    var pendingEndpoint: PlanningPoint? {
+        guard status == .active, nextStop == nil else { return nil }
+        return plan.input.planningEndpoint
+    }
+
     var nextStop: ScheduledPlanningStop? { plan.stops.first { !completedStopIDs.contains($0.id) } }
 }
 
@@ -331,13 +360,17 @@ public enum PlanningError: Error, Equatable, LocalizedError, Sendable {
         case .timedOut: "The planner took longer than expected."
         case .rateLimited: "The planning limit was reached. Wait before trying again."
         case .expired: "This proposal expired. Request a fresh plan."
+        case .failed("AI_CONSENT_REQUIRED"): "Choose whether to use AI assistance or enter visit durations yourself."
         case .failed(let code):
             switch code {
+            case "START_DATE_MISMATCH": "Choose a new trip date and review its schedule before starting."
+            case "PLANNING_CANCELLED": "Planning was cancelled. Your draft is available."
+            case "ORDER_REQUEST_CONFLICT": "The request does not match its original input. Try again with a new request."
             case "PLANNING_ALREADY_RUNNING": "Another itinerary is still being prepared. Check its status before starting another."
             case "POCKET_CONNECTION_REQUIRED": "Sign in or check your Pocket connection in Account. Your selected places are kept."
             case "POCKET_CONNECTION_REJECTED": "The Pocket server rejected the connection. Check your account and connection, then try again."
             case "POCKET_ORDER_ENDPOINT_MISSING": "This Pocket server does not support itinerary recommendations. Check the server URL in Account."
-            case "POCKET_ORDER_METHOD_UNSUPPORTED": "This Pocket server does not support the selected itinerary method. Choose Luna or connect to an updated server."
+            case "POCKET_ORDER_METHOD_UNSUPPORTED": "This Pocket server does not support the selected itinerary method. Contact support or connect to an updated server."
             case "ORDER_REQUEST_REJECTED": "The Pocket server rejected the trip details. Your selected places are kept."
             case "ORDER_JOB_MISSING": "The Pocket server could not find this request. Try again to start a new recommendation."
             case "ORDER_SERVER_INTERRUPTED": "The Pocket server stopped processing this request. Try again to start a new recommendation."

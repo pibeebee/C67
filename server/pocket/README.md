@@ -65,7 +65,7 @@ These tests use synthetic sources and model responses to check exact-quote rejec
 
 ### Account deletion
 
-In authenticated mode, `POST /v1/account/deletion` verifies the traveller through Supabase Auth. Apple accounts confirm with a fresh native authorization code. The server exchanges it with Apple, checks the Apple subject against the account's linked identity, and revokes the Apple token before accepting the request. Codes and tokens are not saved by the endpoint. The client saves its private random receipt before submitting so a lost response or restart can check the same request.
+In authenticated mode, `POST /v1/account/deletion` verifies the traveller through Supabase Auth. Apple accounts normally confirm with a fresh native authorization code. The server exchanges it with Apple, checks the Apple subject against the account's linked identity, and revokes the Apple token before accepting the request. If Apple verification is unavailable, the signed-in owner can explicitly confirm deletion and follow Apple's instructions to remove access manually after completion. Codes and tokens are not saved by the endpoint. The client saves its private random receipt and the selected revocation method before submitting so a lost response or restart can check the same request.
 
 To enable the endpoint in an environment:
 

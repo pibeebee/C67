@@ -11,6 +11,7 @@ struct V41ItineraryPlanner: Sendable {
     var synthetic = false
     var reserveRoute: @Sendable (Int) async throws -> Void = { _ in }
     private static let logger = Logger(subsystem: "io.pibeebee.c67", category: "PlanningTiming")
+    private static let localDurationSource = "local_visit_estimate"
 
     func plan(_ job: PlanningJob, snapshots: [PlanningSemanticSnapshot] = [],
               retain: @Sendable (PlanningSemanticSnapshot) async throws -> Void = { _ in },
@@ -20,6 +21,7 @@ struct V41ItineraryPlanner: Sendable {
                                      candidateLimit: candidateLimit, initialCalls: job.scheduleAssessment?.routeCalls ?? 0, reserve: reserveRoute)
         var inputs = try PlanningDayWindow.v41Inputs(job.input, at: job.createdAt)
         let rollover = inputs.count == 1 ? rolloverInput(job, current: inputs[0]) : nil
+        let canEstimateDuration = job.input.enginePreferences?.automaticFirstPlan == true
         let method = job.input.enginePreferences?.orderingMethod ?? .hybridV41
         let v42 = method.usesV42Scheduler
         let onDevice = method == .hybridV42FoundationModels
@@ -39,16 +41,18 @@ struct V41ItineraryPlanner: Sendable {
             try Task.checkCancellation()
             let input = inputs[index]
             index += 1
+            var semantic: PlanningExperiencePlan?
+            var preparedHours: [String: PlanningHoursLookup] = [:]
             do {
                 try checkPinnedDate(input)
-                var semantic: PlanningExperiencePlan?
                 let key = try Self.semanticKey(input, method: method)
-                let needsDuration = input.places.contains { $0.activitySession == nil && !($0.durationOverridden == true && $0.visitSeconds > 0) }
+                let needsDuration = input.places.contains { !$0.hasExplicitVisitDuration }
                 let assistance = input.enginePreferences?.semanticAssistance ?? .whenNeeded
                 if assistance != .disabled, onDevice || input.enginePreferences?.usesLuna != false,
                    needsDuration || assistance == .requested {
                     if let snapshot = retained.first(where: { $0.contextKey == key }) { semantic = snapshot.plan }
-                    else if input.enginePreferences?.allowsAIProcessing == true, v42, let experience {
+                    else if input.enginePreferences?.allowsAIProcessing == true, v42, let experience,
+                            !(index > 1 && rollover != nil && comparedDates) {
                         var candidates = [input]
                         if !comparedDates {
                             let remaining = Array(inputs.dropFirst(index)) + (inputs.count == 1 ? rollover.map { [$0] } ?? [] : [])
@@ -61,13 +65,14 @@ struct V41ItineraryPlanner: Sendable {
                             }
                         }
                         comparedDates = true
+                        if onDevice { await PocketPlanningActivity.show(.onDeviceAdvice) }
                         var generated: [PlanningSemanticSnapshot] = []
                         do {
                             modelCalls += 1
                             generated = try await compactExperience(candidates, job: job, requestID: requestID, method: method, experience: experience)
                         } catch {
                             try Task.checkCancellation()
-                            if candidates.count > 1, Self.shouldTryDatesSeparately(error) {
+                            if !canEstimateDuration, candidates.count > 1, Self.shouldTryDatesSeparately(error) {
                                 do {
                                     modelCalls += 1
                                     generated = try await compactExperience([input], job: job, requestID: requestID, method: method, experience: experience)
@@ -75,16 +80,18 @@ struct V41ItineraryPlanner: Sendable {
                                     try Task.checkCancellation()
                                     if needsDuration, !Self.shouldTryDatesSeparately(error) { throw error }
                                 }
-                            } else if needsDuration, !Self.shouldTryDatesSeparately(error) { throw error }
+                            } else if !canEstimateDuration, needsDuration, !Self.shouldTryDatesSeparately(error) { throw error }
                         }
                         if let selected = generated.first {
                             try await retainBatch(generated)
                             retained.append(contentsOf: generated)
                             semantic = selected.plan
                         }
-                    } else if onDevice, experience == nil, needsDuration, input.enginePreferences?.allowsAIProcessing == true {
+                    } else if onDevice, experience == nil, needsDuration, !canEstimateDuration,
+                              input.enginePreferences?.allowsAIProcessing == true {
                         throw PlanningError.failed("FOUNDATION_MODELS_UNAVAILABLE")
-                    } else if !v42, input.enginePreferences?.allowsAIProcessing == true, let order = services.order {
+                    } else if !v42, input.enginePreferences?.allowsAIProcessing == true, let order = services.order,
+                              !(canEstimateDuration && index > 1 && rollover != nil) {
                         var request = input
                         // Experience enrichment uses the existing server contract. The device runs v4.1.
                         request.enginePreferences?.orderingMethod = .hybridV4
@@ -97,7 +104,7 @@ struct V41ItineraryPlanner: Sendable {
                             generated = try await order(request, id).validated(for: request)
                         } catch {
                             try Task.checkCancellation()
-                            if needsDuration, let cause = error as? PlanningError,
+                            if !canEstimateDuration, needsDuration, let cause = error as? PlanningError,
                                [.unavailable, .timedOut, .rateLimited].contains(cause) { throw error }
                         }
                         if let generated {
@@ -108,18 +115,21 @@ struct V41ItineraryPlanner: Sendable {
                         }
                     }
                 }
-                if lookupBySource == nil { lookupBySource = await prefetchedHours }
+                if lookupBySource == nil {
+                    if v42 { await PocketPlanningActivity.show(.openingHours) }
+                    lookupBySource = await prefetchedHours
+                }
                 try Task.checkCancellation()
                 let prefetched = lookupBySource ?? [:]
                 // A failed early lookup can recover by the time the route is ready.
-                let preparedHours = prefetched.filter { $0.value.status != "temporary_error" }
+                preparedHours = prefetched.filter { $0.value.status != "temporary_error" }
                 lookupBySource = preparedHours.filter { ["available", "unavailable"].contains($0.value.status) }
-                var proposal = try await schedule(input, semantic: semantic, routes: routes, preparedHours: preparedHours, requestID: requestID)
+                var proposal = try await schedule(input, semantic: semantic, routes: routes, preparedHours: preparedHours, requestID: requestID, includesAlternatives: rollover == nil)
                 if semantic == nil, assistance == .requested {
                     proposal.scheduleAssessment?.unresolved.append(.init(code: "semantic_unavailable"))
                     proposal.warnings.append(onDevice ?
-                        "Foundation Models suggestions are unavailable. Your supplied visit durations were used." :
-                        "Luna suggestions are unavailable. Your supplied visit durations were used.")
+                        "Foundation Models suggestions are unavailable. The itinerary uses the visit durations shown." :
+                        "Luna suggestions are unavailable. The itinerary uses the visit durations shown.")
                 }
                 dates.append(.init(date: input.startsAt, stopReason: proposal.scheduleAssessment?.stopReason ?? "scheduled",
                                    completeCandidates: proposal.scheduleAssessment?.completeCandidates ?? 0))
@@ -127,11 +137,21 @@ struct V41ItineraryPlanner: Sendable {
             } catch let failure as PlanningScheduleFailure {
                 var failure = failure
                 failure.assessment.routeCalls = await routes.calls
-                lastFailure = failure
                 dates.append(.init(date: input.startsAt, stopReason: failure.assessment.stopReason, completeCandidates: 0))
-                if failure.code == "V4_WINDOW_TOO_SHORT", inputs.count == 1, let rollover {
+                let dateLimited = failure.code == "V4_WINDOW_TOO_SHORT" ||
+                    (failure.code == "V41_ACCESS_CONFLICT" && failure.assessment.conflicts.allSatisfy { $0.code == "return_deadline_exceeded" } &&
+                        !failure.assessment.regularConflicts.isEmpty)
+                if dateLimited, inputs.count == 1, let rollover, await routes.stopReason == nil {
                     inputs.append(rollover)
+                } else if rollover != nil, index == inputs.count, best == nil,
+                          ["V4_WINDOW_TOO_SHORT", "V41_NO_SCHEDULE"].contains(failure.code),
+                          await routes.stopReason == nil {
+                    failure.assessment.durationAlternatives = try await alternatives(input, semantic: semantic, routes: routes,
+                                                                                     preparedHours: preparedHours)
                 }
+                lastFailure = failure
+            } catch let failure as PlanningError where best != nil && Self.canReturnPartialComparison(failure) {
+                dates.append(.init(date: input.startsAt, stopReason: "provider_unverified", completeCandidates: 0))
             }
             if await routes.stopReason != nil { break }
         }
@@ -141,6 +161,9 @@ struct V41ItineraryPlanner: Sendable {
         Self.logger.info("planning_counts request_id=\(requestID.uuidString.lowercased(), privacy: .public) method=\(method.rawValue, privacy: .public) model_attempts=\(modelCalls) route_calls=\(routeCalls) mapkit_elapsed=\(String(describing: mapTime), privacy: .public)")
         if var best {
             best.scheduleAssessment?.dates = dates
+            if dates.contains(where: { $0.stopReason == "provider_unverified" }) {
+                best.warnings.append("Some dates could not be checked. This itinerary was validated for the date shown.")
+            }
             best.scheduleAssessment?.modelCalls = modelCalls
             best.scheduleAssessment?.routeCalls = await routes.calls
             if let reason = await routes.stopReason {
@@ -170,9 +193,11 @@ struct V41ItineraryPlanner: Sendable {
     }
 
     private func rolloverInput(_ job: PlanningJob, current: PlanningInput) -> PlanningInput? {
-        guard job.input.enginePreferences?.usesAutomaticTripDate == true,
-              job.input.enginePreferences?.tripTiming == nil,
-              job.input.enginePreferences?.scheduleSource != .manual,
+        let options = job.input.enginePreferences
+        let automatic = options?.usesAutomaticTripDate == true && options?.tripTiming == nil
+        let wantsNow = options?.scheduleSource == .timingAnswer && options?.tripTiming == .now
+        guard job.purpose == .firstItinerary, automatic || wantsNow,
+              options?.scheduleSource != .manual, options?.scheduleSource != .resolved,
               PlanningDayWindow.isSameDay(current.startsAt, job.createdAt, timeZone: current.timeZone),
               !current.places.contains(where: { $0.visitConfirmation != nil || $0.activitySession != nil || $0.preferredAfter != nil || $0.preferredBefore != nil }),
               let tomorrow = PlanningDayWindow.tomorrow(after: job.createdAt, timeZone: current.timeZone) else { return nil }
@@ -196,6 +221,13 @@ struct V41ItineraryPlanner: Sendable {
             let (key, input) = context
             try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: method)
             return .init(contextKey: key, plan: try plan.validated(for: input))
+        }
+    }
+
+    private static func canReturnPartialComparison(_ error: PlanningError) -> Bool {
+        switch error {
+        case .unavailable, .timedOut, .rateLimited, .invalidResponse, .failed("ORDER_GENERATION_FAILED"): true
+        default: false
         }
     }
 
@@ -234,8 +266,11 @@ struct V41ItineraryPlanner: Sendable {
     }
 
     func schedule(_ input: PlanningInput, semantic: PlanningExperiencePlan?, routes: V41RouteSession,
-                  preparedHours: [String: PlanningHoursLookup] = [:], requestID: UUID? = nil) async throws -> PlanProposal {
-        try checkPinnedDate(input)
+                  preparedHours: [String: PlanningHoursLookup] = [:], requestID: UUID? = nil,
+                  remainingVisit: (id: UUID, seconds: Int)? = nil, includesAlternatives: Bool = true) async throws -> PlanProposal {
+        var datedInput = input
+        datedInput.places.removeAll { $0.id == remainingVisit?.id }
+        try checkPinnedDate(datedInput)
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(identifier: input.timeZone)
@@ -251,11 +286,15 @@ struct V41ItineraryPlanner: Sendable {
         var stops: [V4Stop] = []
         var modelTargets: [String: V4Target] = [:]
         var preflight = PlanningScheduleAssessment()
+        await PocketPlanningActivity.show(.openingHours)
         let accessStarted = ContinuousClock.now
         for place in input.places {
             let suggestion = semantic?.stop(place.id)
             let duration: V4Duration?
-            if let session = place.activitySession {
+            if let remainingVisit, remainingVisit.id == place.id {
+                let minutes = Int(ceil(Double(remainingVisit.seconds) / 60))
+                duration = .init(minimum: minutes, target: minutes, maximum: minutes, basis: "user", source: "active_visit")
+            } else if let session = place.activitySession {
                 let minutes = Int(ceil(session.endsAt.timeIntervalSince(session.startsAt) / 60))
                 duration = .init(minimum: minutes, target: minutes, maximum: minutes, basis: "user", source: "traveller_session")
             } else if place.durationOverridden == true, place.visitSeconds > 0 {
@@ -265,13 +304,27 @@ struct V41ItineraryPlanner: Sendable {
             } else if let estimate = suggestion?.duration {
                 duration = .init(minimum: estimate.minMinutes, target: estimate.suggestedSeconds / 60,
                                  maximum: estimate.maxMinutes, basis: "estimate", source: durationSource)
+            } else if input.enginePreferences?.automaticFirstPlan == true {
+                let seconds = place.visitSeconds > 0 ? min(place.visitSeconds, 86_400) : PlanProposal.defaultExperienceVisitSeconds
+                let extraMinutes = place.id == input.enginePreferences?.mainSpotID ? 15 : 0
+                let minutes = min(1_440, (seconds + 59) / 60 + extraMinutes)
+                duration = .init(minimum: minutes, target: minutes, maximum: minutes,
+                                 basis: "estimate", source: Self.localDurationSource)
             } else {
                 duration = nil
                 preflight.unresolved.append(.init(code: "duration_unknown", placeID: place.id))
             }
-            let access = await accessHours(place, input: input, preparedHours: preparedHours)
+            var access = await accessHours(place, input: input, preparedHours: preparedHours)
+            if ["unknown", "error"].contains(access.kind),
+               let estimate = EstimatedVisitWindow(categories: place.categories).interval(on: input.startsAt, timeZone: input.timeZone) {
+                access = .init(kind: "estimated", windows: [.init(opens: Int(estimate.start.timeIntervalSince1970 / 60),
+                                                                  closes: Int(estimate.end.timeIntervalSince1970 / 60))],
+                               source: EstimatedVisitWindow.source)
+            }
             var target: V4Target?
-            if let session = place.activitySession {
+            if place.id == remainingVisit?.id {
+                target = .init(earliest: earliest, latest: earliest, strength: "hard", origin: "user", source: "active_visit")
+            } else if let session = place.activitySession {
                 let start = Int(session.startsAt.timeIntervalSince1970 / 60)
                 target = .init(earliest: start, latest: start, strength: "hard", origin: "user", source: "traveller_session")
             } else if let timing = place.visitTiming, place.preferredAfter != nil || place.preferredBefore != nil {
@@ -323,18 +376,23 @@ struct V41ItineraryPlanner: Sendable {
         } else { earlyCode = preflight.unresolved.contains { $0.code == "duration_unknown" } ? "V4_DURATION_UNKNOWN" : nil }
         if let earlyCode {
             preflight.stopReason = "preflight_conflict"
-            if earlyCode == "V4_WINDOW_TOO_SHORT" {
+            if earlyCode == "V4_WINDOW_TOO_SHORT", includesAlternatives {
+                await PocketPlanningActivity.show(.travelTimes)
                 preflight.durationAlternatives = try await alternatives(input, semantic: semantic, routes: routes, preparedHours: preparedHours)
             }
             throw PlanningScheduleFailure(code: earlyCode, assessment: preflight)
         }
+        await PocketPlanningActivity.show(.travelTimes)
         let routeStarted = ContinuousClock.now
         defer { if let requestID { Self.logPhase("route_search", since: routeStarted, requestID: requestID) } }
         var result = try await V41Planner.search(trip, input: input, modelTargets: modelTargets, routes: routes)
         guard let selected = result.selected else {
-            result.assessment.durationAlternatives = try await alternatives(input, semantic: semantic, routes: routes, preparedHours: preparedHours)
-            let timeConflict = result.assessment.allCandidatesMissedDeadline
-            throw PlanningScheduleFailure(code: timeConflict ? "V4_WINDOW_TOO_SHORT" : "V41_NO_SCHEDULE", assessment: result.assessment)
+            if includesAlternatives {
+                result.assessment.durationAlternatives = try await alternatives(input, semantic: semantic, routes: routes, preparedHours: preparedHours)
+            }
+            let code = result.assessment.allCandidatesMissedDeadline ? "V4_WINDOW_TOO_SHORT" :
+                (result.blockedByRegularHours ? "V41_ACCESS_CONFLICT" : "V41_NO_SCHEDULE")
+            throw PlanningScheduleFailure(code: code, assessment: result.assessment)
         }
         let scheduled = selected.visits.compactMap { visit -> ScheduledPlanningStop? in
             guard let place = input.places.first(where: { $0.id.uuidString == visit.id }), let start = visit.start,
@@ -346,7 +404,11 @@ struct V41ItineraryPlanner: Sendable {
             stop.visitStartsAt = Date(timeIntervalSince1970: Double(start * 60))
             stop.roadDistanceMeters = Double(meters)
             if place.durationOverridden != true, place.activitySession == nil {
-                stop.warnings.append(onDevice ? "Visit duration is estimated by Foundation Models." : "Visit duration is a Luna estimate.")
+                if selected.assumptions.contains("\(visit.id):estimated_duration:\(Self.localDurationSource)") {
+                    stop.warnings.append("Visit duration is estimated by Travelants.")
+                } else {
+                    stop.warnings.append(onDevice ? "Visit duration is estimated by Foundation Models." : "Visit duration is a Luna estimate.")
+                }
             }
             if modelTargets[visit.id] != nil {
                 stop.warnings.append(onDevice ? "Preferred activity time is suggested by Foundation Models." : "Preferred activity time is a Luna suggestion.")
@@ -365,7 +427,7 @@ struct V41ItineraryPlanner: Sendable {
         if input.enginePreferences?.usesAutomaticTripDate == true { proposal.input.enginePreferences?.usesAutomaticTripDate = false }
         proposal.firstItinerary = true
         proposal.departureAt = Date(timeIntervalSince1970: Double(selected.spec.departure * 60))
-        proposal.returnTravelSeconds = selected.return_quote?.minutes.map { $0 * 60 }
+        proposal.returnTravelSeconds = input.planningEndpoint == nil ? nil : selected.return_quote?.minutes.map { $0 * 60 }
         proposal.experienceRouteCheckedAt = .now
         proposal.experiencePlan = semantic
         proposal.scheduleAssessment = result.assessment
@@ -398,7 +460,7 @@ struct V41ItineraryPlanner: Sendable {
                 shorter.places[index].durationOverridden = true
                 shorter.places[index].minimumAcceptedVisitSeconds = nil
             }
-            if (try? await schedule(shorter, semantic: semantic, routes: routes, preparedHours: preparedHours)) != nil { return [choice] }
+            if (try? await schedule(shorter, semantic: semantic, routes: routes, preparedHours: preparedHours, includesAlternatives: false)) != nil { return [choice] }
             if await routes.stopReason != nil { break }
         }
         return []

@@ -43,7 +43,6 @@
 		409F318AEB9CBF40C5FE0CAF /* TravelantMarkGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78C5DF315E9044D6D79B9D4 /* TravelantMarkGeometry.swift */; };
 		418FCC2BA793576ED3CE883C /* TripAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191594AD80AF97B0CB721FB4 /* TripAddButton.swift */; };
 		41CCF009021A16BE232EDBA3 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3843810F4D9FB9CCB238DF8 /* AccountView.swift */; };
-		4384AF502221DD9F72A2B2E8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03434F9077C5BFC8CDDC0E /* SplashView.swift */; };
 		44350C905E8B74A47D32B018 /* ItineraryTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1379F1AA52AFB1B1DFD43 /* ItineraryTimelineRow.swift */; };
 		44853ECFD078162DF0B65A91 /* PocketEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 8942D2655C09BFDCF3A9872C /* PocketEngine */; };
 		450F7DDBBE37D2F0785B0591 /* QuestionPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0887B0A9629FEA13F3309F5 /* QuestionPrimaryButton.swift */; };
@@ -68,6 +67,7 @@
 		5F14A6CA96EA589BBEA1291F /* TransportMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCF44720319DEFF78152D8 /* TransportMode.swift */; };
 		622B4AF47C99B9C0F199291B /* PlanningRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34093212B04EE2E2B7C2489C /* PlanningRootView.swift */; };
 		6315144F88993C02856FBD9E /* TripLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B19D71A6E8DB351208B2C89 /* TripLocationButton.swift */; };
+		6322ED4F68C9EBF7E6EE3D27 /* planning-input.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B03A80C47E28EEDA0E6EF01 /* planning-input.json */; };
 		66503CE3FD384D72B2227F33 /* TripGlassCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068FEEF5274BBE305D1AF59A /* TripGlassCapsule.swift */; };
 		67C3A07DE6AD9E3063E9834E /* TripCreationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA715944E62D6CE83138BDF /* TripCreationAssembly.swift */; };
 		6BE1B1BD66D187EF184786FD /* TransportModeQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C8ACE8CBE4BBF98EDF0DC6 /* TransportModeQuestionView.swift */; };
@@ -127,13 +127,13 @@
 		BED8D1C94922F0671705C1F3 /* Brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B54B01FB8DD1FDB257D260B /* Brand.xcassets */; };
 		BFE588ED2026807E7D349FF2 /* SplashTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6EC29B4A4588154898C39B /* SplashTimeline.swift */; };
 		C1047F7EA9776E7366CFDCE2 /* RecoveryNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0524F7CCEA155302A39E4E /* RecoveryNotice.swift */; };
-		C44366E41843290ACD41611E /* SplashOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7902378AEDD6B3DAE60FC97 /* SplashOverlay.swift */; };
 		C4AE74DDA1C7D1FBA201E1E4 /* PlanningPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D05EFD5CD984C724BBFEE8 /* PlanningPresenter.swift */; };
 		C58CBDCC5C973BC65903B3B6 /* TravelantPinShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5A9461AF5F9FB4999FF690 /* TravelantPinShape.swift */; };
 		C7CD0F6FF77F71FEF321C33E /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9806B6F8D1557111217CA48 /* AppColor.swift */; };
 		C841D98BF7C1858054736C80 /* TripInterestQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7100B4412E90FEE3C53D34 /* TripInterestQuestionView.swift */; };
 		C9C2F0EAD3C0982C576C7F89 /* PreferenceFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A48B88879125128035CB6 /* PreferenceFlowTests.swift */; };
 		CB16E3968F35D223BB92A8E4 /* HiFiPreviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE27F156EA27D293D9E19A8 /* HiFiPreviewUITests.swift */; };
+		CB938489652BE555C45B525E /* rundowns.json in Resources */ = {isa = PBXBuildFile; fileRef = 84EB5806158C55B0D3C2DE7B /* rundowns.json */; };
 		CBA15C32C05033B1D5999B6A /* ItineraryDesignPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4801310F978BB93B8502DA /* ItineraryDesignPreview.swift */; };
 		CDA4AD311908989EA4896C3E /* ItineraryFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56718D9E680E8E3036E46AF1 /* ItineraryFormatting.swift */; };
 		CDB6D6A9C8E2E733F511C8D0 /* PreferenceQuestionPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9A8B92CF814BB682A2A59 /* PreferenceQuestionPreview.swift */; };
@@ -224,6 +224,7 @@
 		2512309A027D3935C2D6E8B3 /* PocketLiveAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLiveAcceptanceTests.swift; sourceTree = "<group>"; };
 		2858B1178C837DBDE51597C8 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		28BE258F63FCF86F88C63FF6 /* ItineraryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryListView.swift; sourceTree = "<group>"; };
+		2B03A80C47E28EEDA0E6EF01 /* planning-input.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "planning-input.json"; sourceTree = "<group>"; };
 		2B54B01FB8DD1FDB257D260B /* Brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Brand.xcassets; sourceTree = "<group>"; };
 		2BC591D56F0464B005C5F972 /* PlacesSelectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSelectionSheet.swift; sourceTree = "<group>"; };
 		2CB1E7A79AF8DDA0C85D926E /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
@@ -310,9 +311,9 @@
 		81E5AB63A31257C022842BB9 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		825DF3C4ACEC7FAF833753CB /* ChoiceChipButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceChipButtonStyle.swift; sourceTree = "<group>"; };
 		840579411DBAF9761E4DEB9F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		84EB5806158C55B0D3C2DE7B /* rundowns.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rundowns.json; sourceTree = "<group>"; };
 		85872C3F5510D71A3D75EB04 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		8A4D12C934AA50E3BF0888BD /* ChoiceOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceOption.swift; sourceTree = "<group>"; };
-		8B03434F9077C5BFC8CDDC0E /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		8BB9A8B92CF814BB682A2A59 /* PreferenceQuestionPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceQuestionPreview.swift; sourceTree = "<group>"; };
 		8E42FC1D1D031A9FD366B7A9 /* ItineraryEditRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryEditRoute.swift; sourceTree = "<group>"; };
 		8E7100B4412E90FEE3C53D34 /* TripInterestQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInterestQuestionView.swift; sourceTree = "<group>"; };
@@ -334,7 +335,6 @@
 		A3843810F4D9FB9CCB238DF8 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		A39EB24AAB55F49E74F2EFC3 /* SharedAuthIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAuthIntegrationTests.swift; sourceTree = "<group>"; };
 		A56CE76CD3CAFF66F66719CB /* SyntheticTripPlaceSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntheticTripPlaceSearch.swift; sourceTree = "<group>"; };
-		A7902378AEDD6B3DAE60FC97 /* SplashOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashOverlay.swift; sourceTree = "<group>"; };
 		A866964305E68ACBF3860405 /* TripFlowRepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFlowRepositoryStub.swift; sourceTree = "<group>"; };
 		A9DF7E030BA9C4569132B570 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		ABA7C307AD55EA2350A7CD30 /* TripCreationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCreationUITests.swift; sourceTree = "<group>"; };
@@ -627,6 +627,16 @@
 			path = CompositionRoot;
 			sourceTree = "<group>";
 		};
+		1A876713FCDC13642F314113 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				2B03A80C47E28EEDA0E6EF01 /* planning-input.json */,
+				84EB5806158C55B0D3C2DE7B /* rundowns.json */,
+			);
+			name = fixtures;
+			path = ../../contracts/fixtures;
+			sourceTree = "<group>";
+		};
 		2215546E6106301C147831F8 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,8 +878,6 @@
 			isa = PBXGroup;
 			children = (
 				60CE3667FA55B22C056D5D3F /* SplashFrameView.swift */,
-				A7902378AEDD6B3DAE60FC97 /* SplashOverlay.swift */,
-				8B03434F9077C5BFC8CDDC0E /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -949,6 +957,7 @@
 				3C98A08BD366EAB57CCB1179 /* App */,
 				333A0AA75132003E1F0353CA /* Configuration */,
 				449B32EB09CA61B6907D23CB /* Features */,
+				1A876713FCDC13642F314113 /* fixtures */,
 				0C56ABBF9DE64FEBBEE11166 /* Packages */,
 				A656DE4152D97BFE1FDF5273 /* Resources */,
 				7F0FC9FCC7FB503AA7A44285 /* Shared */,
@@ -1572,7 +1581,7 @@
 					AFB87CDC7E88910B63887A84 = {
 						DevelopmentTeam = DP5XP7C2AM;
 						ProvisioningStyle = Automatic;
-						SystemCapabilities = "[\"com.apple.WeatherKit\": [\"enabled\": 1], \"com.apple.SignInWithApple\": [\"enabled\": 1]]";
+						SystemCapabilities = "[\"com.apple.SignInWithApple\": [\"enabled\": 1], \"com.apple.WeatherKit\": [\"enabled\": 1]]";
 					};
 					D4B46FD83A419D45F1B6CF50 = {
 						DevelopmentTeam = DP5XP7C2AM;
@@ -1616,6 +1625,8 @@
 				EE82D23C70DD47B4662EE45A /* ItineraryPreview.xcassets in Resources */,
 				25D59EC76960EDE67E2ED0B1 /* PrivacyInfo.xcprivacy in Resources */,
 				D9CDD23FC6A0F4AA290DF346 /* README.md in Resources */,
+				6322ED4F68C9EBF7E6EE3D27 /* planning-input.json in Resources */,
+				CB938489652BE555C45B525E /* rundowns.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1757,9 +1768,7 @@
 				1BF411115DAEA9DF10910FAF /* SelectedPlacesView.swift in Sources */,
 				37775F709A40649A4505C865 /* SingleChoiceQuestionView.swift in Sources */,
 				1492CFC07FAEC0CBDC242162 /* SplashFrameView.swift in Sources */,
-				C44366E41843290ACD41611E /* SplashOverlay.swift in Sources */,
 				BFE588ED2026807E7D349FF2 /* SplashTimeline.swift in Sources */,
-				4384AF502221DD9F72A2B2E8 /* SplashView.swift in Sources */,
 				CFF1117F90EFED0F7C33DE4C /* StayDuration.swift in Sources */,
 				97CC5766D15D752E700630F4 /* StayDurationQuestionView.swift in Sources */,
 				B40E13F9EF7B64EC54DC2972 /* SyntheticTripPlaceSearch.swift in Sources */,
@@ -1825,12 +1834,13 @@
 				CODE_SIGN_ENTITLEMENTS = C67.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/ItineraryPreview.xcassets\" \"../../contracts/fixtures/rundowns.json\" \"../../contracts/fixtures/planning-input.json\"";
 				INFOPLIST_FILE = Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1993,12 +2003,13 @@
 				CODE_SIGN_ENTITLEMENTS = C67.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/ItineraryPreview.xcassets\" \"../../contracts/fixtures/rundowns.json\" \"../../contracts/fixtures/planning-input.json\"";
 				INFOPLIST_FILE = Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

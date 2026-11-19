@@ -17,15 +17,15 @@ struct V41EngineExperimentTests {
         input.enginePreferences?.timingAnchor = anchor
         let expected: [String]
         switch timing {
-        case .now: expected = ["2026-12-31T23:59:59+09:00"]
+        case .now: expected = ["2026-12-31T23:59:58+09:00"]
         case .tomorrow: expected = ["2027-01-01T09:00:00+09:00"]
         case .inAFewDays: expected = ["2027-01-02T09:00:00+09:00", "2027-01-03T09:00:00+09:00"]
-        case .bestDay: expected = ["2026-12-31T23:59:59+09:00", "2027-01-01T09:00:00+09:00", "2027-01-02T09:00:00+09:00"]
+        case .bestDay: expected = ["2026-12-31T23:59:58+09:00", "2027-01-01T09:00:00+09:00", "2027-01-02T09:00:00+09:00"]
         }
         let windows = try PlanningDayWindow.v41Inputs(input, at: anchor)
         #expect(windows.map(\.startsAt) == expected.map(date))
         #expect(try PlanningDayWindow.v41Inputs(input, at: anchor.addingTimeInterval(86400)) == windows)
-        #expect(windows.allSatisfy { $0.finishBy >= $0.startsAt && $0.timeZone == "Asia/Tokyo" })
+        #expect(windows.allSatisfy { $0.finishBy > $0.startsAt && $0.timeZone == "Asia/Tokyo" })
     }
 
     @Test func routeCacheSeparatesDirectionMinuteAndCommandMode() async throws {
@@ -164,6 +164,54 @@ struct V41EngineExperimentTests {
     }
 
     enum ContextChange: CaseIterable, Sendable { case preferences, coordinates, mainSpot, selection }
+
+    @Test func automaticFirstItineraryEstimatesDurationsAndRollsOverWithoutAI() async throws {
+        let calls = V41Calls()
+        let anchor = date("2026-11-30T23:45:00+07:00")
+        var input = try v41Input(count: 3)
+        input.enginePreferences?.orderingMethod = .hybridV42
+        input.enginePreferences?.automaticFirstPlan = true
+        input.enginePreferences?.scheduleSource = .automatic
+        input.enginePreferences?.usesAutomaticTripDate = true
+        input.enginePreferences?.mainSpotID = input.places[0].id
+        input.places[0].durationOverridden = false
+        input.places[0].visitSeconds = 0
+        input.places[1].durationOverridden = false
+        input.places[1].visitSeconds = 1_800
+        let planner = V41ItineraryPlanner(services: v41Services(calls), hours: unknownHours)
+
+        let proposal = try #require(try await planner.plan(job(input, at: anchor)).proposal)
+        let durations = Dictionary(uniqueKeysWithValues: proposal.stops.map { ($0.id, $0.visitSeconds) })
+        #expect(proposal.feasible && proposal.rescheduledFromDate != nil)
+        #expect(proposal.scheduleAssessment?.dates.count == 2)
+        #expect(proposal.scheduleAssessment?.modelCalls == 0)
+        #expect(durations[input.places[0].id] == 2_700 && durations[input.places[1].id] == 1_800)
+        #expect(durations[input.places[2].id] == input.places[2].visitSeconds)
+        #expect(proposal.stops.filter { $0.warnings.contains("Visit duration is estimated by Travelants.") }.count == 2)
+        #expect(await calls.modelIDs.isEmpty)
+    }
+
+    @Test func failedModelDoesNotPreventAnAutomaticFirstItinerary() async throws {
+        let calls = V41Calls()
+        let anchor = date("2026-11-30T23:45:00+07:00")
+        var input = try v41Input(count: 1)
+        input.enginePreferences?.orderingMethod = .hybridV42
+        input.enginePreferences?.automaticFirstPlan = true
+        input.enginePreferences?.scheduleSource = .automatic
+        input.enginePreferences?.usesAutomaticTripDate = true
+        input.enginePreferences?.semanticAssistance = .whenNeeded
+        input.enginePreferences?.usesLuna = true
+        input.enginePreferences?.allowsAIProcessing = true
+        input.places[0].durationOverridden = false
+        var services = v41Services(calls)
+        services.experience = { _, _ in throw PlanningError.timedOut }
+        let planner = V41ItineraryPlanner(services: services, hours: unknownHours)
+
+        let proposal = try #require(try await planner.plan(job(input, at: anchor)).proposal)
+        #expect(proposal.feasible && proposal.rescheduledFromDate != nil)
+        #expect(proposal.scheduleAssessment?.modelCalls == 1)
+        #expect(proposal.stops.first?.warnings.contains("Visit duration is estimated by Travelants.") == true)
+    }
 
     @Test(arguments: ContextChange.allCases)
     func changedSemanticContextInvalidatesTheSavedResponse(_ change: ContextChange) async throws {

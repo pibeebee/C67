@@ -57,6 +57,45 @@ class NoWeather:
 
 
 class OrderingTests(unittest.TestCase):
+    def test_running_order_exposes_actual_activity_only_to_its_owner(self):
+        checking_weather, release_weather = threading.Event(), threading.Event()
+        running_luna, release_luna = threading.Event(), threading.Event()
+
+        class HeldWeather:
+            def read(self, *args):
+                checking_weather.set()
+                release_weather.wait(5)
+                return []
+
+        def model(prompt, context):
+            running_luna.set()
+            release_luna.wait(5)
+            return answer(context), "gpt-6-luna"
+
+        with tempfile.TemporaryDirectory() as directory:
+            jobs = Jobs(directory, OrderingResolver(model, HeldWeather()), retry_failed=False)
+            request = body(count=2)
+            ident = request["requestID"]
+            jobs.submit(request, "user-a")
+            try:
+                self.assertTrue(checking_weather.wait(3))
+                self.assertEqual(jobs.get(ident, "user-a")["activity"], "weather")
+                with self.assertRaises(KeyError):
+                    jobs.get(ident, "user-b")
+                release_weather.set()
+                self.assertTrue(running_luna.wait(3))
+                self.assertEqual(jobs.get(ident, "user-a")["activity"], "luna")
+            finally:
+                release_weather.set()
+                release_luna.set()
+                deadline = time.monotonic() + 3
+                snapshot = jobs.get(ident, "user-a")
+                while snapshot["status"] == "running" and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                    snapshot = jobs.get(ident, "user-a")
+            self.assertEqual(snapshot["status"], "succeeded", snapshot)
+            self.assertNotIn("activity", snapshot)
+
     def test_compact_comparison_shares_estimates_and_keeps_dated_overrides(self):
         request = body(count=2)
         request.update(orderingMethod="hybrid_v4_2", comparisonDates=["2026-11-17"])
@@ -391,6 +430,36 @@ class OrderingTests(unittest.TestCase):
             self.assertEqual(self.wait(jobs,value["requestID"])["status"],"failed")
             self.assertEqual(jobs.submit(value)["status"],"failed")
             self.assertEqual(len(calls),1)
+
+    def test_poll_retries_final_storage_without_regenerating(self):
+        calls = []
+        class Resolver:
+            def resolve(self, value):
+                calls.append(value["requestID"])
+                return {"synthetic": True}
+
+        with tempfile.TemporaryDirectory() as directory:
+            jobs = Jobs(directory, Resolver(), retry_failed=False)
+            value = body()
+            with jobs.connection() as db:
+                db.execute("""CREATE TRIGGER fail_result BEFORE UPDATE OF result ON jobs
+                              BEGIN SELECT RAISE(ABORT, 'synthetic storage failure'); END""")
+            jobs.submit(value, "owner")
+            ident = value["requestID"]
+            for _ in range(100):
+                with jobs.lock:
+                    if ident not in jobs.active:
+                        break
+                time.sleep(0.02)
+            with self.assertRaises(sqlite3.Error):
+                jobs.get(ident, "owner")
+            with self.assertRaises(KeyError):
+                jobs.get(ident, "different-owner")
+            with jobs.connection() as db:
+                db.execute("DROP TRIGGER fail_result")
+            self.assertEqual(jobs.get(ident, "owner")["status"], "succeeded")
+            self.assertEqual(jobs.submit(value, "owner")["status"], "succeeded")
+            self.assertEqual(calls, [ident])
 
     def test_interrupted_job_after_server_restart_requires_explicit_new_request(self):
         class Resolver:
