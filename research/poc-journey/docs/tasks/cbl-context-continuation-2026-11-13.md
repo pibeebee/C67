@@ -49,3 +49,7 @@ Section [0R](../source-records/CBL.md#hybrid-v41-recovery-2026-11-18) records th
 ## 18 November Hybrid v4.2 continuation
 
 Section [0S](../source-records/CBL.md#hybrid-v42-checkpoint-2026-11-18) records the decision to keep v4.2 as the baseline and defer changes to Luna. The synthetic v4.1–v4.2 figures come from the completed run of [the comparison test](../../../../packages/C67Backend/Tests/Starter/V42ComparisonTests.swift), with five repetitions per scenario. The section also links the [app-path and device experiment](../../../../docs/tasks/hybrid-v42-foundation-comparison-2026-11-18.md) and the [matched Simulator experiment](../../../../docs/tasks/hybrid-v42-matched-simulator-results-2026-11-18.md). Verification for this continuation covers the source record, links and evidence ledger.
+
+## 20 November Travelants 1.0 continuation
+
+Section [0T](../source-records/CBL.md#travelants-app-review-2026-11-20) records the automatic planning decisions, TestFlight feedback loop and App Review submission reported by the account holder. It distinguishes the submitted build from the later replan fix merged into `dev`. The [release verification](../../../../docs/testing/verification.md#travelants-10-app-review-sign-in) and [release handoff](../../../../docs/tasks/travelants-app-store-1-0.md) document the test layers and outstanding physical itinerary walkthrough. The development ledger records the new document hash while retaining the imported baseline.
