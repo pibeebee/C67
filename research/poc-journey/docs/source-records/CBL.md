@@ -1,10 +1,39 @@
 # CBL — Perencanaan trip personal dengan rekomendasi AI · C6
 
-**Updated:** 18 November 2026, Asia/Jakarta (WIB).
+**Updated:** 20 November 2026, Asia/Jakarta (WIB).
 **Tim:** C6 — Pisang Besar Balaraja, Apple Developer Academy.
-**Current local checkpoint:** [Hybrid v4.2](#hybrid-v42-checkpoint-2026-11-18) is the baseline for this iteration. Luna remains available for activity and duration suggestions through Pocket. Further Luna optimization and replacement experiments are deferred. Earlier dated entries describe the state at their respective checkpoints.
+**Current checkpoint:** [Travelants 1.0](#travelants-app-review-2026-11-20) has been submitted to App Review, as reported by the account holder. The submitted build calculates itineraries on-device with external AI disabled. [Hybrid v4.2](#hybrid-v42-checkpoint-2026-11-18) remains the engine baseline, and the earlier Luna experiments document optional enrichment.
 
 **Historical status, 13 November:** Travelant uses the native Pocket Engine with seven preference themes and 62 labels, Apple-first discovery/routing, independent catalogue evidence and optional constrained Luna advice. Google Places and the old 982-place dataset are excluded from the replacement engine. Build 0.1.0 (1) was uploaded and last observed Waiting for Review; external availability is not confirmed. The latest agreed scope is Jakarta only, but area expansion and the development-time catalogue pipeline remain unimplemented. Read [the current handoff](#current-handoff) and sections 0J–0P before resuming. Sections 0–0I retain dated evidence through 9 November; their earlier active-runtime claims are historical.
+
+<a id="travelants-app-review-2026-11-20"></a>
+
+## 0T. Travelants 1.0 from TestFlight to App Review — 18–20 November 2026
+
+### From planner recovery to fewer required choices
+
+Earlier iterations surfaced schedule conflicts through a recovery screen. Giovan observed that travellers could still get stuck after choosing a main stop, even though the app already had enough information to try another date or estimate missing hours. The release flow now opens itinerary planning directly from **Where do you want to spend the most time?**. If today's window is too short, planning can try tomorrow. When opening hours are missing, category-based rules supply estimated windows and the itinerary marks that uncertainty. The traveller can still select a main stop or choose **Let Travelants decide**. Trip scheduling, route reordering, and active-trip replanning run on the device for the release configuration. [Reliability decisions and scope](../../../../docs/tasks/travelant-p1-reliability.md) · [Automatic schedule tests](../../../../docs/testing/verification.md#travelants-automatic-schedule-from-main-spot--19-november-2026).
+
+The team kept the wait visible. Place recommendations choose one looping illustration per request, either the rotating globe or the driving scene. Itinerary processing uses transitions tied to the active work. The stages distinguish route estimates, weather and light, opening hours, and schedule assembly. The shipped copy describes the work without naming Luna. These changes were implemented alongside the Travelants branding and interface cleanup. The record has no participant measurement of how the animations affect perceived waiting time. [Release changes in PR #32](https://github.com/pibeebee/C67/pull/32).
+
+### TestFlight and store preparation
+
+TestFlight build `0.1.0 (202611182039)` was observed as approved and assigned to the internal and external beta groups. Tester installation and feedback were separate from that distribution check. Later testing exposed problems with the Delete Account interaction. The action was repaired and consolidated into one review screen. A physical iPhone 17 test of the earlier release path recorded successful Apple token exchange and revocation, completion by the production Pocket worker, and removal of associated account records. [Physical-device deletion evidence](../../../../docs/testing/verification.md#travelants-delete-account-on-a-physical-iphone--19-november-2026).
+
+For 1.0, **Sign in with Apple** remained the main sign-in. App Store Connect required demo credentials, so the release added **App Review Sign-In** with a main demo account and a separate disposable account for deletion. The release also prepared the listing, screenshots, public support and privacy pages, published the App Privacy answers, and excluded China mainland from distribution. External AI processing is disabled in this build. [Release handoff](../../../../docs/tasks/travelants-app-store-1-0.md) · [Support](https://travelants.giovanc.com/support/) · [Privacy policy](https://travelants.giovanc.com/privacy-policy/).
+
+### Evidence at handoff
+
+| Layer | Result and remaining check |
+| --- | --- |
+| Release build | App Store Connect processed `1.0 (202611192232)` and accepted its export declaration. The account holder reported submitting it to App Review on 20 November. Apple's decision and public availability are still pending in this record. |
+| Auth and deletion | Four focused iPhone 16 Simulator tests passed, including credential rejection, session restoration, demo deletion, and Apple-flow regressions. Both demo accounts authenticated in production. The disposable account was deleted, denied sign-in, recreated, and verified again. |
+| Physical device | The signed 1.0 build installed on iPhone 17. The device was locked during the attempted launch, so the itinerary walkthrough for this exact build is outstanding. The earlier physical deletion result belongs to its own build. |
+| Source on `dev` | PR #32 merged. It also fixed a review finding where active-trip replanning shortened an extended visit when a fixed activity session was present. The regression test now covers stops with and without a scheduled session. All 158 C67Backend tests passed after the fix. This post-upload commit is tracked separately from the submitted binary. |
+
+[Release verification](../../../../docs/testing/verification.md#travelants-10-app-review-sign-in) · [Resolved replan finding](https://github.com/pibeebee/C67/pull/32#discussion_r4636346943).
+
+The main lesson from this iteration is that recovery can often happen before the traveller has to intervene. Trying another viable date and visibly marking estimated hours kept the flow moving while preserving the traveller's ability to review the plan. The next learning step is to observe one complete trip on the submitted build with live routing and check whether travellers notice the date change and understand what estimated hours mean. Build, API, and Simulator checks do not establish that users can interpret these choices in practice.
 
 <a id="hybrid-v42-checkpoint-2026-11-18"></a>
 
@@ -842,9 +871,11 @@ The audit read maintained `Domain.swift`, `Discovery.swift`, `Themes.swift`, `Po
 
 Use persisted cache and per-source rate/concurrency/page/token/credit budgets. Retry technical failures with bounded backoff and checkpoints; do not cache a network failure as a factual 30-day unknown or retry endlessly. Reuse unchanged source material instead of repeated model extraction. Record the actual Firecrawl balance/pricing and provider usage before a future authorized live batch; no remaining balance, account-limit percentage or reset time is assumed from an earlier run.
 
-### Handoff for the next chat
+### Historical handoff — 13 November 2026
 
 <a id="current-handoff"></a>
+
+For the latest release and validation status, read [checkpoint 0T](#travelants-app-review-2026-11-20). The handoff below records the catalogue objective at the 13 November checkpoint.
 
 **Current objective:** prepare a trustworthy, independently sourced Jakarta catalogue for the existing 62-label Pocket recommender, through offline development batches, while keeping Apple-first runtime search/routing. **Do not start a batch, change architecture, deploy, commit or push merely because this document contains a plan.** The last authorized action in this chat was documentation.
 
