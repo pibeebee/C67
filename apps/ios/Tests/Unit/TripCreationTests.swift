@@ -113,19 +113,20 @@ import C67Domain
         #expect(model.answers.interests.isEmpty)
     }
 
-    @Test func selectionHasNoCountLimitAndRemovingMainSpotClearsStay() throws {
+    @Test func selectionStopsAtSixAndRemovingMainSpotClearsStay() throws {
         let model = try make()
-        let originalCount = model.selected.count
         for index in 0 ..< 10 {
             model.toggle(.init(place: .init(id: UUID(), name: "Synthetic \(index)",
                                             location: .init(latitude: 0, longitude: 0), visitSeconds: 1800)))
         }
-        #expect(model.selected.count == originalCount + 10)
+        #expect(model.selected.count == TripCreationPresenter.maximumPlaces)
+        #expect(!model.canAddPlace)
         let chosen = model.selected[0]
         model.mainSpot = .place(chosen.id)
         model.stay = .ninetyMinutes
         model.toggle(chosen)
-        #expect(model.selected.count == originalCount + 9)
+        #expect(model.selected.count == TripCreationPresenter.maximumPlaces - 1)
+        #expect(model.canAddPlace)
         #expect(model.mainSpot == .automatic)
         #expect(model.stay == nil)
         #expect(model.planning.places.count == model.selected.count)
@@ -1298,5 +1299,47 @@ extension TripCreationTests {
         #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: MKErrorDomain, code: Int(MKError.Code.loadingThrottled.rawValue))))
         #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: MKErrorDomain, code: Int(MKError.Code.serverFailure.rawValue))))
         #expect(!MapKitTripPlaceSearch.isEmptyResult(NSError(domain: NSURLErrorDomain, code: Int(MKError.Code.placemarkNotFound.rawValue))))
+    }
+}
+
+@Suite("Recent places in the place picker")
+@MainActor struct PlanningRecentPlacesTests {
+    private func defaults() -> UserDefaults {
+        let name = "PlanningRecentPlacesTests-\(UUID().uuidString)"
+        return UserDefaults(suiteName: name)!
+    }
+
+    private func place(_ name: String, latitude: Double) -> PlanningPlace {
+        PlanningPlace(id: UUID(), name: name, location: .init(latitude: latitude, longitude: 106.8), visitSeconds: 2700)
+    }
+
+    @Test func newestChoiceComesFirstAndReplacesTheSameSpot() {
+        let store = defaults()
+        PlanningRecentPlaces.owner = nil
+        PlanningRecentPlaces.record(place("Blok M", latitude: -6.244), in: store)
+        PlanningRecentPlaces.record(place("Senayan", latitude: -6.227), in: store)
+        PlanningRecentPlaces.record(place("Blok M station", latitude: -6.24401), in: store)
+        #expect(PlanningRecentPlaces.load(from: store).map(\.name) == ["Blok M station", "Senayan"])
+    }
+
+    @Test func keepsOnlyTheMostRecentFive() {
+        let store = defaults()
+        PlanningRecentPlaces.owner = nil
+        for index in 0 ..< 7 {
+            PlanningRecentPlaces.record(place("Place \(index)", latitude: -6.2 - Double(index) * 0.01), in: store)
+        }
+        let names = PlanningRecentPlaces.load(from: store).map(\.name)
+        #expect(names.count == PlanningRecentPlaces.limit)
+        #expect(names.first == "Place 6")
+    }
+
+    @Test func anotherAccountNeverSeesTheList() {
+        let store = defaults()
+        PlanningRecentPlaces.owner = UUID()
+        PlanningRecentPlaces.record(place("Home", latitude: -6.2), in: store)
+        PlanningRecentPlaces.owner = UUID()
+        #expect(PlanningRecentPlaces.load(from: store).isEmpty)
+        PlanningRecentPlaces.owner = nil
+        #expect(PlanningRecentPlaces.load(from: store).isEmpty)
     }
 }

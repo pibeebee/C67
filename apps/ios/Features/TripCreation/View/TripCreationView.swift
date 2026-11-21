@@ -150,7 +150,7 @@ struct TripCreationView: View {
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showsScheduleDetails = false } } }
             }
         }
-        .sheet(isPresented: $showsStartingPointSearch) {
+        .fullScreenCover(isPresented: $showsStartingPointSearch) {
             PlanningSearchSheet(near: presenter.planning.origin, title: "Starting point") { place in
                 presenter.planning.origin = place.location
                 presenter.planning.originLabel = place.name
@@ -174,7 +174,7 @@ struct TripCreationView: View {
                 AddPlacesView(query: $presenter.query, results: presenter.results, selected: presenter.selected,
                               isSearching: presenter.isSearching, hasSearched: presenter.hasSearchedCurrentQuery,
                               showsPreviousResults: presenter.showsPreviousResults, error: presenter.searchError,
-                              synthetic: presenter.mode.hasPrefix("Mock"), hasSixPlaceLimit: presenter.hasSixPlaceLimit,
+                              synthetic: presenter.mode.hasPrefix("Mock"), maximumSelection: TripCreationPresenter.maximumPlaces,
                               origin: presenter.planning.origin, search: { await presenter.search() }, toggle: presenter.toggle) {
                     if presenter.path.contains(.recommendations) { presenter.path.removeLast() }
                     else { presenter.finishChoosingPlaces() }
@@ -191,8 +191,8 @@ struct TripCreationView: View {
                                               presenter.planning.originLabel = place.name
                                               presenter.planning.draftChanged()
                                           },
-                                          showsSixPlaceLimit: presenter.hasSixPlaceLimit,
-                                          minimumSelection: 3,
+                                          maximumSelection: TripCreationPresenter.maximumPlaces,
+                                          minimumSelection: 3, countsInNextButton: true,
                                           load: { await presenter.loadRecommendationsIfNeeded() },
                                           refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
                                           toggle: presenter.toggle,

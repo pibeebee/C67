@@ -223,7 +223,7 @@ struct PocketScheduleOptionsSheet: View {
                 }
             }
         }
-        .sheet(isPresented: $choosesEndpoint) {
+        .fullScreenCover(isPresented: $choosesEndpoint) {
             PlanningSearchSheet(near: planning.origin, title: "End point") { place in
                 planning.enginePreferences?.endPoint = place.location
                 planning.enginePreferences?.endPointName = place.name

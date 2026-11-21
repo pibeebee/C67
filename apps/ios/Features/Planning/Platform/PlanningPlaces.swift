@@ -141,19 +141,111 @@ final class PlanningPlaceSearch {
         do {
             let response = try await MKLocalSearch(request: request).start()
             guard ticket == generation, !Task.isCancelled, normalizedQuery == text else { return }
-            results = response.mapItems.prefix(12).map { item in
-                var place = PlanningPlace(id: UUID(), name: item.name ?? "Selected place",
-                                          location: .init(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude),
-                                          visitSeconds: 2700, website: item.url)
-                place.address = item.placemark.title
-                return place
-            }
+            results = response.mapItems.prefix(12).map(Self.place)
         } catch is CancellationError { }
         catch {
             guard ticket == generation, !Task.isCancelled, normalizedQuery == text else { return }
             if MapKitTripPlaceSearch.isEmptyResult(error) { results = [] }
             else { searchFailure = "Check your connection or try a different query." }
         }
+    }
+
+    /// Resolves a typed-ahead suggestion into a place with coordinates.
+    func resolve(_ completion: MKLocalSearchCompletion) async throws -> PlanningPlace? {
+        let response = try await MKLocalSearch(request: MKLocalSearch.Request(completion: completion)).start()
+        return response.mapItems.first.map(Self.place)
+    }
+
+    private static func place(_ item: MKMapItem) -> PlanningPlace {
+        var place = PlanningPlace(id: UUID(), name: item.name ?? "Selected place",
+                                  location: .init(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude),
+                                  visitSeconds: 2700, website: item.url)
+        place.address = item.placemark.title
+        return place
+    }
+}
+
+/// Type-ahead place suggestions while the traveller is still typing.
+@MainActor @Observable
+final class PlanningPlaceCompleter: NSObject, @preconcurrency MKLocalSearchCompleterDelegate {
+    private(set) var completions: [MKLocalSearchCompletion] = []
+    @ObservationIgnored private let completer = MKLocalSearchCompleter()
+
+    override init() {
+        super.init()
+        completer.delegate = self
+        completer.resultTypes = [.address, .pointOfInterest]
+    }
+
+    func update(_ query: String, near point: PlanningPoint?) {
+        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else {
+            completer.cancel()
+            completions = []
+            return
+        }
+        if let point {
+            completer.region = MKCoordinateRegion(center: .init(latitude: point.latitude, longitude: point.longitude),
+                                                  latitudinalMeters: 20000, longitudinalMeters: 20000)
+        }
+        completer.queryFragment = text
+    }
+
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        completions = Array(completer.results.prefix(8))
+    }
+
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: any Error) {
+        completions = []
+    }
+}
+
+/// Names the point under the map's centre pin.
+@MainActor @Observable
+final class PlanningPinnedLocation {
+    private(set) var point: PlanningPoint?
+    private(set) var name: String?
+    private(set) var address: String?
+    private(set) var isResolving = false
+    @ObservationIgnored private var generation = 0
+    @ObservationIgnored private let geocoder = CLGeocoder()
+
+    var place: PlanningPlace? {
+        guard let point, !isResolving else { return nil }
+        var place = PlanningPlace(id: UUID(), name: name ?? String(localized: "Pinned location"),
+                                  location: point, visitSeconds: 2700)
+        place.address = address
+        return place
+    }
+
+    /// Uses an already-known place, such as a search result, without another lookup.
+    func show(_ place: PlanningPlace) {
+        generation += 1
+        geocoder.cancelGeocode()
+        point = place.location
+        name = place.name
+        address = place.address
+        isResolving = false
+    }
+
+    func resolve(_ coordinate: CLLocationCoordinate2D) async {
+        let next = PlanningPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        if let point, Self.distance(point, next) < 15, !isResolving { return }
+        generation += 1
+        let ticket = generation
+        geocoder.cancelGeocode()
+        point = next
+        isResolving = true
+        defer { if ticket == generation { isResolving = false } }
+        let mark = try? await geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)).first
+        guard ticket == generation, !Task.isCancelled else { return }
+        name = mark?.name ?? mark?.thoroughfare
+        address = LocationAreaName.format(district: mark?.subLocality, city: mark?.locality, province: mark?.administrativeArea)
+    }
+
+    private static func distance(_ first: PlanningPoint, _ second: PlanningPoint) -> CLLocationDistance {
+        CLLocation(latitude: first.latitude, longitude: first.longitude)
+            .distance(from: CLLocation(latitude: second.latitude, longitude: second.longitude))
     }
 }
 
@@ -338,5 +430,58 @@ final class TripNavigation: NSObject, @preconcurrency CLLocationManagerDelegate 
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         self.error = "Current location is unavailable. Check your location settings."
+    }
+}
+
+/// Places recently chosen in the place picker, kept on this device for the signed-in account only.
+///
+/// Entries are tagged with the account that chose them. A different account (or signing out)
+/// never sees them; the stale list is erased the next time it is read or written.
+@MainActor
+enum PlanningRecentPlaces {
+    static let limit = 5
+    /// The account whose recents may be shown; `nil` when nobody is signed in (including mock mode).
+    static var owner: UUID?
+    private static let key = "io.pibeebee.c67.recentPlaces.v1"
+    private static let duplicateDistance: CLLocationDistance = 30
+
+    private struct Stored: Codable {
+        var owner: UUID?
+        var places: [PlanningPlace]
+    }
+
+    static func load(from defaults: UserDefaults = .standard) -> [PlanningPlace] {
+        guard let data = defaults.data(forKey: key),
+              let stored = try? JSONDecoder().decode(Stored.self, from: data) else { return [] }
+        guard stored.owner == owner else {
+            defaults.removeObject(forKey: key)
+            return []
+        }
+        return stored.places
+    }
+
+    /// Moves `place` to the top, replacing an earlier entry at nearly the same spot.
+    static func record(_ place: PlanningPlace, in defaults: UserDefaults = .standard) {
+        let point = CLLocation(latitude: place.location.latitude, longitude: place.location.longitude)
+        var places = load(from: defaults).filter { existing in
+            CLLocation(latitude: existing.location.latitude, longitude: existing.location.longitude)
+                .distance(from: point) > duplicateDistance
+        }
+        places.insert(place, at: 0)
+        save(Array(places.prefix(limit)), in: defaults)
+    }
+
+    static func remove(_ place: PlanningPlace, in defaults: UserDefaults = .standard) {
+        save(load(from: defaults).filter { $0.id != place.id }, in: defaults)
+    }
+
+    static func clear(in defaults: UserDefaults = .standard) {
+        defaults.removeObject(forKey: key)
+    }
+
+    private static func save(_ places: [PlanningPlace], in defaults: UserDefaults) {
+        guard !places.isEmpty else { return clear(in: defaults) }
+        guard let data = try? JSONEncoder().encode(Stored(owner: owner, places: places)) else { return }
+        defaults.set(data, forKey: key)
     }
 }

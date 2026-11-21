@@ -91,11 +91,8 @@ struct ItineraryReviewView: View {
                         .background(.regularMaterial, in: .rect(cornerRadius: 16))
                 }
             }
-            .sheet(item: $editRoute) { route in
+            .fullScreenCover(item: $editRoute.only(\.picksPlace)) { route in
                 switch route {
-                case .visit(let place):
-                    ItineraryVisitEditor(place: place, zone: proposal.input.timeZone,
-                                         startsAt: proposal.input.startsAt, orderingOnly: proposal.usesExperienceFlow, update: update)
                 case .addPlace:
                     PlanningSearchSheet(near: presenter.origin, title: "Add a place", select: add)
                 case .startingPoint:
@@ -110,6 +107,17 @@ struct ItineraryReviewView: View {
                         presenter.enginePreferences?.endPointName = place.name
                         regenerate()
                     }
+                case .visit, .tripTime, .estimatedDeparture:
+                    EmptyView()
+                }
+            }
+            .sheet(item: $editRoute.only { !$0.picksPlace }) { route in
+                switch route {
+                case .visit(let place):
+                    ItineraryVisitEditor(place: place, zone: proposal.input.timeZone,
+                                         startsAt: proposal.input.startsAt, orderingOnly: proposal.usesExperienceFlow, update: update)
+                case .addPlace, .startingPoint, .endPoint:
+                    EmptyView()
                 case .estimatedDeparture:
                     if let departure = proposal.estimatedExperienceDeparture {
                         ExperienceDepartureEditor(departure: departure, timeZone: proposal.input.timeZone, update: updateDeparture)

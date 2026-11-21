@@ -20,7 +20,7 @@ struct PreferenceQuestionView: View {
                 skip: skip,
                 supportedRefinements: refinementOptions,
                 selectedRefinements: answers.refinements,
-                toggleRefinement: { value in edit { $0.refinements.formSymmetricDifference([value]) } }
+                toggleRefinement: { value in edit { $0.toggleRefinement(value) } }
             )
         case .popularity:
             PlacePopularityQuestionView(

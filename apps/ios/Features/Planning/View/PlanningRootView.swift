@@ -185,7 +185,7 @@ struct PlanningEditorView: View {
             }
         }
         .toolbar(isProcessingRecommendations ? .hidden : .automatic, for: .navigationBar)
-        .sheet(item: $searchPurpose) { purpose in
+        .fullScreenCover(item: $searchPurpose) { purpose in
             PlanningSearchSheet(near: presenter.origin, title: purpose == .origin ? "Starting point" : "Add a place") { place in
                 if purpose == .origin { location.cancel(); presenter.origin = place.location; presenter.originLabel = place.name }
                 else if presenter.places.count < 6 { presenter.places.append(place) }
@@ -308,44 +308,377 @@ struct PlanningPlaceEditor: View {
     }
 }
 
+/// Map-backed place picker: search with suggestions in a draggable panel, or move the map under a centre pin.
 struct PlanningSearchSheet: View {
+    private enum Panel { case expanded, collapsed }
+
     @State private var search = PlanningPlaceSearch()
+    @State private var completer = PlanningPlaceCompleter()
+    @State private var pinned = PlanningPinnedLocation()
+    @State private var location = PlanningLocation()
+    @State private var camera: MapCameraPosition
+    @State private var panel = Panel.expanded
+    @State private var isMapMoving = false
+    @State private var resolvingCompletion: MKLocalSearchCompletion?
+    @State private var completionFailed = false
+    @State private var dragOffset: CGFloat = 0
+    @State private var mapCenter: CLLocationCoordinate2D?
+    @State private var listHeight: CGFloat = 0
+    @State private var recents: [PlanningPlace] = []
+    @FocusState private var isSearchFocused: Bool
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let near: PlanningPoint?
     let title: String
     let select: (PlanningPlace) -> Void
+
+    init(near: PlanningPoint?, title: String, select: @escaping (PlanningPlace) -> Void) {
+        self.near = near
+        self.title = title
+        self.select = select
+        _camera = State(initialValue: near.map {
+            .region(MKCoordinateRegion(center: .init(latitude: $0.latitude, longitude: $0.longitude),
+                                       latitudinalMeters: 1500, longitudinalMeters: 1500))
+        } ?? .userLocation(fallback: .automatic))
+    }
+
     var body: some View {
         NavigationStack {
-            List {
-                if search.isBusy { ProgressView("Searching places…") }
-                if let error = search.error {
-                    RecoveryNotice(title: "Search unavailable", message: error,
-                                   primary: .init(title: "Try again") { Task { await search.search(near: near) } })
+            GeometryReader { proxy in
+                ZStack(alignment: .bottom) {
+                    map
+                    if panel == .collapsed { centerPin }
+                    searchPanel(maxHeight: proxy.size.height * 0.68)
                 }
-                if search.showsPreviousResults { Text("Previous search results").font(.footnote).foregroundStyle(.secondary) }
-                ForEach(search.results) { place in
-                    Button { select(place); dismiss() } label: {
-                        VStack(alignment: .leading) {
-                            Text(place.name)
-                            if let address = place.address, !address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                Text(address).font(.caption).foregroundStyle(.secondary)
-                            } else {
-                                Text("Address unavailable").font(.caption).foregroundStyle(.secondary)
-                            }
+            }
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+        }
+        .onAppear {
+            recents = PlanningRecentPlaces.load()
+            isSearchFocused = true
+        }
+        .onChange(of: search.query) { _, query in
+            completionFailed = false
+            completer.update(query, near: near)
+        }
+        .onChange(of: location.point) { _, point in
+            guard let point else { return }
+            move(to: point, meters: 500)
+            setPanel(.collapsed)
+        }
+    }
+
+    // MARK: Map
+
+    private var map: some View {
+        Map(position: $camera) { UserAnnotation() }
+            .mapControls { MapCompass() }
+            .onMapCameraChange(frequency: .continuous) { _ in
+                guard panel == .collapsed else { return }
+                isMapMoving = true
+            }
+            .onMapCameraChange(frequency: .onEnd) { context in
+                isMapMoving = false
+                mapCenter = context.region.center
+                guard panel == .collapsed else { return }
+                Task { await pinned.resolve(context.region.center) }
+            }
+            .simultaneousGesture(DragGesture(minimumDistance: 8).onChanged { _ in
+                guard panel == .expanded else { return }
+                setPanel(.collapsed)
+            })
+            .accessibilityLabel("Map")
+    }
+
+    /// The pin marks the map centre; it lifts while the map moves so the landing point stays readable.
+    private var centerPin: some View {
+        Image(systemName: "mappin")
+            .font(.system(size: 34, weight: .semibold))
+            .foregroundStyle(.red)
+            .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
+            .offset(y: isMapMoving && !reduceMotion ? -28 : -17)
+            .animation(reduceMotion ? nil : .spring(duration: 0.25), value: isMapMoving)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+
+    // MARK: Panel
+
+    private func searchPanel(maxHeight: CGFloat) -> some View {
+        VStack(spacing: 12) {
+            Capsule()
+                .fill(AppColor.tertiaryFill)
+                .frame(width: 36, height: 5)
+                .padding(.top, 8)
+                .frame(maxWidth: .infinity, minHeight: 20)
+                .contentShape(.rect)
+                .onTapGesture { setPanel(panel == .expanded ? .collapsed : .expanded) }
+                .accessibilityElement()
+                .accessibilityLabel(panel == .expanded ? "Show map" : "Show search")
+                .accessibilityAddTraits(.isButton)
+            searchField
+            if panel == .expanded {
+                ScrollView {
+                    expandedContent
+                        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { listHeight = $0 }
+                }
+                .scrollDismissesKeyboard(.interactively)
+                .scrollBounceBehavior(.basedOnSize)
+                .frame(height: min(max(listHeight, 1), maxHeight))
+            } else {
+                pinnedCard
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, panel == .collapsed ? 8 : 0)
+        .background {
+            UnevenRoundedRectangle(topLeadingRadius: 24, topTrailingRadius: 24)
+                .fill(AppColor.surface)
+                .shadow(color: .black.opacity(0.12), radius: 16, y: -2)
+                .ignoresSafeArea(edges: .bottom)
+        }
+        .offset(y: dragOffset)
+        .gesture(panelDrag)
+        .tint(AppColor.brand)
+    }
+
+    private var panelDrag: some Gesture {
+        DragGesture(minimumDistance: 12)
+            .onChanged { value in dragOffset = min(max(value.translation.height * 0.5, -40), 240) }
+            .onEnded { value in
+                let distance = value.predictedEndTranslation.height
+                if distance > 80 { setPanel(.collapsed) } else if distance < -80 { setPanel(.expanded) }
+                withAnimation(reduceMotion ? nil : .spring(duration: 0.3)) { dragOffset = 0 }
+            }
+    }
+
+    private var searchField: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "magnifyingglass").foregroundStyle(AppColor.secondaryText)
+            TextField("Search place or address", text: $search.query)
+                .focused($isSearchFocused)
+                .submitLabel(.search)
+                .autocorrectionDisabled()
+                .onSubmit { Task { await search.search(near: near) } }
+                .accessibilityIdentifier("placeSearchField")
+            if !search.query.isEmpty {
+                Button("Clear search", systemImage: "xmark.circle.fill") { search.query = "" }
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(AppColor.secondaryText)
+            }
+        }
+        .padding(.horizontal, 14)
+        .frame(minHeight: 48)
+        .background(AppColor.tertiaryFill, in: .capsule)
+        .simultaneousGesture(TapGesture().onEnded { if panel == .collapsed { setPanel(.expanded) } })
+        .onChange(of: isSearchFocused) { _, focused in
+            if focused, panel == .collapsed { setPanel(.expanded) }
+        }
+    }
+
+    @ViewBuilder private var expandedContent: some View {
+        LazyVStack(alignment: .leading, spacing: 0) {
+            PlaceRow(title: Text("Use current location"), systemImage: "location.fill", tint: AppColor.brand,
+                     isBusy: location.isRequesting) { location.request() }
+                .accessibilityIdentifier("placeUseCurrentLocation")
+            if let error = location.error {
+                Text(error).font(.footnote).foregroundStyle(AppColor.secondaryText).padding(.leading, 52).padding(.bottom, 8)
+            }
+            Divider().padding(.leading, 52)
+            PlaceRow(title: Text("Choose on map"), systemImage: "map") { setPanel(.collapsed) }
+                .accessibilityIdentifier("placeChooseOnMap")
+
+            if search.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                recentPlaces
+            } else if search.hasSearched {
+                searchResults
+            } else if !completer.completions.isEmpty {
+                sectionHeader("Suggestions")
+                if completionFailed {
+                    Text("That suggestion couldn't be opened. Try another one or press Search.")
+                        .font(.footnote).foregroundStyle(AppColor.secondaryText).padding(.bottom, 8)
+                }
+                ForEach(completer.completions, id: \.self) { completion in
+                    PlaceRow(title: Text(completion.title), subtitle: completion.subtitle.isEmpty ? nil : completion.subtitle,
+                             systemImage: "mappin", isBusy: resolvingCompletion == completion) {
+                        choose(completion)
+                    }
+                    .disabled(resolvingCompletion != nil)
+                }
+            }
+        }
+        .padding(.bottom, 24)
+    }
+
+    @ViewBuilder private var searchResults: some View {
+        sectionHeader("Results")
+        if search.isBusy { ProgressView("Searching places…").padding(.vertical, 12) }
+        if let error = search.error {
+            RecoveryNotice(title: "Search unavailable", message: error,
+                           primary: .init(title: "Try again") { Task { await search.search(near: near) } })
+        }
+        ForEach(search.results) { place in
+            let address = place.address?.trimmingCharacters(in: .whitespacesAndNewlines)
+            PlaceRow(title: Text(place.name), subtitle: address?.isEmpty == false ? address : String(localized: "Address unavailable"),
+                     systemImage: "mappin") { finish(with: place) }
+        }
+        if search.results.isEmpty, !search.isBusy, search.error == nil {
+            Text("No places found. Try another name or address, or choose on the map.")
+                .font(.subheadline).foregroundStyle(AppColor.secondaryText).padding(.vertical, 12)
+        }
+    }
+
+    @ViewBuilder private var recentPlaces: some View {
+        if !recents.isEmpty {
+            HStack(alignment: .firstTextBaseline) {
+                sectionHeader("Recent")
+                Spacer()
+                Button("Clear") {
+                    PlanningRecentPlaces.clear()
+                    withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { recents = [] }
+                }
+                .font(.footnote.weight(.semibold))
+                .accessibilityLabel("Clear recent places")
+                .accessibilityIdentifier("placeClearRecents")
+            }
+            ForEach(recents) { place in
+                PlaceRow(title: Text(place.name), subtitle: place.address, systemImage: "clock.arrow.circlepath") {
+                    // A reused place still needs its own identity in the trip it joins.
+                    var fresh = place
+                    fresh.id = UUID()
+                    finish(with: fresh)
+                }
+                .contextMenu {
+                    Button("Remove from recent", systemImage: "trash", role: .destructive) {
+                        PlanningRecentPlaces.remove(place)
+                        withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { recents.removeAll { $0.id == place.id } }
+                    }
+                }
+                .accessibilityIdentifier("placeRecent")
+            }
+        }
+    }
+
+    private func sectionHeader(_ text: LocalizedStringKey) -> some View {
+        Text(text)
+            .font(.footnote.weight(.semibold))
+            .foregroundStyle(AppColor.secondaryText)
+            .padding(.top, 20)
+            .padding(.bottom, 4)
+    }
+
+    private var pinnedCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 12) {
+                Image(systemName: "mappin.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(.red)
+                VStack(alignment: .leading, spacing: 2) {
+                    if isMapMoving || pinned.isResolving || pinned.point == nil {
+                        Text("Finding address…").font(.headline).foregroundStyle(AppColor.secondaryText)
+                        Text("Move the map to place the pin").font(.subheadline).foregroundStyle(AppColor.secondaryText)
+                    } else {
+                        Text(pinned.name ?? String(localized: "Pinned location")).font(.headline).lineLimit(2)
+                        if let address = pinned.address {
+                            Text(address).font(.subheadline).foregroundStyle(AppColor.secondaryText).lineLimit(2)
                         }
                     }
                 }
-                if search.results.isEmpty && !search.isBusy && search.error == nil {
-                    Text(search.hasSearched && !search.query.isEmpty
-                        ? "No places found. Try another name or address."
-                        : "Search for a place or address, then choose the correct result.")
-                        .foregroundStyle(.secondary)
-                }
-            }.navigationTitle(title)
-                .searchable(text: $search.query, prompt: "Place or address")
-                .onSubmit(of: .search) { Task { await search.search(near: near) } }
-                .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+                .accessibilityElement(children: .combine)
+                Spacer(minLength: 0)
+            }
+            Button {
+                guard let place = pinned.place else { return }
+                finish(with: place)
+            } label: {
+                Text("Use this location").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .disabled(isMapMoving || pinned.place == nil)
+            .accessibilityIdentifier("placeConfirmPin")
         }
+        .padding(.top, 4)
+    }
+
+    // MARK: Actions
+
+    private func setPanel(_ next: Panel) {
+        guard next != panel else { return }
+        if next == .collapsed { isSearchFocused = false }
+        withAnimation(reduceMotion ? nil : .spring(duration: 0.32, bounce: 0.12)) { panel = next }
+        if next == .collapsed, pinned.point == nil, let center = currentCenter {
+            Task { await pinned.resolve(center) }
+        }
+    }
+
+    private var currentCenter: CLLocationCoordinate2D? {
+        mapCenter ?? camera.region?.center ?? near.map { .init(latitude: $0.latitude, longitude: $0.longitude) }
+    }
+
+    private func move(to point: PlanningPoint, meters: CLLocationDistance) {
+        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.45)) {
+            camera = .region(MKCoordinateRegion(center: .init(latitude: point.latitude, longitude: point.longitude),
+                                                latitudinalMeters: meters, longitudinalMeters: meters))
+        }
+    }
+
+    private func choose(_ completion: MKLocalSearchCompletion) {
+        resolvingCompletion = completion
+        completionFailed = false
+        Task {
+            defer { resolvingCompletion = nil }
+            guard let place = try? await search.resolve(completion) else {
+                completionFailed = true
+                return
+            }
+            finish(with: place)
+        }
+    }
+
+    private func finish(with place: PlanningPlace) {
+        PlanningRecentPlaces.record(place)
+        select(place)
+        dismiss()
+    }
+}
+
+/// One tappable row in the place picker: icon, title and optional detail.
+private struct PlaceRow: View {
+    let title: Text
+    var subtitle: String?
+    let systemImage: String
+    var tint: Color = AppColor.secondaryText
+    var isBusy = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 14) {
+                ZStack {
+                    Circle().fill(AppColor.tertiaryFill)
+                    if isBusy { ProgressView().controlSize(.small) } else { Image(systemName: systemImage).foregroundStyle(tint) }
+                }
+                .frame(width: 36, height: 36)
+                VStack(alignment: .leading, spacing: 2) {
+                    title.foregroundStyle(AppColor.primaryText).lineLimit(2)
+                    if let subtitle {
+                        Text(subtitle).font(.subheadline).foregroundStyle(AppColor.secondaryText).lineLimit(2)
+                    }
+                }
+                .multilineTextAlignment(.leading)
+                Spacer(minLength: 0)
+            }
+            .padding(.vertical, 10)
+            .frame(minHeight: 56)
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
     }
 }
 
@@ -553,5 +886,18 @@ private enum PlanningTime {
         var style = Date.FormatStyle(date: .abbreviated, time: .shortened)
         style.timeZone = TimeZone(identifier: zone) ?? .current
         return value.formatted(style)
+    }
+}
+
+extension Binding {
+    /// Narrows an optional route binding to the routes `include` accepts, so one route can drive
+    /// a full-screen page while its siblings stay in a sheet. Dismissing clears only an owned route.
+    func only<Route: Sendable>(_ include: @escaping @Sendable (Route) -> Bool) -> Binding<Route?> where Value == Route? {
+        Binding<Route?>(
+            get: { wrappedValue.flatMap { include($0) ? $0 : nil } },
+            set: { next in
+                if let next { wrappedValue = next } else if let current = wrappedValue, include(current) { wrappedValue = nil }
+            }
+        )
     }
 }

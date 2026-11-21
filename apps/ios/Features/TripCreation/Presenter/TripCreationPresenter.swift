@@ -61,7 +61,6 @@ import C67Domain
     var usesV41: Bool { orderingMethod().usesFlexibleSchedule }
     var automaticallySchedules: Bool { planning.supportsOnDevicePlanning && usesV41 }
     var usesFoundationModels: Bool { orderingMethod() == .hybridV42FoundationModels }
-    var hasSixPlaceLimit: Bool { !planning.supportsOnDevicePlanning || orderingMethod().isSchedule }
     var scheduleAssessment: PlanningScheduleAssessment? { planning.firstItineraryJob?.scheduleAssessment }
     var scheduleSummary: String {
         guard let input = planning.draftInput else { return "Choose a trip date" }
@@ -172,10 +171,15 @@ import C67Domain
         path.append(route)
     }
 
+    /// A trip holds at most six places; fewer is fine once the minimum is met.
+    static let maximumPlaces = 6
+    var canAddPlace: Bool { selected.count < Self.maximumPlaces }
+
     func toggle(_ item: RecommendedPlace) {
         error = nil
         if let index = selected.firstIndex(where: { $0.id == item.id }) { selected.remove(at: index) }
-        else { selected.append(item) }
+        else if canAddPlace { selected.append(item) }
+        else { return }
         if let id = mainSpot.placeID, !selected.contains(where: { $0.id == id }) { mainSpot = .automatic; stay = nil }
         syncPlaces()
     }

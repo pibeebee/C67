@@ -7,6 +7,8 @@ struct RecommendationPlaceRow: View {
     let isSelected: Bool
     let isExisting: Bool
     let isDisabled: Bool
+    /// Dimmed because the selection is full; still tappable so the tap can explain why.
+    var isLocked = false
     let action: () -> Void
 
     private var accessibilityValue: String {
@@ -61,10 +63,12 @@ struct RecommendationPlaceRow: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .opacity(isLocked ? 0.45 : 1)
         .disabled(isDisabled || isExisting)
         .accessibilityLabel(item.place.name)
         .accessibilityValue(Text(accessibilityValue))
-        .accessibilityHint(isSelected ? Text("Remove from selection") : Text("Add to selection"))
+        .accessibilityHint(isSelected ? Text("Remove from selection")
+            : isLocked ? Text("Remove a place to add this one.") : Text("Add to selection"))
         .accessibilityIdentifier("recommendation-\(item.id)")
     }
 }

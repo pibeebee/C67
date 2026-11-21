@@ -12,11 +12,11 @@ struct PlacesRecommendationsView: View {
     var requiresOrigin = false
     var origin: PlanningPoint?
     var setOrigin: ((PlanningPlace) -> Void)?
-    /// The older planning editor still follows its existing six-place contract.
-    /// The recommendations-first creation flow leaves this nil.
+    /// The most places this flow accepts; `nil` means no limit.
     var maximumSelection: Int?
-    var showsSixPlaceLimit = false
     var minimumSelection = 1
+    /// Names the selection in the primary button ("Plan with 4 places") once the minimum is met.
+    var countsInNextButton = false
     let load: @MainActor () async -> Void
     let refresh: @MainActor () async -> Void
     let cancel: () -> Void
@@ -29,6 +29,7 @@ struct PlacesRecommendationsView: View {
     @State private var searchAfterDismiss = false
     @State private var retryTask: Task<Void, Never>?
     @State private var showsOriginSearch = false
+    @State private var rejectedSelectionCount = 0
 
     private var canLoadRecommendations: Bool { !requiresOrigin || origin != nil }
 
@@ -43,10 +44,25 @@ struct PlacesRecommendationsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                HStack {
-                    Text("List of \(Text("Places").foregroundStyle(AppColor.accent))")
-                        .font(.title.bold())
-                        .accessibilityAddTraits(.isHeader)
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("List of \(Text("Places").foregroundStyle(AppColor.accent))")
+                            .font(.title.bold())
+                            .accessibilityAddTraits(.isHeader)
+                        // The selection summary sits with the list it describes; the footer keeps one action.
+                        HStack(spacing: 6) {
+                            Text("\(selected.count) places selected")
+                                .foregroundStyle(AppColor.secondaryText)
+                                .contentTransition(.numericText())
+                                .animation(.snappy, value: selected.count)
+                            Text(verbatim: "·")
+                                .foregroundStyle(AppColor.secondaryText)
+                                .accessibilityHidden(true)
+                            Button("My Places") { showsSelected = true }
+                                .fontWeight(.semibold)
+                        }
+                        .font(.subheadline)
+                    }
                     Spacer(minLength: 8)
                     Button("Refresh", systemImage: "arrow.clockwise", action: retry)
                         .labelStyle(.iconOnly)
@@ -125,7 +141,9 @@ struct PlacesRecommendationsView: View {
                     ForEach(batch.places) { item in
                         RecommendationPlaceRow(item: item, userLocation: requiresOrigin ? origin : (usesDeviceLocation ? location.point : previewLocation), isSelected: selectedIDs.contains(item.id),
                                                isExisting: false,
-                                               isDisabled: !selectedIDs.contains(item.id) && maximumSelection.map { selected.count >= $0 } == true) { toggle(item) }
+                                               isDisabled: false, isLocked: isLocked(item)) {
+                        isLocked(item) ? rejectedSelectionCount += 1 : toggle(item)
+                    }
                     }
                 }
                 if batch.synthetic {
@@ -164,28 +182,13 @@ struct PlacesRecommendationsView: View {
         .onDisappear { location.cancel(); retryTask?.cancel(); cancel() }
         .background(AppColor.canvas.ignoresSafeArea())
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            VStack(spacing: 12) {
-                ViewThatFits(in: .horizontal) {
-                    HStack {
-                        Text("\(selected.count) places selected")
-                        Spacer()
-                        Button("My Places") { showsSelected = true }
-                    }
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("\(selected.count) places selected")
-                        Button("My Places") { showsSelected = true }
-                    }
+            VStack(spacing: 10) {
+                PlaceSelectionStatus(count: selected.count, minimum: minimumSelection, maximum: maximumSelection,
+                                     rejectedCount: rejectedSelectionCount, alignment: .center)
+                if let limit = maximumSelection, selected.count > limit {
+                    Button("Review My Places") { showsSelected = true }
                 }
-                if let limit = maximumSelection ?? (showsSixPlaceLimit ? 6 : nil), selected.count >= limit {
-                    Text("This itinerary supports up to \(limit) places.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                    if selected.count > limit { Button("Review My Places") { showsSelected = true } }
-                }
-                if selected.count < minimumSelection {
-                    Text("Choose at least \(minimumSelection) places to continue.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                }
-                QuestionPrimaryButton("Next", action: complete)
+                QuestionPrimaryButton(nextTitle, action: complete)
                     .disabled(selected.count < minimumSelection)
                     .accessibilityIdentifier("recommendationsNext")
             }
@@ -204,7 +207,7 @@ struct PlacesRecommendationsView: View {
                                details: Dictionary(selected.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }),
                                searchForPlace: { searchAfterDismiss = true; showsSelected = false })
         }
-        .sheet(isPresented: $showsOriginSearch) {
+        .fullScreenCover(isPresented: $showsOriginSearch) {
             PlanningSearchSheet(near: origin, title: "Starting point") { place in
                 location.cancel()
                 setOrigin?(place)
@@ -215,10 +218,71 @@ struct PlacesRecommendationsView: View {
         .tint(AppColor.accent)
     }
 
+    private var nextTitle: LocalizedStringKey {
+        countsInNextButton && selected.count >= minimumSelection ? "Plan with \(selected.count) places" : "Next"
+    }
+
+    private func isLocked(_ item: RecommendedPlace) -> Bool {
+        guard let limit = maximumSelection else { return false }
+        return !selectedIDs.contains(item.id) && selected.count >= limit
+    }
+
     private func retry() {
         guard !isLoading, canLoadRecommendations else { return }
         retryTask?.cancel()
         retryTask = Task { await refresh() }
+    }
+}
+
+/// One line under the selection count. Readiness is reached at the minimum; the maximum
+/// is mentioned only when one spot is left or the selection is full, so it never reads as a target.
+struct PlaceSelectionStatus: View {
+    let count: Int
+    let minimum: Int
+    let maximum: Int?
+    var rejectedCount = 0
+    var alignment: Alignment = .leading
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var isFull: Bool { maximum.map { count >= $0 } ?? false }
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
+            if count >= minimum, !isFull {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                    .accessibilityHidden(true)
+            }
+            message
+                .foregroundStyle(isFull ? AppColor.primaryText : AppColor.secondaryText)
+        }
+        .font(.footnote)
+        .multilineTextAlignment(alignment == .center ? .center : .leading)
+        .frame(maxWidth: .infinity, alignment: alignment)
+        .keyframeAnimator(initialValue: CGFloat.zero, trigger: rejectedCount) { line, offset in
+            line.offset(x: reduceMotion ? 0 : offset)
+        } keyframes: { _ in
+            KeyframeTrack {
+                SpringKeyframe(CGFloat(-6), duration: 0.07)
+                SpringKeyframe(CGFloat(6), duration: 0.07)
+                SpringKeyframe(CGFloat(-3), duration: 0.07)
+                SpringKeyframe(CGFloat.zero, duration: 0.12)
+            }
+        }
+        .sensoryFeedback(.warning, trigger: rejectedCount)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("placeSelectionStatus")
+    }
+
+    private var message: Text {
+        if count < minimum {
+            return count == 0 ? Text("Pick at least \(minimum) places") : Text("Pick \(minimum - count) more to start")
+        }
+        if let maximum {
+            if count >= maximum { return Text("That's the most for one trip. Remove one to swap.") }
+            if count == maximum - 1 { return Text("Ready to plan · 1 spot left") }
+        }
+        return Text("Ready to plan · Add more if you like")
     }
 }
 

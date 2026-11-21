@@ -40,10 +40,13 @@ struct TripHomeRootView: View {
         }
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: showsCreation)
         .tint(.blue)
-        .sheet(item: $sheet) { route in
+        .fullScreenCover(item: $sheet.only(\.isFullScreen)) { _ in
+            PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
+        }
+        .sheet(item: $sheet.only { !$0.isFullScreen }) { route in
             switch route {
             case .location:
-                PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
+                EmptyView()
             case .account:
                 if let accountPresenter {
                     AccountView(presenter: accountPresenter, appleOnly: mode == "Pocket • authenticated",

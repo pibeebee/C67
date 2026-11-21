@@ -488,7 +488,7 @@ final class PocketEngineUITests: XCTestCase {
             change.tap()
             let picker = app.navigationBars["Starting point"]
             XCTAssertTrue(picker.waitForExistence(timeout: 5))
-            let search = app.searchFields.firstMatch
+            let search = app.textFields["placeSearchField"]
             XCTAssertTrue(search.waitForExistence(timeout: 5))
             search.tap()
             search.typeText("Blok M MRT Jakarta\n")

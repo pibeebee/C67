@@ -12,12 +12,13 @@ struct AddPlacesView: View {
     var error: String?
     var synthetic = false
     var initiallyFocused = false
-    var hasSixPlaceLimit = false
+    var maximumSelection: Int?
     var origin: PlanningPoint?
     let search: () async -> Void
     let toggle: (RecommendedPlace) -> Void
     let next: () -> Void
     @State private var showsSelected = false
+    @State private var rejectedSelectionCount = 0
     @FocusState private var searchFocused: Bool
 
     private var displayed: [RecommendedPlace] { query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? (results.isEmpty ? selected : results) : results }
@@ -40,7 +41,12 @@ struct AddPlacesView: View {
                                            description: Text(query.isEmpty ? "Search for a place to add it to your trip." : "Try a different name or location."))
                 }
                 ForEach(displayed) { item in
-                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false, origin: origin) { toggle(item) }
+                    let isLocked = maximumSelection.map { !selectedIDs.contains(item.id) && selected.count >= $0 } ?? false
+                    AddPlaceRow(item: item, isSelected: selectedIDs.contains(item.id), isDisabled: false, origin: origin) {
+                        isLocked ? rejectedSelectionCount += 1 : toggle(item)
+                    }
+                    .opacity(isLocked ? 0.45 : 1)
+                    .accessibilityHint(isLocked ? Text("Remove a place to add this one.") : Text(""))
                 }
                 if synthetic {
                     Text("Synthetic place search · demonstration only")
@@ -89,16 +95,10 @@ struct AddPlacesView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("\(selected.count) places selected")
                     .accessibilityIdentifier("placesSelectedCount")
-                if selected.count < 3 {
-                    Text("Choose at least 3 places to continue.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                }
-                if hasSixPlaceLimit {
-                    Text("This itinerary method supports up to six places. Your selections are kept.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                    if selected.count > 6 {
-                        Button("Review My Places") { showsSelected = true }
-                    }
+                PlaceSelectionStatus(count: selected.count, minimum: 3, maximum: maximumSelection,
+                                     rejectedCount: rejectedSelectionCount)
+                if let limit = maximumSelection, selected.count > limit {
+                    Button("Review My Places") { showsSelected = true }
                 }
                 QuestionPrimaryButton("Next") { searchFocused = false; next() }
                     .disabled(selected.count < 3)
