@@ -6,5 +6,6 @@ SUPABASE_HOST =
 SUPABASE_CLIENT_KEY =
 PLANNING_SCHEME = https
 PLANNING_HOST =
+C67_APP_MODE = production
 #include? "Production.local.xcconfig"
 EXCLUDED_SOURCE_FILE_NAMES = $(inherited) ItineraryPreview.xcassets rundowns.json planning-input.json README.md

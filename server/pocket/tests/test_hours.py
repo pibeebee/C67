@@ -1,5 +1,7 @@
 """Synthetic tests only; no remote hours or user credentials."""
 import json, sys, unittest
+from datetime import datetime, timedelta, timezone
+from tempfile import TemporaryDirectory
 from pathlib import Path
 from types import SimpleNamespace
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
@@ -50,24 +52,74 @@ class HoursTests(unittest.TestCase):
 if __name__=='__main__':unittest.main()
 
 class HoursHTTPTests(unittest.TestCase):
-    def test_authenticated_lookup_is_transient(self):
+    def test_authenticated_lookup_returns_only_current_entry_evidence_for_the_owner(self):
         import threading
+        import uuid
         from unittest.mock import patch
         from urllib.request import Request, urlopen
         from urllib.error import HTTPError
-        from server import Handler, ThreadingHTTPServer
-        service=ThreadingHTTPServer(('127.0.0.1',0),Handler)
-        thread=threading.Thread(target=service.serve_forever,daemon=True);thread.start()
-        endpoint=f'http://127.0.0.1:{service.server_address[1]}/v1/hours/lookup'
-        try:
-            def post():
-                return urlopen(Request(endpoint,data=b'{"placeId":"I123A"}',headers={'Content-Type':'application/json'}))
-            with patch.object(Handler,'authorized',return_value=None):
-                with self.assertRaises(HTTPError) as error:post()
-                self.assertEqual(error.exception.code,401)
-            with patch.object(Handler,'authorized',return_value='synthetic-user'), patch('server.HoursProvider') as provider:
-                provider.return_value.lookup.return_value={'status':'unavailable'}
-                with post() as response:self.assertEqual(json.load(response),{'status':'unavailable'})
-                provider.return_value.lookup.assert_called_once_with('I123A')
-        finally:
-            service.shutdown();service.server_close();thread.join()
+        from server import Handler, Jobs, ThreadingHTTPServer
+
+        with TemporaryDirectory() as directory:
+            service = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+            service.jobs = Jobs(directory, None)
+            thread = threading.Thread(target=service.serve_forever, daemon=True)
+            thread.start()
+            endpoint = f'http://127.0.0.1:{service.server_address[1]}/v1/hours/lookup'
+
+            def post(place_id='I123A'):
+                body = json.dumps({'placeId': place_id}).encode()
+                with urlopen(Request(endpoint, data=body, headers={'Content-Type': 'application/json'})) as response:
+                    return json.load(response)
+
+            def save(place_id, *, expired=False, status='supported'):
+                stop_id = str(uuid.uuid4())
+                now = datetime.now(timezone.utc)
+                checked = now - timedelta(days=2)
+                expires = now + timedelta(days=-1 if expired else 1)
+                request = {'places': [{'id': stop_id, 'sourceID': 'apple:' + place_id}]}
+                result = {'resolvedAt': checked.isoformat(), 'records': [{
+                    'placeID': stop_id.upper(), 'status': 'ready',
+                    'venue': {'facts': [{
+                        'field': 'publicAccess', 'status': status, 'value': 'walk_in_with_onsite_registration',
+                        'checkedAt': checked.isoformat(), 'expiresAt': expires.isoformat(),
+                        'sourceURL': 'https://venue.example.test/entry',
+                    }]},
+                }]}
+                with service.jobs.connection() as db:
+                    db.execute("INSERT INTO jobs (id,state,request,result,owner) VALUES (?,?,?,?,?)",
+                               (str(uuid.uuid4()), 'succeeded', json.dumps(request), json.dumps(result), 'synthetic-owner'))
+
+            try:
+                save('I123A')
+                save('I123B', expired=True)
+                save('I123C', status='unsupported')
+                with patch.object(Handler, 'authorized', return_value=None):
+                    with self.assertRaises(HTTPError) as error:
+                        post()
+                    self.assertEqual(error.exception.code, 401)
+                    error.exception.close()
+
+                with patch('server.HoursProvider') as provider:
+                    provider.return_value.lookup.return_value = {'status': 'unavailable'}
+                    with patch.object(Handler, 'authorized', return_value='synthetic-owner'):
+                        self.assertEqual(post(), {'status': 'unavailable', 'entryRule': {
+                            'kind': 'walk_in_with_onsite_registration', 'sourceURL': 'https://venue.example.test/entry',
+                        }})
+                        self.assertEqual(post('I123B'), {'status': 'unavailable'})
+                        self.assertEqual(post('I123C'), {'status': 'unavailable'})
+                        self.assertEqual(post('I123D'), {'status': 'unavailable'})
+                    for caller in ['synthetic-other', 'legacy']:
+                        with patch.object(Handler, 'authorized', return_value=caller):
+                            self.assertEqual(post(), {'status': 'unavailable'})
+                    with patch.object(Handler, 'authorized', return_value='synthetic-owner'):
+                        provider.return_value.lookup.return_value = {'status': 'available', 'hours': record()}
+                        self.assertEqual(post()['hours'], record())
+            finally:
+                service.shutdown()
+                service.server_close()
+                thread.join()
+
+
+if __name__ == '__main__':
+    unittest.main()

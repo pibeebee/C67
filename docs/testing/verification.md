@@ -1,5 +1,71 @@
 # Starter verification
 
+## Closer itinerary map focus — 23 November 2026
+
+The focused mock Pocket UI integration passed on iPhone 18 Pro Simulator (iOS 27.2). It checked zoom, pin recentering, and card tracking while panning. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Anchored itinerary card during map focus — 23 November 2026
+
+The focused mock Pocket UI integration passed on iPhone 18 Pro Simulator (iOS 27.2). It checked that camera recentering stays active and that the compact card moves with the selected pin when the map is panned. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Itinerary map focus motion — 23 November 2026
+
+The focused mock Pocket UI integration passed on iPhone 18 Pro Simulator (iOS 27.2). It checked pin recentering, stable bottom placement across stops, and dismissal. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Itinerary map callout motion — 23 November 2026
+
+The focused mock Pocket integration scenario passed after adding pin-anchored callout transitions on iPhone 18 Pro Simulator (iOS 27.2). It verified opening, dismissal and opening a second pin. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Compact itinerary map pin card — 23 November 2026
+
+The focused Pocket UI integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2) with synthetic data. It verified that the schedule sits beside Open in Maps and that the action is at least 44 points tall. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Simplified itinerary map pin card — 23 November 2026
+
+The focused Pocket UI integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2) with synthetic data. It checked the card’s address and planned visit, the absence of the three removed fields, and the address fallback when switching pins. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Itinerary map pin details — 23 November 2026
+
+The focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2) using synthetic data. It compared the C2 callout's schedule with the itinerary, checked the rendered address, contact, hours and entry rule, then opened another pin with unavailable details. The Pocket HTTP integration also passed with a disposable database, covering authorization, account isolation, place matching and expired evidence. [Task and verification](../tasks/itinerary-map-pin-details.md)
+
+## Itinerary drag target slot — 23 November 2026
+
+One focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2). It moved the last stop to the first position and confirmed the new order. A screenshot captured while holding the drag showed the carried connector and the dashed target outline. [Task and verification](../tasks/itinerary-drag-target-slot.md)
+
+## Separate itinerary visit time row — 23 November 2026
+
+One focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2). It verified the full-width visit-time action below the reorder handle, opened Edit visit by tapping its trailing edge, and confirmed the edited duration on reopening. A Simulator capture showed the chevron at the right edge of the separate row.
+
+## Edit visit duration wheel — 23 November 2026
+
+One focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2). It selected 50 minutes in the native wheel, applied the change with the bottom Update itinerary button, and confirmed 50 minutes on reopening the sheet. [Task and verification](../tasks/itinerary-visit-duration-wheel.md)
+
+## Itinerary stop icons — 23 November 2026
+
+The focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2). Its itinerary capture showed the up/down chevrons on the reorder handle and a right chevron after the editable visit time.
+
+## Before you go preparation card — 23 November 2026
+
+The focused Pocket integration scenario passed on iPhone 18 Pro and iPad Pro 11-inch (M5) Simulators (iOS 27.2). It verified that the production-facing card appeared after Suggested departure in staging, with the synthetic rain tip and the opening-hours reminder. The iPad capture used Dark Mode and accessibility-medium Dynamic Type. [Scope and evidence](../tasks/itinerary-preparation.md)
+
+## Itinerary time labels — 23 November 2026
+
+The focused Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2) with synthetic data. It checked that the itinerary showed a plain visit time range and a driving duration without an approximation symbol.
+
+## Bottom trip actions — 23 November 2026
+
+One Pocket integration scenario passed on iPhone 18 Pro Simulator (iOS 27.2) with synthetic data. Recommendations, Main Spot, Itinerary, and the saved trip matched within one point for primary button width, height, left edge, and bottom edge. The same scenario saved the named trip to Home and reopened it. See the [task and verification](../tasks/align-trip-footer-buttons.md).
+
+## Itinerary checkmark and save to Home — 23 November 2026
+
+The Pocket fixture on iPhone 18 Pro and iPhone 18 Pro Max Simulators (iOS 27.2) verified that the checkmark opens the name dialog and saving displays the named trip in Home. The staging fixture covered cancellation and name validation. The larger-text fixture verified a tappable toolbar button at least 44 points tall. The next-day fixture verified save to Home and the date-edit recovery when starting that saved trip. The same-day fixture reached the first arrival control through “Start your trip today.”
+
+All 158 C67Backend tests passed. See the [task verification](../tasks/itinerary-save-to-home.md) for the other Simulator and formatting results.
+
+## Local iPhone signing — 23 November 2026
+
+Debug builds signed and installed on the paired iPhone 17 using a developer-specific bundle identifier and an existing development profile. Xcode 27.2 also built Debug for Simulator and resolved the TestFlight team, bundle identifier and entitlements for Release. The iPhone was locked during the launch attempt. See the [local signing task](../tasks/local-iphone-signing.md).
+
 ## Travelants 1.0 App Review sign-in
 
 Release candidate `1.0 (202611192232)` enables **App Review Sign-In** for two configured demo emails. The password grant rejects other addresses before making a request and checks the returned email before saving the session. The archive's public configuration was verified against authenticated Pocket, the published privacy URL and disabled external AI. Demo passwords are stored in Keychain on the release Mac.

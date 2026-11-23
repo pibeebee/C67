@@ -19,6 +19,30 @@ struct PreferenceAnswersTests {
         #expect(!answers.canContinueFromInterests)
     }
 
+    @Test("Q1 accepts at most five combined interests and refinements")
+    func interestSelectionLimit() {
+        var answers = PreferenceAnswers()
+        answers.toggle(.foodie)
+        answers.toggle(.nature)
+        answers.toggle(.culture)
+        answers.toggleRefinement("restaurant")
+        answers.toggleRefinement("museum")
+
+        answers.toggle(.art)
+        answers.toggleRefinement("cafe")
+
+        #expect(answers.interestSelectionCount == PreferenceAnswers.maximumInterestSelections)
+        #expect(!answers.interests.contains(.art))
+        #expect(!answers.refinements.contains("cafe"))
+        #expect(!answers.canAddInterestSelection)
+
+        answers.toggle(.nature)
+        answers.toggle(.art)
+
+        #expect(answers.interestSelectionCount == PreferenceAnswers.maximumInterestSelections)
+        #expect(answers.interests.contains(.art))
+    }
+
     @Test("Clearing a step removes only that answer", arguments: PreferenceStep.allCases)
     func clearRemovesOnlyThatAnswer(step: PreferenceStep) {
         var answers = PreferenceAnswers.everythingAnswered

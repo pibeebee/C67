@@ -20,7 +20,7 @@ struct ItineraryStopCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .center, spacing: 10) {
+            HStack(alignment: .center, spacing: 12) {
                 Group {
                     if let asset = details?.photoAsset {
                         Image(asset).resizable().scaledToFill()
@@ -32,23 +32,14 @@ struct ItineraryStopCard: View {
                             .background(.tint.opacity(0.1))
                     }
                 }
-                .frame(width: showsEstimatedTimes ? 72 : 48, height: showsEstimatedTimes ? 72 : 48)
-                .clipShape(.rect(cornerRadius: 8))
+                .frame(width: 44, height: 44)
+                .clipShape(.rect(cornerRadius: 10))
                 .accessibilityHidden(true)
 
-                if isEditable {
-                    Button(action: edit) {
-                        visitSummary
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(showsEstimatedTimes ? "Edit visit length for \(stop.name)" : "Edit visit time for \(stop.name)")
-                    .accessibilityValue(visitRange)
-                    .accessibilityIdentifier("itineraryEdit-\(stop.id)")
-                } else {
-                    visitSummary.accessibilityElement(children: .combine)
-                }
+                placeSummary
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 if let reorderChanged {
-                    Image(systemName: "line.3.horizontal")
+                    Image(systemName: "chevron.up.chevron.down")
                         .foregroundStyle(.secondary)
                         .frame(minWidth: 44, minHeight: 44)
                         .contentShape(.rect)
@@ -72,8 +63,19 @@ struct ItineraryStopCard: View {
                 }
             }
             .padding(.leading, 12)
-            .padding(.top, 10)
-            .padding(.bottom, 8)
+            .padding(.trailing, 4)
+            .padding(.vertical, 10)
+
+            Divider().padding(.horizontal, 12)
+            if isEditable {
+                Button(action: edit) { visitTimeRow }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(showsEstimatedTimes ? "Edit visit length for \(stop.name)" : "Edit visit time for \(stop.name)")
+                    .accessibilityValue(visitRange)
+                    .accessibilityIdentifier("itineraryEdit-\(stop.id)")
+            } else {
+                visitTimeRow
+            }
 
             if !showsEstimatedTimes {
                 Divider()
@@ -94,29 +96,45 @@ struct ItineraryStopCard: View {
                 .padding(12)
             }
         }
-        .background(Color("ItinerarySurface"), in: .rect(cornerRadius: 14))
+        .background(AppColor.surface, in: .rect(cornerRadius: 16))
     }
 
-    private var visitSummary: some View {
-        VStack(alignment: .leading, spacing: 3) {
+    private var placeSummary: some View {
+        VStack(alignment: .leading, spacing: 4) {
             Text(stop.name)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Color.primary)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(.primary)
             Text(details?.category ?? String(localized: "Selected place"))
                 .font(.footnote)
-                .foregroundStyle(.secondary)
-            Label(visitRange, systemImage: isEditable ? "pencil" : "clock")
-                .font(.footnote)
-                .foregroundStyle(Color("ItineraryAction"))
-                .accessibilityIdentifier(showsEstimatedTimes ? "estimatedVisitWindow" : "visitWindow")
+                .foregroundStyle(.primary.opacity(0.72))
         }
+    }
+
+    private var visitTimeRow: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "clock")
+                .accessibilityHidden(true)
+            Text(visitRange)
+                .monospacedDigit()
+                .accessibilityIdentifier(showsEstimatedTimes ? "estimatedVisitWindow" : "visitWindow")
+            Spacer(minLength: 8)
+            if isEditable {
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .frame(width: 24)
+                    .accessibilityHidden(true)
+            }
+        }
+        .font(.subheadline.weight(.semibold))
+        .foregroundStyle(AppColor.accent)
         .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+        .padding(.horizontal, 14)
         .contentShape(.rect)
     }
 
     private var visitRange: String {
         let start = ItineraryFormatting.time(stop.visitStartsAt ?? stop.arrivalAt, zone: zone, locale: locale)
         let end = ItineraryFormatting.time(stop.departureAt, zone: zone, locale: locale)
-        return showsEstimatedTimes ? "≈ \(start)–\(end)" : "\(start)–\(end)"
+        return "\(start)–\(end)"
     }
 }

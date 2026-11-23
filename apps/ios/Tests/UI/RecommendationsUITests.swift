@@ -18,18 +18,17 @@ final class RecommendationsUITests: XCTestCase {
         app.launch()
         XCTAssertTrue(app.buttons["homePlanTrip"].waitForExistence(timeout: 10))
         app.buttons["homePlanTrip"].tap()
-        let search = app.textFields["preferenceSearch"]
+        let search = app.searchFields["preferenceSearch"]
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
         search.typeText("museum")
         let option = app.buttons["pocketLabel-museum"]
         XCTAssertTrue(option.waitForExistence(timeout: 5))
         option.tap()
-        XCTAssertTrue(app.staticTexts["1 selected"].exists)
-        app.buttons["Clear search"].tap()
+        search.buttons["Clear text"].tap()
         XCTAssertTrue(app.buttons["selectedPreference-museum"].waitForExistence(timeout: 5))
         app.buttons["selectedPreference-museum"].tap()
-        XCTAssertTrue(app.staticTexts["0 selected"].exists)
+        XCTAssertTrue(app.buttons["pocketLabel-museum"].waitForExistence(timeout: 5))
     }
 
     @MainActor func testSelectedQuickPickMovesAndReturnsWhenRemoved() {
@@ -45,7 +44,6 @@ final class RecommendationsUITests: XCTestCase {
         quickPick.tap()
         XCTAssertTrue(selected.waitForExistence(timeout: 5))
         XCTAssertFalse(quickPick.exists)
-        XCTAssertTrue(app.staticTexts["1 selected"].exists)
         XCTAssertTrue(app.buttons["Next"].isHittable)
         let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         screenshot.name = "Preferences with a selected interest"
@@ -54,7 +52,6 @@ final class RecommendationsUITests: XCTestCase {
         selected.tap()
         XCTAssertTrue(quickPick.waitForExistence(timeout: 5))
         XCTAssertFalse(selected.exists)
-        XCTAssertTrue(app.staticTexts["0 selected"].exists)
     }
 
     @MainActor func testRecommendationShowsShortAddressAndDistance() {
@@ -65,22 +62,6 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(first.waitForExistence(timeout: 10))
         XCTAssertTrue((first.value as? String ?? "").contains("away"))
         XCTAssertTrue((first.value as? String ?? "").contains("Jl. Cemp. Putih Tim. 12 No.8A"))
-    }
-
-    @MainActor func testSearchIsAvailableFromSelectedPlaces() {
-        let app = XCUIApplication()
-        app.launchArguments = ["--skip-splash"]
-        app.launch()
-        openMockCreation(app, recommendations: true)
-        XCTAssertTrue(app.navigationBars["Recommendations"].waitForExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["Search for a place"].exists)
-        XCTAssertTrue(app.staticTexts["0 places selected"].exists)
-        app.buttons["My Places"].tap()
-        let search = app.buttons["selectedPlacesSearch"]
-        XCTAssertTrue(search.waitForExistence(timeout: 5))
-        search.tap()
-        XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["0 places selected"].exists)
     }
 
     @MainActor func testSelectedPlacesRemoveButtonHasUsableTarget() {
@@ -112,7 +93,7 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Get Recommendations"].waitForExistence(timeout: 5))
         app.buttons["Add Specific Place"].tap()
         XCTAssertTrue(app.navigationBars["Add Specific Place"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.textFields["addPlacesSearch"].exists)
+        XCTAssertTrue(app.searchFields.firstMatch.exists)
         app.buttons["Cancel"].tap()
         XCTAssertTrue(app.buttons["homeAddTrip"].waitForExistence(timeout: 5))
     }
@@ -125,19 +106,28 @@ final class RecommendationsUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Recommendations"].waitForExistence(timeout: 10))
         let candidate = app.buttons["Synthetic tourist attraction 1"]
         XCTAssertTrue(candidate.waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["3 places selected"].exists)
+        XCTAssertFalse(app.staticTexts["Your picks"].exists)
         candidate.tap()
-        XCTAssertTrue(app.staticTexts["4 places selected"].exists)
+        XCTAssertTrue(app.staticTexts["1 places selected"].exists)
         app.buttons["My Places"].tap()
         XCTAssertTrue(app.navigationBars["Places"].waitForExistence(timeout: 5))
         app.buttons["Remove Synthetic tourist attraction 1"].tap()
         app.buttons["Close"].tap()
-        XCTAssertTrue(app.staticTexts["3 places selected"].waitForExistence(timeout: 5))
-        candidate.tap()
+        let picks = app.staticTexts["Your picks"]
+        expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: picks)
+        waitForExpectations(timeout: 5)
+        // The trip needs at least three places before it can be planned.
+        // Picked places move up into "Your picks", so always take the first suggestion still unselected.
+        let unselected = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND value CONTAINS %@",
+                                                          "recommendation-", "Not selected"))
+        for count in 1 ... 3 {
+            unselected.firstMatch.tap()
+            XCTAssertTrue(app.staticTexts["\(count) places selected"].waitForExistence(timeout: 5))
+        }
         app.buttons["recommendationsNext"].tap()
         XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 5))
         app.buttons["Next"].tap()
-        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Here’s your itinerary"].waitForExistence(timeout: 10))
     }
 
     @MainActor func testCanSelectMoreThanThreeAndUndo() {
@@ -160,13 +150,16 @@ final class RecommendationsUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--recommendations-preview", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         app.launch()
-        XCTAssertTrue(app.staticTexts["0 places selected"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["My Places"].isHittable)
+        let first = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "recommendation-")).firstMatch
+        XCTAssertTrue(first.waitForExistence(timeout: 10))
+        XCTAssertTrue(first.isHittable)
         XCTAssertTrue(app.buttons["recommendationsNext"].exists)
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "PLACES LISTS - Accessibility XXXL"
         screenshot.lifetime = .keepAlways
         add(screenshot)
+        first.tap()
+        XCTAssertTrue(app.buttons["My Places"].waitForExistence(timeout: 5))
         app.buttons["My Places"].tap()
         XCTAssertTrue(app.navigationBars["Places"].waitForExistence(timeout: 5))
         app.buttons["Close"].tap()

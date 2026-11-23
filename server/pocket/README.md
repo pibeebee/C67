@@ -33,6 +33,10 @@ or its attribution is unavailable, ordering falls back to Open-Meteo. Weather
 failures do not block an order. Solar calculations do not prove
 viewpoint access, visibility or arrival feasibility. See [integration](../../docs/guides/pocket-engine-integration.md).
 
+## Itinerary map place details
+
+`POST /v1/hours/lookup` returns the configured provider's regular weekly hours for a selected Apple Place ID. If an authenticated traveller already has current, verified visit research for the exact same Apple Place ID, the response can also include the entry rule and its source. The shared read token can only retrieve hours. Looking up details does not start a research job, and an absent entry rule means it has not been verified for this traveller.
+
 ## Legacy timed planning
 
 The maintained service researches the traveller's selected place IDs, names, pins, available addresses and websites at request time. It does not serve or initialize a venue catalog. It is separate from Supabase and the earlier Node planner. Legacy timed trips keep Apple ETA and schedule validation; all Pocket personal trips remain on device.

@@ -37,10 +37,10 @@ struct RecommendedPlace: Identifiable, Equatable, Sendable {
         }
         if meters < 1_000 {
             let rounded = Int((meters / 10).rounded() * 10)
-            return String(localized: "≈ \(rounded) m away")
+            return String(localized: "\(rounded) m away")
         }
         let kilometers = (meters / 1_000).formatted(.number.precision(.fractionLength(1)))
-        return String(localized: "≈ \(kilometers) km away")
+        return String(localized: "\(kilometers) km away")
     }
 
     var poiPresentation: (label: String, symbol: String)? {

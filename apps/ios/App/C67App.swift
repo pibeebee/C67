@@ -206,6 +206,9 @@ private struct PocketAuthenticatedRoot: View {
                     if let oldID = account?.id, oldID != nextAccount?.id {
                         await repositories.suspendOrdering(for: oldID)
                     }
+                    // Recent places are shown only to the account that chose them.
+                    PlanningRecentPlaces.owner = nextAccount?.id
+                    if snapshot.accountDeleted { PlanningRecentPlaces.clear() }
                     account = nextAccount
                     accountDeleted = snapshot.accountDeleted
                     requiresManualAppleRevocation = snapshot.requiresManualAppleRevocation

@@ -54,14 +54,15 @@ struct RecommendationProcessingIllustration: View {
 
 private struct TripProcessingDrive: View {
     let reduceMotion: Bool
+    var car = "LunaProcessingDriveCar"
 
     var body: some View {
         if reduceMotion {
-            TripProcessingDriveScene(turn: 0)
+            TripProcessingDriveScene(turn: 0, car: car)
         } else {
-            TripProcessingDriveScene(turn: 0)
+            TripProcessingDriveScene(turn: 0, car: car)
                 .keyframeAnimator(initialValue: 0.0, repeating: true) { _, turn in
-                    TripProcessingDriveScene(turn: turn)
+                    TripProcessingDriveScene(turn: turn, car: car)
                 } keyframes: { _ in
                     LinearKeyframe(1, duration: 6)
                 }
@@ -69,8 +70,70 @@ private struct TripProcessingDrive: View {
     }
 }
 
+/// The trip-planning wait scene: the blue convertible driving through the city, with rain
+/// falling over it while the forecast is checked. Reduce Motion keeps the car and rain still.
+struct TripPlanningDriveIllustration: View {
+    var raining = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        TripProcessingDrive(reduceMotion: reduceMotion, car: "TripProcessingDriveCarBlue")
+            .overlay(alignment: .bottom) {
+                // Rain starts well above the scene, as in the design, where it falls from the top of the screen.
+                TripProcessingRain(reduceMotion: reduceMotion)
+                    .padding(.top, -110)
+                    .opacity(raining ? 1 : 0)
+                    .animation(.easeInOut(duration: 0.5), value: raining)
+                    .allowsHitTesting(false)
+            }
+            .accessibilityHidden(true)
+    }
+}
+
+/// Teardrops falling from above the scene onto the skyline, fading out above the road.
+private struct TripProcessingRain: View {
+    let reduceMotion: Bool
+    private static let drops: [(x: Double, offset: Double, speed: Double, size: Double)] = (0 ..< 34).map { index in
+        let seed = Double(index)
+        return ((seed * 0.6180339).truncatingRemainder(dividingBy: 1),
+                (seed * 0.3819660).truncatingRemainder(dividingBy: 1),
+                0.85 + (seed * 0.7548776).truncatingRemainder(dividingBy: 1) * 0.4,
+                0.7 + (seed * 0.5698403).truncatingRemainder(dividingBy: 1) * 0.5)
+    }
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion)) { tick in
+            let time = reduceMotion ? 0 : tick.date.timeIntervalSinceReferenceDate
+            Canvas { context, size in
+                let color = Color(red: 0.42, green: 0.64, blue: 0.82)
+                for drop in Self.drops {
+                    let progress = (time * 0.45 * drop.speed + drop.offset).truncatingRemainder(dividingBy: 1)
+                    let center = CGPoint(x: drop.x * size.width * 0.75 + size.width * 0.05,
+                                         y: -10 + progress * size.height * 0.95)
+                    let width = 5.5 * drop.size, height = 10 * drop.size
+                    // A teardrop: round base, pointed top, tilted slightly with the wind.
+                    var tear = Path()
+                    tear.move(to: CGPoint(x: 0, y: -height / 2))
+                    tear.addQuadCurve(to: CGPoint(x: width / 2, y: height * 0.18), control: CGPoint(x: width * 0.45, y: -height * 0.05))
+                    tear.addArc(center: CGPoint(x: 0, y: height * 0.18), radius: width / 2,
+                                startAngle: .degrees(0), endAngle: .degrees(180), clockwise: false)
+                    tear.addQuadCurve(to: CGPoint(x: 0, y: -height / 2), control: CGPoint(x: -width * 0.45, y: -height * 0.05))
+                    let placed = tear.applying(CGAffineTransform(rotationAngle: 0.18).concatenating(
+                        CGAffineTransform(translationX: center.x, y: center.y)))
+                    context.fill(placed, with: .color(color.opacity(0.9)))
+                }
+            }
+        }
+        .mask {
+            LinearGradient(stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.62),
+                                   .init(color: .clear, location: 0.8)], startPoint: .top, endPoint: .bottom)
+        }
+    }
+}
+
 private struct TripProcessingDriveScene: View {
     let turn: Double
+    var car = "LunaProcessingDriveCar"
 
     var body: some View {
         Color.clear
@@ -87,7 +150,7 @@ private struct TripProcessingDriveScene: View {
                             .resizable()
                             .offset(x: sin(angle) * 12 * scale)
                         Image("LunaProcessingDriveRoad").resizable()
-                        Image("LunaProcessingDriveCar")
+                        Image(car)
                             .resizable()
                             .offset(x: carOffset, y: sin(angle * 3) * 1.5 * scale)
 

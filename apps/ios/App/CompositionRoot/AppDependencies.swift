@@ -83,7 +83,8 @@ struct AppDependencies {
             let timesOut = ProcessInfo.processInfo.arguments.contains("--pocket-itinerary-timeout-fixture")
             let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now },
                                                                      firstOrderFailure: timesOut ? .timedOut : nil,
-                                                                     externalAIDisclosure: ProcessInfo.processInfo.arguments.contains("--pocket-privacy-fixture") ? "fixture-v1" : nil)
+                                                                     externalAIDisclosure: ProcessInfo.processInfo.arguments.contains("--pocket-privacy-fixture") ? "fixture-v1" : nil,
+                                                                     includesPinDetails: ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture"))
             let initialInput = ProcessInfo.processInfo.arguments.contains("--without-starting-point") ? nil : input
             return .init(repository: try MockRundownRepository(), planningRepository: repository,
                          planningInitialInput: initialInput, mode: "Pocket • synthetic integration fixture", authentication: nil)

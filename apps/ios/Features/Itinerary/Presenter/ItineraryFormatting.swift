@@ -2,11 +2,13 @@ import Foundation
 import C67Domain
 
 enum ItineraryFormatting {
-    static func drivingEstimate(_ stop: ScheduledPlanningStop) -> String {
+    static func drivingEstimate(_ stop: ScheduledPlanningStop, showsApproximation: Bool = true) -> String {
         let seconds = stop.experienceTravelSeconds
         let minutes = (seconds + 59) / 60
-        if stop.roadDistanceMeters == nil { return String(localized: "≈ \(minutes) min · default") }
-        return String(localized: "≈ \(minutes) min")
+        let duration = String(localized: "\(minutes) min")
+        let estimate = showsApproximation ? "≈ \(duration)" : duration
+        if stop.roadDistanceMeters == nil { return String(localized: "\(estimate) · default") }
+        return estimate
     }
 
     static func date(_ date: Date, zone: String, locale: Locale) -> String {

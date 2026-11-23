@@ -5,6 +5,8 @@ struct PlaceThumbnail: View {
     let imageName: String?
     var size: CGFloat = 48
     var systemImage: String = "mappin.and.ellipse"
+    /// Tile behind the symbol placeholder; pass a surface colour when the thumbnail sits on a grey card.
+    var placeholderBackground: Color = AppColor.tertiaryFill
 
     var body: some View {
         Group {
@@ -17,7 +19,7 @@ struct PlaceThumbnail: View {
                     .font(.title3)
                     .foregroundStyle(AppColor.accent)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(AppColor.tertiaryFill)
+                    .background(placeholderBackground)
             }
         }
         .frame(width: size, height: size)

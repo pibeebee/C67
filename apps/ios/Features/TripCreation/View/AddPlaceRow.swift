@@ -22,7 +22,11 @@ struct AddPlaceRow: View {
                     Text("Full address unavailable").font(.footnote).foregroundStyle(.secondary)
                 }
                 if item.straightLineDistance(from: origin) != nil {
-                    Text(item.distanceDescription(from: origin)).font(.footnote).foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Image(systemName: "mappin").imageScale(.small)
+                        Text(item.distanceDescription(from: origin))
+                    }
+                    .font(.footnote).foregroundStyle(.secondary)
                 }
                 Button("View on map") { showsMap = true }.font(.footnote)
             }

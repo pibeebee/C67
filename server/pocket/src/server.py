@@ -15,7 +15,7 @@ from pathlib import Path
 import shlex
 import shutil
 import sqlite3
-from hours import HoursProvider
+from hours import HoursProvider, PLACE_ID
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -26,7 +26,7 @@ import uuid
 import httpx
 
 from account_deletion import AccountDeletions, AccountDeletionProviders, DeletionRejection
-from resolution import Resolver, stamp
+from resolution import PUBLIC_ENTRY, Resolver, stamp
 from ordering import OrderingResolver, request_context
 
 _parents = Path(__file__).resolve().parents
@@ -279,6 +279,50 @@ class Jobs:
                 self.pending_writes.pop(ident, None)
             return True
 
+    def entry_rule(self, place_id, owner):
+        # The legacy shared read token does not identify a traveller.
+        if owner == "legacy" or self.blocks_owner(owner):
+            return None
+        with self.connection() as db:
+            rows = db.execute("""
+                SELECT record.value
+                FROM jobs
+                JOIN json_each(jobs.request, '$.places') AS place
+                JOIN json_each(jobs.result, '$.records') AS record
+                WHERE jobs.owner = ? AND jobs.state = 'succeeded'
+                  AND json_extract(place.value, '$.sourceID') = ?
+                  AND lower(json_extract(place.value, '$.id')) = lower(json_extract(record.value, '$.placeID'))
+                ORDER BY json_extract(jobs.result, '$.resolvedAt') DESC, jobs.rowid DESC
+                LIMIT 1
+            """, (owner, "apple:" + place_id)).fetchone()
+        if not rows:
+            return None
+        record = json.loads(rows[0])
+        if record.get("status") not in {"ready", "conditional"}:
+            return None
+        venue = record.get("venue") or {}
+        for fact in venue.get("facts", []):
+            kind = fact.get("value")
+            if fact.get("field") != "publicAccess" or fact.get("status") != "supported":
+                continue
+            if not isinstance(kind, str) or kind not in PUBLIC_ENTRY | {"reservation_required", "membership_required", "ticket_required"}:
+                continue
+            try:
+                checked = datetime.fromisoformat(fact["checkedAt"])
+                expires = datetime.fromisoformat(fact["expiresAt"])
+                if not checked <= datetime.now(timezone.utc) < expires:
+                    continue
+                source = urlsplit(fact["sourceURL"])
+                if source.scheme != "https" or not source.hostname or source.username or source.password:
+                    continue
+            except (KeyError, TypeError, ValueError):
+                continue
+            if kind in PUBLIC_ENTRY and (venue.get("hours") or {}).get("reservationRequired") is True:
+                # Older results don't preserve the reservation fact's own source.
+                continue
+            return {"kind": kind, "sourceURL": fact["sourceURL"]}
+        return None
+
     def get(self, ident, owner="legacy"):
         with self.lock:
             with self.connection() as db:
@@ -448,7 +492,13 @@ class Handler(BaseHTTPRequestHandler):
             if self.path == "/v1/hours/lookup":
                 if not isinstance(body, dict) or set(body) != {"placeId"}:
                     raise ValueError("Invalid hours lookup")
-                self.reply(200, HoursProvider().lookup(body["placeId"]))
+                place_id = body["placeId"]
+                result = HoursProvider().lookup(place_id)
+                if isinstance(place_id, str) and len(place_id) <= 64 and PLACE_ID.fullmatch(place_id):
+                    rule = self.server.jobs.entry_rule(place_id, owner)
+                    if rule is not None:
+                        result = {**result, "entryRule": rule}
+                self.reply(200, result)
             elif self.path == "/v1/order":
                 known_methods = {"luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4", "hybrid_v4_2"}
                 if isinstance(body, dict) and isinstance(body.get("orderingMethod"), str) and body["orderingMethod"] not in known_methods:

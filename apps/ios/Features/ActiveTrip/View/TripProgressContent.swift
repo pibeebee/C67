@@ -221,17 +221,19 @@ struct TripProgressContent: View {
     }
 
     private var arrivalButton: some View {
-        Button("I’m here", action: arrive)
-            .buttonStyle(.bordered).buttonBorderShape(.capsule)
-            .frame(maxWidth: .infinity, minHeight: 44)
-            .disabled(isBusy)
+        secondaryAction("I’m here", action: arrive)
             .accessibilityIdentifier("confirmTripArrival")
     }
 
     private var backButton: some View {
-        Button("Back to trip", action: returnToTrip)
+        secondaryAction("Back to trip", action: returnToTrip)
+    }
+
+    private func secondaryAction(_ title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
+        Button(action: action) { Text(title).frame(maxWidth: .infinity) }
             .buttonStyle(.bordered).buttonBorderShape(.capsule)
-            .frame(maxWidth: .infinity, minHeight: 44).disabled(isBusy)
+            .controlSize(.large)
+            .disabled(isBusy)
     }
 
     private func focusRoute() {
@@ -250,11 +252,9 @@ struct TripProgressContent: View {
         LinearGradient(colors: [AppColor.brand, AppColor.brandGradientEnd], startPoint: .bottomLeading, endPoint: .topTrailing)
     }
 
-    private func action(_ title: String, tint: Color = AppColor.brand, action: @escaping () -> Void) -> some View {
-        Button(action: action) { Text(title).frame(maxWidth: .infinity, minHeight: 44) }
-            .buttonStyle(.borderedProminent)
-            .tint(tint).foregroundStyle(.white)
-            .buttonBorderShape(.capsule)
+    private func action(_ title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
+        Button(title, action: action)
+            .buttonStyle(TripPrimaryButtonStyle())
             .disabled(isBusy)
     }
 }
@@ -313,14 +313,13 @@ private struct TripCompletedContent: View {
             .padding(24).frame(maxWidth: 640).frame(maxWidth: .infinity)
         }
         .background(AppColor.canvas)
-        .safeAreaInset(edge: .bottom) {
-            Button(action: done) { Text("Done").frame(maxWidth: .infinity, minHeight: 44) }
-                .buttonStyle(.borderedProminent).buttonBorderShape(.capsule)
-                .frame(maxWidth: 640).padding(.horizontal, 24).padding(.vertical, 12)
-                .background(AppColor.canvas)
+        .bottomActionBar(background: AppColor.canvas) {
+            Button("Done", action: done)
+                .buttonStyle(TripPrimaryButtonStyle())
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
         .accessibilityIdentifier("tripCompletedSummary")
     }
 }

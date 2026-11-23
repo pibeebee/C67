@@ -11,6 +11,14 @@ import C67Domain
         return value.domain == MKErrorDomain && value.code == MKError.Code.placemarkNotFound.rawValue
     }
 
+    static func address(for sourceID: String) async -> String? {
+        guard sourceID.hasPrefix("apple:"),
+              let identifier = MKMapItem.Identifier(rawValue: String(sourceID.dropFirst(6))) else { return nil }
+        let request = MKMapItemRequest(mapItemIdentifier: identifier)
+        guard let item = try? await request.mapItem else { return nil }
+        return item.placemark.title
+    }
+
     func search(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
         let matches = try await find(query, near: origin, pointsOfInterestOnly: false, spanMeters: 40000)
         var combined = matches

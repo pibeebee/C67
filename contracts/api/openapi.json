@@ -3296,11 +3296,20 @@
       "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
       "post": {
         "operationId": "lookupPocketHours",
-        "description": "Authenticated, transient lookup for one selected Apple Place ID. Regular weekly hours are not special-date guarantees; absence and provider errors are distinct. No provider credentials are returned.",
-        "security": [{"pocketReadToken": []}],
+        "description": "Authenticated, transient lookup for one selected Apple Place ID. Regular weekly hours are not special-date guarantees. A traveller may also receive a current, source-attributed entry rule from their own verified visit research. The shared read token has access to hours only.",
+        "security": [{"travellerToken": []}, {"pocketReadToken": []}],
         "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "additionalProperties": false, "required": ["placeId"], "properties": {"placeId": {"type": "string", "pattern": "^I[0-9A-Fa-f]{1,63}$"}}}}}},
         "responses": {
-          "200": {"description": "Lookup status and optional transient weekly hours", "content": {"application/json": {"schema": {"type": "object", "required": ["status"], "properties": {"status": {"type": "string", "enum": ["available", "unavailable", "invalid_place_id", "not_configured", "configuration_error", "temporary_error"]}, "hours": {"type": "object", "description": "Provider data for the matching selected place; regular weekly hours only."}}}}}},
+          "200": {"description": "Lookup status and optional transient weekly hours", "content": {"application/json": {"schema": {"type": "object", "required": ["status"], "properties": {"status": {"type": "string", "enum": ["available", "unavailable", "invalid_place_id", "not_configured", "configuration_error", "temporary_error"]}, "hours": {"type": "object", "description": "Provider data for the matching selected place; regular weekly hours only."},
+                "entryRule": {
+                  "type": "object",
+                  "description": "Optional supported entry rule for this exact Apple Place ID. It may be present independently of hours status.",
+                  "required": ["kind", "sourceURL"],
+                  "properties": {
+                    "kind": {"enum": ["walk_in", "walk_in_with_onsite_registration", "walk_in_with_onsite_ticket", "reservation_required", "membership_required", "ticket_required"]},
+                    "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"}
+                  }
+                }}}}}},
           "401": {"description": "Authentication required"},
           "422": {"description": "Invalid request"},
           "503": {"description": "Authentication unavailable"}

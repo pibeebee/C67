@@ -1,4 +1,9 @@
 // Copy to Development.local.xcconfig. Mock needs no credentials.
+// For a Debug build on your iPhone with your own team, use a bundle ID available to that team.
+// DEVELOPMENT_TEAM[sdk=iphoneos*] = YOUR_TEAM_ID
+// PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*] = com.example.travelants.dev
+// If your team cannot provision Sign in with Apple or WeatherKit, omit app entitlements for this device build.
+// CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*] =
 C67_DATA_MODE = mock
 SUPABASE_SCHEME = http
 SUPABASE_HOST = 127.0.0.1:54321

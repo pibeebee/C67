@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 import C67Domain
 #if DEBUG
     import C67Data
@@ -19,7 +18,6 @@ struct TripHomeRootView: View {
     @State private var areaLookup: Task<Void, Never>?
     @State private var deviceAreaName: String?
     @Environment(\.scenePhase) private var scenePhase
-    @Environment(\.openURL) private var openURL
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(presenter: PlanningPresenter, mode: String, accountPresenter: AccountPresenter?) {
@@ -40,10 +38,13 @@ struct TripHomeRootView: View {
         }
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: showsCreation)
         .tint(.blue)
-        .sheet(item: $sheet) { route in
+        .fullScreenCover(item: $sheet.only(\.isFullScreen)) { _ in
+            PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
+        }
+        .sheet(item: $sheet.only { !$0.isFullScreen }) { route in
             switch route {
             case .location:
-                PlanningSearchSheet(near: presenter.origin, title: "Starting point", select: selectLocation)
+                EmptyView()
             case .account:
                 if let accountPresenter {
                     AccountView(presenter: accountPresenter, appleOnly: mode == "Pocket • authenticated",
@@ -70,11 +71,13 @@ struct TripHomeRootView: View {
         .onChange(of: accountPresenter?.account?.id) { _, _ in accountChanged() }
         .onChange(of: presenter.openTripID) { _, id in
             if let id {
+                let savedTrip = presenter.trips.first { $0.id == id }
+                let opensTrip = presenter.tripToStartID == id || savedTrip?.plan.usesExperienceFlow != true
                 sheet = nil
                 showsCreation = false
                 creation = nil
                 selectedTab = .trip
-                tripPath = [id]
+                tripPath = opensTrip ? [id] : []
                 presenter.openTripID = nil
             }
         }
@@ -107,23 +110,6 @@ struct TripHomeRootView: View {
                                                chooseLocation: chooseLocation, addTrip: addTrip, addSpecificPlace: addSpecificPlace,
                                                isBusy: presenter.isBusy, isLocating: location.isRequesting,
                                                accessibilityLocationTitle: presenter.origin == nil ? nil : presenter.originLabel)
-                                if presenter.origin == nil, !location.isRequesting {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        if location.permissionDenied {
-                                            Text("Location access is off").foregroundStyle(.secondary)
-                                            Button("Open Settings") {
-                                                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
-                                            }
-                                        } else if location.error != nil {
-                                            Text("Couldn’t get your location").foregroundStyle(.secondary)
-                                        }
-                                        Button("Use current location", systemImage: "location") { location.request() }
-                                            .accessibilityIdentifier("homeUseCurrentLocation")
-                                    }
-                                    .font(.subheadline)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 8)
-                                }
                             }
                         }
                         .background(Color("TripCanvas"))

@@ -2,8 +2,8 @@ import SwiftUI
 
 /// Sketch HI-FI `PLACES MAIN COURSE ADD`: where to spend the most time.
 ///
-/// "Let Travelants decide" or one of the chosen places, with a native-style checkmark on the
-/// selection, then Next.
+/// "Let Travelants decide" as a brand hero card, then the chosen places as the alternative in
+/// one grouped card with native-style checkmarks, then Next.
 struct MainSpotQuestionView: View {
     let places: [RecommendedPlace]
     let selection: MainSpotChoice
@@ -25,38 +25,20 @@ struct MainSpotQuestionView: View {
             title: Text("Where do you want to spend the \(QuestionTitle.highlight("most time"))?"),
             contentSpacing: 24
         ) {
-            VStack(alignment: .leading, spacing: 0) {
-                CheckmarkRow(
-                    title: Text("Let Travelants decide"),
-                    subtitle: Text("Adjust based on route and opening hours"),
-                    isSelected: selection == .automatic
-                ) {
-                    select(.automatic)
-                } leading: {
-                    PlaceThumbnail(imageName: nil, size: 48, systemImage: "sparkle")
-                }
-                .padding(.vertical, 5)
-                .accessibilityIdentifier("mainSpotAutomatic")
-
-                ForEach(places) { item in
-                    Divider().padding(.leading, 64)
-                    CheckmarkRow(
-                        title: Text(verbatim: item.place.name),
-                        subtitle: (item.poiPresentation?.label ?? item.category).map { Text(verbatim: $0) },
-                        titleFont: AppFont.headline,
-                        isSelected: selection == .place(item.id)
-                    ) {
-                        select(.place(item.id))
-                    } leading: {
-                        PlaceThumbnail(imageName: nil, size: 48, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
+            VStack(alignment: .leading, spacing: 24) {
+                automaticCard
+                if !places.isEmpty {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Or choose one of your places")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(AppColor.secondaryText)
+                            .padding(.horizontal, 4)
+                            .accessibilityAddTraits(.isHeader)
+                        placesGroup
                     }
-                    .padding(.vertical, 5)
-                    .accessibilityIdentifier("mainSpot-\(item.id)")
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 5)
-            .background(AppColor.surface, in: cardShape)
+            .animation(reduceMotion ? nil : .spring(duration: 0.4, bounce: 0.25), value: selection)
             .sensoryFeedback(.selection, trigger: selection)
         } footer: {
             VStack(spacing: 12) {
@@ -76,6 +58,76 @@ struct MainSpotQuestionView: View {
                 if showsNext { QuestionPrimaryButton("Next", action: next) }
             }
         }
+    }
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var isAutomatic: Bool { selection == .automatic }
+
+    /// The default as a filled brand card. Unselected, it settles to a plain surface card with a
+    /// brand icon tile, so its text stays readable; selecting it floods the card with brand colour.
+    private var automaticCard: some View {
+        Button { select(.automatic) } label: {
+            HStack(spacing: 16) {
+                Image(systemName: "sparkles")
+                    .font(.title2.weight(.semibold))
+                    .foregroundStyle(AppColor.onBrand)
+                    .symbolEffect(.bounce, value: isAutomatic && !reduceMotion)
+                    .frame(width: 52, height: 52)
+                    .background(isAutomatic ? Color.white.opacity(0.18) : AppColor.brand,
+                                in: .rect(cornerRadius: 14, style: .continuous))
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Let Travelants decide")
+                        .font(AppFont.headline)
+                        .foregroundStyle(isAutomatic ? AppColor.onBrand : AppColor.primaryText)
+                    Text("Adjust based on route and opening hours")
+                        .font(.subheadline)
+                        .foregroundStyle(isAutomatic ? AppColor.onBrand.opacity(0.85) : AppColor.secondaryText)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                Image(systemName: isAutomatic ? "checkmark.circle.fill" : "circle")
+                    .font(.title2)
+                    .foregroundStyle(isAutomatic ? AppColor.onBrand : Color(uiColor: .tertiaryLabel))
+                    .contentTransition(.symbolEffect(.replace))
+            }
+            .padding(16)
+            .background {
+                ZStack {
+                    cardShape.fill(AppColor.surface)
+                    cardShape.fill(LinearGradient(colors: [AppColor.brand, AppColor.brandGradientEnd],
+                                                  startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .opacity(isAutomatic ? 1 : 0)
+                }
+            }
+            .scaleEffect(isAutomatic ? 1 : 0.98)
+            .contentShape(cardShape)
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(isAutomatic ? [.isButton, .isSelected] : .isButton)
+        .accessibilityIdentifier("mainSpotAutomatic")
+    }
+
+    private var placesGroup: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(Array(places.enumerated()), id: \.element.id) { index, item in
+                if index > 0 { Divider().padding(.leading, 64) }
+                CheckmarkRow(
+                    title: Text(verbatim: item.place.name),
+                    subtitle: (item.poiPresentation?.label ?? item.category).map { Text(verbatim: $0) },
+                    isSelected: selection == .place(item.id)
+                ) {
+                    select(.place(item.id))
+                } leading: {
+                    PlaceThumbnail(imageName: nil, size: 48, systemImage: item.poiPresentation?.symbol ?? "mappin.and.ellipse")
+                }
+                .padding(.vertical, 5)
+                .accessibilityIdentifier("mainSpot-\(item.id)")
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 5)
+        .background(AppColor.surface, in: cardShape)
     }
 }
 

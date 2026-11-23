@@ -1,6 +1,14 @@
 import C67Domain
 
 enum ItineraryEditRoute: Identifiable {
+    /// Place pickers are full-screen pages; they show a map with their own bottom panel.
+    var picksPlace: Bool {
+        switch self {
+        case .addPlace, .startingPoint, .endPoint: true
+        case .visit, .tripTime, .estimatedDeparture: false
+        }
+    }
+
     case visit(PlanningPlace)
     case addPlace
     case startingPoint

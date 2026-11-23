@@ -96,6 +96,11 @@ Supabase is needed. The server RPCs are already deployed as recorded in the serv
 Configuration defaults remain mock. Debug includes the development override; Release requires its own ignored
 Production.local.xcconfig before distributing a build. Never point reset commands at the homelab.
 
+Each build configuration sets an app mode (`C67_APP_MODE`): **Debug** is `developer`, **Staging** is
+`staging` and **Release** is `production`. Staging uses the Release settings and overrides; build or archive
+it with the **C67 Staging** scheme for TestFlight before a production release. Planner diagnostics on the
+itinerary (Before you go, Opening hours, Trip details and the return leg) appear only in developer builds.
+
 ## 6. UI smoke test
 
 Run the **C67** scheme's Test action in Xcode. The legacy UI smoke test launches `--legacy-catalog`, opens the rundown and saves a mock trip. A new planning walkthrough has not been run in this implementation batch. Keep data mode set to `mock` for these tests. For command-line Simulator tests, use

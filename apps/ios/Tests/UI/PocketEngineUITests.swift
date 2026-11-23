@@ -16,7 +16,7 @@ final class PocketEngineUITests: XCTestCase {
         let useLocation = app.buttons["Use current location"]
         XCTAssertTrue(useLocation.waitForExistence(timeout: 5))
         XCTAssertFalse(app.alerts.firstMatch.exists)
-        XCTAssertFalse(app.buttons["refreshRecommendations"].isEnabled)
+        XCTAssertFalse(app.staticTexts["Pull down to refresh recommendations"].exists)
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "Recommendations starting point"
         screenshot.lifetime = .keepAlways
@@ -82,7 +82,6 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["End point"].waitForExistence(timeout: 5))
         app.navigationBars["End point"].buttons["Cancel"].tap()
         XCTAssertTrue(review.waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Driving times are estimates")).firstMatch.exists)
         XCTAssertFalse(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Synthetic experience order")).firstMatch.exists)
         XCTAssertTrue(app.buttons["itineraryStartNow"].exists)
 
@@ -106,17 +105,12 @@ final class PocketEngineUITests: XCTestCase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [reordered], timeout: 20), .completed)
 
-        let save = app.buttons["Save this trip"]
-        for _ in 0 ..< 5 {
-            if save.exists && save.isHittable { break }
-            itinerary.swipeUp(velocity: .fast)
-        }
-        XCTAssertTrue(save.isHittable, app.debugDescription)
+        let save = toolbarSave(in: app)
         save.tap()
         XCTAssertTrue(app.alerts["Save Itinerary"].waitForExistence(timeout: 5))
         let savedName = app.alerts["Save Itinerary"].textFields.firstMatch.value as? String ?? "My trip"
         app.alerts["Save Itinerary"].buttons["Save"].tap()
-        XCTAssertTrue(app.navigationBars[savedName].waitForExistence(timeout: 10), app.debugDescription)
+        openSavedTripFromHome(named: savedName, in: app)
         XCTAssertTrue(app.staticTexts["Fixture Japanese 1"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Japanese 2"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Unknown Hours"].exists)
@@ -175,39 +169,41 @@ final class PocketEngineUITests: XCTestCase {
     @MainActor func testUnknownActivityDoesNotBlockRecommendation() {
         continueAfterFailure = false
         let app = openFixtureRecommendations()
-        let unknown = app.buttons["Fixture Unknown Hours"]
-        scrollToTripControl(unknown, in: app)
-        unknown.tap()
-        app.buttons["recommendationsNext"].tap()
-        XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
-        app.buttons["Skip"].tap()
+        reviewFixtureTripWithUnknownHours(in: app)
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 15), app.debugDescription)
         XCTAssertFalse(app.navigationBars["Visit availability"].exists)
-        let visit = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "itineraryEdit-")).firstMatch
+        let visit = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                     "itineraryEdit-", "Fixture Unknown Hours")).firstMatch
         XCTAssertTrue(visit.waitForExistence(timeout: 5))
-        XCTAssertTrue((visit.value as? String)?.hasPrefix("≈ ") == true)
+        let visitTime = visit.value as? String ?? ""
+        XCTAssertNotNil(visitTime.range(of: #"^\d{2}:\d{2}–\d{2}:\d{2}$"#, options: .regularExpression))
+        let travel = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "2 min")).firstMatch
+        XCTAssertTrue(travel.exists)
+        _ = toolbarSave(in: app)
         let start = app.buttons["itineraryStartNow"]
         scrollToTripControl(start, in: app)
         start.tap()
-        XCTAssertTrue(app.buttons["confirmTripArrival"].waitForExistence(timeout: 10), app.debugDescription)
+        let confirmSchedule = app.buttons["Start with this schedule"]
+        let arrival = app.buttons["confirmTripArrival"]
+        let started = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in confirmSchedule.isHittable || arrival.exists }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [started], timeout: 10), .completed, app.debugDescription)
+        if confirmSchedule.isHittable { confirmSchedule.tap() }
+        XCTAssertTrue(arrival.waitForExistence(timeout: 10), app.debugDescription)
         capture(app, "Started from the itinerary review")
     }
 
-    @MainActor func testUntimedRenameValidatesNameAndCancelKeepsTheRecommendation() {
+    @MainActor func testItineraryCheckmarkValidatesNameAndSavesToHome() {
         continueAfterFailure = false
-        let app = openFixtureRecommendations(extraArguments: ["-io.pibeebee.c67.orderingMethod", "luna"])
-        let unknown = app.buttons["Fixture Unknown Hours"]
-        app.swipeUp()
-        scrollToTripControl(unknown, in: app)
-        unknown.tap()
-        XCTAssertTrue((unknown.value as? String)?.contains("Added") == true, app.debugDescription)
-        app.buttons["recommendationsNext"].tap()
-        XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 5))
-        app.buttons["Skip"].tap()
-        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 15))
+        let app = openFixtureRecommendations(extraArguments: ["-io.pibeebee.c67.orderingMethod", "luna", "-C67_APP_MODE", "staging"])
+        let footer = reviewFixtureTripWithUnknownHours(in: app)
+        let review = app.navigationBars["Itinerary"]
+        XCTAssertTrue(review.waitForExistence(timeout: 15))
 
-        let save = app.buttons["Save this trip"]
-        scrollToTripControl(save, in: app)
+        let save = toolbarSave(in: app)
+        XCTAssertEqual(save.label, "Save trip")
+        XCTAssertFalse(review.buttons["tripCreationCancel"].exists)
+        XCTAssertFalse(app.buttons["Save this trip"].exists)
+        assertFooterAlignment(app.buttons["itineraryStartNow"], with: footer)
         save.tap()
         let alert = app.alerts["Save Itinerary"]
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
@@ -221,18 +217,183 @@ final class PocketEngineUITests: XCTestCase {
         alert.buttons["Cancel"].tap()
         XCTAssertTrue(app.navigationBars["Itinerary"].exists)
 
-        scrollToTripControl(save, in: app)
         save.tap()
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
         XCTAssertEqual(field.value as? String, originalName)
         replaceTripName(field, with: "Weekend coffee and taman 2026")
         XCTAssertTrue(alert.buttons["Save"].isEnabled)
         alert.buttons["Save"].tap()
-        XCTAssertTrue(app.navigationBars["Weekend coffee and taman 2026"].waitForExistence(timeout: 10))
+        openSavedTripFromHome(named: "Weekend coffee and taman 2026", in: app)
         XCTAssertTrue(app.staticTexts["Fixture Unknown Hours"].exists)
-        scrollToTripControl(save, in: app)
-        XCTAssertEqual(save.label, "Go Trip")
+        let goTrip = app.buttons["Save this trip"]
+        XCTAssertEqual(goTrip.label, "Go Trip")
+        assertFooterAlignment(goTrip, with: footer)
         capture(app, "Untimed exact rename after validation and cancel")
+    }
+
+    @MainActor func testBeforeYouGoUsesForecastBelowDeparture() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: [
+            "-C67_APP_MODE", "staging", "--before-you-go-rain-fixture",
+        ])
+        reviewFixtureTripWithUnknownHours(in: app)
+        _ = toolbarSave(in: app)
+        let departure = app.otherElements["itineraryDeparture"]
+        let heading = app.staticTexts["itineraryPreparationTitle"]
+        XCTAssertTrue(departure.exists)
+        XCTAssertTrue(heading.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertGreaterThanOrEqual(heading.frame.minY, departure.frame.maxY)
+        XCTAssertFalse(app.staticTexts["Schedule diagnostics"].exists)
+        let umbrella = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Pack an umbrella")).firstMatch
+        XCTAssertTrue(umbrella.waitForExistence(timeout: 5), app.debugDescription)
+        let hours = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Check opening hours")).firstMatch
+        scrollToTripControl(hours, in: app)
+        capture(app, "Before you go with a synthetic rain forecast")
+    }
+
+    @MainActor func testItineraryMapPinShowsOnlyPlaceAndVisitDetails() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: ["-C67_APP_MODE", "staging", "--itinerary-pin-details-fixture"])
+        reviewFixtureTripWithUnknownHours(in: app)
+        _ = toolbarSave(in: app)
+        let visit = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                     "itineraryEdit-", "Fixture Japanese 1")).firstMatch
+        let plannedTime = try? XCTUnwrap(visit.value as? String)
+        XCTAssertNotNil(plannedTime)
+        let expand = app.buttons["itineraryExpandMap"]
+        scrollToTripControl(expand, in: app)
+        expand.tap()
+
+        let pin = app.buttons.containing(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                     "itineraryMapStop-", "Fixture Japanese 1")).firstMatch
+        XCTAssertTrue(pin.waitForExistence(timeout: 10), app.debugDescription)
+        let unfocusedPinY = pin.frame.midY
+        let adjacentPin = app.buttons["itineraryMapStop-2"].firstMatch
+        XCTAssertTrue(adjacentPin.exists)
+        let unfocusedSeparation = abs(adjacentPin.frame.midY - unfocusedPinY)
+        XCTAssertGreaterThan(unfocusedSeparation, 20)
+        pin.tap()
+        let title = app.staticTexts["itineraryPinTitle"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertEqual(title.label, "Fixture Japanese 1")
+        XCTAssertEqual(app.staticTexts["itineraryPinAddress"].label, "Synthetic fixture address")
+        let schedule = app.descendants(matching: .any)["itineraryPinSchedule"].firstMatch
+        XCTAssertTrue(schedule.label.contains("45 min"), app.debugDescription)
+        XCTAssertTrue(schedule.label.contains(plannedTime ?? "Missing planned time"))
+        for label in ["Regular hours", "Contact", "Entry rules", "Entry rules source"] {
+            XCTAssertFalse(app.staticTexts[label].exists, app.debugDescription)
+        }
+        let maps = app.buttons["itineraryPinOpenMaps"]
+        XCTAssertTrue(maps.exists)
+        XCTAssertLessThanOrEqual(schedule.frame.maxX, maps.frame.minX)
+        XCTAssertTrue(schedule.frame.minY < maps.frame.maxY && maps.frame.minY < schedule.frame.maxY)
+        XCTAssertGreaterThanOrEqual(maps.frame.height, 44)
+        let focusedPin = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            abs(pin.frame.midY - unfocusedPinY) > 30
+                && abs(pin.frame.midX - app.frame.midX) < 24
+                && abs(pin.frame.midY - app.frame.midY) < 95
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [focusedPin], timeout: 5), .completed, app.debugDescription)
+        let zoomedIn = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            !adjacentPin.exists || abs(adjacentPin.frame.midY - pin.frame.midY) > unfocusedSeparation * 1.25
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [zoomedIn], timeout: 5), .completed, app.debugDescription)
+        let focusedPinY = pin.frame.midY
+        let cardTitleY = title.frame.minY
+        XCTAssertLessThan(abs(cardTitleY - focusedPinY), 215)
+        capture(app, "Itinerary card anchored to the focused pin")
+
+        let panStart = app.coordinate(withNormalizedOffset: .init(dx: 0.08, dy: 0.41))
+        let panEnd = app.coordinate(withNormalizedOffset: .init(dx: 0.08, dy: 0.50))
+        panStart.press(forDuration: 0.05, thenDragTo: panEnd, withVelocity: .slow, thenHoldForDuration: 0)
+        let cardFollowedPin = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let pinMovement = pin.frame.midY - focusedPinY
+            let cardMovement = title.frame.minY - cardTitleY
+            return abs(pinMovement) > 25 && abs(cardMovement - pinMovement) < 15
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [cardFollowedPin], timeout: 5), .completed, app.debugDescription)
+
+        app.buttons["itineraryPinClose"].tap()
+        XCTAssertTrue(title.waitForNonExistence(timeout: 5))
+        let otherPin = app.buttons.containing(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                          "itineraryMapStop-", "Fixture Unknown Hours")).firstMatch
+        otherPin.tap()
+        XCTAssertTrue(title.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertEqual(title.label, "Fixture Unknown Hours")
+        XCTAssertEqual(app.staticTexts["itineraryPinAddress"].label, "Address unavailable")
+        app.buttons["itineraryCloseMap"].tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor func testVisitDurationWheelUpdatesItinerary() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: [
+            "-io.pibeebee.c67.orderingMethod", "luna", "-C67_APP_MODE", "staging",
+        ])
+        reviewFixtureTripWithUnknownHours(in: app)
+        _ = toolbarSave(in: app)
+        let visit = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
+                                                     "itineraryEdit-", "Fixture Japanese 1")).firstMatch
+        scrollToTripControl(visit, in: app)
+        let stopID = visit.identifier.dropFirst("itineraryEdit-".count)
+        let reorder = app.descendants(matching: .any)["itineraryReorder-\(stopID)"]
+        XCTAssertTrue(reorder.exists, app.debugDescription)
+        XCTAssertGreaterThanOrEqual(visit.frame.minY, reorder.frame.maxY)
+        XCTAssertGreaterThanOrEqual(visit.frame.maxX, reorder.frame.maxX)
+        XCTAssertGreaterThanOrEqual(visit.frame.height, 44)
+        capture(app, "Separate itinerary time row")
+        visit.coordinate(withNormalizedOffset: .init(dx: 0.94, dy: 0.5)).tap()
+
+        let editor = app.navigationBars["Edit visit"]
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        let place = app.staticTexts["itineraryVisitPlace"]
+        XCTAssertTrue(place.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertEqual(place.label, "Fixture Japanese 1")
+        let wheel = app.pickerWheels.firstMatch
+        XCTAssertTrue(wheel.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertEqual(wheel.value as? String, "45 min")
+        let update = app.buttons["Update itinerary"]
+        XCTAssertTrue(update.isHittable)
+        XCTAssertGreaterThan(update.frame.minY, wheel.frame.maxY)
+
+        wheel.adjust(toPickerWheelValue: "50 min")
+        XCTAssertEqual(wheel.value as? String, "50 min")
+        capture(app, "Native visit duration wheel and bottom action")
+        update.tap()
+        XCTAssertTrue(editor.waitForNonExistence(timeout: 5))
+        _ = toolbarSave(in: app)
+        scrollToTripControl(visit, in: app)
+        visit.tap()
+        XCTAssertTrue(wheel.waitForExistence(timeout: 5))
+        XCTAssertEqual(wheel.value as? String, "50 min")
+    }
+
+    @MainActor func testItineraryDragMovesLastStopIntoNewSlot() {
+        continueAfterFailure = false
+        let app = openFixtureRecommendations(extraArguments: ["-C67_APP_MODE", "staging"])
+        reviewFixtureTripWithUnknownHours(in: app)
+        _ = toolbarSave(in: app)
+        let itinerary = app.scrollViews["itineraryList"]
+        let handles = itinerary.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@", "itineraryReorder-"))
+        let source = handles.element(boundBy: 2)
+        let target = handles.element(boundBy: 0)
+        for _ in 0 ..< 5 where !source.isHittable {
+            let start = itinerary.coordinate(withNormalizedOffset: .init(dx: 0.97, dy: 0.67))
+            let end = itinerary.coordinate(withNormalizedOffset: .init(dx: 0.97, dy: 0.49))
+            start.press(forDuration: 0.01, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0)
+        }
+        XCTAssertTrue(source.isHittable && target.isHittable, app.debugDescription)
+        let movedLabel = source.label
+        let originalFirstLabel = target.label
+        let destination = target.coordinate(withNormalizedOffset: .init(dx: -1.4, dy: 0.6))
+        source.coordinate(withNormalizedOffset: .init(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.25, thenDragTo: destination, withVelocity: .slow, thenHoldForDuration: 1.5)
+        let reordered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            handles.element(boundBy: 0).label == movedLabel && handles.element(boundBy: 1).label == originalFirstLabel
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [reordered], timeout: 10), .completed, app.debugDescription)
+        _ = toolbarSave(in: app)
+        capture(app, "Itinerary after dropping into the first slot")
     }
 
     @MainActor func testV4CreatesSyntheticItineraryFromSelectedPlaces() {
@@ -275,14 +436,13 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(explanation.waitForExistence(timeout: 5), app.debugDescription)
         XCTAssertTrue(app.staticTexts["Fixture Japanese 1"].exists)
         XCTAssertTrue(app.staticTexts["Fixture Japanese 2"].exists)
-        let save = app.buttons["Save this trip"]
+        let save = toolbarSave(in: app)
         let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-        screenshot.name = "Itinerary automatic tomorrow and pinned save"
+        screenshot.name = "Itinerary automatic tomorrow with toolbar save"
         screenshot.lifetime = .keepAlways
         add(screenshot)
-        XCTAssertTrue(save.isHittable, app.debugDescription)
-        XCTAssertEqual(save.label, "Save your trip for later…")
-        XCTAssertTrue(save.isEnabled)
+        XCTAssertEqual(save.label, "Save trip")
+        XCTAssertFalse(app.buttons["Save this trip"].exists)
         XCTAssertFalse(app.buttons["itineraryStartNow"].exists)
         XCTAssertFalse(app.descendants(matching: .any)["tripPlanningError"].exists)
     }
@@ -339,19 +499,19 @@ final class PocketEngineUITests: XCTestCase {
 
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 20), app.debugDescription)
         XCTAssertFalse(app.buttons["itineraryStartNow"].exists)
+        let checkmark = toolbarSave(in: app)
         capture(app, "Future itinerary before saving")
-        let saveOrStart = app.buttons["Save this trip"]
-        scrollToTripControl(saveOrStart, in: app)
-        saveOrStart.tap()
+        checkmark.tap()
         let save = app.alerts["Save Itinerary"]
         XCTAssertTrue(save.waitForExistence(timeout: 5))
         let tripName = save.textFields.firstMatch.value as? String ?? "My trip"
         save.buttons["Save"].tap()
 
-        XCTAssertTrue(app.navigationBars[tripName].waitForExistence(timeout: 10), app.debugDescription)
-        scrollToTripControl(saveOrStart, in: app)
-        XCTAssertEqual(saveOrStart.label, "Go Trip")
-        saveOrStart.tap()
+        openSavedTripFromHome(named: tripName, in: app)
+        let go = app.buttons["Save this trip"]
+        scrollToTripControl(go, in: app)
+        XCTAssertEqual(go.label, "Go Trip")
+        go.tap()
 
         let editDate = app.buttons["Try again"]
         for _ in 0 ..< 6 where !editDate.isHittable {
@@ -387,11 +547,9 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 25), app.debugDescription)
         XCTAssertFalse(app.buttons["Allow AI assistance for this trip"].exists)
         XCTAssertFalse(app.navigationBars["Trip schedule"].exists)
-        let save = app.buttons["Save this trip"]
-        let footerReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in save.isHittable }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [footerReady], timeout: 5), .completed, app.debugDescription)
+        let save = toolbarSave(in: app)
         XCTAssertGreaterThanOrEqual(save.frame.height, 44)
-        capture(app, "Itinerary with pinned actions at accessibility text size")
+        capture(app, "Itinerary toolbar save at accessibility text size")
     }
 
     @MainActor private func openV4MainSpot(lateDay: Bool = false, method: String = "hybrid_v4") -> XCUIApplication {
@@ -488,7 +646,7 @@ final class PocketEngineUITests: XCTestCase {
             change.tap()
             let picker = app.navigationBars["Starting point"]
             XCTAssertTrue(picker.waitForExistence(timeout: 5))
-            let search = app.searchFields.firstMatch
+            let search = app.searchFields["placeSearchField"]
             XCTAssertTrue(search.waitForExistence(timeout: 5))
             search.tap()
             search.typeText("Blok M MRT Jakarta\n")
@@ -511,7 +669,7 @@ final class PocketEngineUITests: XCTestCase {
             let lookup = app.buttons.matching(identifier: "Search for a place").allElementsBoundByIndex.first(where: \.isHittable)
             let openLookup = try XCTUnwrap(lookup)
             openLookup.tap()
-            let search = app.textFields["addPlacesSearch"]
+            let search = app.searchFields.firstMatch
             XCTAssertTrue(search.waitForExistence(timeout: 5))
             search.tap()
             search.typeText("Taman Bendera Pusaka")
@@ -570,25 +728,61 @@ final class PocketEngineUITests: XCTestCase {
         }
         XCTAssertFalse(app.staticTexts["Places not in this plan"].exists)
         capture(app, "Five selected places with live Luna ordering")
-        let save = app.buttons["Save this trip"]
-        scrollToTripControl(save, in: app)
+        let save = toolbarSave(in: app)
         save.tap()
         XCTAssertTrue(app.alerts["Save Itinerary"].waitForExistence(timeout: 5))
         let field = app.alerts["Save Itinerary"].textFields.firstMatch
         replaceTripName(field, with: "Live order acceptance")
         guard field.value as? String == "Live order acceptance" else { return }
         app.alerts["Save Itinerary"].buttons["Save"].tap()
-        XCTAssertTrue(app.navigationBars["Live order acceptance"].waitForExistence(timeout: 15), app.debugDescription)
+        openSavedTripFromHome(named: "Live order acceptance", in: app)
         for name in selectedNames { XCTAssertTrue(app.staticTexts[name].exists, name) }
         capture(app, "Saved live recommendation without regenerating Luna")
-        scrollToTripControl(save, in: app)
-        XCTAssertEqual(save.label, "Go Trip")
-        save.tap()
+        let go = app.buttons["Save this trip"]
+        scrollToTripControl(go, in: app)
+        XCTAssertEqual(go.label, "Go Trip")
+        go.tap()
         XCTAssertTrue(app.buttons["confirmTripArrival"].waitForExistence(timeout: 10))
         app.buttons["confirmTripArrival"].tap()
         XCTAssertTrue(app.staticTexts["You’ve arrived"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["completeTripVisit"].exists)
         capture(app, "Started live Luna trip and confirmed first arrival")
+    }
+
+    @MainActor private func toolbarSave(in app: XCUIApplication) -> XCUIElement {
+        let save = app.navigationBars["Itinerary"].buttons["itinerarySave"]
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in save.isHittable && save.isEnabled }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 10), .completed, app.debugDescription)
+        return save
+    }
+
+    @MainActor @discardableResult
+    private func reviewFixtureTripWithUnknownHours(in app: XCUIApplication) -> CGRect {
+        for name in ["Fixture Japanese 1", "Fixture Japanese 2", "Fixture Unknown Hours"] {
+            let place = app.buttons[name]
+            if name == "Fixture Unknown Hours" { app.swipeUp() }
+            scrollToTripControl(place, in: app)
+            place.tap()
+            XCTAssertTrue((place.value as? String)?.contains("Added") == true, app.debugDescription)
+        }
+        let recommendationsNext = app.buttons["recommendationsNext"]
+        let footer = recommendationsNext.frame
+        XCTAssertGreaterThanOrEqual(footer.height, 44)
+        recommendationsNext.tap()
+        let next = app.buttons["Next"]
+        XCTAssertTrue(next.waitForExistence(timeout: 5), app.debugDescription)
+        assertFooterAlignment(next, with: footer)
+        next.tap()
+        return footer
+    }
+
+    @MainActor private func assertFooterAlignment(_ action: XCUIElement, with reference: CGRect) {
+        XCTAssertTrue(action.isHittable, action.debugDescription)
+        let frame = action.frame
+        XCTAssertEqual(frame.minX, reference.minX, accuracy: 1, action.label)
+        XCTAssertEqual(frame.maxY, reference.maxY, accuracy: 1, action.label)
+        XCTAssertEqual(frame.width, reference.width, accuracy: 1, action.label)
+        XCTAssertEqual(frame.height, reference.height, accuracy: 1, action.label)
     }
 
     @MainActor func testAuthenticatedAccountExposesItineraryMethods() {

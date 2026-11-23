@@ -8,10 +8,14 @@ struct PlacesSelectionSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(spacing: 14) {
+                // Same card as the Recommendations "Places" sheet.
+                LazyVStack(spacing: 10) {
                     if places.isEmpty { ContentUnavailableView("No places selected", systemImage: "mappin.and.ellipse") }
                     ForEach(places) { item in
-                        AddPlaceRow(item: item, isSelected: true) { remove(item) }
+                        SelectedPlaceCard(place: item.place, detail: item) {
+                            withAnimation(.snappy) { remove(item) }
+                        }
+                        .transition(.opacity.combined(with: .scale(scale: 0.96)))
                     }
                 }
                 .padding(16)

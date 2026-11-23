@@ -73,7 +73,8 @@
         }
 
         public static func repository(storageURL: URL? = nil, jobClock: @escaping @Sendable () -> Date = { .now },
-                                      firstOrderFailure: PlanningError? = nil, externalAIDisclosure: String? = nil) throws -> PocketPlanningRepository {
+                                      firstOrderFailure: PlanningError? = nil, externalAIDisclosure: String? = nil,
+                                      includesPinDetails: Bool = false) throws -> PocketPlanningRepository {
             let interruption = OrderInterruption()
             let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic test; no live weather") },
@@ -83,11 +84,26 @@
                                                       try await interruption.check(id, failure: firstOrderFailure)
                                                       return try experience(input)
                                                   },
-                                                  experience: { inputs, _ in try inputs.map { try experience($0) } })
+                                                  experience: { inputs, _ in try inputs.map { try experience($0) } },
+                                                  hours: includesPinDetails ? Self.pinHours : nil)
             return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL,
                                                 synthetic: true, jobClock: jobClock,
                                                 requiresExternalAIConsent: externalAIDisclosure != nil,
                                                 externalAIDisclosure: externalAIDisclosure)
+        }
+
+        private static func pinHours(_ placeID: String) async -> PlanningHoursLookup {
+            guard placeID == "I123A" else { return .init(status: "unavailable") }
+            let weekly = (1 ... 7).map { ["weekday": $0, "intervals": [["startSeconds": 25200, "endSeconds": 64800]]] }
+            let payload: [String: Any] = ["status": "available",
+                                          "hours": ["placeId": placeID, "timezone": "Asia/Jakarta", "weekly": weekly],
+                                          "entryRule": ["kind": "walk_in_with_onsite_registration",
+                                                        "sourceURL": "https://fixture.invalid/access"]]
+            guard let data = try? JSONSerialization.data(withJSONObject: payload),
+                  let details = try? JSONDecoder().decode(PlanningHoursLookup.self, from: data) else {
+                return .init(status: "temporary_error")
+            }
+            return details
         }
 
         public static func experience(_ input: PlanningInput) throws -> PlanningExperiencePlan {

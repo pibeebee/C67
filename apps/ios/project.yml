@@ -1,4 +1,8 @@
 name: C67
+configs:
+  Debug: debug
+  Staging: release
+  Release: release
 options:
   minimumXcodeGenVersion: 2.44.0
   deploymentTarget:
@@ -44,6 +48,8 @@ targets:
           - CFBundleURLName: io.pibeebee.c67.auth
             CFBundleURLSchemes: [c67]
         C67_DATA_MODE: $(C67_DATA_MODE)
+        C67_APP_MODE: $(C67_APP_MODE)
+        TRAVELANTS_REVIEW_EMAILS: $(TRAVELANTS_REVIEW_EMAILS)
         TRAVELANTS_PRIVACY_POLICY_URL: $(TRAVELANTS_PRIVACY_POLICY_URL)
         TRAVELANTS_AI_RECIPIENT: $(TRAVELANTS_AI_RECIPIENT)
         TRAVELANTS_AI_DISCLOSURE_VERSION: $(TRAVELANTS_AI_DISCLOSURE_VERSION)
@@ -63,11 +69,6 @@ targets:
           UIColorName: TripCanvas
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
-    entitlements:
-      path: C67.entitlements
-      properties:
-        com.apple.developer.applesignin: [Default]
-        com.apple.developer.weatherkit: true
     attributes:
       SystemCapabilities:
         com.apple.SignInWithApple:
@@ -76,6 +77,7 @@ targets:
           enabled: 1
     configFiles:
       Debug: Configuration/Debug.xcconfig
+      Staging: Configuration/Staging.xcconfig
       Release: Configuration/Release.xcconfig
     dependencies:
       - package: C67Backend
@@ -120,3 +122,19 @@ schemes:
       targets:
         - C67AppTests
         - C67UITests
+  C67 Staging:
+    build:
+      targets:
+        C67: all
+    # Run and SwiftUI previews need an unoptimised Debug build; the launch argument switches it to
+    # staging behaviour. Archive (TestFlight) uses the real Staging configuration.
+    run:
+      config: Debug
+      commandLineArguments:
+        "-C67_APP_MODE staging": true
+    profile:
+      config: Staging
+    analyze:
+      config: Staging
+    archive:
+      config: Staging

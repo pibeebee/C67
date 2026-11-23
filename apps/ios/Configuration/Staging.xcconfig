@@ -1,0 +1,4 @@
+// Staging: a Release-optimised build for TestFlight before production.
+// Same servers and local overrides as Release; developer-only screens stay hidden.
+#include "Release.xcconfig"
+C67_APP_MODE = staging

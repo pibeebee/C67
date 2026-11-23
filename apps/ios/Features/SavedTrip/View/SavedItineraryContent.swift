@@ -9,6 +9,7 @@ struct SavedItineraryContent: View {
     var error: String?
     var retry: (() -> Void)?
     var refreshRoute: (() -> Void)?
+    var lookupHours: ((String) async -> PlanningHoursLookup)?
     let primary: () -> Void
 
     private var actionTitle: String {
@@ -23,14 +24,11 @@ struct SavedItineraryContent: View {
     var body: some View {
         ItineraryListView(proposal: trip.plan, details: details, isDesignPreview: isDesignPreview,
                           isSaving: isBusy, error: error, canSave: trip.status != .unknown,
-                          heading: trip.title, actionTitle: actionTitle, allowsEditing: false, navigationTitle: trip.title,
-                          retry: retry, refreshRoute: refreshRoute, edit: { _ in }, save: primary)
+                          heading: trip.title, actionTitle: actionTitle,
+                          completionMessage: trip.status == .completed ? "All \(trip.completedStopIDs.count) visits completed" : nil,
+                          showsPreparation: trip.status == .planned,
+                          allowsEditing: false, navigationTitle: trip.title,
+                          retry: retry, refreshRoute: refreshRoute, lookupHours: lookupHours, edit: { _ in }, save: primary)
             .navigationTitle(trip.title)
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                if trip.status == .completed {
-                    Label("All \(trip.completedStopIDs.count) visits completed", systemImage: "checkmark.circle.fill")
-                        .font(.subheadline).padding().frame(maxWidth: .infinity).background(AppColor.surface)
-                }
-            }
     }
 }

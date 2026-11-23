@@ -168,12 +168,12 @@ final class TripHomeUITests: XCTestCase {
         app.launch()
         let manual = app.buttons["homeLocation"]
         XCTAssertTrue(manual.waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["homeUseCurrentLocation"].isHittable)
+        XCTAssertFalse(app.buttons["homeUseCurrentLocation"].exists)
         XCTAssertFalse(app.alerts.firstMatch.exists)
         capture(app, name: "Home starting point")
         manual.tap()
         XCTAssertTrue(app.navigationBars["Starting point"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.searchFields.firstMatch.exists)
+        XCTAssertTrue(app.searchFields["placeSearchField"].exists)
         XCTAssertFalse(app.alerts.firstMatch.exists)
     }
 
@@ -201,7 +201,7 @@ final class TripHomeUITests: XCTestCase {
 
         app.buttons["homeLocation"].tap()
         XCTAssertTrue(app.navigationBars["Starting point"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.searchFields.firstMatch.exists)
+        XCTAssertTrue(app.searchFields["placeSearchField"].exists)
         app.buttons["Cancel"].tap()
 
         app.buttons["homePlanTrip"].tap()

@@ -18,6 +18,8 @@ struct TripCreationView: View {
     let openPocketSettings: (() -> Void)?
     @State private var isRunningOperation = false
     @State private var operation: Task<Void, Never>?
+    @State private var showsReady = false
+    @State private var readyTask: Task<Void, Never>?
     @State private var showsStartingPointSearch = false
     @State private var scheduleOptions: ScheduleOptions?
     @State private var showsScheduleDetails = false
@@ -35,26 +37,27 @@ struct TripCreationView: View {
             screen(presenter.root)
                 .navigationDestination(for: TripCreationRoute.self) { screen($0) }
         }
-        .fullScreenCover(isPresented: Binding(get: { presenter.isProcessing }, set: { _ in })) {
-            ZStack(alignment: .bottom) {
-                TripProcessingView(advances: false, messageOverride: presenter.planning.progress,
-                                   activity: presenter.planning.activity)
-                if presenter.planning.canCancelPlanning {
-                    Button("Cancel planning", role: .destructive) {
-                        operation?.cancel()
-                        Task { _ = await presenter.planning.cancelPlanning() }
+        .fullScreenCover(isPresented: Binding(get: { presenter.isProcessing || showsReady }, set: { _ in })) {
+            TripProcessingView(messageOverride: presenter.planning.progress, isReady: showsReady)
+                .animation(.smooth(duration: 0.4), value: showsReady)
+                .bottomActionBar(isVisible: !showsReady) {
+                    // Leaving keeps the request running on this device; without on-device planning it just closes.
+                    QuestionPrimaryButton(presenter.planning.supportsOnDevicePlanning ? "Continue Later" : "Cancel") {
+                        operation?.cancel(); dismiss()
                     }
-                    .buttonStyle(.bordered)
-                    .padding(.bottom, 78)
+                    .accessibilityIdentifier("tripProcessingContinueLater")
                 }
-                Button { operation?.cancel(); dismiss() } label: {
-                    Text(presenter.planning.supportsOnDevicePlanning ? "Continue later" : "Cancel")
-                        .frame(minWidth: 44, minHeight: 44)
-                }
-                .buttonStyle(.bordered)
-                .padding(20)
+                .interactiveDismissDisabled()
+        }
+        .onChange(of: presenter.isProcessing) { wasProcessing, isProcessing in
+            // A finished plan lands on review; hold the cover on "All set!" for a beat before revealing it.
+            guard wasProcessing, !isProcessing, presenter.route == .review else { return }
+            showsReady = true
+            readyTask?.cancel()
+            readyTask = Task {
+                try? await Task.sleep(for: .seconds(1.6))
+                showsReady = false
             }
-            .interactiveDismissDisabled()
         }
         .interactiveDismissDisabled(presenter.isProcessing || presenter.planning.isBusy)
         .onChange(of: presenter.planning.sessionGeneration) { _, _ in
@@ -150,7 +153,7 @@ struct TripCreationView: View {
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showsScheduleDetails = false } } }
             }
         }
-        .sheet(isPresented: $showsStartingPointSearch) {
+        .fullScreenCover(isPresented: $showsStartingPointSearch) {
             PlanningSearchSheet(near: presenter.planning.origin, title: "Starting point") { place in
                 presenter.planning.origin = place.location
                 presenter.planning.originLabel = place.name
@@ -174,7 +177,7 @@ struct TripCreationView: View {
                 AddPlacesView(query: $presenter.query, results: presenter.results, selected: presenter.selected,
                               isSearching: presenter.isSearching, hasSearched: presenter.hasSearchedCurrentQuery,
                               showsPreviousResults: presenter.showsPreviousResults, error: presenter.searchError,
-                              synthetic: presenter.mode.hasPrefix("Mock"), hasSixPlaceLimit: presenter.hasSixPlaceLimit,
+                              synthetic: presenter.mode.hasPrefix("Mock"), maximumSelection: TripCreationPresenter.maximumPlaces,
                               origin: presenter.planning.origin, search: { await presenter.search() }, toggle: presenter.toggle) {
                     if presenter.path.contains(.recommendations) { presenter.path.removeLast() }
                     else { presenter.finishChoosingPlaces() }
@@ -191,8 +194,8 @@ struct TripCreationView: View {
                                               presenter.planning.originLabel = place.name
                                               presenter.planning.draftChanged()
                                           },
-                                          showsSixPlaceLimit: presenter.hasSixPlaceLimit,
-                                          minimumSelection: 3,
+                                          maximumSelection: TripCreationPresenter.maximumPlaces,
+                                          minimumSelection: 3, countsInNextButton: true,
                                           load: { await presenter.loadRecommendationsIfNeeded() },
                                           refresh: { _ = await presenter.suggest() }, cancel: presenter.cancelRecommendations,
                                           toggle: presenter.toggle,
@@ -223,13 +226,15 @@ struct TripCreationView: View {
         .disabled(presenter.isProcessing)
         .toolbar(presenter.isProcessing ? .hidden : .automatic, for: .navigationBar)
         .toolbar {
-            if presenter.path.isEmpty {
-                ToolbarItem(placement: .cancellationAction) {
-                    cancelButton
-                }
-            } else {
-                ToolbarItem(placement: .topBarTrailing) {
-                    cancelButton
+            if route != .review || presenter.reviewProposal?.usesExperienceFlow != true {
+                if presenter.path.isEmpty {
+                    ToolbarItem(placement: .cancellationAction) {
+                        cancelButton
+                    }
+                } else {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        cancelButton
+                    }
                 }
             }
         }

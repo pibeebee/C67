@@ -7,6 +7,7 @@ import SwiftUI
 /// white content. Padding follows the symbol: 16 pt vertical, 20 pt horizontal.
 struct ChoiceChipButtonStyle: ButtonStyle {
     var isSelected: Bool
+    @Environment(\.isEnabled) private var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -17,7 +18,7 @@ struct ChoiceChipButtonStyle: ButtonStyle {
             .frame(minHeight: 50)
             .background(isSelected ? AppColor.brand : AppColor.tertiaryFill, in: .capsule)
             .contentShape(.capsule)
-            .opacity(configuration.isPressed ? 0.7 : 1)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.7 : 1) : 0.45)
             .animation(.easeOut(duration: 0.15), value: isSelected)
     }
 }

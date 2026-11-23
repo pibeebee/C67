@@ -80,4 +80,15 @@ extension XCTestCase {
         scrollToTripControl(go, in: app)
         XCTAssertEqual(go.label, "Go Trip")
     }
+
+    @MainActor func openSavedTripFromHome(named name: String, in app: XCUIApplication) {
+        XCTAssertTrue(app.buttons["homeAddTrip"].waitForExistence(timeout: 10), app.debugDescription)
+        XCTAssertFalse(app.navigationBars["Itinerary"].exists)
+        XCTAssertFalse(app.navigationBars[name].exists)
+        XCTAssertFalse(app.buttons["Save this trip"].exists)
+        let trip = app.staticTexts[name]
+        XCTAssertTrue(trip.waitForExistence(timeout: 5), app.debugDescription)
+        trip.tap()
+        XCTAssertTrue(app.navigationBars[name].waitForExistence(timeout: 10), app.debugDescription)
+    }
 }

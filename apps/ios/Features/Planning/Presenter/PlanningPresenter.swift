@@ -5,7 +5,11 @@ import C67Domain
 @MainActor @Observable
 final class PlanningPresenter {
     func openingHours(placeID: String) async -> PlanningHoursLookup {
-        await interactor.repository.openingHours(placeID: placeID)
+        guard !privateAccessBlocked else { return .init(status: "unavailable") }
+        let session = sessionGeneration
+        let result = await interactor.repository.openingHours(placeID: placeID)
+        guard session == sessionGeneration, !privateAccessBlocked else { return .init(status: "unavailable") }
+        return result
     }
     var title = "My trip"
     var origin: PlanningPoint?
@@ -48,7 +52,7 @@ final class PlanningPresenter {
     private(set) var connectionError: String?
     private(set) var isSavingConnection = false
     var openTripID: UUID?
-    private var tripToStartID: UUID?
+    private(set) var tripToStartID: UUID?
     private let interactor: PlanningInteractor
     private var generation = 0
     private var ignoresPreviousPendingJob = false

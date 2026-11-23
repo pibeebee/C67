@@ -20,6 +20,7 @@ struct SavedTripView: View {
                 SavedItineraryContent(trip: trip, isBusy: presenter.isBusy, error: issue?.message,
                                       retry: recovery(for: issue, trip: trip),
                                       refreshRoute: trip.status == .planned && trip.plan.hasExperienceTravelFallback ? { refreshRoute() } : nil,
+                                      lookupHours: trip.status == .planned ? { await presenter.openingHours(placeID: $0) } : nil,
                                       primary: { primary(trip) })
                     .navigationDestination(isPresented: $showsProgress) {
                         TripProgressView(tripID: tripID, presenter: presenter)
@@ -121,6 +122,7 @@ struct SavedTripView: View {
                 }
             }
         }
+        .toolbar(.hidden, for: .tabBar)
     }
 
     private var startIssue: PresentationIssue? {

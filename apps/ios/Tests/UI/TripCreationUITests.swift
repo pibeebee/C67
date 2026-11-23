@@ -5,7 +5,7 @@ final class TripCreationUITests: XCTestCase {
         let app = launch()
         openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
-        let search = app.textFields["addPlacesSearch"]
+        let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
         search.typeText("coffee\n")
@@ -16,7 +16,8 @@ final class TripCreationUITests: XCTestCase {
 
         openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
-        XCTAssertTrue(app.staticTexts["0 places selected"].waitForExistence(timeout: 5))
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.staticTexts["Your picks"].exists)
         search.tap()
         search.typeText("museum\n")
         let newPlace = app.buttons["Add Synthetic museum"]
@@ -32,7 +33,7 @@ final class TripCreationUITests: XCTestCase {
         let app = launch()
         openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
-        let search = app.textFields["addPlacesSearch"]
+        let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
         search.typeText("coffee\n")
@@ -101,28 +102,35 @@ final class TripCreationUITests: XCTestCase {
         let app = launch()
         openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
-        XCTAssertTrue(app.buttons["addPlacesNext"].waitForExistence(timeout: 5))
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("coffee\n")
+        // One place is enough for a specific-place trip.
+        let add = app.buttons["Add Synthetic coffee shop"]
+        XCTAssertTrue(add.waitForExistence(timeout: 8))
+        add.tap()
         app.buttons["addPlacesNext"].tap()
         XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Let Travelants decide")).firstMatch.waitForExistence(timeout: 5))
         XCTAssertFalse(app.buttons["confirmTripInput"].exists)
         app.buttons["Next"].tap()
-        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Here’s your itinerary"].waitForExistence(timeout: 10))
     }
 
     @MainActor func testSpecificPlacesSelectionAndSheet() {
         let app = launch()
         openTripMenu(app)
         app.buttons["Add Specific Place"].tap()
-        XCTAssertTrue(app.textFields["addPlacesSearch"].waitForExistence(timeout: 5))
-        app.textFields["addPlacesSearch"].tap()
-        app.textFields["addPlacesSearch"].typeText("pizza\n")
+        XCTAssertTrue(app.searchFields.firstMatch.waitForExistence(timeout: 5))
+        app.searchFields.firstMatch.tap()
+        app.searchFields.firstMatch.typeText("pizza\n")
         let keyboardDismissed = NSPredicate(format: "exists == false")
         expectation(for: keyboardDismissed, evaluatedWith: app.keyboards.firstMatch)
         waitForExpectations(timeout: 5)
         let add = app.buttons["Add Synthetic pizza place"]
         XCTAssertTrue(add.waitForExistence(timeout: 8))
         add.tap()
-        XCTAssertTrue(app.staticTexts["4 places selected"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["1 places selected"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["addPlacesSelection"].waitForExistence(timeout: 5))
         app.buttons["addPlacesSelection"].tap()
         let remove = app.scrollViews["selectedPlacesList"].buttons["Remove Synthetic pizza place"]

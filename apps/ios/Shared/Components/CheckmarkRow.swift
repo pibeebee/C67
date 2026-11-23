@@ -44,7 +44,9 @@ struct CheckmarkRow<Leading: View>: View {
                 Image(systemName: "checkmark")
                     .font(.body.weight(.semibold))
                     .foregroundStyle(AppColor.accent)
+                    .scaleEffect(isSelected ? 1 : 0.4)
                     .opacity(isSelected ? 1 : 0)
+                    .animation(.spring(duration: 0.35, bounce: 0.45), value: isSelected)
                     .accessibilityHidden(true)
             }
             .frame(minHeight: 44)

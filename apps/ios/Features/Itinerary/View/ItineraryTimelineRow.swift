@@ -2,7 +2,7 @@ import SwiftUI
 import C67Domain
 
 struct ItineraryTimelineRow: View {
-    @ScaledMetric(relativeTo: .caption) private var markerSize = 24
+    let markerSize: CGFloat
     let stop: ScheduledPlanningStop
     let number: Int
     let isLast: Bool
@@ -23,27 +23,31 @@ struct ItineraryTimelineRow: View {
     var isReordering = false
     var moveUp: (() -> Void)? = nil
     var moveDown: (() -> Void)? = nil
+    let cardHeightChanged: (CGFloat) -> Void
+
+    private var railColor: Color { isLifted ? AppColor.accent : .secondary }
 
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
             VStack(spacing: 8) {
                 Text(number, format: .number)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(railColor)
                     .frame(width: markerSize, height: markerSize)
-                    .overlay(Circle().stroke(.secondary, lineWidth: 0.7))
+                    .overlay(Circle().stroke(railColor, lineWidth: 0.7))
                     .padding(.top, 22)
                     .accessibilityLabel("Stop \(number)")
                 if !isLast {
                     Spacer(minLength: 0)
-                    Path { path in
-                        path.move(to: .zero)
-                        path.addLine(to: CGPoint(x: 0, y: 20))
-                    }
-                    .stroke(.secondary, style: StrokeStyle(lineWidth: 1, dash: [2, 4]))
-                    .frame(width: 1, height: 20)
-                    .padding(.vertical, 4)
-                    .accessibilityHidden(true)
+                    connector(height: 20, lineWidth: 1)
+                        .padding(.vertical, 4)
+                        .opacity(isLifted ? 0 : 1)
+                }
+            }
+            .overlay(alignment: .top) {
+                if isLifted {
+                    connector(height: 36, lineWidth: 1.5)
+                        .padding(.top, 22 + markerSize + 5)
                 }
             }
             VStack(alignment: .leading, spacing: 0) {
@@ -51,11 +55,12 @@ struct ItineraryTimelineRow: View {
                                   showsEstimatedTimes: orderingOnly, symbol: symbol,
                                   reorderChanged: reorderChanged, reorderEnded: reorderEnded, reorderCancelled: reorderCancelled,
                                   moveUp: moveUp, moveDown: moveDown)
+                    .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { cardHeightChanged($0) }
                     .shadow(color: .black.opacity(isLifted ? 0.25 : 0), radius: 10, y: 5)
                 if let nextStop {
                     Label {
                         if orderingOnly {
-                            Text(ItineraryFormatting.drivingEstimate(nextStop) + (nextDistance.map { " · " + $0 } ?? ""))
+                            Text(ItineraryFormatting.drivingEstimate(nextStop, showsApproximation: false) + (nextDistance.map { " · " + $0 } ?? ""))
                         } else {
                             let minutes = String(localized: "\(nextStop.travelSeconds / 60) min")
                             Text(minutes + (nextDistance.map { " · " + $0 } ?? ""))
@@ -73,5 +78,16 @@ struct ItineraryTimelineRow: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func connector(height: CGFloat, lineWidth: CGFloat) -> some View {
+        Path { path in
+            path.move(to: CGPoint(x: 1, y: 0))
+            path.addLine(to: CGPoint(x: 1, y: height))
+        }
+        .stroke(railColor, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, dash: [2, 4]))
+        .frame(width: 2, height: height)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }

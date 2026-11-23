@@ -48,7 +48,7 @@ final class ItineraryUITests: XCTestCase {
         scrollTo(addPlace, in: app)
         addPlace.tap()
         XCTAssertTrue(app.navigationBars["Add a place"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.searchFields.firstMatch.exists)
+        XCTAssertTrue(app.searchFields["placeSearchField"].exists)
         app.navigationBars["Add a place"].buttons["Cancel"].tap()
         let save = app.buttons["Save this trip"]
         scrollTo(save, in: app)

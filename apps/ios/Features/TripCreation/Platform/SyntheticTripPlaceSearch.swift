@@ -37,8 +37,15 @@ import C67Domain
     @MainActor final class PocketFixtureTripPlaceSearch: TripPlaceSearching {
         func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
             try Task.checkCancellation()
-            return try PocketIntegrationFixture.searchablePlaces().map {
-                RecommendedPlace(place: $0, category: "Synthetic fixture")
+            let includesPinDetails = ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture")
+            return try PocketIntegrationFixture.searchablePlaces().map { item in
+                var place = item
+                if includesPinDetails, place.name == "Fixture Japanese 1" {
+                    place.sourceID = "apple:I123A"
+                    place.address = "Synthetic fixture address"
+                    place.phoneNumber = "+62 21 XXXX XXXX"
+                }
+                return RecommendedPlace(place: place, category: "Synthetic fixture")
             }
         }
 

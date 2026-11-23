@@ -53,9 +53,43 @@ public struct PlanningRegularHours: Decodable, Sendable {
 }
 
 public struct PlanningHoursLookup: Decodable, Sendable {
+    public struct EntryRule: Decodable, Sendable {
+        public enum Kind: String, Decodable, Sendable {
+            case walkIn = "walk_in"
+            case onsiteRegistration = "walk_in_with_onsite_registration"
+            case onsiteTicket = "walk_in_with_onsite_ticket"
+            case reservation = "reservation_required"
+            case membership = "membership_required"
+            case ticket = "ticket_required"
+        }
+
+        public let kind: Kind
+        public let sourceURL: URL
+
+        public init(kind: Kind, sourceURL: URL) {
+            self.kind = kind
+            self.sourceURL = sourceURL
+        }
+    }
+
     public let status: String
     public let hours: PlanningRegularHours?
-    public init(status: String, hours: PlanningRegularHours? = nil) { self.status = status; self.hours = hours }
+    public let entryRule: EntryRule?
+
+    public init(status: String, hours: PlanningRegularHours? = nil, entryRule: EntryRule? = nil) {
+        self.status = status
+        self.hours = hours
+        self.entryRule = entryRule
+    }
+
+    private enum CodingKeys: String, CodingKey { case status, hours, entryRule }
+
+    public init(from decoder: any Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        status = try values.decode(String.self, forKey: .status)
+        hours = try values.decodeIfPresent(PlanningRegularHours.self, forKey: .hours)
+        entryRule = try? values.decode(EntryRule.self, forKey: .entryRule)
+    }
 }
 
 /// Typical visit times used as a preference when a venue's hours cannot be verified.
