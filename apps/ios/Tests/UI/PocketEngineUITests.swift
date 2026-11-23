@@ -261,7 +261,13 @@ final class PocketEngineUITests: XCTestCase {
         let plannedTime = try? XCTUnwrap(visit.value as? String)
         XCTAssertNotNil(plannedTime)
         let expand = app.buttons["itineraryExpandMap"]
-        scrollToTripControl(expand, in: app)
+        let itinerary = app.scrollViews["itineraryList"]
+        for _ in 0 ..< 8 where !expand.isHittable {
+            let start = itinerary.coordinate(withNormalizedOffset: .init(dx: 0.02, dy: 0.68))
+            let end = itinerary.coordinate(withNormalizedOffset: .init(dx: 0.02, dy: 0.36))
+            start.press(forDuration: 0.01, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0)
+        }
+        XCTAssertTrue(expand.isHittable, app.debugDescription)
         expand.tap()
 
         let pin = app.buttons.containing(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@",
@@ -580,15 +586,12 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["v51ScheduleDecision"].waitForExistence(timeout: 5), app.debugDescription)
         XCTAssertTrue(app.staticTexts["Direct sunlight (W/m²): unavailable"].exists, app.debugDescription)
         capture(app, "v5.1 outdoor schedule decision")
-        let save = app.buttons["Save this trip"]
-        scrollToTripControl(save, in: app)
-        XCTAssertTrue(save.isHittable)
-        save.tap()
+        toolbarSave(in: app).tap()
         let dialog = app.alerts["Save Itinerary"]
         XCTAssertTrue(dialog.waitForExistence(timeout: 5))
         let title = dialog.textFields.firstMatch.value as? String ?? ""
         dialog.buttons["Save"].tap()
-        XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 10), app.debugDescription)
+        openSavedTripFromHome(named: title, in: app)
     }
 
     @MainActor func testOpeningHoursExperimentTimeToItinerary() async throws {
