@@ -81,10 +81,12 @@ struct AppDependencies {
             let lateJobTime = ProcessInfo.processInfo.arguments.contains("--pocket-late-day-fixture")
                 ? PocketIntegrationFixture.lateDay() : nil
             let timesOut = ProcessInfo.processInfo.arguments.contains("--pocket-itinerary-timeout-fixture")
+            let hoursPort = ProcessInfo.processInfo.environment["C67_SYNTHETIC_HOURS_PORT"].flatMap(Int.init)
             let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now },
                                                                      firstOrderFailure: timesOut ? .timedOut : nil,
                                                                      externalAIDisclosure: ProcessInfo.processInfo.arguments.contains("--pocket-privacy-fixture") ? "fixture-v1" : nil,
-                                                                     includesPinDetails: ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture"))
+                                                                     includesPinDetails: ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture"),
+                                                                     hoursPort: hoursPort)
             let initialInput = ProcessInfo.processInfo.arguments.contains("--without-starting-point") ? nil : input
             return .init(repository: try MockRundownRepository(), planningRepository: repository,
                          planningInitialInput: initialInput, mode: "Pocket • synthetic integration fixture", authentication: nil)

@@ -170,7 +170,7 @@ struct ItineraryReviewView: View {
     }
 
     private func add(_ place: PlanningPlace) {
-        guard proposal.usesExperienceFlow || presenter.places.count < 6, !presenter.isBusy else { return }
+        guard (!proposal.effectiveOrderingMethod.isSchedule && proposal.usesExperienceFlow) || presenter.places.count < 6, !presenter.isBusy else { return }
         presenter.places.append(place)
         regenerate()
     }
@@ -195,7 +195,9 @@ struct ItineraryReviewView: View {
     }
 
     private func regenerate() {
-        let previousDeparture = !proposal.usesExperienceFlow ? nil : proposal.departureAt
+        let upgradesSchedule = proposal.effectiveOrderingMethod.replacesLegacyV42 && presenter.supportsOnDevicePlanning
+        let previousDeparture = proposal.usesExperienceFlow && !upgradesSchedule ? proposal.departureAt : nil
+        if upgradesSchedule { presenter.enginePreferences?.orderingMethod = .hybridV52 }
         presenter.draftChanged()
         Task {
             await presenter.request(reviewing: true)

@@ -29,6 +29,23 @@ actor V41RouteSession {
     private let reserve: @Sendable (Int) async throws -> Void
     private let candidateLimit: Int
     private var candidates = 0
+    private var reservationError: (any Error)?
+
+    func checkReservation() throws {
+        if let reservationError { throw reservationError }
+    }
+
+    func quote(_ from: PlanningPoint, _ to: PlanningPoint, _ minute: Int) async throws -> V4Quote {
+        func key(for point: PlanningPoint) -> String? {
+            if point == input.origin { return "origin" }
+            if point == input.planningEndpoint { return "endpoint" }
+            return input.places.first { $0.location == point }?.id.uuidString
+        }
+        guard let fromID = key(for: from), let toID = key(for: to) else {
+            return .init(minutes: nil, meters: nil, status: "missing_point")
+        }
+        return try await quote(fromID, toID, minute)
+    }
 
     init(input: PlanningInput, services: PocketPlanningServices, limit: Int = 72, maximumSeconds: Double = 90,
          candidateLimit: Int = 500, initialCalls: Int = 0, reserve: @escaping @Sendable (Int) async throws -> Void = { _ in }) {
@@ -69,7 +86,13 @@ actor V41RouteSession {
         if let stopReason { return .init(minutes: nil, meters: nil, status: stopReason) }
         firstCallAt = firstCallAt ?? .now
         calls += 1
-        try await reserve(calls)
+        try checkReservation()
+        do { try await reserve(calls) }
+        catch {
+            reservationError = error
+            stopReason = "route_reservation_failed"
+            throw error
+        }
         try Task.checkCancellation()
         let pair = Pair(from: from, to: to)
         let value: V4Quote

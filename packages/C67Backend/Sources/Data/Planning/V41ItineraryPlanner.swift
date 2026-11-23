@@ -23,12 +23,13 @@ struct V41ItineraryPlanner: Sendable {
         let rollover = inputs.count == 1 ? rolloverInput(job, current: inputs[0]) : nil
         let canEstimateDuration = job.input.enginePreferences?.automaticFirstPlan == true
         let method = job.input.enginePreferences?.orderingMethod ?? .hybridV41
-        let v42 = method.usesV42Scheduler
+        let v42 = method.replacesLegacyV42
         let onDevice = method == .hybridV42FoundationModels
         let experience = onDevice ? services.foundationExperience : services.experience
         let requestID = job.command?.requestID ?? job.id
         let started = ContinuousClock.now
-        async let prefetchedHours = v42 ? prepareHours(for: job.input.places, requestID: requestID) : [:]
+        let usesBatchHours = method == .hybridV52 && services.batchHours != nil
+        async let prefetchedHours = v42 ? prepareHours(for: job.input.places, requestID: requestID, batch: usesBatchHours) : [:]
         var lookupBySource: [String: PlanningHoursLookup]?
         var comparedDates = false
         var dates: [PlanningDateAssessment] = []
@@ -117,13 +118,13 @@ struct V41ItineraryPlanner: Sendable {
                 }
                 if lookupBySource == nil {
                     if v42 { await PocketPlanningActivity.show(.openingHours) }
-                    lookupBySource = await prefetchedHours
+                    lookupBySource = try await prefetchedHours
                 }
                 try Task.checkCancellation()
                 let prefetched = lookupBySource ?? [:]
                 // A failed early lookup can recover by the time the route is ready.
-                preparedHours = prefetched.filter { $0.value.status != "temporary_error" }
-                lookupBySource = preparedHours.filter { ["available", "unavailable"].contains($0.value.status) }
+                preparedHours = usesBatchHours ? prefetched : prefetched.filter { $0.value.status != "temporary_error" }
+                lookupBySource = usesBatchHours ? preparedHours : preparedHours.filter { ["available", "unavailable"].contains($0.value.status) }
                 var proposal = try await schedule(input, semantic: semantic, routes: routes, preparedHours: preparedHours, requestID: requestID, includesAlternatives: rollover == nil)
                 if semantic == nil, assistance == .requested {
                     proposal.scheduleAssessment?.unresolved.append(.init(code: "semantic_unavailable"))
@@ -215,11 +216,17 @@ struct V41ItineraryPlanner: Sendable {
         let started = ContinuousClock.now
         let phase = method == .hybridV42FoundationModels ? "foundation_models_inference" : "luna_round_trip"
         defer { Self.logPhase(phase, since: started, requestID: requestID, modelRequestID: id) }
-        let plans = try await experience(inputs, id)
+        let providerMethod: PlanningOrderingMethod = method.usesV5Scheduler ? .hybridV42 : method
+        let providerInputs = inputs.map { input in
+            var input = input
+            input.enginePreferences?.orderingMethod = providerMethod
+            return input
+        }
+        let plans = try await experience(providerInputs, id)
         guard plans.count == inputs.count else { throw PlanningError.invalidResponse }
-        return try zip(zip(keys, inputs), plans).map { context, plan in
+        return try zip(zip(keys, providerInputs), plans).map { context, plan in
             let (key, input) = context
-            try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: method)
+            try PocketOrderCodec.validateMethod(plan.orderingMethod, expected: providerMethod)
             return .init(contextKey: key, plan: try plan.validated(for: input))
         }
     }
@@ -237,16 +244,19 @@ struct V41ItineraryPlanner: Sendable {
         return error == .invalidResponse || error == .failed("ORDER_GENERATION_FAILED")
     }
 
-    private func prepareHours(for places: [PlanningPlace], requestID: UUID) async -> [String: PlanningHoursLookup] {
+    func prepareHours(for places: [PlanningPlace], requestID: UUID? = nil, batch: Bool) async throws -> [String: PlanningHoursLookup] {
         let started = ContinuousClock.now
         let ids = Set(places.compactMap { place -> String? in
             guard place.visitConfirmation?.publicAccessConfirmed != true,
                   let source = place.sourceID, source.hasPrefix("apple:") else { return nil }
-            return String(source.dropFirst(6))
+            let id = String(source.dropFirst(6))
+            return id.range(of: "^I[0-9A-Fa-f]{1,63}$", options: .regularExpression) == nil ? nil : id
         }).sorted()
         guard !ids.isEmpty else { return [:] }
-        defer { Self.logPhase("hours_prefetch", since: started, requestID: requestID) }
-        return await withTaskGroup(of: (String, PlanningHoursLookup).self) { group in
+        defer { if let requestID { Self.logPhase("hours_prefetch", since: started, requestID: requestID) } }
+        if batch, let lookup = services.batchHours, let results = try await lookup(ids) { return results }
+        try Task.checkCancellation()
+        let results = await withTaskGroup(of: (String, PlanningHoursLookup).self) { group in
             var remaining = ids.makeIterator()
             for id in ids.prefix(2) {
                 group.addTask { (id, await hours(id)) }
@@ -259,9 +269,11 @@ struct V41ItineraryPlanner: Sendable {
             }
             return output
         }
+        try Task.checkCancellation()
+        return results
     }
 
-    private static func logPhase(_ phase: String, since started: ContinuousClock.Instant, requestID: UUID, modelRequestID: UUID? = nil) {
+    static func logPhase(_ phase: String, since started: ContinuousClock.Instant, requestID: UUID, modelRequestID: UUID? = nil) {
         logger.info("planning_phase request_id=\(requestID.uuidString.lowercased(), privacy: .public) order_id=\(modelRequestID?.uuidString.lowercased() ?? "-", privacy: .public) phase=\(phase, privacy: .public) elapsed=\(String(describing: started.duration(to: .now)), privacy: .public)")
     }
 
@@ -277,6 +289,20 @@ struct V41ItineraryPlanner: Sendable {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let semantic = semantic.flatMap { value in
             value.candidateDate == dateFormatter.string(from: input.startsAt) && value.timeZone == input.timeZone ? value : nil
+        }
+        if input.enginePreferences?.orderingMethod?.usesV5Scheduler == true {
+            do {
+                return try await scheduleV51(input, semantic: semantic, routes: routes, preparedHours: preparedHours,
+                                             remainingVisit: remainingVisit, requestID: requestID)
+            } catch var failure as PlanningScheduleFailure {
+                if includesAlternatives, remainingVisit == nil,
+                   ["V4_WINDOW_TOO_SHORT", "V41_ACCESS_CONFLICT", "V51_SCHEDULE_CONFLICT"].contains(failure.code),
+                   await routes.stopReason == nil {
+                    failure.assessment.durationAlternatives = try await alternatives(input, semantic: semantic, routes: routes,
+                                                                                     preparedHours: preparedHours)
+                }
+                throw failure
+            }
         }
         let onDevice = input.enginePreferences?.orderingMethod == .hybridV42FoundationModels
         let durationSource = onDevice ? "foundation_models_experience_estimate" : "luna_experience_estimate"
@@ -486,7 +512,7 @@ struct V41ItineraryPlanner: Sendable {
         }
     }
 
-    private func accessHours(_ place: PlanningPlace, input: PlanningInput, preparedHours: [String: PlanningHoursLookup]) async -> V4Hours {
+    func accessHours(_ place: PlanningPlace, input: PlanningInput, preparedHours: [String: PlanningHoursLookup]) async -> V4Hours {
         if let value = place.visitConfirmation, value.publicAccessConfirmed {
             return .init(kind: "confirmed", windows: [.init(opens: Int(ceil(value.opensAt.timeIntervalSince1970 / 60)),
                                                             closes: Int(floor(value.closesAt.timeIntervalSince1970 / 60)), last_entry: value.lastEntryAt.map { Int(floor($0.timeIntervalSince1970 / 60)) })], source: "traveller_confirmation")
@@ -554,6 +580,7 @@ struct V41ItineraryPlanner: Sendable {
         let namespace: String
         switch method {
         case .hybridV42FoundationModels: namespace = "v4.2-foundation-models-semantic-v1:"
+        case .hybridV51, .hybridV52: namespace = "v5.1-semantic-v1:"
         case .hybridV42: namespace = "v4.2-compact-semantic-v1:"
         default: namespace = "v4.1-semantic-v1:"
         }

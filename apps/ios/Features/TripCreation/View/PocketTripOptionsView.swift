@@ -175,6 +175,17 @@ struct PocketScheduleOptionsSheet: View {
                             Stepper("Maximum waiting: \(options.wrappedValue.maximumWaitMinutes) min", value: options.maximumWaitMinutes, in: 0 ... 120, step: 5)
                                 .id(ScheduleField.waiting)
                                 .accessibilityFocused($focusedField, equals: .waiting)
+                            if options.wrappedValue.orderingMethod?.usesV5Scheduler == true {
+                                Stepper("Check-in buffer: \(options.wrappedValue.checkInBufferMinutes ?? 15) min",
+                                        value: Binding(get: { options.wrappedValue.checkInBufferMinutes ?? 15 },
+                                                       set: { options.wrappedValue.checkInBufferMinutes = $0 }), in: 0 ... 120)
+                                    .accessibilityIdentifier("checkInBufferTarget")
+                                Stepper("Extra travel allowed: \(options.wrappedValue.extraTravelMinutes ?? 0) min",
+                                        value: Binding(get: { options.wrappedValue.extraTravelMinutes ?? 0 },
+                                                       set: { options.wrappedValue.extraTravelMinutes = $0 }), in: 0 ... 120)
+                                    .accessibilityIdentifier("extraTravelAllowance")
+                                Toggle("Avoid rain during outdoor visits", isOn: options.avoidRain)
+                            }
                             if presenter.usesV41 {
                                 Picker("Preferred visit period", selection: Binding(get: { options.wrappedValue.preferredDayPart }, set: {
                                     options.wrappedValue.preferredDayPart = $0
@@ -240,6 +251,12 @@ struct PocketScheduleOptionsSheet: View {
         let showAccessFirst = field == .access(id) || field == .entry(id) || field == .session(id) || field == .checkIn(id)
         return VStack(alignment: .leading) {
             Text(item.place.name)
+            if presenter.planning.enginePreferences?.orderingMethod?.usesV5Scheduler == true {
+                VisitExposurePicker(exposure: Binding(get: {
+                    presenter.selected.first { $0.id == id }?.place.visitExposure ?? .unknown
+                }, set: { presenter.setVisitExposure(id, exposure: $0) }))
+                .accessibilityIdentifier("visitExposure-\(id)")
+            }
             if presenter.usesV41, showAccessFirst { visitAccess(id, field: field) }
             Toggle("Set visit duration", isOn: Binding(get: {
                 presenter.selected.first(where: { $0.id == id })?.place.durationOverridden == true

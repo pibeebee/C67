@@ -5,7 +5,7 @@ from tempfile import TemporaryDirectory
 from pathlib import Path
 from types import SimpleNamespace
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from hours import HoursProvider, category_hint, validate_hours
+from hours import HoursBatch, HoursProvider, category_hint, validate_hours
 
 class Response:
     def __init__(self, code, value=None):
@@ -52,6 +52,66 @@ class HoursTests(unittest.TestCase):
 if __name__=='__main__':unittest.main()
 
 class HoursHTTPTests(unittest.TestCase):
+    def test_batch_authenticates_once_and_deduplicates(self):
+        import time
+        from unittest.mock import patch
+        import httpx
+        from benchmark_hours import serve
+        from server import AuthenticationUnavailable, Handler
+
+        calls = []
+
+        def lookup(place_id, *, deadline):
+            calls.append(place_id)
+            return {'status': 'unavailable'}
+
+        batch = HoursBatch(SimpleNamespace(lookup=lookup))
+        self.addCleanup(batch.pool.shutdown)
+        with serve(Handler) as (service, origin), httpx.Client(base_url=origin) as client:
+            service.hours_batch = batch
+            with patch.object(Handler, 'authorized', return_value='synthetic-owner') as auth:
+                response = client.post('/v1/hours/batch', json={'placeIds': ['I1', 'I2', 'I1']})
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.json(), {'results': {p: {'status': 'unavailable'} for p in ('I1', 'I2')}})
+                auth.assert_called_once()
+                self.assertCountEqual(calls, ['I1', 'I2'])
+                self.assertEqual(client.post('/v1/hours/batch', json={'placeIds': ['invalid']}).status_code, 422)
+            with patch.object(Handler, 'authorized', side_effect=AuthenticationUnavailable):
+                self.assertEqual(client.post('/v1/hours/batch', json={'placeIds': ['I1']}).status_code, 503)
+            self.assertCountEqual(calls, ['I1', 'I2'])
+        self.assertEqual(batch.lookup(['I3'], time.monotonic() - 1), {'I3': {'status': 'temporary_error'}})
+
+    def test_batch_keeps_completed_items_at_deadline(self):
+        import threading
+        import time
+
+        release = threading.Event()
+        def lookup(place_id, *, deadline):
+            if place_id == 'I6':
+                release.wait(3)
+            return {'status': 'unavailable'}
+
+        batch = HoursBatch(SimpleNamespace(lookup=lookup))
+        try:
+            ids = [f'I{i}' for i in range(1, 7)]
+            results = batch.lookup(ids, time.monotonic() + .15)
+            self.assertEqual(list(results), ids)
+            self.assertEqual([row['status'] for row in results.values()], ['unavailable'] * 5 + ['temporary_error'])
+        finally:
+            release.set()
+            batch.pool.shutdown()
+
+    def test_batch_honors_retry_after(self):
+        import time
+        import httpx
+        from unittest.mock import Mock
+
+        get = Mock(return_value=httpx.Response(429, headers={'Retry-After': '10'}))
+        provider = HoursProvider('https://hours.example.test', 'synthetic', get=get)
+        for id in ('I1', 'I2'):
+            self.assertEqual(provider.lookup(id, deadline=time.monotonic() + 1), {'status': 'rate_limited'})
+        get.assert_called_once()
+
     def test_authenticated_lookup_returns_only_current_entry_evidence_for_the_owner(self):
         import threading
         import uuid

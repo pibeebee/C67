@@ -9,8 +9,14 @@ public enum PlanningOrderingMethod: String, Codable, CaseIterable, Sendable {
     case hybridV42 = "hybrid_v4_2"
     case hybridV42FoundationModels = "hybrid_v4_2_foundation_models"
 
+    case hybridV51 = "hybrid_v5_1"
+
+    case hybridV52 = "hybrid_v5_2"
+
+    public var usesV5Scheduler: Bool { self == .hybridV51 || self == .hybridV52 }
+    public var replacesLegacyV42: Bool { usesV42Scheduler || usesV5Scheduler }
     public var usesV42Scheduler: Bool { self == .hybridV42 || self == .hybridV42FoundationModels }
-    public var usesFlexibleSchedule: Bool { self == .hybridV41 || usesV42Scheduler }
+    public var usesFlexibleSchedule: Bool { self == .hybridV41 || replacesLegacyV42 }
     public var isSchedule: Bool { self == .hybridV4 || usesFlexibleSchedule }
 }
 
@@ -31,6 +37,8 @@ public struct PlanningPreferences: Equatable, Codable, Sendable {
     public var flexibleDeparture = false
     public var returnToOrigin = false
     public var maximumWaitMinutes = 0
+    public var checkInBufferMinutes: Int?
+    public var extraTravelMinutes: Int?
     public var avoidRain = false
     public var usesLuna = true
     public var allowsAIProcessing = false

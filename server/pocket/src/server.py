@@ -6,6 +6,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
 import hmac
+from http.cookiejar import CookieJar, DefaultCookiePolicy
 import importlib.util
 import json
 import logging
@@ -15,7 +16,7 @@ from pathlib import Path
 import shlex
 import shutil
 import sqlite3
-from hours import HoursProvider, PLACE_ID
+from hours import HoursBatch, HoursProvider, valid_place_id
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -31,6 +32,17 @@ from ordering import OrderingResolver, request_context
 
 _parents = Path(__file__).resolve().parents
 ROOT = _parents[3] if len(_parents) > 3 else _parents[1]
+HOURS_BATCH_SECONDS = 90
+
+
+class RejectCookies(DefaultCookiePolicy):
+    def set_ok(self, cookie, request):
+        return False
+
+
+def pooled_client():
+    return httpx.Client(cookies=CookieJar(policy=RejectCookies()),
+                        limits=httpx.Limits(max_connections=8, max_keepalive_connections=8))
 
 def load_env(path):
     if not path:
@@ -379,11 +391,12 @@ class Handler(BaseHTTPRequestHandler):
         if os.environ.get("POCKET_AUTH_MODE", "legacy") == "legacy":
             expected = os.environ.get("POCKET_READ_TOKEN", "")
             return "legacy" if expected and hmac.compare_digest(authorization.encode(), ("Bearer " + expected).encode()) else None
-        user = Handler.authenticated_user(authorization)
+        client = getattr(getattr(self, "server", None), "auth_http", None)
+        user = Handler.authenticated_user(authorization, get=client.get) if client else Handler.authenticated_user(authorization)
         return str(uuid.UUID(user["id"])) if user else None
 
     @staticmethod
-    def authenticated_user(authorization):
+    def authenticated_user(authorization, *, get=None):
         if not authorization.startswith("Bearer ") or not authorization[7:] or len(authorization) > 8192:
             return None
         base = os.environ.get("SUPABASE_URL", "").rstrip("/")
@@ -391,7 +404,7 @@ class Handler(BaseHTTPRequestHandler):
         if parts.scheme != "https" or not parts.hostname or parts.username or parts.password or parts.query or parts.fragment:
             return None
         try:
-            response = httpx.get(base + "/auth/v1/user", headers={"Authorization": authorization,
+            response = (get or httpx.get)(base + "/auth/v1/user", headers={"Authorization": authorization,
                                  "apikey": os.environ.get("SUPABASE_CLIENT_KEY", "")}, timeout=8, follow_redirects=False)
             if response.status_code >= 500 or response.status_code == 429: raise AuthenticationUnavailable()
             if response.status_code != 200: return None
@@ -478,27 +491,47 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(200 if state == "deleted" else 202, dict(status=state))
 
     def do_POST(self):
+        started = monotonic()
+        is_hours = self.path in {"/v1/hours/lookup", "/v1/hours/batch"}
         if self.path == "/v1/account/deletion":
             self.delete_account()
             return
         try: owner = self.authorized()
         except AuthenticationUnavailable:
+            if is_hours:
+                logging.info("hours_auth status=unavailable elapsed_ms=%d", (monotonic() - started) * 1000)
             self.reply(503, dict(error="Authentication service unavailable", code="AUTH_TEMPORARILY_UNAVAILABLE")); return
         if not owner:
+            if is_hours:
+                logging.info("hours_auth status=rejected elapsed_ms=%d", (monotonic() - started) * 1000)
             self.reply(401, dict(error="Unauthorized"))
             return
+        if is_hours:
+            logging.info("hours_auth status=accepted elapsed_ms=%d", (monotonic() - started) * 1000)
         try:
-            body = self.read_json(200_000)
+            body = self.read_json(2048 if self.path == "/v1/hours/batch" else 200_000)
             if self.path == "/v1/hours/lookup":
                 if not isinstance(body, dict) or set(body) != {"placeId"}:
                     raise ValueError("Invalid hours lookup")
                 place_id = body["placeId"]
-                result = HoursProvider().lookup(place_id)
-                if isinstance(place_id, str) and len(place_id) <= 64 and PLACE_ID.fullmatch(place_id):
-                    rule = self.server.jobs.entry_rule(place_id, owner)
+                batch = getattr(self.server, "hours_batch", None)
+                result = batch.lookup_single(place_id) if batch else HoursProvider().lookup(place_id)
+                if valid_place_id(place_id) and (jobs := getattr(self.server, "jobs", None)) is not None:
+                    rule = jobs.entry_rule(place_id, owner)
                     if rule is not None:
                         result = {**result, "entryRule": rule}
+                logging.info("hours_lookup status=%s elapsed_ms=%d", result["status"], (monotonic() - started) * 1000)
                 self.reply(200, result)
+            elif self.path == "/v1/hours/batch":
+                ids = body.get("placeIds") if isinstance(body, dict) and set(body) == {"placeIds"} else None
+                if not isinstance(ids, list) or not 1 <= len(ids) <= 6 or not all(map(valid_place_id, ids)):
+                    raise ValueError("Invalid hours batch")
+                unique = list(dict.fromkeys(ids))
+                results = self.server.hours_batch.lookup(unique, started + HOURS_BATCH_SECONDS)
+                counts = {status: sum(row["status"] == status for row in results.values())
+                          for status in {row["status"] for row in results.values()}}
+                logging.info("hours_batch count=%d statuses=%s elapsed_ms=%d", len(unique), counts, (monotonic() - started) * 1000)
+                self.reply(200, {"results": results})
             elif self.path == "/v1/order":
                 known_methods = {"luna", "hybrid_legacy", "hybrid_weather", "hybrid_v4", "hybrid_v4_2"}
                 if isinstance(body, dict) and isinstance(body.get("orderingMethod"), str) and body["orderingMethod"] not in known_methods:
@@ -551,11 +584,15 @@ def main():
         raise SystemExit("Unknown Pocket authentication mode")
     os.umask(0o077)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)
     luna = advice_module()
     luna.credentials()
     resolver = Resolver(args.data_dir / "sources", lambda payload: request_luna(luna, payload))
     server = ThreadingHTTPServer((os.environ.get("POCKET_HOST", "127.0.0.1"), int(os.environ.get("POCKET_PORT", "8792"))), Handler)
     server.daemon_threads = True
+    server.auth_http = pooled_client()
+    hours_http = pooled_client()
+    server.hours_batch = HoursBatch(HoursProvider(get=hours_http.get))
     server.advice_lock = threading.Lock()
     server.jobs = Jobs(args.data_dir, resolver)
     order_model = Resolver(args.data_dir / "order-sources", lambda payload: request_luna(luna, payload, attempts=1))
@@ -577,6 +614,9 @@ def main():
             server.account_deletions.stop.set()
             server.account_deletions.wake.set()
         server.server_close()
+        server.hours_batch.pool.shutdown(cancel_futures=True)
+        hours_http.close()
+        server.auth_http.close()
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@ import C67Domain
     private static let timingLogger = Logger(subsystem: "io.pibeebee.c67", category: "PlanningTiming")
 
     init(planning: PlanningPresenter, mode: String, specificPlace: Bool, interactor: TripCreationInteractor,
-         orderingMethod: @escaping () -> PlanningOrderingMethod = { .hybridV42 }, clock: @escaping () -> Date = { .now }) {
+         orderingMethod: @escaping () -> PlanningOrderingMethod = { .hybridV52 }, clock: @escaping () -> Date = { .now }) {
         self.planning = planning
         self.mode = mode
         root = specificPlace ? .places : .question(.interests)
@@ -58,6 +58,7 @@ import C67Domain
     }
 
     var route: TripCreationRoute { path.last ?? root }
+    var usesV5Scheduler: Bool { orderingMethod().usesV5Scheduler }
     var usesV41: Bool { orderingMethod().usesFlexibleSchedule }
     var automaticallySchedules: Bool { planning.supportsOnDevicePlanning && usesV41 }
     var usesFoundationModels: Bool { orderingMethod() == .hybridV42FoundationModels }
@@ -468,6 +469,12 @@ import C67Domain
             lines.append("Main spot preference: " + item.place.name + ". This does not pin the first stop.")
         }
         return lines.joined(separator: "\n")
+    }
+
+    func setVisitExposure(_ id: UUID, exposure: PlanningVisitExposure) {
+        guard let index = selected.firstIndex(where: { $0.id == id }) else { return }
+        selected[index].place.visitExposure = exposure == .unknown ? nil : exposure
+        syncPlaces()
     }
 
     func setVisitDuration(_ id: UUID, minutes: Int?) {

@@ -1,3 +1,4 @@
+import C67PlannerV5
 import Foundation
 import Security
 import C67Domain
@@ -115,7 +116,14 @@ public struct PocketVisitResolution: Codable, Sendable {
     public var reportedModel: String
 }
 
+struct PocketScheduleForecast: Sendable {
+    var series: [PlannerV51WeatherSeries] = []
+    var rain: [PlannerV5RainSample] = []
+    var evidence: [PlanningEvidence] = []
+}
+
 public struct PocketPlanningServices: Sendable {
+    var scheduleForecast: (@Sendable (PlanningPoint, Date, Date, Bool) async throws -> PocketScheduleForecast)?
     public var travel: @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote
     public var weather: ItineraryPlanner.Weather
     public var advise: @Sendable (VisitAdviceRequest) async throws -> PocketAdviceSelection
@@ -124,6 +132,7 @@ public struct PocketPlanningServices: Sendable {
     public var experience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])?
     public var foundationExperience: (@Sendable ([PlanningInput], UUID) async throws -> [PlanningExperiencePlan])?
     public var hours: (@Sendable (String) async -> PlanningHoursLookup)?
+    var batchHours: (@Sendable ([String]) async throws -> [String: PlanningHoursLookup]?)?
     public var attribution: @Sendable () async throws -> PlanningEvidence?
     public init(travel: @escaping @Sendable (Coordinate, Coordinate, Date, C67Domain.PlanningMode) async throws -> LegQuote,
                 weather: @escaping ItineraryPlanner.Weather,
@@ -149,6 +158,31 @@ enum PocketExternalAIRequest {
 }
 
 public actor PocketResearchClient {
+    private enum HoursBatchError: Error { case unsupported }
+
+    func openingHours(placeIDs: [String]) async throws -> [String: PlanningHoursLookup]? {
+        struct BatchRequest: Encodable { let placeIds: [String] }
+        struct BatchResponse: Decodable { let results: [String: PlanningHoursLookup] }
+        let placeIDs = Set(placeIDs).sorted()
+        let failed: (String) -> [String: PlanningHoursLookup] = { status in
+            Dictionary(uniqueKeysWithValues: placeIDs.map { ($0, .init(status: status)) })
+        }
+        do {
+            let body = try JSONEncoder().encode(BatchRequest(placeIds: placeIDs))
+            let data = try await fetch("v1/hours/batch", body: body, timeout: 100)
+            let response = try JSONDecoder().decode(BatchResponse.self, from: data).results
+            guard Set(response.keys) == Set(placeIDs) else { return failed("temporary_error") }
+            return response.reduce(into: [:]) { results, row in
+                results[row.key] = row.value.status != "available" || row.value.hours?.placeId == row.key
+                    ? row.value : .init(status: "temporary_error")
+            }
+        } catch HoursBatchError.unsupported { return nil }
+        catch PlanningError.rateLimited { return failed("rate_limited") }
+        catch {
+            try Task.checkCancellation()
+            return failed("temporary_error")
+        }
+    }
     public func openingHours(placeID: String) async -> PlanningHoursLookup {
         guard placeID.range(of: "^I[0-9A-Fa-f]{1,63}$", options: .regularExpression) != nil else {
             return .init(status: "invalid_place_id")
@@ -171,7 +205,7 @@ public actor PocketResearchClient {
     public init(connection: any PocketConnectionProviding) {
         self.connection = connection
         let configuration = URLSessionConfiguration.ephemeral
-        configuration.urlCache = nil; configuration.httpCookieStorage = nil
+        configuration.urlCache = nil; configuration.httpCookieStorage = nil; configuration.httpShouldSetCookies = false
         configuration.timeoutIntervalForRequest = 25; configuration.timeoutIntervalForResource = 420
         session = URLSession(configuration: configuration, delegate: RedirectGuard(), delegateQueue: nil)
     }
@@ -226,6 +260,7 @@ public actor PocketResearchClient {
         let (data, response) = try await session.data(for: request)
         try Task.checkCancellation()
         guard let http = response as? HTTPURLResponse, data.count <= 30_000_000 else { throw PlanningError.invalidResponse }
+        if path == "v1/hours/batch", http.statusCode == 404 { throw HoursBatchError.unsupported }
         if isOrdering {
             struct ErrorResponse: Decodable { let code: String }
             let code = (try? JSONDecoder().decode(ErrorResponse.self, from: data))?.code

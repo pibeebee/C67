@@ -38,9 +38,11 @@ import C67Domain
         func recommendations(_ query: String, near origin: PlanningPoint?) async throws -> [RecommendedPlace] {
             try Task.checkCancellation()
             let includesPinDetails = ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture")
-            return try PocketIntegrationFixture.searchablePlaces().map { item in
-                var place = item
-                if includesPinDetails, place.name == "Fixture Japanese 1" {
+            let usesHoursFixture = ProcessInfo.processInfo.environment["C67_SYNTHETIC_HOURS_PORT"] != nil
+            return try PocketIntegrationFixture.searchablePlaces().enumerated().map { index, stop in
+                var place = stop
+                if usesHoursFixture { place.sourceID = "apple:I\(index + 1)" }
+                if includesPinDetails, !usesHoursFixture, place.name == "Fixture Japanese 1" {
                     place.sourceID = "apple:I123A"
                     place.address = "Synthetic fixture address"
                     place.phoneNumber = "+62 21 XXXX XXXX"

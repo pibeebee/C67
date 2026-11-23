@@ -416,3 +416,51 @@ private struct LiveAcceptanceConnection: PocketConnectionProviding {
         }
     }
 #endif
+
+@MainActor struct V51LiveProviderAcceptanceTests {
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["C67_V51_LIVE"] == "1"))
+    func publicJakartaStopsThroughRepository() async throws {
+        let connection = LiveAcceptanceConnection(url: "", token: "")
+        let services = PocketPlanningServices.live(connection: connection)
+        let repository = try PocketPlanningRepository(services: services, connection: connection, storageURL: nil)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try #require(TimeZone(identifier: "Asia/Jakarta"))
+        let tomorrow = try #require(calendar.date(byAdding: .day, value: 1, to: .now))
+        let start = try #require(calendar.date(bySettingHour: 9, minute: 0, second: 0, of: tomorrow))
+        let origin = PlanningPoint(latitude: -6.2088, longitude: 106.8456)
+        var park = PlanningPlace(id: UUID(), name: "Taman Suropati",
+                                 location: .init(latitude: -6.1994, longitude: 106.8326), visitSeconds: 1800)
+        park.durationOverridden = true
+        park.visitExposure = .directSun
+        var square = PlanningPlace(id: UUID(), name: "Lapangan Banteng",
+                                   location: .init(latitude: -6.1701, longitude: 106.8353), visitSeconds: 1800)
+        square.durationOverridden = true
+        var input = PlanningInput(title: "Public provider smoke test", origin: origin, places: [park, square],
+                                  preferences: "", startsAt: start, finishBy: start.addingTimeInterval(6 * 3600),
+                                  timeZone: calendar.timeZone.identifier, mode: .automobile, preservesPlaceOrder: true)
+        var preferences = PlanningPreferences()
+        preferences.orderingMethod = .hybridV51
+        preferences.semanticAssistance = .disabled
+        preferences.scheduleSource = .manual
+        input.enginePreferences = preferences
+        let clock = ContinuousClock()
+        let began = clock.now
+        var job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+        while job.status == .running, began.duration(to: clock.now) < .seconds(120) {
+            try await Task.sleep(for: .milliseconds(200))
+            job = try await repository.planningJob(id: job.id)
+        }
+        let proposal = job.result?.proposal
+        let readings = proposal?.scheduleDecision?.outdoor.flatMap(\.readings) ?? []
+        print("V51_LIVE elapsed=\(began.duration(to: clock.now)) status=\(job.status) code=\(job.errorCode ?? "-")"
+              + " ETA=\(job.scheduleAssessment?.routeCalls ?? 0) weather=\(readings.map { "\($0.id) \($0.source ?? "unavailable")" })")
+        if proposal == nil {
+            let forecast = try await services.scheduleForecast?(park.location, start, input.finishBy, true)
+            print("V51_LIVE_WEATHER sources=\(forecast?.series.map { "\($0.kind) \($0.source) \($0.samples.count)" } ?? [])")
+        }
+        let plan = try #require(proposal, "Live provider run: \(job.errorCode ?? String(describing: job.status))")
+        #expect(plan.effectiveOrderingMethod == .hybridV51)
+        #expect(plan.stops.count == 2 && plan.stops.allSatisfy { $0.arrivalAt != nil })
+        #expect(!plan.synthetic)
+    }
+}

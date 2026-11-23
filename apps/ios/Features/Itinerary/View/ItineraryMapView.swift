@@ -29,6 +29,48 @@ struct ItineraryMapView: View {
     @State private var showsFullMap = false
     @State private var retryGeneration = 0
 
+    @ViewBuilder private func scheduleDecision(_ decision: PlanningScheduleDecision) -> some View {
+        Text("Schedule decision").font(.headline)
+            .accessibilityIdentifier("v51ScheduleDecision")
+        Text("Extra travel versus fastest checked schedule: \(decision.extraTravel) min")
+        ForEach(decision.checkIns) { checkIn in
+            VStack(alignment: .leading) {
+                Text(placeName(checkIn.id)).fontWeight(.semibold)
+                Text("Check-in buffer: \(checkIn.buffer.formatted(.number.precision(.fractionLength(0 ... 1)))) min · target \(checkIn.target) min")
+                if checkIn.shortfall > 0 {
+                    Text("\(checkIn.shortfall.formatted(.number.precision(.fractionLength(0 ... 1)))) min below target")
+                }
+            }
+        }
+        ForEach(decision.outdoor) { outdoor in
+            VStack(alignment: .leading) {
+                Text(placeName(outdoor.id)).fontWeight(.semibold)
+                HStack {
+                    Text(outdoor.interval.start, style: .time)
+                    Text("–")
+                    Text(outdoor.interval.end, style: .time)
+                }
+                ForEach(outdoor.readings) { reading in
+                    if let value = reading.value, let source = reading.source {
+                        Text("\(reading.id): \(value.formatted(.number.precision(.fractionLength(0 ... 1)))) · \(source)")
+                    } else {
+                        Text("\(reading.id): unavailable")
+                    }
+                }
+            }
+        }
+        if !decision.alternative.isEmpty {
+            Text("Alternative schedule").font(.headline)
+            ForEach(Array(decision.alternative.enumerated()), id: \.offset) { _, line in
+                Text(line)
+            }
+        }
+    }
+
+    private func placeName(_ id: UUID) -> String {
+        proposal.stops.first { $0.id == id }?.name ?? String(localized: "Visit")
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             routeMap(position: $previewMapPosition)
@@ -54,6 +96,14 @@ struct ItineraryMapView: View {
                             .padding(6).background(.white)
                     }
                     .accessibilityLabel("Apple Weather and data sources")
+                }
+            }
+
+            if !showsTripDetails, let decision = proposal.scheduleDecision {
+                DisclosureGroup("Schedule decision") {
+                    VStack(alignment: .leading, spacing: 12) {
+                        scheduleDecision(decision)
+                    }
                 }
             }
 
@@ -92,6 +142,8 @@ struct ItineraryMapView: View {
                                     }
                                     ForEach(proposal.warnings, id: \.self) { Text($0) }
                                     ForEach(Array(Set(proposal.stops.flatMap(\.warnings))).sorted(), id: \.self) { Text($0) }
+                                case .hybridV51: Text("Travelants v5.1")
+                                case .hybridV52: Text("Travelants v5.2")
                                 case .hybridWeather:
                                     Text("Hybrid: weather context (experimental)")
                                     Text("Activity exposure and candidate arrival times were unavailable, so heat and rain exposure were not compared.")
@@ -103,6 +155,9 @@ struct ItineraryMapView: View {
                             }
                             Text("Opening hours").font(.headline)
                             Text("Regular hours do not verify opening or access on the selected date.")
+                        }
+                        if let decision = proposal.scheduleDecision {
+                            scheduleDecision(decision)
                         }
                         if !proposal.evidence.isEmpty { Text("Sources").font(.headline) }
                         ForEach(proposal.evidence) { evidence in

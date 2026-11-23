@@ -7,7 +7,7 @@ import C67Domain
 
 @Suite("Connected Hi-Fi trip creation")
 @MainActor struct TripCreationTests {
-    @Test func newTripUsesV42EvenWithAnOlderSavedMethod() throws {
+    @Test func newTripUsesV51EvenWithAnOlderSavedMethod() throws {
         let key = "io.pibeebee.c67.orderingMethod"
         let previous = UserDefaults.standard.object(forKey: key)
         UserDefaults.standard.set(PlanningOrderingMethod.luna.rawValue, forKey: key)
@@ -18,7 +18,7 @@ import C67Domain
 
         let presenter = try make(repository: TripFlowRepositoryStub(supportsOnDevicePlanning: true))
         presenter.finishChoosingPlaces()
-        #expect(presenter.planning.enginePreferences?.orderingMethod == .hybridV42)
+        #expect(presenter.planning.enginePreferences?.orderingMethod == .hybridV52)
         #expect(presenter.usesV41)
         #expect(!presenter.usesFoundationModels)
     }
@@ -1237,7 +1237,7 @@ extension TripCreationTests {
         #expect(model.route == .review)
     }
 
-    @Test func directProcessingBuildsV42ScheduleWithoutAvailabilityForm() async throws {
+    @Test func directProcessingBuildsV51ScheduleWithoutAvailabilityForm() async throws {
         let repository = try PocketIntegrationFixture.repository()
         let model = try make(repository: repository)
         let fixtureInput = PocketIntegrationFixture.input()
@@ -1253,7 +1253,8 @@ extension TripCreationTests {
         let proposal = try #require(model.planning.job?.result?.proposal)
         #expect(proposal.experiencePlan != nil)
         #expect(proposal.stops.map(\.id) == model.selected.map { $0.place.id })
-        #expect(proposal.input.enginePreferences?.orderingMethod == .hybridV42)
+        #expect(proposal.input.enginePreferences?.orderingMethod == .hybridV52)
+        #expect(proposal.scheduleDecision != nil)
         #expect(proposal.stops.allSatisfy { $0.arrivalAt != nil && $0.departureAt != nil })
         #expect(model.availabilityPlaces.isEmpty)
         #expect(model.error == nil)

@@ -3316,6 +3316,21 @@
         }
       }
     },
+    "/v1/hours/batch": {
+      "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
+      "post": {
+        "operationId": "lookupPocketHoursBatch",
+        "description": "Authenticates once and returns one transient lookup result per unique selected ID. Results may be partial in coverage. Regular weekly hours do not guarantee access on a specific date.",
+        "security": [{"pocketReadToken": []}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "additionalProperties": false, "required": ["placeIds"], "properties": {"placeIds": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"type": "string", "pattern": "^I[0-9A-Fa-f]{1,63}$"}}}}}}},
+        "responses": {
+          "200": {"description": "Result keyed by each unique requested ID", "content": {"application/json": {"schema": {"type": "object", "required": ["results"], "properties": {"results": {"type": "object", "additionalProperties": {"type": "object", "required": ["status"], "properties": {"status": {"type": "string", "enum": ["available", "unavailable", "not_configured", "configuration_error", "temporary_error", "rate_limited"]}, "hours": {"type": "object", "description": "Regular weekly hours for the matching ID."}}}}}}}}},
+          "401": {"description": "Authentication required"},
+          "422": {"description": "Invalid request"},
+          "503": {"description": "Authentication unavailable"}
+        }
+      }
+    },
     "/v1/account/deletion": {
       "servers": [{"url": "https://{host}", "variables": {"host": {"default": "pocket.example.invalid"}}}],
       "post": {

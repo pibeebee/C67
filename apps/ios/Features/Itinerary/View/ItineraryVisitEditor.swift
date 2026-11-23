@@ -33,6 +33,7 @@ struct ItineraryVisitEditor: View {
                 } else {
                     Form {
                         PlanningPlaceEditor(place: $place, zone: zone, defaultStart: startsAt)
+                        exposurePicker
                         Text("Update your preferences to generate a new itinerary. Arrival times may change as the plan is recalculated.")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
@@ -90,6 +91,9 @@ struct ItineraryVisitEditor: View {
                 }
                 .background(AppColor.surface, in: .rect(cornerRadius: 17))
 
+                exposurePicker
+                    .pickerStyle(.menu)
+
                 Text("Your chosen visit length will be preserved. This does not set an arrival time.")
                     .font(.footnote)
                     .foregroundStyle(.primary.opacity(0.72))
@@ -108,6 +112,26 @@ struct ItineraryVisitEditor: View {
         .background(AppColor.canvas)
     }
 
+    private var exposurePicker: some View {
+        VisitExposurePicker(exposure: Binding(get: { place.visitExposure ?? .unknown },
+                                              set: { place.visitExposure = $0 == .unknown ? nil : $0 }))
+    }
+
     private func cancel() { dismiss() }
     private func apply() { update(place); dismiss() }
+}
+
+
+struct VisitExposurePicker: View {
+    @Binding var exposure: PlanningVisitExposure
+
+    var body: some View {
+        Picker("Activity setting", selection: $exposure) {
+            Text("Unknown").tag(PlanningVisitExposure.unknown)
+            Text("Indoor").tag(PlanningVisitExposure.indoor)
+            Text("Outdoor · sun exposure unknown").tag(PlanningVisitExposure.outdoor)
+            Text("Outdoor · sheltered").tag(PlanningVisitExposure.sheltered)
+            Text("Outdoor · direct sun").tag(PlanningVisitExposure.directSun)
+        }
+    }
 }

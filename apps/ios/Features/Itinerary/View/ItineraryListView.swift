@@ -205,7 +205,7 @@ struct ItineraryListView: View {
                     Button("Add another place", action: addPlace)
                         .font(.subheadline)
                         .frame(maxWidth: .infinity, minHeight: 44)
-                        .disabled(isSaving || (!proposal.usesExperienceFlow && proposal.input.places.count >= 6))
+                        .disabled(isSaving || ((!proposal.usesExperienceFlow || proposal.effectiveOrderingMethod.isSchedule) && proposal.input.places.count >= 6))
                         .accessibilityIdentifier("itineraryAddPlace")
                 }
 

@@ -42,9 +42,9 @@ struct MainSpotQuestionView: View {
             .sensoryFeedback(.selection, trigger: selection)
         } footer: {
             VStack(spacing: 12) {
-                if let scheduleSummary, let editSchedule {
-                    Button(action: editSchedule) { Label(scheduleSummary, systemImage: "calendar") }
-                        .accessibilityIdentifier("tripDateSummary")
+                if let editSchedule {
+                    Button(action: editSchedule) { Label(scheduleSummary ?? String(localized: "Trip options"), systemImage: "calendar") }
+                        .accessibilityIdentifier(scheduleSummary == nil ? "tripScheduleOptions" : "tripDateSummary")
                 }
                 if usesFoundationModels {
                     Text("Apple Foundation Models estimates activities and visit durations on your device. Travelants uses Apple travel estimates and may send selected Apple place IDs to Pocket to check opening hours.")

@@ -209,7 +209,7 @@ struct TripCreationView: View {
                                      usesV41: presenter.usesV41,
                                      usesFoundationModels: presenter.usesFoundationModels,
                                      scheduleSummary: showsManualScheduleControl ? presenter.scheduleSummary : nil,
-                                     editSchedule: showsManualScheduleControl ? { openScheduleOptions() } : nil)
+                                     editSchedule: showsManualScheduleControl || (presenter.automaticallySchedules && presenter.usesV5Scheduler) ? { openScheduleOptions() } : nil)
             case .stay:
                 StayDurationQuestionView(placeName: presenter.selected.first(where: { $0.id == presenter.mainSpot.placeID })?.place.name ?? "your main spot",
                                          selection: presenter.stay,

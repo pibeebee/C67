@@ -6,7 +6,12 @@
     /// Explicit synthetic transport around the real repository, only for local integration tests.
     public enum PocketIntegrationFixture {
         private actor Connection: PocketConnectionProviding {
-            func credentials() -> PocketCredentials { .init(serverURL: "https://fixture.invalid", token: "synthetic-fixture-token") }
+            let hoursPort: Int?
+            init(hoursPort: Int? = nil) { self.hoursPort = hoursPort }
+            func credentials() -> PocketCredentials {
+                if let hoursPort { return .init(serverURL: "http://127.0.0.1:\(hoursPort)", token: "0") }
+                return .init(serverURL: "https://fixture.invalid", token: "synthetic-fixture-token")
+            }
             func update(serverURL: String, token: String) {}
         }
         public static func lateDay(on date: Date = .now) -> Date {
@@ -74,9 +79,11 @@
 
         public static func repository(storageURL: URL? = nil, jobClock: @escaping @Sendable () -> Date = { .now },
                                       firstOrderFailure: PlanningError? = nil, externalAIDisclosure: String? = nil,
-                                      includesPinDetails: Bool = false) throws -> PocketPlanningRepository {
+                                      includesPinDetails: Bool = false,
+                                      hoursPort: Int? = nil) throws -> PocketPlanningRepository {
             let interruption = OrderInterruption()
-            let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
+            let connection = Connection(hoursPort: hoursPort)
+            var services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
                                                   weather: { _, _, _ in .init(maxRainChance: nil, summary: "Synthetic test; no live weather") },
                                                   advise: { _ in .init(slotID: "S1", requestedModel: "cx/gpt-6-luna(max)", reportedModel: "gpt-6-luna(max)") },
                                                   resolve: { input, _ in resolution(input, catalog: try catalog()) },
@@ -86,7 +93,12 @@
                                                   },
                                                   experience: { inputs, _ in try inputs.map { try experience($0) } },
                                                   hours: includesPinDetails ? Self.pinHours : nil)
-            return try PocketPlanningRepository(services: services, connection: Connection(), storageURL: storageURL,
+            if let hoursPort {
+                let client = PocketResearchClient(connection: connection)
+                if hoursPort >= 18792 { services.hours = { await client.openingHours(placeID: $0) } }
+                if hoursPort == 18793 { services.batchHours = { try await client.openingHours(placeIDs: $0) } }
+            }
+            return try PocketPlanningRepository(services: services, connection: connection, storageURL: storageURL,
                                                 synthetic: true, jobClock: jobClock,
                                                 requiresExternalAIConsent: externalAIDisclosure != nil,
                                                 externalAIDisclosure: externalAIDisclosure)

@@ -10,6 +10,24 @@ private struct HTTPOrderConnection: PocketConnectionProviding {
     func update(serverURL: String, token: String) async throws { }
 }
 
+@Test func hoursBatchDistinguishesMissingEndpointFromOtherFailures() async throws {
+    for (code, status) in [(404, nil), (401, "temporary_error"), (503, "temporary_error"), (429, "rate_limited")] {
+        let harness = HTTPHarness { request in
+            #expect(request.url?.path == "/v1/hours/batch")
+            return StubResponse(code, "{}")
+        }
+        let client = PocketResearchClient(connection: HTTPOrderConnection(url: harness.baseURL), session: harness.session)
+        let results = try await client.openingHours(placeIDs: ["I1", "I2", "I1"])
+        #expect(results?["I1"]?.status == status)
+        #expect(results?.count == (status == nil ? nil : 2))
+    }
+    let harness = HTTPHarness { _ in StubResponse(200, #"{"results":{"I1":{"status":"unavailable"},"I2":{"status":"temporary_error"}}}"#) }
+    let client = PocketResearchClient(connection: HTTPOrderConnection(url: harness.baseURL), session: harness.session)
+    let results = try await client.openingHours(placeIDs: ["I1", "I2"])
+    #expect(results?["I1"]?.status == "unavailable")
+    #expect(results?["I2"]?.status == "temporary_error")
+}
+
 @Test func pocketClientDistinguishesRateLimitFromUnavailable() async throws {
     for (status, expected) in [(429, PlanningError.rateLimited), (503, .unavailable), (408, .timedOut), (504, .timedOut), (524, .timedOut)] {
         let harness = HTTPHarness { _ in StubResponse(status, "{}") }

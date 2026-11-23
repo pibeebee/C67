@@ -21,7 +21,7 @@ import SwiftUI
                 let lateDate = ProcessInfo.processInfo.arguments.contains("--pocket-late-day-fixture") ? PocketIntegrationFixture.lateDay() : nil
                 return TripCreationPresenter(planning: planning, mode: mode, specificPlace: specificPlace,
                                              interactor: .init(searcher: PocketFixtureTripPlaceSearch()),
-                                             orderingMethod: { testsOrderingTimeout ? .luna : (fixtureMethod ?? .hybridV42) }, clock: { lateDate ?? .now })
+                                             orderingMethod: { testsOrderingTimeout ? .luna : (fixtureMethod ?? .hybridV52) }, clock: { lateDate ?? .now })
             }
             let searcher: any TripPlaceSearching = mode.hasPrefix("Mock") ? SyntheticTripPlaceSearch() : MapKitTripPlaceSearch()
         #else

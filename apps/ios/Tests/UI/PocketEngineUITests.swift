@@ -552,10 +552,66 @@ final class PocketEngineUITests: XCTestCase {
         capture(app, "Itinerary toolbar save at accessibility text size")
     }
 
-    @MainActor private func openV4MainSpot(lateDay: Bool = false, method: String = "hybrid_v4") -> XCUIApplication {
+    @MainActor func testV51OutdoorOptionsAndMissingForecastSurviveSave() {
+        continueAfterFailure = false
+        let app = openV4MainSpot(method: "hybrid_v5_1")
+        let options = app.buttons["tripScheduleOptions"]
+        XCTAssertTrue(options.waitForExistence(timeout: 5))
+        options.tap()
+        XCTAssertTrue(app.navigationBars["Trip schedule"].waitForExistence(timeout: 5))
+
+        let allowance = app.steppers["extraTravelAllowance"]
+        scrollToTripControl(allowance, in: app)
+        XCTAssertTrue(allowance.exists, app.debugDescription)
+        allowance.buttons.element(boundBy: 1).tap()
+
+        let exposure = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "visitExposure-")).firstMatch
+        scrollToTripControl(exposure, in: app)
+        XCTAssertTrue(exposure.isHittable, app.debugDescription)
+        exposure.tap()
+        app.buttons["Outdoor · direct sun"].tap()
+        app.navigationBars["Trip schedule"].buttons["Done"].tap()
+
+        app.buttons["Next"].tap()
+        XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 30), app.debugDescription)
+        let details = app.buttons["Trip details"]
+        scrollToTripControl(details, in: app)
+        details.tap()
+        XCTAssertTrue(app.staticTexts["v51ScheduleDecision"].waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertTrue(app.staticTexts["Direct sunlight (W/m²): unavailable"].exists, app.debugDescription)
+        capture(app, "v5.1 outdoor schedule decision")
+        let save = app.buttons["Save this trip"]
+        scrollToTripControl(save, in: app)
+        XCTAssertTrue(save.isHittable)
+        save.tap()
+        let dialog = app.alerts["Save Itinerary"]
+        XCTAssertTrue(dialog.waitForExistence(timeout: 5))
+        let title = dialog.textFields.firstMatch.value as? String ?? ""
+        dialog.buttons["Save"].tap()
+        XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 10), app.debugDescription)
+    }
+
+    @MainActor func testOpeningHoursExperimentTimeToItinerary() async throws {
+        let probe = URL(string: "http://127.0.0.1:18793/health")!
+        let http = try? await URLSession.shared.data(from: probe).1 as? HTTPURLResponse
+        try XCTSkipUnless(http?.statusCode == 200, "Start benchmark_hours.py --serve-simulator")
+        continueAfterFailure = false
+        for (variant, port) in zip(["A", "B", "C"], [18791, 18792, 18793]) {
+            let app = openV4MainSpot(method: variant == "C" ? "hybrid_v5_2" : "hybrid_v5_1", hoursPort: port)
+            let next = app.buttons["Next"]
+            XCTAssertTrue(next.exists)
+            let started = ContinuousClock.now
+            next.tap()
+            XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 30), app.debugDescription)
+            print("HOURS_SIMULATOR variant=\(variant) tap_to_visible=\(started.duration(to: .now))")
+            app.terminate()
+        }
+    }
+
+    @MainActor private func openV4MainSpot(lateDay: Bool = false, method: String = "hybrid_v4", hoursPort: Int? = nil) -> XCUIApplication {
         var arguments = ["-io.pibeebee.c67.orderingMethod", method]
         if lateDay { arguments.append("--pocket-late-day-fixture") }
-        let app = openFixtureRecommendations(extraArguments: arguments)
+        let app = openFixtureRecommendations(extraArguments: arguments, hoursPort: hoursPort)
         for name in ["Fixture Japanese 1", "Fixture Japanese 2", "Fixture Japanese 3"] {
             let place = app.buttons[name]
             scrollToTripControl(place, in: app)
@@ -608,9 +664,10 @@ final class PocketEngineUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Itinerary"].waitForExistence(timeout: 25), app.debugDescription)
     }
 
-    @MainActor private func openFixtureRecommendations(extraArguments: [String] = []) -> XCUIApplication {
+    @MainActor private func openFixtureRecommendations(extraArguments: [String] = [], hoursPort: Int? = nil) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--skip-splash", "--pocket-integration-fixture"] + extraArguments
+        if let hoursPort { app.launchEnvironment["C67_SYNTHETIC_HOURS_PORT"] = String(hoursPort) }
         app.launch()
         openTripMenu(app)
         app.buttons["Get Recommendations"].tap()
