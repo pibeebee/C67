@@ -28,6 +28,46 @@ private struct HTTPOrderConnection: PocketConnectionProviding {
     #expect(results?["I2"]?.status == "temporary_error")
 }
 
+@Test(arguments: [200, 404, 401, 429, 408])
+func v52HoursPrefetchUsesSingletonsOnlyForMissingEndpoint(status: Int) async throws {
+    let harness = HTTPHarness { request in
+        if request.url?.path == "/v1/hours/batch" {
+            #expect(try requestBody(request)["placeIds"] as? [String] == ["I1", "I2"])
+            if status == 408 { throw URLError(.timedOut) }
+            return StubResponse(status, #"{"results":{"I1":{"status":"unavailable"},"I2":{"status":"temporary_error"}}}"#)
+        }
+        return StubResponse(200, #"{"status":"unavailable"}"#)
+    }
+    let client = PocketResearchClient(connection: HTTPOrderConnection(url: harness.baseURL), session: harness.session)
+    var services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
+                                          weather: { _, _, _ in throw PlanningError.unavailable },
+                                          advise: { _ in throw PlanningError.unavailable })
+    services.batchHours = { try await client.openingHours(placeIDs: $0) }
+    let planner = V41ItineraryPlanner(services: services, hours: { await client.openingHours(placeID: $0) })
+    let places = ["I2", "I1", "I2"].map { id in
+        var place = PlanningPlace(id: UUID(), name: id, location: .init(latitude: 0, longitude: 1), visitSeconds: 600)
+        place.sourceID = "apple:" + id
+        return place
+    }
+    let results = try await planner.prepareHours(for: places, batch: true)
+    #expect(Set(results.keys) == ["I1", "I2"])
+    let requests = await harness.log.requests()
+    #expect(requests.first?.url?.path == "/v1/hours/batch")
+    #expect(requests.count == (status == 404 ? 3 : 1))
+    switch status {
+    case 200:
+        #expect(results["I1"]?.status == "unavailable")
+        #expect(results["I2"]?.status == "temporary_error")
+    case 404:
+        #expect(requests.dropFirst().allSatisfy { $0.url?.path == "/v1/hours/lookup" })
+        #expect(results.values.allSatisfy { $0.status == "unavailable" })
+    case 429:
+        #expect(results.values.allSatisfy { $0.status == "rate_limited" })
+    default:
+        #expect(results.values.allSatisfy { $0.status == "temporary_error" })
+    }
+}
+
 @Test func pocketClientDistinguishesRateLimitFromUnavailable() async throws {
     for (status, expected) in [(429, PlanningError.rateLimited), (503, .unavailable), (408, .timedOut), (504, .timedOut), (524, .timedOut)] {
         let harness = HTTPHarness { _ in StubResponse(status, "{}") }

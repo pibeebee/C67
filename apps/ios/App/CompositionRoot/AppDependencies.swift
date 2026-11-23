@@ -72,7 +72,8 @@ struct AppDependencies {
             let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
             let input = try decoder.decode(PlanningInput.self, from: encoded)
             let connection = RuntimePocketConnection(url: url, token: token)
-            let repository = try PocketPlanningRepository(services: .live(connection: connection), connection: connection, storageURL: nil)
+            let repository = try PocketPlanningRepository(services: .live(connection: connection), connection: connection,
+                                                          storageURL: nil, currentOrderingOnly: true)
             return .init(repository: try MockRundownRepository(), planningRepository: repository, planningInitialInput: input,
                          mode: "Pocket • live runtime acceptance", authentication: nil)
         }
@@ -82,11 +83,17 @@ struct AppDependencies {
                 ? PocketIntegrationFixture.lateDay() : nil
             let timesOut = ProcessInfo.processInfo.arguments.contains("--pocket-itinerary-timeout-fixture")
             let hoursPort = ProcessInfo.processInfo.environment["C67_SYNTHETIC_HOURS_PORT"].flatMap(Int.init)
-            let repository = try PocketIntegrationFixture.repository(jobClock: { lateJobTime ?? .now },
+            let fixtureID = ProcessInfo.processInfo.environment["C67_ORDERING_FIXTURE_ID"].flatMap(UUID.init(uuidString:))
+            let storage = fixtureID.map {
+                FileManager.default.temporaryDirectory.appendingPathComponent("ordering-fixture-\($0.uuidString).json")
+            }
+            let currentOrderingOnly = ProcessInfo.processInfo.arguments.contains("--pocket-current-ordering-fixture")
+            let repository = try PocketIntegrationFixture.repository(storageURL: storage, jobClock: { lateJobTime ?? .now },
                                                                      firstOrderFailure: timesOut ? .timedOut : nil,
                                                                      externalAIDisclosure: ProcessInfo.processInfo.arguments.contains("--pocket-privacy-fixture") ? "fixture-v1" : nil,
                                                                      includesPinDetails: ProcessInfo.processInfo.arguments.contains("--itinerary-pin-details-fixture"),
-                                                                     hoursPort: hoursPort)
+                                                                     hoursPort: hoursPort,
+                                                                     currentOrderingOnly: currentOrderingOnly)
             let initialInput = ProcessInfo.processInfo.arguments.contains("--without-starting-point") ? nil : input
             return .init(repository: try MockRundownRepository(), planningRepository: repository,
                          planningInitialInput: initialInput, mode: "Pocket • synthetic integration fixture", authentication: nil)
@@ -98,7 +105,8 @@ struct AppDependencies {
             let endpoint = URL(string: raw)?.host == nil ? "" : raw
             let connection = PocketConnectionStore(serverURL: endpoint)
             let planning = try PocketPlanningRepository(services: .live(connection: connection), connection: connection,
-                                                        storageURL: PocketPlanningRepository.defaultStorageURL())
+                                                        storageURL: PocketPlanningRepository.defaultStorageURL(),
+                                                        currentOrderingOnly: true)
             return .init(repository: try MockRundownRepository(), planningRepository: planning, planningInitialInput: nil,
                          mode: "Pocket • on-device", authentication: nil)
         case "mock":

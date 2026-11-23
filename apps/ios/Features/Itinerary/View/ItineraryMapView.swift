@@ -201,6 +201,7 @@ struct ItineraryMapView: View {
                         .onMapCameraChange(frequency: .onEnd) { fullMapCamera = $0.camera }
                         .onChange(of: selectedStopID, initial: true) { _, _ in projectSelectedPin(using: proxy) }
                         .ignoresSafeArea(edges: .bottom)
+                        .accessibilityIdentifier("itineraryExpandedMap")
                         .overlay { stopCardOverlay }
                 }
                     .task(id: selectedStopID) {

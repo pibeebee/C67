@@ -43,7 +43,7 @@ private actor HoursRequests {
         return .init(status: "temporary_error")
     }
     let batch = try PocketPlanningRepository(services: services, connection: connection, storageURL: nil,
-                                              synthetic: true, jobClock: { now })
+                                              synthetic: true, jobClock: { now }, currentOrderingOnly: true)
     let places = ["I1", "I2", "I2", "I3"].enumerated().map { index, id in
         var place = PlanningPlace(id: UUID(), name: "Stop \(index)", location: .init(latitude: 0, longitude: Double(index + 1)),
                                   visitSeconds: 600)
@@ -62,7 +62,6 @@ private actor HoursRequests {
     var plans: [PlanProposal] = []
     var batchJob: PlanningJob?
     for repository in [baseline, batch] {
-        input.enginePreferences?.orderingMethod = repository === batch ? .hybridV52 : .hybridV51
         let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
         plans.append(try #require(try await finished(repository, id: job.id).result?.proposal))
         batchJob = job
@@ -87,8 +86,11 @@ private actor HoursRequests {
                                           weather: { _, _, _ in throw PlanningError.invalidResponse },
                                           advise: { _ in throw PlanningError.invalidResponse })
     services.scheduleForecast = { _, start, end, _ in await counter.forecast(start: start, end: end) }
-    let repository = try PocketPlanningRepository(services: services, connection: connection, storageURL: nil,
-                                                   synthetic: true, jobClock: { now })
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let storage = directory.appendingPathComponent("trips.json")
+    let legacyRepository = try PocketPlanningRepository(services: services, connection: connection, storageURL: storage,
+                                                        synthetic: true, jobClock: { now })
     let origin = PlanningPoint(latitude: 0, longitude: 0)
     var outside = PlanningPlace(id: UUID(), name: "Synthetic park", location: .init(latitude: 0, longitude: 1), visitSeconds: 600)
     outside.visitExposure = .sheltered
@@ -110,8 +112,11 @@ private actor HoursRequests {
     options.extraTravelMinutes = 4
     options.returnToOrigin = true
     input.enginePreferences = options
-    let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
-    let legacy = try #require(try await finished(repository, id: job.id).result?.proposal)
+    let job = try await legacyRepository.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    let legacy = try #require(try await finished(legacyRepository, id: job.id).result?.proposal)
+    let repository = try PocketPlanningRepository(services: services, connection: connection, storageURL: storage,
+                                                   synthetic: true, jobClock: { now }, currentOrderingOnly: true)
+    #expect(try await repository.planningJob(id: job.id).result?.proposal == legacy)
     #expect(legacy.effectiveOrderingMethod == .hybridV51)
     let archivedV51 = try JSONEncoder().encode(legacy)
     #expect(try JSONDecoder().decode(PlanProposal.self, from: archivedV51) == legacy)
@@ -143,6 +148,106 @@ private actor HoursRequests {
     #expect(repeated.stops.first?.arrivalAt == arrived.currentArrivedAt)
     #expect(repeated.stops.map(\.id) == Array(order))
     #expect(repeated.returnTravelSeconds == 120)
+}
+
+@Test(arguments: [nil, PlanningOrderingMethod.hybridV42, .hybridV51])
+func currentRepositoryUsesV52ForNewPlansAndReplans(method: PlanningOrderingMethod?) async throws {
+    let now = Date(timeIntervalSince1970: 1_800_000_000)
+    let services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
+                                          weather: { _, _, _ in throw PlanningError.unavailable },
+                                          advise: { _ in throw PlanningError.unavailable })
+    let repository = try PocketPlanningRepository(services: services, connection: V51TestConnection(),
+                                                   storageURL: nil, synthetic: true, jobClock: { now },
+                                                   currentOrderingOnly: true)
+    let origin = PlanningPoint(latitude: 0, longitude: 0)
+    var place = PlanningPlace(id: UUID(), name: "Synthetic stop",
+                              location: .init(latitude: 0, longitude: 1), visitSeconds: 600)
+    place.durationOverridden = true
+    var input = PlanningInput(title: "Current ordering", origin: origin, places: [place], preferences: "",
+                              startsAt: now, finishBy: now.addingTimeInterval(7200), timeZone: "UTC", mode: .automobile)
+    var preferences = PlanningPreferences()
+    preferences.orderingMethod = method
+    preferences.semanticAssistance = .disabled
+    preferences.scheduleSource = .manual
+    preferences.checkInBufferMinutes = 19
+    input.enginePreferences = preferences
+
+    for purpose in [PlanningPurpose.firstItinerary, .plan] {
+        let job = try await repository.requestPlan(.init(requestID: UUID(), purpose: purpose, input: input))
+        let proposal = try #require(try await finished(repository, id: job.id).result?.proposal)
+        #expect(proposal.effectiveOrderingMethod == .hybridV52)
+        #expect(proposal.input.enginePreferences?.checkInBufferMinutes == 19)
+        let trip = try await repository.applyProposal(jobID: job.id, expectedRevision: nil, requestID: UUID())
+        let replan = try await repository.requestPlan(.init(requestID: UUID(), purpose: .replan, input: trip.input,
+                                                            tripID: trip.id, baseRevision: trip.revision))
+        let revised = try #require(try await finished(repository, id: replan.id).result?.proposal)
+        #expect(revised.effectiveOrderingMethod == .hybridV52)
+        #expect(revised.input.enginePreferences?.checkInBufferMinutes == 19)
+    }
+}
+
+@Test func savedV51DateRevisionPersistsOnlyAfterSuccessfulApply() async throws {
+    let now = Date(timeIntervalSince1970: 1_800_000_000)
+    let canceledDate = now.addingTimeInterval(86_400)
+    let newDate = now.addingTimeInterval(172_800)
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let storage = directory.appendingPathComponent("trips.json")
+    let connection = V51TestConnection()
+    let services = PocketPlanningServices(travel: { _, _, departure, _ in
+        if departure >= canceledDate, departure < newDate {
+            try await Task.sleep(for: .seconds(30))
+        }
+        return .init(seconds: 120, meters: 500)
+    }, weather: { _, _, _ in throw PlanningError.unavailable },
+       advise: { _ in throw PlanningError.unavailable })
+    let legacy = try PocketPlanningRepository(services: services, connection: connection, storageURL: storage,
+                                               synthetic: true, jobClock: { now })
+    func openCurrent() throws -> PocketPlanningRepository {
+        try PocketPlanningRepository(services: services, connection: connection, storageURL: storage,
+                                     synthetic: true, jobClock: { now }, currentOrderingOnly: true)
+    }
+    var place = PlanningPlace(id: UUID(), name: "Synthetic stop",
+                              location: .init(latitude: 0, longitude: 1), visitSeconds: 600)
+    place.durationOverridden = true
+    var input = PlanningInput(title: "Saved v5.1", origin: .init(latitude: 0, longitude: 0), places: [place],
+                              preferences: "", startsAt: now, finishBy: now.addingTimeInterval(7200), timeZone: "UTC",
+                              mode: .automobile)
+    var preferences = PlanningPreferences()
+    preferences.orderingMethod = .hybridV51
+    preferences.semanticAssistance = .disabled
+    preferences.scheduleSource = .manual
+    input.enginePreferences = preferences
+    let initial = try await legacy.requestPlan(.init(requestID: UUID(), purpose: .firstItinerary, input: input))
+    _ = try #require(try await finished(legacy, id: initial.id).result?.proposal)
+    let saved = try await legacy.applyProposal(jobID: initial.id, expectedRevision: nil, requestID: UUID())
+    #expect(saved.plan.effectiveOrderingMethod == .hybridV51)
+
+    let repository = try openCurrent()
+    func request(_ departure: Date) -> PlanningRequest {
+        var request = PlanningRequest(requestID: UUID(), purpose: .replan, input: saved.input,
+                                      tripID: saved.id, baseRevision: saved.revision)
+        request.replacementDeparture = departure
+        return request
+    }
+    await #expect(throws: PlanningError.invalidInput) {
+        try await repository.requestPlan(request(input.finishBy))
+    }
+    #expect(try await openCurrent().personalTrips() == [saved])
+
+    let canceled = try await repository.requestPlan(request(canceledDate))
+    try await repository.cancelPlanning(id: canceled.id)
+    #expect(try await openCurrent().personalTrips() == [saved])
+
+    let revised = try await repository.requestPlan(request(newDate))
+    let proposal = try #require(try await finished(repository, id: revised.id).result?.proposal)
+    #expect(proposal.effectiveOrderingMethod == .hybridV52)
+    #expect(proposal.departureAt == newDate)
+    #expect(try await openCurrent().personalTrips() == [saved])
+    let applied = try await repository.applyProposal(jobID: revised.id, expectedRevision: saved.revision, requestID: UUID())
+    #expect(applied.revision == saved.revision + 1)
+    #expect(applied.plan.stops.map(\.id) == saved.plan.stops.map(\.id))
+    #expect(try await openCurrent().personalTrips() == [applied])
 }
 
 @Test func openMeteoScheduleForecastUsesPrecedingHoursAndPreservesGaps() throws {

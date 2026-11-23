@@ -330,7 +330,8 @@ private final class PocketRepositoryRegistry {
         let repository = try PocketPlanningRepository(services: .live(connection: connection), connection: connection,
                                                       storageURL: PocketPlanningRepository.storageURL(for: accountID),
                                                       requiresExternalAIConsent: true,
-                                                      externalAIDisclosure: TravelantsPrivacy.disclosure)
+                                                      externalAIDisclosure: TravelantsPrivacy.disclosure,
+                                                      currentOrderingOnly: true)
         repositories[accountID] = repository
         return repository
     }

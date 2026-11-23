@@ -80,7 +80,7 @@
         public static func repository(storageURL: URL? = nil, jobClock: @escaping @Sendable () -> Date = { .now },
                                       firstOrderFailure: PlanningError? = nil, externalAIDisclosure: String? = nil,
                                       includesPinDetails: Bool = false,
-                                      hoursPort: Int? = nil) throws -> PocketPlanningRepository {
+                                      hoursPort: Int? = nil, currentOrderingOnly: Bool = false) throws -> PocketPlanningRepository {
             let interruption = OrderInterruption()
             let connection = Connection(hoursPort: hoursPort)
             var services = PocketPlanningServices(travel: { _, _, _, _ in .init(seconds: 120, meters: 500) },
@@ -93,6 +93,12 @@
                                                   },
                                                   experience: { inputs, _ in try inputs.map { try experience($0) } },
                                                   hours: includesPinDetails ? Self.pinHours : nil)
+            if currentOrderingOnly {
+                services.scheduleForecast = { _, start, end, _ in
+                    .init(series: [.init(kind: .uvIndex, source: "Synthetic hourly forecast",
+                                         samples: [.init(interval: .init(start: start, end: end), value: 4)])])
+                }
+            }
             if let hoursPort {
                 let client = PocketResearchClient(connection: connection)
                 if hoursPort >= 18792 { services.hours = { await client.openingHours(placeID: $0) } }
@@ -101,7 +107,8 @@
             return try PocketPlanningRepository(services: services, connection: connection, storageURL: storageURL,
                                                 synthetic: true, jobClock: jobClock,
                                                 requiresExternalAIConsent: externalAIDisclosure != nil,
-                                                externalAIDisclosure: externalAIDisclosure)
+                                                externalAIDisclosure: externalAIDisclosure,
+                                                currentOrderingOnly: currentOrderingOnly)
         }
 
         private static func pinHours(_ placeID: String) async -> PlanningHoursLookup {
